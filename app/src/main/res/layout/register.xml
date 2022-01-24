@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    >
+
+    <TextView
+        android:id="@+id/registerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textSize="30sp"
+        android:textColor="@color/black"/>
+
+    <LinearLayout
+        android:id="@+id/registerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        >
+
+        <TextView
+            android:id="@+id/registerNameName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:textColor="@color/black"
+            />
+        <EditText
+            android:id="@+id/registerInputName"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            />
+        <TextView
+            android:id="@+id/registerBirthBirth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="생년월일"
+            android:textColor="@color/black"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <Spinner
+                android:id="@+id/registerInputBirthYear"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+
+                />
+            <Spinner
+                android:id="@+id/registerInputBirthMonth"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                />
+            <Spinner
+                android:id="@+id/registerInputBirthDate"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/registerAccountAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="계좌번호"
+            android:textColor="@color/black"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <Spinner
+                android:id="@+id/registerInputBank"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+
+
+                />
+            <EditText
+                android:id="@+id/registerInputAccount"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/registerRecommendRecommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="추천인 코드"
+            android:textColor="@color/black"
+            />
+        <EditText
+            android:id="@+id/registerInputRecommend"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            />
+
+        <CheckBox
+            android:id="@+id/registerAgree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="약관 동의"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+        <Button
+            android:id="@+id/RegisterBtn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="#717171"
+            android:text="가입하기" />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

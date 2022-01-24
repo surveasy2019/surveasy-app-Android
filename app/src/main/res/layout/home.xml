@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="40dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp">
+
+
+    <TextView
+        android:id="@+id/homeGreetingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="안녕하세요, ID 님!"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+
+    <TextView
+        android:id="@+id/homeSettlementText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="정산 예정금액"
+        android:layout_gravity="right"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"/>
+    <TextView
+        android:id="@+id/homeRewardAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="$10000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <LinearLayout
+        android:id="@+id/homeBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="60dp"
+        >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="배너"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="배너"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
