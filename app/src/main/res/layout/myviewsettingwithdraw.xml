@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center">
+
+
+    <ImageButton
+        android:id="@+id/MyViewSettingWithdraw_BackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:backgroundTint="#00000000"
+        app:layout_constraintBottom_toBottomOf="@+id/MyViewSetting_Top"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <LinearLayout
+        android:id="@+id/MyViewSettingWithdraw_Top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/MyViewSettingWithdraw_Title"
+            android:layout_width="109dp"
+            android:layout_height="29dp"
+            android:paddingLeft="5dp"
+            android:text="회원 탈퇴"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="330dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="회원 탈퇴를 원하시면 \n 비밀번호를 입력해주세요." />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="40dp"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:hint="비밀번호를 입력하시오." />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/MyViewSettingWithdraw_WithdrawBtn"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:backgroundTint="@color/white"
+            android:text="탈퇴하기"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
