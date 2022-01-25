@@ -8,7 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/loginTitle"
+        android:id="@+id/Login_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
@@ -21,7 +21,7 @@
 
 
     <EditText
-        android:id="@+id/loginInputID"
+        android:id="@+id/Login_InputID"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -31,7 +31,7 @@
          />
 
     <EditText
-        android:id="@+id/loginInputPW"
+        android:id="@+id/Login_InputPW"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -41,7 +41,7 @@
         android:layout_marginTop="10dp"
          />
     <Button
-        android:id="@+id/loginBtn"
+        android:id="@+id/Login_Btn"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="로그인하기"
@@ -53,21 +53,21 @@
         android:layout_marginTop="10dp"
         >
         <Button
-            android:id="@+id/loginKakao"
+            android:id="@+id/Login_Kakao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:text="kakao"
             android:backgroundTint="#AAA364" />
         <Button
-            android:id="@+id/loginNaver"
+            android:id="@+id/Login_Naver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:text="Naver"
             android:backgroundTint="#4CAF50" />
         <Button
-            android:id="@+id/loginGoogle"
+            android:id="@+id/Login_Google"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
@@ -84,7 +84,7 @@
         android:layout_marginTop="30dp">
 
         <TextView
-            android:id="@+id/loginRegister"
+            android:id="@+id/Login_Register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="회원가입"
@@ -93,7 +93,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/loginFindPw"
+            android:id="@+id/Login_FindPw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="비밀번호 찾기"

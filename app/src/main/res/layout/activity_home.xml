@@ -10,7 +10,7 @@
 
 
     <TextView
-        android:id="@+id/homeGreetingText"
+        android:id="@+id/Home_GreetingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
@@ -21,7 +21,7 @@
 
 
     <TextView
-        android:id="@+id/homeSettlementText"
+        android:id="@+id/Home_SettlementText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="정산 예정금액"
@@ -29,7 +29,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"/>
     <TextView
-        android:id="@+id/homeRewardAmount"
+        android:id="@+id/Home_RewardAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
@@ -39,7 +39,7 @@
         android:textColor="@color/black"/>
 
     <LinearLayout
-        android:id="@+id/homeBanner"
+        android:id="@+id/Home_Banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -57,6 +57,22 @@
 
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/HomeToList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List" />
+    <Button
+        android:id="@+id/HomeToMy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My" />
+    <Button
+        android:id="@+id/HomeToRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register" />
 
 
 </LinearLayout>
