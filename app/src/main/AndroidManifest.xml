@@ -10,6 +10,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Surveasy">
         <activity
+            android:name=".MyVeiwNoticeListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SurveyListDetailResponseActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SurveyListDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SurveyListActivity"
+            android:exported="true"
+            android:label="@string/title_activity_list"
+            android:theme="@style/Theme.Surveasy.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
