@@ -7,6 +7,6 @@ class MyViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_myviewnoticelist)
+        setContentView(R.layout.activity_myview)
     }
 }
