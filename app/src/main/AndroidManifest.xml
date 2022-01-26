@@ -9,9 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Surveasy">
-        <activity
-            android:name=".MyVeiwNoticeListActivity"
-            android:exported="true" />
+
         <activity
             android:name=".SurveyListDetailResponseActivity"
             android:exported="true" />
@@ -26,6 +24,30 @@
             android:exported="true" />
         <activity
             android:name=".MyViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewSettingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewSettingPushActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewSettingWithdrawActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewHistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewInfoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewContactActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewInviteActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewNoticeListActivity"
             android:exported="true" />
         <activity
             android:name=".SurveyListActivity"
