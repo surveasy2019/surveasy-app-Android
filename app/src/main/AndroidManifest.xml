@@ -31,6 +31,30 @@
             android:name=".MyViewActivity"
             android:exported="true" />
         <activity
+            android:name=".MyViewSettingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewSettingPushActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewSettingWithdrawActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewHistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewInfoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewContactActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewInviteActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyViewNoticeListActivity"
+            android:exported="true" />
+        <activity
             android:name=".SurveyListActivity"
             android:exported="true"
             android:label="@string/title_activity_list"

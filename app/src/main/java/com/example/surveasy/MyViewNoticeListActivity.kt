@@ -12,6 +12,7 @@ class MyViewNoticeListActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_myviewnoticelist)
 
+
         val noticeListToolbar : Toolbar? = findViewById(R.id.ToolbarMyViewNoticeList)
         setSupportActionBar(noticeListToolbar)
 
@@ -23,6 +24,7 @@ class MyViewNoticeListActivity : AppCompatActivity() {
         noticeListToolbar?.setNavigationOnClickListener {
             onBackPressed()
         }
+
 
 
     }

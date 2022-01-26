@@ -235,4 +235,5 @@
         android:text="로그아웃"
         android:textColor="@color/black" />
 
+
 </LinearLayout>
