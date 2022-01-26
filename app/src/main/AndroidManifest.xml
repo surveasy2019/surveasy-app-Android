@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Surveasy">
-
+        <activity
+            android:name=".SurveyListFirstSurvey"
+            android:exported="true" />
+        <activity
+            android:name=".MyVeiwNoticeListActivity"
+            android:exported="true" />
         <activity
             android:name=".SurveyListDetailResponseActivity"
             android:exported="true" />

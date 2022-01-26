@@ -3,28 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1890625" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/drawable/darkmodetoggle.xml" value="0.22239583333333332" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1890625" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/home.xml" value="0.175" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/login.xml" value="0.175" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/myview.xml" value="0.264" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/myviewcontact.xml" value="0.264" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/myviewhistory.xml" value="0.264" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/myviewinfo.xml" value="0.176" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/myviewinvite.xml" value="0.16770833333333332" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/myviewsetting.xml" value="0.20701754385964913" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/myviewsettingpush.xml" value="0.24210526315789474" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/myviewsettingwithdraw.xml" value="0.4" />
-        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/register.xml" value="0.175" />
-=======
         <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_content_list.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_fragment_first.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_fragment_second.xml" value="0.2477355072463768" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_list.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_main.xml" value="0.16757246376811594" />
-        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_register.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myview.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewcontact.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewhistory.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewinfo.xml" value="0.1693840579710145" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewinvite.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewnoticelist.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewnoticelistdetail.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewsetting.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewsettingpush.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewsettingwithdraw.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_register.xml" value="0.18" />
         <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_surveylist.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_surveylistdetail.xml" value="0.22" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_surveylistdetailresponse.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_surveylistdetailresponseproof.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_surveylistfirstsurvey.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/bottombar.xml" value="0.2056159420289855" />
         <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/firstintroducescreen_last.xml" value="0.22" />
         <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/home.xml" value="0.25" />
         <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/login.xml" value="0.25" />
@@ -39,7 +41,6 @@
         <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/surveylistdetailresponse.xml" value="0.25" />
         <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/surveylistdetailresponseproof.xml" value="0.22" />
         <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/surveylistfirstsurvey.xml" value="0.25" />
->>>>>>> f008cd950ad318667dc56636142b9b887f5611d9
       </map>
     </option>
   </component>
