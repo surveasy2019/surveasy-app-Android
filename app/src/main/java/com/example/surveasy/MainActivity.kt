@@ -18,15 +18,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         goMyBtn.setOnClickListener {
-            val intent = Intent(this,MyViewNoticeListActivity::class.java)
+            val intent = Intent(this,MyViewActivity::class.java)
             startActivity(intent)
         }
         goRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
-
-
 
     }
 }
