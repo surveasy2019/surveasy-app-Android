@@ -10,11 +10,7 @@ class MyViewNoticeListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_myviewnoticelist)
-//
-//        val noticeDetailBackBtn : ImageView = findViewById(R.id.MyViewNoticeList_BackBtn)
-//        noticeDetailBackBtn.setOnClickListener{
-//            onBackPressed()
-//        }
+
 
     }
 }

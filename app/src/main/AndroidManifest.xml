@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Surveasy">
         <activity
-            android:name=".MyVeiwNoticeListActivity"
+            android:name=".MyViewNoticeListActivity"
             android:exported="true" />
         <activity
             android:name=".SurveyListDetailResponseActivity"
