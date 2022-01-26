@@ -3,6 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.34933605720122574" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/drawable/ic_launcher_background.xml" value="0.34933605720122574" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/drawable/ic_launcher_foreground_selected.xml" value="0.34933605720122574" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/drawable/selector_bottomnav_home.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/Fragment_myview.xml" value="0.17980072463768115" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_home.xml" value="0.21458333333333332" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_main.xml" value="0.2808988764044944" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewnoticelist.xml" value="0.31929347826086957" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/fragment_home.xml" value="0.21458333333333332" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.19947916666666668" />
+=======
         <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_content_list.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_fragment_first.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_fragment_second.xml" value="0.2477355072463768" />
@@ -47,10 +60,10 @@
         <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/activity_myviewsettingwithdraw.xml" value="0.1" />
         <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/myviewhistoryfinfragment.xml" value="0.1" />
         <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/myviewhistorywaitfragment.xml" value="0.1" />
+>>>>>>> d4d86bfe48d25da9287f3fe8a38603b7b14ba95c
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

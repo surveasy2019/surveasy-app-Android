@@ -9,6 +9,10 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+<<<<<<< HEAD
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+=======
 
 
     // MyView
@@ -39,4 +43,5 @@
     <string name="MyViewSettingWithdraw_WithdrawBtn">탈퇴하기</string>
 
 
+>>>>>>> d4d86bfe48d25da9287f3fe8a38603b7b14ba95c
 </resources>
