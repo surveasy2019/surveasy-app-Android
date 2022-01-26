@@ -28,7 +28,7 @@
             android:name=".RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".MyViewActivity"
+            android:name=".MyViewFragment"
             android:exported="true" />
         <activity
             android:name=".MyViewSettingActivity"

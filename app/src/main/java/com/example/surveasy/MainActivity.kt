@@ -4,27 +4,34 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.surveasy.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_home)
-        val goListBtn : Button = findViewById(R.id.HomeToList)
-        val goMyBtn : Button = findViewById(R.id.HomeToMy)
-        val goRegister : Button = findViewById(R.id.HomeToRegister)
-        goListBtn.setOnClickListener {
-            val intent = Intent(this,SurveyListActivity::class.java)
-            startActivity(intent)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+
+        binding.NavHome.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.MainView, HomeFragment())
+                .commit()
         }
-        goMyBtn.setOnClickListener {
-            val intent = Intent(this,MyViewActivity::class.java)
-            startActivity(intent)
+        binding.NavList.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.MainView, SurveyListFragment())
+                .commit()
         }
-        goRegister.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+        binding.NavMy.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.MainView, MyViewFragment())
+                .commit()
         }
+
 
     }
 }
