@@ -39,6 +39,7 @@
         android:layout_margin="20dp">
 
         <Button
+            android:id="@+id/MyViewHistory_WaitBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -48,6 +49,7 @@
             android:textColor="@color/black" />
 
         <Button
+            android:id="@+id/MyViewHistory_FinBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -58,171 +60,23 @@
 
     </LinearLayout>
 
-
     <FrameLayout
-        android:id="@+id/MyViewHistory_MainContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="match_parent" >
 
-        <LinearLayout
-            android:id="@+id/MyViewHistory_Wait"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView1"
+            android:name="com.example.surveasy.MyViewHistoryWaitFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content"
+            android:visibility="visible"/>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="right"
-                android:paddingRight="40dp">
-
-                <TextView
-                    android:id="@+id/MyViewHistory_WaitText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="정산 대기 금액"
-                    android:textSize="15dp"/>
-
-                <TextView
-                    android:id="@+id/MyViewHistory_WaitAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1,700원"
-                    android:textSize="25dp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/MyViewHistory_WaitItemContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <LinearLayout
-                    android:id="@+id/MyViewHistory_WaitItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:id="@+id/MyViewHistory_WaitItemDate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="22.01.13" />
-
-                        <TextView
-                            android:id="@+id/MyViewHistory_WaitItemTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="대학생을 위한 설문 플랫폼" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/MyViewHistory_WaitItemReward"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="5dp"
-                        android:layout_weight="1"
-                        android:text="400"
-                        android:textColor="@color/white"
-                        android:background="@color/black"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/MyViewHistory_Fin"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView2"
+            android:name="com.example.surveasy.MyViewHistoryFinFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="right"
-                android:paddingRight="40dp">
-
-                <TextView
-                    android:id="@+id/MyViewHistory_FinText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="정산 대기 금액"
-                    android:textSize="15dp"/>
-
-                <TextView
-                    android:id="@+id/MyViewHistory_FinAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1,700원"
-                    android:textSize="25dp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/MyViewHistory_FinItemContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <LinearLayout
-                    android:id="@+id/MyViewHistory_FinItem"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
-
-                        <TextView
-                            android:id="@+id/MyViewHistory_FinItemDate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="22.01.13" />
-
-                        <TextView
-                            android:id="@+id/MyViewHistory_FinItemTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="대학생을 위한 설문 플랫폼" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/MyViewHistory_FinItemReward"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="5dp"
-                        android:layout_weight="1"
-                        android:text="400"
-                        android:textColor="@color/white"
-                        android:background="@color/black"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
 
     </FrameLayout>
 

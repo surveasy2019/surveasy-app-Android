@@ -13,9 +13,6 @@
             android:name=".SurveyListFirstSurvey"
             android:exported="true" />
         <activity
-            android:name=".MyVeiwNoticeListActivity"
-            android:exported="true" />
-        <activity
             android:name=".SurveyListDetailResponseActivity"
             android:exported="true" />
         <activity
