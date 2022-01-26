@@ -2,8 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="30dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:id="@+id/ToolbarSurveyListDetail"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/white"
+        app:titleTextColor="@color/black"/>
 
     <TextView
         android:id="@+id/SurveyListDetail_Title"
@@ -23,16 +31,18 @@
         android:gravity="center"
         android:text="상세정보"
         android:textSize="20dp"
-        android:layout_weight="20"/>
+        android:layout_weight="20"
+        />
 
     <Button
         android:id="@+id/SurveyListDetail_Btn"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="참여하기"
         android:layout_weight="1"
         android:layout_marginStart="120dp"
-        android:layout_marginEnd="120dp" />
+        android:layout_marginEnd="120dp"
+        />
 
 
 </LinearLayout>
