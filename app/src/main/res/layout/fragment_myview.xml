@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="정산 금액"
+            android:text="@string/MyView_UserRewardText"
             android:textSize="20dp"/>
 
         <TextView
@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="응답내역" />
+                android:text="@string/MyView_HistoryText" />
 
         </LinearLayout>
 
@@ -120,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="나의 정보" />
+                android:text="@string/MyView_InfoText" />
 
         </LinearLayout>
 
@@ -141,7 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="문의" />
+                android:text="@string/MyView_ContactText" />
 
         </LinearLayout>
 
@@ -162,7 +162,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="초대" />
+                android:text="@string/MyView_ContactText" />
 
         </LinearLayout>
 
@@ -185,7 +185,7 @@
                 android:id="@+id/MyView_NoticeTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="공지사항"
+                android:text="@string/MyView_NoticeTitle"
                 android:textSize="20dp"
                 android:layout_marginRight="170dp"/>
 
@@ -194,7 +194,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
-                android:text="자세히 보기 >"
+                android:text="@string/MyView_NoticeMore"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
@@ -232,7 +232,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:backgroundTint="@color/white"
-        android:text="로그아웃"
+        android:text="@string/MyView_Logout"
         android:textColor="@color/black" />
 
 

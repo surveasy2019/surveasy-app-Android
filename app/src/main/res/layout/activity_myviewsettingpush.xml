@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="알림 설정"
+            android:text="@string/MyViewSettingPush_Title"
             android:textSize="24sp"
             />
 
@@ -45,13 +45,13 @@
         >
 
         <Switch
-            android:id="@+id/MyViewSetting_PushSwitch"
+            android:id="@+id/MyViewSettingPush_PushSwitch"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:switchMinWidth="50dp"
             android:padding="20dp"
             android:gravity="center_vertical"
-            android:text="푸쉬 알림 설정"
+            android:text="@string/MyViewSettingPush_PushSwitch"
             />
 
     </LinearLayout>
