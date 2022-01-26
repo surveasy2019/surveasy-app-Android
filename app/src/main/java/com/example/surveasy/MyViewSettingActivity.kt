@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 
 class MyViewSettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +23,18 @@ class MyViewSettingActivity : AppCompatActivity() {
         myViewSettingWithdraw.setOnClickListener {
             val intent = Intent(this, MyViewSettingWithdrawActivity::class.java)
             startActivity(intent)
+        }
+
+        val settingToolbar : Toolbar? = findViewById(R.id.ToolbarMyViewSetting)
+        setSupportActionBar(settingToolbar)
+
+        if(supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+
+        settingToolbar?.setNavigationOnClickListener {
+            onBackPressed()
         }
 
 
