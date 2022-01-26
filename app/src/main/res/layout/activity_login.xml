@@ -4,102 +4,120 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/Login_Title"
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="30sp"
+        android:layout_height="?android:attr/actionBarSize"
+        android:id="@+id/ToolbarLogin"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/white"
+        app:titleTextColor="@color/black"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
         android:gravity="center"
-        android:textStyle="bold"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintTop_toTopOf="@+id/loginInputID"
-         />
-
-
-    <EditText
-        android:id="@+id/Login_InputID"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="ID"
-        android:inputType="textPersonName"
-
-         />
-
-    <EditText
-        android:id="@+id/Login_InputPW"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:text="password"
-        android:layout_marginTop="10dp"
-         />
-    <Button
-        android:id="@+id/Login_Btn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="로그인하기"
-        android:backgroundTint="#717171"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        >
-        <Button
-            android:id="@+id/Login_Kakao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="kakao"
-            android:backgroundTint="#AAA364" />
-        <Button
-            android:id="@+id/Login_Naver"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="Naver"
-            android:backgroundTint="#4CAF50" />
-        <Button
-            android:id="@+id/Login_Google"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="Google"
-            android:backgroundTint="#F44336" />
-
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/Login_Register"
-            android:layout_width="wrap_content"
+            android:id="@+id/Login_Title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="회원가입"
-            android:textColor="@color/black"
-            android:layout_marginEnd="10dp"
-            android:textStyle="bold" />
+            android:text="Login"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintTop_toTopOf="@+id/loginInputID"
+            />
 
-        <TextView
-            android:id="@+id/Login_FindPw"
+
+        <EditText
+            android:id="@+id/Login_InputID"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="ID"
+            android:inputType="textPersonName"
+
+            />
+
+        <EditText
+            android:id="@+id/Login_InputPW"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text="password"
+            android:layout_marginTop="10dp"
+            />
+        <Button
+            android:id="@+id/Login_Btn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="로그인하기"
+            android:backgroundTint="#717171"/>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="비밀번호 찾기"
-            android:textColor="@color/black"
-            android:layout_marginStart="10dp"
-            android:textStyle="bold" />
+            android:layout_marginTop="10dp"
+            >
+            <Button
+                android:id="@+id/Login_Kakao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="kakao"
+                android:backgroundTint="#AAA364" />
+            <Button
+                android:id="@+id/Login_Naver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Naver"
+                android:backgroundTint="#4CAF50" />
+            <Button
+                android:id="@+id/Login_Google"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Google"
+                android:backgroundTint="#F44336" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:id="@+id/Login_Register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회원가입"
+                android:textColor="@color/black"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/Login_FindPw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비밀번호 찾기"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

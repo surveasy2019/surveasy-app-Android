@@ -4,21 +4,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 
-class SurveyListDetailResponseActivity : AppCompatActivity() {
+class SurveyListFirstSurvey : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_surveylistdetailresponse)
+        setContentView(R.layout.activity_surveylistfirstsurvey)
 
-        val surveyListDetailResponseToolbar : Toolbar? = findViewById(R.id.ToolbarSurveyListDetailResponse)
-        setSupportActionBar(surveyListDetailResponseToolbar)
+        val firstSurveyToolbar : Toolbar? = findViewById(R.id.ToolbarFirstSurvey)
+        setSupportActionBar(firstSurveyToolbar)
 
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
 
-        surveyListDetailResponseToolbar?.setNavigationOnClickListener {
+        firstSurveyToolbar?.setNavigationOnClickListener {
             onBackPressed()
         }
     }

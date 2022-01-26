@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.widget.Toolbar
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +16,18 @@ class RegisterActivity : AppCompatActivity() {
         registerBtn.setOnClickListener {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
+        }
+
+        val registerToolbar : Toolbar? = findViewById(R.id.ToolbarRegister)
+        setSupportActionBar(registerToolbar)
+
+        if(supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+
+        registerToolbar?.setNavigationOnClickListener {
+            onBackPressed()
         }
     }
 }
