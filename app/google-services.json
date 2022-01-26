@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1077091709710",
+    "firebase_url": "https://surveasy-workspace-default-rtdb.firebaseio.com",
+    "project_id": "surveasy-workspace",
+    "storage_bucket": "surveasy-workspace.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077091709710:android:2397ec102362631d87dd5f",
+        "android_client_info": {
+          "package_name": "com.example.surveasy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1077091709710-vfn7kr2rm2juo27ehmkefr85fjn1q15g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdCg_MKcFuGUDyFN6Gw0Lf0EGDvSotkj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1077091709710-vfn7kr2rm2juo27ehmkefr85fjn1q15g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1077091709710-sjhaeka4jie8rn516opbqkpflkidpko7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "jhchoi.surveasy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
