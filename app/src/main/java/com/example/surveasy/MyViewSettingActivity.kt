@@ -14,13 +14,13 @@ class MyViewSettingActivity : AppCompatActivity() {
 
         val myViewSettingPush : Button = findViewById(R.id.MyViewSetting_Push)
         myViewSettingPush.setOnClickListener {
-            val intent = Intent(this, MyViewActivity::class.java)
+            val intent = Intent(this, MyViewSettingPushActivity::class.java)
             startActivity(intent)
         }
 
         val myViewSettingWithdraw : Button = findViewById(R.id.MyViewSetting_Withdraw)
         myViewSettingWithdraw.setOnClickListener {
-            val intent = Intent(this, MyViewSettingPushActivity::class.java)
+            val intent = Intent(this, MyViewSettingWithdrawActivity::class.java)
             startActivity(intent)
         }
 

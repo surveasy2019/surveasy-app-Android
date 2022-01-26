@@ -28,7 +28,7 @@ class MyViewActivity : AppCompatActivity() {
 
         val infoIcon : ImageButton = findViewById(R.id.MyView_InfoIcon)
         val infoText : TextView = findViewById(R.id.MyView_InfoText)
-        historyIcon.setOnClickListener {
+        infoIcon.setOnClickListener {
             val intent = Intent(this, MyViewInfoActivity::class.java)
             startActivity(intent)
         }
