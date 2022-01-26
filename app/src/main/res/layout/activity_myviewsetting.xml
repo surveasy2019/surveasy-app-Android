@@ -31,7 +31,7 @@
             android:id="@+id/MyViewSetting_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="설정"
+            android:text="@string/MyViewSetting_Title"
             android:textSize="24sp"
             android:padding="5dp"/>
 
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:backgroundTint="@color/white"
-            android:text="알림 설정"
+            android:text="@string/MyViewSetting_Push"
             android:textColor="@color/black"
             android:drawableRight="@android:drawable/ic_media_play" />
 
@@ -59,14 +59,14 @@
             android:layout_height="65dp"
             android:gravity="center"
             android:switchMinWidth="50dp"
-            android:text="다크 모드" />
+            android:text="@string/MyViewSetting_DarkModeSwitch" />
 
         <Button
             android:id="@+id/MyViewSetting_Version"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:backgroundTint="@color/white"
-            android:text="버전 정보"
+            android:text="@string/MyViewSetting_Version"
             android:textColor="@color/black"
             android:drawableRight="@android:drawable/ic_media_play" />
 
@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:backgroundTint="@color/white"
-            android:text="회원 탈퇴"
+            android:text="@string/MyViewSetting_Withdraw"
             android:textColor="@color/black"
             android:drawableRight="@android:drawable/ic_media_play" />
 
