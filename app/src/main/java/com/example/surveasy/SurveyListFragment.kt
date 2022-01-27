@@ -1,16 +1,25 @@
 package com.example.surveasy
 
-import android.content.Intent
+
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class SurveyListFragment() : Fragment() {
 
+    val db = Firebase.firestore
+    val surveyList = arrayListOf<SurveyItems>()
+    val adapter = SurveyItemsAdapter(surveyList)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -19,12 +28,43 @@ class SurveyListFragment() : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_surveylist,container,false)
 
-        val surveyListContainer = view.findViewById<ConstraintLayout>(R.id.SurveyList_ItemContainer)
+//        val surveyList = arrayListOf(
+//            SurveyItems("title",12),
+//            SurveyItems("title",13),
+//            SurveyItems("title",13),SurveyItems("title",13),
+//            SurveyItems("title",13),
+//            SurveyItems("title",13)
+//
+//
+//        )
 
-        surveyListContainer.setOnClickListener {
-            val intent = Intent(context, SurveyListDetailActivity::class.java)
-            startActivity(intent)
-        }
+
+
+            db.collection("AppTest1").get()
+                .addOnSuccessListener { result->
+                    surveyList.clear()
+                    for(document in result){
+                        var item : SurveyItems = SurveyItems(document["name"] as String, document["recommend"] as String)
+                        surveyList.add(item)
+                        Log.d(TAG,"${document["name"]} and ${document["recommend"]}")
+
+                        val container : RecyclerView? = view.findViewById(R.id.recyclerContainer)
+
+                        container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+                        container?.adapter = SurveyItemsAdapter(surveyList)
+                    }
+
+
+                }
+                .addOnFailureListener{exception->
+                    Log.d(TAG,"fail $exception")
+                }
+
+
+
+
+
+
 
 
 

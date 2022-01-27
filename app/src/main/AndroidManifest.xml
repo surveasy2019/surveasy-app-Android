@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.surveasy">
 
     <application
@@ -10,7 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Surveasy">
         <activity
-            android:name=".SurveyListFirstSurvey"
+            android:name=".MyViewNoticeListDetailActivity"
+            android:exported="true" />
+        <!-- <activity -->
+        <!-- android:name=".SplashActivity" -->
+        <!-- android:exported="true" /> -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SurveyListFirstSurveyActivity"
             android:exported="true" />
         <activity
             android:name=".SurveyListDetailResponseActivity"
@@ -23,10 +33,9 @@
             android:exported="true" />
         <activity
             android:name=".RegisterActivity"
-            android:exported="true" />
-        <activity
-            android:name=".MyViewFragment"
-            android:exported="true" />
+            android:exported="true" /> <!-- <activity -->
+        <!-- android:name=".MyViewFragment" -->
+        <!-- android:exported="true" /> -->
         <activity
             android:name=".MyViewSettingActivity"
             android:exported="true" />
@@ -50,15 +59,15 @@
             android:exported="true" />
         <activity
             android:name=".MyViewNoticeListActivity"
-            android:exported="true" />
+            android:exported="true" /> <!-- <activity -->
+        <!-- android:name=".SurveyListActivity" -->
+        <!-- android:exported="true" -->
+        <!-- android:label="@string/title_activity_list" -->
+        <!-- android:theme="@style/Theme.Surveasy.NoActionBar" /> -->
         <activity
-            android:name=".SurveyListActivity"
+            android:name=".SplashActivity"
             android:exported="true"
-            android:label="@string/title_activity_list"
-            android:theme="@style/Theme.Surveasy.NoActionBar" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

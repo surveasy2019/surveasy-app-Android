@@ -3,24 +3,26 @@ package com.example.surveasy
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.surveasy.databinding.ActivityMyviewcontactBinding
 
 class MyViewContactActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityMyviewcontactBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_myviewcontact)
+        binding = ActivityMyviewcontactBinding.inflate(layoutInflater)
 
-        val contactToolbar : Toolbar? = findViewById(R.id.ToolbarMyViewContact)
-        setSupportActionBar(contactToolbar)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.ToolbarMyViewContact)
 
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
 
-        contactToolbar?.setNavigationOnClickListener {
-            onBackPressed()
-        }
+        binding.ToolbarMyViewContact.setNavigationOnClickListener { onBackPressed()  }
 
     }
 }

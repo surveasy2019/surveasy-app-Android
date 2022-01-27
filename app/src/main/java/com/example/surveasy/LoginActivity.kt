@@ -5,29 +5,32 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.widget.Toolbar
+import com.example.surveasy.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
 
-        val loginBtn : Button = findViewById(R.id.Login_Btn)
-        loginBtn.setOnClickListener {
+
+        setContentView(binding.root)
+
+        binding.LoginBtn.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
 
-        val loginToolbar : Toolbar? = findViewById(R.id.ToolbarLogin)
-        setSupportActionBar(loginToolbar)
+        setSupportActionBar(binding.ToolbarLogin)
 
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
 
-        loginToolbar?.setNavigationOnClickListener {
-            onBackPressed()
-        }
+        binding.ToolbarLogin.setNavigationOnClickListener { onBackPressed() }
     }
 }
