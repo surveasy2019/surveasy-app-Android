@@ -33,9 +33,16 @@
             android:exported="true" />
         <activity
             android:name=".RegisterActivity"
+<<<<<<< HEAD
+            android:exported="true" />
+<!--        <activity-->
+<!--            android:name=".MyViewFragment"-->
+<!--            android:exported="true" />-->
+=======
             android:exported="true" /> <!-- <activity -->
         <!-- android:name=".MyViewFragment" -->
         <!-- android:exported="true" /> -->
+>>>>>>> 926bba026dc0303dfc33660f2ff4d9f9c37a53e3
         <activity
             android:name=".MyViewSettingActivity"
             android:exported="true" />
@@ -65,9 +72,14 @@
         <!-- android:label="@string/title_activity_list" -->
         <!-- android:theme="@style/Theme.Surveasy.NoActionBar" /> -->
         <activity
+<<<<<<< HEAD
+            android:name=".MainActivity"
+            android:exported="true">
+=======
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Splash">
+>>>>>>> 926bba026dc0303dfc33660f2ff4d9f9c37a53e3
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
