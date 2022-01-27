@@ -3,22 +3,26 @@ package com.example.surveasy
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
+import com.example.surveasy.databinding.ActivitySurveylistfirstsurveyBinding
 
-class SurveyListFirstSurvey : AppCompatActivity() {
+class SurveyListFirstSurveyActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySurveylistfirstsurveyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_surveylistfirstsurvey)
+        binding = ActivitySurveylistfirstsurveyBinding.inflate(layoutInflater)
 
-        val firstSurveyToolbar : Toolbar? = findViewById(R.id.ToolbarFirstSurvey)
-        setSupportActionBar(firstSurveyToolbar)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.ToolbarFirstSurvey)
 
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
 
-        firstSurveyToolbar?.setNavigationOnClickListener {
+        binding.ToolbarFirstSurvey.setNavigationOnClickListener {
             onBackPressed()
         }
     }

@@ -6,34 +6,36 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.surveasy.databinding.ActivityMyviewsettingBinding
 
 class MyViewSettingActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMyviewsettingBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_myviewsetting)
+        binding = ActivityMyviewsettingBinding.inflate(layoutInflater)
 
-        val myViewSettingPush : Button = findViewById(R.id.MyViewSetting_Push)
-        myViewSettingPush.setOnClickListener {
+        setContentView(binding.root)
+
+        binding.MyViewSettingPush.setOnClickListener {
             val intent = Intent(this, MyViewSettingPushActivity::class.java)
             startActivity(intent)
         }
 
-        val myViewSettingWithdraw : Button = findViewById(R.id.MyViewSetting_Withdraw)
-        myViewSettingWithdraw.setOnClickListener {
+        binding.MyViewSettingWithdraw.setOnClickListener {
             val intent = Intent(this, MyViewSettingWithdrawActivity::class.java)
             startActivity(intent)
         }
 
-        val settingToolbar : Toolbar? = findViewById(R.id.ToolbarMyViewSetting)
-        setSupportActionBar(settingToolbar)
+        setSupportActionBar(binding.ToolbarMyViewSetting)
 
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
 
-        settingToolbar?.setNavigationOnClickListener {
+        binding.ToolbarMyViewSetting.setNavigationOnClickListener {
             onBackPressed()
         }
 
