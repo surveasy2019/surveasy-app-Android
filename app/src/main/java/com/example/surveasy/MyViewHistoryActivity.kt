@@ -8,38 +8,37 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentContainerView
+import com.example.surveasy.databinding.ActivityMyviewhistoryBinding
 
 class MyViewHistoryActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityMyviewhistoryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_myviewhistory)
+        binding = ActivityMyviewhistoryBinding.inflate(layoutInflater)
 
-        val historyToolbar : Toolbar? = findViewById(R.id.ToolbarMyViewHistory)
-        setSupportActionBar(historyToolbar)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.ToolbarMyViewHistory)
 
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
 
-        historyToolbar?.setNavigationOnClickListener {
+        binding.ToolbarMyViewHistory.setNavigationOnClickListener {
             onBackPressed()
         }
 
-        val fragmentContainerView1 : FragmentContainerView = findViewById(R.id.fragmentContainerView1)
-        val fragmentContainerView2 : FragmentContainerView = findViewById(R.id.fragmentContainerView2)
-
-        val myViewHistoryWaitBtn : Button = findViewById(R.id.MyViewHistory_WaitBtn)
-        myViewHistoryWaitBtn.setOnClickListener{
-            fragmentContainerView1.visibility = View.VISIBLE
-            fragmentContainerView2.visibility = View.INVISIBLE
+        binding.MyViewHistoryWaitBtn.setOnClickListener{
+            binding.fragmentContainerView1.visibility = View.VISIBLE
+            binding.fragmentContainerView2.visibility = View.INVISIBLE
         }
 
-        val myViewHistoryFinBtn : Button = findViewById(R.id.MyViewHistory_FinBtn)
-        myViewHistoryFinBtn.setOnClickListener{
-            fragmentContainerView1.visibility = View.INVISIBLE
-            fragmentContainerView2.visibility = View.VISIBLE
+        binding.MyViewHistoryFinBtn.setOnClickListener{
+            binding.fragmentContainerView1.visibility = View.INVISIBLE
+            binding.fragmentContainerView2.visibility = View.VISIBLE
         }
 
 

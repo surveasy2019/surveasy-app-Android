@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 
@@ -23,7 +24,7 @@ class MyViewFragment : Fragment() {
         val infoIcon = view.findViewById<ImageButton>(R.id.MyView_InfoIcon)
         val contactIcon = view.findViewById<ImageButton>(R.id.MyView_ContactIcon)
         val inviteIcon = view.findViewById<ImageButton>(R.id.MyView_InviteIcon)
-        val noticeIcon = view.findViewById<ImageButton>(R.id.MyView_NoticeMore)
+        val noticeIcon = view.findViewById<Button>(R.id.MyView_NoticeMore)
 
         settingBtn.setOnClickListener {
             val intent = Intent(context, MyViewSettingActivity::class.java)
