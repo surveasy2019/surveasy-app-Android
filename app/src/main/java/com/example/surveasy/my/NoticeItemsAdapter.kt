@@ -1,17 +1,17 @@
-package com.example.surveasy
+package com.example.surveasy.my
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.surveasy.R
 
 class NoticeItemsAdapter(val noticeList : ArrayList<NoticeItems>)
     : RecyclerView.Adapter<NoticeItemsAdapter.CustomViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
-    : NoticeItemsAdapter.CustomViewHolder {
+    : CustomViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.notice_item,parent,false)
         return CustomViewHolder(itemView)
     }

@@ -1,11 +1,8 @@
-package com.example.surveasy
+package com.example.surveasy.my
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.example.surveasy.databinding.ActivityMyviewsettingBinding
 
 class MyViewSettingActivity : AppCompatActivity() {

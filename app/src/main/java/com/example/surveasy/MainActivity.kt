@@ -1,14 +1,11 @@
 package com.example.surveasy
 
-import android.content.ContentValues
-import android.content.ContentValues.TAG
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.surveasy.databinding.ActivityMainBinding
+import com.example.surveasy.home.HomeFragment
+import com.example.surveasy.list.SurveyListFragment
+import com.example.surveasy.my.MyViewFragment
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
