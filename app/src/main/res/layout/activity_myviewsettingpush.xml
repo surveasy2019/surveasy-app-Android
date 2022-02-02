@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:id="@+id/ToolbarMyViewSettingPush"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/white"
+        app:titleTextColor="@color/black"/>
+
+    <LinearLayout
+        android:id="@+id/MyViewSettingPush_TitleContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/MyViewSettingPush_Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_popup_reminder" />
+
+        <TextView
+            android:id="@+id/MyViewSettingPush_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/MyViewSettingPush_Title"
+            android:textSize="24sp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/MyViewSettingPush_MainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <Switch
+            android:id="@+id/MyViewSettingPush_PushSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:switchMinWidth="50dp"
+            android:padding="20dp"
+            android:gravity="center_vertical"
+            android:text="@string/MyViewSettingPush_PushSwitch"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

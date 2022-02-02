@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:id="@+id/ToolbarMyViewSetting"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/white"
+        app:titleTextColor="@color/black"/>
+
+    <LinearLayout
+        android:id="@+id/MyViewSetting_TitleContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/MyViewSetting_Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_preferences" />
+
+        <TextView
+            android:id="@+id/MyViewSetting_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/MyViewSetting_Title"
+            android:textSize="24sp"
+            android:padding="5dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/MyViewSetting_MainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/MyViewSetting_Push"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/MyViewSetting_Push"
+            android:textColor="@color/black"
+            android:drawableRight="@android:drawable/ic_media_play" />
+
+
+        <Switch
+            android:id="@+id/MyViewSetting_DarkModeSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:gravity="center"
+            android:switchMinWidth="50dp"
+            android:text="@string/MyViewSetting_DarkModeSwitch" />
+
+        <Button
+            android:id="@+id/MyViewSetting_Version"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/MyViewSetting_Version"
+            android:textColor="@color/black"
+            android:drawableRight="@android:drawable/ic_media_play" />
+
+        <Button
+            android:id="@+id/MyViewSetting_Withdraw"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/MyViewSetting_Withdraw"
+            android:textColor="@color/black"
+            android:drawableRight="@android:drawable/ic_media_play" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+<<<<<<< HEAD
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.34933605720122574" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/drawable/ic_launcher_background.xml" value="0.34933605720122574" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/drawable/ic_launcher_foreground_selected.xml" value="0.34933605720122574" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/drawable/selector_bottomnav_home.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/Fragment_myview.xml" value="0.17980072463768115" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_home.xml" value="0.21458333333333332" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_main.xml" value="0.2808988764044944" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewnoticelist.xml" value="0.31929347826086957" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/fragment_home.xml" value="0.21458333333333332" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.19947916666666668" />
+=======
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_content_list.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_fragment_first.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_fragment_second.xml" value="0.2477355072463768" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_list.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_main.xml" value="0.16757246376811594" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myview.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewcontact.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewhistory.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewinfo.xml" value="0.1693840579710145" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewinvite.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewnoticelist.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewnoticelistdetail.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewsetting.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewsettingpush.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_myviewsettingwithdraw.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_register.xml" value="0.18" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_surveylist.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_surveylistdetail.xml" value="0.22" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_surveylistdetailresponse.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_surveylistdetailresponseproof.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/activity_surveylistfirstsurvey.xml" value="0.1" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/bottombar.xml" value="0.2056159420289855" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/firstintroducescreen_last.xml" value="0.22" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/home.xml" value="0.25" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/login.xml" value="0.25" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/myviewnoticelist.xml" value="0.25" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/myviewnoticelistdetail.xml" value="0.33" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/myviewsetting.xml" value="0.25" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/myviewsettingpush.xml" value="0.246875" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/myviewsettingwithdraw.xml" value="0.246875" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/register.xml" value="0.25" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/surveylist.xml" value="0.25" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/surveylistdetail.xml" value="0.22" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/surveylistdetailresponse.xml" value="0.25" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/surveylistdetailresponseproof.xml" value="0.22" />
+        <entry key="..\:/Users/oinbo/Desktop/kotlin/Surveasy-app-master/app/src/main/res/layout/surveylistfirstsurvey.xml" value="0.25" />
+        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/activity_myview.xml" value="0.1" />
+        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/activity_myviewsetting.xml" value="0.1" />
+        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/activity_myviewsettingpush.xml" value="0.152" />
+        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/activity_myviewsettingwithdraw.xml" value="0.1" />
+        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/myviewhistoryfinfragment.xml" value="0.1" />
+        <entry key="..\:/Users/seoya/AndroidStudioProjects/Surveasy/app/src/main/res/layout/myviewhistorywaitfragment.xml" value="0.1" />
+>>>>>>> d4d86bfe48d25da9287f3fe8a38603b7b14ba95c
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

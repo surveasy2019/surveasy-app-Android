@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:id="@+id/ToolbarMyViewNoticeListDetail"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/white"
+        app:titleTextColor="@color/black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="공지사항"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="20dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="서베이지 패널 서비스 이전 안내"
+            android:textSize="20sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2021.01.19"
+            android:layout_marginTop="10dp" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:background="?android:attr/listDivider"
+            android:backgroundTint="#000000" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:text="Si osculantur puer tuus aut uxorem tuam, osculum, non dico quod omnia quae sunt
+            hominis, et sic non tangetur, si aut ex eis moriatur.Quando ambulabat agendis admonere te
+            qualis actio. Si ad corpus, quae plerumque Imaginare tecum in balineo quidam aquam fundes
+            aliquod discrimen vituperiis usum alii furantur.Sic de isto et tutius perducit ad actum
+            ipsum, ut si dico “Ego autem vadam lavari, ut mens mea in statu naturae conformior.” Et
+            similiter circa alias res. Et sic, si contingit ex per se lavantem, et erit hoc paratus
+            ut diceret, “Hoc non solum lavari ut desideravit, sed ut animus in statu naturae onvenienter naturae, et non"
+            android:gravity="center_vertical"/>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
