@@ -1,10 +1,9 @@
-package com.example.surveasy
+package com.example.surveasy.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import androidx.appcompat.widget.Toolbar
+import com.example.surveasy.MainActivity
 import com.example.surveasy.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -20,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.LoginBtn.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 

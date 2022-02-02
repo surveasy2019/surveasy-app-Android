@@ -1,12 +1,14 @@
-package com.example.surveasy
+package com.example.surveasy.list
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-
+import com.example.surveasy.R
 
 
 class SurveyItemsAdapter(val surveyList : ArrayList<SurveyItems>) : RecyclerView.Adapter<SurveyItemsAdapter.CustomViewHolder>() {
@@ -24,6 +26,11 @@ class SurveyItemsAdapter(val surveyList : ArrayList<SurveyItems>) : RecyclerView
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         holder.itemTitle.text = surveyList.get(position).title
         holder.itemDate.text = surveyList.get(position).date.toString()
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(holder.itemView.context,SurveyListDetailActivity::class.java)
+            ContextCompat.startActivity(holder.itemView.context,intent,null)
+        }
 
     }
 

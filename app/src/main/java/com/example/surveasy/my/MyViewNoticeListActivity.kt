@@ -1,20 +1,11 @@
-package com.example.surveasy
+package com.example.surveasy.my
 
-import android.content.ContentValues
-import android.content.ContentValues.TAG
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.ImageView
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.databinding.ActivityMyviewnoticelistBinding
 import com.google.firebase.firestore.*
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import org.w3c.dom.Document
 
 class MyViewNoticeListActivity : AppCompatActivity() {
 

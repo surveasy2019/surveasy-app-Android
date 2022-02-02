@@ -1,4 +1,4 @@
-package com.example.surveasy
+package com.example.surveasy.my
 
 class NoticeItems(val title : String, val date : String) {
 }

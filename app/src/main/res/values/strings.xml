@@ -14,7 +14,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-
     // MyView
     <string name="MyView_UserRewardText">정산 금액</string>
     <string name="MyView_HistoryText">응답 내역</string>

@@ -1,4 +1,4 @@
-package com.example.surveasy
+package com.example.surveasy.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

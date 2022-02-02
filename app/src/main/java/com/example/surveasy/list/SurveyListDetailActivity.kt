@@ -1,11 +1,13 @@
-package com.example.surveasy
+package com.example.surveasy.list
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
+import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivitySurveylistdetailBinding
 
-class SurveyListDetailResponseActivity : AppCompatActivity() {
+
+class SurveyListDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySurveylistdetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,8 +15,12 @@ class SurveyListDetailResponseActivity : AppCompatActivity() {
 
         binding = ActivitySurveylistdetailBinding.inflate(layoutInflater)
 
-        setContentView(R.layout.activity_surveylistdetailresponse)
+        setContentView(binding.root)
 
+        binding.SurveyListDetailBtn.setOnClickListener {
+            val intent = Intent(this, SurveyListDetailResponseActivity::class.java)
+            startActivity(intent)
+        }
         setSupportActionBar(binding.ToolbarSurveyListDetail)
 
         if(supportActionBar != null){
@@ -25,5 +31,7 @@ class SurveyListDetailResponseActivity : AppCompatActivity() {
         binding.ToolbarSurveyListDetail.setNavigationOnClickListener {
             onBackPressed()
         }
+
+
     }
 }

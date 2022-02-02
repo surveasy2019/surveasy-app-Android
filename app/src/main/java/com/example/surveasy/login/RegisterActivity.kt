@@ -1,11 +1,10 @@
-package com.example.surveasy
+package com.example.surveasy.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.widget.Toolbar
+import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityRegisterBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -32,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
             db.collection("AppTest1").document(binding.RegisterInputName.text.toString())
                 .set(input)
 
-            val intent = Intent(this,LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
