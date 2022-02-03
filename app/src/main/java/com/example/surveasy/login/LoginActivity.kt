@@ -61,6 +61,8 @@ class LoginActivity : AppCompatActivity() {
 
                 Log.i(TAG, "accessToken: $accessToken")
                 Log.i(TAG, "refreshToken: $refreshToken")
+                Log.i(TAG, "expiresAt: $expiresAt")
+                Log.i(TAG, "tokenType: $tokenType")
 
             }
             else {
