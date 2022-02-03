@@ -1,30 +1,21 @@
 package com.example.surveasy.my
 
-import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
-import androidx.datastore.dataStore
-import androidx.datastore.dataStoreFile
-import androidx.datastore.preferences.core.emptyPreferences
-import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.fragment.app.Fragment
 import com.example.surveasy.R
+import android.widget.TextView
 import com.kakao.sdk.user.UserApi
 import com.kakao.sdk.user.UserApiClient
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import java.io.IOException
+
 
 
 class MyViewFragment : Fragment() {
@@ -100,9 +91,10 @@ class MyViewFragment : Fragment() {
                 val intent = Intent(context, MyViewNoticeListActivity::class.java)
                 startActivity(intent)
             }
-
         }
+
             return view
+
 
 
         }
