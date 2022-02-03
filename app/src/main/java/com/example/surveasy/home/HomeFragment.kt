@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.ktx.messaging
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -52,7 +53,7 @@ val db = Firebase.firestore
 
         }
 
-    // 홈에 들어올때마다 불러오는 것 vs 리스트 저장 후?
+        // 홈에 들어올때마다 불러오는 것 vs 리스트 저장 후?
         UserApiClient.instance.me { user, error ->
             if (error != null) {
                 IdText.text = "로그인이 필요합니다"
@@ -92,49 +93,43 @@ val db = Firebase.firestore
         }
 
 
-
-
-
-
-        val test : Button = view.findViewById(R.id.Test)
-        test.setOnClickListener {
-            FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener {task ->
-                if(!task.isSuccessful){
-                    Log.d(TAG,"fcm token failed",task.exception)
+       val FCMTokenBtn : Button = view.findViewById(R.id.FCMTokenBtn)
+        FCMTokenBtn.setOnClickListener {
+            FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w(TAG, "Fetching FCM registration token failed", task.exception)
                     return@OnCompleteListener
                 }
+                // Get new FCM registration token
                 val token = task.result
 
-                db.collection("AppTestUser").document(2103737920.toString()) //user.id.toString()
-                    .update(mapOf("FCMToken" to token))
+                Log.d(TAG, "##### FCM TOKEN:: $token")
 
-
-                Log.d(TAG,"fcm토큰: "+token)
-                Toast.makeText(context,token,Toast.LENGTH_LONG).show()
+                val db = Firebase.firestore
+                val fcmToken = hashMapOf(
+                    "fcmToken" to token
+                )
+                db.collection("fcmToken").document(token).set(fcmToken)
             })
+            FirebaseMessaging.getInstance().subscribeToTopic("weather")
+        }
+
+        val FCMSubscribeBtn : Button = view.findViewById(R.id.FCMSubscribeBtn)
+        FCMSubscribeBtn.setOnClickListener {
+            Log.d(TAG, "Subscribing to weather topic")
+            Firebase.messaging.subscribeToTopic("weather")
+                .addOnCompleteListener { task ->
+                    var msg = "This is SUCCESS message!"
+                    if(!task.isSuccessful) {
+                        msg = "This is FAIL message!"
+                    }
+                    Log.d(TAG, msg)
+                }
         }
 
 
-// 연결 끊기
-//        test.setOnClickListener {
-//            UserApiClient.instance.unlink { error ->
-//                if (error != null) {
-//                    Log.e(TAG, "연결 끊기 실패", error)
-//                }
-//                else {
-//                    Toast.makeText(context,"unlink",Toast.LENGTH_LONG).show()
-//                }
-//            }
-//        }
-
-
-
-
-            return view
-
-
-        }
+        return view
 
 
     }
-
+}
