@@ -1,14 +1,20 @@
 package com.example.surveasy.my
 
+import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.surveasy.R
+import com.kakao.sdk.user.UserApi
+import com.kakao.sdk.user.UserApiClient
 
 class MyViewFragment : Fragment() {
 
@@ -26,6 +32,32 @@ class MyViewFragment : Fragment() {
         val contactIcon = view.findViewById<ImageButton>(R.id.MyView_ContactIcon)
         val inviteIcon = view.findViewById<ImageButton>(R.id.MyView_InviteIcon)
         val noticeIcon = view.findViewById<Button>(R.id.MyView_NoticeMore)
+        val myIdText = view.findViewById<TextView>(R.id.MyView_UserName)
+        val logoutBtn = view.findViewById<Button>(R.id.MyView_Logout)
+
+
+        UserApiClient.instance.me { user, error ->
+            if (error != null) {
+                myIdText.text = "로그인이 필요합니다"
+                Log.d(ContentValues.TAG,"fail")
+            } else if (user != null) {
+                myIdText.text = "${user.kakaoAccount?.profile?.nickname}님"
+            }
+        }
+
+        logoutBtn.setOnClickListener {
+            UserApiClient.instance.logout { error ->
+                if(error != null){
+                    Log.d(TAG,"fail")
+                }else{
+                    Log.d(TAG,"logout")
+                    myIdText.text = "로그인이 필요합니다"
+
+                }
+            }
+        }
+
+
 
         settingBtn.setOnClickListener {
             val intent = Intent(context, MyViewSettingActivity::class.java)
