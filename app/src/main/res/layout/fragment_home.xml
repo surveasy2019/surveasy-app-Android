@@ -80,6 +80,19 @@
             android:layout_height="wrap_content"
             android:text="Login" />
 
+        <Button
+            android:id="@+id/FCMTokenBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test" />
+
+        <Button
+            android:id="@+id/FCMSubscribeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test" />
+
+
 
 
     </LinearLayout>

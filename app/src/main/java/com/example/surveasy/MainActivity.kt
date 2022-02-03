@@ -2,12 +2,14 @@ package com.example.surveasy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.surveasy.databinding.ActivityMainBinding
 import com.example.surveasy.home.HomeFragment
 import com.example.surveasy.list.SurveyListFragment
 import com.example.surveasy.my.MyViewFragment
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.kakao.sdk.common.util.Utility
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +40,9 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.MainView, MyViewFragment())
                 .commit()
         }
+
+        val keyHash = Utility.getKeyHash(this)
+        Log.d("Hash",keyHash)
 
     }
 }
