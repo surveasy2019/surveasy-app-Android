@@ -20,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var mOAuthLoginModule: OAuthLogin
     private lateinit var binding: ActivityLoginBinding
     val db = Firebase.firestore
+    val loginInfoList = arrayListOf<LoginInfo>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,11 +48,12 @@ class LoginActivity : AppCompatActivity() {
 
         binding.LoginKakao.setOnClickListener {
             UserApiClient.instance.loginWithKakaoAccount(this) { token, error ->
+
                 if (error != null) {
                     Toast.makeText(this, "로그인 실패 $error", Toast.LENGTH_LONG).show()
                     Log.i(TAG, "에러: $error")
                 } else if (token != null) {
-                    Toast.makeText(this, "로그인 성공 ${token.accessToken}", Toast.LENGTH_LONG).show()
+
                 }
 
                 UserApiClient.instance.me { user, error ->
@@ -67,13 +69,14 @@ class LoginActivity : AppCompatActivity() {
                         db.collection("AppTestUser").document(user.id.toString())
                             .set(userInfo)
 
-                        Log.d(
-                            TAG, "사용자 정보 요청 성공" +
-                                    "\n회원번호: ${user.id}" +
-                                    "\n이메일: ${user.kakaoAccount?.email}" +
-                                    "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
-                                    "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}"
-                        )
+                        for(info in userInfo){
+                            var uInfo : LoginInfo = LoginInfo(info.key[0] as Long, info.key[1] as String)
+                            loginInfoList.add(uInfo)
+
+                        }
+
+
+
 
 
                     }

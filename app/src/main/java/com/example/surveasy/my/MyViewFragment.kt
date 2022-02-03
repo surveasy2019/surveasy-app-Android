@@ -16,6 +16,7 @@ import android.widget.TextView
 import com.kakao.sdk.user.UserApi
 import com.kakao.sdk.user.UserApiClient
 
+
 class MyViewFragment : Fragment() {
 
     override fun onCreateView(
@@ -24,7 +25,7 @@ class MyViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_myview,container, false)
+        val view = inflater.inflate(R.layout.fragment_myview, container, false)
 
         val settingBtn = view.findViewById<ImageButton>(R.id.MyView_SettingBtn)
         val historyIcon = view.findViewById<ImageButton>(R.id.MyView_HistoryIcon)
@@ -39,26 +40,33 @@ class MyViewFragment : Fragment() {
         UserApiClient.instance.me { user, error ->
             if (error != null) {
                 myIdText.text = "로그인이 필요합니다"
-                Log.d(ContentValues.TAG,"fail")
+                Log.d(TAG, "fail")
             } else if (user != null) {
                 myIdText.text = "${user.kakaoAccount?.profile?.nickname}님"
+
+
             }
         }
 
         logoutBtn.setOnClickListener {
             UserApiClient.instance.logout { error ->
-                if(error != null){
-                    Log.d(TAG,"fail")
-                }else{
-                    Log.d(TAG,"logout")
+                if (error != null) {
+                    Log.d(TAG, "logout fail")
+                } else {
+                    Log.d(TAG, "logout")
                     myIdText.text = "로그인이 필요합니다"
 
                 }
             }
-        }
+//            CoroutineScope(Dispatchers.Main).launch {
+//                val value = DataApplication.getInstance().getDataStore()?.long?.first()
+//                Toast.makeText(context,"value : $value",Toast.LENGTH_LONG).show()
+//
+//            }
+//        }
 
 
-        settingBtn.setOnClickListener {
+settingBtn.setOnClickListener {
             val intent = Intent(context, MyViewSettingActivity::class.java)
             startActivity(intent)
         }
@@ -88,9 +96,5 @@ class MyViewFragment : Fragment() {
 
 
 
-
-
-
-
+        }
     }
-}
