@@ -46,7 +46,7 @@ class SurveyListFragment() : Fragment() {
                     for(document in result){
                         var item : SurveyItems = SurveyItems(document["name"] as String, document["recommend"] as String)
                         surveyList.add(item)
-                        Log.d(TAG,"${document["name"]} and ${document["recommend"]}")
+                        //Log.d(TAG,"${document["name"]} and ${document["recommend"]}")
 
                         val container : RecyclerView? = view.findViewById(R.id.recyclerContainer)
 

@@ -17,6 +17,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityLoginBinding
     val db = Firebase.firestore
+    val loginInfoList = arrayListOf<LoginInfo>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +47,7 @@ class LoginActivity : AppCompatActivity() {
                 if(error != null){
                     Toast.makeText(this,"로그인 실패 $error",Toast.LENGTH_LONG).show()
                 }else if (token != null){
+                    Log.d(TAG,"토큰: ${token.accessToken}")
                     Toast.makeText(this,"로그인 성공 ${ token.accessToken }",Toast.LENGTH_LONG).show()
                 }
 
@@ -62,13 +64,14 @@ class LoginActivity : AppCompatActivity() {
                         db.collection("AppTestUser").document(user.id.toString())
                             .set(userInfo)
 
-                        Log.d(
-                            TAG, "사용자 정보 요청 성공" +
-                                    "\n회원번호: ${user.id}" +
-                                    "\n이메일: ${user.kakaoAccount?.email}" +
-                                    "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
-                                    "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}"
-                        )
+                        for(info in userInfo){
+                            var uInfo : LoginInfo = LoginInfo(info.key[0] as Long, info.key[1] as String)
+                            loginInfoList.add(uInfo)
+
+                        }
+
+
+
 
 
 
