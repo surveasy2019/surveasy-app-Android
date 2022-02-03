@@ -34,7 +34,7 @@
                 android:id="@+id/MyView_UserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="최진혁님"
+
                 android:textSize="25dp"/>
 
             <TextView

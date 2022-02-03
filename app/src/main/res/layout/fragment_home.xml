@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="안녕하세요, ID 님!"
+
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -73,6 +73,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register" />
+        <Button
+            android:id="@+id/Test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test" />
 
 
 

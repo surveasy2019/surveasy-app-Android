@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
+        android:name=".GlobalApplicationKakao"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,6 +22,22 @@
             android:exported="true" /> <!-- <activity -->
         <!-- android:name=".SplashActivity" -->
         <!-- android:exported="true" /> -->
+
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
+                <data android:host="oauth"
+                    android:scheme="kakaoc3dd0da30ec3cf75837fef9022ca48a4" />
+            </intent-filter>
+        </activity>
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true" />
@@ -35,7 +52,8 @@
             android:exported="true" />
         <activity
             android:name=".login.LoginActivity"
-            android:exported="true" />
+            android:exported="true"
+            tools:ignore="DuplicateActivity" />
         <activity android:name=".login.RegisterActivity" /> <!-- <activity -->
         <!-- android:name=".MyViewFragment" -->
         <!-- android:exported="true" /> -->
