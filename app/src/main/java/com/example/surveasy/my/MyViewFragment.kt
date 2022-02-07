@@ -17,7 +17,6 @@ import com.kakao.sdk.user.UserApi
 import com.kakao.sdk.user.UserApiClient
 
 
-
 class MyViewFragment : Fragment() {
 
     override fun onCreateView(
@@ -91,8 +90,8 @@ class MyViewFragment : Fragment() {
                 val intent = Intent(context, MyViewNoticeListActivity::class.java)
                 startActivity(intent)
             }
-        }
 
+        }
             return view
 
 
