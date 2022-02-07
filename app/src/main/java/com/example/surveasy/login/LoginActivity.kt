@@ -69,11 +69,11 @@ class LoginActivity : AppCompatActivity() {
                         db.collection("AppTestUser").document(user.id.toString())
                             .set(userInfo)
 
-                        for(info in userInfo){
-                            var uInfo : LoginInfo = LoginInfo(info.key[0] as Long, info.key[1] as String)
-                            loginInfoList.add(uInfo)
-
-                        }
+//                        for(info in userInfo){
+//                            var uInfo : LoginInfo = LoginInfo(info.key[0] as Long, info.key[1] as String)
+//                            loginInfoList.add(uInfo)
+//
+//                        }
 
 
 

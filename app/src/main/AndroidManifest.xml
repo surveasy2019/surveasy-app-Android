@@ -66,7 +66,7 @@
         <activity
             android:name=".login.RegisterActivity"
             android:exported="true" />
-            tools:ignore="DuplicateActivity" /><!-- <activity -->
+        tools:ignore="DuplicateActivity" /><!-- <activity -->
         <!-- android:name=".MyViewFragment" -->
         <!-- android:exported="true" /> -->
         <activity

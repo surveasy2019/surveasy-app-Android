@@ -66,33 +66,33 @@ class MyViewFragment : Fragment() {
 //        }
 
 
-settingBtn.setOnClickListener {
-            val intent = Intent(context, MyViewSettingActivity::class.java)
-            startActivity(intent)
-        }
-        historyIcon.setOnClickListener {
-            val intent = Intent(context, MyViewHistoryActivity::class.java)
-            startActivity(intent)
-        }
-        infoIcon.setOnClickListener {
-            val intent = Intent(context, MyViewInfoActivity::class.java)
-            startActivity(intent)
-        }
-        contactIcon.setOnClickListener {
-            val intent = Intent(context, MyViewContactActivity::class.java)
-            startActivity(intent)
-        }
-        inviteIcon.setOnClickListener {
-            val intent = Intent(context, MyViewInviteActivity::class.java)
-            startActivity(intent)
-        }
-        noticeIcon.setOnClickListener {
-            val intent = Intent(context, MyViewNoticeListActivity::class.java)
-            startActivity(intent)
-        }
+            settingBtn.setOnClickListener {
+                val intent = Intent(context, MyViewSettingActivity::class.java)
+                startActivity(intent)
+            }
+            historyIcon.setOnClickListener {
+                val intent = Intent(context, MyViewHistoryActivity::class.java)
+                startActivity(intent)
+            }
+            infoIcon.setOnClickListener {
+                val intent = Intent(context, MyViewInfoActivity::class.java)
+                startActivity(intent)
+            }
+            contactIcon.setOnClickListener {
+                val intent = Intent(context, MyViewContactActivity::class.java)
+                startActivity(intent)
+            }
+            inviteIcon.setOnClickListener {
+                val intent = Intent(context, MyViewInviteActivity::class.java)
+                startActivity(intent)
+            }
+            noticeIcon.setOnClickListener {
+                val intent = Intent(context, MyViewNoticeListActivity::class.java)
+                startActivity(intent)
+            }
 
-
-        return view
+        }
+            return view
 
 
 
