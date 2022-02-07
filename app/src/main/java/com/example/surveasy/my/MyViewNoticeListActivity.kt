@@ -5,13 +5,20 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.databinding.ActivityMyviewnoticelistBinding
+import com.example.surveasy.login.UserItems
+import com.example.surveasy.login.UserItemsAdapter
 import com.google.firebase.firestore.*
 
 class MyViewNoticeListActivity : AppCompatActivity() {
 
     private lateinit var noticeRecyclerView: RecyclerView
     private lateinit var noticeList : ArrayList<NoticeItems>
+
+    private lateinit var userRecyclerView: RecyclerView
+    private lateinit var userList : ArrayList<UserItems>
+
     private lateinit var db : FirebaseFirestore
+
 
 
     private lateinit var binding : ActivityMyviewnoticelistBinding
@@ -41,7 +48,8 @@ class MyViewNoticeListActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        fetchNoticeData()
+        //fetchNoticeData()
+        fetchUserData()
 
     }
 
@@ -62,6 +70,28 @@ class MyViewNoticeListActivity : AppCompatActivity() {
                     noticeList.add(item)
                     noticeRecyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
                     noticeRecyclerView.adapter = NoticeItemsAdapter(noticeList)
+                }
+
+            }
+    }
+
+    private fun fetchUserData() {
+        userRecyclerView = binding.recyclerUserContainer
+        userRecyclerView.setHasFixedSize(true)
+
+        userList = arrayListOf()
+
+
+        db = FirebaseFirestore.getInstance()
+        db.collection("AndroidUser")
+            .get()
+            .addOnSuccessListener { result ->
+                userList.clear()
+                for(document in result) {
+                    var item : UserItems = UserItems(document["uid"] as String, document["email"] as String)
+                    userList.add(item)
+                    userRecyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+                    userRecyclerView.adapter = UserItemsAdapter(userList)
                 }
 
             }

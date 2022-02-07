@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.R
+import com.example.surveasy.login.UserItems
+import com.example.surveasy.login.UserItemsAdapter
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -20,6 +23,7 @@ class SurveyListFragment() : Fragment() {
     val db = Firebase.firestore
     val surveyList = arrayListOf<SurveyItems>()
     val adapter = SurveyItemsAdapter(surveyList)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,25 +32,13 @@ class SurveyListFragment() : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_surveylist,container,false)
 
-//        val surveyList = arrayListOf(
-//            SurveyItems("title",12),
-//            SurveyItems("title",13),
-//            SurveyItems("title",13),SurveyItems("title",13),
-//            SurveyItems("title",13),
-//            SurveyItems("title",13)
-//
-//
-//        )
-
-
-
             db.collection("AppTest1").get()
                 .addOnSuccessListener { result->
                     surveyList.clear()
                     for(document in result){
                         var item : SurveyItems = SurveyItems(document["name"] as String, document["recommend"] as String)
                         surveyList.add(item)
-                        Log.d(TAG,"${document["name"]} and ${document["recommend"]}")
+                        //Log.d(TAG,"${document["name"]} and ${document["recommend"]}")
 
                         val container : RecyclerView? = view.findViewById(R.id.recyclerContainer)
 
@@ -59,14 +51,6 @@ class SurveyListFragment() : Fragment() {
                 .addOnFailureListener{exception->
                     Log.d(TAG,"fail $exception")
                 }
-
-
-
-
-
-
-
-
 
 
 

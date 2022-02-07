@@ -6,143 +6,143 @@
     android:layout_height="match_parent"
     >
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:id="@+id/ToolbarRegister"
-        android:theme="@style/ToolbarTheme"
-        android:background="@color/white"
-        app:titleTextColor="@color/black"/>
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?android:attr/actionBarSize"-->
+<!--        android:id="@+id/ToolbarRegister"-->
+<!--        android:theme="@style/ToolbarTheme"-->
+<!--        android:background="@color/white"-->
+<!--        app:titleTextColor="@color/black"/>-->
 
-    <TextView
-        android:id="@+id/Register_Title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textColor="@color/black"/>
+<!--    <TextView-->
+<!--        android:id="@+id/Register_Title"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Register"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textSize="30sp"-->
+<!--        android:textColor="@color/black"/>-->
 
-    <LinearLayout
-        android:id="@+id/Register_Container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:orientation="vertical"
-        android:layout_marginTop="50dp"
-        >
+<!--    <LinearLayout-->
+<!--        android:id="@+id/Register_Container"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingStart="20dp"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        >-->
 
-        <TextView
-            android:id="@+id/Register_NameName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이름"
-            android:textColor="@color/black"
-            />
-        <EditText
-            android:id="@+id/Register_InputName"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            />
-        <TextView
-            android:id="@+id/Register_BirthBirth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="생년월일"
-            android:textColor="@color/black"
-            />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
+<!--        <TextView-->
+<!--            android:id="@+id/Register_NameName"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="이름"-->
+<!--            android:textColor="@color/black"-->
+<!--            />-->
+<!--        <EditText-->
+<!--            android:id="@+id/Register_InputName"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="20dp"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:id="@+id/Register_BirthBirth"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="생년월일"-->
+<!--            android:textColor="@color/black"-->
+<!--            />-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginBottom="20dp">-->
 
-            <Spinner
-                android:id="@+id/Register_InputBirthYear"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
+<!--            <Spinner-->
+<!--                android:id="@+id/Register_InputBirthYear"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingVertical="10dp"-->
 
-                />
-            <Spinner
-                android:id="@+id/Register_InputBirthMonth"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
-                />
-            <Spinner
-                android:id="@+id/Register_InputBirthDate"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
-                />
-        </LinearLayout>
+<!--                />-->
+<!--            <Spinner-->
+<!--                android:id="@+id/Register_InputBirthMonth"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingVertical="10dp"-->
+<!--                />-->
+<!--            <Spinner-->
+<!--                android:id="@+id/Register_InputBirthDate"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingVertical="10dp"-->
+<!--                />-->
+<!--        </LinearLayout>-->
 
-        <TextView
-            android:id="@+id/Register_AccountAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="계좌번호"
-            android:textColor="@color/black"
-            />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
+<!--        <TextView-->
+<!--            android:id="@+id/Register_AccountAccount"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="계좌번호"-->
+<!--            android:textColor="@color/black"-->
+<!--            />-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginBottom="20dp">-->
 
-            <Spinner
-                android:id="@+id/Register_InputBank"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
-
-
-                />
-            <EditText
-                android:id="@+id/Register_InputAccount"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-
-                />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/Register_RecommendRecommend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="추천인 코드"
-            android:textColor="@color/black"
-            />
-        <EditText
-            android:id="@+id/Register_InputRecommend"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            />
-
-        <CheckBox
-            android:id="@+id/Register_Agree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="약관 동의"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp" />
+<!--            <Spinner-->
+<!--                android:id="@+id/Register_InputBank"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingVertical="10dp"-->
 
 
+<!--                />-->
+<!--            <EditText-->
+<!--                android:id="@+id/Register_InputAccount"-->
+<!--                android:layout_width="200dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="20dp"-->
 
-    </LinearLayout>
+<!--                />-->
+<!--        </LinearLayout>-->
 
-    <Button
-        android:id="@+id/Register_Btn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="#717171"
-        android:text="가입하기" />
+<!--        <TextView-->
+<!--            android:id="@+id/Register_RecommendRecommend"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="추천인 코드"-->
+<!--            android:textColor="@color/black"-->
+<!--            />-->
+<!--        <EditText-->
+<!--            android:id="@+id/Register_InputRecommend"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="20dp"-->
+<!--            />-->
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/Register_Agree"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:text="약관 동의"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginBottom="20dp" />-->
+
+
+
+<!--    </LinearLayout>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/Register_Btn"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:backgroundTint="#717171"-->
+<!--        android:text="가입하기" />-->
 
 
 

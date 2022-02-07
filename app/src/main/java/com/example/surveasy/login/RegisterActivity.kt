@@ -17,35 +17,35 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
-
-        setContentView(binding.root)
-
-        binding.RegisterBtn.setOnClickListener {
-
-            val input = hashMapOf(
-                "name" to binding.RegisterInputName.text.toString(),
-                "recommend" to binding.RegisterInputRecommend.text.toString()
-            )
-
-            db.collection("AppTest1").document(binding.RegisterInputName.text.toString())
-                .set(input)
-
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
-
-        val registerToolbar : Toolbar? = findViewById(R.id.ToolbarRegister)
-        setSupportActionBar(binding.ToolbarRegister)
-
-        if(supportActionBar != null){
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setDisplayShowTitleEnabled(false)
-        }
-
-        binding.ToolbarRegister.setNavigationOnClickListener {
-            onBackPressed()
-        }
+//        binding = ActivityRegisterBinding.inflate(layoutInflater)
+//
+//        setContentView(binding.root)
+//
+//        binding.RegisterBtn.setOnClickListener {
+//
+//            val input = hashMapOf(
+//                "name" to binding.RegisterInputName.text.toString(),
+//                "recommend" to binding.RegisterInputRecommend.text.toString()
+//            )
+//
+//            db.collection("AppTest1").document(binding.RegisterInputName.text.toString())
+//                .set(input)
+//
+//            val intent = Intent(this, LoginActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        val registerToolbar : Toolbar? = findViewById(R.id.ToolbarRegister)
+//        setSupportActionBar(binding.ToolbarRegister)
+//
+//        if(supportActionBar != null){
+//            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//            supportActionBar?.setDisplayShowTitleEnabled(false)
+//        }
+//
+//        binding.ToolbarRegister.setNavigationOnClickListener {
+//            onBackPressed()
+//        }
 
 
 

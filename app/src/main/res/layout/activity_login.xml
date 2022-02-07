@@ -35,11 +35,11 @@
 
 
         <EditText
-            android:id="@+id/Login_InputID"
+            android:id="@+id/Login_InputEmail"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="ID"
+            android:hint="Email"
             android:inputType="textPersonName"
 
             />
@@ -51,7 +51,7 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:inputType="textPassword"
-            android:text="password"
+            android:hint="password"
             android:layout_marginTop="10dp"
             />
         <Button

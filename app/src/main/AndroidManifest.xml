@@ -32,21 +32,6 @@
             android:exported="true" />
 
         <activity
-            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
-                    android:scheme="kakaoc3dd0da30ec3cf75837fef9022ca48a4" />
-            </intent-filter>
-        </activity>
-
-
-        <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
@@ -64,7 +49,9 @@
         <activity
             android:name=".login.RegisterActivity"
             android:exported="true" />
-            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name=".login.Register1Activity"
+            android:exported="true" />
         <activity
             android:name=".my.MyViewSettingActivity"
             android:exported="true" />
