@@ -30,7 +30,7 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
-val db = Firebase.firestore
+    val db = Firebase.firestore
 
 
     override fun onCreateView(
@@ -51,6 +51,7 @@ val db = Firebase.firestore
             startActivity(intent)
         }
 
+
         register.setOnClickListener {
             val intent = Intent(context, Register1Activity::class.java)
             startActivity(intent)
@@ -64,7 +65,7 @@ val db = Firebase.firestore
         }
 
 
-       val FCMTokenBtn : Button = view.findViewById(R.id.FCMTokenBtn)
+        val FCMTokenBtn : Button = view.findViewById(R.id.FCMTokenBtn)
         FCMTokenBtn.setOnClickListener {
             FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
@@ -83,6 +84,7 @@ val db = Firebase.firestore
                 db.collection("fcmToken").document(token).set(fcmToken)
             })
             FirebaseMessaging.getInstance().subscribeToTopic("weather")
+
         }
 
 

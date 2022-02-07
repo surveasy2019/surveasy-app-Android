@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.R
@@ -32,6 +33,7 @@ class SurveyListFragment() : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_surveylist,container,false)
 
+
             db.collection("AppTest1").get()
                 .addOnSuccessListener { result->
                     surveyList.clear()
@@ -52,6 +54,15 @@ class SurveyListFragment() : Fragment() {
                     Log.d(TAG,"fail $exception")
                 }
 
+
+        val model by activityViewModels<SurveyInfoViewModel>()
+        val adapter = SurveyItemsAdapter(model.surveyInfo)
+
+
+        val container : RecyclerView? = view.findViewById(R.id.recyclerContainer)
+
+        container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+        container?.adapter = SurveyItemsAdapter(model.surveyInfo)
 
 
         return view

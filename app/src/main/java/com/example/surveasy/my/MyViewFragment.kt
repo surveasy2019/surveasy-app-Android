@@ -73,7 +73,10 @@ class MyViewFragment : Fragment() {
 
         }
 
-        return view
-    }
+            return view
+
+
+
+        }
 
 }

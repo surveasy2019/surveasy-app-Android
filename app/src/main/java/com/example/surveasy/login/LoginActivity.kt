@@ -44,7 +44,6 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         binding.LoginBtn.setOnClickListener {
             login()
-
         }
 
     }
