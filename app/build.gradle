@@ -53,11 +53,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.1.0'
 
 
-    implementation "com.naver.nid:naveridlogin-android-sdk:4.2.6"
-
     implementation "com.kakao.sdk:v2-user:2.8.5"
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
+
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.0.0'
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     testImplementation 'junit:junit:4.+'

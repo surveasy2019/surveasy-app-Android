@@ -15,13 +15,14 @@ import androidx.fragment.app.Fragment
 import com.example.surveasy.R
 import com.example.surveasy.login.LoginActivity
 import com.example.surveasy.login.LoginInfo
+import com.example.surveasy.login.Register1Activity
 import com.example.surveasy.login.RegisterActivity
+import com.example.surveasy.my.MyViewNoticeListActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.ktx.messaging
-import com.kakao.sdk.user.UserApiClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -41,55 +42,26 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         val register: Button = view.findViewById(R.id.HomeToRegister)
+        val login: Button = view.findViewById(R.id.HomeToLogin)
         val IdText: TextView = view.findViewById(R.id.Home_GreetingText)
 
 
+        login.setOnClickListener {
+            val intent = Intent(context, LoginActivity::class.java)
+            startActivity(intent)
+        }
 
 
         register.setOnClickListener {
-            val intent = Intent(context, RegisterActivity::class.java)
+            val intent = Intent(context, Register1Activity::class.java)
+            startActivity(intent)
+        }
+
+        val user : Button = view.findViewById(R.id.User)
+        user.setOnClickListener {
+            val intent = Intent(context, MyViewNoticeListActivity::class.java)
             startActivity(intent)
 
-
-        }
-
-        // 홈에 들어올때마다 불러오는 것 vs 리스트 저장 후?
-        UserApiClient.instance.me { user, error ->
-            if (error != null) {
-                IdText.text = "로그인이 필요합니다"
-                Log.d(TAG,"fail")
-            } else if (user != null) {
-                IdText.text = "안녕하세요, ${ user.kakaoAccount?.profile?.nickname }님!"
-
-
-                Log.d(
-                    TAG, "사용자 정보 요청 성공" +
-                            "\n회원번호: ${user.id}" +
-                            "\n이메일: ${user.kakaoAccount?.email}" +
-                            "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
-                            "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}"
-                )
-
-//                suspend {
-//                    CoroutineScope(Dispatchers.Main).launch {
-//                        DataApplication.getInstance().getDataStore()?.setIntVal(user.id?.toLong())
-//                    }
-//                }
-
-
-            }
-
-        }
-
-        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
-            if (error != null) {
-                Log.e(TAG, "토큰 정보 보기 실패", error)
-            }
-            else if (tokenInfo != null) {
-                Log.i(TAG, "토큰 정보 보기 성공" +
-                        "\n회원번호: ${tokenInfo}" +
-                        "\n만료시간: ${tokenInfo.expiresIn} 초")
-            }
         }
 
 
@@ -114,6 +86,7 @@ class HomeFragment : Fragment() {
             FirebaseMessaging.getInstance().subscribeToTopic("weather")
 
         }
+
 
         val FCMSubscribeBtn : Button = view.findViewById(R.id.FCMSubscribeBtn)
         FCMSubscribeBtn.setOnClickListener {

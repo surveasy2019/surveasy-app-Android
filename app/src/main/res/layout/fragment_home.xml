@@ -84,13 +84,19 @@
             android:id="@+id/FCMTokenBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Test" />
+            android:text="FCM Token" />
 
         <Button
             android:id="@+id/FCMSubscribeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Test" />
+            android:text="FCM Topic" />
+
+        <Button
+            android:id="@+id/User"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User" />
 
 
 

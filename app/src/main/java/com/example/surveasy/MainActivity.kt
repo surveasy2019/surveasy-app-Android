@@ -20,9 +20,9 @@ import com.example.surveasy.list.SurveyItemsAdapter
 import com.example.surveasy.list.SurveyListFragment
 import com.example.surveasy.login.RegisterActivity
 import com.example.surveasy.my.MyViewFragment
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.kakao.sdk.common.util.Utility
 
 class MainActivity : AppCompatActivity() {
 
@@ -59,6 +59,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         transaction.add(R.id.MainView, HomeFragment()).commit()
 
+
+        // Current User
+        val user = Firebase.auth.currentUser
+        user?.let {
+            val uid = user.uid
+            val email = user.email
+        }
+
         binding.NavHome.setOnClickListener {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.MainView, HomeFragment())
@@ -77,13 +85,9 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
 
+
 //        val keyHash = Utility.getKeyHash(this)
 //        Log.d("Hash",keyHash)
-
-
-
-
-
 
 
 

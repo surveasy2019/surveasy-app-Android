@@ -1,24 +1,26 @@
 package com.example.surveasy.login
 
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import com.example.surveasy.MainActivity
+import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityLoginBinding
-import com.nhn.android.naverlogin.OAuthLogin
-import com.nhn.android.naverlogin.OAuthLoginHandler
-import com.example.surveasy.list.SurveyItems
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.kakao.sdk.user.UserApiClient
 
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var mOAuthLoginModule: OAuthLogin
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var auth : FirebaseAuth
     val db = Firebase.firestore
     val loginInfoList = arrayListOf<LoginInfo>()
 
@@ -27,106 +29,80 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
-
-
         setContentView(binding.root)
 
-        binding.LoginBtn.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-
+        // ToolBar
         setSupportActionBar(binding.ToolbarLogin)
-
         if (supportActionBar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
-
         binding.ToolbarLogin.setNavigationOnClickListener { onBackPressed() }
 
 
-        binding.LoginKakao.setOnClickListener {
-            UserApiClient.instance.loginWithKakaoAccount(this) { token, error ->
+        // Login
+        auth = FirebaseAuth.getInstance()
+        binding.LoginBtn.setOnClickListener {
+            login()
+        }
 
-                if (error != null) {
-                    Toast.makeText(this, "로그인 실패 $error", Toast.LENGTH_LONG).show()
-                    Log.i(TAG, "에러: $error")
-                } else if (token != null) {
+    }
 
-                }
+    public override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        if(currentUser != null) {
+            reload()
+        }
+    }
 
-                UserApiClient.instance.me { user, error ->
-                    if (error != null) {
-                        Log.d(TAG, "fail")
-                    } else if (user != null) {
+    private fun reload() {
+        auth.currentUser!!.reload().addOnCompleteListener { task ->
+            if(task.isSuccessful) {
+                // updateUI(auth.currentUser)
+                Log.d(ContentValues.TAG, "##### reload Success")
+            }
+            else {
+                Log.e(ContentValues.TAG, "##### reload Fail", task.exception)
+            }
+        }
+    }
 
-                        val userInfo = hashMapOf(
-                            "id" to user.id,
-                            "name" to user.kakaoAccount?.profile?.nickname
-                        )
+    private fun login() {
+        val loginEmail : String = binding.LoginInputEmail.text.toString()
+        val loginPassword : String = binding.LoginInputPW.text.toString()
 
-                        db.collection("AppTestUser").document(user.id.toString())
-                            .set(userInfo)
-
-//                        for(info in userInfo){
-//                            var uInfo : LoginInfo = LoginInfo(info.key[0] as Long, info.key[1] as String)
-//                            loginInfoList.add(uInfo)
-//
-//                        }
-
-
-
-
-
+        if(loginEmail == "") {
+            Toast.makeText(this@LoginActivity, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else if(loginPassword == "") {
+            Toast.makeText(this@LoginActivity, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            auth.signInWithEmailAndPassword(loginEmail, loginPassword)
+                .addOnCompleteListener(this) { task ->
+                    if(task.isSuccessful) {
+                        Log.d(TAG, "로그인 성공")
+                        val user = auth.currentUser
+                        // updateUI(user)
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else {
+                        Log.w(TAG, "로그인 실패", task.exception)
+                        Toast.makeText(baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show()
+                        // updateUI(null)
                     }
                 }
-
-
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }
-
-
-        binding.buttonOAuthLoginImg.setOnClickListener {
-            mOAuthLoginModule = OAuthLogin.getInstance()
-            mOAuthLoginModule.init(
-                this,
-                "eo7WH6lwzklMcJwYNvcW",
-                "Dg3dbXR8_B",
-                "SURVEASY"
-            )
-            mOAuthLoginModule.startOauthLoginActivity(this, mOAuthLoginHandler);
         }
     }
 
-    private val mOAuthLoginHandler: OAuthLoginHandler = object : OAuthLoginHandler() {
-        override fun run(success: Boolean) {
-            if (success) {
-                val accessToken: String = mOAuthLoginModule.getAccessToken(baseContext)
-                val refreshToken: String = mOAuthLoginModule.getRefreshToken(baseContext)
-                val expiresAt: Long = mOAuthLoginModule.getExpiresAt(baseContext)
-                val tokenType: String = mOAuthLoginModule.getTokenType(baseContext)
-
-                Log.i(TAG, "accessToken: $accessToken")
-                Log.i(TAG, "refreshToken: $refreshToken")
-                Log.i(TAG, "expiresAt: $expiresAt")
-                Log.i(TAG, "tokenType: $tokenType")
-
-            } else {
-                val errorCode: String =
-                    mOAuthLoginModule.getLastErrorCode(baseContext).code
-                val errorDesc: String = mOAuthLoginModule.getLastErrorDesc(baseContext)
-                Toast.makeText(
-                    baseContext, "errorCode:" + errorCode
-                            + ", errorDesc:" + errorDesc, Toast.LENGTH_SHORT
-                ).show()
-
-
-            }
+    private fun updateUI(user: FirebaseUser?) {
+        if(user != null) {
+            val IdText: TextView = findViewById(R.id.Home_GreetingText)
 
         }
     }
+
 }

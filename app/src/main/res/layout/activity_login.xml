@@ -35,11 +35,11 @@
 
 
         <EditText
-            android:id="@+id/Login_InputID"
+            android:id="@+id/Login_InputEmail"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="ID"
+            android:hint="Email"
             android:inputType="textPersonName"
 
             />
@@ -51,7 +51,7 @@
             android:layout_marginBottom="8dp"
             android:ems="10"
             android:inputType="textPassword"
-            android:text="password"
+            android:hint="password"
             android:layout_marginTop="10dp"
             />
         <Button
@@ -67,37 +67,9 @@
             android:layout_marginTop="10dp"
             >
 
-            <ImageButton
-                android:id="@+id/Login_Kakao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/kakao_login_small"
-                android:text="kakao"
-                 />
-
-            <Button
-                android:id="@+id/Login_Naver"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="Naver"
-                android:backgroundTint="#4CAF50" />
-            <Button
-                android:id="@+id/Login_Google"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="Google"
-                android:backgroundTint="#F44336" />
-
 
 
         </LinearLayout>
-
-        <com.nhn.android.naverlogin.ui.view.OAuthLoginButton
-            android:id="@+id/buttonOAuthLoginImg"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"

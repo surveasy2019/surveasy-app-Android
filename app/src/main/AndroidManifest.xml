@@ -29,24 +29,7 @@
             android:exported="true" />
         <activity
             android:name=".my.MyViewNoticeListDetailActivity"
-            android:exported="true" /> <!-- <activity -->
-        <!-- android:name=".SplashActivity" -->
-        <!-- android:exported="true" /> -->
-
-        <activity
-            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
-                    android:scheme="kakaoc3dd0da30ec3cf75837fef9022ca48a4" />
-            </intent-filter>
-        </activity>
-
+            android:exported="true" />
 
         <activity
             android:name=".MainActivity"
@@ -66,9 +49,9 @@
         <activity
             android:name=".login.RegisterActivity"
             android:exported="true" />
-        tools:ignore="DuplicateActivity" /><!-- <activity -->
-        <!-- android:name=".MyViewFragment" -->
-        <!-- android:exported="true" /> -->
+        <activity
+            android:name=".login.Register1Activity"
+            android:exported="true" />
         <activity
             android:name=".my.MyViewSettingActivity"
             android:exported="true" />
@@ -92,11 +75,7 @@
             android:exported="true" />
         <activity
             android:name=".my.MyViewNoticeListActivity"
-            android:exported="true" /> <!-- <activity -->
-        <!-- android:name=".SurveyListActivity" -->
-        <!-- android:exported="true" -->
-        <!-- android:label="@string/title_activity_list" -->
-        <!-- android:theme="@style/Theme.Surveasy.NoActionBar" /> -->
+            android:exported="true" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -107,9 +86,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.nhn.android.naverlogin.ui.OAuthCustomTabActivity"
-            android:exported="true" />
 
         <service
             android:name=".fcm.MyFirebaseMessagingService"
