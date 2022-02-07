@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
 
 
         register.setOnClickListener {
-            val intent = Intent(context, LoginActivity::class.java)
+            val intent = Intent(context, RegisterActivity::class.java)
             startActivity(intent)
 
 
@@ -112,6 +112,7 @@ class HomeFragment : Fragment() {
                 db.collection("fcmToken").document(token).set(fcmToken)
             })
             FirebaseMessaging.getInstance().subscribeToTopic("weather")
+
         }
 
         val FCMSubscribeBtn : Button = view.findViewById(R.id.FCMSubscribeBtn)
