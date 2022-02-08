@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="deploymentTargetDropDown">
-    <runningDeviceTargetSelectedWithDropDown>
+    <targetSelectedWithDropDown>
       <Target>
-        <type value="RUNNING_DEVICE_TARGET" />
+        <type value="QUICK_BOOT_TARGET" />
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\oinbo\.android\Pixel_4_API_31_4.avd" />
+            <value value="C:\Users\seoya\.android\avd\Pixel_2_API_31.avd" />
           </Key>
         </deviceKey>
       </Target>
-<<<<<<< HEAD
     </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-02-07T03:16:55.821615800Z" />
-=======
-    </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-02-07T01:54:38.558321900Z" />
->>>>>>> 81115257868a571da86c223629abd4747ec006b6
+    <timeTargetWasSelectedWithDropDown value="2022-02-08T02:12:14.102393800Z" />
   </component>
 </project>

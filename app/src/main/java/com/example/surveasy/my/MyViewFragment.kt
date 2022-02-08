@@ -13,6 +13,10 @@ import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import com.example.surveasy.R
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
+import com.example.surveasy.login.CurrentUserViewModel
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class MyViewFragment : Fragment() {
@@ -24,6 +28,7 @@ class MyViewFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_myview, container, false)
+        val userModel by activityViewModels<CurrentUserViewModel>()
 
         val settingBtn = view.findViewById<ImageButton>(R.id.MyView_SettingBtn)
         val historyIcon = view.findViewById<ImageButton>(R.id.MyView_HistoryIcon)
@@ -35,43 +40,43 @@ class MyViewFragment : Fragment() {
         val logoutBtn = view.findViewById<Button>(R.id.MyView_Logout)
 
 
-
-
-        logoutBtn.setOnClickListener {
-//            CoroutineScope(Dispatchers.Main).launch {
-//                val value = DataApplication.getInstance().getDataStore()?.long?.first()
-//                Toast.makeText(context,"value : $value",Toast.LENGTH_LONG).show()
-//
-//            }
-//        }
-
-
-            settingBtn.setOnClickListener {
-                val intent = Intent(context, MyViewSettingActivity::class.java)
-                startActivity(intent)
-            }
-            historyIcon.setOnClickListener {
-                val intent = Intent(context, MyViewHistoryActivity::class.java)
-                startActivity(intent)
-            }
-            infoIcon.setOnClickListener {
-                val intent = Intent(context, MyViewInfoActivity::class.java)
-                startActivity(intent)
-            }
-            contactIcon.setOnClickListener {
-                val intent = Intent(context, MyViewContactActivity::class.java)
-                startActivity(intent)
-            }
-            inviteIcon.setOnClickListener {
-                val intent = Intent(context, MyViewInviteActivity::class.java)
-                startActivity(intent)
-            }
-            noticeIcon.setOnClickListener {
-                val intent = Intent(context, MyViewNoticeListActivity::class.java)
-                startActivity(intent)
-            }
-
+        if(userModel.currentUser.uid != null) {
+            myIdText.text = "${userModel.currentUser.name}님"
         }
+
+
+
+        settingBtn.setOnClickListener {
+            val intent = Intent(context, MyViewSettingActivity::class.java)
+            startActivity(intent)
+        }
+        historyIcon.setOnClickListener {
+            val intent = Intent(context, MyViewHistoryActivity::class.java)
+            startActivity(intent)
+        }
+        infoIcon.setOnClickListener {
+            val intent = Intent(context, MyViewInfoActivity::class.java)
+            startActivity(intent)
+        }
+        contactIcon.setOnClickListener {
+            val intent = Intent(context, MyViewContactActivity::class.java)
+            startActivity(intent)
+        }
+        inviteIcon.setOnClickListener {
+            val intent = Intent(context, MyViewInviteActivity::class.java)
+            startActivity(intent)
+        }
+        noticeIcon.setOnClickListener {
+            val intent = Intent(context, MyViewNoticeListActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Logout
+        logoutBtn.setOnClickListener {
+            Firebase.auth.signOut()
+        }
+
+
 
             return view
 

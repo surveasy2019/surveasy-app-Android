@@ -11,12 +11,10 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 
 import com.example.surveasy.R
-import com.example.surveasy.login.LoginActivity
-import com.example.surveasy.login.LoginInfo
-import com.example.surveasy.login.Register1Activity
-import com.example.surveasy.login.RegisterActivity
+import com.example.surveasy.login.*
 import com.example.surveasy.my.MyViewNoticeListActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.ktx.firestore
@@ -32,7 +30,6 @@ class HomeFragment : Fragment() {
 
     val db = Firebase.firestore
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,6 +37,8 @@ class HomeFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        val userModel by activityViewModels<CurrentUserViewModel>()
 
         val register: Button = view.findViewById(R.id.HomeToRegister)
         val login: Button = view.findViewById(R.id.HomeToLogin)
@@ -57,11 +56,15 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        val home_GreetingText : TextView = view.findViewById(R.id.Home_GreetingText)
+        if(userModel.currentUser.uid != null) {
+            home_GreetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
+        }
+
         val user : Button = view.findViewById(R.id.User)
         user.setOnClickListener {
-            val intent = Intent(context, MyViewNoticeListActivity::class.java)
-            startActivity(intent)
-
+            user.text = userModel.currentUser.name
+            Log.d(TAG, "*********** ${userModel.currentUser.name}")
         }
 
 

@@ -10,10 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityRegister1Binding
 import com.example.surveasy.home.HomeFragment
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 
 class Register1Activity: AppCompatActivity() {
 
@@ -72,6 +74,7 @@ class Register1Activity: AppCompatActivity() {
         val registerEmail: String = binding.RegisterEmailInput.text.toString()
         val registerPassword: String = binding.RegisterPwInput.text.toString()
         val registerPasswordCheck: String = binding.RegisterPwCheckInput.text.toString()
+        val registerName : String = binding.RegisterNameInput.text.toString()
 
         if(registerEmail == "") {
             Toast.makeText(this@Register1Activity, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -82,6 +85,9 @@ class Register1Activity: AppCompatActivity() {
         else if(registerPassword != registerPasswordCheck) {
             Toast.makeText(this@Register1Activity, "비밀번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show()
         }
+        else if(registerName == "") {
+            Toast.makeText(this@Register1Activity, "성함을 입력해주세요.", Toast.LENGTH_SHORT).show()
+        }
         else {
             val db = Firebase.firestore
 
@@ -89,20 +95,33 @@ class Register1Activity: AppCompatActivity() {
                 .addOnCompleteListener{ task ->
                     if(task.isSuccessful) {
                         firebaseUserID = auth.currentUser!!.uid
-                        val user = hashMapOf(
-                            "email" to registerEmail,
-                            "uid" to firebaseUserID
-                        )
-                        Log.d(TAG, "#####UID : $firebaseUserID")
-                        db.collection("AndroidUser")
-                            .add(user)
-                            .addOnSuccessListener { documentReference ->
-                                Log.d(TAG, "#####DocumentSnapshot added with ID : ${documentReference.id}")
 
-                            }
-                            .addOnFailureListener { e ->
-                                Log.w(TAG, "##### ERROR adding document", e)
-                            }
+                        FirebaseMessaging.getInstance().token.addOnCompleteListener(
+                            OnCompleteListener { task ->
+                                if(!task.isSuccessful) {
+                                    Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                                    return@OnCompleteListener
+                                }
+                                val token = task.result
+                                val user = hashMapOf(
+                                    "email" to registerEmail,
+                                    "uid" to firebaseUserID,
+                                    "fcmToken" to token,
+                                    "name" to registerName
+                                )
+                                Log.d(TAG, "#####UID : $firebaseUserID")
+                                db.collection("AndroidUser").document(firebaseUserID)
+                                    .set(user)
+                                    .addOnSuccessListener { documentReference ->
+                                        Log.d(TAG, "#####DocumentSnapshot added")
+
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.w(TAG, "##### ERROR adding document", e)
+                                    }
+
+                            })
+
 
                     }
                     else {
