@@ -14,10 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.databinding.ActivityMainBinding
 import com.example.surveasy.home.HomeFragment
-import com.example.surveasy.list.SurveyInfoViewModel
-import com.example.surveasy.list.SurveyItems
-import com.example.surveasy.list.SurveyItemsAdapter
-import com.example.surveasy.list.SurveyListFragment
+import com.example.surveasy.list.*
 import com.example.surveasy.login.RegisterActivity
 import com.example.surveasy.my.MyViewFragment
 import com.google.firebase.auth.ktx.auth
@@ -40,20 +37,23 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { result->
 
                 for(document in result){
-                    val item : SurveyItems = SurveyItems(document["name"] as String, document["recommend"] as String)
+                    val item : SurveyItems = SurveyItems(document["name"] as String, document["recommend"] as String, document["url"] as String)
                     surveyList.add(item)
 
-                    Log.d(TAG,"${document["name"]} and ${document["recommend"]}")
+                    Log.d(TAG,"${document["name"]} and ${document["recommend"]} and ${document["url"]}" )
 
 
                 }
                 model.surveyInfo.addAll(surveyList)
 
 
+
             }
             .addOnFailureListener{exception->
                 Log.d(ContentValues.TAG,"fail $exception")
             }
+
+
 
         val transaction = supportFragmentManager.beginTransaction()
         setContentView(binding.root)

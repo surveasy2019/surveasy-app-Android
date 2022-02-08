@@ -19,10 +19,7 @@ import java.util.*
 
 class SurveyListDetailResponseActivity : AppCompatActivity() {
 
-    val storage = Firebase.storage
 
-    var pickImageFromAlbum = 0
-    var uriPhoto : Uri? = null
 
     private lateinit var binding: ActivitySurveylistdetailresponseBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +31,7 @@ class SurveyListDetailResponseActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.ToolbarSurveyListDetailResponse)
 
-        if(supportActionBar != null){
+        if (supportActionBar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
@@ -42,50 +39,6 @@ class SurveyListDetailResponseActivity : AppCompatActivity() {
         binding.ToolbarSurveyListDetailResponse.setNavigationOnClickListener {
             onBackPressed()
         }
-
-        binding.SurveyListDetailResponseBtn.setOnClickListener {
-            if(checkPermission()){
-                var photoPick = Intent(Intent.ACTION_PICK)
-                photoPick.type = "image/*"
-                startActivityForResult(photoPick,pickImageFromAlbum)
-
-            }else{
-                ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),1)
-            }
-
-        }
-        binding.SurveyListDetailResponseDoneBtn.setOnClickListener {
-            uploadStorage(binding.proofImageView)
-        }
-
-    }
-
-    private fun checkPermission() : Boolean {
-        return (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                == PackageManager.PERMISSION_GRANTED)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == pickImageFromAlbum){
-            if(resultCode == Activity.RESULT_OK){
-                uriPhoto = data?.data
-                binding.proofImageView.setImageURI(uriPhoto)
-
-            }
-        }
-    }
-
-    private fun uploadStorage(view: View){
-        val timestamp = SimpleDateFormat("yyyyMMdd_HHmm").format(Date())
-        val imgName = "pannelID__"+timestamp
-        val storageRef = storage.reference.child("proof").child(imgName)
-
-        storageRef.putFile(uriPhoto!!)?.addOnSuccessListener {
-            Toast.makeText(view.context, "ImageUpload", Toast.LENGTH_LONG).show()
-        }
-
 
     }
 

@@ -39,7 +39,8 @@ class SurveyItemsAdapter(val surveyList : ArrayList<SurveyItems>) : RecyclerView
 
         holder.itemView.setOnClickListener{
             val intent = Intent(holder.itemView.context,SurveyListDetailActivity::class.java)
-            intent.putExtra("index",position)
+            intent.putExtra("url","${surveyList.get(position).url}")
+            intent.putExtra("title","${surveyList.get(position).title}")
             ContextCompat.startActivity(holder.itemView.context,intent,null)
 
 
