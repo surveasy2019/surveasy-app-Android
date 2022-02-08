@@ -1,6 +1,5 @@
 package com.example.surveasy.list
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class SurveyInfoViewModel:ViewModel() {

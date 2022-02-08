@@ -35,7 +35,7 @@
         android:layout_weight="20"/>
 
     <ImageView
-        android:id="@+id/proofImageView"
+
         android:layout_width="100dp"
         android:layout_height="100dp"/>
 

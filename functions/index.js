@@ -4,13 +4,23 @@ admin.initializeApp();
 
 exports.androidPushNotification = functions.firestore.document("NotificationData/{docId}")
     .onCreate((snapshot, context) => {
+
         admin.messaging().sendToTopic(
-            "weather",
-            {
-                notification: {
-                    title: snapshot.data().title,
-                    body: snapshot.data().body
-                }
-            }
-        )
-    })
+                    "weather",
+                    {
+                        notification: {
+                            title: snapshot.data().title,
+                            body: snapshot.data().body
+                        }
+                    }
+                )
+            })
+
+
+
+
+
+
+
+
+
