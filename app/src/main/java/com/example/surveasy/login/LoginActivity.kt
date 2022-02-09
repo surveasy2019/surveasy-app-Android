@@ -13,6 +13,7 @@ import com.example.surveasy.MainActivity
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityLoginBinding
 import com.example.surveasy.home.HomeFragment
+import com.example.surveasy.list.SurveyListFirstSurveyActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -99,7 +100,8 @@ class LoginActivity : AppCompatActivity() {
                                     snapshot.result["uid"].toString(),
                                     snapshot.result["email"].toString(),
                                     snapshot.result["name"].toString(),
-                                    snapshot.result["fcmToken"].toString()
+                                    snapshot.result["fcmToken"].toString(),
+                                    snapshot.result["firstSurvey"] as Boolean?
                                 )
                                 val intent_main : Intent = Intent(this, MainActivity::class.java)
                                 intent_main.putExtra("currentUser", currentUser)

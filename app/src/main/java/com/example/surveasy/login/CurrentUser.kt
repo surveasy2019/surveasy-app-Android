@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 class CurrentUser(val uid: String? = null,
                   val email: String? = null,
                   val name: String? = null,
-                  val fcmToken: String? = null) : Parcelable {
+                  val fcmToken: String? = null,
+                  val firstSurvey: Boolean? = null) : Parcelable {
 
 }
