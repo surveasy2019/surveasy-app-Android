@@ -8,22 +8,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.findFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.R
-import com.example.surveasy.login.CurrentUser
-import com.example.surveasy.login.CurrentUserViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
-class SurveyListFragment() : Fragment() {
+class SurveyListFirstSurvey1Fragment() : Fragment() {
 
     val db = Firebase.firestore
-    val surveyList = arrayListOf<SurveyItems>()
-    val adapter = SurveyItemsAdapter(surveyList)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,21 +29,13 @@ class SurveyListFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_surveylist,container,false)
+        val view = inflater.inflate(R.layout.fragment_surveylistfirstsurvey1,container,false)
 
+        val surveyListFirstSurvey1_Btn : Button = view.findViewById(R.id.SurveyListFirstSurvey1_Btn)
 
-        val model by activityViewModels<SurveyInfoViewModel>()
-        val userModel by activityViewModels<CurrentUserViewModel>()
-        val adapter = SurveyItemsAdapter(model.surveyInfo)
-
-
-
-        val container : RecyclerView? = view.findViewById(R.id.recyclerContainer)
-
-        container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-        container?.adapter = SurveyItemsAdapter(model.surveyInfo)
-
-
+        surveyListFirstSurvey1_Btn.setOnClickListener {
+            (activity as SurveyListFirstSurveyActivity).next()
+        }
 
         return view
     }

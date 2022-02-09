@@ -103,13 +103,16 @@ class Register1Activity: AppCompatActivity() {
                                     return@OnCompleteListener
                                 }
                                 val token = task.result
+
                                 val user = hashMapOf(
                                     "email" to registerEmail,
                                     "uid" to firebaseUserID,
                                     "fcmToken" to token,
-                                    "name" to registerName
+                                    "name" to registerName,
+                                    "firstSurvey" to false
                                 )
                                 Log.d(TAG, "#####UID : $firebaseUserID")
+
                                 db.collection("AndroidUser").document(firebaseUserID)
                                     .set(user)
                                     .addOnSuccessListener { documentReference ->
@@ -120,9 +123,10 @@ class Register1Activity: AppCompatActivity() {
                                         Log.w(TAG, "##### ERROR adding document", e)
                                     }
 
+
                             })
-
-
+                        val intent : Intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
                     }
                     else {
                         Toast.makeText(baseContext, "#####Auth Error: " + task.exception!!.message.toString()
