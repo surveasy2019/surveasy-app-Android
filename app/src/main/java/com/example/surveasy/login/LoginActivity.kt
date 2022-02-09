@@ -8,22 +8,23 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.example.surveasy.MainActivity
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityLoginBinding
+import com.example.surveasy.home.HomeFragment
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth : FirebaseAuth
     val db = Firebase.firestore
-    val loginInfoList = arrayListOf<LoginInfo>()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +45,11 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         binding.LoginBtn.setOnClickListener {
             login()
+        }
+
+        // Go to Register1Activity
+        binding.LoginRegister.setOnClickListener{
+
         }
 
     }
@@ -84,9 +90,24 @@ class LoginActivity : AppCompatActivity() {
                     if(task.isSuccessful) {
                         Log.d(TAG, "로그인 성공")
                         val user = auth.currentUser
-                        // updateUI(user)
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
+                        val uid = user!!.uid.toString()
+
+                        val docRef = db.collection("AndroidUser").document(uid)
+                        docRef.get().addOnCompleteListener { snapshot ->
+                            if(snapshot != null) {
+                                val currentUser : CurrentUser = CurrentUser(
+                                    snapshot.result["uid"].toString(),
+                                    snapshot.result["email"].toString(),
+                                    snapshot.result["name"].toString(),
+                                    snapshot.result["fcmToken"].toString()
+                                )
+                                val intent_main : Intent = Intent(this, MainActivity::class.java)
+                                intent_main.putExtra("currentUser", currentUser)
+                                startActivity(intent_main)
+                            }
+                        }
+                        //updateUI(user)
+                        updateFcmToken(uid)
                     }
                     else {
                         Log.w(TAG, "로그인 실패", task.exception)
@@ -98,11 +119,18 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUI(user: FirebaseUser?) {
-        if(user != null) {
-            val IdText: TextView = findViewById(R.id.Home_GreetingText)
-
-        }
+    private fun updateFcmToken(uid: String) {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if(!task.isSuccessful) {
+                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+            val token = task.result
+            val db = Firebase.firestore
+            val docRef = db.collection("AndroidUser").document(uid)
+            docRef.update("fcmToken", token)
+        })
     }
+
 
 }
