@@ -79,10 +79,10 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
         binding.NavList.setOnClickListener {
-
             supportFragmentManager.beginTransaction()
                 .replace(R.id.MainView, SurveyListFragment())
                 .commit()
+
 
         }
         binding.NavMy.setOnClickListener {
@@ -95,6 +95,15 @@ class MainActivity : AppCompatActivity() {
 //        val keyHash = Utility.getKeyHash(this)
 //        Log.d("Hash",keyHash)
 
+
+
+    }
+    fun clickList(){
+
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.MainView, SurveyListFragment())
+                .commit()
 
 
     }

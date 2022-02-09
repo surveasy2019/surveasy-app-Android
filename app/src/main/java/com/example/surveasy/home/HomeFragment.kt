@@ -86,7 +86,7 @@ class HomeFragment : Fragment() {
                 )
                 db.collection("fcmToken").document(token).set(fcmToken)
             })
-            FirebaseMessaging.getInstance().subscribeToTopic("ad")
+            //FirebaseMessaging.getInstance().subscribeToTopic("ad")
 
         }
 

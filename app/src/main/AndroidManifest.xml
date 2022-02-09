@@ -43,6 +43,9 @@
         <activity
             android:name=".list.SurveyListDetailActivity"
             android:exported="true" />
+        <activity android:name=".list.SurveyProofDialogActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyDialog"/>
         <activity
             android:name=".login.LoginActivity"
             android:exported="true" />

@@ -92,6 +92,9 @@ class LoginActivity : AppCompatActivity() {
                         val user = auth.currentUser
                         val uid = user!!.uid.toString()
 
+                        //로그인 한 모든사람에게 알림 전송
+                        FirebaseMessaging.getInstance().subscribeToTopic("all")
+
                         val docRef = db.collection("AndroidUser").document(uid)
                         docRef.get().addOnCompleteListener { snapshot ->
                             if(snapshot != null) {

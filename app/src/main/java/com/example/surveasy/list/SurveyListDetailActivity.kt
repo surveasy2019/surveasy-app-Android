@@ -29,10 +29,6 @@ import java.util.*
 
 class SurveyListDetailActivity : AppCompatActivity() {
 
-    val storage = Firebase.storage
-
-    var pickImageFromAlbum = 0
-    var uriPhoto : Uri? = null
 
     private lateinit var binding: ActivitySurveylistdetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,12 +51,15 @@ class SurveyListDetailActivity : AppCompatActivity() {
         webView.loadUrl(url)
 
 
+        val title : String = intent.getStringExtra("title")!!
 
-//        binding.SurveyListDetailBtn.setOnClickListener {
-//            val intent = Intent(this, SurveyListDetailResponseActivity::class.java)
-//            startActivity(intent)
-//
-//        }
+
+        binding.toolbarUpload.setOnClickListener {
+            val intent = Intent(this, SurveyProofDialogActivity::class.java)
+            val surveyTitle  = intent.putExtra("title",title)
+            startActivityForResult(intent,101)
+
+       }
         setSupportActionBar(binding.ToolbarProof)
 
         if(supportActionBar != null){
@@ -72,24 +71,13 @@ class SurveyListDetailActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        binding.toolbarUpload.setOnClickListener {
-            if(checkPermission()){
-                var photoPick = Intent(Intent.ACTION_PICK)
-                photoPick.type = "image/*"
-                startActivityForResult(photoPick,pickImageFromAlbum)
-
-            }else{
-                ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),1)
-            }
-
-        }
 
 
-        binding.toolbarSend.setOnClickListener {
-            uploadStorage(binding.proofImageView)
-        }
+
+
 
     }
+
 
     override fun onBackPressed() {
         var webView : WebView = binding.surveyWebView
@@ -100,36 +88,11 @@ class SurveyListDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkPermission() : Boolean {
-        return (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                == PackageManager.PERMISSION_GRANTED)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == pickImageFromAlbum){
-            if(resultCode == Activity.RESULT_OK){
-                Log.d(TAG,"pickImageFromAlbum : $pickImageFromAlbum")
-                uriPhoto = data?.data
-                binding.proofImageView.setImageURI(uriPhoto)
-
-            }
-        }
-    }
-
-    private fun uploadStorage(view: View){
-        val timestamp = SimpleDateFormat("yyyyMMdd_HHmm").format(Date())
-        val title : String= intent.getStringExtra("title")!!
-        val imgName = title+"__"+timestamp
-        val storageRef = storage.reference.child(title).child(imgName)
-
-        storageRef.putFile(uriPhoto!!)?.addOnSuccessListener {
-            Toast.makeText(view.context, "ImageUpload", Toast.LENGTH_LONG).show()
-        }
 
 
-    }
+
+
+
 
 
 
