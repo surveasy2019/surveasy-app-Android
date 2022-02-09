@@ -27,11 +27,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerNoticeContainer"
         android:layout_width="match_parent"
-        android:layout_height="100dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerUserContainer"
-        android:layout_width="match_parent"
         android:layout_height="300dp" />
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recyclerUserContainer"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="300dp" />-->
 
 </LinearLayout>

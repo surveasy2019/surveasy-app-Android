@@ -12,9 +12,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.R
-import com.example.surveasy.login.UserItems
-import com.example.surveasy.login.UserItemsAdapter
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -32,8 +29,6 @@ class SurveyListFragment() : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_surveylist,container,false)
-
-
 
 
         val model by activityViewModels<SurveyInfoViewModel>()

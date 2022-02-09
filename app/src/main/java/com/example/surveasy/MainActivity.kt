@@ -6,16 +6,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModel
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.databinding.ActivityMainBinding
 import com.example.surveasy.home.HomeFragment
-import com.example.surveasy.list.*
-import com.example.surveasy.login.RegisterActivity
+import com.example.surveasy.list.SurveyInfoViewModel
+import com.example.surveasy.list.SurveyItems
+import com.example.surveasy.list.SurveyListFragment
+import com.example.surveasy.login.CurrentUser
+import com.example.surveasy.login.CurrentUserViewModel
 import com.example.surveasy.my.MyViewFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -26,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     val db = Firebase.firestore
     val surveyList = arrayListOf<SurveyItems>()
     val model by viewModels<SurveyInfoViewModel>()
+    val userModel by viewModels<CurrentUserViewModel>()
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,6 +66,13 @@ class MainActivity : AppCompatActivity() {
             val email = user.email
         }
 
+        // Current User from LoginActivity
+        val intent: Intent = intent
+        val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser")
+        if(currentUser != null ) {
+            userModel.currentUser = currentUser!!
+        }
+
         binding.NavHome.setOnClickListener {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.MainView, HomeFragment())
@@ -92,4 +98,5 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 }
