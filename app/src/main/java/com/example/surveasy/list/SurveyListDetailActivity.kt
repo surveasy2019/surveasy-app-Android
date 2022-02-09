@@ -110,6 +110,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
 
         if(requestCode == pickImageFromAlbum){
             if(resultCode == Activity.RESULT_OK){
+                Log.d(TAG,"pickImageFromAlbum : $pickImageFromAlbum")
                 uriPhoto = data?.data
                 binding.proofImageView.setImageURI(uriPhoto)
 
