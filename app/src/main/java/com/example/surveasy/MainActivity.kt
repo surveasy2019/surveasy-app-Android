@@ -6,7 +6,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.activity.viewModels
 import com.example.surveasy.databinding.ActivityMainBinding
 import com.example.surveasy.home.HomeFragment
@@ -16,7 +15,6 @@ import com.example.surveasy.list.SurveyListFragment
 import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
 import com.example.surveasy.my.MyViewFragment
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -38,20 +36,23 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { result->
 
                 for(document in result){
-                    val item : SurveyItems = SurveyItems(document["name"] as String, document["recommend"] as String)
+                    val item : SurveyItems = SurveyItems(document["name"] as String, document["recommend"] as String, document["url"] as String)
                     surveyList.add(item)
 
-                    Log.d(TAG,"${document["name"]} and ${document["recommend"]}")
+                    Log.d(TAG,"${document["name"]} and ${document["recommend"]} and ${document["url"]}" )
 
 
                 }
                 model.surveyInfo.addAll(surveyList)
 
 
+
             }
             .addOnFailureListener{exception->
                 Log.d(ContentValues.TAG,"fail $exception")
             }
+
+
 
         val transaction = supportFragmentManager.beginTransaction()
         setContentView(binding.root)

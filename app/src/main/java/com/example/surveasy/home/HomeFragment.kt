@@ -86,7 +86,7 @@ class HomeFragment : Fragment() {
                 )
                 db.collection("fcmToken").document(token).set(fcmToken)
             })
-            FirebaseMessaging.getInstance().subscribeToTopic("weather")
+            FirebaseMessaging.getInstance().subscribeToTopic("ad")
 
         }
 
@@ -94,7 +94,7 @@ class HomeFragment : Fragment() {
         val FCMSubscribeBtn : Button = view.findViewById(R.id.FCMSubscribeBtn)
         FCMSubscribeBtn.setOnClickListener {
             Log.d(TAG, "Subscribing to weather topic")
-            Firebase.messaging.subscribeToTopic("weather")
+            Firebase.messaging.subscribeToTopic("ad")
                 .addOnCompleteListener { task ->
                     var msg = "This is SUCCESS message!"
                     if(!task.isSuccessful) {

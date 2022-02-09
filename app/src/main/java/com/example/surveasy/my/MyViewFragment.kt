@@ -1,9 +1,10 @@
 package com.example.surveasy.my
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.content.ContentValues
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,10 +17,14 @@ import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import com.example.surveasy.login.CurrentUserViewModel
 import com.google.firebase.auth.ktx.auth
+import com.example.surveasy.list.SurveyInfoViewModel
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
 class MyViewFragment : Fragment() {
+
+    val db = Firebase.firestore
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +48,37 @@ class MyViewFragment : Fragment() {
         if(userModel.currentUser.uid != null) {
             myIdText.text = "${userModel.currentUser.name}님"
         }
+
+
+
+            settingBtn.setOnClickListener {
+                val intent = Intent(context, MyViewSettingActivity::class.java)
+                startActivity(intent)
+            }
+            historyIcon.setOnClickListener {
+                val intent = Intent(context, MyViewHistoryActivity::class.java)
+                startActivity(intent)
+            }
+            infoIcon.setOnClickListener {
+                val intent = Intent(context, MyViewInfoActivity::class.java)
+                startActivity(intent)
+            }
+            contactIcon.setOnClickListener {
+                val intent = Intent(context, MyViewContactActivity::class.java)
+                startActivity(intent)
+            }
+            inviteIcon.setOnClickListener {
+//                val intent = Intent(context, MyViewInviteActivity::class.java)
+//                startActivity(intent)
+
+
+            }
+            noticeIcon.setOnClickListener {
+                val intent = Intent(context, MyViewNoticeListActivity::class.java)
+                startActivity(intent)
+            }
+
+
 
 
 

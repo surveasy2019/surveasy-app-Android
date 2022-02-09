@@ -9,13 +9,13 @@
 
 
     <application
-        android:name=".GlobalApplicationKakao"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Surveasy" >
+        android:theme="@style/Theme.Surveasy"
+        android:usesCleartextTraffic="true">
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
