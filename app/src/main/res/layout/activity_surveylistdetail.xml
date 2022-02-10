@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/ToolbarProof"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="260dp"
         android:background="@color/white"
         tools:ignore="MissingConstraints">
         <RelativeLayout
@@ -24,23 +24,23 @@
             <TextView
                 android:id="@+id/toolbar_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="false"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:gravity="center"
                 android:text="캡쳐"
                 android:textSize="30sp" />
+
             <Button
                 android:id="@+id/toolbar_upload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="UPLOAD"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginRight="80dp"/>
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="80dp"
+                android:text="UPLOAD" />
             <Button
                 android:id="@+id/toolbar_send"
                 android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
     <WebView
         android:id="@+id/surveyWebView"
         android:layout_width="match_parent"
-        android:layout_height="660dp"
+        android:layout_height="460dp"
 
 
         app:layout_constraintBottom_toBottomOf="parent"

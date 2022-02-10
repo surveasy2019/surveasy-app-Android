@@ -36,6 +36,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
+        db.collection("AppTest1").get()
+            .addOnSuccessListener { result->
+
+                for(document in result){
+                    val item : SurveyItems = SurveyItems(
+                        document["name"] as String,
+                        document["recommend"] as String,
+                        document["url"] as String)
+                    surveyList.add(item)
+
+                    Log.d(TAG,"${document["name"]} and ${document["recommend"]} and ${document["url"]}" )
+
+
+                }
+                model.surveyInfo.addAll(surveyList)
+
+
+
+            }
+            .addOnFailureListener{exception->
+                Log.d(ContentValues.TAG,"fail $exception")
+            }
+
+
         // Current User
         val user = Firebase.auth.currentUser
         user?.let {

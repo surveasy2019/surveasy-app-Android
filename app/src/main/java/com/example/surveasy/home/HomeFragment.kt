@@ -3,6 +3,7 @@ package com.example.surveasy.home
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.telephony.SubscriptionInfo
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 
 import com.example.surveasy.R
+import com.example.surveasy.list.SurveyInfoViewModel
+import com.example.surveasy.list.SurveyItems
+import com.example.surveasy.list.UserSurveyItem
 import com.example.surveasy.login.*
 import com.example.surveasy.my.MyViewNoticeListActivity
 import com.google.android.gms.tasks.OnCompleteListener
@@ -65,6 +69,7 @@ class HomeFragment : Fragment() {
 
         val user : Button = view.findViewById(R.id.User)
         user.setOnClickListener {
+            userList()
             user.text = userModel.currentUser.name
             Log.d(TAG, "*********** ${userModel.currentUser.name}")
         }
@@ -110,5 +115,26 @@ class HomeFragment : Fragment() {
         return view
 
 
+    }
+
+    val userList  = arrayListOf<UserSurveyItem>()
+
+    private fun userList(){
+
+
+        val model by activityViewModels<SurveyInfoViewModel>()
+
+//        val u =  userList.addAll(UserSurveyItem(
+//            500,
+//            model.surveyInfo.get(0).title,
+//            model.surveyInfo.get(0).date,
+//            false
+//        ))
+
+
+
+        db.collection("AndroidUser").document("gOyfH6eGm7cL24zZn1346iWMu6D3")
+            .collection("UserSurveyList").document("설문 ID")
+            .set(userList)
     }
 }

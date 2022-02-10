@@ -52,12 +52,16 @@ class SurveyListDetailActivity : AppCompatActivity() {
 
 
         val title : String = intent.getStringExtra("title")!!
+        val index : Int = intent.getIntExtra("index",0)!!
+        Log.d(TAG,"####${title}, ${index}")
 
 
         binding.toolbarUpload.setOnClickListener {
             val intent = Intent(this, SurveyProofDialogActivity::class.java)
-            val surveyTitle  = intent.putExtra("title",title)
+            val title = intent.putExtra("title",title)
+            val index = intent.putExtra("index",index)
             startActivityForResult(intent,101)
+            
 
        }
         setSupportActionBar(binding.ToolbarProof)
