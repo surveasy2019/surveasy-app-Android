@@ -1,10 +1,17 @@
 package com.example.surveasy.list
 
+import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.activityViewModels
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivitySurveylistfirstsurveyBinding
+import com.example.surveasy.login.CurrentUser
+import com.example.surveasy.login.CurrentUserViewModel
 
 class SurveyListFirstSurveyActivity : AppCompatActivity() {
 
@@ -12,9 +19,18 @@ class SurveyListFirstSurveyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val userModel by viewModels<CurrentUserViewModel>()
+
+        // Current User from MainActivity [P]
+        val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser_main")
+        userModel.currentUser = currentUser!!
+        Log.d(TAG, "~~~~~~~~~${currentUser.name}")
+
+
         binding = ActivitySurveylistfirstsurveyBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
 
         setSupportActionBar(binding.ToolbarFirstSurvey)
 

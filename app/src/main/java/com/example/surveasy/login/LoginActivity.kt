@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth : FirebaseAuth
     val db = Firebase.firestore
+    val userModel by viewModels<CurrentUserViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,9 +96,6 @@ class LoginActivity : AppCompatActivity() {
                         val user = auth.currentUser
                         val uid = user!!.uid.toString()
 
-                        //로그인 한 모든사람에게 알림 전송
-                        FirebaseMessaging.getInstance().subscribeToTopic("all")
-
                         val docRef = db.collection("AndroidUser").document(uid)
                         docRef.get().addOnCompleteListener { snapshot ->
                             if(snapshot != null) {
@@ -107,19 +105,24 @@ class LoginActivity : AppCompatActivity() {
                                     snapshot.result["name"].toString(),
                                     snapshot.result["fcmToken"].toString(),
                                     snapshot.result["firstSurvey"] as Boolean?,
+                                    )
+                                userModel.currentUser = currentUser
 
-                                )
                                 val userSurveyList : UserSurveyItem = UserSurveyItem(
                                     snapshot.result["reward"] as Int?,
                                     snapshot.result["id"] as String?,
                                     snapshot.result["responseDate"] as String?,
                                     snapshot.result["isSent"] as Boolean?
-
                                 )
+
+                                //로그인 한 모든사람에게 알림 전송
+                                FirebaseMessaging.getInstance().subscribeToTopic("all")
+
                                 val intent_main : Intent = Intent(this, MainActivity::class.java)
-                                intent_main.putExtra("currentUser", currentUser)
+                                intent_main.putExtra("currentUser_login", currentUser)
                                 startActivity(intent_main)
                             }
+
                         }
                         //updateUI(user)
                         updateFcmToken(uid)

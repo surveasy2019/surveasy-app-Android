@@ -2,6 +2,7 @@ package com.example.surveasy.login
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.icu.text.CaseMap
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -68,6 +69,7 @@ class Register1Activity: AppCompatActivity() {
         }
     }
 
+    data class Survey(val id: Int, val title: String, val reward: Int, val responseDate: String)
 
     private fun register() {
         val registerEmail: String = binding.RegisterEmailInput.text.toString()
@@ -112,12 +114,12 @@ class Register1Activity: AppCompatActivity() {
                                     "name" to registerName,
                                     "firstSurvey" to false,
                                 )
+
                                 //usersuveylist 추가
-                                val userSurveyList = hashMapOf(
-                                    "reward" to 500,
-                                    "id" to "survey",
-                                    "responseDate" to "date",
-                                    "isSent" to false
+                                val survey1 = Survey(1, "제목제목", 500, "2022-02-10")
+                                val myList = hashMapOf(
+                                    "id" to 1,
+                                    "survey" to survey1
                                 )
                                 Log.d(TAG, "#####UID : $firebaseUserID")
 
@@ -132,15 +134,24 @@ class Register1Activity: AppCompatActivity() {
                                     }
                                 //usersuveylist 추가
                                 db.collection("AndroidUser").document(firebaseUserID)
-                                    .collection("UserSurveyList").document("surveyID")
-                                    .set(userSurveyList)
+                                    .set(myList)
                                     .addOnSuccessListener { documentReference ->
                                         Log.d(TAG, "#####DocumentSnapshot added")
-
                                     }
                                     .addOnFailureListener { e ->
                                         Log.w(TAG, "##### ERROR adding document", e)
                                     }
+
+//                                db.collection("AndroidUser").document(firebaseUserID)
+//                                    .collection("UserSurveyList").document("surveyID")
+//                                    .set(userSurveyList)
+//                                    .addOnSuccessListener { documentReference ->
+//                                        Log.d(TAG, "#####DocumentSnapshot added")
+//
+//                                    }
+//                                    .addOnFailureListener { e ->
+//                                        Log.w(TAG, "##### ERROR adding document", e)
+//                                    }
 
 
                             })

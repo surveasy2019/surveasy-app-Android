@@ -40,7 +40,6 @@ class SurveyListFragment() : Fragment() {
 
         val model by activityViewModels<SurveyInfoViewModel>()
 
-
         val container : RecyclerView? = view.findViewById(R.id.recyclerContainer)
 
         if(model.surveyInfo.size==0){

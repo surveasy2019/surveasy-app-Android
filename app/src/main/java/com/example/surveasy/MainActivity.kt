@@ -5,20 +5,22 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.fragment.app.activityViewModels
 import com.example.surveasy.databinding.ActivityMainBinding
 import com.example.surveasy.home.HomeFragment
-import com.example.surveasy.list.SurveyInfoViewModel
-import com.example.surveasy.list.SurveyItems
-import com.example.surveasy.list.SurveyListFirstSurveyActivity
-import com.example.surveasy.list.SurveyListFragment
+import com.example.surveasy.list.*
 import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
+import com.example.surveasy.login.LoginActivity
 import com.example.surveasy.my.MyViewFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.Main
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,10 +29,11 @@ class MainActivity : AppCompatActivity() {
     val model by viewModels<SurveyInfoViewModel>()
     val userModel by viewModels<CurrentUserViewModel>()
 
+
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         db.collection("AppTest1").get()
@@ -57,41 +60,67 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-
-        val transaction = supportFragmentManager.beginTransaction()
-        setContentView(binding.root)
-        transaction.add(R.id.MainView, HomeFragment()).commit()
-
-
         // Current User
         val user = Firebase.auth.currentUser
         user?.let {
             val uid = user.uid
             val email = user.email
+            Log.d(TAG, "@@@@@ Firebase auth email: ${user.email}")
         }
 
+        fetchCurrentUser(Firebase.auth.currentUser!!.uid)
+        fetchSurvey()
+
+
+
+
+
         // Current User from LoginActivity
-        val intent: Intent = intent
-        val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser")
+        val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser_login")
         if(currentUser != null ) {
             userModel.currentUser = currentUser!!
         }
+        Log.d(TAG, "###### from Login model: ${userModel.currentUser.email}")
+
+
+
+        // Determine Fragment of MainActivity
+        val transaction = supportFragmentManager.beginTransaction()
+        var defaultFrag_list = false
+
+        defaultFrag_list = intent.getBooleanExtra("defaultFragment_list", false)
+        if(defaultFrag_list) {
+            setContentView(binding.root)
+            transaction.add(R.id.MainView, SurveyListFragment()).commit()
+            defaultFrag_list = !defaultFrag_list
+        }
+        else {
+            setContentView(binding.root)
+            transaction.add(R.id.MainView, HomeFragment()).commit()
+        }
+
+
 
         binding.NavHome.setOnClickListener {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.MainView, HomeFragment())
                 .commit()
         }
+
+
         binding.NavList.setOnClickListener {
-
-
+            if (userModel.currentUser.uid != null && userModel.currentUser.firstSurvey == false) {
+                // Send Current User to Activities
+                val intent_surveylistfirstsurvey: Intent = Intent(this, SurveyListFirstSurveyActivity::class.java)
+                intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
+                startActivity(intent_surveylistfirstsurvey)
+            } else {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.MainView, SurveyListFragment())
                     .commit()
-
-
-
+            }
         }
+
         binding.NavMy.setOnClickListener {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.MainView, MyViewFragment())
@@ -103,16 +132,62 @@ class MainActivity : AppCompatActivity() {
 //        Log.d("Hash",keyHash)
 
 
-
-    }
-    fun clickList(){
-
-
+        fun clickList() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.MainView, SurveyListFragment())
                 .commit()
-
+        }
 
     }
 
+    private fun fetchCurrentUser(uid: String) :CurrentUser {
+        val docRef = db.collection("AndroidUser").document(uid)
+        docRef.get().addOnCompleteListener { snapshot ->
+            if(snapshot != null) {
+                val currentUser : CurrentUser = CurrentUser(
+                    snapshot.result["uid"].toString(),
+                    snapshot.result["email"].toString(),
+                    snapshot.result["name"].toString(),
+                    snapshot.result["fcmToken"].toString(),
+                    snapshot.result["firstSurvey"] as Boolean?,
+                    )
+                userModel.currentUser = currentUser
+                Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.email}")
+
+                val userSurveyList : UserSurveyItem = UserSurveyItem(
+                    snapshot.result["reward"] as Int?,
+                    snapshot.result["id"] as String?,
+                    snapshot.result["responseDate"] as String?,
+                    snapshot.result["isSent"] as Boolean?
+                )
+            }
+        }.addOnFailureListener { exception ->
+            Log.d(ContentValues.TAG, "fail $exception")
+        }
+        return userModel.currentUser
+    }
+
+    private fun fetchSurvey() {
+        db.collection("AppTest1").get()
+            .addOnSuccessListener { result ->
+
+                for (document in result) {
+                    val item: SurveyItems = SurveyItems(
+                        document["name"] as String,
+                        document["recommend"] as String,
+                        document["url"] as String
+                    )
+                    surveyList.add(item)
+
+                    Log.d(
+                        TAG,
+                        "################${document["name"]} and ${document["recommend"]} and ${document["url"]}"
+                    )
+                }
+                model.surveyInfo.addAll(surveyList)
+            }
+            .addOnFailureListener { exception ->
+                Log.d(ContentValues.TAG, "fail $exception")
+            }
+    }
 }
