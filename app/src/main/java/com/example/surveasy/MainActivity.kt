@@ -11,6 +11,7 @@ import com.example.surveasy.databinding.ActivityMainBinding
 import com.example.surveasy.home.HomeFragment
 import com.example.surveasy.list.SurveyInfoViewModel
 import com.example.surveasy.list.SurveyItems
+import com.example.surveasy.list.SurveyListFirstSurveyActivity
 import com.example.surveasy.list.SurveyListFragment
 import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
@@ -79,9 +80,12 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
         binding.NavList.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.MainView, SurveyListFragment())
-                .commit()
+
+
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.MainView, SurveyListFragment())
+                    .commit()
+
 
 
         }

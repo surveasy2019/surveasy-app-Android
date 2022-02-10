@@ -3,6 +3,7 @@ package com.example.surveasy.list
 
 import android.content.ContentValues
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.MainActivity
 import com.example.surveasy.R
+import com.example.surveasy.login.CurrentUser
+import com.example.surveasy.login.CurrentUserViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
@@ -34,12 +37,10 @@ class SurveyListFragment() : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_surveylist,container,false)
 
-        CoroutineScope(Dispatchers.Main).launch {
-
-        }
-
 
         val model by activityViewModels<SurveyInfoViewModel>()
+
+
         val container : RecyclerView? = view.findViewById(R.id.recyclerContainer)
 
         if(model.surveyInfo.size==0){
@@ -66,6 +67,7 @@ class SurveyListFragment() : Fragment() {
             container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
             container?.adapter = SurveyItemsAdapter(model.surveyInfo)
         }
+
 
 
 

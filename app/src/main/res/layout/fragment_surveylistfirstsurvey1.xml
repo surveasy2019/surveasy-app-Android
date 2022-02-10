@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:id="@+id/ToolbarFirstSurvey"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/white"
+        app:titleTextColor="@color/black"/>
+
+    <LinearLayout
+        android:id="@+id/SurveyListFirstSurvey_Container"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <TextView
+                android:id="@+id/SurveyListFirstSurvey_Question1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="거주지역"
+                android:textColor="@color/black"
+                />
+            <Spinner
+                android:id="@+id/SurveyListFirstSurvey_Answer1_1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:layout_marginBottom="20dp"
+                />
+            <Spinner
+                android:id="@+id/SurveyListFirstSurvey_Answer1_2"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:layout_marginBottom="20dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/SurveyListFirstSurvey_Question2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가구수"
+                android:textColor="@color/black"
+                />
+            <Spinner
+                android:id="@+id/SurveyListFirstSurvey_Answer2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:layout_marginBottom="20dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/SurveyListFirstSurvey_Question3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="거주형태"
+                android:textColor="@color/black"
+                />
+            <Spinner
+                android:id="@+id/SurveyListFirstSurvey_Answer3"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:layout_marginBottom="20dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/SurveyListFirstSurvey_Question4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="거주형태"
+                android:textColor="@color/black"
+                />
+            <Spinner
+                android:id="@+id/SurveyListFirstSurvey_Answer4"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:layout_marginBottom="20dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/SurveyListFirstSurvey1_Btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="#717171"
+        android:text="next" />
+
+
+
+</LinearLayout>
