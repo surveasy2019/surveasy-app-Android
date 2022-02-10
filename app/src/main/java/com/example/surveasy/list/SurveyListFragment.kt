@@ -1,6 +1,7 @@
 package com.example.surveasy.list
 
 
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
@@ -12,18 +13,21 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.surveasy.MainActivity
 import com.example.surveasy.R
 import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
 
 
 class SurveyListFragment() : Fragment() {
 
     val db = Firebase.firestore
     val surveyList = arrayListOf<SurveyItems>()
-    val adapter = SurveyItemsAdapter(surveyList)
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,19 +39,41 @@ class SurveyListFragment() : Fragment() {
 
 
         val model by activityViewModels<SurveyInfoViewModel>()
-        val userModel by activityViewModels<CurrentUserViewModel>()
-        val adapter = SurveyItemsAdapter(model.surveyInfo)
-
 
         val container : RecyclerView? = view.findViewById(R.id.recyclerContainer)
 
-        container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-        container?.adapter = SurveyItemsAdapter(model.surveyInfo)
+        if(model.surveyInfo.size==0){
+            db.collection("AppTest1").get()
+                .addOnSuccessListener { result->
+
+                    for(document in result){
+                        val item : SurveyItems = SurveyItems(document["name"] as String, document["recommend"] as String, document["url"] as String)
+                        surveyList.add(item)
+
+                        Log.d(TAG,"####firestore" )
+                    }
+                    val adapter = SurveyItemsAdapter(surveyList)
+                    container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+                    container?.adapter = SurveyItemsAdapter(surveyList)
+
+                }
+                .addOnFailureListener{exception->
+                    Log.d(ContentValues.TAG,"fail $exception")
+                }
+        }else{
+            Log.d(TAG,"####viewModel" )
+            val adapter = SurveyItemsAdapter(model.surveyInfo)
+            container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+            container?.adapter = SurveyItemsAdapter(model.surveyInfo)
+        }
+
+
 
 
 
         return view
     }
+
 
 
 }

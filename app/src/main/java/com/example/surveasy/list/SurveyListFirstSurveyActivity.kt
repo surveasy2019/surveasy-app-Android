@@ -1,8 +1,10 @@
 package com.example.surveasy.list
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
@@ -19,10 +21,10 @@ class SurveyListFirstSurveyActivity : AppCompatActivity() {
 
         val userModel by viewModels<CurrentUserViewModel>()
 
-        // Current User from MainActivity
-        val intent_main: Intent = intent
-        val currentUser = intent_main.getParcelableExtra<CurrentUser>("currentUser")
+        // Current User from MainActivity [P]
+        val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser_main")
         userModel.currentUser = currentUser!!
+        Log.d(TAG, "~~~~~~~~~${currentUser.name}")
 
 
         binding = ActivitySurveylistfirstsurveyBinding.inflate(layoutInflater)

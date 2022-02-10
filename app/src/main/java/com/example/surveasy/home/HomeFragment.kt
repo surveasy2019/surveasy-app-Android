@@ -56,10 +56,12 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        val home_GreetingText : TextView = view.findViewById(R.id.Home_GreetingText)
         if(userModel.currentUser.uid != null) {
+            val home_GreetingText : TextView = view.findViewById(R.id.Home_GreetingText)
             home_GreetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
+            Log.d(TAG, "*********** ${userModel.currentUser.name}")
         }
+
 
         val user : Button = view.findViewById(R.id.User)
         user.setOnClickListener {
@@ -86,7 +88,7 @@ class HomeFragment : Fragment() {
                 )
                 db.collection("fcmToken").document(token).set(fcmToken)
             })
-            FirebaseMessaging.getInstance().subscribeToTopic("ad")
+            //FirebaseMessaging.getInstance().subscribeToTopic("ad")
 
         }
 

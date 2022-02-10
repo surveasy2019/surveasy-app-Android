@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.surveasy.MainActivity
 import com.example.surveasy.R
+import com.example.surveasy.home.HomeFragment
 import com.example.surveasy.login.CurrentUserViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -35,13 +36,18 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
 
         surveyListFirstSurvey2Btn.setOnClickListener{
             //finFirstSurvey(userModel.currentUser!!.uid!!)
+
             // update Firestore 'firstSurvey"
             db.collection("AndroidUser").document(userModel.currentUser.uid!!)
                 .update("firstSurvey", true)
-                .addOnSuccessListener { Log.d(TAG, "@@@@@DocumentSnapshot successfully updated!") }
-            Log.d(TAG, "@@@@@ ${userModel.currentUser.uid}")
-            val intent : Intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
+                .addOnSuccessListener { Log.d(TAG, "@@@@@ First Survey field updated!") }
+            Log.d(TAG, "***** ${userModel.currentUser.uid}")
+
+
+            val intent_main : Intent = Intent(context, MainActivity::class.java)
+            intent_main.putExtra("defaultFragment_list", true)
+            startActivity(intent_main)
+
         }
 
         return view
