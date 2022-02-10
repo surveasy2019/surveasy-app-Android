@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                     val item : SurveyItems = SurveyItems(document["name"] as String, document["recommend"] as String, document["url"] as String)
                     surveyList.add(item)
 
-                    Log.d(TAG,"${document["name"]} and ${document["recommend"]} and ${document["url"]}" )
+                    Log.d(TAG,"################${document["name"]} and ${document["recommend"]} and ${document["url"]}" )
 
 
                 }
@@ -65,14 +65,16 @@ class MainActivity : AppCompatActivity() {
         user?.let {
             val uid = user.uid
             val email = user.email
+            Log.d(TAG, "%%%%%%%% ${user.email}")
         }
 
-        // Current User from LoginActivity
-        val intent: Intent = intent
-        val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser")
+        // Current User from LoginActivity [P]
+        val intent_login: Intent = intent
+        val currentUser = intent_login.getParcelableExtra<CurrentUser>("currentUser")
         if(currentUser != null ) {
             userModel.currentUser = currentUser!!
         }
+
 
         binding.NavHome.setOnClickListener {
             supportFragmentManager.beginTransaction()
@@ -80,9 +82,12 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
         binding.NavList.setOnClickListener {
-            if(currentUser!!.firstSurvey == false) {
-                val intent : Intent = Intent(this, SurveyListFirstSurveyActivity::class.java)
-                startActivity(intent)
+            if(userModel.currentUser.uid != null && userModel.currentUser.firstSurvey == false) {
+                // Send Current User to Activities
+                val intent_surveylistfirstsurvey : Intent = Intent(this, SurveyListFirstSurveyActivity::class.java)
+                intent_surveylistfirstsurvey.putExtra("currentUser", currentUser)
+                startActivity(intent_surveylistfirstsurvey)
+                Log.d(TAG, "############")
             }
             else {
                 supportFragmentManager.beginTransaction()

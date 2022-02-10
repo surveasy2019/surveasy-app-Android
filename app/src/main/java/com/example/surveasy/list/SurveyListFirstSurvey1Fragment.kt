@@ -31,9 +31,9 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_surveylistfirstsurvey1,container,false)
 
-        val surveyListFirstSurvey1_Btn : Button = view.findViewById(R.id.SurveyListFirstSurvey1_Btn)
+        val surveyListFirstSurvey1Btn : Button = view.findViewById(R.id.SurveyListFirstSurvey1_Btn)
 
-        surveyListFirstSurvey1_Btn.setOnClickListener {
+        surveyListFirstSurvey1Btn.setOnClickListener {
             (activity as SurveyListFirstSurveyActivity).next()
         }
 

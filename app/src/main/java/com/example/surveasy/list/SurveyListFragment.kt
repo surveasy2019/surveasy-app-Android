@@ -39,7 +39,6 @@ class SurveyListFragment() : Fragment() {
         val adapter = SurveyItemsAdapter(model.surveyInfo)
 
 
-
         val container : RecyclerView? = view.findViewById(R.id.recyclerContainer)
 
         container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
