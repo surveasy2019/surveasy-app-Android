@@ -103,7 +103,7 @@ class Register1Activity: AppCompatActivity() {
                                 }
                                 val token = task.result
 
-                                val survey = UserSurveyItem(1,null,null,false)
+
 
                                 val user = hashMapOf(
                                     "email" to registerEmail,
@@ -111,7 +111,13 @@ class Register1Activity: AppCompatActivity() {
                                     "fcmToken" to token,
                                     "name" to registerName,
                                     "firstSurvey" to false,
-                                    "aa" to UserSurveyList()
+                                )
+                                //usersuveylist 추가
+                                val userSurveyList = hashMapOf(
+                                    "reward" to 500,
+                                    "id" to "survey",
+                                    "responseDate" to "date",
+                                    "isSent" to false
                                 )
                                 Log.d(TAG, "#####UID : $firebaseUserID")
 
@@ -124,9 +130,21 @@ class Register1Activity: AppCompatActivity() {
                                     .addOnFailureListener { e ->
                                         Log.w(TAG, "##### ERROR adding document", e)
                                     }
+                                //usersuveylist 추가
+                                db.collection("AndroidUser").document(firebaseUserID)
+                                    .collection("UserSurveyList").document("surveyID")
+                                    .set(userSurveyList)
+                                    .addOnSuccessListener { documentReference ->
+                                        Log.d(TAG, "#####DocumentSnapshot added")
+
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.w(TAG, "##### ERROR adding document", e)
+                                    }
 
 
                             })
+
                         val intent : Intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
                     }

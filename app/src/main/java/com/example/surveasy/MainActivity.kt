@@ -37,7 +37,10 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { result->
 
                 for(document in result){
-                    val item : SurveyItems = SurveyItems(document["name"] as String, document["recommend"] as String, document["url"] as String)
+                    val item : SurveyItems = SurveyItems(
+                        document["name"] as String,
+                        document["recommend"] as String,
+                        document["url"] as String)
                     surveyList.add(item)
 
                     Log.d(TAG,"${document["name"]} and ${document["recommend"]} and ${document["url"]}" )
