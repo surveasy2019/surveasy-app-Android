@@ -14,6 +14,8 @@ import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityLoginBinding
 import com.example.surveasy.home.HomeFragment
 import com.example.surveasy.list.SurveyListFirstSurveyActivity
+import com.example.surveasy.list.UserSurveyItem
+import com.example.surveasy.list.UserSurveyList
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -93,6 +95,9 @@ class LoginActivity : AppCompatActivity() {
                         val user = auth.currentUser
                         val uid = user!!.uid.toString()
 
+                        //로그인 한 모든사람에게 알림 전송
+                        FirebaseMessaging.getInstance().subscribeToTopic("all")
+
                         val docRef = db.collection("AndroidUser").document(uid)
                         docRef.get().addOnCompleteListener { snapshot ->
                             if(snapshot != null) {
@@ -101,7 +106,15 @@ class LoginActivity : AppCompatActivity() {
                                     snapshot.result["email"].toString(),
                                     snapshot.result["name"].toString(),
                                     snapshot.result["fcmToken"].toString(),
-                                    snapshot.result["firstSurvey"] as Boolean?
+                                    snapshot.result["firstSurvey"] as Boolean?,
+
+                                )
+                                val userSurveyList : UserSurveyItem = UserSurveyItem(
+                                    snapshot.result["reward"] as Int?,
+                                    snapshot.result["id"] as String?,
+                                    snapshot.result["responseDate"] as String?,
+                                    snapshot.result["isSent"] as Boolean?
+
                                 )
                                 val intent_main : Intent = Intent(this, MainActivity::class.java)
                                 intent_main.putExtra("currentUser", currentUser)

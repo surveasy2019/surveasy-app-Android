@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="50dp"
+    android:layout_marginRight="50dp"
+    android:layout_marginTop="200dp"
+    android:layout_marginBottom="200dp"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="캡쳐본을 업로드 해주세요"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="@id/dialog_imageview"
+         />
+
+
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/dialog_imageview"
+
+
+        />
+
+
+            <Button
+                android:id="@+id/dialog_sendBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SEND"
+                />
+            <Button
+                android:id="@+id/dialog_editBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EDIT"/>
+
+
+
+
+</LinearLayout>

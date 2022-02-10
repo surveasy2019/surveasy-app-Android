@@ -4,12 +4,11 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityRegister1Binding
-import com.example.surveasy.home.HomeFragment
+import com.example.surveasy.list.UserSurveyItem
+import com.example.surveasy.list.UserSurveyList
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -104,12 +103,15 @@ class Register1Activity: AppCompatActivity() {
                                 }
                                 val token = task.result
 
+                                val survey = UserSurveyItem(1,null,null,false)
+
                                 val user = hashMapOf(
                                     "email" to registerEmail,
                                     "uid" to firebaseUserID,
                                     "fcmToken" to token,
                                     "name" to registerName,
-                                    "firstSurvey" to false
+                                    "firstSurvey" to false,
+                                    "aa" to UserSurveyList()
                                 )
                                 Log.d(TAG, "#####UID : $firebaseUserID")
 

@@ -80,15 +80,12 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
         binding.NavList.setOnClickListener {
-            if(currentUser!!.firstSurvey == false) {
-                val intent : Intent = Intent(this, SurveyListFirstSurveyActivity::class.java)
-                startActivity(intent)
-            }
-            else {
+
+
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.MainView, SurveyListFragment())
                     .commit()
-            }
+
 
 
         }
@@ -102,6 +99,15 @@ class MainActivity : AppCompatActivity() {
 //        val keyHash = Utility.getKeyHash(this)
 //        Log.d("Hash",keyHash)
 
+
+
+    }
+    fun clickList(){
+
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.MainView, SurveyListFragment())
+                .commit()
 
 
     }
