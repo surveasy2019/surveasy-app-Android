@@ -54,12 +54,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         binding.dialogEditBtn.setOnClickListener {
             editPhoto()
         }
-
-
-
         val title: String = intent.getStringExtra("title")!!
-        Toast.makeText(this,"@@@${title}",Toast.LENGTH_LONG).show()
-
         //설문 정보 가져와서 저장해두기
         db.collection("AppTest1").document(title)
             .get().addOnSuccessListener { result ->
@@ -71,12 +66,18 @@ class SurveyProofDialogActivity: AppCompatActivity() {
                     false
                 )
 
-                    thisSurveyInfo.add(item)
-                    Toast.makeText(this,"*******저장 성공 ${thisSurveyInfo.get(0).id}",Toast.LENGTH_LONG).show()
+                thisSurveyInfo.add(item)
+                Toast.makeText(this,"*******저장 성공 ${thisSurveyInfo.get(0).id}",Toast.LENGTH_LONG).show()
+
 
             }.addOnFailureListener {
                 Toast.makeText(this,"*******저장 실패 ${thisSurveyInfo.toString()}",Toast.LENGTH_LONG).show()
             }
+
+
+
+
+
 
         if (checkPermission()) {
             var photoPick = Intent(Intent.ACTION_PICK)
@@ -93,12 +94,6 @@ class SurveyProofDialogActivity: AppCompatActivity() {
 
 
     }
-
-
-
-
-
-
 
 
     //화면에 사진 나타내기
@@ -130,14 +125,11 @@ class SurveyProofDialogActivity: AppCompatActivity() {
             .collection("UserSurveyList").document(title)
         val uploadTask = storageRef.putFile(uriPhoto!!)
 
-
-
-
-        Toast.makeText(this,"업로드 하는 중",Toast.LENGTH_SHORT).show()
         uploadTask.addOnSuccessListener {
+            Toast.makeText(this,"업로드 하는 중",Toast.LENGTH_SHORT).show()
             val intent = Intent(this,SurveyProofLastDialogActivity::class.java)
-            val list = intent.putExtra("thisSurveyInfo",thisSurveyInfo)
-            startActivityForResult(intent,101)
+            val list = intent.putExtra("list",thisSurveyInfo)
+            startActivity(intent)
 
 
         }
