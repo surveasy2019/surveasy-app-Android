@@ -5,22 +5,17 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.fragment.app.activityViewModels
 import com.example.surveasy.databinding.ActivityMainBinding
 import com.example.surveasy.home.HomeFragment
 import com.example.surveasy.list.*
 import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
-import com.example.surveasy.login.LoginActivity
 import com.example.surveasy.my.MyViewFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.*
-import kotlinx.coroutines.Dispatchers.Main
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,29 +30,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-        db.collection("AppTest1").get()
-            .addOnSuccessListener { result->
-
-                for(document in result){
-                    val item : SurveyItems = SurveyItems(
-                        document["name"] as String,
-                        document["recommend"] as String,
-                        document["url"] as String)
-                    surveyList.add(item)
-
-                    Log.d(TAG,"${document["name"]} and ${document["recommend"]} and ${document["url"]}" )
-
-
-                }
-                model.surveyInfo.addAll(surveyList)
-
-
-
-            }
-            .addOnFailureListener{exception->
-                Log.d(ContentValues.TAG,"fail $exception")
-            }
 
 
         // Current User
@@ -141,7 +113,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchCurrentUser(uid: String) :CurrentUser {
+
         val docRef = db.collection("AndroidUser").document(uid)
+
+        val userSurveyList = ArrayList<UserSurveyItem>()
+
+        docRef.collection("UserSurveyList").get()
+            .addOnSuccessListener { documents ->
+                for(document in documents){
+                    var item : UserSurveyItem = UserSurveyItem(
+                        Integer.parseInt(document["reward"]?.toString()) as Int?,
+                        document["id"] as String?,
+                        document["responseDate"] as String?,
+                        document["isSent"] as Boolean?,
+                    )
+                    userSurveyList.add(item)
+
+                }
+            }
+
+
         docRef.get().addOnCompleteListener { snapshot ->
             if(snapshot != null) {
                 val currentUser : CurrentUser = CurrentUser(
@@ -150,16 +141,15 @@ class MainActivity : AppCompatActivity() {
                     snapshot.result["name"].toString(),
                     snapshot.result["fcmToken"].toString(),
                     snapshot.result["firstSurvey"] as Boolean?,
-                    )
+                    userSurveyList
+                )
                 userModel.currentUser = currentUser
                 Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.email}")
 
-                val userSurveyList : UserSurveyItem = UserSurveyItem(
-                    snapshot.result["reward"] as Int?,
-                    snapshot.result["id"] as String?,
-                    snapshot.result["responseDate"] as String?,
-                    snapshot.result["isSent"] as Boolean?
-                )
+                Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
+
+
+
             }
         }.addOnFailureListener { exception ->
             Log.d(ContentValues.TAG, "fail $exception")
@@ -191,3 +181,4 @@ class MainActivity : AppCompatActivity() {
             }
     }
 }
+
