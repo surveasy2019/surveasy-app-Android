@@ -44,16 +44,12 @@ class MainActivity : AppCompatActivity() {
         fetchSurvey()
 
 
-
-
-
         // Current User from LoginActivity
         val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser_login")
         if(currentUser != null ) {
             userModel.currentUser = currentUser!!
         }
         Log.d(TAG, "###### from Login model: ${userModel.currentUser.email}")
-
 
 
         // Determine Fragment of MainActivity
@@ -70,7 +66,6 @@ class MainActivity : AppCompatActivity() {
             setContentView(binding.root)
             transaction.add(R.id.MainView, HomeFragment()).commit()
         }
-
 
 
         binding.NavHome.setOnClickListener {
@@ -122,10 +117,10 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 for(document in documents){
                     var item : UserSurveyItem = UserSurveyItem(
-                        Integer.parseInt(document["reward"]?.toString()) as Int?,
-                        document["id"] as String?,
-                        document["responseDate"] as String?,
-                        document["isSent"] as Boolean?,
+                        document["id"] as String,
+                        document["title"] as String?,
+                        Integer.parseInt(document["reward"]?.toString()),
+                        document["responseDate"] as String?
                     )
                     userSurveyList.add(item)
 
@@ -158,20 +153,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchSurvey() {
-        db.collection("AppTest1").get()
+        db.collection("AndroidSurvey").get()
             .addOnSuccessListener { result ->
 
                 for (document in result) {
                     val item: SurveyItems = SurveyItems(
-                        document["name"] as String,
-                        document["recommend"] as String,
-                        document["url"] as String
+                        document["id"] as String,
+                        document["title"] as String,
+                        document["target"] as String,
+                        document["uploadDate"] as String,
+                        document["link"] as String,
+                        document["spendTime"] as String,
                     )
                     surveyList.add(item)
 
                     Log.d(
                         TAG,
-                        "################${document["name"]} and ${document["recommend"]} and ${document["url"]}"
+                        "################${document["id"]} and ${document["title"]}"
                     )
                 }
                 model.surveyInfo.addAll(surveyList)

@@ -116,11 +116,12 @@ class Register1Activity: AppCompatActivity() {
                                 )
 
                                 //usersuveylist 추가
-                                val survey1 = Survey(1, "제목제목", 500, "2022-02-10")
-                                val myList = hashMapOf(
-                                    "id" to 1,
-                                    "survey" to survey1
-                                )
+//                                val survey1 = Survey(
+//                                    1, "제목제목", 500, "2022-02-10")
+//                                val myList = hashMapOf(
+//                                    "id" to 1,
+//                                    "survey" to survey1
+//                                )
                                 Log.d(TAG, "#####UID : $firebaseUserID")
 
                                 db.collection("AndroidUser").document(firebaseUserID)
@@ -133,14 +134,14 @@ class Register1Activity: AppCompatActivity() {
                                         Log.w(TAG, "##### ERROR adding document", e)
                                     }
                                 //usersuveylist 추가
-                                db.collection("AndroidUser").document(firebaseUserID)
-                                    .set(myList)
-                                    .addOnSuccessListener { documentReference ->
-                                        Log.d(TAG, "#####DocumentSnapshot added")
-                                    }
-                                    .addOnFailureListener { e ->
-                                        Log.w(TAG, "##### ERROR adding document", e)
-                                    }
+//                                db.collection("AndroidUser").document(firebaseUserID)
+//                                    .set(myList)
+//                                    .addOnSuccessListener { documentReference ->
+//                                        Log.d(TAG, "#####DocumentSnapshot added")
+//                                    }
+//                                    .addOnFailureListener { e ->
+//                                        Log.w(TAG, "##### ERROR adding document", e)
+//                                    }
 
 //                                db.collection("AndroidUser").document(firebaseUserID)
 //                                    .collection("UserSurveyList").document("surveyID")
