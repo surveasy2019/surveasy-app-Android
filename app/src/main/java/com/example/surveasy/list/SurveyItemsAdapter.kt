@@ -31,8 +31,6 @@ class SurveyItemsAdapter(val surveyList : ArrayList<SurveyItems>, val boolList :
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
 
-
-
         return CustomViewHolder(view).apply {
             itemView.setOnClickListener{
 
@@ -41,35 +39,30 @@ class SurveyItemsAdapter(val surveyList : ArrayList<SurveyItems>, val boolList :
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int ) {
-
             holder.itemTitle.text = surveyList.get(position).title
-            holder.itemDate.text = surveyList.get(position).date
+            holder.itemDate.text = surveyList.get(position).uploadDate
+
+        //참여한 설문 박스 색 변경
         if(boolList[position]){
             holder.itemTitle.setBackgroundColor(Color.RED)
         }else{
             holder.itemTitle.setBackgroundColor(Color.WHITE)
         }
 
-
         holder.itemView.setOnClickListener{
             val intent = Intent(holder.itemView.context,SurveyListDetailActivity::class.java)
-            intent.putExtra("url","${surveyList.get(position).url}")
-            intent.putExtra("title","${surveyList.get(position).title}")
+            intent.putExtra("link","${surveyList.get(position).link}")
+            intent.putExtra("id","${surveyList.get(position).id}")
             intent.putExtra("index",position)
             ContextCompat.startActivity(holder.itemView.context,intent,null)
-
-
 
         }
 
     }
 
     override fun getItemCount(): Int {
-
-
         return surveyList.size
     }
-
 
     inner class CustomViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val itemTitle : TextView = itemView.findViewById(R.id.ListItem_Title)

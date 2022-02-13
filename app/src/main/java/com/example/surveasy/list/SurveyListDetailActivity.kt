@@ -29,60 +29,47 @@ import java.util.*
 
 class SurveyListDetailActivity : AppCompatActivity() {
 
-
     private lateinit var binding: ActivitySurveylistdetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         binding = ActivitySurveylistdetailBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
         var webView : WebView = binding.surveyWebView
+        val url : String = intent.getStringExtra("link")!!
+        val id : String = intent.getStringExtra("id",)!!
+        val index : Int = intent.getIntExtra("index",0)!!
 
         val apply = webView.apply {
             webViewClient = WebViewClient()
             settings.javaScriptEnabled = true
         }
-
-        val url : String = intent.getStringExtra("url")!!
-
         webView.loadUrl(url)
 
-
-        val title : String = intent.getStringExtra("title")!!
-        val index : Int = intent.getIntExtra("index",0)!!
-        Log.d(TAG,"####${title}, ${index}")
-
+        //Toast.makeText(this,"###${id}",Toast.LENGTH_LONG).show()
 
         binding.toolbarUpload.setOnClickListener {
             val intent = Intent(this, SurveyProofDialogActivity::class.java)
             val title = intent.putExtra("title",title)
             val index = intent.putExtra("index",index)
+            val id = intent.putExtra("id",id)
             startActivityForResult(intent,101)
-            
-
        }
-        setSupportActionBar(binding.ToolbarProof)
 
+        //Toolbar
+        setSupportActionBar(binding.ToolbarProof)
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
-
         binding.ToolbarProof.setNavigationOnClickListener {
             onBackPressed()
         }
 
-
-
-
-
-
     }
 
-
+    //뒤로가기 누르면 webView 안에서 적용되게
     override fun onBackPressed() {
         var webView : WebView = binding.surveyWebView
         if(webView.canGoBack()){

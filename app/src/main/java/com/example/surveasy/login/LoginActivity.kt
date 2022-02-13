@@ -19,6 +19,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 
 
 class LoginActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth : FirebaseAuth
     val db = Firebase.firestore
@@ -98,10 +99,10 @@ class LoginActivity : AppCompatActivity() {
                             .addOnSuccessListener { documents ->
                                 for(document in documents){
                                     var item : UserSurveyItem = UserSurveyItem(
-                                        Integer.parseInt(document["reward"]?.toString()) as Int?,
                                         document["id"] as String?,
-                                        document["responseDate"] as String?,
-                                        document["isSent"] as Boolean?,
+                                        document["title"] as String?,
+                                        Integer.parseInt(document["reward"]?.toString()) as Int?,
+                                        document["responseDate"] as String?
                                     )
                                     userSurveyList.add(item)
 

@@ -4,6 +4,7 @@ import android.os.Parcelable
 import com.example.surveasy.list.UserSurveyItem
 import kotlinx.android.parcel.Parcelize
 
+//login 한 user 의 정보 list
 @Parcelize
 class CurrentUser(
     val uid: String? = null,
