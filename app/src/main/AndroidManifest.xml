@@ -49,7 +49,7 @@
             android:name=".login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".login.RegisterActivity"
+            android:name=".register.RegisterActivity"
             android:exported="true" />
         <activity
             android:name=".login.RegisterFinActivity"

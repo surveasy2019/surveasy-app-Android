@@ -14,6 +14,17 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
+    // RegisterFragment2
+    <string-array name="accountType">
+        <item>국민</item> <item>하나</item> <item>우리</item> <item>신한</item>
+        <item>농협</item> <item>IBK 기업</item> <item>새마을금고</item> <item>카카오뱅크</item>
+    </string-array>
+
+    <string-array name="inflowPath">
+        <item>카카오톡</item> <item>에브리타임</item> <item>인스타그램</item> <item>지인 추천</item>
+    </string-array>
+
+
     // MyView
     <string name="MyView_UserRewardText">정산 금액</string>
     <string name="MyView_HistoryText">응답 내역</string>

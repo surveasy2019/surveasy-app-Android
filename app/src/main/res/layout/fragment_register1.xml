@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:id="@+id/ToolbarRegister"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/white"
+        app:titleTextColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*항목은 추후 변경이 불가능하오니, 신중히 작성하여주시길 바랍니다."
+        android:textSize="18dp"
+        android:layout_gravity="center"
+        android:padding="10dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/RegisterFragment1_NameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*이름"
+            android:textSize="17dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/RegisterFragment1_NameInput"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:inputType="text"
+            android:background="@drawable/textedit_border"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/RegisterFragment1_EmailText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아이디(이메일)"
+            android:textSize="17dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/RegisterFragment1_EmailInput"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/textedit_border"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/RegisterFragment1_PwText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호"
+            android:textSize="17dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/RegisterFragment1_PwInput"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:inputType="textPassword"
+            android:background="@drawable/textedit_border"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/RegisterFragment1_PwCheckText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호 확인"
+            android:textSize="17dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/RegisterFragment1_PwCheckInput"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:inputType="textPassword"
+            android:background="@drawable/textedit_border" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/RegisterFragment1_PhoneNumberText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="휴대폰 번호"
+            android:textSize="17dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/RegisterFragment1_PhoneNumberInput"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:inputType="phone"
+            android:background="@drawable/textedit_border" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center" >
+
+        <TextView
+            android:id="@+id/RegisterFragment1_GenderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*성별"
+            android:textSize="17dp"
+            android:layout_gravity="center"/>
+
+        <RadioGroup
+            android:id="@+id/RegisterFragment1_RadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/RegisterFragment1_RadioMale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_radio_button"
+                android:textColor="@drawable/selector_radio_text"
+                android:button="@null"
+                android:text="남"
+                android:textAlignment="center" />
+            <RadioButton
+                android:id="@+id/RegisterFragment1_RadioFemale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_radio_button"
+                android:textColor="@drawable/selector_radio_text"
+                android:button="@null"
+                android:text="여"
+                android:textAlignment="center" />
+            <RadioButton
+                android:id="@+id/RegisterFragment1_RadioEtc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_radio_button"
+                android:textColor="@drawable/selector_radio_text"
+                android:button="@null"
+                android:text="기타"
+                android:textAlignment="center" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center" >
+
+        <TextView
+            android:id="@+id/RegisterFragment1_BirthText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*생년월일"
+            android:textSize="17dp"
+            android:layout_gravity="center"/>
+
+
+        <NumberPicker
+            android:id="@+id/RegisterFragment1_Year"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_margin="10dp" />
+        <NumberPicker
+            android:id="@+id/RegisterFragment1_Month"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_margin="10dp" />
+        <NumberPicker
+            android:id="@+id/RegisterFragment1_Date"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/RegisterFragment1_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="다음"
+        android:layout_gravity="center"/>
+
+
+</LinearLayout>
