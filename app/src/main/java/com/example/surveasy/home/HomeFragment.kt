@@ -27,6 +27,7 @@ import com.google.firebase.messaging.ktx.messaging
 class HomeFragment : Fragment() {
 
     val db = Firebase.firestore
+    val userList  = arrayListOf<UserSurveyItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,41 +36,31 @@ class HomeFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-
         val userModel by activityViewModels<CurrentUserViewModel>()
 
         val register: Button = view.findViewById(R.id.HomeToRegister)
         val login: Button = view.findViewById(R.id.HomeToLogin)
         val IdText: TextView = view.findViewById(R.id.Home_GreetingText)
-
+        val user : Button = view.findViewById(R.id.User)
+        val FCMTokenBtn : Button = view.findViewById(R.id.FCMTokenBtn)
+        val FCMSubscribeBtn : Button = view.findViewById(R.id.FCMSubscribeBtn)
 
         login.setOnClickListener {
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
         }
 
-
         register.setOnClickListener {
             val intent = Intent(context, RegisterActivity::class.java)
             startActivity(intent)
         }
 
-        if(userModel.currentUser.uid != null) {
-            val home_GreetingText : TextView = view.findViewById(R.id.Home_GreetingText)
-            home_GreetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
-            Log.d(TAG, "*********** ${userModel.currentUser.name}")
-        }
-
-
-        val user : Button = view.findViewById(R.id.User)
         user.setOnClickListener {
             userList()
             user.text = userModel.currentUser.name
             Log.d(TAG, "*********** ${userModel.currentUser.name}")
         }
 
-
-        val FCMTokenBtn : Button = view.findViewById(R.id.FCMTokenBtn)
         FCMTokenBtn.setOnClickListener {
             FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
@@ -91,8 +82,6 @@ class HomeFragment : Fragment() {
 
         }
 
-
-        val FCMSubscribeBtn : Button = view.findViewById(R.id.FCMSubscribeBtn)
         FCMSubscribeBtn.setOnClickListener {
             Log.d(TAG, "Subscribing to weather topic")
             Firebase.messaging.subscribeToTopic("ad")
@@ -105,17 +94,24 @@ class HomeFragment : Fragment() {
                 }
         }
 
+        if(userModel.currentUser.uid != null) {
+            val home_GreetingText : TextView = view.findViewById(R.id.Home_GreetingText)
+            home_GreetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
+            Log.d(TAG, "*********** ${userModel.currentUser.name}")
+        }
+        else {
+            // null 이면 firebase에서 이름만 가져오기
+        }
+
 
         return view
 
 
     }
 
-    val userList  = arrayListOf<UserSurveyItem>()
+
 
     private fun userList(){
-
-
         val model by activityViewModels<SurveyInfoViewModel>()
 
 //        val u =  userList.addAll(UserSurveyItem(
@@ -124,8 +120,6 @@ class HomeFragment : Fragment() {
 //            model.surveyInfo.get(0).date,
 //            false
 //        ))
-
-
 
         db.collection("AndroidUser").document("gOyfH6eGm7cL24zZn1346iWMu6D3")
             .collection("UserSurveyList").document("설문 ID")

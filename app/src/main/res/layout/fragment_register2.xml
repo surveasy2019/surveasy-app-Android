@@ -44,10 +44,10 @@
             android:spinnerMode="dropdown" />
 
         <EditText
-            android:id="@+id/RegisterFragment2_AccountNumInput"
+            android:id="@+id/RegisterFragment2_AccountNumberInput"
             android:layout_width="150dp"
             android:layout_height="30dp"
-            android:inputType="text"
+            android:inputType="number"
             android:hint="-제외"
             android:background="@drawable/textedit_border"/>
 

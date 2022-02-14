@@ -6,25 +6,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.surveasy.MainActivity
-import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityLoginBinding
-import com.example.surveasy.home.HomeFragment
-import com.example.surveasy.list.SurveyListFirstSurveyActivity
 import com.example.surveasy.list.UserSurveyItem
-import com.example.surveasy.list.UserSurveyList
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 
 
 class LoginActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth : FirebaseAuth
     val db = Firebase.firestore
@@ -97,6 +92,23 @@ class LoginActivity : AppCompatActivity() {
                         val uid = user!!.uid.toString()
 
                         val docRef = db.collection("AndroidUser").document(uid)
+
+                        val userSurveyList = ArrayList<UserSurveyItem>()
+
+                        docRef.collection("UserSurveyList").get()
+                            .addOnSuccessListener { documents ->
+                                for(document in documents){
+                                    var item : UserSurveyItem = UserSurveyItem(
+                                        document["id"] as String?,
+                                        document["title"] as String?,
+                                        Integer.parseInt(document["reward"]?.toString()) as Int?,
+                                        document["responseDate"] as String?
+                                    )
+                                    userSurveyList.add(item)
+
+                                }
+                            }
+
                         docRef.get().addOnCompleteListener { snapshot ->
                             if(snapshot != null) {
                                 val currentUser : CurrentUser = CurrentUser(
@@ -108,19 +120,16 @@ class LoginActivity : AppCompatActivity() {
                                     snapshot.result["gender"].toString(),
                                     snapshot.result["birthDate"].toString(),
                                     snapshot.result["accountType"].toString(),
-                                    snapshot.result["accountNumber"] as Int,
+                                    snapshot.result["accountNumber"] as Long,
                                     snapshot.result["accountOwner"].toString(),
                                     snapshot.result["inflowPath"].toString(),
                                     snapshot.result["firstSurvey"] as Boolean?,
-                                    )
-                                userModel.currentUser = currentUser
-
-                                val userSurveyList : UserSurveyItem = UserSurveyItem(
-                                    snapshot.result["reward"] as Int?,
-                                    snapshot.result["id"] as String?,
-                                    snapshot.result["responseDate"] as String?,
-                                    snapshot.result["isSent"] as Boolean?
+                                    userSurveyList
                                 )
+                                userModel.currentUser = currentUser
+                                Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.email}")
+                                Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
+
 
                                 //로그인 한 모든사람에게 알림 전송
                                 FirebaseMessaging.getInstance().subscribeToTopic("all")

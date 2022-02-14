@@ -1,10 +1,12 @@
 package com.example.surveasy.list
 
 import android.content.ContentValues
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.surveasy.MainActivity
 import com.example.surveasy.databinding.ActivitySurveyprooflastdialogBinding
 import com.example.surveasy.login.CurrentUser
 import com.google.firebase.auth.ktx.auth
@@ -37,29 +39,13 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        val thisSurveyInfo = intent.getParcelableArrayListExtra<UserSurveyItem>("list")!!
 
-        val list = hashMapOf(
-            "reward" to thisSurveyInfo.get(0).reward,
-            "id" to thisSurveyInfo.get(0).id,
-            "responseDate" to thisSurveyInfo.get(0).responseDate,
-            "isSent" to thisSurveyInfo.get(0).isSent
-
-        )
 
         binding.SurveyListDetailResponseProofBtn.setOnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
 
-            if (Firebase.auth.currentUser!!.uid != null) {
-                db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
-                    .collection("UserSurveyList").document("00")
-                    .set(list).addOnSuccessListener {
-                        Toast.makeText(this,"#####info save success", Toast.LENGTH_LONG).show()
-                    }.addOnFailureListener {
-                        Toast.makeText(this,"#####failed", Toast.LENGTH_LONG).show()
-                    }
-            } else {
-                Toast.makeText(this,"#####user null", Toast.LENGTH_LONG).show()
-            }
+
         }
 
 

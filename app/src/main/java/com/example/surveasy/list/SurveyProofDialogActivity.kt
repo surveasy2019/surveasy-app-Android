@@ -34,51 +34,50 @@ class SurveyProofDialogActivity: AppCompatActivity() {
     val storage = Firebase.storage
     val db = Firebase.firestore
 
+    //이 Activity 안에서만 쓰이는 임시 list
     val thisSurveyInfo = ArrayList<UserSurveyItem>()
 
     var pickImageFromAlbum = 0
     var uriPhoto: Uri? = null
+
     private lateinit var binding: ActivitySurveyproofdialogBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivitySurveyproofdialogBinding.inflate(layoutInflater)
+        val id :String = intent.getStringExtra("id")!!
 
         setContentView(binding.root)
 
-        binding.dialogSendBtn.setOnClickListener {
-            uploadStorage(binding.dialogImageview)
-
-
-        }
-        binding.dialogEditBtn.setOnClickListener {
-            editPhoto()
-        }
-        val title: String = intent.getStringExtra("title")!!
         //설문 정보 가져와서 저장해두기
-        db.collection("AppTest1").document(title)
-            .get().addOnSuccessListener { result ->
+        db.collection("AndroidSurvey").document(id)
+            .get().addOnSuccessListener { document ->
 
                 val item: UserSurveyItem = UserSurveyItem(
+                    document["id"] as String,
+                    document["title"] as String?,
                     500,
-                    result["name"] as String,
-                    result["recommend"] as String,
-                    false
+                    document["uploadDate"] as String?
                 )
-
                 thisSurveyInfo.add(item)
                 Toast.makeText(this,"*******저장 성공 ${thisSurveyInfo.get(0).id}",Toast.LENGTH_LONG).show()
-
 
             }.addOnFailureListener {
                 Toast.makeText(this,"*******저장 실패 ${thisSurveyInfo.toString()}",Toast.LENGTH_LONG).show()
             }
 
+        binding.dialogSendBtn.setOnClickListener {
+            uploadStorage(binding.dialogImageview)
+        }
+
+        binding.dialogEditBtn.setOnClickListener {
+            editPhoto()
+        }
+
+        //Toast.makeText(this,"###${id}",Toast.LENGTH_LONG).show()
 
 
-
-
-
+        //permission 있으면 앨범에 들어가게 되어있음
         if (checkPermission()) {
             var photoPick = Intent(Intent.ACTION_PICK)
             photoPick.type = "image/*"
@@ -92,9 +91,28 @@ class SurveyProofDialogActivity: AppCompatActivity() {
             )
         }
 
-
     }
 
+    //참여한 설문 리스트 firestore에 업데이트
+    private fun updateList(){
+
+        val id: String = intent.getStringExtra("id")!!
+        val list = hashMapOf(
+            "id" to thisSurveyInfo.get(0).id,
+            "title" to thisSurveyInfo.get(0).title,
+            "reward" to thisSurveyInfo.get(0).reward,
+            "responseDate" to thisSurveyInfo.get(0).responseDate,
+
+        )
+
+        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+            .collection("UserSurveyList").document(id)
+            .set(list).addOnSuccessListener {
+                Toast.makeText(this,"#####info save success", Toast.LENGTH_LONG).show()
+            }.addOnFailureListener {
+                Toast.makeText(this,"#####failed", Toast.LENGTH_LONG).show()
+            }
+    }
 
     //화면에 사진 나타내기
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -102,7 +120,6 @@ class SurveyProofDialogActivity: AppCompatActivity() {
 
         if(requestCode == pickImageFromAlbum){
             if(resultCode == Activity.RESULT_OK){
-
                 uriPhoto = data?.data
                 binding.dialogImageview.setImageURI(uriPhoto)
 
@@ -118,36 +135,27 @@ class SurveyProofDialogActivity: AppCompatActivity() {
     //firebase storage upload
     private fun uploadStorage(view: View){
         val timestamp = SimpleDateFormat("yyyyMMdd_HHmm").format(Date())
-        val title : String= intent.getStringExtra("title")!!
-        val imgName = title+"__"+timestamp
-        val storageRef = storage.reference.child(title).child(imgName)
-        val docRef = db.collection("AndroidUser").document("gOyfH6eGm7cL24zZn1346iWMu6D3")
-            .collection("UserSurveyList").document(title)
+        val id: String = intent.getStringExtra("id")!!
+        val imgName = id+"__"+timestamp
+        val storageRef = storage.reference.child(id).child(imgName)
         val uploadTask = storageRef.putFile(uriPhoto!!)
 
         uploadTask.addOnSuccessListener {
             Toast.makeText(this,"업로드 하는 중",Toast.LENGTH_SHORT).show()
+            updateList()
             val intent = Intent(this,SurveyProofLastDialogActivity::class.java)
-            val list = intent.putExtra("list",thisSurveyInfo)
+            //val list = intent.putExtra("list",thisSurveyInfo)
             startActivity(intent)
-
-
         }
 
-
-
-
     }
+
     //사진 다시 선택
     private fun editPhoto(){
         var photoPick = Intent(Intent.ACTION_PICK)
         photoPick.type = "image/*"
         startActivityForResult(photoPick,pickImageFromAlbum)
     }
-
-
-
-
 
     }
 
