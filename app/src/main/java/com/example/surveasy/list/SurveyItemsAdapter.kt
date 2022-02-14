@@ -32,6 +32,8 @@ class SurveyItemsAdapter(val surveyList : ArrayList<SurveyItems>, val boolList :
             holder.itemDate.text = surveyList.get(position).uploadDate
 
         //참여한 설문 박스 색 변경
+        //firebase 용 코드 다시
+
         if(boolList[position]){
             holder.itemTitle.setBackgroundColor(Color.RED)
         }else{

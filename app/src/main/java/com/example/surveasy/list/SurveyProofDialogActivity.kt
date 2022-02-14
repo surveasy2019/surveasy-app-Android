@@ -62,7 +62,6 @@ class SurveyProofDialogActivity: AppCompatActivity() {
                     false
                 )
                 thisSurveyInfo.add(item)
-                Toast.makeText(this,"*******저장 성공 ${thisSurveyInfo.get(0).id}",Toast.LENGTH_LONG).show()
 
             }.addOnFailureListener {
                 Toast.makeText(this,"*******저장 실패 ${thisSurveyInfo.toString()}",Toast.LENGTH_LONG).show()
@@ -123,8 +122,8 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         var reward_total = 0
         db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { snapShot ->
-                reward_current = snapShot["reward_current"] as Int
-                reward_total = snapShot["reward_total"] as Int
+                reward_current = Integer.parseInt(snapShot["reward_current"].toString())
+                reward_total = Integer.parseInt(snapShot["reward_total"].toString())
                 Log.d(TAG, "@@@@@@@@@@@@@@@@@@@@ reward_current fetch: $reward_current")
             }
         reward_current += thisSurveyInfo.get(0).reward!!
@@ -189,8 +188,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         startActivityForResult(photoPick,pickImageFromAlbum)
     }
 
-    }
-
+}
 
 
 

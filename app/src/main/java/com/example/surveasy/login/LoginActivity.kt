@@ -127,6 +127,7 @@ class LoginActivity : AppCompatActivity() {
                                     snapshot.result["accountOwner"].toString(),
                                     snapshot.result["inflowPath"].toString(),
                                     snapshot.result["didFirstSurvey"] as Boolean,
+                                    Integer.parseInt(snapshot.result["reward_total"].toString()),
                                     userSurveyList
                                 )
                                 userModel.currentUser = currentUser

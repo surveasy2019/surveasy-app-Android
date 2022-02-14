@@ -18,6 +18,7 @@ class CurrentUser(val uid: String? = null,
                   val accountOwner: String? = null,
                   val inflowPath : String? = null,
                   val didFirstSurvey: Boolean? = null,
+                  val rewardTotal : Int? = null,
                   val UserSurveyList: ArrayList<UserSurveyItem>? = null ) : Parcelable {
 
 }
