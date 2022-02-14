@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
@@ -39,6 +40,7 @@ class SurveyListFragment() : Fragment() {
         val view = inflater.inflate(R.layout.fragment_surveylist,container,false)
 
         val container : RecyclerView? = view.findViewById(R.id.recyclerContainer)
+        val refreshBtn : ImageButton = view.findViewById(R.id.Surveylist_refresh)
 
         //viewModel 로드 되면 viewModel 로, 아니면 firebase 로 가져오기
         if(model.surveyInfo.size==0){
@@ -74,6 +76,13 @@ class SurveyListFragment() : Fragment() {
             container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
             container?.adapter = SurveyItemsAdapter(model.surveyInfo,changeDoneSurvey())
         }
+
+        refreshBtn.setOnClickListener{
+            (activity as MainActivity).clickList()
+            Log.d(TAG,"%%%%%refresh")
+        }
+
+
 
         return view
     }
@@ -111,6 +120,10 @@ class SurveyListFragment() : Fragment() {
 
 
     }
+
+
+
+
 
 // firebase에서 가져와서 비교 (속도 문제)
 //    private fun changeFbDone(surveyList : ArrayList<SurveyItems>) : ArrayList<Boolean>{
