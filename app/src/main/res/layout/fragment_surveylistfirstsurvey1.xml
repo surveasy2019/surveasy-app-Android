@@ -24,19 +24,26 @@
         android:layout_marginTop="10dp"
         >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*보다 많은 설문조사를 전달해 드리기 위해 기초 정보 조사를 실시합니다. 해당 응답 내용을 바탕으로 설문 대상이 분류되므로, 정확한 응답 부탁드립니다."
+            android:layout_marginBottom="50dp"
+            android:layout_gravity="center"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
             <TextView
-                android:id="@+id/SurveyListFirstSurvey_Question1"
+                android:id="@+id/SurveyListFirstSurvey_JobText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="거주지역"
+                android:text="직업"
                 android:textColor="@color/black"
                 />
             <Spinner
-                android:id="@+id/SurveyListFirstSurvey_Answer1_1"
+                android:id="@+id/SurveyListFirstSurvey_JobSpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:paddingVertical="10dp"
@@ -57,20 +64,46 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:id="@+id/SurveyListFirstSurvey_Question2"
+                android:id="@+id/SurveyListFirstSurvey_UniversityText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="가구수"
+                android:text="대학명"
                 android:textColor="@color/black"
                 />
             <Spinner
-                android:id="@+id/SurveyListFirstSurvey_Answer2"
+                android:id="@+id/SurveyListFirstSurvey_UniversitySpinner"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:paddingVertical="10dp"
                 android:layout_marginBottom="20dp"
                 />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/SurveyListFirstSurvey_EngSurveyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="영어 설문 참여 의사"
+            android:textColor="@color/black"
+            />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="희망함"
+                android:checked="true" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="희망하지 않음" />
+
+        </RadioGroup>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -78,41 +111,50 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:id="@+id/SurveyListFirstSurvey_Question3"
+                android:id="@+id/SurveyListFirstSurvey1_MilitaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="거주형태"
-                android:textColor="@color/black"
-                />
-            <Spinner
-                android:id="@+id/SurveyListFirstSurvey_Answer3"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
-                android:layout_marginBottom="20dp"
-                />
-        </LinearLayout>
+                android:text="병역필여부"
+                android:textColor="@color/black" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/SurveyListFirstSurvey_Question4"
+            <RadioGroup
+                android:id="@+id/SurveyListFirstSurvey1_MilitaryRadioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="거주형태"
-                android:textColor="@color/black"
-                />
-            <Spinner
-                android:id="@+id/SurveyListFirstSurvey_Answer4"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
-                android:layout_marginBottom="20dp"
-                />
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/RegisterFragment1_RadioMale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_radio_button"
+                    android:textColor="@drawable/selector_radio_text"
+                    android:button="@null"
+                    android:text="군필"
+                    android:textAlignment="center" />
+                <RadioButton
+                    android:id="@+id/RegisterFragment1_RadioFemale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_radio_button"
+                    android:textColor="@drawable/selector_radio_text"
+                    android:button="@null"
+                    android:text="미필"
+                    android:textAlignment="center" />
+                <RadioButton
+                    android:id="@+id/RegisterFragment1_RadioEtc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_radio_button"
+                    android:textColor="@drawable/selector_radio_text"
+                    android:button="@null"
+                    android:text="해당사항 없음"
+                    android:textAlignment="center" />
+
+            </RadioGroup>
+
         </LinearLayout>
+
 
     </LinearLayout>
 

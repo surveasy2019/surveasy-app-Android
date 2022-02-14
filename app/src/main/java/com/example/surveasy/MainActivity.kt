@@ -40,8 +40,10 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "@@@@@ Firebase auth email: ${user.email}")
         }
 
-        fetchCurrentUser(Firebase.auth.currentUser!!.uid)
-        fetchSurvey()
+        if(Firebase.auth.currentUser != null) {
+            fetchCurrentUser(Firebase.auth.currentUser!!.uid)
+            fetchSurvey()
+        }
 
 
         // Current User from LoginActivity
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.NavList.setOnClickListener {
-            if (userModel.currentUser.uid != null && userModel.currentUser.didFirstSurvey == false) {
+            if (userModel.currentUser.didFirstSurvey == false) {
                 // Send Current User to Activities
                 val intent_surveylistfirstsurvey: Intent = Intent(this, SurveyListFirstSurveyActivity::class.java)
                 intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
@@ -142,11 +144,11 @@ class MainActivity : AppCompatActivity() {
                     snapshot.result["accountNumber"] as Long?,
                     snapshot.result["accountOwner"].toString(),
                     snapshot.result["inflowPath"].toString(),
-                    snapshot.result["firstSurvey"] as Boolean?,
+                    snapshot.result["didFirstSurvey"] as Boolean?,
                     userSurveyList
                 )
                 userModel.currentUser = currentUser
-                Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.email}")
+                Log.d(TAG, "^^^^####$$$$%%%%%%%@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
 
                 Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
 

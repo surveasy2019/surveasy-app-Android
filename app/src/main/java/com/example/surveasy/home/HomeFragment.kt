@@ -14,6 +14,7 @@ import androidx.fragment.app.activityViewModels
 
 import com.example.surveasy.R
 import com.example.surveasy.list.SurveyInfoViewModel
+import com.example.surveasy.list.SurveyListFirstSurveyActivity
 import com.example.surveasy.list.UserSurveyItem
 import com.example.surveasy.login.*
 import com.example.surveasy.register.RegisterActivity
@@ -56,9 +57,10 @@ class HomeFragment : Fragment() {
         }
 
         user.setOnClickListener {
-            userList()
-            user.text = userModel.currentUser.name
-            Log.d(TAG, "*********** ${userModel.currentUser.name}")
+            // userList()
+
+            val intent = Intent(context, SurveyListFirstSurveyActivity::class.java)
+            startActivity(intent)
         }
 
         FCMTokenBtn.setOnClickListener {
@@ -111,18 +113,18 @@ class HomeFragment : Fragment() {
 
 
 
-    private fun userList(){
-        val model by activityViewModels<SurveyInfoViewModel>()
-
-//        val u =  userList.addAll(UserSurveyItem(
-//            500,
-//            model.surveyInfo.get(0).title,
-//            model.surveyInfo.get(0).date,
-//            false
-//        ))
-
-        db.collection("AndroidUser").document("gOyfH6eGm7cL24zZn1346iWMu6D3")
-            .collection("UserSurveyList").document("설문 ID")
-            .set(userList)
-    }
+//    private fun userList(){
+//        val model by activityViewModels<SurveyInfoViewModel>()
+//
+////        val u =  userList.addAll(UserSurveyItem(
+////            500,
+////            model.surveyInfo.get(0).title,
+////            model.surveyInfo.get(0).date,
+////            false
+////        ))
+//
+//        db.collection("AndroidUser").document("gOyfH6eGm7cL24zZn1346iWMu6D3")
+//            .collection("UserSurveyList").document("설문 ID")
+//            .set(userList)
+//    }
 }

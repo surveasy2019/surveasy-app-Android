@@ -25,6 +25,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import java.lang.reflect.Array.get
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -66,6 +67,8 @@ class SurveyProofDialogActivity: AppCompatActivity() {
                 Toast.makeText(this,"*******저장 실패 ${thisSurveyInfo.toString()}",Toast.LENGTH_LONG).show()
             }
 
+
+
         binding.dialogSendBtn.setOnClickListener {
             uploadStorage(binding.dialogImageview)
         }
@@ -96,15 +99,14 @@ class SurveyProofDialogActivity: AppCompatActivity() {
     //참여한 설문 리스트 firestore에 업데이트
     private fun updateList(){
 
+        // AndroidUser-UserSurveyList에 참여 설문 추가
         val id: String = intent.getStringExtra("id")!!
         val list = hashMapOf(
             "id" to thisSurveyInfo.get(0).id,
             "title" to thisSurveyInfo.get(0).title,
             "reward" to thisSurveyInfo.get(0).reward,
             "responseDate" to thisSurveyInfo.get(0).responseDate,
-
         )
-
         db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
             .collection("UserSurveyList").document(id)
             .set(list).addOnSuccessListener {
@@ -112,6 +114,33 @@ class SurveyProofDialogActivity: AppCompatActivity() {
             }.addOnFailureListener {
                 Toast.makeText(this,"#####failed", Toast.LENGTH_LONG).show()
             }
+
+        // AndroidUser-reward_current/reward_total 업데이트
+        var reward_current = 0
+        var reward_total = 0
+        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+            .get().addOnSuccessListener { snapShot ->
+                reward_current = snapShot["reward_current"] as Int
+                reward_total = snapShot["reward_total"] as Int
+                Log.d(TAG, "@@@@@@@@@@@@@@@@@@@@ reward_current fetch: $reward_current")
+            }
+        reward_current += thisSurveyInfo.get(0).reward!!
+        reward_total += thisSurveyInfo.get(0).reward!!
+        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+            .update("reward_current", reward_current, "reward_total", reward_total)
+
+
+        // surveyData-respondedPanel에 currentUser uid 추가
+        val item = hashMapOf(
+            "uid" to Firebase.auth.currentUser!!.uid
+        )
+        db.collection("AndroidSurvey").document(id)
+            .collection("respondedPanel").document(Firebase.auth.currentUser!!.uid)
+            .set(item).addOnSuccessListener { result ->
+                Log.d(TAG, "##### surveyData - respondedPanel 성공")
+            }
+
+
     }
 
     //화면에 사진 나타내기

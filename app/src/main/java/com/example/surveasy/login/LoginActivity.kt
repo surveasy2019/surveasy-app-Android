@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import com.example.surveasy.MainActivity
 import com.example.surveasy.databinding.ActivityLoginBinding
 import com.example.surveasy.list.UserSurveyItem
+import com.example.surveasy.register.RegisterActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -48,7 +49,8 @@ class LoginActivity : AppCompatActivity() {
 
         // Go to Register1Activity
         binding.LoginRegister.setOnClickListener{
-
+            intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
 
     }
@@ -123,12 +125,12 @@ class LoginActivity : AppCompatActivity() {
                                     snapshot.result["accountNumber"] as Long,
                                     snapshot.result["accountOwner"].toString(),
                                     snapshot.result["inflowPath"].toString(),
-                                    snapshot.result["firstSurvey"] as Boolean?,
+                                    snapshot.result["didFirstSurvey"] as Boolean,
                                     userSurveyList
                                 )
                                 userModel.currentUser = currentUser
-                                Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.email}")
-                                Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
+                                Log.d(TAG, "GGGGGGGG fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
+                                Log.d(TAG, "FFFFFFFF fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
 
 
                                 //로그인 한 모든사람에게 알림 전송
