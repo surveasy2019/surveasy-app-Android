@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_gravity="center"
-    tools:context=".login.RegisterFinActivity">
+    android:layout_gravity="center" >
 
     <TextView
+        android:id="@+id/RegisterFinFragment_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="서베이지 회원가입 완료"
         android:textSize="30dp"
         android:layout_gravity="center" />
 
-        <Button
-            android:id="@+id/RegisterFin_Btn"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:text="시작하기"
-            android:layout_margin="10dp"/>
+    <Button
+        android:id="@+id/RegisterFinFragment_Btn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="시작하기"
+        android:layout_margin="10dp"/>
 
 
 </LinearLayout>

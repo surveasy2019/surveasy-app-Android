@@ -3,10 +3,8 @@ package com.example.surveasy.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.surveasy.MainActivity
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityRegisterfinBinding
-import com.example.surveasy.list.SurveyListFirstSurveyActivity
 
 class RegisterFinActivity : AppCompatActivity() {
     private lateinit var binding : ActivityRegisterfinBinding
@@ -17,14 +15,10 @@ class RegisterFinActivity : AppCompatActivity() {
 
         binding = ActivityRegisterfinBinding.inflate(layoutInflater)
 
-        binding.RegisterFinFirstBtn.setOnClickListener {
-            val intent : Intent = Intent(this, SurveyListFirstSurveyActivity::class.java )
+        binding.RegisterFinBtn.setOnClickListener {
+            val intent : Intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
-        binding.RegisterFinHomeBtn.setOnClickListener {
-            val intent : Intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
     }
 }

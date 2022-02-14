@@ -3,31 +3,25 @@ package com.example.surveasy.home
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.telephony.SubscriptionInfo
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 
 import com.example.surveasy.R
 import com.example.surveasy.list.SurveyInfoViewModel
-import com.example.surveasy.list.SurveyItems
 import com.example.surveasy.list.UserSurveyItem
 import com.example.surveasy.login.*
-import com.example.surveasy.my.MyViewNoticeListActivity
+import com.example.surveasy.register.RegisterActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.ktx.messaging
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() {
@@ -57,7 +51,7 @@ class HomeFragment : Fragment() {
         }
 
         register.setOnClickListener {
-            val intent = Intent(context, Register1Activity::class.java)
+            val intent = Intent(context, RegisterActivity::class.java)
             startActivity(intent)
         }
 
@@ -104,6 +98,9 @@ class HomeFragment : Fragment() {
             val home_GreetingText : TextView = view.findViewById(R.id.Home_GreetingText)
             home_GreetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
             Log.d(TAG, "*********** ${userModel.currentUser.name}")
+        }
+        else {
+            // null 이면 firebase에서 이름만 가져오기
         }
 
 
