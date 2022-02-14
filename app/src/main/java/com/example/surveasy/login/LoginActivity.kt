@@ -104,7 +104,8 @@ class LoginActivity : AppCompatActivity() {
                                         document["id"] as String?,
                                         document["title"] as String?,
                                         Integer.parseInt(document["reward"]?.toString()) as Int?,
-                                        document["responseDate"] as String?
+                                        document["responseDate"] as String?,
+                                        document["isSent"] as Boolean
                                     )
                                     userSurveyList.add(item)
 

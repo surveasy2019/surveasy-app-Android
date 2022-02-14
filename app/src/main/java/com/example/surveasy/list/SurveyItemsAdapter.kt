@@ -1,31 +1,20 @@
 package com.example.surveasy.list
 
-import android.app.Activity
+
 import android.content.Intent
-import android.content.IntentSender
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.app.ActivityCompat.startIntentSenderForResult
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.R
-import com.example.surveasy.login.CurrentUserViewModel
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+
 
 
 class SurveyItemsAdapter(val surveyList : ArrayList<SurveyItems>, val boolList : ArrayList<Boolean>) : RecyclerView.Adapter<SurveyItemsAdapter.CustomViewHolder>() {
 
-    val db = Firebase.firestore
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
 
