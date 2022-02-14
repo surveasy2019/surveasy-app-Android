@@ -21,6 +21,7 @@ import com.example.surveasy.list.UserSurveyItem
 import com.example.surveasy.login.*
 import com.example.surveasy.my.MyViewNoticeListActivity
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
@@ -105,7 +106,6 @@ class HomeFragment : Fragment() {
             home_GreetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
             Log.d(TAG, "*********** ${userModel.currentUser.name}")
         }
-
 
         return view
 

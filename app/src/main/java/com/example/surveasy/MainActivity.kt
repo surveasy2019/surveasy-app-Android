@@ -120,7 +120,8 @@ class MainActivity : AppCompatActivity() {
                         document["id"] as String,
                         document["title"] as String?,
                         Integer.parseInt(document["reward"]?.toString()),
-                        document["responseDate"] as String?
+                        document["responseDate"] as String?,
+                        document["isSent"] as Boolean
                     )
                     userSurveyList.add(item)
 
@@ -147,13 +148,13 @@ class MainActivity : AppCompatActivity() {
 
             }
         }.addOnFailureListener { exception ->
-            Log.d(ContentValues.TAG, "fail $exception")
+            Log.d(TAG, "fail $exception")
         }
         return userModel.currentUser
     }
 
     private fun fetchSurvey() {
-        db.collection("AndroidSurvey").get()
+        db.collection("AndroidSurvey").orderBy("id").limit(10).get()
             .addOnSuccessListener { result ->
 
                 for (document in result) {
@@ -175,7 +176,7 @@ class MainActivity : AppCompatActivity() {
                 model.surveyInfo.addAll(surveyList)
             }
             .addOnFailureListener { exception ->
-                Log.d(ContentValues.TAG, "fail $exception")
+                Log.d(TAG, "fail $exception")
             }
     }
 }

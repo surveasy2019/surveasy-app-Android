@@ -57,7 +57,8 @@ class SurveyProofDialogActivity: AppCompatActivity() {
                     document["id"] as String,
                     document["title"] as String?,
                     500,
-                    document["uploadDate"] as String?
+                    document["uploadDate"] as String?,
+                    false
                 )
                 thisSurveyInfo.add(item)
                 Toast.makeText(this,"*******저장 성공 ${thisSurveyInfo.get(0).id}",Toast.LENGTH_LONG).show()
@@ -102,6 +103,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
             "title" to thisSurveyInfo.get(0).title,
             "reward" to thisSurveyInfo.get(0).reward,
             "responseDate" to thisSurveyInfo.get(0).responseDate,
+            "isSent" to thisSurveyInfo.get(0).isSent
 
         )
 
