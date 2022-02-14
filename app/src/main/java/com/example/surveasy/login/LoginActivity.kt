@@ -114,9 +114,16 @@ class LoginActivity : AppCompatActivity() {
                             if(snapshot != null) {
                                 val currentUser : CurrentUser = CurrentUser(
                                     snapshot.result["uid"].toString(),
-                                    snapshot.result["email"].toString(),
-                                    snapshot.result["name"].toString(),
                                     snapshot.result["fcmToken"].toString(),
+                                    snapshot.result["name"].toString(),
+                                    snapshot.result["email"].toString(),
+                                    snapshot.result["phone"].toString(),
+                                    snapshot.result["gender"].toString(),
+                                    snapshot.result["birthDate"].toString(),
+                                    snapshot.result["accountType"].toString(),
+                                    snapshot.result["accountNumber"] as Long,
+                                    snapshot.result["accountOwner"].toString(),
+                                    snapshot.result["inflowPath"].toString(),
                                     snapshot.result["firstSurvey"] as Boolean?,
                                     userSurveyList
                                 )

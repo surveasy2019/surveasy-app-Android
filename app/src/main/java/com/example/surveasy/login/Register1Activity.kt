@@ -2,14 +2,11 @@ package com.example.surveasy.login
 
 import android.content.ContentValues.TAG
 import android.content.Intent
-import android.icu.text.CaseMap
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.surveasy.databinding.ActivityRegister1Binding
-import com.example.surveasy.list.UserSurveyItem
-import com.example.surveasy.list.UserSurveyList
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -115,6 +112,7 @@ class Register1Activity: AppCompatActivity() {
                                     "firstSurvey" to false,
                                 )
 
+
                                 //usersuveylist 추가
 //                                val survey1 = Survey(
 //                                    1, "제목제목", 500, "2022-02-10")
@@ -122,6 +120,7 @@ class Register1Activity: AppCompatActivity() {
 //                                    "id" to 1,
 //                                    "survey" to survey1
 //                                )
+
                                 Log.d(TAG, "#####UID : $firebaseUserID")
 
                                 db.collection("AndroidUser").document(firebaseUserID)
@@ -133,6 +132,7 @@ class Register1Activity: AppCompatActivity() {
                                     .addOnFailureListener { e ->
                                         Log.w(TAG, "##### ERROR adding document", e)
                                     }
+
                                 //usersuveylist 추가
 //                                db.collection("AndroidUser").document(firebaseUserID)
 //                                    .set(myList)

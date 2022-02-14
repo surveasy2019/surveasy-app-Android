@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:id="@+id/ToolbarRegister"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/white"
+        app:titleTextColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*추후 설문 응답비가 지급되는 계좌입니다. 잘못된 계좌정보를 입력한 경우, 응답비가 지급되지 않을 수 있습니다."
+        android:textSize="18dp"
+        android:layout_gravity="center"
+        android:padding="10dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/RegisterFragment2_AccountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="계좌번호"
+            android:textSize="17dp"
+            android:layout_gravity="center"/>
+        <Spinner
+            android:id="@+id/RegisterFragment2_AccountTypeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown" />
+
+        <EditText
+            android:id="@+id/RegisterFragment2_AccountNumberInput"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:inputType="number"
+            android:hint="-제외"
+            android:background="@drawable/textedit_border"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/RegisterFragment2_AccountOwnerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="계좌주"
+            android:textSize="17dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/RegisterFragment2_AccountOwnerInput"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/textedit_border"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/RegisterFragment2_InflowPathText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="유입경로"
+            android:textSize="17dp"
+            android:layout_gravity="center"/>
+
+        <Spinner
+            android:id="@+id/RegisterFragment2_InflowPathSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown" />
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/RegisterFragment2_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="완료"
+        android:layout_gravity="center"/>
+
+    
+</LinearLayout>
