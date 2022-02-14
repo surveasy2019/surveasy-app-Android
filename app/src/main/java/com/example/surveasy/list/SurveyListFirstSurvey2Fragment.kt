@@ -39,7 +39,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
 
             // update Firestore 'firstSurvey"
             db.collection("AndroidUser").document(userModel.currentUser.uid!!)
-                .update("firstSurvey", true)
+                .update("didFirstSurvey", true)
                 .addOnSuccessListener { Log.d(TAG, "@@@@@ First Survey field updated!") }
             Log.d(TAG, "***** ${userModel.currentUser.uid}")
 
