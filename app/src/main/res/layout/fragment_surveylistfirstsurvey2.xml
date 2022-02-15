@@ -43,12 +43,128 @@
                 android:layout_marginBottom="20dp"
                 android:paddingVertical="10dp" />
 
-            <Spinner
-                android:id="@+id/SurveyListFirstSurvey2_CitySpinner"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:paddingVertical="10dp" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_서울"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_부산"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_대구"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_인천"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_광주"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_대전"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_울산"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_세종"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_경기"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_충북"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_충남"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_전북"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_전남"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_경북"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_경남"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_제주"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:paddingVertical="10dp"
+                    android:visibility="invisible" />
+
+
+            </FrameLayout>
+
+
+
         </LinearLayout>
 
         <TextView

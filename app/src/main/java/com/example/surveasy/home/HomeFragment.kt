@@ -18,6 +18,7 @@ import com.example.surveasy.list.UserSurveyItem
 import com.example.surveasy.login.*
 import com.example.surveasy.register.RegisterActivity
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
@@ -40,7 +41,7 @@ class HomeFragment : Fragment() {
 
         val register: Button = view.findViewById(R.id.HomeToRegister)
         val login: Button = view.findViewById(R.id.HomeToLogin)
-        val IdText: TextView = view.findViewById(R.id.Home_GreetingText)
+        val greetingText: TextView = view.findViewById(R.id.Home_GreetingText)
         val totalReward: TextView = view.findViewById(R.id.Home_RewardAmount)
         val user: Button = view.findViewById(R.id.User)
         val FCMTokenBtn: Button = view.findViewById(R.id.FCMTokenBtn)
@@ -97,29 +98,31 @@ class HomeFragment : Fragment() {
         }
 
         if (userModel.currentUser.uid != null) {
-            val home_GreetingText: TextView = view.findViewById(R.id.Home_GreetingText)
-            home_GreetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
-            Log.d(TAG, "*********** ${userModel.currentUser.name}")
-        } else {
-            // null 이면 firebase에서 이름만 가져오기
+            greetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
+            totalReward.text = "$ ${userModel.currentUser.rewardTotal}"
+        }
+        else {
+            if (Firebase.auth.currentUser?.uid != null) {
+                db.collection("AndroidUser")
+                    .document(Firebase.auth.currentUser!!.uid)
+                    .get().addOnSuccessListener { document ->
+                        greetingText.text = "안녕하세요, ${document["name"].toString()}님"
+                        totalReward.text =
+                            "$ ${Integer.parseInt(document["reward_total"].toString())}"
+                    }
+            }
+            else {
+                greetingText.text = "아직"
+                totalReward.text = "$-----"
+            }
         }
 
 
         //total reward 연결
         if (userModel.currentUser.uid != null) {
-            totalReward.text = "$ ${userModel.currentUser.rewardTotal}"
-        } else {
-            if (Firebase.auth.currentUser?.uid != null) {
-                db.collection("AndroidUser")
-                    .document(Firebase.auth.currentUser!!.uid)
-                    .get().addOnSuccessListener { document ->
-                        totalReward.text =
-                            "$ ${Integer.parseInt(document["reward_total"].toString())}"
 
-                    }
-            } else {
-                totalReward.text = "$-----"
-            }
+        } else {
+
         }
 
 

@@ -62,7 +62,6 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
             }
         }
 
-
         // Next
         surveyListFirstSurvey1Btn.setOnClickListener {
             firstSurvey1(view)
@@ -86,9 +85,10 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
             (activity as SurveyListFirstSurveyActivity).next()
         }
 
-
     }
 
+
+    // Set spinners
     private fun setJobSpinner(view: View) {
         val jobList = resources.getStringArray(R.array.job)
         val jobAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, jobList)
@@ -98,6 +98,12 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
         jobSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 job = jobList[position]
+                if(position == 0) {
+                    majorSpinner.visibility = View.VISIBLE
+                }
+                else {
+                    majorSpinner.visibility = View.INVISIBLE
+                }
                 Log.d(TAG, "PPPPPPPPPPPPPPPPPPP $position" )
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {

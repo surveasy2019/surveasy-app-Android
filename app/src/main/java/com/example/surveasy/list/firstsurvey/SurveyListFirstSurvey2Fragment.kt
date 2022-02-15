@@ -17,6 +17,7 @@ import com.example.surveasy.R
 import com.example.surveasy.login.CurrentUserViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.protobuf.LazyStringArrayList
 
 
 class SurveyListFirstSurvey2Fragment() : Fragment() {
@@ -39,7 +40,6 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         val userModel by activityViewModels<CurrentUserViewModel>()
 
         setDistrictSpinner(view)
-        setCitySpinner(view)
         setPetSpinner(view)
         setHousingTypeSpinner(view)
 
@@ -70,18 +70,32 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         districtSpinner.adapter = districtAdapter
         districtSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(position != 0) {
-                    district = districtList[position]
-                }
+                district = districtList[position]
+                setCitySpinner(view!!, district)
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         }
     }
 
-    private fun setCitySpinner(view: View) {
 
+    private fun setCitySpinner(view: View, district: String) {
+        var spinnerName: String? = null
+        spinnerName = "SurveyListFirstSurvey2_CitySpinner_" + district
+        val cityList = resources.getStringArray(R.array.서울)
+
+        val cityAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, cityList)
+        val citySpinner = view.findViewById<Spinner>(R.id.SurveyListFirstSurvey2_CitySpinner_서울)
+        citySpinner.adapter = cityAdapter
+        citySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                city = cityList[position]
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
     }
+
 
     private fun setPetSpinner(view: View) {
         val petList = resources.getStringArray(R.array.pet)
