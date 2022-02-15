@@ -11,7 +11,11 @@ class SurveyItems(
     val target : String,
     val uploadDate : String,
     val link : String,
-    val spendTime : String
+    val spendTime : String,
+    val dueDate : String,
+    val dueTimeTime : String,
+    val reward : Int,
+    val noticeToPanel : String?,
 
     ):Parcelable {
 }
