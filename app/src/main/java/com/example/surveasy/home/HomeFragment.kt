@@ -13,13 +13,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 
 import com.example.surveasy.R
-import com.example.surveasy.list.SurveyInfoViewModel
-import com.example.surveasy.list.SurveyListFirstSurveyActivity
+import com.example.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
 import com.example.surveasy.list.UserSurveyItem
 import com.example.surveasy.login.*
 import com.example.surveasy.register.RegisterActivity
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging

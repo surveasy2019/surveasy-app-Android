@@ -1,13 +1,10 @@
-package com.example.surveasy.list
+package com.example.surveasy.list.firstsurvey
 
 import android.content.ContentValues.TAG
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.activityViewModels
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivitySurveylistfirstsurveyBinding
 import com.example.surveasy.login.CurrentUser
@@ -20,6 +17,7 @@ class SurveyListFirstSurveyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val userModel by viewModels<CurrentUserViewModel>()
+        val firstSurveyViewModel by viewModels<FirstSurveyViewModel>()
 
         // Current User from MainActivity [P]
         val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser_main")
@@ -45,7 +43,7 @@ class SurveyListFirstSurveyActivity : AppCompatActivity() {
 
         val transaction = supportFragmentManager.beginTransaction()
         setContentView(binding.root)
-        transaction.add(R.id.SurveyListFirstSurvey_view,SurveyListFirstSurvey1Fragment()).commit()
+        transaction.add(R.id.SurveyListFirstSurvey_view, SurveyListFirstSurvey1Fragment()).commit()
     }
 
     fun next() {

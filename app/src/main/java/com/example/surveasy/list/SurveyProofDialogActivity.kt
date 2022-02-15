@@ -123,8 +123,8 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         var reward_total = 0
         db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { snapShot ->
-                reward_current = snapShot["reward_current"] as Int
-                reward_total = snapShot["reward_total"] as Int
+                reward_current = Integer.parseInt(snapShot["reward_current"].toString())
+                reward_total = Integer.parseInt(snapShot["reward_total"].toString())
                 Log.d(TAG, "@@@@@@@@@@@@@@@@@@@@ reward_current fetch: $reward_current")
             }
         reward_current += thisSurveyInfo.get(0).reward!!
