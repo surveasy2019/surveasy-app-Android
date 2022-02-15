@@ -1,6 +1,5 @@
 package com.example.surveasy
 
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +9,7 @@ import androidx.activity.viewModels
 import com.example.surveasy.databinding.ActivityMainBinding
 import com.example.surveasy.home.HomeFragment
 import com.example.surveasy.list.*
+import com.example.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
 import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
 import com.example.surveasy.my.MyViewFragment

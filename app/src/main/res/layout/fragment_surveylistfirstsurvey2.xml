@@ -14,69 +14,70 @@
         android:background="@color/white"
         app:titleTextColor="@color/black"/>
 
+
     <LinearLayout
-        android:id="@+id/SurveyListFirstSurvey_Container"
+        android:id="@+id/SurveyListFirstSurvey2_Container"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="550dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_vertical"
-        android:paddingStart="20dp"
         android:orientation="vertical"
-        android:layout_marginTop="50dp"
-        >
+        android:paddingStart="20dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
+
             <TextView
-                android:id="@+id/SurveyListFirstSurvey_DistrictText"
+                android:id="@+id/SurveyListFirstSurvey2_DistrictText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="거주지역"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
+
             <Spinner
-                android:id="@+id/SurveyListFirstSurvey_DistrictSpinner"
+                android:id="@+id/SurveyListFirstSurvey2_DistrictSpinner"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="10dp" />
+
+            <Spinner
+                android:id="@+id/SurveyListFirstSurvey2_CitySpinner"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
                 android:layout_marginBottom="20dp"
-                />
-            <Spinner
-                android:id="@+id/SurveyListFirstSurvey_CitySpinner"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
-                android:layout_marginBottom="20dp"
-                />
+                android:paddingVertical="10dp" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/SurveyListFirstSurvey_MarriedText"
+            android:id="@+id/SurveyListFirstSurvey2_MarriedText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="혼인 여부"
-            android:textColor="@color/black"
-            />
+            android:textColor="@color/black" />
 
         <RadioGroup
-            android:id="@+id/SurveyListFirstSurvey_MarriedRadioGroup"
+            android:id="@+id/SurveyListFirstSurvey2_MarriedRadioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <RadioButton
+                android:id="@+id/SurveyListFirstSurvey2_MarriedYet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="미혼"
-                android:checked="true" />
+                android:text="미혼" />
 
             <RadioButton
+                android:id="@+id/SurveyListFirstSurvey2_Married"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="기혼" />
 
             <RadioButton
+                android:id="@+id/SurveyListFirstSurvey2_MarriedDivorce"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="이혼" />
@@ -87,117 +88,115 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/SurveyListFirstSurvey_PetText"
+                android:id="@+id/SurveyListFirstSurvey2_PetText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="반려동물"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
+
             <Spinner
-                android:id="@+id/SurveyListFirstSurvey_PetSpinner"
+                android:id="@+id/SurveyListFirstSurvey2_PetSpinner"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
                 android:layout_marginBottom="20dp"
-                />
+                android:paddingVertical="10dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/SurveyListFirstSurvey_HouseholdText"
+                android:id="@+id/SurveyListFirstSurvey2_FamilyText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="가구 형태"
                 android:textColor="@color/black" />
 
             <RadioGroup
-                android:id="@+id/SurveyListFirstSurvey_HouseholdRadioGroup"
+                android:id="@+id/SurveyListFirstSurvey2_FamilyRadioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <GridLayout
-                    android:id="@+id/MyViewContact_FAQItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_gravity="center"
-                    android:columnCount="2" >
+                    android:columnCount="2"
+                    android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/RegisterFragment1_Radio1"
+                        android:id="@+id/SurveyListFirstSurvey2_Family1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/selector_radio_button"
-                        android:textColor="@drawable/selector_radio_text"
                         android:button="@null"
                         android:text="1인가구"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="@drawable/selector_radio_text" />
+
                     <RadioButton
-                        android:id="@+id/RegisterFragment1_Radio2"
+                        android:id="@+id/SurveyListFirstSurvey2_Family2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/selector_radio_button"
-                        android:textColor="@drawable/selector_radio_text"
                         android:button="@null"
                         android:text="2인가구"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="@drawable/selector_radio_text" />
+
                     <RadioButton
-                        android:id="@+id/RegisterFragment1_Radio3"
+                        android:id="@+id/SurveyListFirstSurvey2_Family3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/selector_radio_button"
-                        android:textColor="@drawable/selector_radio_text"
                         android:button="@null"
                         android:text="3인가구"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="@drawable/selector_radio_text" />
+
                     <RadioButton
-                        android:id="@+id/RegisterFragment1_Radio4"
+                        android:id="@+id/SurveyListFirstSurvey2_Family4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/selector_radio_button"
-                        android:textColor="@drawable/selector_radio_text"
                         android:button="@null"
                         android:text="4인가구 이상"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="@drawable/selector_radio_text" />
 
-                    </GridLayout>
+                </GridLayout>
             </RadioGroup>
 
         </LinearLayout>
 
 
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/SurveyListFirstSurvey_HousingText"
+                android:id="@+id/SurveyListFirstSurvey2_HousingTypeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="거주 주택 형태"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
+
             <Spinner
-                android:id="@+id/SurveyListFirstSurvey_HousingSpinner"
+                android:id="@+id/SurveyListFirstSurvey2_HousingTypeSpinner"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
                 android:layout_marginBottom="20dp"
-                />
+                android:paddingVertical="10dp" />
         </LinearLayout>
 
     </LinearLayout>
-
 
     <Button
         android:id="@+id/SurveyListFirstSurvey2_Btn"

@@ -27,7 +27,6 @@ class Register1Fragment : Fragment() {
     var year : String? = null
     var month : String? = null
     var day : String? = null
-    val userModel by viewModels<CurrentUserViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

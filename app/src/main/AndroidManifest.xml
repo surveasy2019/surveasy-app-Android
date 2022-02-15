@@ -34,7 +34,7 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".list.SurveyListFirstSurveyActivity"
+            android:name=".list.firstsurvey.SurveyListFirstSurveyActivity"
             android:exported="true" />
         <activity
             android:name=".list.SurveyListDetailResponseActivity"
