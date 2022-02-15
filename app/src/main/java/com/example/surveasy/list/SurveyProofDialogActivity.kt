@@ -62,7 +62,6 @@ class SurveyProofDialogActivity: AppCompatActivity() {
                     false
                 )
                 thisSurveyInfo.add(item)
-                Toast.makeText(this,"*******저장 성공 ${thisSurveyInfo.get(0).id}",Toast.LENGTH_LONG).show()
 
             }.addOnFailureListener {
                 Toast.makeText(this,"*******저장 실패 ${thisSurveyInfo.toString()}",Toast.LENGTH_LONG).show()
@@ -189,8 +188,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         startActivityForResult(photoPick,pickImageFromAlbum)
     }
 
-    }
-
+}
 
 
 

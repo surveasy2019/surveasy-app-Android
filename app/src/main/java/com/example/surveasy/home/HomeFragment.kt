@@ -27,7 +27,7 @@ import com.google.firebase.messaging.ktx.messaging
 class HomeFragment : Fragment() {
 
     val db = Firebase.firestore
-    val userList  = arrayListOf<UserSurveyItem>()
+    val userList = arrayListOf<UserSurveyItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,9 +41,10 @@ class HomeFragment : Fragment() {
         val register: Button = view.findViewById(R.id.HomeToRegister)
         val login: Button = view.findViewById(R.id.HomeToLogin)
         val IdText: TextView = view.findViewById(R.id.Home_GreetingText)
-        val user : Button = view.findViewById(R.id.User)
-        val FCMTokenBtn : Button = view.findViewById(R.id.FCMTokenBtn)
-        val FCMSubscribeBtn : Button = view.findViewById(R.id.FCMSubscribeBtn)
+        val totalReward: TextView = view.findViewById(R.id.Home_RewardAmount)
+        val user: Button = view.findViewById(R.id.User)
+        val FCMTokenBtn: Button = view.findViewById(R.id.FCMTokenBtn)
+        val FCMSubscribeBtn: Button = view.findViewById(R.id.FCMSubscribeBtn)
 
         login.setOnClickListener {
             val intent = Intent(context, LoginActivity::class.java)
@@ -88,21 +89,40 @@ class HomeFragment : Fragment() {
             Firebase.messaging.subscribeToTopic("ad")
                 .addOnCompleteListener { task ->
                     var msg = "This is SUCCESS message!"
-                    if(!task.isSuccessful) {
+                    if (!task.isSuccessful) {
                         msg = "This is FAIL message!"
                     }
                     Log.d(TAG, msg)
                 }
         }
 
-        if(userModel.currentUser.uid != null) {
-            val home_GreetingText : TextView = view.findViewById(R.id.Home_GreetingText)
+        if (userModel.currentUser.uid != null) {
+            val home_GreetingText: TextView = view.findViewById(R.id.Home_GreetingText)
             home_GreetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
             Log.d(TAG, "*********** ${userModel.currentUser.name}")
-        }
-        else {
+        } else {
             // null 이면 firebase에서 이름만 가져오기
         }
+
+
+        //total reward 연결
+        if (userModel.currentUser.uid != null) {
+            totalReward.text = "$ ${userModel.currentUser.rewardTotal}"
+        } else {
+            if (Firebase.auth.currentUser?.uid != null) {
+                db.collection("AndroidUser")
+                    .document(Firebase.auth.currentUser!!.uid)
+                    .get().addOnSuccessListener { document ->
+                        totalReward.text =
+                            "$ ${Integer.parseInt(document["reward_total"].toString())}"
+
+                    }
+            } else {
+                totalReward.text = "$-----"
+            }
+        }
+
+
 
         return view
 
@@ -110,19 +130,4 @@ class HomeFragment : Fragment() {
     }
 
 
-
-//    private fun userList(){
-//        val model by activityViewModels<SurveyInfoViewModel>()
-//
-////        val u =  userList.addAll(UserSurveyItem(
-////            500,
-////            model.surveyInfo.get(0).title,
-////            model.surveyInfo.get(0).date,
-////            false
-////        ))
-//
-//        db.collection("AndroidUser").document("gOyfH6eGm7cL24zZn1346iWMu6D3")
-//            .collection("UserSurveyList").document("설문 ID")
-//            .set(userList)
-//    }
 }

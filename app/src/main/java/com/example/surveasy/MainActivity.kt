@@ -108,6 +108,10 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    fun clickList() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.MainView, SurveyListFragment())
+            .commit()}
 
     private fun fetchCurrentUser(uid: String) :CurrentUser {
 
@@ -146,6 +150,7 @@ class MainActivity : AppCompatActivity() {
                     snapshot.result["accountOwner"].toString(),
                     snapshot.result["inflowPath"].toString(),
                     snapshot.result["didFirstSurvey"] as Boolean?,
+                    Integer.parseInt(snapshot.result["reward_total"].toString()),
                     userSurveyList
                 )
                 userModel.currentUser = currentUser
