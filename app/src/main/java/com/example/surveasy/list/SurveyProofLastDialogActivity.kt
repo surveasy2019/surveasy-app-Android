@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.surveasy.MainActivity
+import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivitySurveyprooflastdialogBinding
 import com.example.surveasy.login.CurrentUser
 import com.google.firebase.auth.ktx.auth
@@ -42,16 +43,16 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
 
 
         binding.SurveyListDetailResponseProofBtn.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
 
 
         }
 
 
-
     }
-
-
 }
+
+
+
 

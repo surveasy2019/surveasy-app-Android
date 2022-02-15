@@ -42,40 +42,23 @@ class SurveyListFragment() : Fragment() {
         val container : RecyclerView? = view.findViewById(R.id.recyclerContainer)
         val refreshBtn : ImageButton = view.findViewById(R.id.Surveylist_refresh)
 
-        //viewModel 로드 되면 viewModel 로, 아니면 firebase 로 가져오기
-        if(model.surveyInfo.size==0){
-            db.collection("AndroidSurvey").get()
-                .addOnSuccessListener { result->
 
-                    for (document in result) {
-                        val item: SurveyItems = SurveyItems(
-                            document["id"] as String,
-                            document["title"] as String,
-                            document["target"] as String,
-                            document["uploadDate"] as String,
-                            document["link"] as String,
-                            document["spendTime"] as String,
-                        )
-                        surveyList.add(item)
 
-                        Log.d(TAG,"####firestore" )
-                    }
-                    val adapter = SurveyItemsAdapter(surveyList, changeDoneSurvey())
-                    container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-                    container?.adapter = SurveyItemsAdapter(surveyList, changeDoneSurvey())
-
+        CoroutineScope(Dispatchers.Main).launch {
+            val list = CoroutineScope(Dispatchers.IO).async {
+                val model by activityViewModels<SurveyInfoViewModel>()
+                while(model.surveyInfo.size==0){
+                    Log.d(TAG,"########loading")
                 }
-                .addOnFailureListener{exception->
-                    Log.d(ContentValues.TAG,"fail $exception")
-                }
-        }else{
-            Log.d(TAG,"${model.surveyInfo.size}")
-            Log.d(TAG,changeDoneSurvey().toString() )
-
+                model.surveyInfo.get(0).id
+            }.await()
             val adapter = SurveyItemsAdapter(model.surveyInfo, changeDoneSurvey())
             container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
             container?.adapter = SurveyItemsAdapter(model.surveyInfo,changeDoneSurvey())
         }
+        Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
+
+
 
         refreshBtn.setOnClickListener{
             (activity as MainActivity).clickList()

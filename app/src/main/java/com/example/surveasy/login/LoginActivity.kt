@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import java.lang.Long.parseLong
 
 
 class LoginActivity : AppCompatActivity() {
@@ -123,7 +124,7 @@ class LoginActivity : AppCompatActivity() {
                                     snapshot.result["gender"].toString(),
                                     snapshot.result["birthDate"].toString(),
                                     snapshot.result["accountType"].toString(),
-                                    snapshot.result["accountNumber"] as Long,
+                                    snapshot.result["accountNumber"].toString(),
                                     snapshot.result["accountOwner"].toString(),
                                     snapshot.result["inflowPath"].toString(),
                                     snapshot.result["didFirstSurvey"] as Boolean,
