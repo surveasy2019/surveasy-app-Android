@@ -18,7 +18,7 @@
     <LinearLayout
         android:id="@+id/SurveyListFirstSurvey2_Container"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="350dp"
         android:layout_marginTop="10dp"
         android:gravity="center_vertical"
         android:orientation="vertical"
@@ -45,10 +45,16 @@
 
             <Spinner
                 android:id="@+id/SurveyListFirstSurvey2_CitySpinner"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="20dp"
-                android:paddingVertical="10dp" />
+                android:paddingVertical="10dp"
+                android:visibility="gone" />
+
+
+
+
+
         </LinearLayout>
 
         <TextView
@@ -123,55 +129,47 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <GridLayout
+                <RadioButton
+                    android:id="@+id/SurveyListFirstSurvey2_Family1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:text="1인가구"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
-                    <RadioButton
-                        android:id="@+id/SurveyListFirstSurvey2_Family1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_radio_button"
-                        android:button="@null"
-                        android:text="1인가구"
-                        android:textAlignment="center"
-                        android:textColor="@drawable/selector_radio_text" />
+                <RadioButton
+                    android:id="@+id/SurveyListFirstSurvey2_Family2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:text="2인가구"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
-                    <RadioButton
-                        android:id="@+id/SurveyListFirstSurvey2_Family2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_radio_button"
-                        android:button="@null"
-                        android:text="2인가구"
-                        android:textAlignment="center"
-                        android:textColor="@drawable/selector_radio_text" />
+                <RadioButton
+                    android:id="@+id/SurveyListFirstSurvey2_Family3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:text="3인가구"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
-                    <RadioButton
-                        android:id="@+id/SurveyListFirstSurvey2_Family3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_radio_button"
-                        android:button="@null"
-                        android:text="3인가구"
-                        android:textAlignment="center"
-                        android:textColor="@drawable/selector_radio_text" />
-
-                    <RadioButton
-                        android:id="@+id/SurveyListFirstSurvey2_Family4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_radio_button"
-                        android:button="@null"
-                        android:text="4인가구 이상"
-                        android:textAlignment="center"
-                        android:textColor="@drawable/selector_radio_text" />
-
-                </GridLayout>
+                <RadioButton
+                    android:id="@+id/SurveyListFirstSurvey2_Family4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:text="4인가구 이상"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
             </RadioGroup>
+
 
         </LinearLayout>
 

@@ -25,6 +25,7 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
 
     private lateinit var job : String
     private lateinit var major : String
+    private lateinit var universityList : Array<String>
     private var university: String? = null
     private var military : String? = null
     private var engSurvey : Boolean = true
@@ -37,10 +38,12 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_surveylistfirstsurvey1,container,false)
         val surveyListFirstSurvey1Btn : Button = view.findViewById(R.id.SurveyListFirstSurvey1_Btn)
+        universityList = resources.getStringArray(R.array.university)
 
         // Set spinners
         setJobSpinner(view)
         setMajorSpinner(view)
+        setSearchSpinner(view, universityList)
 
         // EngSurvey
         val engSurveyRadioGroup = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey1_EngSurveyRadioGroup)
@@ -61,7 +64,6 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
                 R.id.SurveyListFirstSurvey1_MilitaryNA -> military = "해당없음"
             }
         }
-
 
         // Next
         surveyListFirstSurvey1Btn.setOnClickListener {
@@ -86,9 +88,10 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
             (activity as SurveyListFirstSurveyActivity).next()
         }
 
-
     }
 
+
+    // Set spinners
     private fun setJobSpinner(view: View) {
         val jobList = resources.getStringArray(R.array.job)
         val jobAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, jobList)
@@ -98,6 +101,12 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
         jobSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 job = jobList[position]
+                if(position == 0) {
+                    majorSpinner.visibility = View.VISIBLE
+                }
+                else {
+                    majorSpinner.visibility = View.INVISIBLE
+                }
                 Log.d(TAG, "PPPPPPPPPPPPPPPPPPP $position" )
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -117,6 +126,23 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         }
+    }
+
+    private fun setSearchSpinner(view: View, universityList: Array<String>) {
+        val universityAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, universityList)
+        universityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        val universitySpinner = view.findViewById<Spinner>(R.id.spinner_view)
+        universitySpinner.adapter = universityAdapter
+
+        universitySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                university = universityList[position]
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+
     }
 
 

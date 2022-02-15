@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
             login()
         }
 
-        // Go to Register1Activity
+        // Go to RegisterActivity
         binding.LoginRegister.setOnClickListener{
             intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
