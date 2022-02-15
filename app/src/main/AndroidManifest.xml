@@ -66,9 +66,6 @@
             android:name=".login.RegisterFinActivity"
             android:exported="true" />
         <activity
-            android:name=".login.Register1Activity"
-            android:exported="true" />
-        <activity
             android:name=".my.MyViewSettingActivity"
             android:exported="true" />
         <activity

@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <ImageButton
-        android:id="@+id/MyView_SettingBtn"
+        android:id="@+id/MyView_NoticeIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
@@ -50,10 +50,11 @@
 
 
     <LinearLayout
-        android:layout_width="280dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="110dp"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:padding="30dp">
 
         <TextView
             android:id="@+id/MyView_UserRewardText"
@@ -78,152 +79,48 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:gravity="center">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp">
-
-            <ImageButton
-                android:id="@+id/MyView_HistoryIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_preferences" />
-
-            <TextView
-                android:id="@+id/MyView_HistoryText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/MyView_HistoryText" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp">
-
-            <ImageButton
-                android:id="@+id/MyView_InfoIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_preferences" />
-
-            <TextView
-                android:id="@+id/MyView_InfoText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/MyView_InfoText" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp">
-
-            <ImageButton
-                android:id="@+id/MyView_ContactIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_preferences" />
-
-            <TextView
-                android:id="@+id/MyView_ContactText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/MyView_ContactText" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp">
-
-            <ImageButton
-                android:id="@+id/MyView_InviteIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_preferences" />
-
-            <TextView
-                android:id="@+id/MyView_InviteText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/MyView_ContactText" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="15dp">
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
 
-        <LinearLayout
+        <Button
+            android:id="@+id/MyView_HistoryIcon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:text="정산 내역 보기"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"/>
 
-            <TextView
-                android:id="@+id/MyView_NoticeTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/MyView_NoticeTitle"
-                android:textSize="20dp"
-                android:layout_marginRight="170dp"/>
+        <Button
+            android:id="@+id/MyView_InfoIcon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="회원 정보 수정"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"/>
 
-            <Button
-                android:id="@+id/MyView_NoticeMore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="@string/MyView_NoticeMore"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
+        <Button
+            android:id="@+id/MyView_SettingIcon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="설정"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"/>
+
+        <Button
+            android:id="@+id/MyView_ContactIcon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="문의하기"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/MyView_NoticeItemTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="공지사항 내용입니다.공지사항 내용입니다...." />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="공지사항 내용입니다.공지사항 내용입니다...." />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="공지사항 내용입니다.공지사항 내용입니다...." />
-
-        </LinearLayout>
-
-    </LinearLayout>
 
 
     <Button

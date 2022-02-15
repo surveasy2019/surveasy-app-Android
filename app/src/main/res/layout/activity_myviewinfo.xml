@@ -47,7 +47,7 @@
             android:layout_gravity="right" />
 
         <LinearLayout
-            android:id="@+id/MyViewInfo_InfoItem_Name"
+            android:id="@+id/MyViewInfo_InfoItem_NameContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -60,19 +60,12 @@
                 android:text="이름"
                 android:textSize="18dp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/MYViewInfo_NameInput"
+            <TextView
+                android:id="@+id/MyViewInfo_InfoItem_Name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:textSize="18dp"
-                    android:hint="김설문"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:text="서베이지"
+                android:textSize="18dp" />
 
         </LinearLayout>
 

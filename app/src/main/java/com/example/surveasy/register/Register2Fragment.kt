@@ -76,11 +76,9 @@ class Register2Fragment : Fragment() {
         accountTypeSpinner.adapter = accountTypeAdapter
         accountTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
                 accountType = accountTypeList[position]
                 Toast.makeText(context, accountTypeList[position], Toast.LENGTH_SHORT).show()
                 Log.d(TAG, "@@@@@@@ account type : $accountType")
-
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
