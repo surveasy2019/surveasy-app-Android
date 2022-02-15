@@ -16,48 +16,107 @@
 
     // RegisterFragment2
     <string-array name="accountType">
-        <item>국민</item> <item>하나</item> <item>우리</item> <item>신한</item>
-        <item>농협</item> <item>IBK 기업</item> <item>새마을금고</item> <item>카카오뱅크</item>
+        <item>국민</item>
+        <item>하나</item>
+        <item>우리</item>
+        <item>신한</item>
+        <item>농협</item>
+        <item>IBK 기업</item>
+        <item>새마을금고</item>
+        <item>카카오뱅크</item>
     </string-array>
 
     <string-array name="inflowPath">
-        <item>카카오톡</item> <item>에브리타임</item> <item>인스타그램</item> <item>지인 추천</item>
+        <item>카카오톡</item>
+        <item>에브리타임</item>
+        <item>인스타그램</item>
+        <item>지인 추천</item>
     </string-array>
-    
-    
+
+
     // SurveyListFirstSurveyFragment1
     <string-array name="job">
-        <item>대학생</item> <item>사무직</item> <item>경영 관리직</item> <item>판매/서비스직</item> <item>자영업</item>
-        <item>기능/생산직</item> <item>전문직</item> <item>농림어업</item> <item>전업주부</item> <item>무직</item> <item>기타</item>
+        <item>대학생</item>
+        <item>사무직</item>
+        <item>경영 관리직</item>
+        <item>판매/서비스직</item>
+        <item>자영업</item>
+        <item>기능/생산직</item>
+        <item>전문직</item>
+        <item>농림어업</item>
+        <item>전업주부</item>
+        <item>무직</item>
+        <item>기타</item>
     </string-array>
 
     <string-array name="major">
-        <item>사회계열</item> <item>공학계열</item> <item>인문계열</item> <item>자연계열</item>
-        <item>예체능계열</item> <item>의약계열</item> <item>교육계열</item> <item>기타</item>
-    </string-array>
-    
-    
-    // SurveyListFirstSurveyFragment2
-    <string-array name="district">
-        <item>서울특별시</item> <item>부산광역시</item> <item>대구광역시</item> <item>인천광역시</item>
-        <item>광주광역시</item> <item>대전광역시</item> <item>울산광역시</item> <item>세종특별자치시</item>
-        <item>경기도</item> <item>충청북도</item> <item>충청남도</item> <item>전라북도</item>
-        <item>전라남도</item> <item>경상북도</item> <item>경상남도</item> <item>제주특별자치도</item>
+        <item>사회계열</item>
+        <item>공학계열</item>
+        <item>인문계열</item>
+        <item>자연계열</item>
+        <item>예체능계열</item>
+        <item>의약계열</item>
+        <item>교육계열</item>
+        <item>기타</item>
     </string-array>
 
-    <string-array name="서울">																		영등포구	동작구	관악구	서초구	강남구	송파구	강동구
-        <item>종로구</item> <item>중구</item> <item>용산구</item> <item>성동구</item> <item>광진구</item> <item>동대문구</item>
-        <item>중랑구</item> <item>성북구</item> <item>강북구</item> <item>도봉구</item> <item>노원구</item> <item>은평구</item>
-        <item>서대문구</item> <item>마포구</item> <item>양천구</item> <item>강서구</item> <item>구로구</item> <item>금천구</item>
+
+    // SurveyListFirstSurveyFragment2
+    <string-array name="district">
+        <item>서울특별시</item>
+        <item>부산광역시</item>
+        <item>대구광역시</item>
+        <item>인천광역시</item>
+        <item>광주광역시</item>
+        <item>대전광역시</item>
+        <item>울산광역시</item>
+        <item>세종특별자치시</item>
+        <item>경기도</item>
+        <item>충청북도</item>
+        <item>충청남도</item>
+        <item>전라북도</item>
+        <item>전라남도</item>
+        <item>경상북도</item>
+        <item>경상남도</item>
+        <item>제주특별자치도</item>
+    </string-array>
+
+    <string-array name="서울">영등포구 동작구 관악구 서초구 강남구 송파구 강동구
+        <item>종로구</item>
+        <item>중구</item>
+        <item>용산구</item>
+        <item>성동구</item>
+        <item>광진구</item>
+        <item>동대문구</item>
+        <item>중랑구</item>
+        <item>성북구</item>
+        <item>강북구</item>
+        <item>도봉구</item>
+        <item>노원구</item>
+        <item>은평구</item>
+        <item>서대문구</item>
+        <item>마포구</item>
+        <item>양천구</item>
+        <item>강서구</item>
+        <item>구로구</item>
+        <item>금천구</item>
     </string-array>
 
     <string-array name="pet">
-        <item>없음</item> <item>개</item> <item>고양이</item> <item>거북이</item> <item>기타</item>
+        <item>없음</item>
+        <item>개</item>
+        <item>고양이</item>
+        <item>거북이</item>
+        <item>기타</item>
     </string-array>
 
     <string-array name="housingType">
-        <item>아파트/주상복합</item> <item>단독주택</item> <item>오피스텔/원룸</item>
-        <item>다세대/빌라/연립</item> <item>기숙사</item> <item>기타</item>
+        <item>아파트/주상복합</item>
+        <item>단독주택</item>
+        <item>오피스텔/원룸</item>
+        <item>다세대/빌라/연립</item>
+        <item>기숙사</item>
+        <item>기타</item>
     </string-array>
 
 

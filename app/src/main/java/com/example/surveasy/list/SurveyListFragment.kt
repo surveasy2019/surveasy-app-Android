@@ -1,24 +1,21 @@
 package com.example.surveasy.list
 
 
-import android.content.ContentValues
 import android.content.ContentValues.TAG
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.RadioButton
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.MainActivity
 import com.example.surveasy.R
-import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -41,8 +38,14 @@ class SurveyListFragment() : Fragment() {
 
         val container : RecyclerView? = view.findViewById(R.id.recyclerContainer)
         val refreshBtn : ImageButton = view.findViewById(R.id.Surveylist_refresh)
-
-
+        val radioParticipate : RadioButton = view.findViewById(R.id.Surveylist_FilterParticipate)
+        val radioRecent : RadioButton = view.findViewById(R.id.Surveylist_FilterOngoing)
+        var showCanParticipateList = arrayListOf<Boolean>()
+        var n : Int = 0
+        while (n < model.surveyInfo.size) {
+            showCanParticipateList.add(false)
+            n++
+        }
 
         CoroutineScope(Dispatchers.Main).launch {
             val list = CoroutineScope(Dispatchers.IO).async {
@@ -52,11 +55,44 @@ class SurveyListFragment() : Fragment() {
                 }
                 model.surveyInfo.get(0).id
             }.await()
-            val adapter = SurveyItemsAdapter(model.surveyInfo, changeDoneSurvey())
+            val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),showCanParticipateList)
             container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-            container?.adapter = SurveyItemsAdapter(model.surveyInfo,changeDoneSurvey())
+            container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),showCanParticipateList)
         }
         Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
+
+        radioParticipate.setOnClickListener{
+            CoroutineScope(Dispatchers.Main).launch {
+                val list = CoroutineScope(Dispatchers.IO).async {
+                    val model by activityViewModels<SurveyInfoViewModel>()
+                    while(model.surveyInfo.size==0){
+                        Log.d(TAG,"########loading")
+                    }
+                    model.surveyInfo.get(0).id
+                }.await()
+                val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),changeDoneSurvey())
+                container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+                container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),changeDoneSurvey())
+            }
+
+        }
+
+        radioRecent.setOnClickListener{
+            CoroutineScope(Dispatchers.Main).launch {
+                val list = CoroutineScope(Dispatchers.IO).async {
+                    val model by activityViewModels<SurveyInfoViewModel>()
+                    while(model.surveyInfo.size==0){
+                        Log.d(TAG,"########loading")
+                    }
+                    model.surveyInfo.get(0).id
+                }.await()
+                val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),showCanParticipateList)
+                container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+                container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),showCanParticipateList)
+            }
+
+        }
+
 
 
 
@@ -95,6 +131,8 @@ class SurveyListFragment() : Fragment() {
                     index++
                     if (survey.id == done.id) {
                         boolList[index] = true
+                    }else if(survey.progress >=3){
+                        boolList[index] = true
                     }
                 }
             }
@@ -103,6 +141,8 @@ class SurveyListFragment() : Fragment() {
 
 
     }
+
+
 
 
 

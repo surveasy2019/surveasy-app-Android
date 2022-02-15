@@ -10,8 +10,23 @@ class SurveyInfoViewModel:ViewModel() {
 
     fun setData(surveyItems: SurveyItems){
         surveyInfo.add(surveyItems)
+    }
+    //마감 임박순으로 정렬
+    fun sortSurvey() : ArrayList<SurveyItems>{
+        val surveylist = arrayListOf<SurveyItems>()
+        surveyInfo.sortWith(compareBy<SurveyItems> { it.dueDate }.thenBy { it.dueTimeTime })
+        surveylist.addAll(surveyInfo)
 
+        return surveylist
+    }
 
+    //최신 등록순 정렬
+    fun sortSurveyRecent() : ArrayList<SurveyItems>{
+        val surveylist = arrayListOf<SurveyItems>()
+        surveyInfo.sortWith(compareBy<SurveyItems> { it.uploadDate })
+        surveylist.addAll(surveyInfo)
+
+        return surveylist
     }
 
 
