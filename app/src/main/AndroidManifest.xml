@@ -16,7 +16,6 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
 
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/checkimg" />
@@ -42,9 +41,10 @@
         <activity
             android:name=".list.SurveyListDetailActivity"
             android:exported="true" />
-        <activity android:name=".list.SurveyProofDialogActivity"
+        <activity
+            android:name=".list.SurveyProofDialogActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyDialog"/>
+            android:theme="@style/Theme.MyDialog" />
         <activity
             android:name=".login.LoginActivity"
             android:exported="true" />
@@ -53,9 +53,6 @@
             android:exported="true" />
         <activity
             android:name=".login.RegisterFinActivity"
-            android:exported="true" />
-        <activity
-            android:name=".login.Register1Activity"
             android:exported="true" />
         <activity
             android:name=".my.MyViewSettingActivity"

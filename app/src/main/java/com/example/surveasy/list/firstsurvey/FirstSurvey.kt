@@ -10,12 +10,12 @@ class FirstSurvey(
     val university: String? = null,
     val EngSurvey: Boolean? = null,
     val military: String? = null,
-    val district: String? = null,
-    val city: String? = null,
-    val married: String? = null,
-    val pet: String? = null,
-    val family: String? = null,
-    val housingType: String? = null
+    var district: String? = null,
+    var city: String? = null,
+    var married: String? = null,
+    var pet: String? = null,
+    var family: String? = null,
+    var housingType: String? = null
 
 ) : Parcelable {
 }

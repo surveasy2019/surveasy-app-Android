@@ -146,7 +146,7 @@ class MainActivity : AppCompatActivity() {
                     snapshot.result["gender"].toString(),
                     snapshot.result["birthDate"].toString(),
                     snapshot.result["accountType"].toString(),
-                    snapshot.result["accountNumber"] as Long?,
+                    snapshot.result["accountNumber"].toString(),
                     snapshot.result["accountOwner"].toString(),
                     snapshot.result["inflowPath"].toString(),
                     snapshot.result["didFirstSurvey"] as Boolean?,
@@ -179,6 +179,10 @@ class MainActivity : AppCompatActivity() {
                         document["uploadDate"] as String,
                         document["link"] as String,
                         document["spendTime"] as String,
+                        document["dueDate"] as String,
+                        document["dueTimeTime"] as String,
+                        Integer.parseInt(document["reward"].toString()),
+                        document["noticeToPanel"] as String?,
                     )
                     surveyList.add(item)
 

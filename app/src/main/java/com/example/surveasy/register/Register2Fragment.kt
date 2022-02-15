@@ -16,8 +16,8 @@ import com.google.firebase.ktx.Firebase
 
 class Register2Fragment : Fragment() {
     private lateinit var auth: FirebaseAuth
-    private lateinit var accountType : String
-    private lateinit var inflowPath : String
+    private var accountType : String? = null
+    private var inflowPath : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +48,7 @@ class Register2Fragment : Fragment() {
 
     // Register2
     private fun register2(view: View) {
-        val accountNumber: Long = view.findViewById<EditText>(R.id.RegisterFragment2_AccountNumberInput).text.toString().toLong()
+        val accountNumber: String = view.findViewById<EditText>(R.id.RegisterFragment2_AccountNumberInput).text.toString()
         val accountOwner: String = view.findViewById<EditText>(R.id.RegisterFragment2_AccountOwnerInput).text.toString()
 
         if(accountNumber == null) {

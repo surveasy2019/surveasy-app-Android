@@ -18,7 +18,7 @@
     <LinearLayout
         android:id="@+id/SurveyListFirstSurvey2_Container"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="350dp"
         android:layout_marginTop="10dp"
         android:gravity="center_vertical"
         android:orientation="vertical"
@@ -43,125 +43,15 @@
                 android:layout_marginBottom="20dp"
                 android:paddingVertical="10dp" />
 
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_서울"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_부산"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_대구"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_인천"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_광주"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_대전"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_울산"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_세종"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_경기"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_충북"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_충남"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_전북"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_전남"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_경북"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_경남"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
-                <Spinner
-                    android:id="@+id/SurveyListFirstSurvey2_CitySpinner_제주"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:paddingVertical="10dp"
-                    android:visibility="invisible" />
+            <Spinner
+                android:id="@+id/SurveyListFirstSurvey2_CitySpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="10dp"
+                android:visibility="gone" />
 
 
-            </FrameLayout>
 
 
 
@@ -239,55 +129,47 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <GridLayout
+                <RadioButton
+                    android:id="@+id/SurveyListFirstSurvey2_Family1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:columnCount="2"
-                    android:orientation="horizontal">
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:text="1인가구"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
-                    <RadioButton
-                        android:id="@+id/SurveyListFirstSurvey2_Family1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_radio_button"
-                        android:button="@null"
-                        android:text="1인가구"
-                        android:textAlignment="center"
-                        android:textColor="@drawable/selector_radio_text" />
+                <RadioButton
+                    android:id="@+id/SurveyListFirstSurvey2_Family2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:text="2인가구"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
-                    <RadioButton
-                        android:id="@+id/SurveyListFirstSurvey2_Family2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_radio_button"
-                        android:button="@null"
-                        android:text="2인가구"
-                        android:textAlignment="center"
-                        android:textColor="@drawable/selector_radio_text" />
+                <RadioButton
+                    android:id="@+id/SurveyListFirstSurvey2_Family3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:text="3인가구"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
-                    <RadioButton
-                        android:id="@+id/SurveyListFirstSurvey2_Family3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_radio_button"
-                        android:button="@null"
-                        android:text="3인가구"
-                        android:textAlignment="center"
-                        android:textColor="@drawable/selector_radio_text" />
-
-                    <RadioButton
-                        android:id="@+id/SurveyListFirstSurvey2_Family4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/selector_radio_button"
-                        android:button="@null"
-                        android:text="4인가구 이상"
-                        android:textAlignment="center"
-                        android:textColor="@drawable/selector_radio_text" />
-
-                </GridLayout>
+                <RadioButton
+                    android:id="@+id/SurveyListFirstSurvey2_Family4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:text="4인가구 이상"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
             </RadioGroup>
+
 
         </LinearLayout>
 

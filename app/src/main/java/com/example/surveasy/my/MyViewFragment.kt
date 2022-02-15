@@ -35,55 +35,25 @@ class MyViewFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_myview, container, false)
         val userModel by activityViewModels<CurrentUserViewModel>()
 
-        val settingBtn = view.findViewById<ImageButton>(R.id.MyView_SettingBtn)
-        val historyIcon = view.findViewById<ImageButton>(R.id.MyView_HistoryIcon)
-        val infoIcon = view.findViewById<ImageButton>(R.id.MyView_InfoIcon)
-        val contactIcon = view.findViewById<ImageButton>(R.id.MyView_ContactIcon)
-        val inviteIcon = view.findViewById<ImageButton>(R.id.MyView_InviteIcon)
-        val noticeIcon = view.findViewById<Button>(R.id.MyView_NoticeMore)
-        val myIdText = view.findViewById<TextView>(R.id.MyView_UserName)
+        val noticeBtn = view.findViewById<ImageButton>(R.id.MyView_NoticeIcon)
+        val historyIcon = view.findViewById<Button>(R.id.MyView_HistoryIcon)
+        val infoIcon = view.findViewById<Button>(R.id.MyView_InfoIcon)
+        val settingIcon = view.findViewById<Button>(R.id.MyView_SettingIcon)
+        val contactIcon = view.findViewById<Button>(R.id.MyView_ContactIcon)
+
+        val userName = view.findViewById<TextView>(R.id.MyView_UserName)
+        val userRewardAmount = view.findViewById<TextView>(R.id.MyView_UserRewardAmount)
         val logoutBtn = view.findViewById<Button>(R.id.MyView_Logout)
 
 
         if(userModel.currentUser.uid != null) {
-            myIdText.text = "${userModel.currentUser.name}님"
+            userName.text = "${userModel.currentUser.name}님"
+            userRewardAmount.text = "$ ${userModel.currentUser.rewardTotal}"
         }
 
 
-
-            settingBtn.setOnClickListener {
-                val intent = Intent(context, MyViewSettingActivity::class.java)
-                startActivity(intent)
-            }
-            historyIcon.setOnClickListener {
-                val intent = Intent(context, MyViewHistoryActivity::class.java)
-                startActivity(intent)
-            }
-            infoIcon.setOnClickListener {
-                val intent = Intent(context, MyViewInfoActivity::class.java)
-                startActivity(intent)
-            }
-            contactIcon.setOnClickListener {
-                val intent = Intent(context, MyViewContactActivity::class.java)
-                startActivity(intent)
-            }
-            inviteIcon.setOnClickListener {
-//                val intent = Intent(context, MyViewInviteActivity::class.java)
-//                startActivity(intent)
-
-
-            }
-            noticeIcon.setOnClickListener {
-                val intent = Intent(context, MyViewNoticeListActivity::class.java)
-                startActivity(intent)
-            }
-
-
-
-
-
-        settingBtn.setOnClickListener {
-            val intent = Intent(context, MyViewSettingActivity::class.java)
+        noticeBtn.setOnClickListener {
+            val intent = Intent(context, MyViewNoticeListActivity::class.java)
             startActivity(intent)
         }
         historyIcon.setOnClickListener {
@@ -94,28 +64,24 @@ class MyViewFragment : Fragment() {
             val intent = Intent(context, MyViewInfoActivity::class.java)
             startActivity(intent)
         }
+        settingIcon.setOnClickListener {
+            val intent = Intent(context, MyViewSettingActivity::class.java)
+            startActivity(intent)
+        }
         contactIcon.setOnClickListener {
             val intent = Intent(context, MyViewContactActivity::class.java)
             startActivity(intent)
         }
-        inviteIcon.setOnClickListener {
-            val intent = Intent(context, MyViewInviteActivity::class.java)
-            startActivity(intent)
-        }
-        noticeIcon.setOnClickListener {
-            val intent = Intent(context, MyViewNoticeListActivity::class.java)
-            startActivity(intent)
-        }
+
+
 
         // Logout
         logoutBtn.setOnClickListener {
             Firebase.auth.signOut()
+            Log.d(TAG, "LLLLLLLLLLLL ${Firebase.auth.currentUser?.uid}")
         }
 
-
-
             return view
-
 
 
         }
