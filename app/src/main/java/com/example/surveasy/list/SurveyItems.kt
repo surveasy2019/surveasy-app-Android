@@ -16,6 +16,7 @@ class SurveyItems(
     val dueTimeTime : String,
     val reward : Int,
     val noticeToPanel : String?,
+    val progress : Int
 
     ):Parcelable {
 }

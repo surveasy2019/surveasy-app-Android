@@ -43,8 +43,7 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
 
 
         binding.SurveyListDetailResponseProofBtn.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            
 
 
         }

@@ -14,6 +14,7 @@ import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
 import com.example.surveasy.my.MyViewFragment
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -80,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         binding.NavList.setOnClickListener {
             if (userModel.currentUser.didFirstSurvey == false) {
                 // Send Current User to Activities
-                val intent_surveylistfirstsurvey: Intent = Intent(this, SurveyListFirstSurveyActivity::class.java)
+                val intent_surveylistfirstsurvey: Intent = Intent(this, FirstSurveyListActivity::class.java)
                 intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
                 startActivity(intent_surveylistfirstsurvey)
             } else {
@@ -168,7 +169,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchSurvey() {
-        db.collection("AndroidSurvey").orderBy("id").limit(10).get()
+        db.collection("AndroidSurvey")
+            .whereGreaterThan("progress",1)
+            .limit(10).get()
             .addOnSuccessListener { result ->
 
                 for (document in result) {
@@ -183,6 +186,7 @@ class MainActivity : AppCompatActivity() {
                         document["dueTimeTime"] as String,
                         Integer.parseInt(document["reward"].toString()),
                         document["noticeToPanel"] as String?,
+                        Integer.parseInt(document["progress"].toString())
                     )
                     surveyList.add(item)
 

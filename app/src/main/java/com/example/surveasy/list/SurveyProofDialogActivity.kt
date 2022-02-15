@@ -57,7 +57,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
                 val item: UserSurveyItem = UserSurveyItem(
                     document["id"] as String,
                     document["title"] as String?,
-                    500,
+                    Integer.parseInt(document["reward"].toString()),
                     document["uploadDate"] as String?,
                     false
                 )
@@ -106,7 +106,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
             "title" to thisSurveyInfo.get(0).title,
             "reward" to thisSurveyInfo.get(0).reward,
             "responseDate" to thisSurveyInfo.get(0).responseDate,
-            "isSent" to thisSurveyInfo.get(0).isSent
+            "isSent" to false
 
         )
         db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
