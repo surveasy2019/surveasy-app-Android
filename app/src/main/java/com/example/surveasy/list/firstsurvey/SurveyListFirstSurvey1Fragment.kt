@@ -106,6 +106,7 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
                 }
                 else {
                     majorSpinner.visibility = View.INVISIBLE
+                    major = ""
                 }
                 Log.d(TAG, "PPPPPPPPPPPPPPPPPPP $position" )
             }
