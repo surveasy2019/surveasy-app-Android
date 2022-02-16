@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="left"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:id="@+id/MyViewInfo_InfoItem_PhoneNumberContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/MyViewInfo_InfoItem_PhoneNumberTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="전화번호"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/MyViewInfo_InfoItem_PhoneNumberEdit"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_weight="4"
+            android:gravity="end"
+            android:textColor="@color/black"
+            android:inputType="phone" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/MyViewInfo_InfoItem_AccountNumberContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/MyViewInfo_InfoItem_AccountNumberTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="계좌번호"
+            android:textSize="18dp" />
+
+        <Spinner
+            android:id="@+id/MyViewInfo_InfoItem_AccountTypeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="end"
+            android:spinnerMode="dropdown" />
+
+        <EditText
+            android:id="@+id/MyViewInfo_InfoItem_AccountNumberEdit"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:textColor="@color/black"
+            android:inputType="number" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/MyViewInfo_InfoItem_EngSurveyContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/MyViewInfo_InfoItem_EngSurveyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="영어설문희망"
+            android:layout_gravity="center"
+            android:textSize="18dp" />
+
+        <RadioGroup
+            android:id="@+id/MyViewInfo_InfoItem_EngSurveyRadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="end"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/MyViewInfo_InfoItem_EngSurvey_O"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="희망함"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/MyViewInfo_InfoItem_EngSurvey_X"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="희망하지 않음" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+</LinearLayout>

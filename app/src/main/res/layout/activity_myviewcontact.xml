@@ -13,176 +13,43 @@
         android:background="@color/white"
         app:titleTextColor="@color/black"/>
 
-    <LinearLayout
-        android:id="@+id/MyViewContact_TitleContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:padding="10dp">
-
         <TextView
             android:id="@+id/MyViewContact_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="문의"
-            android:textSize="24sp" />
-
-    </LinearLayout>
+            android:text="문의하기"
+            android:textSize="30dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
 
-        <ImageButton
-            android:id="@+id/MyViewContact_Btn1"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:backgroundTint="@color/white"
-            app:srcCompat="@android:drawable/ic_dialog_email"
-            />
-
-        <ImageButton
-            android:id="@+id/MyViewContact_Btn2"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:backgroundTint="@color/white"
-            app:srcCompat="@android:drawable/ic_dialog_email"
-            />
-
-        <TextView
-            android:id="@+id/MyViewContact_EmailText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="surveasy2019@yonsei.ac.kr" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/MyViewContact_FAQ"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp"
-        >
-
-        <TextView
-            android:id="@+id/MyViewContact_FAQTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="FAQ"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <GridLayout
-            android:id="@+id/MyViewContact_FAQItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:columnCount="3" >
-
-            <Button android:text="정산" />
-            <Button android:text="정산" />
-            <Button android:text="정산" />
-            <Button android:text="정산" />
-            <Button android:text="정산" />
-            <Button android:text="정산" />
-
-        </GridLayout>
-
-
-        <LinearLayout
-            android:id="@+id/MyViewContact_FAQField"
-            android:layout_width="350dp"
-            android:layout_height="120dp"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:layout_margin="10dp" >
-
-            <TextView
-                android:id="@+id/MyViewContact_FAQQuestion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:text="Q) 돈 언제 주시나요?" />
-
-            <TextView
-                android:id="@+id/MyViewContact_FAQAnswer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:text="A) 기다리세용" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/MyViewContact_AboutUs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <TextView
-            android:id="@+id/MyViewContact_AboutUsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="서베이지"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/MyViewContact_AboutUsWeb"
+        <Button
+            android:id="@+id/MyViewContact_KakaoTalk"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_height="65dp"
+            android:backgroundTint="@color/white"
+            android:text="1:1 문의"
+            android:textColor="@color/black"
+            android:gravity="center_vertical"
+            android:drawableLeft="@android:drawable/ic_menu_send" />
 
-            <ImageButton
-                android:id="@+id/MyViewContact_AboutUsWebBtn"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:backgroundTint="@color/white"
-                app:srcCompat="@android:drawable/ic_dialog_email" />
-
-            <TextView
-                android:id="@+id/MyViewContact_AboutUsWebText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="https://www.gosurveasy.com/" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/MyViewContact_AboutUsYoutube"
+        <Button
+            android:id="@+id/MyViewContact_Email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_height="65dp"
+            android:backgroundTint="@color/white"
+            android:text="제휴 및 광고 문의 \n surveasy2019@yonsei.ac.kr"
+            android:textColor="@color/black"
+            android:gravity="center_vertical"
+            android:drawableLeft="@android:drawable/ic_menu_send" />
 
-            <ImageButton
-                android:id="@+id/MyViewContact_AboutUsYoutubeBtn"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:backgroundTint="@color/white"
-                app:srcCompat="@android:drawable/ic_dialog_email" />
 
-            <TextView
-                android:id="@+id/MyViewContact_AboutUsYoutubeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="서베이지 유튜브 채널" />
 
-        </LinearLayout>
 
     </LinearLayout>
+
 
 </LinearLayout>

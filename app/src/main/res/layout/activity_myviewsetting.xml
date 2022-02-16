@@ -79,6 +79,14 @@
             android:textColor="@color/black"
             android:drawableRight="@android:drawable/ic_media_play" />
 
+        <Button
+            android:id="@+id/MyViewSetting_Logout"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/MyView_Logout"
+            android:textColor="@color/black" />
+
 
     </LinearLayout>
 

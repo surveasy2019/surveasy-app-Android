@@ -1,4 +1,4 @@
-package com.example.surveasy.my
+package com.example.surveasy.my.notice
 
 import android.view.LayoutInflater
 import android.view.View

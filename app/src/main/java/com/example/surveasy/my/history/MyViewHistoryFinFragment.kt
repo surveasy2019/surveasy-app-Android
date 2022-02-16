@@ -1,4 +1,4 @@
-package com.example.surveasy.my
+package com.example.surveasy.my.history
 
 import android.content.ContentValues
 import android.os.Bundle
@@ -8,16 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.R
 import com.example.surveasy.list.FinUserSurveyListViewModel
-import com.example.surveasy.list.SurveyItems
-import com.example.surveasy.list.SurveyItemsAdapter
 import com.example.surveasy.list.UserSurveyItem
+import com.example.surveasy.my.history.FinSurveyItemsAdapter
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase

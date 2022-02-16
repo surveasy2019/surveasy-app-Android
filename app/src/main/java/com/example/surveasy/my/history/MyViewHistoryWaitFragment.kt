@@ -1,4 +1,4 @@
-package com.example.surveasy.my
+package com.example.surveasy.my.history
 
 import android.content.ContentValues
 import android.os.Bundle
@@ -15,10 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.R
 import com.example.surveasy.list.UserSurveyItem
 import com.example.surveasy.list.WaitUserSurveyListViewModel
+import com.example.surveasy.my.history.FinSurveyItemsAdapter
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import org.w3c.dom.Text
 
 class MyViewHistoryWaitFragment : Fragment() {
 
