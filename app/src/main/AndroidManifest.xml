@@ -24,7 +24,7 @@
             android:exported="true"
             android:theme="@style/Theme.MyDialog" />
         <activity
-            android:name=".list.FirstSurveyListActivity"
+            android:name=".list.firstsurvey.FirstSurveyListActivity"
             android:exported="true" />
 
         <meta-data
