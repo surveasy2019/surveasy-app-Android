@@ -1,4 +1,4 @@
-package com.example.surveasy.my
+package com.example.surveasy.my.info
 
 class InfoData(val name: String?,
                val birthDate: String?,

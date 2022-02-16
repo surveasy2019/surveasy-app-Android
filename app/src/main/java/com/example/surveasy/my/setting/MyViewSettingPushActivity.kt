@@ -1,4 +1,4 @@
-package com.example.surveasy.my
+package com.example.surveasy.my.setting
 
 import android.content.Intent
 import android.os.Bundle

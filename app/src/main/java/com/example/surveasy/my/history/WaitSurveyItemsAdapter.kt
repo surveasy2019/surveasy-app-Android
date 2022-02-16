@@ -1,4 +1,4 @@
-package com.example.surveasy.my
+package com.example.surveasy.my.history
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.R
 import com.example.surveasy.list.UserSurveyItem
 
-class FinSurveyItemsAdapter(val finList : ArrayList<UserSurveyItem>) : RecyclerView.Adapter<FinSurveyItemsAdapter.CustomViewHolder>() {
+class WaitSurveyItemsAdapter(val waitList : ArrayList<UserSurveyItem>) : RecyclerView.Adapter<WaitSurveyItemsAdapter.CustomViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FinSurveyItemsAdapter.CustomViewHolder {
+    ): CustomViewHolder {
          val view = LayoutInflater.from(parent.context).inflate(R.layout.history_item,parent,false)
 
         return CustomViewHolder(view)
@@ -20,13 +20,13 @@ class FinSurveyItemsAdapter(val finList : ArrayList<UserSurveyItem>) : RecyclerV
 
 
 
-    override fun onBindViewHolder(holder: FinSurveyItemsAdapter.CustomViewHolder, position: Int) {
-        holder.itemTitle.text = finList.get(position).title
-        holder.itemDate.text = finList.get(position).responseDate
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+        holder.itemTitle.text = waitList.get(position).title
+        holder.itemDate.text = waitList.get(position).responseDate
     }
 
     override fun getItemCount(): Int {
-        return finList.size
+        return waitList.size
     }
 
     inner class CustomViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {

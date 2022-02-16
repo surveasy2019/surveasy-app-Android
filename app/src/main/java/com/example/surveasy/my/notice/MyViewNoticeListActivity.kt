@@ -1,4 +1,4 @@
-package com.example.surveasy.my
+package com.example.surveasy.my.notice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

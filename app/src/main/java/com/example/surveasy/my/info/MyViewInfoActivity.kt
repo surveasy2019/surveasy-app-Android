@@ -1,4 +1,4 @@
-package com.example.surveasy.my
+package com.example.surveasy.my.info
 
 import android.content.ContentValues.TAG
 import android.os.Bundle

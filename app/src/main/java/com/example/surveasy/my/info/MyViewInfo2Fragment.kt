@@ -1,9 +1,6 @@
-package com.example.surveasy.my
+package com.example.surveasy.my.info
 
-import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.activityViewModels
 import com.example.surveasy.R
+import com.example.surveasy.my.info.InfoDataViewModel
 
 
 class MyViewInfo2Fragment : Fragment() {

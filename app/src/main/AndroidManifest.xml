@@ -38,7 +38,7 @@
             android:name=".list.SurveyProofLastDialogActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewNoticeListDetailActivity"
+            android:name=".my.notice.MyViewNoticeListDetailActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
@@ -66,19 +66,19 @@
             android:name=".login.RegisterFinActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewSettingActivity"
+            android:name=".my.setting.MyViewSettingActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewSettingPushActivity"
+            android:name=".my.setting.MyViewSettingPushActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewSettingWithdrawActivity"
+            android:name=".my.setting.MyViewSettingWithdrawActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewHistoryActivity"
+            android:name=".my.history.MyViewHistoryActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewInfoActivity"
+            android:name=".my.info.MyViewInfoActivity"
             android:exported="true" />
         <activity
             android:name=".my.MyViewContactActivity"
@@ -87,7 +87,7 @@
             android:name=".my.MyViewInviteActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewNoticeListActivity"
+            android:name=".my.notice.MyViewNoticeListActivity"
             android:exported="true" />
         <activity
             android:name=".SplashActivity"
