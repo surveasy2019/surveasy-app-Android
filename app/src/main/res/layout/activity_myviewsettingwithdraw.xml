@@ -64,22 +64,27 @@
                 android:textStyle="bold"/>
 
             <CheckBox
+                android:id="@+id/MyViewSettingWithdraw_Reason1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="설문이 너무 적어서" />
             <CheckBox
+                android:id="@+id/MyViewSettingWithdraw_Reason2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="설문당 지급액이 너무 적어서" />
             <CheckBox
+                android:id="@+id/MyViewSettingWithdraw_Reason3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="알림이 너무 많아서" />
             <CheckBox
+                android:id="@+id/MyViewSettingWithdraw_Reason4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="시간이 없어서" />
             <CheckBox
+                android:id="@+id/MyViewSettingWithdraw_Reason5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="필요를 못느껴서" />
@@ -106,11 +111,12 @@
                 >
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/MyViewSettingWithdraw_PwInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
                     android:backgroundTint="@color/white"
                     android:gravity="center"
-                    android:hint="@string/MyViewSettingWithdraw_PwInput" />
+                    android:hint="@string/MyViewSettingWithdraw_PwInput"
+                    android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

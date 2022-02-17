@@ -28,6 +28,11 @@ class MyViewSettingActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.MyViewSettingVersion.setOnClickListener {
+            val intent = Intent(this, MyViewSettingVersionActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.MyViewSettingWithdraw.setOnClickListener {
             val intent = Intent(this, MyViewSettingWithdrawActivity::class.java)
             startActivity(intent)
