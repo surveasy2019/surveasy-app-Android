@@ -28,11 +28,13 @@
         android:padding="20dp">
 
         <TextView
+            android:id="@+id/MyViewNoticeListDetail_Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="서베이지 패널 서비스 이전 안내"
             android:textSize="20sp" />
         <TextView
+            android:id="@+id/MyViewNoticeListDetail_Date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="2021.01.19"
@@ -46,6 +48,7 @@
             android:background="?android:attr/listDivider"
             android:backgroundTint="#000000" />
         <TextView
+            android:id="@+id/MyViewNoticeListDetail_Content"
             android:layout_width="match_parent"
             android:layout_height="500dp"
             android:text="Si osculantur puer tuus aut uxorem tuam, osculum, non dico quod omnia quae sunt
@@ -56,9 +59,6 @@
             similiter circa alias res. Et sic, si contingit ex per se lavantem, et erit hoc paratus
             ut diceret, “Hoc non solum lavari ut desideravit, sed ut animus in statu naturae onvenienter naturae, et non"
             android:gravity="center_vertical"/>
-
-
-
 
 
     </LinearLayout>

@@ -16,9 +16,15 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".login.PwFindActivity"
+            android:exported="true" />
+        <activity
+            android:name=".my.setting.MyViewSettingVersionActivity"
+            android:exported="true" />
+        <activity
             android:name=".list.NoticeToPanelDialogActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyDialog"/>
+            android:theme="@style/Theme.MyDialog" />
         <activity
             android:name=".list.SurveyListDetailDialogActivity"
             android:exported="true"
@@ -61,9 +67,6 @@
             android:exported="true" />
         <activity
             android:name=".register.RegisterActivity"
-            android:exported="true" />
-        <activity
-            android:name=".login.RegisterFinActivity"
             android:exported="true" />
         <activity
             android:name=".my.setting.MyViewSettingActivity"
