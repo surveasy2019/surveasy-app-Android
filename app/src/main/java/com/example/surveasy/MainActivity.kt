@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import com.example.surveasy.databinding.ActivityMainBinding
 import com.example.surveasy.home.HomeFragment
+import com.example.surveasy.home.HomeListViewModel
 import com.example.surveasy.list.*
 import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
 import com.example.surveasy.login.CurrentUser
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setTheme(R.style.Theme_Surveasy)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
 
@@ -170,8 +173,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchSurvey() {
         db.collection("AndroidSurvey")
-            .whereGreaterThan("progress",1)
-            .limit(10).get()
+            // id를 운영진이 올리는 깨끗한 아이디로 설정하면 progress 문제 해결됨.
+            .orderBy("id")
+            .limit(50).get()
             .addOnSuccessListener { result ->
 
                 for (document in result) {
@@ -188,8 +192,9 @@ class MainActivity : AppCompatActivity() {
                         document["noticeToPanel"] as String?,
                         Integer.parseInt(document["progress"].toString())
                     )
-                    surveyList.add(item)
-
+                    if(Integer.parseInt(document["progress"].toString())>1){
+                        surveyList.add(item)
+                    }
                     Log.d(
                         TAG,
                         "################${document["id"]} and ${document["title"]}"

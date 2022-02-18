@@ -25,8 +25,13 @@
                 android:id="@+id/MyViewHistory_WaitAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1,700원"
+                android:text="0원"
                 android:textSize="25dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MORE"
+                android:id="@+id/historyWait_moreBtn"/>
 
         </LinearLayout>
 
@@ -44,6 +49,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+
 
 
 
