@@ -49,8 +49,14 @@ class LoginActivity : AppCompatActivity() {
         }
 
         // Go to RegisterActivity
-        binding.LoginRegister.setOnClickListener{
+        binding.LoginRegister.setOnClickListener {
             intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Go to FindPwActivity
+        binding.LoginFindPw.setOnClickListener {
+            intent = Intent(this, FindPwActivity::class.java)
             startActivity(intent)
         }
 
@@ -128,6 +134,7 @@ class LoginActivity : AppCompatActivity() {
                                     snapshot.result["accountOwner"].toString(),
                                     snapshot.result["inflowPath"].toString(),
                                     snapshot.result["didFirstSurvey"] as Boolean,
+                                    Integer.parseInt(snapshot.result["reward_current"].toString()),
                                     Integer.parseInt(snapshot.result["reward_total"].toString()),
                                     userSurveyList
                                 )

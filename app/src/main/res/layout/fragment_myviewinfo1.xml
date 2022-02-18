@@ -82,7 +82,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:gravity="end"
-            android:text="희망함"
             android:textSize="18dp"/>
 
     </LinearLayout>

@@ -16,7 +16,7 @@
         android:theme="@style/splahScreenTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".login.PwFindActivity"
+            android:name=".login.FindPwActivity"
             android:exported="true" />
         <activity
             android:name=".my.setting.MyViewSettingVersionActivity"

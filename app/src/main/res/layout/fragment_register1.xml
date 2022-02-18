@@ -210,29 +210,44 @@
         android:layout_gravity="center" >
 
         <TextView
-            android:id="@+id/RegisterFragment1_BirthText"
+            android:id="@+id/RegisterFragment1_BirthDateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="*생년월일"
             android:textSize="17dp"
             android:layout_gravity="center"/>
 
+        <TextView
+            android:id="@+id/RegisterFragment1_BirthDateSelected"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="생년월일을 선택해주세요."
+            android:textColor="#50CF17"
+            android:textSize="12dp"
+            android:layout_gravity="center"/>
 
-        <NumberPicker
-            android:id="@+id/RegisterFragment1_Year"
+        <Button
+            android:id="@+id/RegisterFragment1_BirthDatePickerBtn"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_margin="10dp" />
-        <NumberPicker
-            android:id="@+id/RegisterFragment1_Month"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_margin="10dp" />
-        <NumberPicker
-            android:id="@+id/RegisterFragment1_Date"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_margin="10dp" />
+            android:layout_height="wrap_content"
+            android:text="날짜 선택" />
+
+
+<!--        <NumberPicker-->
+<!--            android:id="@+id/RegisterFragment1_Year"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_margin="10dp" />-->
+<!--        <NumberPicker-->
+<!--            android:id="@+id/RegisterFragment1_Month"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_margin="10dp" />-->
+<!--        <NumberPicker-->
+<!--            android:id="@+id/RegisterFragment1_Date"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_margin="10dp" />-->
 
     </LinearLayout>
 
