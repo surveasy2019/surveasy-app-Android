@@ -15,6 +15,7 @@ import com.example.surveasy.list.FinUserSurveyListViewModel
 import com.example.surveasy.list.UserSurveyItem
 import com.example.surveasy.list.WaitUserSurveyListViewModel
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -63,8 +64,8 @@ class MyViewHistoryActivity : AppCompatActivity() {
                     val item: UserSurveyItem = UserSurveyItem(
                         document["id"] as String,
                         document["title"] as String?,
-                        Integer.parseInt(document["reward"]?.toString()),
-                        document["uploadDate"] as String?,
+                        Integer.parseInt(document["reward"].toString()),
+                        document["responseDate"] as String?,
                         document["isSent"] as Boolean
                     )
 

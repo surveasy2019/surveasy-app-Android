@@ -124,17 +124,25 @@ class SurveyListFragment() : Fragment() {
         var index: Int = -1
 
         // userSurveyList 와 겹치는 요소가 있으면 boolean 배열의 해당 인덱스 값을 true로 바꿈
-        if (doneSurvey != null) {
-            for (done in doneSurvey) {
-                index = -1
-                for (survey in model.surveyInfo) {
-                    index++
-                    if (survey.id == done.id) {
-                        boolList[index] = true
-                    }else if(survey.progress >=3){
-                        boolList[index] = true
+        if (doneSurvey?.size != 0) {
+            if (doneSurvey != null) {
+                for (done in doneSurvey) {
+                    index = -1
+                    for (survey in model.surveyInfo) {
+                        index++
+                        if (survey.id == done.id) {
+                            boolList[index] = true
+                        }else if(survey.progress >=3){
+                            boolList[index] = true
+                        }
                     }
                 }
+            }
+        }else{
+            index = -1
+            for(survey in model.surveyInfo){
+                index++
+                boolList[index] = survey.progress>=3
             }
         }
         return boolList

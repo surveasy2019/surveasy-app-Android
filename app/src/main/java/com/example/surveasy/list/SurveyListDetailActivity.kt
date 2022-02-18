@@ -21,6 +21,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivitySurveylistdetailBinding
 import com.example.surveasy.home.HomeFragment
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.text.SimpleDateFormat
@@ -30,6 +31,7 @@ import java.util.*
 class SurveyListDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySurveylistdetailBinding
+    val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,6 +42,16 @@ class SurveyListDetailActivity : AppCompatActivity() {
         val url : String = intent.getStringExtra("link")!!
         val id : String = intent.getStringExtra("id",)!!
         val index : Int = intent.getIntExtra("index",0)!!
+
+
+        //progress 3인 설문이면 alert 창으로 넘기기
+        db.collection("AndroidSurvey").document(id).get()
+            .addOnSuccessListener { document ->
+                if(Integer.parseInt(document["progress"].toString())>2){
+                    val intent = Intent(this,SurveyDoneAlertDialogActivity::class.java)
+                    startActivity(intent)
+                }
+            }
 
         val apply = webView.apply {
             webViewClient = WebViewClient()

@@ -47,26 +47,6 @@
             android:textColor="@color/black"
             android:paddingEnd="20dp"/>
 
-        <LinearLayout
-            android:id="@+id/Home_Banner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="60dp"
-            >
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="배너"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="배너"/>
-
-
-        </LinearLayout>
-
 
         <Button
             android:id="@+id/HomeToRegister"
@@ -80,23 +60,29 @@
             android:layout_height="wrap_content"
             android:text="Login" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="설문 리스트"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
         <Button
-            android:id="@+id/FCMTokenBtn"
+            android:id="@+id/homeList_Btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FCM Token" />
+            android:text="더보기"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/homeList_text"/>
 
-        <Button
-            android:id="@+id/FCMSubscribeBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="FCM Topic" />
 
-        <Button
-            android:id="@+id/User"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="User" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/homeList_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"/>
+
 
 
 

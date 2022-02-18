@@ -11,10 +11,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.example.surveasy.R
+import com.example.surveasy.list.*
 import com.example.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
-import com.example.surveasy.list.UserSurveyItem
 import com.example.surveasy.login.*
 import com.example.surveasy.register.RegisterActivity
 import com.google.android.gms.tasks.OnCompleteListener
@@ -23,6 +25,10 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.ktx.messaging
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() {
@@ -35,18 +41,16 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val container : RecyclerView? = view.findViewById(R.id.homeList_recyclerView)
         val userModel by activityViewModels<CurrentUserViewModel>()
-
+        val model by activityViewModels<SurveyInfoViewModel>()
         val register: Button = view.findViewById(R.id.HomeToRegister)
         val login: Button = view.findViewById(R.id.HomeToLogin)
         val greetingText: TextView = view.findViewById(R.id.Home_GreetingText)
         val totalReward: TextView = view.findViewById(R.id.Home_RewardAmount)
-        val user: Button = view.findViewById(R.id.User)
-        val FCMTokenBtn: Button = view.findViewById(R.id.FCMTokenBtn)
-        val FCMSubscribeBtn: Button = view.findViewById(R.id.FCMSubscribeBtn)
-
+        val moreBtn : Button = view.findViewById(R.id.homeList_Btn)
+        val noneText : TextView = view.findViewById(R.id.homeList_text)
         login.setOnClickListener {
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)
@@ -56,47 +60,12 @@ class HomeFragment : Fragment() {
             val intent = Intent(context, RegisterActivity::class.java)
             startActivity(intent)
         }
-
-        user.setOnClickListener {
-            // userList()
-
-            val intent = Intent(context, SurveyListFirstSurveyActivity::class.java)
-            startActivity(intent)
-        }
-
-        FCMTokenBtn.setOnClickListener {
-            FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    Log.w(TAG, "Fetching FCM registration token failed", task.exception)
-                    return@OnCompleteListener
-                }
-                // Get new FCM registration token
-                val token = task.result
-
-                Log.d(TAG, "##### FCM TOKEN:: $token")
-
-                val db = Firebase.firestore
-                val fcmToken = hashMapOf(
-                    "fcmToken" to token
-                )
-                db.collection("fcmToken").document(token).set(fcmToken)
-            })
-            //FirebaseMessaging.getInstance().subscribeToTopic("ad")
+        moreBtn.setOnClickListener {
+            //go survey list
 
         }
 
-        FCMSubscribeBtn.setOnClickListener {
-            Log.d(TAG, "Subscribing to weather topic")
-            Firebase.messaging.subscribeToTopic("ad")
-                .addOnCompleteListener { task ->
-                    var msg = "This is SUCCESS message!"
-                    if (!task.isSuccessful) {
-                        msg = "This is FAIL message!"
-                    }
-                    Log.d(TAG, msg)
-                }
-        }
-
+        //user name, reward 불러오기
         if (userModel.currentUser.uid != null) {
             greetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
             totalReward.text = "$ ${userModel.currentUser.rewardTotal}"
@@ -117,19 +86,85 @@ class HomeFragment : Fragment() {
             }
         }
 
-
-        //total reward 연결
-        if (userModel.currentUser.uid != null) {
-
-        } else {
-
+        //list 불러오기
+        CoroutineScope(Dispatchers.Main).launch {
+            val list = CoroutineScope(Dispatchers.IO).async {
+                val model by activityViewModels<SurveyInfoViewModel>()
+                while(model.surveyInfo.size==0){
+                    Log.d(TAG,"########loading")
+                }
+                model.surveyInfo.get(0).id
+            }.await()
+            val adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
+            container?.layoutManager = LinearLayoutManager(context,
+                LinearLayoutManager.VERTICAL,false)
+            container?.adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
+            if(setHomeList(chooseHomeList()).size == 0){
+                noneText.text = "현재 참여가능한 설문이 없습니다"
+            }
         }
 
 
 
         return view
+    }
 
+    //설문 참여, 마감 유무 boolean list
+    private fun chooseHomeList() : ArrayList<Boolean>{
+        val userModel by activityViewModels<CurrentUserViewModel>()
+        val model by activityViewModels<SurveyInfoViewModel>()
+        val doneSurvey = userModel.currentUser.UserSurveyList
+        var boolList = ArrayList<Boolean>(model.sortSurvey().size)
+        var num: Int = 0
 
+        //survey list item 크기와 같은 boolean type list 만들기. 모두 false 로
+        while (num < model.surveyInfo.size) {
+            boolList.add(false)
+            num++
+        }
+
+        var index: Int = -1
+
+        // userSurveyList 와 겹치는 요소가 있으면 boolean 배열의 해당 인덱스 값을 true로 바꿈
+        if (doneSurvey?.size != 0) {
+            if (doneSurvey != null) {
+                for (done in doneSurvey) {
+                    index = -1
+                    for (survey in model.surveyInfo) {
+                        index++
+                        if (survey.id == done.id) {
+                            boolList[index] = true
+                        }else if(survey.progress >=3){
+                            boolList[index] = true
+                        }
+                    }
+                }
+            }
+        }else{
+            index = -1
+            for(survey in model.surveyInfo){
+                index++
+                boolList[index] = survey.progress>=3
+            }
+        }
+        return boolList
+    }
+
+    //home list에 들어갈 list return 하기
+    private fun setHomeList(boolList : ArrayList<Boolean>) : ArrayList<SurveyItems>{
+        val finList = arrayListOf<SurveyItems>()
+        val model by activityViewModels<SurveyInfoViewModel>()
+        var index = 0
+        while(index < model.surveyInfo.size){
+            if(!boolList[index]){
+                finList.add(model.sortSurvey().get(index))
+                index+=1
+            }else{
+                index+=1
+            }
+
+        }
+        return finList
     }
 
 
