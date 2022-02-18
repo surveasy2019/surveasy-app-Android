@@ -1,4 +1,4 @@
-package com.example.surveasy.my
+package com.example.surveasy.my.history
 
 import android.os.Bundle
 import android.text.Layout

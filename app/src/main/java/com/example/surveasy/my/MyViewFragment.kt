@@ -2,7 +2,6 @@ package com.example.surveasy.my
 
 
 import android.os.Bundle
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.util.Log
@@ -16,8 +15,11 @@ import com.example.surveasy.R
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import com.example.surveasy.login.CurrentUserViewModel
+import com.example.surveasy.my.history.MyViewHistoryActivity
 import com.google.firebase.auth.ktx.auth
-import com.example.surveasy.list.SurveyInfoViewModel
+import com.example.surveasy.my.info.MyViewInfoActivity
+import com.example.surveasy.my.notice.MyViewNoticeListActivity
+import com.example.surveasy.my.setting.MyViewSettingActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -43,7 +45,6 @@ class MyViewFragment : Fragment() {
 
         val userName = view.findViewById<TextView>(R.id.MyView_UserName)
         val userRewardAmount = view.findViewById<TextView>(R.id.MyView_UserRewardAmount)
-        val logoutBtn = view.findViewById<Button>(R.id.MyView_Logout)
 
 
         if(userModel.currentUser.uid != null) {
@@ -75,11 +76,7 @@ class MyViewFragment : Fragment() {
 
 
 
-        // Logout
-        logoutBtn.setOnClickListener {
-            Firebase.auth.signOut()
-            Log.d(TAG, "LLLLLLLLLLLL ${Firebase.auth.currentUser?.uid}")
-        }
+
 
             return view
 

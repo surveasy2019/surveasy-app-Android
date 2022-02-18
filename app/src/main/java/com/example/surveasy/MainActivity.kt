@@ -10,12 +10,11 @@ import com.example.surveasy.databinding.ActivityMainBinding
 import com.example.surveasy.home.HomeFragment
 import com.example.surveasy.home.HomeListViewModel
 import com.example.surveasy.list.*
-import com.example.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
+import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
 import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
 import com.example.surveasy.my.MyViewFragment
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -146,7 +145,7 @@ class MainActivity : AppCompatActivity() {
                     snapshot.result["fcmToken"].toString(),
                     snapshot.result["name"].toString(),
                     snapshot.result["email"].toString(),
-                    snapshot.result["phone"].toString(),
+                    snapshot.result["phoneNumber"].toString(),
                     snapshot.result["gender"].toString(),
                     snapshot.result["birthDate"].toString(),
                     snapshot.result["accountType"].toString(),

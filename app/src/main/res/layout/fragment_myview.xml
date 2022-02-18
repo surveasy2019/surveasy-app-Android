@@ -120,17 +120,4 @@
 
 
 
-
-
-
-    <Button
-        android:id="@+id/MyView_Logout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/white"
-        android:text="@string/MyView_Logout"
-        android:textColor="@color/black" />
-
-
 </LinearLayout>

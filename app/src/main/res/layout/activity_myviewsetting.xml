@@ -53,14 +53,6 @@
             android:drawableRight="@android:drawable/ic_media_play" />
 
 
-        <Switch
-            android:id="@+id/MyViewSetting_DarkModeSwitch"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:gravity="center"
-            android:switchMinWidth="50dp"
-            android:text="@string/MyViewSetting_DarkModeSwitch" />
-
         <Button
             android:id="@+id/MyViewSetting_Version"
             android:layout_width="match_parent"
@@ -78,6 +70,14 @@
             android:text="@string/MyViewSetting_Withdraw"
             android:textColor="@color/black"
             android:drawableRight="@android:drawable/ic_media_play" />
+
+        <Button
+            android:id="@+id/MyViewSetting_Logout"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/MyView_Logout"
+            android:textColor="@color/black" />
 
 
     </LinearLayout>

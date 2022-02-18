@@ -1,11 +1,9 @@
-package com.example.surveasy.list
+package com.example.surveasy.list.firstsurvey
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityFirstSurveyListBinding
-import com.example.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
 import com.example.surveasy.login.CurrentUser
 
 //first survey 만 있는 리스트

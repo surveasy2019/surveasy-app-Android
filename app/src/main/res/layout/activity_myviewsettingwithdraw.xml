@@ -13,23 +13,14 @@
         android:background="@color/white"
         app:titleTextColor="@color/black"/>
 
-    <LinearLayout
-        android:id="@+id/MyViewSettingWithdraw_TitleContainer"
+    <TextView
+        android:id="@+id/MyViewSettingWithdraw_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:padding="10dp">
+        android:padding="5dp"
+        android:text="@string/MyViewSettingWithdraw_Title"
+        android:textSize="30dp" />
 
-        <TextView
-            android:id="@+id/MyViewSettingWithdraw_Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="@string/MyViewSettingWithdraw_Title"
-            android:textSize="24sp" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/MyViewSettingWithdraw_MainContainer"
@@ -38,32 +29,104 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/MyViewSettingWithdraw_NoticeText"
+            android:id="@+id/MyViewSettingWithdraw_NoticeText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="20dp"
-            android:text="@string/MyViewSettingWithdraw_NoticeTitle" />
+            android:padding="10dp"
+            android:text="회원탈퇴 전 반드시 확인해주세요!"
+            android:textSize="17dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <TextView
+            android:id="@+id/MyViewSettingWithdraw_NoticeText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="탈퇴 시 정산 예정 금액은 지급되지 않습니다."
+            android:textSize="14dp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="40dp"
-            >
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/MyViewSettingWithdraw_PwInput"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/MyViewSettingWithdraw_ReasonText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:padding="10dp"
+                android:text="서베이지를 떠나는 이유를 알려주세요."
+                android:textSize="14dp"
+                android:textStyle="bold"/>
+
+            <CheckBox
+                android:id="@+id/MyViewSettingWithdraw_Reason1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="설문이 너무 적어서" />
+            <CheckBox
+                android:id="@+id/MyViewSettingWithdraw_Reason2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="설문당 지급액이 너무 적어서" />
+            <CheckBox
+                android:id="@+id/MyViewSettingWithdraw_Reason3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="알림이 너무 많아서" />
+            <CheckBox
+                android:id="@+id/MyViewSettingWithdraw_Reason4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시간이 없어서" />
+            <CheckBox
+                android:id="@+id/MyViewSettingWithdraw_Reason5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="필요를 못느껴서" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal" >
+
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/white"
-                android:gravity="center"
-                android:hint="@string/MyViewSettingWithdraw_PwInput" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_gravity="center_vertical"
+                android:text="비밀번호" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/MyViewSettingWithdraw_PwInput"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center"
+                    android:hint="@string/MyViewSettingWithdraw_PwInput"
+                    android:inputType="textPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/MyViewSettingWithdraw_WithdrawBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="25dp"
             android:backgroundTint="@color/white"
             android:text="@string/MyViewSettingWithdraw_WithdrawBtn"
             android:textColor="@color/black" />

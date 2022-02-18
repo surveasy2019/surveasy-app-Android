@@ -1,4 +1,4 @@
-package com.example.surveasy.my
+package com.example.surveasy.my.notice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,22 +23,12 @@ class MyViewNoticeListActivity : AppCompatActivity() {
         binding = ActivityMyviewnoticelistBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // ToolBar
         setSupportActionBar(binding.ToolbarMyViewNoticeList)
-
-        if(supportActionBar != null){
+        if(supportActionBar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
-
-//        binding.MyViewNoticeListItemTitle.setOnClickListener {
-//            val intent = Intent(this,MyViewNoticeListDetailActivity::class.java)
-//            startActivity(intent)
-//        }
-//        binding.MyViewNoticeListItemPinTitle.setOnClickListener {
-//            val intent = Intent(this,MyViewNoticeListDetailActivity::class.java)
-//            startActivity(intent)
-//        }
-
         binding.ToolbarMyViewNoticeList.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -61,7 +51,7 @@ class MyViewNoticeListActivity : AppCompatActivity() {
             .addOnSuccessListener { result ->
                 noticeList.clear()
                 for(document in result) {
-                    var item : NoticeItems = NoticeItems(document["title"] as String, document["date"] as String)
+                    var item : NoticeItems = NoticeItems(document["title"] as String, document["date"] as String, document["content"] as String)
                     noticeList.add(item)
                     noticeRecyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
                     noticeRecyclerView.adapter = NoticeItemsAdapter(noticeList)

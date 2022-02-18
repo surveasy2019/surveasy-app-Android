@@ -16,9 +16,11 @@
         android:theme="@style/splahScreenTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".list.SurveyDoneAlertDialogActivity"
-            android:exported="true"
-            android:theme="@style/Theme.MyDialog"/>
+            android:name=".login.PwFindActivity"
+            android:exported="true" />
+        <activity
+            android:name=".my.setting.MyViewSettingVersionActivity"
+            android:exported="true" />
         <activity
             android:name=".list.NoticeToPanelDialogActivity"
             android:exported="true"
@@ -28,7 +30,7 @@
             android:exported="true"
             android:theme="@style/Theme.MyDialog" />
         <activity
-            android:name=".list.FirstSurveyListActivity"
+            android:name=".list.firstsurvey.FirstSurveyListActivity"
             android:exported="true" />
 
         <meta-data
@@ -42,7 +44,7 @@
             android:name=".list.SurveyProofLastDialogActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewNoticeListDetailActivity"
+            android:name=".my.notice.MyViewNoticeListDetailActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
@@ -73,22 +75,19 @@
             android:name=".register.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".login.RegisterFinActivity"
+            android:name=".my.setting.MyViewSettingActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewSettingActivity"
+            android:name=".my.setting.MyViewSettingPushActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewSettingPushActivity"
+            android:name=".my.setting.MyViewSettingWithdrawActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewSettingWithdrawActivity"
+            android:name=".my.history.MyViewHistoryActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewHistoryActivity"
-            android:exported="true" />
-        <activity
-            android:name=".my.MyViewInfoActivity"
+            android:name=".my.info.MyViewInfoActivity"
             android:exported="true" />
         <activity
             android:name=".my.MyViewContactActivity"
@@ -97,7 +96,7 @@
             android:name=".my.MyViewInviteActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewNoticeListActivity"
+            android:name=".my.notice.MyViewNoticeListActivity"
             android:exported="true" />
 <!--        <activity-->
 <!--            android:name=".SplashActivity"-->

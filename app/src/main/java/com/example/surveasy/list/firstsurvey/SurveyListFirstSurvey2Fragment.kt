@@ -26,7 +26,8 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
     val userModel by activityViewModels<CurrentUserViewModel>()
     val firstSurveyModel by activityViewModels<FirstSurveyViewModel>()
 
-    private lateinit var district : String
+    private lateinit var citySpinner : Spinner
+    private var district : String? = null
     private var city : String? = null
     private var married: String? = null
     private var pet : String? = null
@@ -40,9 +41,10 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_surveylistfirstsurvey2,container,false)
-
+        citySpinner = view.findViewById(R.id.SurveyListFirstSurvey2_CitySpinner)
 
         setDistrictSpinner(view)
+        setCitySpinner(citySpinner, 0)
         setPetSpinner(view)
         setHousingTypeSpinner(view)
 
@@ -76,18 +78,27 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
     }
 
     private fun firstSurveyFin() {
-        firstSurveyModel.firstSurvey.district = district
-        firstSurveyModel.firstSurvey.city = city
-        firstSurveyModel.firstSurvey.married = married
-        firstSurveyModel.firstSurvey.pet = pet
-        firstSurveyModel.firstSurvey.family = family
-        firstSurveyModel.firstSurvey.housingType = housingType
+        if(married == null) {
+            Toast.makeText(context, "혼인 여부를 선택해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else if(family == null) {
+            Toast.makeText(context, "가구 형태를 선택해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            firstSurveyModel.firstSurvey.district = district
+            firstSurveyModel.firstSurvey.city = city
+            firstSurveyModel.firstSurvey.married = married
+            firstSurveyModel.firstSurvey.pet = pet
+            firstSurveyModel.firstSurvey.family = family
+            firstSurveyModel.firstSurvey.housingType = housingType
 
-        firestore()
+            firestore()
 
-        val intent_main : Intent = Intent(context, MainActivity::class.java)
-        intent_main.putExtra("defaultFragment_list", true)
-        startActivity(intent_main)
+            val intent_main : Intent = Intent(context, MainActivity::class.java)
+            intent_main.putExtra("defaultFragment_list", true)
+            startActivity(intent_main)
+        }
+
     }
 
     private fun firestore() {
@@ -113,8 +124,9 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
             "family" to firstSurveyModel.firstSurvey.family,
             "housingType" to firstSurveyModel.firstSurvey.housingType
         )
-        db.collection("AndroidUser").document(userModel.currentUser.uid!!).collection("FirstSurvey")
-            .add(FirstSurvey).addOnSuccessListener { Log.d(TAG, "FFFFFFFFFFFFFF First Survey uploaded!") }
+        db.collection("AndroidUser").document(userModel.currentUser.uid!!)
+            .collection("FirstSurvey").document(userModel.currentUser.uid!!)
+            .set(FirstSurvey).addOnSuccessListener { Log.d(TAG, "FFFFFFFFFFFFFF First Survey uploaded!") }
     }
 
 
@@ -128,9 +140,13 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         districtSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 district = districtList[position]
-                if(position != 7) {
-                    // setCitySpinner(view!!, position)
+                if(position == 7) {
+                    citySpinner.visibility = View.INVISIBLE
+                    city = ""
+                }
+                else {
                     citySpinner.visibility = View.VISIBLE
+                    setCitySpinner(citySpinner, position)
                 }
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -139,10 +155,10 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
     }
 
 
-    private fun setCitySpinner(view: View, district_position: Int) {
+    private fun setCitySpinner(citySpinner: Spinner, districtPosition: Int) {
         var cityList = resources.getStringArray(R.array.서울)
 
-        when(district_position) {
+        when(districtPosition) {
             0 -> { cityList = resources.getStringArray(R.array.서울) }
             1 -> { cityList = resources.getStringArray(R.array.부산) }
             2 -> { cityList = resources.getStringArray(R.array.대구) }
@@ -161,7 +177,6 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         }
 
         val cityAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, cityList)
-        val citySpinner = view.findViewById<Spinner>(R.id.SurveyListFirstSurvey2_CitySpinner)
         citySpinner.adapter = cityAdapter
         citySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -181,9 +196,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         petSpinner.adapter = petAdapter
         petSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if(position != 0) {
-                    pet = petList[position]
-                }
+                pet = petList[position]
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
