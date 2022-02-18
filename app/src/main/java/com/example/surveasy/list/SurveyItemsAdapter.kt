@@ -37,6 +37,8 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
 
         //참여한 설문 박스 색 변경
 
+
+
         if(!showCanParticipateList.contains(true)){
             if(boolList[position]){
                 holder.itemTitle.setBackgroundColor(Color.RED)

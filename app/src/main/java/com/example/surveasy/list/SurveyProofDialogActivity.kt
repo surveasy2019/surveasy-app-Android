@@ -117,32 +117,6 @@ class SurveyProofDialogActivity: AppCompatActivity() {
                 Toast.makeText(this,"#####failed", Toast.LENGTH_LONG).show()
             }
 
-        // AndroidUser-reward_current/reward_total 업데이트
-        var reward_current = 0
-        var reward_total = 0
-        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
-            .get().addOnSuccessListener { snapShot ->
-                reward_current = Integer.parseInt(snapShot["reward_current"].toString())
-                reward_total = Integer.parseInt(snapShot["reward_total"].toString())
-                Log.d(TAG, "@@@@@@@@@@@@@@@@@@@@ reward_current fetch: $reward_current")
-            }
-        reward_current += thisSurveyInfo.get(0).reward!!
-        reward_total += thisSurveyInfo.get(0).reward!!
-        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
-            .update("reward_current", reward_current, "reward_total", reward_total)
-
-
-        // surveyData-respondedPanel에 currentUser uid 추가
-        val item = hashMapOf(
-            "uid" to Firebase.auth.currentUser!!.uid
-        )
-        db.collection("AndroidSurvey").document(id)
-            .collection("respondedPanel").document(Firebase.auth.currentUser!!.uid)
-            .set(item).addOnSuccessListener { result ->
-                Log.d(TAG, "##### surveyData - respondedPanel 성공")
-            }
-
-
     }
 
     //화면에 사진 나타내기
@@ -167,7 +141,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
     private fun uploadStorage(view: View){
         val timestamp = SimpleDateFormat("yyyyMMdd_HHmm").format(Date())
         val id: String = intent.getStringExtra("id")!!
-        val imgName = id+"__"+timestamp
+        val imgName = Firebase.auth.currentUser!!.uid+"__"+timestamp
         val storageRef = storage.reference.child(id).child(imgName)
         val uploadTask = storageRef.putFile(uriPhoto!!)
 
@@ -175,7 +149,8 @@ class SurveyProofDialogActivity: AppCompatActivity() {
             Toast.makeText(this,"업로드 하는 중",Toast.LENGTH_SHORT).show()
             updateList()
             val intent = Intent(this,SurveyProofLastDialogActivity::class.java)
-            //val list = intent.putExtra("list",thisSurveyInfo)
+            intent.putExtra("reward",thisSurveyInfo.get(0).reward)
+            intent.putExtra("id",id)
             startActivity(intent)
         }
 

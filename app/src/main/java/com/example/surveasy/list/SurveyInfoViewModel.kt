@@ -23,7 +23,7 @@ class SurveyInfoViewModel:ViewModel() {
     //최신 등록순 정렬
     fun sortSurveyRecent() : ArrayList<SurveyItems>{
         val surveylist = arrayListOf<SurveyItems>()
-        surveyInfo.sortWith(compareBy<SurveyItems> { it.uploadDate })
+        surveyInfo.sortWith(compareByDescending<SurveyItems> { it.uploadDate })
         surveylist.addAll(surveyInfo)
 
         return surveylist
