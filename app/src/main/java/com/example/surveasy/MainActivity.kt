@@ -150,6 +150,7 @@ class MainActivity : AppCompatActivity() {
                     snapshot.result["accountOwner"].toString(),
                     snapshot.result["inflowPath"].toString(),
                     snapshot.result["didFirstSurvey"] as Boolean?,
+                    Integer.parseInt(snapshot.result["reward_current"].toString()),
                     Integer.parseInt(snapshot.result["reward_total"].toString()),
                     userSurveyList
                 )

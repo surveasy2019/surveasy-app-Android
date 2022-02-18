@@ -21,12 +21,6 @@
         android:orientation="horizontal"
         android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/MyViewSetting_Icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_preferences" />
-
         <TextView
             android:id="@+id/MyViewSetting_Title"
             android:layout_width="wrap_content"
@@ -49,8 +43,7 @@
             android:layout_height="65dp"
             android:backgroundTint="@color/white"
             android:text="@string/MyViewSetting_Push"
-            android:textColor="@color/black"
-            android:drawableRight="@android:drawable/ic_media_play" />
+            android:textColor="@color/black" />
 
 
         <Button
@@ -59,8 +52,7 @@
             android:layout_height="65dp"
             android:backgroundTint="@color/white"
             android:text="@string/MyViewSetting_Version"
-            android:textColor="@color/black"
-            android:drawableRight="@android:drawable/ic_media_play" />
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/MyViewSetting_Withdraw"
@@ -68,8 +60,7 @@
             android:layout_height="65dp"
             android:backgroundTint="@color/white"
             android:text="@string/MyViewSetting_Withdraw"
-            android:textColor="@color/black"
-            android:drawableRight="@android:drawable/ic_media_play" />
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/MyViewSetting_Logout"
