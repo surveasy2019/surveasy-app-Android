@@ -14,18 +14,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.net.toUri
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.example.surveasy.MainActivity
 
 import com.example.surveasy.R
 import com.example.surveasy.list.*
+import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
 import com.example.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
 import com.example.surveasy.login.*
 import com.example.surveasy.register.RegisterActivity
@@ -74,13 +74,15 @@ class HomeFragment : Fragment() {
 
 
 
-        // Banner
+        // Banner init
         bannerPager = view.findViewById(R.id.Home_BannerViewPager)
         val storage : FirebaseStorage = FirebaseStorage.getInstance()
         val storageRef : StorageReference = storage.reference.child("banner")
         var bannerList : ArrayList<String> = ArrayList()
         val listAllTask: Task<ListResult> = storageRef.listAll()
 
+        // Get banner img uri from Firebase Storage
+        // count : 'banner'폴더의 파일들이 index 순으로 들어오지 않음. 개수 다 들어왔는지 체크용
         listAllTask.addOnSuccessListener { result ->
             val items : List<StorageReference> = result.items
             val itemNum : Int = result.items.size
@@ -95,13 +97,13 @@ class HomeFragment : Fragment() {
                     if(count == itemNum) {
                         bannerPager.adapter = BannerViewPagerAdapter(context!!, bannerList)
                         bannerPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-                        //Log.d(TAG, "$$$$$$$%UUUUUUUU ${bannerList}")
                     }
                 }
 
             }
         }
 
+        // Banner 넘기면 [현재 페이지/전체 페이지] 변화
         bannerPager.apply {
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
@@ -123,17 +125,25 @@ class HomeFragment : Fragment() {
             val intent = Intent(context, RegisterActivity::class.java)
             startActivity(intent)
         }
-        moreBtn.setOnClickListener {
-            //go survey list
 
+
+        moreBtn.setOnClickListener {
+            if (userModel.currentUser.didFirstSurvey == false) {
+                val intent_surveylistfirstsurvey: Intent =
+                    Intent(context, FirstSurveyListActivity::class.java)
+                intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
+                startActivity(intent_surveylistfirstsurvey)
+            } else {
+                (activity as MainActivity).clickList()
+            }
         }
+
 
         //user name, reward 불러오기
         if (userModel.currentUser.uid != null) {
             greetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
             totalReward.text = "$ ${userModel.currentUser.rewardTotal}"
-        }
-        else {
+        } else {
             if (Firebase.auth.currentUser?.uid != null) {
                 db.collection("AndroidUser")
                     .document(Firebase.auth.currentUser!!.uid)
@@ -142,8 +152,7 @@ class HomeFragment : Fragment() {
                         totalReward.text =
                             "$ ${Integer.parseInt(document["reward_total"].toString())}"
                     }
-            }
-            else {
+            } else {
                 greetingText.text = "아직"
                 totalReward.text = "$-----"
             }
@@ -153,22 +162,25 @@ class HomeFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             val list = CoroutineScope(Dispatchers.IO).async {
                 val model by activityViewModels<SurveyInfoViewModel>()
-                while(model.surveyInfo.size==0){
-                    //Log.d(TAG,"########loading")
+                while (model.surveyInfo.size == 0) {
+                    //Log.d(TAG, "########loading")
                 }
                 model.surveyInfo.get(0).id
             }.await()
             val adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
-            container?.layoutManager = LinearLayoutManager(context,
-                LinearLayoutManager.VERTICAL,false)
+            container?.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL, false
+            )
             container?.adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
-            if(setHomeList(chooseHomeList()).size == 0){
+            if (setHomeList(chooseHomeList()).size == 0 || userModel.currentUser.didFirstSurvey == false) {
                 noneText.text = "현재 참여가능한 설문이 없습니다"
             }
         }
 
-        return view
+            return view
     }
+
 
 
 

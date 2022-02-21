@@ -39,7 +39,7 @@ class Register2Fragment : Fragment() {
         registerFragment2_Btn.setOnClickListener {
             auth = FirebaseAuth.getInstance()
             register2(view)
-            (activity as RegisterActivity).goToRegisterFin()
+
         }
 
         return view
@@ -51,8 +51,10 @@ class Register2Fragment : Fragment() {
         val accountNumber: String = view.findViewById<EditText>(R.id.RegisterFragment2_AccountNumberInput).text.toString()
         val accountOwner: String = view.findViewById<EditText>(R.id.RegisterFragment2_AccountOwnerInput).text.toString()
 
-        if(accountNumber == null) {
+        if(accountNumber == "") {
             Toast.makeText(context, "계좌번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+        }else if(accountNumber.contains("-")){
+            Toast.makeText(context, "계좌번호란에는 숫자만 입력해주세요.", Toast.LENGTH_SHORT).show()
         }
         else if(accountOwner == "") {
             Toast.makeText(context, "계좌주를 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -63,7 +65,8 @@ class Register2Fragment : Fragment() {
             db.collection("AndroidUser").document(auth.currentUser!!.uid)
                 .update("accountType", accountType, "accountNumber", accountNumber,
                     "accountOwner", accountOwner, "inflowPath", inflowPath)
-                .addOnSuccessListener { Log.d(TAG, "@@@@@ First Survey field updated!") }
+                .addOnSuccessListener { Log.d(TAG, "@@@@@ First Survey field updated!")
+                    (activity as RegisterActivity).goToRegisterFin()}
         }
 
     }

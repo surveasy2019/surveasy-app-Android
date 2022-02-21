@@ -13,8 +13,26 @@ exports.androidPushNotification = functions.firestore.document("NotificationData
                             body: snapshot.data().body
                         }
                     }
+
                 )
             })
+
+exports.androidWrongPushNotification = functions.firestore.document("ProofCancel/{docId}")
+    .onCreate((snapshot, context) => {
+
+        admin.messaging().sendToTopic(
+                    "cancelAlert",
+                    {
+                        notification: {
+                            title: snapshot.data().title,
+                            body: snapshot.data().body
+                        }
+                    }
+
+                )
+            })
+
+
 
 
 

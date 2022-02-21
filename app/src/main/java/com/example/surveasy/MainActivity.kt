@@ -1,6 +1,7 @@
 package com.example.surveasy
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     val surveyList = arrayListOf<SurveyItems>()
     val model by viewModels<SurveyInfoViewModel>()
     val userModel by viewModels<CurrentUserViewModel>()
-
 
     private lateinit var binding: ActivityMainBinding
 
