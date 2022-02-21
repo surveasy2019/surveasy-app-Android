@@ -67,7 +67,9 @@ class SurveyProofDialogActivity: AppCompatActivity() {
                 Toast.makeText(this,"*******저장 실패 ${thisSurveyInfo.toString()}",Toast.LENGTH_LONG).show()
             }
 
-
+        var photoPick = Intent(Intent.ACTION_PICK)
+        photoPick.type = "image/*"
+        startActivityForResult(photoPick, pickImageFromAlbum)
 
         binding.dialogSendBtn.setOnClickListener {
             uploadStorage(binding.dialogImageview)
@@ -80,19 +82,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         //Toast.makeText(this,"###${id}",Toast.LENGTH_LONG).show()
 
 
-        //permission 있으면 앨범에 들어가게 되어있음
-        if (checkPermission()) {
-            var photoPick = Intent(Intent.ACTION_PICK)
-            photoPick.type = "image/*"
-            startActivityForResult(photoPick, pickImageFromAlbum)
 
-        } else {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                1
-            )
-        }
 
     }
 
@@ -132,10 +122,46 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         }
     }
 
-    private fun checkPermission() : Boolean {
-        return (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                == PackageManager.PERMISSION_GRANTED)
-    }
+
+
+//    private fun requestPermission(){
+//
+//        if(!checkPermission()){
+//            if(ActivityCompat.shouldShowRequestPermissionRationale(this,
+//                Manifest.permission.READ_EXTERNAL_STORAGE)){
+//                if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
+//                    //설명 필요 (사용자가 요청을 거부한 적이 있음)
+//                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+//                        1 )
+//            }else{
+//                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+//                        1 )
+//                }
+//        }else{
+//                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+//                    1 )
+//
+//            }
+
+
+//        //permission 있으면 앨범에 들어가게 되어있음
+//        if (checkPermission()) {
+//            var photoPick = Intent(Intent.ACTION_PICK)
+//            photoPick.type = "image/*"
+//            startActivityForResult(photoPick, pickImageFromAlbum)
+//
+//        } else {
+//            ActivityCompat.requestPermissions(
+//                this,
+//                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+//                1
+//            )
+//        }
+//        var photoPick = Intent(Intent.ACTION_PICK)
+//        photoPick.type = "image/*"
+//        startActivityForResult(photoPick, pickImageFromAlbum)
+//
+//    }
 
     //firebase storage upload
     private fun uploadStorage(view: View){

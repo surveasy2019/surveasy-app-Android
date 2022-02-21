@@ -2,6 +2,7 @@ package com.example.surveasy.list
 
 import android.content.ContentValues
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -47,8 +48,6 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
         binding.SurveyListDetailResponseProofBtn.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
-
-
         }
 
         val reward = intent.getIntExtra("reward",0)

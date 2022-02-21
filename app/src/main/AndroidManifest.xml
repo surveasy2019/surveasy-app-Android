@@ -26,6 +26,10 @@
             android:exported="true"
             android:theme="@style/Theme.MyDialog" />
         <activity
+            android:name=".list.SurveyDoneAlertDialogActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyDialog" />
+        <activity
             android:name=".list.SurveyListDetailDialogActivity"
             android:exported="true"
             android:theme="@style/Theme.MyDialog" />
