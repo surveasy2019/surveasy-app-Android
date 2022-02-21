@@ -9,13 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.surveasy.MainActivity
 
 import com.example.surveasy.R
 import com.example.surveasy.list.*
+import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
 import com.example.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
 import com.example.surveasy.login.*
 import com.example.surveasy.register.RegisterActivity
@@ -60,53 +63,64 @@ class HomeFragment : Fragment() {
             val intent = Intent(context, RegisterActivity::class.java)
             startActivity(intent)
         }
+
+
         moreBtn.setOnClickListener {
-            //go survey list
-
-        }
-
-        //user name, reward 불러오기
-        if (userModel.currentUser.uid != null) {
-            greetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
-            totalReward.text = "$ ${userModel.currentUser.rewardTotal}"
-        }
-        else {
-            if (Firebase.auth.currentUser?.uid != null) {
-                db.collection("AndroidUser")
-                    .document(Firebase.auth.currentUser!!.uid)
-                    .get().addOnSuccessListener { document ->
-                        greetingText.text = "안녕하세요, ${document["name"].toString()}님"
-                        totalReward.text =
-                            "$ ${Integer.parseInt(document["reward_total"].toString())}"
-                    }
-            }
-            else {
-                greetingText.text = "아직"
-                totalReward.text = "$-----"
+            if (userModel.currentUser.didFirstSurvey == false) {
+                val intent_surveylistfirstsurvey: Intent =
+                    Intent(context, FirstSurveyListActivity::class.java)
+                intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
+                startActivity(intent_surveylistfirstsurvey)
+            } else {
+                (activity as MainActivity).clickList()
             }
         }
 
-        //list 불러오기
-        CoroutineScope(Dispatchers.Main).launch {
-            val list = CoroutineScope(Dispatchers.IO).async {
-                val model by activityViewModels<SurveyInfoViewModel>()
-                while(model.surveyInfo.size==0){
-                    Log.d(TAG,"########loading")
+
+            //user name, reward 불러오기
+            if (userModel.currentUser.uid != null) {
+                greetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
+                totalReward.text = "$ ${userModel.currentUser.rewardTotal}"
+            } else {
+                if (Firebase.auth.currentUser?.uid != null) {
+                    db.collection("AndroidUser")
+                        .document(Firebase.auth.currentUser!!.uid)
+                        .get().addOnSuccessListener { document ->
+                            greetingText.text = "안녕하세요, ${document["name"].toString()}님"
+                            totalReward.text =
+                                "$ ${Integer.parseInt(document["reward_total"].toString())}"
+                        }
+                } else {
+                    greetingText.text = "아직"
+                    totalReward.text = "$-----"
                 }
-                model.surveyInfo.get(0).id
-            }.await()
-            val adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
-            container?.layoutManager = LinearLayoutManager(context,
-                LinearLayoutManager.VERTICAL,false)
-            container?.adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
-            if(setHomeList(chooseHomeList()).size == 0){
-                noneText.text = "현재 참여가능한 설문이 없습니다"
             }
-        }
+
+            //list 불러오기
+            CoroutineScope(Dispatchers.Main).launch {
+                val list = CoroutineScope(Dispatchers.IO).async {
+                    val model by activityViewModels<SurveyInfoViewModel>()
+                    while (model.surveyInfo.size == 0) {
+                        Log.d(TAG, "########loading")
+                    }
+                    model.surveyInfo.get(0).id
+                }.await()
+                val adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
+                container?.layoutManager = LinearLayoutManager(
+                    context,
+                    LinearLayoutManager.VERTICAL, false
+                )
+                container?.adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
+                if (setHomeList(chooseHomeList()).size == 0 || userModel.currentUser.didFirstSurvey == false) {
+                    noneText.text = "현재 참여가능한 설문이 없습니다"
+                }
+            }
 
 
 
-        return view
+
+            return view
+
     }
 
     //설문 참여, 마감 유무 boolean list

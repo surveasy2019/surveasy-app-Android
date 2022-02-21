@@ -77,19 +77,26 @@ class Register1Fragment : Fragment() {
         Log.d(TAG, "이거!!!!!!!!!!!! $birthDate")
 
         if(name == "") {
-            Toast.makeText(context, "성함을 입력해주세요.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
+        }else if(name.length==1 || name.contains(" ")){
+            Toast.makeText(context, "이름을 올바르게 입력해주세요.", Toast.LENGTH_SHORT).show()
         }
-        else if (email == "") {
-            Toast.makeText(context, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
+        else if (email == "" || !email.contains("@") || !email.contains(".")) {
+            Toast.makeText(context, "이메일을 올바르게 입력해주세요.", Toast.LENGTH_SHORT).show()
         }
         else if (password == "") {
             Toast.makeText(context, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+        }else if(password.length<8){
+            Toast.makeText(context, "8자리 이상의 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
         }
         else if (password != passwordCheck) {
             Toast.makeText(context, "비밀번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show()
         }
-        else if (phoneNumber == "") {
-            Toast.makeText(context, "휴대폰번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+        else if(phoneNumber.contains("-")||phoneNumber.contains(".")){
+            Toast.makeText(context, "휴대폰번호란에는 숫자만 입력해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else if (phoneNumber == "" || phoneNumber.length != 11) {
+            Toast.makeText(context, "휴대폰번호를 올바르게 입력해주세요.", Toast.LENGTH_SHORT).show()
         }
         else if (gender == null) {
             Toast.makeText(context, "성별을 선택해주세요.", Toast.LENGTH_SHORT).show()
