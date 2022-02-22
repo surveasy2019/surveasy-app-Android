@@ -61,6 +61,7 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val container : RecyclerView? = view.findViewById(R.id.homeList_recyclerView)
         val userModel by activityViewModels<CurrentUserViewModel>()
+        val bannerModel by activityViewModels<BannerViewModel>()
         val model by activityViewModels<SurveyInfoViewModel>()
         val current_banner: TextView = view.findViewById(R.id.textView_current_banner)
         val total_banner: TextView = view.findViewById(R.id.textView_total_banner)
@@ -73,35 +74,23 @@ class HomeFragment : Fragment() {
         val img : ImageView = view.findViewById(R.id.img)
 
 
-
         // Banner init
         bannerPager = view.findViewById(R.id.Home_BannerViewPager)
-        val storage : FirebaseStorage = FirebaseStorage.getInstance()
-        val storageRef : StorageReference = storage.reference.child("banner")
-        var bannerList : ArrayList<String> = ArrayList()
-        val listAllTask: Task<ListResult> = storageRef.listAll()
 
-        // Get banner img uri from Firebase Storage
-        // count : 'banner'폴더의 파일들이 index 순으로 들어오지 않음. 개수 다 들어왔는지 체크용
-        listAllTask.addOnSuccessListener { result ->
-            val items : List<StorageReference> = result.items
-            val itemNum : Int = result.items.size
-            var count = 1
-            total_banner.text = itemNum.toString()
-            items.forEachIndexed { index, item ->
-                item.downloadUrl.addOnSuccessListener {
-                    bannerList.add(it.toString())
-                     //Log.d(TAG, "UUUUUUUU${index}---$itemNum---- ${count}-${bannerList}")
-                    count ++
-
-                    if(count == itemNum) {
-                        bannerPager.adapter = BannerViewPagerAdapter(context!!, bannerList)
-                        bannerPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-                    }
+        CoroutineScope(Dispatchers.Main).launch {
+            val banner = CoroutineScope(Dispatchers.IO).async {
+                while (bannerModel.uriList.size == 0) {
+                    // Log.d(TAG, "+++++++BANNER LOADING++++++")
                 }
+                bannerModel.uriList
+            }.await()
 
-            }
+            total_banner.text = bannerModel.num.toString()
+            bannerPager.adapter = BannerViewPagerAdapter(context!!, bannerModel.uriList)
+            bannerPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
         }
+
 
         // Banner 넘기면 [현재 페이지/전체 페이지] 변화
         bannerPager.apply {
