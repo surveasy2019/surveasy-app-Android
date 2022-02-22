@@ -29,6 +29,8 @@ import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
 import com.example.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
 import com.example.surveasy.login.*
 import com.example.surveasy.register.RegisterActivity
+import com.example.surveasy.tutorial.Tutorial
+import com.example.surveasy.tutorial.TutorialActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
@@ -106,7 +108,8 @@ class HomeFragment : Fragment() {
 
 
         login.setOnClickListener {
-            val intent = Intent(context, LoginActivity::class.java)
+            //val intent = Intent(context, LoginActivity::class.java)
+            val intent = Intent(context, TutorialActivity::class.java)
             startActivity(intent)
         }
 

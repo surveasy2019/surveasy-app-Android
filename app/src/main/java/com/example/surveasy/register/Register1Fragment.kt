@@ -171,6 +171,15 @@ class Register1Fragment : Fragment() {
                                     .addOnFailureListener { e ->
                                         Log.w(TAG, "##### 회원가입 1 set 실패", e)
                                     }
+
+                                val firstSurvey = hashMapOf(
+                                    "EngSurvey" to false
+                                )
+                                db.collection("AndroidUser").document(firebaseUID)
+                                    .collection("FirstSurvey").document(firebaseUID)
+                                    .set(firstSurvey).addOnSuccessListener {
+                                        Log.d(TAG, "##### 회원가입 1 set ENG SURVEY 성공")
+                                    }
                             })
                         (activity as RegisterActivity).goToRegister2()
 
