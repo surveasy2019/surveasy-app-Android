@@ -1,23 +1,28 @@
 package com.example.surveasy
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.viewpager2.widget.ViewPager2
 import com.example.surveasy.databinding.ActivityMainBinding
+import com.example.surveasy.home.BannerViewModel
+import com.example.surveasy.home.BannerViewPagerAdapter
 import com.example.surveasy.home.HomeFragment
-import com.example.surveasy.home.HomeListViewModel
 import com.example.surveasy.list.*
 import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
 import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
 import com.example.surveasy.my.MyViewFragment
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ListResult
+import com.google.firebase.storage.StorageReference
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     val surveyList = arrayListOf<SurveyItems>()
     val model by viewModels<SurveyInfoViewModel>()
     val userModel by viewModels<CurrentUserViewModel>()
+    val bannerModel by viewModels<BannerViewModel>()
 
     private lateinit var binding: ActivityMainBinding
 
@@ -33,6 +39,8 @@ class MainActivity : AppCompatActivity() {
 
         setTheme(R.style.Theme_Surveasy)
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        fetchBanner()
 
 
         // Current User
@@ -205,6 +213,28 @@ class MainActivity : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.d(TAG, "fail $exception")
             }
+    }
+
+
+    // Get banner img uri from Firebase Storage
+    private fun fetchBanner() {
+        val storage : FirebaseStorage = FirebaseStorage.getInstance()
+        val storageRef : StorageReference = storage.reference.child("banner")
+        val listAllTask: Task<ListResult> = storageRef.listAll()
+
+
+        listAllTask.addOnSuccessListener { result ->
+            val items : List<StorageReference> = result.items
+            val itemNum : Int = result.items.size
+            bannerModel.num = itemNum
+            items.forEachIndexed { index, item ->
+                item.downloadUrl.addOnSuccessListener {
+                    bannerModel.uriList.add(it.toString())
+                    Log.d(TAG, "UUUUUUUU--${index}---$itemNum---${bannerModel.num}--${bannerModel.uriList}+++")
+                }
+
+            }
+        }
     }
 }
 

@@ -16,6 +16,9 @@
         android:theme="@style/splahScreenTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".tutorial.TutorialActivity"
+            android:exported="true" />
+        <activity
             android:name=".login.FindPwActivity"
             android:exported="true" />
         <activity
@@ -101,18 +104,15 @@
             android:exported="true" />
         <activity
             android:name=".my.notice.MyViewNoticeListActivity"
-            android:exported="true" />
-<!--        <activity-->
-<!--            android:name=".SplashActivity"-->
-<!--            android:exported="true"-->
-<!--            android:theme="@style/Splash">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
-
+            android:exported="true" /> <!-- <activity -->
+        <!-- android:name=".SplashActivity" -->
+        <!-- android:exported="true" -->
+        <!-- android:theme="@style/Splash"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
         <service
             android:name=".fcm.MyFirebaseMessagingService"
             android:exported="false">
