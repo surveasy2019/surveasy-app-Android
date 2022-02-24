@@ -250,13 +250,23 @@
 <!--            android:layout_margin="10dp" />-->
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/RegisterFragment1_Btn"
-        android:layout_width="wrap_content"
+    <ProgressBar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="다음"
-        android:layout_gravity="center"/>
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminate="false"
+        android:theme="@style/progressBar"
+        android:layout_weight="1"
+        android:max="5"
+        android:progress="3"
+        android:minHeight="50dp"/>
+
+<!--    <Button-->
+<!--        android:id="@+id/RegisterFragment1_Btn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="다음"-->
+<!--        android:layout_gravity="center"/>-->
 
 
 </LinearLayout>

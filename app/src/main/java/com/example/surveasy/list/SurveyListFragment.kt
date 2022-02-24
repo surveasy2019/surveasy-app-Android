@@ -12,6 +12,8 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.MainActivity
@@ -86,9 +88,9 @@ class SurveyListFragment() : Fragment() {
                     }
                     model.surveyInfo.get(0).id
                 }.await()
-                val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),showCanParticipateList)
+                val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),showCanParticipateList)
                 container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-                container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),showCanParticipateList)
+                container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),showCanParticipateList)
             }
 
         }
@@ -97,9 +99,15 @@ class SurveyListFragment() : Fragment() {
 
 
         refreshBtn.setOnClickListener{
+
+
             (activity as MainActivity).clickList()
-            Log.d(TAG,"%%%%%refresh")
-        }
+            Log.d(TAG,"%%%%refresh")
+
+            }
+
+
+
 
 
 

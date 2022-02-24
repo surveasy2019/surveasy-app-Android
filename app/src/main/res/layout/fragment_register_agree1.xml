@@ -2,9 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+
+    android:background="#ffffff"
     tools:context=".register.RegisterAgree1Fragment">
 
     <androidx.appcompat.widget.Toolbar
@@ -13,18 +15,148 @@
         android:id="@+id/ToolbarRegisterAgree1"
         android:theme="@style/ToolbarTheme"
         android:background="@color/white"
+        app:title="패널 가입"
+        android:textStyle="normal"
+        android:textSize="11.3sp"
+        android:textColor="#000000"
+        android:lineSpacingExtra="3.3sp"
+        android:textAlignment="center"
         app:titleTextColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/RegisterAgree1_title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="약관 동의"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30dp">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/RegisterAgree1_Btn"
-        android:text="다음"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textStyle="normal"
+            android:textSize="11.3sp"
+            android:textColor="#0aab00"
+            android:lineSpacingExtra="3.3sp"
+            android:text="약관 동의"/>
+
+        <View
+            android:layout_width="194.7dp"
+            android:layout_height="0dp"
+            android:background="@drawable/path_5">
+        </View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/registerAgree1_agree1"/>
+            <TextView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="4.7sp"
+                android:text="모두 동의합니다."
+                android:checked="false"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/registerAgree1_agree2"
+                android:checked="false"/>
+            <TextView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="4.7sp"
+                android:text="(필수) 이용약관 동의"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/registerAgree1_agree3"
+                android:checked="false"/>
+            <TextView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="4.7sp"
+                android:text="(필수) 개인 정보 처리 방침 동의"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/registerAgree1_agree4"
+                android:checked="false"/>
+            <TextView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="4.7sp"
+                android:text="(선택) 마케팅/SNS 수신 동의"/>
+
+        </LinearLayout>
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:theme="@style/progressBar"
+            android:indeterminate="false"
+            android:layout_weight="1"
+            android:max="5"
+            android:progress="1"
+            android:minHeight="50dp"/>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
 
 </LinearLayout>

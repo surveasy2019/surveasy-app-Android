@@ -12,6 +12,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class RegisterActivity : AppCompatActivity() {
+    var i = 0
 
     private lateinit var binding:ActivityRegisterBinding
     val db = Firebase.firestore
@@ -39,20 +40,46 @@ class RegisterActivity : AppCompatActivity() {
         binding.ToolbarRegister.setNavigationOnClickListener {
             onBackPressed()
         }
+        binding.RegisterAgreeBtn.text = "다음"
+
+        binding.RegisterAgreeBtn.setOnClickListener {
+            when(i){
+                0 -> goAgree2()
+                1 -> goToRegister1()
+                2 -> goToRegister2()
+                3 -> goToRegisterFin()
+
+            }
+        }
+
 
 
     }
+
+    fun goAgree2(){
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.RegisterView, RegisterAgree2Fragment())
+            .commit()
+        i=1
+        binding.RegisterAgreeBtn.text = "확인했습니다"
+    }
+
 
     fun goToRegister1() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.RegisterView, Register1Fragment())
             .commit()
+        i=2
+        binding.RegisterAgreeBtn.text = "다음"
     }
 
     fun goToRegister2() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.RegisterView, Register2Fragment())
             .commit()
+        i=3
+       binding.RegisterAgreeBtn.text = "패널 가입 완료"
+
     }
 
     fun goToRegisterFin() {

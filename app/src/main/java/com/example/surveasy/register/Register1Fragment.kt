@@ -70,11 +70,11 @@ class Register1Fragment : Fragment() {
         })
 
 
-        val registerFragment1Btn: Button = view.findViewById(R.id.RegisterFragment1_Btn)
-        registerFragment1Btn.setOnClickListener {
-            auth = FirebaseAuth.getInstance()
-            register1(view)
-        }
+//        val registerFragment1Btn: Button = view.findViewById(R.id.RegisterFragment1_Btn)
+//        registerFragment1Btn.setOnClickListener {
+//            auth = FirebaseAuth.getInstance()
+//            register1(view)
+//        }
 
         return view
     }

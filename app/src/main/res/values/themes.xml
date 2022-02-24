@@ -42,6 +42,9 @@
 <!--        <item name="android:windowMinWidthMajor">@dimen/dialog_min_width_major</item>-->
 <!--        <item name="android:windowMinWidthMinor">@dimen/dialog_min_width_minor</item>-->
     </style>
+    <style name="progressBar">
+        <item name="colorAccent">#4da830</item>
+    </style>
 
 
 </resources>
