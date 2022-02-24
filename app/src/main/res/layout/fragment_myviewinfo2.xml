@@ -93,8 +93,7 @@
                 android:id="@+id/MyViewInfo_InfoItem_EngSurvey_O"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="희망함"
-                android:checked="true" />
+                android:text="희망함" />
 
             <RadioButton
                 android:id="@+id/MyViewInfo_InfoItem_EngSurvey_X"

@@ -1,5 +1,6 @@
 package com.example.surveasy.register
 
+import android.app.DatePickerDialog
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -24,9 +26,7 @@ class Register1Fragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     var gender : String? = null
     var birthDate: String? = null
-    var year : String? = null
-    var month : String? = null
-    var day : String? = null
+    var cal = Calendar.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,9 +48,26 @@ class Register1Fragment : Fragment() {
         }
 
 
-        year = initYearPicker(view)
-        month = initMonthPicker(view)
-        day = initDayPicker(view)
+
+        // Create OnDateSetListener
+        val dateSetListener = object : DatePickerDialog.OnDateSetListener {
+            override fun onDateSet(view1: DatePicker?, year: Int, month: Int, day: Int) {
+                cal.set(Calendar.YEAR, year)
+                cal.set(Calendar.MONTH, month)
+                cal.set(Calendar.DAY_OF_MONTH, day)
+                getBirthDate(view)
+            }
+        }
+
+        // Show DatePickerDialog
+        val birthDatePickerBtn = view.findViewById<Button>(R.id.RegisterFragment1_BirthDatePickerBtn)
+        birthDatePickerBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View) {
+                DatePickerDialog(context!!, dateSetListener,
+                    cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
+                    .show()
+            }
+        })
 
 
         val registerFragment1Btn: Button = view.findViewById(R.id.RegisterFragment1_Btn)
@@ -63,6 +80,17 @@ class Register1Fragment : Fragment() {
     }
 
 
+    private fun getBirthDate(view: View) {
+        val format = "yyyy-MM-dd"
+        val sdf = SimpleDateFormat(format)
+        birthDate = sdf.format(cal.time)
+        val birthDateSelected = view.findViewById<TextView>(R.id.RegisterFragment1_BirthDateSelected)
+        birthDateSelected.text = birthDate
+        Log.d(TAG, "@@@@@@@@------- birthdate : $birthDate")
+
+    }
+
+
     // Register1
     private fun register1(view: View) {
         val name: String = view.findViewById<EditText>(R.id.RegisterFragment1_NameInput).text.toString()
@@ -70,11 +98,7 @@ class Register1Fragment : Fragment() {
         val password = view.findViewById<EditText>(R.id.RegisterFragment1_PwInput).text.toString()
         val passwordCheck = view.findViewById<EditText>(R.id.RegisterFragment1_PwCheckInput).text.toString()
         val phoneNumber: String = view.findViewById<EditText>(R.id.RegisterFragment1_PhoneNumberInput).text.toString()
-        year = initYearPicker(view)
-        month = initMonthPicker(view)
-        day = initDayPicker(view)
-        birthDate = year + "-" + month + "-" + day
-        Log.d(TAG, "이거!!!!!!!!!!!! $birthDate")
+        Log.d(TAG, "@@@@@@@@------- birthdate : $birthDate")
 
         if(name == "") {
             Toast.makeText(context, "이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -100,6 +124,9 @@ class Register1Fragment : Fragment() {
         }
         else if (gender == null) {
             Toast.makeText(context, "성별을 선택해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else if (birthDate == null) {
+            Toast.makeText(context, "생년월일을 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
         else {
             val db = Firebase.firestore
@@ -144,6 +171,15 @@ class Register1Fragment : Fragment() {
                                     .addOnFailureListener { e ->
                                         Log.w(TAG, "##### 회원가입 1 set 실패", e)
                                     }
+
+                                val firstSurvey = hashMapOf(
+                                    "EngSurvey" to false
+                                )
+                                db.collection("AndroidUser").document(firebaseUID)
+                                    .collection("FirstSurvey").document(firebaseUID)
+                                    .set(firstSurvey).addOnSuccessListener {
+                                        Log.d(TAG, "##### 회원가입 1 set ENG SURVEY 성공")
+                                    }
                             })
                         (activity as RegisterActivity).goToRegister2()
 
@@ -160,42 +196,42 @@ class Register1Fragment : Fragment() {
     }
 
     // Birth Pickers
-    private fun initYearPicker(view: View): String {
-        val today = Calendar.getInstance()
-        val currentYear = today.get(Calendar.YEAR)
-        val numberPicker = view.findViewById<NumberPicker>(R.id.RegisterFragment1_Year)
-        numberPicker.minValue = currentYear - 35
-        numberPicker.maxValue = currentYear
-        numberPicker.wrapSelectorWheel = false
-
-        var year : Int = numberPicker.minValue
-        year = numberPicker.value
-        return year.toString()
-    }
-
-    private fun initMonthPicker(view: View): String {
-        val numberPicker = view.findViewById<NumberPicker>(R.id.RegisterFragment1_Month)
-        numberPicker.minValue = 1
-        numberPicker.maxValue = 12
-        numberPicker.wrapSelectorWheel = false
-
-        var month : Int = numberPicker.minValue
-        month = numberPicker.value
-        var monthStr: String = month.toString()
-        if (month < 10) monthStr = "0" + monthStr
-        return monthStr
-    }
-
-    private fun initDayPicker(view: View): String {
-        val numberPicker = view.findViewById<NumberPicker>(R.id.RegisterFragment1_Date)
-        numberPicker.minValue = 1
-        numberPicker.maxValue = 31
-        numberPicker.wrapSelectorWheel = false
-
-        var day : Int = numberPicker.minValue
-        day = numberPicker.value
-        var dayStr: String = day.toString()
-        if (day < 10) dayStr = "0" + dayStr
-        return dayStr
-    }
+//    private fun initYearPicker(view: View): String {
+//        val today = Calendar.getInstance()
+//        val currentYear = today.get(Calendar.YEAR)
+//        val numberPicker = view.findViewById<NumberPicker>(R.id.RegisterFragment1_Year)
+//        numberPicker.minValue = currentYear - 35
+//        numberPicker.maxValue = currentYear
+//        numberPicker.wrapSelectorWheel = false
+//
+//        var year : Int = numberPicker.minValue
+//        year = numberPicker.value
+//        return year.toString()
+//    }
+//
+//    private fun initMonthPicker(view: View): String {
+//        val numberPicker = view.findViewById<NumberPicker>(R.id.RegisterFragment1_Month)
+//        numberPicker.minValue = 1
+//        numberPicker.maxValue = 12
+//        numberPicker.wrapSelectorWheel = false
+//
+//        var month : Int = numberPicker.minValue
+//        month = numberPicker.value
+//        var monthStr: String = month.toString()
+//        if (month < 10) monthStr = "0" + monthStr
+//        return monthStr
+//    }
+//
+//    private fun initDayPicker(view: View): String {
+//        val numberPicker = view.findViewById<NumberPicker>(R.id.RegisterFragment1_Date)
+//        numberPicker.minValue = 1
+//        numberPicker.maxValue = 31
+//        numberPicker.wrapSelectorWheel = false
+//
+//        var day : Int = numberPicker.minValue
+//        day = numberPicker.value
+//        var dayStr: String = day.toString()
+//        if (day < 10) dayStr = "0" + dayStr
+//        return dayStr
+//    }
 }

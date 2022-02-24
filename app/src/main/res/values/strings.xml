@@ -14,6 +14,23 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
+    // Tutorial
+    <string-array name="tutorial_title">
+        <item>설문 참여는 쉽게, 보상은 확실하게</item>
+        <item>푸쉬 알림으로 빠르고 편한 설문 참여</item>
+        <item>참여할수록 빠르게 쌓이는 현금</item>
+        <item>쌓인 금액은 10일마다 정산</item>
+        <item>Survey를 Easy하게, 서베이지</item>
+    </string-array>
+
+    <string-array name="tutorial_content">
+        <item>설문에 응답하면 현금이 쌓여요. 최소 100원부터, 한번에 커피 한잔 값까지!</item>
+        <item>1시간 또는 하루 내에 빠르게 마감되는 설문을 알림 서비스로 알려드리니, 놓치지 마세요!</item>
+        <item>설문에 자주, 많이 참여할수록 패널 등급이 올라가요.</item>
+        <item>번거로운 포인트 제도 NO! 별도의 기준 없이, 현금으로 바로 정산해드려요.</item>
+        <item>저희는 설문 의뢰자와 응답자 모두 편리하게 설문을 진행할 수 있는 플랫폼을 꿈꿔요. 연구에 가치를 더하는 과정을 함께 해주세요!</item>
+    </string-array>
+
     // RegisterFragment2
     <string-array name="accountType">
         <item>국민</item>

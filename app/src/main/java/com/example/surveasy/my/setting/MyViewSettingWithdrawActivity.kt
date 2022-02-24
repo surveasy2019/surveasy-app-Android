@@ -1,6 +1,5 @@
 package com.example.surveasy.my.setting
 
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
@@ -9,20 +8,12 @@ import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityMyviewsettingwithdrawBinding
 import com.example.surveasy.login.LoginActivity
-import com.example.surveasy.login.PwFindActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 
 class MyViewSettingWithdrawActivity : AppCompatActivity() {
 
