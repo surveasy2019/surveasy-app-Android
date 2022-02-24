@@ -96,7 +96,7 @@ class Register2Fragment : Fragment() {
                                     "accountOwner" to accountOwner,
                                     "inflowPath" to inflowPath,
                                     "didFirstSurvey" to false,
-                                    "pushOn" to true,
+                                    "pushOn" to false,
                                     "reward_current" to 0,
                                     "reward_total" to 0
                                 )

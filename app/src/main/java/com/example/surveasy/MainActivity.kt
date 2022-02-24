@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
+import com.example.surveasy.databinding.ActivityLoginBinding
 import com.example.surveasy.databinding.ActivityMainBinding
 import com.example.surveasy.home.BannerViewModel
 import com.example.surveasy.home.BannerViewPagerAdapter
@@ -15,6 +16,7 @@ import com.example.surveasy.list.*
 import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
 import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
+import com.example.surveasy.login.LoginActivity
 import com.example.surveasy.my.MyViewFragment
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
@@ -25,6 +27,10 @@ import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
 
 class MainActivity : AppCompatActivity() {
+
+    // auto Login 여부 먼저 fetch 해보자!!!!!!!!!!!!!!!!!!!!!!
+
+
 
     val db = Firebase.firestore
     val surveyList = arrayListOf<SurveyItems>()
@@ -55,6 +61,7 @@ class MainActivity : AppCompatActivity() {
             fetchCurrentUser(Firebase.auth.currentUser!!.uid)
             fetchSurvey()
         }
+
 
 
         // Current User from LoginActivity
@@ -161,10 +168,15 @@ class MainActivity : AppCompatActivity() {
                     snapshot.result["accountOwner"].toString(),
                     snapshot.result["inflowPath"].toString(),
                     snapshot.result["didFirstSurvey"] as Boolean?,
+                    snapshot.result["autoLogin"] as Boolean?,
                     Integer.parseInt(snapshot.result["reward_current"].toString()),
                     Integer.parseInt(snapshot.result["reward_total"].toString()),
                     userSurveyList
                 )
+//                if(snapshot.result["autoLogin"] == false) {
+//                    intent = Intent(this, LoginActivity::class.java)
+//                    startActivity(intent)
+//                }
                 userModel.currentUser = currentUser
                 Log.d(TAG, "^^^^####$$$$%%%%%%%@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
 
