@@ -1,52 +1,33 @@
 package com.example.surveasy.home
 
-import android.content.ContentValues.TAG
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.example.surveasy.MainActivity
 
 import com.example.surveasy.R
 import com.example.surveasy.list.*
 import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
-import com.example.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
 import com.example.surveasy.login.*
 import com.example.surveasy.register.RegisterActivity
-import com.example.surveasy.tutorial.Tutorial
-import com.example.surveasy.tutorial.TutorialActivity
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
+import com.example.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.messaging.FirebaseMessaging
-import com.google.firebase.messaging.ktx.messaging
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ListResult
-import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import org.w3c.dom.Text
 
 
 class HomeFragment : Fragment() {
@@ -109,7 +90,7 @@ class HomeFragment : Fragment() {
 
         login.setOnClickListener {
             //val intent = Intent(context, LoginActivity::class.java)
-            val intent = Intent(context, TutorialActivity::class.java)
+            val intent = Intent(context, FirstIntroduceScreenActivity::class.java)
             startActivity(intent)
         }
 

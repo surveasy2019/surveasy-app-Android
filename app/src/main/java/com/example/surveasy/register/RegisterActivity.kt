@@ -1,13 +1,14 @@
 package com.example.surveasy.register
 
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.activityViewModels
+import androidx.databinding.adapters.AutoCompleteTextViewBindingAdapter
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityRegisterBinding
-import com.example.surveasy.login.CurrentUserViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -15,11 +16,12 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityRegisterBinding
     val db = Firebase.firestore
+    val registerModel by viewModels<RegisterInfo1ViewModel>()
+    var isValid = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val userModel by viewModels<CurrentUserViewModel>()
 
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -41,7 +43,9 @@ class RegisterActivity : AppCompatActivity() {
         }
 
 
+
     }
+
 
     fun goToRegister1() {
         supportFragmentManager.beginTransaction()
@@ -49,10 +53,12 @@ class RegisterActivity : AppCompatActivity() {
             .commit()
     }
 
+
     fun goToRegister2() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.RegisterView, Register2Fragment())
             .commit()
+
     }
 
     fun goToRegisterFin() {

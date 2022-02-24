@@ -8,14 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.activityViewModels
 import com.example.surveasy.R
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 
 
 class Register2Fragment : Fragment() {
     private lateinit var auth: FirebaseAuth
+    val registerModel by activityViewModels<RegisterInfo1ViewModel>()
     private var accountType : String? = null
     private var inflowPath : String? = null
 
@@ -61,12 +65,70 @@ class Register2Fragment : Fragment() {
         }
         else {
             val db = Firebase.firestore
-            auth = FirebaseAuth.getInstance()
-            db.collection("AndroidUser").document(auth.currentUser!!.uid)
-                .update("accountType", accountType, "accountNumber", accountNumber,
-                    "accountOwner", accountOwner, "inflowPath", inflowPath)
-                .addOnSuccessListener { Log.d(TAG, "@@@@@ First Survey field updated!")
-                    (activity as RegisterActivity).goToRegisterFin()}
+
+            auth.createUserWithEmailAndPassword(registerModel.registerInfo1.email!!, registerModel.registerInfo1.password!!)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val firebaseUID = auth.currentUser!!.uid
+
+                        FirebaseMessaging.getInstance().token.addOnCompleteListener(
+                            OnCompleteListener { task ->
+                                if (!task.isSuccessful) {
+                                    Log.w(
+                                        TAG,
+                                        "Fetching FCM registration token failed",
+                                        task.exception
+                                    )
+                                    return@OnCompleteListener
+                                }
+                                val token = task.result
+
+                                val user = hashMapOf(
+                                    "uid" to firebaseUID,
+                                    "fcmToken" to token,
+                                    "name" to registerModel.registerInfo1.name,
+                                    "email" to registerModel.registerInfo1.email,
+                                    "phoneNumber" to registerModel.registerInfo1.phoneNumber,
+                                    "gender" to registerModel.registerInfo1.gender,
+                                    "birthDate" to registerModel.registerInfo1.birthDate,
+                                    "accountType" to accountType,
+                                    "accountNumber" to accountNumber,
+                                    "accountOwner" to accountOwner,
+                                    "inflowPath" to inflowPath,
+                                    "didFirstSurvey" to false,
+                                    "pushOn" to true,
+                                    "reward_current" to 0,
+                                    "reward_total" to 0
+                                )
+                                db.collection("AndroidUser").document(firebaseUID)
+                                    .set(user).addOnSuccessListener { documentReference ->
+                                        Log.d(TAG, "##### 회원가입 2 set 성공")
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.w(TAG, "##### 회원가입 2 set 실패", e)
+                                    }
+
+                                val firstSurvey = hashMapOf(
+                                    "EngSurvey" to false
+                                )
+                                db.collection("AndroidUser").document(firebaseUID)
+                                    .collection("FirstSurvey").document(firebaseUID)
+                                    .set(firstSurvey).addOnSuccessListener {
+                                        Log.d(TAG, "##### 회원가입 2 set ENG SURVEY 성공")
+                                    }
+                            })
+                        (activity as RegisterActivity).goToRegisterFin()
+
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "#####Auth Error: " + task.exception!!.message.toString(),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
         }
 
     }
