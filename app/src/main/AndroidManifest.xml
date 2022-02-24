@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/splahScreenTheme"
         android:usesCleartextTraffic="true">
+
         <activity
             android:name=".tutorial.TutorialActivity"
             android:exported="true" />

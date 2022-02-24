@@ -72,7 +72,9 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         startActivityForResult(photoPick, pickImageFromAlbum)
 
         binding.dialogSendBtn.setOnClickListener {
+
             uploadStorage(binding.dialogImageview)
+            finish()
         }
 
         binding.dialogEditBtn.setOnClickListener {
