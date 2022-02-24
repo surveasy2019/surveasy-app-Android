@@ -31,6 +31,7 @@ class NoticeToPanelDialogActivity : AppCompatActivity() {
             intent.putExtra("id", id)
             intent.putExtra("index", index)
             startActivity(intent)
+            finish()
         }
     }
 }

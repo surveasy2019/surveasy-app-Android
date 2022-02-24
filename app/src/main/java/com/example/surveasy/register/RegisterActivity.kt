@@ -29,7 +29,7 @@ class RegisterActivity : AppCompatActivity() {
 
         val transaction = supportFragmentManager.beginTransaction()
         setContentView(binding.root)
-        transaction.add(R.id.RegisterView, Register1Fragment()).commit()
+        transaction.add(R.id.RegisterView, RegisterAgree1Fragment()).commit()
 
 
         val registerToolbar : Toolbar? = findViewById(R.id.ToolbarRegister)
@@ -44,6 +44,13 @@ class RegisterActivity : AppCompatActivity() {
 
 
 
+    }
+
+
+    fun goToRegister1() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.RegisterView, Register1Fragment())
+            .commit()
     }
 
 
