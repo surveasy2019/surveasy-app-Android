@@ -14,6 +14,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 
 class MyViewSettingPushActivity : AppCompatActivity() {
+    val db = Firebase.firestore
 
     private lateinit var binding: ActivityMyviewsettingpushBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,24 +34,23 @@ class MyViewSettingPushActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        val db = Firebase.firestore
-        var pushOn : Boolean? = null
-        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
-            .get().addOnSuccessListener { result ->
-                pushOn = result["pushOn"] as Boolean
-                Log.d(TAG, "PPPPPPPPPPPPPP : $pushOn")
-                if(pushOn == true) binding.MyViewSettingPushPushSwitch.isChecked = true
-            }
+        // Get pushOn from MyViewSettingActivity
+        val pushOn = intent.getBooleanExtra("pushOn", false)
+        if(pushOn == true) binding.MyViewSettingPushPushSwitch.isChecked = true
 
 
         binding.MyViewSettingPushPushSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked) {
+                db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+                    .update("pushOn", true)
                 FirebaseMessaging.getInstance().subscribeToTopic("all").addOnSuccessListener {
                     Log.d(TAG, "*********** On SUccess")
                 }
 
             }
             else {
+                db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+                    .update("pushOn", false)
                 FirebaseMessaging.getInstance().unsubscribeFromTopic("all").addOnSuccessListener {
                     Log.d(TAG, "*********** Off SUccess")
                 }

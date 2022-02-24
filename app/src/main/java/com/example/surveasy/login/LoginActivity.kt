@@ -26,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     val db = Firebase.firestore
     val userModel by viewModels<CurrentUserViewModel>()
+    var autoLogin: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +35,19 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // ToolBar
-        setSupportActionBar(binding.ToolbarLogin)
-        if (supportActionBar != null) {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setDisplayShowTitleEnabled(false)
-        }
-        binding.ToolbarLogin.setNavigationOnClickListener { onBackPressed() }
+//        setSupportActionBar(binding.ToolbarLogin)
+//        if (supportActionBar != null) {
+//            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//            supportActionBar?.setDisplayShowTitleEnabled(false)
+//        }
+//        binding.ToolbarLogin.setNavigationOnClickListener { onBackPressed() }
 
+
+        // Auto Login Checkbox
+        binding.LoginAutoLogin.setOnCheckedChangeListener { button, isChecked ->
+            autoLogin = button.isChecked
+            Log.d(TAG, "AUTOOOOOOOOOOOOO  $autoLogin")
+        }
 
         // Login
         auth = FirebaseAuth.getInstance()
@@ -74,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
         auth.currentUser!!.reload().addOnCompleteListener { task ->
             if(task.isSuccessful) {
                 // updateUI(auth.currentUser)
-                Log.d(ContentValues.TAG, "##### reload Success")
+                Log.d(ContentValues.TAG, "##### reload Success $task")
             }
             else {
                 Log.e(ContentValues.TAG, "##### reload Fail", task.exception)
@@ -101,6 +108,7 @@ class LoginActivity : AppCompatActivity() {
                         val uid = user!!.uid.toString()
 
                         val docRef = db.collection("AndroidUser").document(uid)
+                        docRef.update("autoLogin", autoLogin)
 
                         val userSurveyList = ArrayList<UserSurveyItem>()
 
@@ -134,6 +142,7 @@ class LoginActivity : AppCompatActivity() {
                                     snapshot.result["accountOwner"].toString(),
                                     snapshot.result["inflowPath"].toString(),
                                     snapshot.result["didFirstSurvey"] as Boolean,
+                                    snapshot.result["autoLogin"] as Boolean,
                                     Integer.parseInt(snapshot.result["reward_current"].toString()),
                                     Integer.parseInt(snapshot.result["reward_total"].toString()),
                                     userSurveyList
