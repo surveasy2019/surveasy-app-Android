@@ -3,6 +3,8 @@ package com.example.surveasy.my
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -28,13 +30,20 @@ class MyViewContactActivity : AppCompatActivity() {
 
         binding.ToolbarMyViewContact.setNavigationOnClickListener { onBackPressed()  }
 
+        binding.MyViewContactKakaoTalk.setOnClickListener {
+            val url = "https://accounts.kakao.com/login?continue=http%3A%2F%2Fpf.kakao.com%2F_xfialK%2Fchat"
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
+        }
+
         binding.MyViewContactEmail.setOnClickListener {
-//            val textToCopy = "surveasy"
-//            val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-//            val clipData = ClipData.newPlainText("text",textToCopy)
-//            clipboardManager.setPrimaryClip(clipData)
-//
-//            Toast.makeText(this,"복사되었습니다", Toast.LENGTH_LONG).show()
+            val textToCopy = "surveasy"
+            val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData = ClipData.newPlainText("text",textToCopy)
+            clipboardManager.setPrimaryClip(clipData)
+
+            Toast.makeText(this,"복사되었습니다", Toast.LENGTH_LONG).show()
         }
 
     }

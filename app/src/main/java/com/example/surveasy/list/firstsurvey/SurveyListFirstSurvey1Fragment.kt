@@ -97,16 +97,21 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
         val jobAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, jobList)
         val jobSpinner : Spinner = view.findViewById(R.id.SurveyListFirstSurvey1_JobSpinner)
         val majorSpinner : Spinner = view.findViewById(R.id.SurveyListFirstSurvey1_MajorSpinner)
+        val universityContainer : LinearLayout = view.findViewById(R.id.SurveyListFirstSurvey1_UniversityContainer)
+
         jobSpinner.adapter = jobAdapter
         jobSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 job = jobList[position]
                 if(position == 0) {
                     majorSpinner.visibility = View.VISIBLE
+                    universityContainer.visibility = View.VISIBLE
                 }
                 else {
                     majorSpinner.visibility = View.INVISIBLE
+                    universityContainer.visibility = View.INVISIBLE
                     major = ""
+                    university = ""
                 }
                 Log.d(TAG, "PPPPPPPPPPPPPPPPPPP $position" )
             }

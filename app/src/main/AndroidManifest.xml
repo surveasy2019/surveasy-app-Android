@@ -16,7 +16,7 @@
         android:theme="@style/splahScreenTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".tutorial.TutorialActivity"
+            android:name=".firstIntroduceScreen.FirstIntroduceScreenActivity"
             android:exported="true" />
         <activity
             android:name=".login.FindPwActivity"

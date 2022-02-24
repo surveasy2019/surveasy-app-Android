@@ -5,11 +5,14 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Switch
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityMyviewsettingBinding
 import com.example.surveasy.login.LoginActivity
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class MyViewSettingActivity : AppCompatActivity() {
@@ -22,6 +25,17 @@ class MyViewSettingActivity : AppCompatActivity() {
         binding = ActivityMyviewsettingBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+
+        val db = Firebase.firestore
+        var pushOn : Boolean? = null
+        //val pushSwitch : Switch = findViewById(R.id.MyViewSettingPushPushSwitch)
+        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+            .get().addOnSuccessListener { result ->
+                pushOn = result["pushOn"] as Boolean
+                Log.d(TAG, "PPPPPPPPPPPPPP : $pushOn")
+                //if(pushOn == true) binding.MyViewSettingPushPushSwitch.isChecked = true
+            }
 
         binding.MyViewSettingPush.setOnClickListener {
             val intent = Intent(this, MyViewSettingPushActivity::class.java)
