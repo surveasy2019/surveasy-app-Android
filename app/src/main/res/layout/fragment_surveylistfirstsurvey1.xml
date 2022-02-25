@@ -17,7 +17,7 @@
     <LinearLayout
         android:id="@+id/SurveyListFirstSurvey1_Container"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:paddingStart="20dp"
         android:orientation="vertical"
@@ -32,30 +32,43 @@
             android:layout_gravity="center"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="vertical"
+            android:layout_marginBottom="15dp">
             <TextView
                 android:id="@+id/SurveyListFirstSurvey1_JobText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="직업"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
             <Spinner
                 android:id="@+id/SurveyListFirstSurvey1_JobSpinner"
-                android:layout_width="200dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
-                android:layout_marginBottom="20dp"
-                />
-            <Spinner
-                android:id="@+id/SurveyListFirstSurvey1_MajorSpinner"
-                android:layout_width="150dp"
+                android:paddingVertical="5dp" />
+
+            <LinearLayout
+                android:id="@+id/SurveyListFirstSurvey1_GoneContainer"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingVertical="10dp"
-                android:layout_marginBottom="20dp"
-                android:visibility="invisible" />
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <Spinner
+                    android:id="@+id/SurveyListFirstSurvey1_MajorSpinner"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/spinner_view"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -63,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="invisible" >
+            android:visibility="gone" >
 
             <TextView
                 android:id="@+id/SurveyListFirstSurvey1_UniversityText"
@@ -73,93 +86,81 @@
                 android:textColor="@color/black"
                 />
 
-            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/spinner_view"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content" />
-
-<!--            <Spinner-->
-<!--                android:id="@+id/SurveyListFirstSurvey1_UniversitySpinner"-->
-<!--                android:layout_width="200dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:paddingVertical="10dp"-->
-<!--                android:layout_marginBottom="20dp" />-->
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/SurveyListFirstSurvey1_EngSurveyText"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="영어 설문 참여 의사"
-            android:textColor="@color/black"
-            />
+            android:orientation="vertical"
+            android:gravity="center" >
 
-        <RadioGroup
-            android:id="@+id/SurveyListFirstSurvey1_EngSurveyRadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/SurveyListFirstSurvey1_EngSurvey_O"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/SurveyListFirstSurvey1_EngSurveyText"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="희망함"
-                android:checked="true" />
+                android:text="영어 설문 참여 의사"
+                android:textColor="@color/black" />
 
-            <RadioButton
-                android:id="@+id/SurveyListFirstSurvey1_EngSurvey_X"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/SurveyListFirstSurvey1_EngSurveyRadioGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="희망하지 않음" />
+                android:orientation="horizontal"
+                android:gravity="center">
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/SurveyListFirstSurvey1_EngSurvey_O"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="희망함" />
+
+                <RadioButton
+                    android:id="@+id/SurveyListFirstSurvey1_EngSurvey_X"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="희망하지 않음" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/SurveyListFirstSurvey1_MilitaryText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="병역필여부"
                 android:textColor="@color/black" />
 
             <RadioGroup
                 android:id="@+id/SurveyListFirstSurvey1_MilitaryRadioGroup"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_MilitaryDone"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:textColor="@drawable/selector_radio_text"
-                    android:button="@null"
-                    android:text="군필"
-                    android:textAlignment="center" />
+                    android:text="군필" />
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_MilitaryYet"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:textColor="@drawable/selector_radio_text"
-                    android:button="@null"
-                    android:text="미필"
-                    android:textAlignment="center" />
+                    android:text="미필" />
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_MilitaryNA"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:textColor="@drawable/selector_radio_text"
-                    android:button="@null"
-                    android:text="해당사항 없음"
-                    android:textAlignment="center" />
+                    android:text="해당사항 없음" />
 
             </RadioGroup>
 

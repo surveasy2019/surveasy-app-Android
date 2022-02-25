@@ -214,6 +214,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="inflowPath">
+        <item>유입 경로</item>
         <item>카카오톡</item>
         <item>에브리타임</item>
         <item>인스타그램</item>
@@ -223,6 +224,7 @@ b. 파기방법
 
     // SurveyListFirstSurveyFragment1
     <string-array name="job">
+        <item>직업을 선택해주세요</item>
         <item>대학생</item>
         <item>사무직</item>
         <item>경영 관리직</item>
@@ -237,6 +239,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="major">
+        <item>소속 계열을 선택해주세요</item>
         <item>사회계열</item>
         <item>공학계열</item>
         <item>인문계열</item>
@@ -248,6 +251,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="university">
+        <item>대학명을 선택해주세요</item>
         <item>Apple대학교</item>
         <item>Application대학교</item>
         <item>Array대학교</item>
@@ -257,6 +261,7 @@ b. 파기방법
 
     // SurveyListFirstSurveyFragment2
     <string-array name="district">
+        <item>시/도</item>
         <item>서울특별시</item>
         <item>부산광역시</item>
         <item>대구광역시</item>
@@ -276,6 +281,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="서울">
+        <item>시/군/구</item>
         <item>종로구</item>
         <item>중구</item>
         <item>용산구</item>
@@ -304,6 +310,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="부산">
+        <item>시/군/구</item>
         <item>중구</item>
         <item>서구</item>
         <item>동구</item>
@@ -323,6 +330,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="대구">
+        <item>시/군/구</item>
         <item>중구</item>
         <item>동구</item>
         <item>서구</item>
@@ -334,6 +342,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="인천">
+        <item>시/군/구</item>
         <item>중구</item>
         <item>동구</item>
         <item>미추홀구</item>
@@ -347,6 +356,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="광주">
+        <item>시/군/구</item>
         <item>동구</item>
         <item>서구</item>
         <item>남구</item>
@@ -355,6 +365,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="대전">
+        <item>시/군/구</item>
         <item>동구</item>
         <item>중구</item>
         <item>서구</item>
@@ -363,6 +374,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="울산">
+        <item>시/군/구</item>
         <item>중구</item>
         <item>남구</item>
         <item>동구</item>
@@ -371,6 +383,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="경기">
+        <item>시/군/구</item>
         <item>수원시</item>
         <item>고양시</item>
         <item>용인시</item>
@@ -405,6 +418,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="충북">
+        <item>시/군/구</item>
         <item>청주시</item>
         <item>충주시</item>
         <item>제천시</item>
@@ -418,7 +432,9 @@ b. 파기방법
         <item>단양군</item>
     </string-array>
 
+
     <string-array name="충남">
+        <item>시/군/구</item>
         <item>천안시</item>
         <item>공주시</item>
         <item>보령시</item>
@@ -436,7 +452,9 @@ b. 파기방법
         <item>태안군</item>
     </string-array>
 
+
     <string-array name="전북">
+        <item>시/군/구</item>
         <item>전주시</item>
         <item>군산시</item>
         <item>익산시</item>
@@ -454,7 +472,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="전남">
-        신안군
+        <item>시/군/구</item>
         <item>목포시</item>
         <item>여수시</item>
         <item>순천시</item>
@@ -465,6 +483,7 @@ b. 파기방법
         <item>구례군</item>
         <item>고흥군</item>
         <item>보성군</item>
+        <item>신안군</item>
         <item>화순군</item>
         <item>장흥군</item>
         <item>강진군</item>
@@ -479,6 +498,7 @@ b. 파기방법
     </string-array>
 
     <string-array name="경북">
+        <item>시/군/구</item>
         <item>포항시</item>
         <item>경주시</item>
         <item>김천시</item>
@@ -504,7 +524,9 @@ b. 파기방법
         <item>울릉군</item>
     </string-array>
 
+
     <string-array name="경남">
+        <item>시/군/구</item>
         <item>창원시</item>
         <item>진주시</item>
         <item>통영시</item>
@@ -526,19 +548,15 @@ b. 파기방법
     </string-array>
 
     <string-array name="제주">
+        <item>시/군/구</item>
         <item>제주시</item>
         <item>서귀포시</item>
     </string-array>
 
-    <string-array name="pet">
-        <item>없음</item>
-        <item>개</item>
-        <item>고양이</item>
-        <item>거북이</item>
-        <item>기타</item>
-    </string-array>
+
 
     <string-array name="housingType">
+        <item>주거 형태를 선택해주세요</item>
         <item>아파트/주상복합</item>
         <item>단독주택</item>
         <item>오피스텔/원룸</item>

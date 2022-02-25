@@ -29,10 +29,6 @@ import com.google.firebase.storage.StorageReference
 
 class MainActivity : AppCompatActivity() {
 
-    // auto Login 여부 먼저 fetch 해보자!!!!!!!!!!!!!!!!!!!!!!
-
-
-
     val db = Firebase.firestore
     private var backKeyPressedTime : Long = 0
     val surveyList = arrayListOf<SurveyItems>()
@@ -49,7 +45,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Log.d(TAG, "########### ${intent.getStringArrayListExtra("bannerList")} ")
+
         fetchBanner()
+        fetchCurrentUser(Firebase.auth.currentUser!!.uid)
+        fetchSurvey()
 
 
         // Current User
@@ -59,12 +59,6 @@ class MainActivity : AppCompatActivity() {
             val email = user.email
             Log.d(TAG, "@@@@@ Firebase auth email: ${user.email}")
         }
-
-        if(Firebase.auth.currentUser != null) {
-            fetchCurrentUser(Firebase.auth.currentUser!!.uid)
-            fetchSurvey()
-        }
-
 
 
         // Current User from LoginActivity
@@ -91,12 +85,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+
+        // Navigation Bars
         binding.NavHome.setOnClickListener {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.MainView, HomeFragment())
                 .commit()
         }
-
 
         binding.NavList.setOnClickListener {
             if (userModel.currentUser.didFirstSurvey == false) {
@@ -118,8 +113,8 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-//        val keyHash = Utility.getKeyHash(this)
-//        Log.d("Hash",keyHash)
+        //        val keyHash = Utility.getKeyHash(this)
+        //        Log.d("Hash",keyHash)
 
 
         fun clickList() {
@@ -128,11 +123,16 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
 
+
     }
+
+
     fun clickList() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.MainView, SurveyListFragment())
-            .commit()}
+            .commit()
+    }
+
 
     private fun fetchCurrentUser(uid: String) :CurrentUser {
 
@@ -193,6 +193,7 @@ class MainActivity : AppCompatActivity() {
         }
         return userModel.currentUser
     }
+
 
     fun fetchSurvey() {
 

@@ -45,10 +45,21 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
 
         setDistrictSpinner(view)
         setCitySpinner(citySpinner, 0)
-        setPetSpinner(view)
+        //etPetSpinner(view)
         setHousingTypeSpinner(view)
 
         // married
+        val petRadioGroup = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey2_PetRadioGroup)
+        petRadioGroup.setOnCheckedChangeListener { petRadioGroup, checked ->
+            when(checked) {
+                R.id.SurveyListFirstSurvey2_PetDog -> married = "반려견"
+                R.id.SurveyListFirstSurvey2_PetCat -> married = "반려묘"
+                R.id.SurveyListFirstSurvey2_PetEtc -> married = "기타"
+                R.id.SurveyListFirstSurvey2_PetNone -> married = "없음"
+            }
+        }
+
+        // pet
         val marriedRadioGroup = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey2_MarriedRadioGroup)
         marriedRadioGroup.setOnCheckedChangeListener { marriedRadioGroup, checked ->
             when(checked) {
@@ -78,11 +89,23 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
     }
 
     private fun firstSurveyFin() {
-        if(married == null) {
+        if(district == "시/도") {
+            Toast.makeText(context, "시/도를 선택해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else if(city == "시/군/구") {
+            Toast.makeText(context, "시/군/구를 선택해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else if(married == null) {
             Toast.makeText(context, "혼인 여부를 선택해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else if(pet == null) {
+            Toast.makeText(context, "반려동물 여부를 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
         else if(family == null) {
             Toast.makeText(context, "가구 형태를 선택해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else if(housingType == "주거형태를 선택해주세요") {
+            Toast.makeText(context, "주거형태를 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
         else {
             firstSurveyModel.firstSurvey.district = district
@@ -189,19 +212,19 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
     }
 
 
-    private fun setPetSpinner(view: View) {
-        val petList = resources.getStringArray(R.array.pet)
-        val petAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, petList)
-        val petSpinner = view.findViewById<Spinner>(R.id.SurveyListFirstSurvey2_PetSpinner)
-        petSpinner.adapter = petAdapter
-        petSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                pet = petList[position]
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-        }
-    }
+//    private fun setPetSpinner(view: View) {
+//        val petList = resources.getStringArray(R.array.pet)
+//        val petAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, petList)
+//        val petSpinner = view.findViewById<Spinner>(R.id.SurveyListFirstSurvey2_PetSpinner)
+//        petSpinner.adapter = petAdapter
+//        petSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                pet = petList[position]
+//            }
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//            }
+//        }
+//    }
 
     private fun setHousingTypeSpinner(view: View) {
         val housingTypeList = resources.getStringArray(R.array.housingType)

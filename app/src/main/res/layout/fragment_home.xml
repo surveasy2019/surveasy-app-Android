@@ -20,7 +20,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:paddingTop="40dp"
+            android:paddingTop="20dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"/>
 
@@ -40,32 +40,31 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="불러오는 중"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:paddingEnd="20dp"/>
 
 
-        <Button
-            android:id="@+id/HomeToRegister"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register" />
+            android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/HomeToLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login" />
+
+
+        </LinearLayout>
+
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp" >
+            android:layout_height="80dp"
+            android:layout_marginBottom="10dp">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/Home_BannerViewPager"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
             <ImageView
@@ -128,18 +127,39 @@
 
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="설문 리스트"
-            android:textSize="20dp"
-            android:textColor="@color/black"/>
-        <Button
-            android:id="@+id/homeList_Btn"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="더보기"/>
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="설문 리스트"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+            <Button
+                android:id="@+id/homeList_Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="더보기"/>
+
+            <Button
+            android:id="@+id/HomeToRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Register"
+            android:layout_marginLeft="10dp"/>
+
+            <Button
+                android:id="@+id/HomeToLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Login"
+                android:layout_marginLeft="10dp"/>
+
+        </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -149,7 +169,73 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/homeList_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="250dp"/>
+            android:layout_height="100dp"
+            android:layout_marginBottom="40dp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="당신의 의견은?"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingLeft="7dp" />
+
+        <LinearLayout
+            android:id="@+id/Home_OpinionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="#94B49F"
+            android:layout_margin="10dp"
+            android:gravity="right">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">대답하러가기"
+                android:textSize="15dp"
+                android:layout_gravity="center|bottom" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="우리가 기여한 연구"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingLeft="7dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:background="#94B49F"
+            android:layout_margin="10dp"
+            android:padding="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="##에 관한 연구"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="#464E2E"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이화여자대학교 ㅇㅇㅇ 논문 / 2021.12 서베이지에서 설문 진행"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+
 
 
 
