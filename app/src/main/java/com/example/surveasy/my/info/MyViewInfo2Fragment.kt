@@ -20,7 +20,7 @@ class MyViewInfo2Fragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_myviewinfo2, container, false)
 
-        setAccountTypeSpinner(view)
+        setAccountTypeSpinner(view, infoDataModel.infoData.accountType!!)
         setEditTextHint(view)
 
         // EngSurvey
@@ -36,7 +36,7 @@ class MyViewInfo2Fragment : Fragment() {
 
     }
 
-    private fun setAccountTypeSpinner(view: View) {
+    private fun setAccountTypeSpinner(view: View, previousType: String) {
         val accountTypeList = resources.getStringArray(R.array.accountType)
         val accountTypeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, accountTypeList)
         val accountTypeSpinner : Spinner = view.findViewById(R.id.MyViewInfo_InfoItem_AccountTypeSpinner)
