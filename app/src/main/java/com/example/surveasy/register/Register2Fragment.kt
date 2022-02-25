@@ -98,7 +98,8 @@ class Register2Fragment : Fragment() {
                                     "didFirstSurvey" to false,
                                     "pushOn" to false,
                                     "reward_current" to 0,
-                                    "reward_total" to 0
+                                    "reward_total" to 0,
+                                    "marketingAgree" to registerModel.registerInfo1.marketingAgree
                                 )
                                 db.collection("AndroidUser").document(firebaseUID)
                                     .set(user).addOnSuccessListener { documentReference ->

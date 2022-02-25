@@ -16,6 +16,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.surveasy.databinding.ActivitySurveyproofdialogBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -73,9 +75,14 @@ class SurveyProofDialogActivity: AppCompatActivity() {
 
         binding.dialogSendBtn.setOnClickListener {
 
-            uploadStorage(binding.dialogImageview)
-            finish()
+            CoroutineScope(Dispatchers.Main).launch {
+                val upload = CoroutineScope(Dispatchers.IO).async {
+                    uploadStorage(binding.dialogImageview)
+                }.await()
+                finish()
+            }
         }
+
 
         binding.dialogEditBtn.setOnClickListener {
             editPhoto()

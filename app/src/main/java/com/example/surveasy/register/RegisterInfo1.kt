@@ -8,5 +8,5 @@ class RegisterInfo1(var uid: String?,
                     var phoneNumber: String?,
                     var gender: String?,
                     var birthDate: String?,
-                    var marketingAgree: Boolean?) {
+                    var marketingAgree: Boolean) {
 }

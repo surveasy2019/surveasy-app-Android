@@ -250,6 +250,16 @@
             android:layout_margin="10dp" />
 
     </LinearLayout>
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminate="false"
+        android:theme="@style/progressBar"
+
+        android:max="5"
+        android:progress="3"
+        android:minHeight="50dp"/>
 
     <Button
         android:id="@+id/RegisterFragment1_Btn"

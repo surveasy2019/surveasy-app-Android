@@ -14,11 +14,10 @@ import com.google.firebase.ktx.Firebase
 
 class RegisterActivity : AppCompatActivity() {
 
+
     private lateinit var binding:ActivityRegisterBinding
     val db = Firebase.firestore
     val registerModel by viewModels<RegisterInfo1ViewModel>()
-    var isValid = false
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +43,17 @@ class RegisterActivity : AppCompatActivity() {
 
 
 
+
+
+
+    }
+
+    fun goAgree2(){
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.RegisterView, RegisterAgree2Fragment())
+            .commit()
+
+
     }
 
 
@@ -51,6 +61,8 @@ class RegisterActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.RegisterView, Register1Fragment())
             .commit()
+
+
     }
 
 
@@ -58,6 +70,7 @@ class RegisterActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.RegisterView, Register2Fragment())
             .commit()
+
 
     }
 

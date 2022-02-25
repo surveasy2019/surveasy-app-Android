@@ -12,6 +12,5 @@ class RegisterInfo1ViewModel : ViewModel() {
         null,
         null,
         null,
-        null)
-
+        false)
 }

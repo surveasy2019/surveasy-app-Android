@@ -191,7 +191,8 @@ class MainActivity : AppCompatActivity() {
         return userModel.currentUser
     }
 
-    private fun fetchSurvey() {
+    fun fetchSurvey() {
+
         db.collection("AndroidSurvey")
             // id를 운영진이 올리는 깨끗한 아이디로 설정하면 progress 문제 해결됨.
             .orderBy("id")
@@ -220,6 +221,7 @@ class MainActivity : AppCompatActivity() {
                         "################${document["id"]} and ${document["title"]}"
                     )
                 }
+
                 model.surveyInfo.addAll(surveyList)
             }
             .addOnFailureListener { exception ->

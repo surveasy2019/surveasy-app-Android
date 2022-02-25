@@ -132,7 +132,7 @@ class Register1Fragment : Fragment() {
             Toast.makeText(context, "생년월일을 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
         else {
-            val registerInfo1 = RegisterInfo1(null, null, name, email, password, phoneNumber, gender, birthDate, null)
+            val registerInfo1 = RegisterInfo1(null, null, name, email, password, phoneNumber, gender, birthDate, registerModel.registerInfo1.marketingAgree)
             registerModel.registerInfo1 = registerInfo1
             (activity as RegisterActivity).goToRegister2()
 

@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    tools:context=".register.RegisterTerm1"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:id="@+id/ToolbarRegister"
+        android:id="@+id/ToolbarRegisterAgree1"
         android:theme="@style/ToolbarTheme"
         android:background="@color/white"
+        app:title="이용약관"
+        android:textStyle="normal"
+        android:textSize="11.3sp"
+        android:textColor="#000000"
+        android:lineSpacingExtra="3.3sp"
+        android:textAlignment="center"
         app:titleTextColor="@color/black"/>
 
-
-    <FrameLayout
-        android:id="@+id/RegisterView"
+    <TextView
         android:layout_width="match_parent"
-
-        android:layout_height="match_parent"/>
-
-
-
-
+        android:layout_height="match_parent"
+        android:text="@string/registerTerm1"/>
 
 </LinearLayout>
