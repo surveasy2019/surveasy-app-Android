@@ -27,6 +27,7 @@ class HomeListItemsAdapter(val homeList: ArrayList<SurveyItems>) : RecyclerView.
 
     override fun onBindViewHolder(holder: HomeListItemsAdapter.CustomViewHolder, position: Int) {
         holder.itemTitle.text = homeList.get(position).title
+        holder.itemReward.text = homeList.get(position).reward.toString() + "원"
 
 
 
@@ -69,6 +70,7 @@ class HomeListItemsAdapter(val homeList: ArrayList<SurveyItems>) : RecyclerView.
     inner class CustomViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val itemBox : ConstraintLayout = itemView.findViewById(R.id.Homelist_listItemBox)
         val itemTitle : TextView = itemView.findViewById(R.id.HomeListItem_Title)
+        val itemReward : TextView = itemView.findViewById(R.id.HomeListItem_Reward)
     }
 
 }

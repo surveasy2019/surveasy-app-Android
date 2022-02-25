@@ -28,10 +28,6 @@ import com.google.firebase.storage.StorageReference
 
 class MainActivity : AppCompatActivity() {
 
-    // auto Login 여부 먼저 fetch 해보자!!!!!!!!!!!!!!!!!!!!!!
-
-
-
     val db = Firebase.firestore
     val surveyList = arrayListOf<SurveyItems>()
     val model by viewModels<SurveyInfoViewModel>()
@@ -46,73 +42,96 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_Surveasy)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        fetchBanner()
 
-
-        // Current User
-        val user = Firebase.auth.currentUser
-        user?.let {
-            val uid = user.uid
-            val email = user.email
-            Log.d(TAG, "@@@@@ Firebase auth email: ${user.email}")
-        }
-
-        if(Firebase.auth.currentUser != null) {
-            fetchCurrentUser(Firebase.auth.currentUser!!.uid)
-            fetchSurvey()
+        // [1] 현재 Firebase auth CurrentUser 존재하지 않는 경우 (로그아웃 상태)
+        if(Firebase.auth.currentUser == null) {
+            intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
 
+        // [2] 현재 Firebase auth CurrentUser 존재하는 경우 (로그인 상태)
+        else if(Firebase.auth.currentUser != null) {
 
-        // Current User from LoginActivity
-        val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser_login")
-        if(currentUser != null ) {
-            userModel.currentUser = currentUser!!
+            // currentUser의 autoLogin 상태 확인
+           db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+                .get().addOnSuccessListener { snapshot ->
+                    if(snapshot["autoLogin"] == false) {
+                        intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else {
+                        fetchBanner()
+                        fetchCurrentUser(Firebase.auth.currentUser!!.uid)
+                        fetchSurvey()
+
+                        // Current User
+                        val user = Firebase.auth.currentUser
+                        user?.let {
+                            val uid = user.uid
+                            val email = user.email
+                            Log.d(TAG, "@@@@@ Firebase auth email: ${user.email}")
+                        }
+
+
+                        // Current User from LoginActivity
+                        val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser_login")
+                        if(currentUser != null ) {
+                            userModel.currentUser = currentUser!!
+                        }
+                        Log.d(TAG, "###### from Login model: ${userModel.currentUser.email}")
+
+
+                        // Determine Fragment of MainActivity
+                        val transaction = supportFragmentManager.beginTransaction()
+                        var defaultFrag_list = false
+
+                        defaultFrag_list = intent.getBooleanExtra("defaultFragment_list", false)
+                        if(defaultFrag_list) {
+                            setContentView(binding.root)
+                            transaction.add(R.id.MainView, SurveyListFragment()).commit()
+                            defaultFrag_list = !defaultFrag_list
+                        }
+                        else {
+                            setContentView(binding.root)
+                            transaction.add(R.id.MainView, HomeFragment()).commit()
+                        }
+
+
+
+                        // Navigation Bars
+                        binding.NavHome.setOnClickListener {
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.MainView, HomeFragment())
+                                .commit()
+                        }
+
+                        binding.NavList.setOnClickListener {
+                            if (userModel.currentUser.didFirstSurvey == false) {
+                                // Send Current User to Activities
+                                val intent_surveylistfirstsurvey: Intent = Intent(this, FirstSurveyListActivity::class.java)
+                                intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
+                                startActivity(intent_surveylistfirstsurvey)
+                            } else {
+                                supportFragmentManager.beginTransaction()
+                                    .replace(R.id.MainView, SurveyListFragment())
+                                    .commit()
+                            }
+                        }
+
+                        binding.NavMy.setOnClickListener {
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.MainView, MyViewFragment())
+                                .commit()
+                        }
+
+
+                    }
+                }
+
         }
-        Log.d(TAG, "###### from Login model: ${userModel.currentUser.email}")
 
 
-        // Determine Fragment of MainActivity
-        val transaction = supportFragmentManager.beginTransaction()
-        var defaultFrag_list = false
-
-        defaultFrag_list = intent.getBooleanExtra("defaultFragment_list", false)
-        if(defaultFrag_list) {
-            setContentView(binding.root)
-            transaction.add(R.id.MainView, SurveyListFragment()).commit()
-            defaultFrag_list = !defaultFrag_list
-        }
-        else {
-            setContentView(binding.root)
-            transaction.add(R.id.MainView, HomeFragment()).commit()
-        }
-
-
-        binding.NavHome.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.MainView, HomeFragment())
-                .commit()
-        }
-
-
-        binding.NavList.setOnClickListener {
-            if (userModel.currentUser.didFirstSurvey == false) {
-                // Send Current User to Activities
-                val intent_surveylistfirstsurvey: Intent = Intent(this, FirstSurveyListActivity::class.java)
-                intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
-                startActivity(intent_surveylistfirstsurvey)
-            } else {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.MainView, SurveyListFragment())
-                    .commit()
-            }
-        }
-
-        binding.NavMy.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.MainView, MyViewFragment())
-                .commit()
-        }
 
 
 //        val keyHash = Utility.getKeyHash(this)
