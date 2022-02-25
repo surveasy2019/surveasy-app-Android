@@ -7,53 +7,213 @@
     tools:context=".register.RegisterAgree2Fragment"
     android:orientation="vertical">
 
-    <TextView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="normal"
-        android:textSize="11.3sp"
-        android:textColor="#0aab00"
-        android:lineSpacingExtra="3.3sp"
-        tools:text="패널 유의사항"/>
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:id="@+id/ToolbarRegisterAgree2"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/white"
+        >
 
-    <TextView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="normal"
-        android:textSize="10sp"
-        android:textColor="#0aab00"
-        android:lineSpacingExtra="4.7sp"
-        tools:text="설문 응답 제출 후, 해당 화면을 캡쳐해서
-인증을 해야 응답으로 인정됩니다.
-다음과 같은 상황의 경우 응답비를 지급하지
-않습니다."/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:paddingTop="0dp"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:lineSpacingExtra="3.3sp"
+            android:layout_gravity="center"
+            app:titleTextColor="@color/black"
+            android:text="패널 가입"/>
+    </androidx.appcompat.widget.Toolbar>
 
-
-
-    
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:orientation="vertical"
+        android:padding="30dp"
+        >
 
-    <ProgressBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:indeterminate="false"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:orientation="vertical">
 
-        android:theme="@style/progressBar"
-        android:max="5"
-        android:progress="2"
-        android:minHeight="50dp"/>
-    <Button
-        android:id="@+id/RegisterAgree2_Btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="확인했습니다"
-        android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="#0aab00"
+                android:lineSpacingExtra="3.3sp"
+                android:text="패널 유의사항"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/surveasy_check"
+                    android:layout_marginEnd="10dp"
+                    android:paddingTop="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="설문 응답 제출 후, 해당 화면을 캡쳐해서
+                                  인증을 해야 응답으로 인정됩니다."
+                    android:textSize="15sp"
+                    android:textColor="#0aab00"
+                    android:textStyle="normal"/>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="다음과 같은 상황의 경우 응답비를 지급하지\n않습니다."
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginTop="5sp"
+                android:textStyle="normal"
+                android:layout_marginStart="25sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/group_7"
+                    android:layout_marginEnd="12dp"
+                    android:paddingTop="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="설문 제출 후 화면이 아닌 응답중인 화면을 캡쳐한 경우"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/group_7"
+                    android:layout_marginEnd="12dp"
+                    android:paddingTop="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="설문을 제출했으나 캡쳐화면 인증을 하지않은 경우"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/group_7"
+                    android:layout_marginEnd="12dp"
+                    android:paddingTop="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="설문 대상에 해당되지 않는 설문에 참여한 경우"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/group_7"
+                    android:layout_marginEnd="12dp"
+                    android:paddingTop="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="불성실한 응답이 적발되었을 경우"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="35dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/surveasy_check"
+                    android:layout_marginEnd="10dp"
+                    android:paddingTop="5dp"/>
+                <TextView
+                    android:id="@+id/changeColor_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="불성실한 응답 적발 시, 패널 활동이 강제중지 되며\n응답비는 지급되지 않습니다."
+                    android:textSize="15sp"
+                    android:textColor="#0aab00"
+                    android:textStyle="normal"/>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="모든 설문은 성실하게 참여 부탁드립니다."
+                android:layout_marginStart="25sp"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_marginTop="20dp"
+                />
+
+        </LinearLayout>
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:indeterminate="false"
+
+            android:theme="@style/progressBar"
+            android:max="5"
+            android:progress="2"
+            android:minHeight="50dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/RegisterAgree2_Btn"
+            android:layout_width="330sp"
+            android:layout_height="wrap_content"
+            android:text="확인했습니다"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="#0aab00"
+            android:background="@drawable/register_button"/>
+
+
+    </LinearLayout>
+
+
 
 
 
