@@ -6,7 +6,7 @@ exports.androidPushNotification = functions.firestore.document("NotificationData
     .onCreate((snapshot, context) => {
 
         admin.messaging().sendToTopic(
-                    "all",
+                    "all" ,
                     {
                         notification: {
                             title: snapshot.data().title,

@@ -19,6 +19,11 @@ class RegisterAgree2Fragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_register_agree2,container,false)
+        val registerAgree2 : Button = view.findViewById(R.id.RegisterAgree2_Btn)
+
+        registerAgree2.setOnClickListener {
+            (activity as RegisterActivity).goToRegister1()
+        }
 
 
 

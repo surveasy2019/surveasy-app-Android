@@ -86,6 +86,17 @@
                 android:textColor="#000000"
                 android:lineSpacingExtra="4.7sp"
                 android:text="(필수) 이용약관 동의"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/register_goTerm1"
+                android:text="보기"
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:textColor="#818181"
+                android:lineSpacingExtra="4.7sp"/>
+
 
         </LinearLayout>
         <LinearLayout
@@ -108,6 +119,16 @@
                 android:textColor="#000000"
                 android:lineSpacingExtra="4.7sp"
                 android:text="(필수) 개인 정보 처리 방침 동의"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/register_goTerm2"
+                android:text="보기"
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:textColor="#818181"
+                android:lineSpacingExtra="4.7sp"/>
 
         </LinearLayout>
 
@@ -139,10 +160,16 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:theme="@style/progressBar"
             android:indeterminate="false"
-            android:layout_weight="1"
+
             android:max="5"
             android:progress="1"
             android:minHeight="50dp"/>
+        <Button
+            android:id="@+id/RegisterAgree1_Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다음"
+            android:layout_gravity="center"/>
 
 
 

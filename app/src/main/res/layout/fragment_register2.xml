@@ -102,24 +102,25 @@
 
 
     </LinearLayout>
+
     <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyleHorizontal"
+
         android:indeterminate="false"
-        android:theme="@style/progressBar"
-        android:layout_weight="1"
         android:max="5"
+        android:minHeight="50dp"
         android:progress="4"
-        android:minHeight="50dp"/>
+        android:theme="@style/progressBar" />
 
 
     <Button
         android:id="@+id/RegisterFragment2_Btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="완료"
+        android:layout_marginTop="0dp"
+        android:text="패널 가입 완료"
         android:layout_gravity="center"/>
 
     

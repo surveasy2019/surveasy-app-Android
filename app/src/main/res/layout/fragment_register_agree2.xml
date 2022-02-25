@@ -1,27 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".register.RegisterAgree2Fragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".register.RegisterAgree2Fragment"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="normal"
+        android:textSize="11.3sp"
+        android:textColor="#0aab00"
+        android:lineSpacingExtra="3.3sp"
+        tools:text="패널 유의사항"/>
+
+    <TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="normal"
+        android:textSize="10sp"
+        android:textColor="#0aab00"
+        android:lineSpacingExtra="4.7sp"
+        tools:text="설문 응답 제출 후, 해당 화면을 캡쳐해서
+인증을 해야 응답으로 인정됩니다.
+다음과 같은 상황의 경우 응답비를 지급하지
+않습니다."/>
+
+
+
+    
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        />
 
     <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="?android:attr/progressBarStyleHorizontal"
         android:indeterminate="false"
-        android:layout_weight="1"
+
         android:theme="@style/progressBar"
         android:max="5"
         android:progress="2"
         android:minHeight="50dp"/>
+    <Button
+        android:id="@+id/RegisterAgree2_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="확인했습니다"
+        android:layout_gravity="center"/>
 
 
 
-</FrameLayout>
+</LinearLayout>

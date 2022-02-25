@@ -15,9 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/splahScreenTheme"
         android:usesCleartextTraffic="true">
-
         <activity
-            android:name=".tutorial.TutorialActivity"
+            android:name=".register.RegisterTerm2"
+            android:exported="true" />
+        <activity
+            android:name=".register.RegisterTerm1"
+            android:exported="true" />
+        <activity
+            android:name=".firstIntroduceScreen.FirstIntroduceScreenActivity"
             android:exported="true" />
         <activity
             android:name=".login.FindPwActivity"
