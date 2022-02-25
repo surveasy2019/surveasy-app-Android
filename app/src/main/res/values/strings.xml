@@ -418,36 +418,111 @@ b. 파기방법
         <item>단양군</item>
     </string-array>
 
-    <string-array name="충남">아산시 서산시 논산시 계룡시 당진시 금산군 부여군 서천군 청양군 홍성군 예산군 태안군
+    <string-array name="충남">
         <item>천안시</item>
         <item>공주시</item>
         <item>보령시</item>
+        <item>아산시</item>
+        <item>서산시</item>
+        <item>논산시</item>
+        <item>계룡시</item>
+        <item>당진시</item>
+        <item>금산군</item>
+        <item>부여군</item>
+        <item>서천군</item>
+        <item>청양군</item>
+        <item>홍성군</item>
+        <item>예산군</item>
+        <item>태안군</item>
     </string-array>
 
-    <string-array name="전북">정읍시 남원시 김제시 완주군 진안군 무주군 장수군 임실군 순창군 고창군 부안군
+    <string-array name="전북">
         <item>전주시</item>
         <item>군산시</item>
         <item>익산시</item>
+        <item>정읍시</item>
+        <item>남원시</item>
+        <item>김제시</item>
+        <item>완주군</item>
+        <item>진안군</item>
+        <item>무주군</item>
+        <item>장수군</item>
+        <item>임실군</item>
+        <item>순창군</item>
+        <item>고창군</item>
+        <item>부안군</item>
     </string-array>
 
-    <string-array name="전남">나주시 광양시 담양군 곡성군 구례군 고흥군 보성군 화순군 장흥군 강진군 해남군 영암군 무안군 함평군 영광군 장성군 완도군 진도군
+    <string-array name="전남">
         신안군
         <item>목포시</item>
         <item>여수시</item>
         <item>순천시</item>
+        <item>나주시</item>
+        <item>광양시</item>
+        <item>담양군</item>
+        <item>곡성군</item>
+        <item>구례군</item>
+        <item>고흥군</item>
+        <item>보성군</item>
+        <item>화순군</item>
+        <item>장흥군</item>
+        <item>강진군</item>
+        <item>해남군</item>
+        <item>영암군</item>
+        <item>무안군</item>
+        <item>함평군</item>
+        <item>영광군</item>
+        <item>장성군</item>
+        <item>완도군</item>
+        <item>진도군</item>
     </string-array>
 
-    <string-array name="경북">안동시 구미시 영주시 영천시 상주시 문경시 경산시 군위군 의성군 청송군 영양군 영덕군 청도군 고령군 성주군 칠곡군 예천군 봉화군
-        울진군 울릉군
+    <string-array name="경북">
         <item>포항시</item>
         <item>경주시</item>
         <item>김천시</item>
+        <item>안동시</item>
+        <item>구미시</item>
+        <item>영주시</item>
+        <item>영천시</item>
+        <item>상주시</item>
+        <item>문경시</item>
+        <item>경산시</item>
+        <item>군위군</item>
+        <item>의성군</item>
+        <item>청송군</item>
+        <item>영양군</item>
+        <item>영덕군</item>
+        <item>청도군</item>
+        <item>고령군</item>
+        <item>성주군</item>
+        <item>칠곡군</item>
+        <item>예천군</item>
+        <item>봉화군</item>
+        <item>울진군</item>
+        <item>울릉군</item>
     </string-array>
 
-    <string-array name="경남">사천시 김해시 밀양시 거제시 양산시 의령군 함안군 창녕군 고성군 남해군 하동군 산청군 함양군 거창군 합천군
+    <string-array name="경남">
         <item>창원시</item>
         <item>진주시</item>
         <item>통영시</item>
+        <item>사천시</item>
+        <item>김해시</item>
+        <item>밀양시</item>
+        <item>거제시</item>
+        <item>양산시</item>
+        <item>의령군</item>
+        <item>함안군</item>
+        <item>창녕군</item>
+        <item>고성군</item>
+        <item>남해군</item>
+        <item>하동군</item>
+        <item>산청군</item>
+        <item>함양군</item>
+        <item>거창군</item>
+        <item>합천군</item>
     </string-array>
 
     <string-array name="제주">
@@ -499,5 +574,471 @@ b. 파기방법
     <string name="MyViewSettingWithdraw_NoticeTitle">탈퇴를 원하시면/n비밀번호를 입력해주세요.</string>
     <string name="MyViewSettingWithdraw_PwInput">비밀번호를 입력하시오.</string>
     <string name="MyViewSettingWithdraw_WithdrawBtn">탈퇴하기</string>
+
+    <string-array name="FirstSurveyUniversity">
+        <item>가야대학교(고령)</item>
+        <item>가야대학교(김해)</item>
+        <item>가천대학교</item>
+        <item>가톨릭관동대학교</item>
+        <item>가톨릭꽃동네대학교</item>
+        <item>가톨릭대학교</item>
+        <item>가톨릭대학교</item>
+        <item>가톨릭대학교</item>
+        <item>감리교신학대학교</item>
+        <item>강남대학교</item>
+        <item>강릉원주대학교</item>
+        <item>강릉원주대학교</item>
+        <item>강원대학교</item>
+        <item>강원대학교</item>
+        <item>건국대학교</item>
+        <item>건국대학교(글로컬)</item>
+        <item>건양대학교</item>
+        <item>건양대학교</item>
+        <item>건양사이버대학교</item>
+        <item>경기대학교</item>
+        <item>경기대학교</item>
+        <item>경남대학교</item>
+        <item>경동대학교</item>
+        <item>경동대학교</item>
+        <item>경동대학교</item>
+        <item>경동대학교</item>
+        <item>경북대학교</item>
+        <item>경상국립대학교</item>
+        <item>경성대학교</item>
+        <item>경운대학교</item>
+        <item>경인교육대학교</item>
+        <item>경인교육대학교</item>
+        <item>경일대학교</item>
+        <item>경주대학교</item>
+        <item>경희대학교</item>
+        <item>경희사이버대학교</item>
+        <item>계명대학교</item>
+        <item>고려대학교</item>
+        <item>고려대학교(세종)</item>
+        <item>고려사이버대학교</item>
+        <item>고신대학교</item>
+        <item>공주교육대학교</item>
+        <item>공주대학교</item>
+        <item>광신대학교</item>
+        <item>광운대학교</item>
+        <item>광주가톨릭대학교</item>
+        <item>광주과학기술원</item>
+        <item>광주교육대학교</item>
+        <item>광주대학교</item>
+        <item>광주여자대학교</item>
+        <item>국민대학교</item>
+        <item>국제사이버대학교</item>
+        <item>군산대학교</item>
+        <item>극동대학교</item>
+        <item>글로벌사이버대학교</item>
+        <item>금강대학교</item>
+        <item>금오공과대학교</item>
+        <item>김천대학교</item>
+        <item>나사렛대학교</item>
+        <item>남부대학교</item>
+        <item>남서울대학교</item>
+        <item>단국대학교</item>
+        <item>단국대학교</item>
+        <item>대구가톨릭대학교</item>
+        <item>대구경북과학기술원</item>
+        <item>대구교육대학교</item>
+        <item>대구대학교</item>
+        <item>대구사이버대학교</item>
+        <item>대구예술대학교</item>
+        <item>대구한의대학교</item>
+        <item>대신대학교</item>
+        <item>대전가톨릭대학교</item>
+        <item>대전대학교</item>
+        <item>대전신학대학교</item>
+        <item>대진대학교</item>
+        <item>덕성여자대학교</item>
+        <item>동국대학교</item>
+        <item>동국대학교(경주)</item>
+        <item>동덕여자대학교</item>
+        <item>동명대학교</item>
+        <item>동서대학교</item>
+        <item>동신대학교</item>
+        <item>동아대학교</item>
+        <item>동양대학교</item>
+        <item>동의대학교</item>
+        <item>디지털서울문화예술대학교</item>
+        <item>루터대학교</item>
+        <item>명지대학교</item>
+        <item>명지대학교</item>
+        <item>목원대학교</item>
+        <item>목포가톨릭대학교</item>
+        <item>목포대학교</item>
+        <item>목포해양대학교</item>
+        <item>배재대학교</item>
+        <item>백석대학교</item>
+        <item>부경대학교</item>
+        <item>부산가톨릭대학교</item>
+        <item>부산교육대학교</item>
+        <item>부산대학교</item>
+        <item>부산디지털대학교</item>
+        <item>부산외국어대학교</item>
+        <item>부산장신대학교</item>
+        <item>사이버한국외국어대학교</item>
+        <item>삼육대학교</item>
+        <item>상명대학교</item>
+        <item>상명대학교</item>
+        <item>상지대학교</item>
+        <item>서강대학교</item>
+        <item>서경대학교</item>
+        <item>서울과학기술대학교</item>
+        <item>서울교육대학교</item>
+        <item>서울기독대학교</item>
+        <item>서울대학교</item>
+        <item>서울디지털대학교</item>
+        <item>서울사이버대학교</item>
+        <item>서울시립대학교</item>
+        <item>서울신학대학교</item>
+        <item>서울여자대학교</item>
+        <item>서울장신대학교</item>
+        <item>서울한영대학교</item>
+        <item>서원대학교</item>
+        <item>선문대학교</item>
+        <item>성결대학교</item>
+        <item>성공회대학교</item>
+        <item>성균관대학교</item>
+        <item>성신여자대학교</item>
+        <item>세명대학교</item>
+        <item>세종대학교</item>
+        <item>세종사이버대학교</item>
+        <item>세한대학교</item>
+        <item>송원대학교</item>
+        <item>수원가톨릭대학교</item>
+        <item>수원대학교</item>
+        <item>숙명여자대학교</item>
+        <item>순복음총회신학교</item>
+        <item>순천대학교</item>
+        <item>순천향대학교</item>
+        <item>숭실대학교</item>
+        <item>숭실사이버대학교</item>
+        <item>신경대학교</item>
+        <item>신라대학교</item>
+        <item>신한대학교</item>
+        <item>신한대학교</item>
+        <item>아신대학교</item>
+        <item>아주대학교</item>
+        <item>안동대학교</item>
+        <item>안양대학교</item>
+        <item>안양대학교</item>
+        <item>연세대학교</item>
+        <item>연세대학교(미래)</item>
+        <item>영남대학교</item>
+        <item>영남신학대학교</item>
+        <item>영산대학교</item>
+        <item>영산대학교</item>
+        <item>영산선학대학교</item>
+        <item>예수대학교</item>
+        <item>예원예술대학교</item>
+        <item>예원예술대학교</item>
+        <item>용인대학교</item>
+        <item>우석대학교</item>
+        <item>우송대학교</item>
+        <item>울산과학기술원</item>
+        <item>울산대학교</item>
+        <item>원광대학교</item>
+        <item>원광디지털대학교</item>
+        <item>위덕대학교</item>
+        <item>유원대학교</item>
+        <item>을지대학교</item>
+        <item>을지대학교</item>
+        <item>을지대학교</item>
+        <item>이화여자대학교</item>
+        <item>인제대학교</item>
+        <item>인제대학교</item>
+        <item>인천가톨릭대학교</item>
+        <item>인천가톨릭대학교</item>
+        <item>인천대학교</item>
+        <item>인하대학교</item>
+        <item>장로회신학대학교</item>
+        <item>전남대학교</item>
+        <item>전남대학교</item>
+        <item>전북대학교</item>
+        <item>전주교육대학교</item>
+        <item>전주대학교</item>
+        <item>정석대학</item>
+        <item>제주국제대학교</item>
+        <item>제주대학교</item>
+        <item>조선대학교</item>
+        <item>중부대학교</item>
+        <item>중앙대학교</item>
+        <item>중앙대학교</item>
+        <item>중앙승가대학교</item>
+        <item>중원대학교</item>
+        <item>진주교육대학교</item>
+        <item>차의과학대학교</item>
+        <item>창신대학교</item>
+        <item>창원대학교</item>
+        <item>청운대학교</item>
+        <item>청주교육대학교</item>
+        <item>청주대학교</item>
+        <item>초당대학교</item>
+        <item>총신대학교</item>
+        <item>추계예술대학교</item>
+        <item>춘천교육대학교</item>
+        <item>충남대학교</item>
+        <item>충북대학교</item>
+        <item>칼빈대학교</item>
+        <item>케이씨대학교</item>
+        <item>평택대학교</item>
+        <item>포항공과대학교</item>
+        <item>한경대학교</item>
+        <item>한국공학대학교</item>
+        <item>한국과학기술원</item>
+        <item>한국교원대학교</item>
+        <item>한국교통대학교</item>
+        <item>한국국제대학교</item>
+        <item>한국기술교육대학교</item>
+        <item>한국방송통신대학교</item>
+        <item>한국성서대학교</item>
+        <item>한국에너지공과대학교</item>
+        <item>한국열린사이버대학교</item>
+        <item>한국예술종합학교</item>
+        <item>한국외국어대학교</item>
+        <item>한국전통문화대학교</item>
+        <item>한국체육대학교</item>
+        <item>한국침례신학대학교</item>
+        <item>한국항공대학교</item>
+        <item>한국해양대학교</item>
+        <item>한남대학교</item>
+        <item>한동대학교</item>
+        <item>한라대학교</item>
+        <item>한려대학교</item>
+        <item>한림대학교</item>
+        <item>한밭대학교</item>
+        <item>한서대학교</item>
+        <item>한성대학교</item>
+        <item>한세대학교</item>
+        <item>한신대학교</item>
+        <item>한양대학교</item>
+        <item>한양대학교(ERICA)</item>
+        <item>한양사이버대학교</item>
+        <item>한일장신대학교</item>
+        <item>협성대학교</item>
+        <item>호남대학교</item>
+        <item>호남신학대학교</item>
+        <item>호서대학교</item>
+        <item>호원대학교</item>
+        <item>홍익대학교</item>
+        <item>홍익대학교</item>
+        <item>화신사이버대학교</item>
+        <item>ICT폴리텍대학</item>
+        <item>가톨릭상지대학교</item>
+        <item>강동대학교</item>
+        <item>강릉영동대학교</item>
+        <item>강원관광대학교</item>
+        <item>강원도립대학교</item>
+        <item>거제대학교</item>
+        <item>경기과학기술대학교</item>
+        <item>경남도립거창대학</item>
+        <item>경남도립남해대학</item>
+        <item>경남정보대학교</item>
+        <item>경민대학교</item>
+        <item>경복대학교</item>
+        <item>경북과학대학교</item>
+        <item>경북도립대학교</item>
+        <item>경북보건대학교</item>
+        <item>경북전문대학교</item>
+        <item>경인여자대학교</item>
+        <item>계명문화대학교</item>
+        <item>계원예술대학교</item>
+        <item>고구려대학교</item>
+        <item>광양보건대학교</item>
+        <item>광주보건대학교</item>
+        <item>구미대학교</item>
+        <item>국제대학교</item>
+        <item>군산간호대학교</item>
+        <item>군장대학교</item>
+        <item>기독간호대학교</item>
+        <item>김포대학교</item>
+        <item>김해대학교</item>
+        <item>농협대학교</item>
+        <item>대경대학교</item>
+        <item>대구공업대학교</item>
+        <item>대구과학대학교</item>
+        <item>대구보건대학교</item>
+        <item>대덕대학교</item>
+        <item>대동대학교</item>
+        <item>대림대학교</item>
+        <item>대원대학교</item>
+        <item>대전과학기술대학교</item>
+        <item>대전보건대학교</item>
+        <item>동강대학교</item>
+        <item>동남보건대학교</item>
+        <item>동서울대학교</item>
+        <item>동아방송예술대학교</item>
+        <item>동아보건대학교</item>
+        <item>동양미래대학교</item>
+        <item>동원과학기술대학교</item>
+        <item>동원대학교</item>
+        <item>동의과학대학교</item>
+        <item>동주대학교</item>
+        <item>두원공과대학교</item>
+        <item>마산대학교</item>
+        <item>명지전문대학</item>
+        <item>목포과학대학교</item>
+        <item>문경대학교</item>
+        <item>배화여자대학교</item>
+        <item>백석문화대학교</item>
+        <item>백제예술대학교</item>
+        <item>부산경상대학교</item>
+        <item>부산과학기술대학교</item>
+        <item>부산여자대학교</item>
+        <item>부산예술대학교</item>
+        <item>부천대학교</item>
+        <item>삼육보건대학교</item>
+        <item>서라벌대학교</item>
+        <item>서영대학교</item>
+        <item>서울여자간호대학교</item>
+        <item>서울예술대학교</item>
+        <item>서일대학교</item>
+        <item>서정대학교</item>
+        <item>선린대학교</item>
+        <item>성운대학교</item>
+        <item>세경대학교</item>
+        <item>송곡대학교</item>
+        <item>송호대학교</item>
+        <item>수성대학교</item>
+        <item>수원과학대학교</item>
+        <item>수원여자대학교</item>
+        <item>순천제일대학교</item>
+        <item>숭의여자대학교</item>
+        <item>신구대학교</item>
+        <item>신성대학교</item>
+        <item>신안산대학교</item>
+        <item>아주자동차대학</item>
+        <item>안동과학대학교</item>
+        <item>안산대학교</item>
+        <item>여주대학교</item>
+        <item>연성대학교</item>
+        <item>연암공과대학교</item>
+        <item>연암대학교</item>
+        <item>영남외국어대학</item>
+        <item>영남이공대학교</item>
+        <item>영진사이버대학교</item>
+        <item>영진전문대학교</item>
+        <item>오산대학교</item>
+        <item>용인예술과학대학교</item>
+        <item>우송정보대학</item>
+        <item>울산과학대학교</item>
+        <item>웅지세무대학교</item>
+        <item>원광보건대학교</item>
+        <item>유한대학교</item>
+        <item>인덕대학교</item>
+        <item>인천재능대학교</item>
+        <item>인하공업전문대학</item>
+        <item>장안대학교</item>
+        <item>전남과학대학교</item>
+        <item>전남도립대학교</item>
+        <item>전북과학대학교</item>
+        <item>전주기전대학</item>
+        <item>전주비전대학교</item>
+        <item>제주관광대학교</item>
+        <item>제주한라대학교</item>
+        <item>조선간호대학교</item>
+        <item>조선이공대학교</item>
+        <item>진주보건대학교</item>
+        <item>창원문성대학교</item>
+        <item>청강문화산업대학교</item>
+        <item>청암대학교</item>
+        <item>춘해보건대학교</item>
+        <item>충남도립대학교</item>
+        <item>충북도립대학교</item>
+        <item>충북보건과학대학교</item>
+        <item>충청대학교</item>
+        <item>포항대학교</item>
+        <item>한국골프대학교</item>
+        <item>한국관광대학교</item>
+        <item>한국농수산대학(일반)</item>
+        <item>한국복지대학교</item>
+        <item>한국복지사이버대학</item>
+        <item>한국승강기대학교</item>
+        <item>한국영상대학교</item>
+        <item>한국폴리텍 I 대학 서울강서캠퍼스</item>
+        <item>한국폴리텍 I 대학 서울정수캠퍼스</item>
+        <item>한국폴리텍 I 대학 성남캠퍼스</item>
+        <item>한국폴리텍 I 대학 제주캠퍼스</item>
+        <item>한국폴리텍 II 대학 남인천캠퍼스</item>
+        <item>한국폴리텍 II 대학 인천캠퍼스</item>
+        <item>한국폴리텍 II 대학 화성캠퍼스</item>
+        <item>한국폴리텍 III 대학 강릉캠퍼스</item>
+        <item>한국폴리텍 III 대학 원주캠퍼스</item>
+        <item>한국폴리텍 III 대학 춘천캠퍼스</item>
+        <item>한국폴리텍 IV 대학 대전캠퍼스</item>
+        <item>한국폴리텍 IV 대학 아산캠퍼스</item>
+        <item>한국폴리텍 IV 대학 청주캠퍼스</item>
+        <item>한국폴리텍 IV 대학 홍성캠퍼스</item>
+        <item>한국폴리텍 V 대학 광주캠퍼스</item>
+        <item>한국폴리텍 V 대학 순천캠퍼스</item>
+        <item>한국폴리텍 V 대학 익산캠퍼스</item>
+        <item>한국폴리텍 V 대학 전남캠퍼스</item>
+        <item>한국폴리텍 V 대학 전북캠퍼스</item>
+        <item>한국폴리텍 VI 대학 구미캠퍼스</item>
+        <item>한국폴리텍 VI 대학 대구캠퍼스</item>
+        <item>한국폴리텍 VI 대학 영남융합기술캠퍼스</item>
+        <item>한국폴리텍 VI 대학 영주캠퍼스</item>
+        <item>한국폴리텍 VII 대학 동부산캠퍼스</item>
+        <item>한국폴리텍 VII 대학 부산캠퍼스</item>
+        <item>한국폴리텍 VII 대학 울산캠퍼스</item>
+        <item>한국폴리텍 VII 대학 진주캠퍼스</item>
+        <item>한국폴리텍 VII 대학 창원캠퍼스</item>
+        <item>한국폴리텍 특성화대학 로봇캠퍼스</item>
+        <item>한국폴리텍 특성화대학 바이오캠퍼스</item>
+        <item>한국폴리텍 특성화대학 반도체융합캠퍼스</item>
+        <item>한국폴리텍 특성화대학 항공캠퍼스</item>
+        <item>한림성심대학교</item>
+        <item>한양여자대학교</item>
+        <item>한영대학교</item>
+        <item>혜전대학교</item>
+        <item>호산대학교</item>
+        <item>개신대학원대학교</item>
+        <item>건신대학원대학교</item>
+        <item>경안대학원대학교</item>
+        <item>계약신학대학원대학교</item>
+        <item>과학기술연합대학원대학교</item>
+        <item>구세군사관대학원대학교</item>
+        <item>국립암센터국제암대학원대학교</item>
+        <item>국제뇌교육종합대학원대학교</item>
+        <item>국제법률경영대학원대학교</item>
+        <item>국제신학대학원대학교</item>
+        <item>국제영어대학원대학교</item>
+        <item>능인대학원대학교</item>
+        <item>대한신학대학원대학교</item>
+        <item>동방문화대학원대학교</item>
+        <item>베뢰아국제대학원대학교</item>
+        <item>북한대학원대학교</item>
+        <item>서울과학종합대학원대학교</item>
+        <item>서울미디어대학원대학교</item>
+        <item>서울벤처대학원대학교</item>
+        <item>서울불교대학원대학교</item>
+        <item>서울사회복지대학원대학교</item>
+        <item>서울상담심리대학원대학교</item>
+        <item>서울성경신학대학원대학교</item>
+        <item>서울외국어대학원대학교</item>
+        <item>선학유피대학원대학교</item>
+        <item>성산효대학원대학교</item>
+        <item>성서침례대학원대학교</item>
+        <item>순복음대학원대학교</item>
+        <item>실천신학대학원대학교</item>
+        <item>에스라성경대학원대학교</item>
+        <item>예명대학원대학교</item>
+        <item>온석대학원대학교</item>
+        <item>원불교대학원대학교</item>
+        <item>웨스트민스터신학대학원대학교</item>
+        <item>제네바신학대학원대학교</item>
+        <item>주안대학원대학교</item>
+        <item>치유상담대학원대학교</item>
+        <item>한국개발연구원국제정책대학원대학교</item>
+        <item>한국상담대학원대학교</item>
+        <item>한국전력국제원자력대학원대학교</item>
+        <item>한국학대학원</item>
+        <item>한림국제대학원대학교</item>
+        <item>한반도국제대학원대학교</item>
+        <item>합동신학대학원대학교</item>
+        <item>횃불트리니티신학대학원대학교</item>
+    </string-array>
 
 </resources>
