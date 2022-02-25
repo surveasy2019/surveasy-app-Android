@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.surveasy.databinding.ActivityLoginBinding
@@ -29,6 +30,7 @@ import com.google.firebase.storage.StorageReference
 class MainActivity : AppCompatActivity() {
 
     val db = Firebase.firestore
+    private var backKeyPressedTime : Long = 0
     val surveyList = arrayListOf<SurveyItems>()
     val model by viewModels<SurveyInfoViewModel>()
     val userModel by viewModels<CurrentUserViewModel>()
@@ -250,6 +252,17 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        if(System.currentTimeMillis() > backKeyPressedTime + 2000){
+            backKeyPressedTime = System.currentTimeMillis()
+            Toast.makeText(this,"뒤로가기 버튼 한번 더",Toast.LENGTH_SHORT).show()
+            return
+        }
+        if(System.currentTimeMillis() <= backKeyPressedTime + 2000){
+            finish()
         }
     }
 }
