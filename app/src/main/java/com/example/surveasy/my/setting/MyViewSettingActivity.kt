@@ -29,16 +29,15 @@ class MyViewSettingActivity : AppCompatActivity() {
 
         val db = Firebase.firestore
         var pushOn : Boolean? = null
-        //val pushSwitch : Switch = findViewById(R.id.MyViewSettingPushPushSwitch)
         db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { result ->
                 pushOn = result["pushOn"] as Boolean
                 Log.d(TAG, "PPPPPPPPPPPPPP : $pushOn")
-                //if(pushOn == true) binding.MyViewSettingPushPushSwitch.isChecked = true
             }
 
         binding.MyViewSettingPush.setOnClickListener {
             val intent = Intent(this, MyViewSettingPushActivity::class.java)
+            intent.putExtra("pushOn", pushOn)
             startActivity(intent)
         }
 
