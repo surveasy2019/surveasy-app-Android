@@ -9,10 +9,13 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.surveasy.MainActivity
 import com.example.surveasy.R
+import java.security.AccessController.getContext
 import java.sql.RowId
 
 
@@ -31,7 +34,7 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
         }
     }
 
-    override fun onBindViewHolder(holder: CustomViewHolder, position: Int ) {
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
             holder.itemTitle.text = surveyList.get(position).title
             holder.itemDate.text = surveyList.get(position).uploadDate
 
@@ -42,6 +45,7 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
         if(!showCanParticipateList.contains(true)){
             if(boolList[position]){
                 holder.itemTitle.setBackgroundColor(Color.RED)
+
             }
         }else{
             if(showCanParticipateList[position]){
@@ -68,23 +72,29 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
 
 
         holder.itemView.setOnClickListener{
-            if(surveyList.get(position).noticeToPanel?.length==0){
-                val intent = Intent(holder.itemView.context,SurveyListDetailActivity::class.java)
-                intent.putExtra("link", surveyList.get(position).link)
-                intent.putExtra("id", surveyList.get(position).id)
-                intent.putExtra("index",position)
-                ContextCompat.startActivity(holder.itemView.context,intent,null)
+            if(!showCanParticipateList.contains(true) && boolList[position]){
+
             }else{
-                val intent = Intent(holder.itemView.context,NoticeToPanelDialogActivity::class.java)
-                intent.putExtra("link", surveyList.get(position).link)
-                intent.putExtra("id", surveyList.get(position).id)
-                intent.putExtra("index",position)
-                intent.putExtra("notice", surveyList.get(position).noticeToPanel)
-                ContextCompat.startActivity(holder.itemView.context,intent,null)
+                if(surveyList.get(position).noticeToPanel?.length==0){
+                    val intent = Intent(holder.itemView.context,SurveyListDetailActivity::class.java)
+                    intent.putExtra("link", surveyList.get(position).link)
+                    intent.putExtra("id", surveyList.get(position).id)
+                    intent.putExtra("index",position)
+                    ContextCompat.startActivity(holder.itemView.context,intent,null)
+                }else{
+                    val intent = Intent(holder.itemView.context,NoticeToPanelDialogActivity::class.java)
+                    intent.putExtra("link", surveyList.get(position).link)
+                    intent.putExtra("id", surveyList.get(position).id)
+                    intent.putExtra("index",position)
+                    intent.putExtra("notice", surveyList.get(position).noticeToPanel)
+                    ContextCompat.startActivity(holder.itemView.context,intent,null)
+                }
+
+
+
+            }
             }
 
-
-        }
 
     }
 

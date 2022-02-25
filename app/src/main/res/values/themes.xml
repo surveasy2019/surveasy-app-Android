@@ -14,10 +14,6 @@
         <!-- Customize your theme here. -->
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="splahScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-        <item name="android:statusBarColor">@color/black</item>
-    </style>
     <style name="Theme.Surveasy.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -45,6 +41,7 @@
     <style name="progressBar">
         <item name="colorAccent">#4da830</item>
     </style>
+
 
 
 </resources>
