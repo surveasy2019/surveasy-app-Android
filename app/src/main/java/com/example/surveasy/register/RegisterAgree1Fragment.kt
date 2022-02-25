@@ -41,6 +41,7 @@ class RegisterAgree1Fragment : Fragment() {
         val term2 : TextView = view.findViewById(R.id.register_goTerm2)
         val agree3 : CheckBox = view.findViewById(R.id.registerAgree1_agree4)
         val registerAgree1 : Button = view.findViewById(R.id.RegisterAgree1_Btn)
+        val text : TextView = view.findViewById(R.id.SNSAgree_text)
         val registerModel by activityViewModels<RegisterInfo1ViewModel>()
 
         registerAgree1.setOnClickListener {
@@ -76,6 +77,12 @@ class RegisterAgree1Fragment : Fragment() {
                 agree2.isChecked = false
                 agree3.isChecked = false
             }
+            if(agree3.isChecked){
+                text.text ="할인 쿠폰 및 혜택, 이벤트 등 유익한 정보를 SMS나\n" +
+                        "이메일로 받아보실 수 있습니다."
+            }else{
+                text.text=""
+            }
 
         }
         agree1.setOnClickListener {
@@ -101,7 +108,14 @@ class RegisterAgree1Fragment : Fragment() {
             if(agree1.isChecked && agree2.isChecked && agree3.isChecked){
                 agreeAll.isChecked=true
             }
+            if(agree3.isChecked){
+                text.text ="할인 쿠폰 및 혜택, 이벤트 등 유익한 정보를 SMS나\n" +
+                        "이메일로 받아보실 수 있습니다."
+            }else{
+                text.text=""
+            }
         }
+
 
 
 

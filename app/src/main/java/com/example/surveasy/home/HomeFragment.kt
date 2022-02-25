@@ -140,14 +140,16 @@ class HomeFragment : Fragment() {
                 }
                 model.surveyInfo.get(0).id
             }.await()
-            val adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
-            container?.layoutManager = LinearLayoutManager(
-                context,
-                LinearLayoutManager.VERTICAL, false
-            )
-            container?.adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
+
             if (setHomeList(chooseHomeList()).size == 0 || userModel.currentUser.didFirstSurvey == false) {
                 noneText.text = "현재 참여가능한 설문이 없습니다"
+            }else{
+                val adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
+                container?.layoutManager = LinearLayoutManager(
+                    context,
+                    LinearLayoutManager.VERTICAL, false
+                )
+                container?.adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
             }
         }
 

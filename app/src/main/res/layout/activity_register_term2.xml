@@ -3,25 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".register.RegisterTerm2"
     android:orientation="vertical">
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:id="@+id/ToolbarRegisterAgree1"
+        android:id="@+id/ToolbarRegisterAgree2"
         android:theme="@style/ToolbarTheme"
         android:background="@color/white"
-        app:title="이용약관"
+        app:title="개인정보 처리방침"
         android:textStyle="normal"
         android:textSize="11.3sp"
         android:textColor="#000000"
         android:lineSpacingExtra="3.3sp"
         android:textAlignment="center"
         app:titleTextColor="@color/black"/>
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/registerTerm2"/>
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/registerTerm2"/>
+    </ScrollView>
 </LinearLayout>
