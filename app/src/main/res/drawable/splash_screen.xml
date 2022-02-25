@@ -3,6 +3,7 @@
     android:opacity="opaque">
 
     <item android:drawable="@color/white"
+        android:gravity="center"
         />
 
 </layer-list>
