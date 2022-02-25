@@ -16,13 +16,13 @@
         android:id="@+id/spring_dots_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         app:dampingRatio="0.5"
         app:dotsColor="#357C3C"
-        app:dotsStrokeColor="@color/black"
-        app:dotsCornerRadius="2dp"
+        app:dotsStrokeColor="#357C3C"
         app:dotsSize="16dp"
         app:dotsSpacing="6dp"
-        app:dotsStrokeWidth="2dp"
+        app:dotsStrokeWidth="1dp"
         app:stiffness="300"
         />
 

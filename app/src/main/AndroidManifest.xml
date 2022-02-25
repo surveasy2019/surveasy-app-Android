@@ -14,8 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Surveasy"
-
         android:usesCleartextTraffic="true">
+
         <activity android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Splash">
@@ -90,7 +90,8 @@
             android:theme="@style/Theme.MyDialog" />
         <activity
             android:name=".login.LoginActivity"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".register.RegisterActivity"
             android:exported="true" />

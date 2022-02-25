@@ -16,6 +16,7 @@ import com.example.surveasy.R
 import com.example.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.FieldPosition
 
 
 class SurveyListFirstSurvey1Fragment() : Fragment() {
@@ -28,7 +29,7 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
     private lateinit var universityList : Array<String>
     private var university: String? = null
     private var military : String? = null
-    private var engSurvey : Boolean = true
+    private var engSurvey : Boolean? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,13 +72,27 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
 
         }
 
+
+
         return view
     }
 
+
+
     private fun firstSurvey1(view: View) {
-        if(military == null) {
-            Toast.makeText(context, "병역이행 여부를 입력해주세요.", Toast.LENGTH_SHORT).show()
+        if(job == "직업을 선택해주세요") Toast.makeText(context, "직업을 선택해주세요.", Toast.LENGTH_SHORT).show()
+
+        else if(job == "대학생" && major == "소속 계열을 선택해주세요") Toast.makeText(context, "소속 계열을 선택해주세요.", Toast.LENGTH_SHORT).show()
+        else if(job == "대학생" && university == "대학명을 선택해주세요") Toast.makeText(context, "대학명을 선택해주세요.", Toast.LENGTH_SHORT).show()
+
+        else if(engSurvey == null) {
+            Toast.makeText(context, "영어 설문 참여 의사를 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
+
+        else if(military == null) {
+            Toast.makeText(context, "병역이행 여부를 선택해주세요.", Toast.LENGTH_SHORT).show()
+        }
+
         else {
             val firstSurvey1 = FirstSurvey(job, major, university, engSurvey, military,
                 null, null, null, null, null, null)
@@ -96,20 +111,17 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
         val jobList = resources.getStringArray(R.array.job)
         val jobAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, jobList)
         val jobSpinner : Spinner = view.findViewById(R.id.SurveyListFirstSurvey1_JobSpinner)
-        val majorSpinner : Spinner = view.findViewById(R.id.SurveyListFirstSurvey1_MajorSpinner)
-        val universityContainer : LinearLayout = view.findViewById(R.id.SurveyListFirstSurvey1_UniversityContainer)
+        val goneContainer : LinearLayout = view.findViewById(R.id.SurveyListFirstSurvey1_GoneContainer)
 
         jobSpinner.adapter = jobAdapter
         jobSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 job = jobList[position]
-                if(position == 0) {
-                    majorSpinner.visibility = View.VISIBLE
-                    universityContainer.visibility = View.VISIBLE
+                if(position == 1) {
+                    goneContainer.visibility = View.VISIBLE
                 }
                 else {
-                    majorSpinner.visibility = View.INVISIBLE
-                    universityContainer.visibility = View.INVISIBLE
+                    goneContainer.visibility = View.GONE
                     major = ""
                     university = ""
                 }

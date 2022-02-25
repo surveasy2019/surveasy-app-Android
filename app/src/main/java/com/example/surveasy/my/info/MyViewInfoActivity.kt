@@ -45,7 +45,7 @@ class MyViewInfoActivity : AppCompatActivity() {
 
         val infoData = intent.getParcelableExtra<InfoData>("info")!!
         infoDataModel.infoData = infoData
-        Log.d(TAG, "------------ ${infoDataModel.infoData.phoneNumber}")
+        Log.d(TAG, "------------ ${infoDataModel.infoData.EngSurvey}")
         setStaticInfo(infoDataModel.infoData)
         //setVariableInfo(infoDataModel.infoData)
 
