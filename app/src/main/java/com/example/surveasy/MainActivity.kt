@@ -39,8 +39,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setTheme(R.style.Theme_Surveasy)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
         // [1] 현재 Firebase auth CurrentUser 존재하지 않는 경우 (로그아웃 상태)
