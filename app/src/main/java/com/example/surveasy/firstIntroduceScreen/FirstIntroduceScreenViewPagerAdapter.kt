@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 
 class FirstIntroduceScreenViewPagerAdapter(context: Context, firstIntroduceScreen : FirstIntroduceScreen)
     : RecyclerView.Adapter<FirstIntroduceScreenViewPagerAdapter.PagerViewHolder>() {
@@ -40,8 +41,9 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, firstIntroduceScree
         holder.content.text = contentList[position]
         if(position == imgList.size-1) {
             holder.startBtn.visibility = View.VISIBLE
+            holder.lastTitle.visibility = View.VISIBLE
 
-            holder.startBtn.setOnClickListener{
+           holder.startBtn.setOnClickListener{
                 FirebaseMessaging.getInstance().token.addOnCompleteListener(
                     OnCompleteListener { task ->
 
@@ -65,6 +67,8 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, firstIntroduceScree
         val img = itemView.findViewById<ImageView>(R.id.FirstIntroduceScreen_ImageView)
         val title = itemView.findViewById<TextView>(R.id.FirstIntroduceScreen_Title)
         val content = itemView.findViewById<TextView>(R.id.FirstIntroduceScreen_Content)
+        val lastTitle = itemView.findViewById<TextView>(R.id.FirstIntroduceScreen_Title_last)
         val startBtn = itemView.findViewById<Button>(R.id.FirstIntroduceScreen_StartBtn)
+
     }
 }

@@ -18,12 +18,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:dampingRatio="0.5"
-        app:dotsColor="#357C3C"
-        app:dotsStrokeColor="#357C3C"
-        app:dotsSize="16dp"
+        app:dotsColor="#0aab00"
+        app:dotsStrokeColor="#e2e2e2"
+        app:dotsSize="7dp"
         app:dotsSpacing="6dp"
-        app:dotsStrokeWidth="1dp"
+        app:dotsStrokeWidth="3.5dp"
         app:stiffness="300"
-        />
+        android:layout_marginTop="10dp"/>
+
+
 
 </LinearLayout>

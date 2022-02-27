@@ -38,8 +38,10 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Email"
+            android:hint="아이디 (이메일)"
             android:inputType="textPersonName"
+            android:background="@drawable/textedit_border"
+
 
             />
 
@@ -51,6 +53,7 @@
             android:ems="10"
             android:inputType="textPassword"
             android:hint="password"
+            android:background="@drawable/textedit_border"
             android:layout_marginTop="10dp"
             />
 
