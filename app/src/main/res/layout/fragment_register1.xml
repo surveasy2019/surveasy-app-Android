@@ -42,8 +42,9 @@
             android:id="@+id/RegisterFragment1_NameInput"
             android:layout_width="200dp"
             android:layout_height="30dp"
+            android:hint="실명을 입력하세요"
             android:inputType="text"
-            android:background="@drawable/textedit_border"/>
+            android:background="@drawable/custom_input"/>
 
     </LinearLayout>
 
