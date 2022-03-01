@@ -32,7 +32,7 @@
                 android:text="에"
                 android:textSize="30sp"
                 android:textColor="#000000"
-                android:textStyle="bold" />
+                android:fontFamily="@font/main_font_b" />
 
         </LinearLayout>
 
@@ -44,7 +44,7 @@
             android:text="오신 것을 환영합니다. "
             android:textSize="30sp"
             android:textColor="#000000"
-            android:textStyle="bold" />
+            android:fontFamily="@font/main_font_b"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,6 +62,7 @@
                 android:inputType="textEmailAddress"
                 android:textSize="15sp"
                 android:textColor="#000000"
+                android:fontFamily="@font/main_font_m"
                 android:hint="아이디 (이메일)"
                 android:textColorHint="#c9c9c9"
                 android:background="@drawable/custom_input" />
@@ -76,6 +77,7 @@
                 android:inputType="textPassword"
                 android:textSize="15sp"
                 android:textColor="#000000"
+                android:fontFamily="@font/main_font_m"
                 android:hint="비밀번호"
                 android:textColorHint="#c9c9c9"
                 android:background="@drawable/custom_input" />
@@ -86,8 +88,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="자동 로그인"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:textColor="#707070"
+                android:fontFamily="@font/main_font_m"
                 android:checked="true" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -98,7 +101,7 @@
                 android:text="로그인"
                 android:textSize="16sp"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"
+                android:fontFamily="@font/main_font_b"
                 android:backgroundTint="#0aab00"
                 android:background="@drawable/register_button" />
 
@@ -112,7 +115,7 @@
                 android:text="패널 가입"
                 android:textSize="16sp"
                 android:textColor="#707070"
-                android:textStyle="bold"
+                android:fontFamily="@font/main_font_b"
                 android:background="@drawable/login_button" />
 
             <TextView
@@ -123,7 +126,8 @@
                 android:layout_marginTop="12sp"
                 android:layout_marginBottom="20sp"
                 android:textSize="13sp"
-                android:text="비밀번호 찾기 >" />
+                android:text="비밀번호 찾기 >"
+                android:fontFamily="@font/main_font_m" />
 
         </LinearLayout>
 
