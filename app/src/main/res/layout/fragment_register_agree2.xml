@@ -37,7 +37,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="450sp"
+            android:layout_height="380sp"
             android:orientation="vertical">
 
             <TextView

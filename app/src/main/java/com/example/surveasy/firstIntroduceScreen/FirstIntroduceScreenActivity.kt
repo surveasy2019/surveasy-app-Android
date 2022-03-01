@@ -31,6 +31,5 @@ class FirstIntroduceScreenActivity : AppCompatActivity() {
         springDotIndicator.setViewPager2(binding.FirstIntroduceScreenViewPager)
 
 
-
     }
 }

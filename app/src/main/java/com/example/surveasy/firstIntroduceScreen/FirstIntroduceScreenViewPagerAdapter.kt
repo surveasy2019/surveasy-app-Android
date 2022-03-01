@@ -11,13 +11,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.R
 import com.example.surveasy.login.LoginActivity
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 
 class FirstIntroduceScreenViewPagerAdapter(context: Context, firstIntroduceScreen : FirstIntroduceScreen)
     : RecyclerView.Adapter<FirstIntroduceScreenViewPagerAdapter.PagerViewHolder>() {
@@ -38,8 +41,10 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, firstIntroduceScree
         holder.img.setImageResource(imgList[position])
         holder.title.text = titleList[position]
         holder.content.text = contentList[position]
+
         if(position == imgList.size-1) {
             holder.startBtn.visibility = View.VISIBLE
+            holder.lastTitle.visibility = View.VISIBLE
 
             holder.startBtn.setOnClickListener{
                 FirebaseMessaging.getInstance().token.addOnCompleteListener(
@@ -57,6 +62,7 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, firstIntroduceScree
         }
     }
 
+
     override fun getItemCount(): Int {
         return imgList.size
     }
@@ -65,6 +71,8 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, firstIntroduceScree
         val img = itemView.findViewById<ImageView>(R.id.FirstIntroduceScreen_ImageView)
         val title = itemView.findViewById<TextView>(R.id.FirstIntroduceScreen_Title)
         val content = itemView.findViewById<TextView>(R.id.FirstIntroduceScreen_Content)
-        val startBtn = itemView.findViewById<Button>(R.id.FirstIntroduceScreen_StartBtn)
+        val lastTitle = itemView.findViewById<TextView>(R.id.FirstIntroduceScreen_Title_last)
+        val startBtn = itemView.findViewById<AppCompatButton>(R.id.FirstIntroduceScreen_StartBtn)
+
     }
 }

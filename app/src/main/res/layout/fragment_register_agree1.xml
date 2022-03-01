@@ -14,8 +14,7 @@
         android:layout_height="?android:attr/actionBarSize"
         android:id="@+id/ToolbarRegisterAgree1"
         android:theme="@style/ToolbarTheme"
-        android:background="@color/white"
-        >
+        android:background="@color/white" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,7 +38,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="450sp"
+            android:layout_height="380sp"
             android:orientation="vertical">
 
             <TextView
@@ -187,17 +186,17 @@
                     android:textSize="15sp"
                     android:textColor="#000000"
                     android:lineSpacingExtra="4.7sp"
-                    android:text="(선택) 마케팅/SNS 수신 동의"/>
+                    android:text="(선택) 마케팅/SNS 수신 동의" />
 
 
             </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
                 android:layout_marginStart="30sp"
-                android:id="@+id/SNSAgree_text"
-                />
+                android:id="@+id/SNSAgree_text" />
 
         </LinearLayout>
 
@@ -211,6 +210,7 @@
             android:max="5"
             android:progress="1"
             android:minHeight="50dp"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/RegisterAgree1_Btn"
             android:layout_width="330sp"
@@ -221,16 +221,10 @@
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:backgroundTint="#0aab00"
-            android:background="@drawable/register_button"/>
+            android:background="@drawable/register_button" />
 
 
     </LinearLayout>
-
-
-
-
-
-
 
 
 </LinearLayout>

@@ -8,7 +8,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
-import com.example.surveasy.databinding.ActivityLoginBinding
 import com.example.surveasy.databinding.ActivityMainBinding
 import com.example.surveasy.home.BannerViewModel
 import com.example.surveasy.home.BannerViewPagerAdapter
@@ -148,7 +147,7 @@ class MainActivity : AppCompatActivity() {
                         document["title"] as String?,
                         Integer.parseInt(document["reward"]?.toString()),
                         document["responseDate"] as String?,
-                        document["isSent"] as Boolean
+                        document["isSent"] as Boolean?
                     )
                     userSurveyList.add(item)
 
@@ -214,7 +213,7 @@ class MainActivity : AppCompatActivity() {
                         document["dueDate"] as String,
                         document["dueTimeTime"] as String,
                         Integer.parseInt(document["reward"].toString()),
-                        document["noticeToPanel"] as String?,
+                        document["noticeToPanel"] as String,
                         Integer.parseInt(document["progress"].toString())
                     )
                     if(Integer.parseInt(document["progress"].toString())>1){
