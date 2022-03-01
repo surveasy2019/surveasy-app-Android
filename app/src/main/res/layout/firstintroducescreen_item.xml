@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="23dp"/>
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:id="@+id/FirstIntroduceScreen_Title"
@@ -46,14 +46,21 @@
         android:textColor="#848484"
         android:textStyle="bold"
         android:padding="3sp"
-        android:layout_marginTop="26dp"/>
+        android:layout_marginTop="22dp"/>
 
-    <Button
-        android:id="@+id/FirstIntroduceScreen_StartBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="시작하기"
-        android:layout_gravity="center"
-        android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/FirstIntroduceScreen_StartBtn"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10sp"
+            android:text="시작하기"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:background="@drawable/register_button"
+            android:backgroundTint="#0aab00"
+            android:visibility="invisible" />
 
 </LinearLayout>
