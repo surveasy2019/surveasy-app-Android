@@ -21,28 +21,44 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+import kotlinx.coroutines.NonDisposableHandle.parent
 
-class FirstIntroduceScreenViewPagerAdapter(context: Context, firstIntroduceScreen : FirstIntroduceScreen)
+class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, firstIntroduceScreen : FirstIntroduceScreen)
     : RecyclerView.Adapter<FirstIntroduceScreenViewPagerAdapter.PagerViewHolder>() {
 
     val db = Firebase.firestore
     var token = ""
     val context = context
+    val view_parent = view_parent
+    val indicator = view_parent.findViewById<SpringDotsIndicator>(R.id.spring_dots_indicator)
+
     val imgList = firstIntroduceScreen.imgList
     val titleList = firstIntroduceScreen.titleList
     val contentList = firstIntroduceScreen.contentList
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FirstIntroduceScreenViewPagerAdapter.PagerViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.firstintroducescreen_item, parent, false)
+
         return PagerViewHolder(view)
     }
+
+
+
+
 
     override fun onBindViewHolder(holder: FirstIntroduceScreenViewPagerAdapter.PagerViewHolder, position: Int) {
         holder.img.setImageResource(imgList[position])
         holder.title.text = titleList[position]
         holder.content.text = contentList[position]
 
+
+        Log.d(TAG, "****************  $position")
+
+
         if(position == imgList.size-1) {
+            //indicator.visibility = View.INVISIBLE
+
             holder.startBtn.visibility = View.VISIBLE
             holder.lastTitle.visibility = View.VISIBLE
 
@@ -60,7 +76,11 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, firstIntroduceScree
                 context.startActivity(intent)
             }
         }
+
+
     }
+
+
 
 
     override fun getItemCount(): Int {
@@ -72,6 +92,7 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, firstIntroduceScree
         val title = itemView.findViewById<TextView>(R.id.FirstIntroduceScreen_Title)
         val content = itemView.findViewById<TextView>(R.id.FirstIntroduceScreen_Content)
         val lastTitle = itemView.findViewById<TextView>(R.id.FirstIntroduceScreen_Title_last)
+
         val startBtn = itemView.findViewById<AppCompatButton>(R.id.FirstIntroduceScreen_StartBtn)
 
     }
