@@ -9,6 +9,7 @@ import com.example.surveasy.databinding.ActivityFirstintroducescreenLastBinding
 
 class FirstIntroduceScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFirstintroducescreenBinding
+    var last_page : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,8 @@ class FirstIntroduceScreenActivity : AppCompatActivity() {
 
 
         val firstIntroduceScreen = FirstIntroduceScreen(imgList, titleList, contentList)
-        binding.FirstIntroduceScreenViewPager.adapter = FirstIntroduceScreenViewPagerAdapter(this, firstIntroduceScreen)
+        // binding.FirstIntroduceScreenViewPager.offscreenPageLimit = imgList.size
+        binding.FirstIntroduceScreenViewPager.adapter = FirstIntroduceScreenViewPagerAdapter(this, binding.root, firstIntroduceScreen)
         binding.FirstIntroduceScreenViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         val springDotIndicator = binding.springDotsIndicator
         springDotIndicator.setViewPager2(binding.FirstIntroduceScreenViewPager)

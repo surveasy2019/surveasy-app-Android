@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/FirstIntroduceScreen_ImageView"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="12dp"/>
+        android:layout_marginBottom="8dp"/>
 
     <TextView
         android:id="@+id/FirstIntroduceScreen_Title"
@@ -32,7 +33,7 @@
         android:textSize="19sp"
         android:textColor="#0aab00"
         android:fontFamily="@font/main_font_b"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="1dp"
         android:visibility="gone"/>
 
     <TextView
@@ -40,27 +41,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="서베이지 서베이지"
         android:textSize="13dp"
+        android:paddingVertical="5sp"
         android:textColor="#848484"
-        android:fontFamily="@font/main_font_m"
-        android:padding="3sp"
-        android:layout_marginTop="22dp"/>
+        android:fontFamily="@font/main_font_m" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/FirstIntroduceScreen_StartBtn"
+        android:layout_width="110sp"
+        android:layout_height="39sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="시작하기"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:fontFamily="@font/main_font_b"
+        android:background="@drawable/register_button"
+        android:backgroundTint="#0aab00"
+        android:visibility="invisible" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/FirstIntroduceScreen_StartBtn"
-            android:layout_width="150sp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10sp"
-            android:text="시작하기"
-            android:textColor="#FFFFFF"
-            android:textSize="15sp"
-            android:fontFamily="@font/main_font_b"
-            android:background="@drawable/register_button"
-            android:backgroundTint="#0aab00"
-            android:visibility="invisible" />
 
 </LinearLayout>
