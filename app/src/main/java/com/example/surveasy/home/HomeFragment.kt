@@ -24,6 +24,7 @@ import com.example.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -48,13 +49,13 @@ class HomeFragment : Fragment() {
         val model by activityViewModels<SurveyInfoViewModel>()
         val current_banner: TextView = view.findViewById(R.id.textView_current_banner)
         val total_banner: TextView = view.findViewById(R.id.textView_total_banner)
+//        val springDotsIndicator: SpringDotsIndicator = view.findViewById(R.id.Home_spring_dots_indicator)
         val register: Button = view.findViewById(R.id.HomeToRegister)
         val login: Button = view.findViewById(R.id.HomeToLogin)
         val greetingText: TextView = view.findViewById(R.id.Home_GreetingText)
         val totalReward: TextView = view.findViewById(R.id.Home_RewardAmount)
-        val moreBtn : Button = view.findViewById(R.id.homeList_Btn)
+        val moreBtn : TextView = view.findViewById(R.id.homeList_Btn)
         val noneText : TextView = view.findViewById(R.id.homeList_text)
-        val img : ImageView = view.findViewById(R.id.img)
 
 
         // Banner init
@@ -69,6 +70,7 @@ class HomeFragment : Fragment() {
             }.await()
 
             total_banner.text = bannerModel.num.toString()
+            bannerPager.offscreenPageLimit = bannerModel.num
             bannerPager.adapter = BannerViewPagerAdapter(context!!, bannerModel.uriList)
             bannerPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
@@ -102,12 +104,16 @@ class HomeFragment : Fragment() {
 
         moreBtn.setOnClickListener {
             if (userModel.currentUser.didFirstSurvey == false) {
+                (activity as MainActivity).navColor_in_Home()
+
                 val intent_surveylistfirstsurvey: Intent =
                     Intent(context, FirstSurveyListActivity::class.java)
                 intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
                 startActivity(intent_surveylistfirstsurvey)
+
             } else {
                 (activity as MainActivity).clickList()
+                (activity as MainActivity).navColor_in_Home()
             }
         }
 
@@ -143,6 +149,7 @@ class HomeFragment : Fragment() {
 
             if (setHomeList(chooseHomeList()).size == 0 || userModel.currentUser.didFirstSurvey == false) {
                 noneText.text = "현재 참여가능한 설문이 없습니다"
+                noneText.visibility = View.VISIBLE
             }else{
                 val adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
                 container?.layoutManager = LinearLayoutManager(
