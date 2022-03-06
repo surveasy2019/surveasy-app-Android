@@ -45,7 +45,7 @@
         android:gravity="center"
         android:text="서베이지 서베이지"
         android:textSize="13dp"
-        android:paddingVertical="5sp"
+        android:lineSpacingExtra="2sp"
         android:textColor="#848484"
         android:fontFamily="@font/main_font_m" />
 
@@ -54,7 +54,7 @@
         android:layout_width="110sp"
         android:layout_height="39sp"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:text="시작하기"
         android:textColor="#FFFFFF"
         android:textSize="14sp"

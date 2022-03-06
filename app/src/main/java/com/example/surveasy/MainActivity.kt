@@ -2,9 +2,12 @@ package com.example.surveasy
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -87,12 +90,18 @@ class MainActivity : AppCompatActivity() {
 
         // Navigation Bars
         binding.NavHome.setOnClickListener {
+            navColor_On(binding.NavHomeImg, binding.NavHomeText)
+            navColor_Off(binding.NavListImg, binding.NavListText, binding.NavMyImg, binding.NavMyText)
+
             supportFragmentManager.beginTransaction()
                 .replace(R.id.MainView, HomeFragment())
                 .commit()
         }
 
         binding.NavList.setOnClickListener {
+            navColor_On(binding.NavListImg, binding.NavListText)
+            navColor_Off(binding.NavHomeImg, binding.NavHomeText, binding.NavMyImg, binding.NavMyText)
+
             if (userModel.currentUser.didFirstSurvey == false) {
                 // Send Current User to Activities
                 val intent_surveylistfirstsurvey: Intent = Intent(this, FirstSurveyListActivity::class.java)
@@ -106,6 +115,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.NavMy.setOnClickListener {
+            navColor_On(binding.NavMyImg, binding.NavMyText)
+            navColor_Off(binding.NavHomeImg, binding.NavHomeText, binding.NavListImg, binding.NavListText)
+
             supportFragmentManager.beginTransaction()
                 .replace(R.id.MainView, MyViewFragment())
                 .commit()
@@ -252,6 +264,28 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    private fun navColor_On(img: ImageView, text: TextView) {
+        img.setColorFilter(Color.parseColor("#0aab00"))
+        text.setTextColor(Color.parseColor("#0aab00"))
+    }
+
+    private fun navColor_Off(img1: ImageView, text1: TextView, img2: ImageView, text2: TextView) {
+        img1.setColorFilter(Color.parseColor("#c9c9c9"))
+        text1.setTextColor(Color.parseColor("#c9c9c9"))
+
+        img2.setColorFilter(Color.parseColor("#c9c9c9"))
+        text2.setTextColor(Color.parseColor("#c9c9c9"))
+    }
+
+    fun navColor_in_Home() {
+        binding.NavHomeImg.setColorFilter(Color.parseColor("#c9c9c9"))
+        binding.NavHomeText.setTextColor(Color.parseColor("#c9c9c9"))
+        binding.NavListImg.setColorFilter(Color.parseColor("#0aab00"))
+        binding.NavListText.setTextColor(Color.parseColor("#0aab00"))
+        binding.NavMyImg.setColorFilter(Color.parseColor("#c9c9c9"))
+        binding.NavMyText.setTextColor(Color.parseColor("#c9c9c9"))
     }
 
     override fun onBackPressed() {
