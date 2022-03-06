@@ -87,7 +87,7 @@
             <CheckBox
                 android:id="@+id/Login_AutoLogin"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
                 android:layout_gravity="center"
                 android:text="자동 로그인"
                 android:textSize="12sp"
@@ -95,24 +95,24 @@
                 android:fontFamily="@font/main_font_m"
                 android:checked="true" />
 
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/Login_Btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45sp"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="5dp"
-                android:text="로그인"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/main_font_b"
+                android:background="@drawable/register_button"
                 android:backgroundTint="#0aab00"
-                android:background="@drawable/register_button" />
-
+                android:fontFamily="@font/main_font_b"
+                android:text="로그인"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/Login_Register"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45sp"
                 android:layout_gravity="center"
                 android:layout_marginTop="8sp"
                 android:layout_marginHorizontal="5dp"
@@ -127,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="15sp"
+                android:padding="12sp"
                 android:textSize="13sp"
                 android:text="비밀번호 찾기 >"
                 android:fontFamily="@font/main_font_m" />
