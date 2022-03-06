@@ -41,7 +41,7 @@ class Register1Fragment : Fragment() {
             when (checkedId) {
                 R.id.RegisterFragment1_RadioMale -> gender = "남"
                 R.id.RegisterFragment1_RadioFemale -> gender = "여"
-                R.id.RegisterFragment1_RadioEtc -> gender = "기타"
+
             }
             Log.d(TAG, "~~~~~~~~gender: $gender")
         }
