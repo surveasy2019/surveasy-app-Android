@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityFirstintroducescreenBinding
-import com.example.surveasy.databinding.ActivityFirstintroducescreenLastBinding
 
 class FirstIntroduceScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFirstintroducescreenBinding

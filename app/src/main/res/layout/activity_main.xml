@@ -18,48 +18,93 @@
     <LinearLayout
         android:id="@+id/bottomNav_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50sp"
         android:orientation="horizontal"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@id/MainView">
 
-<!--        <RelativeLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            >-->
-<!--            <ImageButton-->
-<!--                android:id="@+id/Nav_Home"-->
-<!--                android:layout_width="80dp"-->
-<!--                android:layout_height="80dp"-->
-<!--                android:src="@drawable/selector_bottomnav_home"-->
-<!--                />-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Home"/>-->
-<!--        </RelativeLayout>-->
-
-
-        <Button
+        <LinearLayout
             android:id="@+id/Nav_Home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="HOME"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            />
-        <Button
+            android:orientation="vertical"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/Nav_Home_Img"
+                android:layout_width="17sp"
+                android:layout_height="17sp"
+                android:src="@drawable/navigation_home" />
+
+            <TextView
+                android:id="@+id/Nav_Home_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HOME"
+                android:textSize="9sp"
+                android:textColor="#0aab00"
+                android:fontFamily="@font/main_font_m" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/Nav_List"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LIST"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            />
-        <Button
+            android:orientation="vertical"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/Nav_List_Img"
+                android:layout_width="17sp"
+                android:layout_height="17sp"
+                android:src="@drawable/navigation_list" />
+
+            <TextView
+                android:id="@+id/Nav_List_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LIST"
+                android:textSize="9sp"
+                android:textColor="#c9c9c9"
+                android:fontFamily="@font/main_font_m" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/Nav_My"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            />
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/Nav_My_Img"
+                android:layout_width="17sp"
+                android:layout_height="17sp"
+                android:src="@drawable/navigation_my" />
+
+            <TextView
+                android:id="@+id/Nav_My_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MY"
+                android:textSize="9sp"
+                android:textColor="#c9c9c9"
+                android:fontFamily="@font/main_font_m" />
+
+
+        </LinearLayout>
+
+
+
+
+
 
 
     </LinearLayout>

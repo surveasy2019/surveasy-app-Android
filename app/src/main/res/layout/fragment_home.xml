@@ -1,251 +1,582 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/home_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical"
+    android:layout_marginBottom="50sp" >
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@drawable/home_top_gradient" >
 
-        <TextView
-            android:id="@+id/Home_GreetingText"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/Home_Top"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:text="안녕하세요, ID 님!"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:paddingTop="20dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"/>
+            android:layout_marginTop="30dp"
+            android:padding="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Home_GreetingText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:paddingBottom="15sp"
+                android:text="안녕하세요, ID 님!"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="@font/main_font_b"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/home_top_container"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="130개"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/main_font_b" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="참여 설문"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/main_font_m" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1sp"
+                    android:layout_height="40sp"
+                    android:layout_gravity="center"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/Home_RewardAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="25000원"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/main_font_b" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="정산 금액"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/main_font_m" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/Home_SettlementText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="정산 예정금액"
-            android:layout_gravity="right"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:paddingEnd="20dp"/>
-        <TextView
-            android:id="@+id/Home_RewardAmount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="불러오는 중"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:paddingEnd="20dp"/>
+
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="240dp"
+            android:background="@drawable/home_bottom"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="30dp"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/Home_List_TitleContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="18sp"
+                        android:layout_height="17sp"
+                        android:layout_marginTop="2sp"
+                        android:src="@drawable/checkimg"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:paddingLeft="7sp"
+                        android:text="참여해주세요!"
+                        android:textSize="14sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/main_font_b" />
+
+                    <TextView
+                        android:id="@+id/homeList_Btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:paddingRight="6sp"
+                        android:text="더보기 >"
+                        android:textSize="12sp"
+                        android:textColor="#707070"
+                        android:fontFamily="@font/main_font_m" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/homeList_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:visibility="gone"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/homeList_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6sp"
+                    android:layout_marginBottom="30dp"/>
+
+
+
+                <LinearLayout
+                    android:id="@+id/Home_Opinion_TitleContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="18sp"
+                        android:layout_height="17sp"
+                        android:layout_marginTop="2sp"
+                        android:src="@drawable/checkimg"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:paddingLeft="7sp"
+                        android:text="당신의 의견은?"
+                        android:textSize="14sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/main_font_b" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:background="#89c454"
+                    android:text="새내기때 꼭 해봐야 하는 것은 ?"
+                    android:textSize="13sp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/main_font_b" />
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:id="@+id/Home_Banner_Container"
+                android:layout_width="match_parent"
+                android:layout_height="70sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="10dp" >
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/Home_BannerViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="10sp"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp"
+                    android:background="@drawable/banner_currentpage">
+
+                    <TextView
+                        android:id="@+id/textView_current_banner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:textSize="10dp"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="/"
+                        android:textSize="10dp"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/textView_total_banner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:textSize="10dp"
+                        android:textColor="#FFFFFF" />
+
+                </LinearLayout>
+            </FrameLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="30dp"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/Home_Participate_TitleContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="18sp"
+                        android:layout_height="17sp"
+                        android:layout_marginTop="2sp"
+                        android:src="@drawable/checkimg"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:paddingLeft="7sp"
+                        android:text="우리가 기여한 연구"
+                        android:textSize="13sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/main_font_b" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/homeParticipate_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="20dp"/>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/HomeToRegister"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Register"
+                        android:layout_marginLeft="10dp"/>
+
+                    <Button
+                        android:id="@+id/HomeToLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Login"
+                        android:layout_marginLeft="10dp"/>
+
+                </LinearLayout>
+
+        </LinearLayout>
+
+
+
 
 
 
         </LinearLayout>
 
+    </FrameLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginBottom="10dp">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical">-->
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/Home_BannerViewPager"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/img" />
+<!--        <TextView-->
+<!--            android:id="@+id/Home_GreetingText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="left"-->
+<!--            android:text="안녕하세요, ID 님!"-->
+<!--            android:textSize="25sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:paddingTop="20dp"-->
+<!--            android:paddingStart="20dp"-->
+<!--            android:paddingEnd="20dp"/>-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="end"
-                app:layout_constraintRight_toRightOf="@+id/Home_BannerViewPager"
-                app:layout_constraintBottom_toBottomOf="@+id/Home_BannerViewPager"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="16dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:background="@drawable/banner_currentpage">
 
-                <TextView
-                    android:id="@+id/textView_current_banner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textSize="10dp"
-                    android:textColor="#FFFFFF" />
+<!--        <TextView-->
+<!--            android:id="@+id/Home_SettlementText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="정산 예정금액"-->
+<!--            android:layout_gravity="right"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:paddingEnd="20dp"/>-->
+<!--        <TextView-->
+<!--            android:id="@+id/Home_RewardAmount"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="right"-->
+<!--            android:text="불러오는 중"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:paddingEnd="20dp"/>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:text="/"
-                    android:textSize="10dp"
-                    android:textColor="#FFFFFF" />
 
-                <TextView
-                    android:id="@+id/textView_total_banner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="15"
-                    android:textSize="10dp"
-                    android:textColor="#FFFFFF" />
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal" >-->
+
+
+
+<!--        </LinearLayout>-->
+
+
+<!--        <FrameLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_marginBottom="10dp">-->
+
+<!--            <androidx.viewpager2.widget.ViewPager2-->
+<!--                android:id="@+id/Home_BannerViewPager"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="70dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:id="@+id/img" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_gravity="end"-->
+<!--                app:layout_constraintRight_toRightOf="@+id/Home_BannerViewPager"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/Home_BannerViewPager"-->
+<!--                android:layout_marginRight="12dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                android:paddingLeft="8dp"-->
+<!--                android:paddingRight="8dp"-->
+<!--                android:paddingTop="4dp"-->
+<!--                android:paddingBottom="4dp"-->
+<!--                android:background="@drawable/banner_currentpage">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView_current_banner"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1"-->
+<!--                    android:textSize="10dp"-->
+<!--                    android:textColor="#FFFFFF" />-->
 
 <!--                <TextView-->
 <!--                    android:layout_width="wrap_content"-->
 <!--                    android:layout_height="wrap_content"-->
 <!--                    android:layout_marginLeft="4dp"-->
-<!--                    android:text="모두보기"-->
+<!--                    android:layout_marginRight="4dp"-->
+<!--                    android:text="/"-->
 <!--                    android:textSize="10dp"-->
 <!--                    android:textColor="#FFFFFF" />-->
 
-            </LinearLayout>
+<!--                <TextView-->
+<!--                    android:id="@+id/textView_total_banner"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="15"-->
+<!--                    android:textSize="10dp"-->
+<!--                    android:textColor="#FFFFFF" />-->
+
+<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginLeft="4dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:text="모두보기"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textSize="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:textColor="#FFFFFF" />&ndash;&gt;-->
+
+<!--            </LinearLayout>-->
 
 
-        </FrameLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="설문 리스트"
-                android:textSize="20dp"
-                android:textColor="@color/black"/>
-            <Button
-                android:id="@+id/homeList_Btn"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="더보기"/>
-
-            <Button
-            android:id="@+id/HomeToRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="Register"
-            android:layout_marginLeft="10dp"/>
-
-            <Button
-                android:id="@+id/HomeToLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="Login"
-                android:layout_marginLeft="10dp"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/homeList_text"/>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/homeList_recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginBottom="40dp"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="당신의 의견은?"
-            android:textSize="17dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:paddingLeft="7dp" />
-
-        <LinearLayout
-            android:id="@+id/Home_OpinionContainer"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:background="#94B49F"
-            android:layout_margin="10dp"
-            android:gravity="right">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=">대답하러가기"
-                android:textSize="15dp"
-                android:layout_gravity="center|bottom" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="우리가 기여한 연구"
-            android:textSize="17dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:paddingLeft="7dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="vertical"
-            android:background="#94B49F"
-            android:layout_margin="10dp"
-            android:padding="7dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="##에 관한 연구"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                android:textColor="#464E2E"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="이화여자대학교 ㅇㅇㅇ 논문 / 2021.12 서베이지에서 설문 진행"
-                android:textSize="12dp"
-                android:textStyle="bold"
-                android:textColor="@color/white"/>
-
-        </LinearLayout>
+<!--        </FrameLayout>-->
 
 
 
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal" >-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="설문 리스트"-->
+<!--                android:textSize="20dp"-->
+<!--                android:textColor="@color/black"/>-->
+<!--            <Button-->
+<!--                android:id="@+id/homeList_Btn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:text="더보기"/>-->
+
+<!--            <Button-->
+<!--            android:id="@+id/HomeToRegister"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:text="Register"-->
+<!--            android:layout_marginLeft="10dp"/>-->
+
+<!--            <Button-->
+<!--                android:id="@+id/HomeToLogin"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:text="Login"-->
+<!--                android:layout_marginLeft="10dp"/>-->
+
+<!--        </LinearLayout>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/homeList_text"/>-->
+
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/homeList_recyclerView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_marginBottom="40dp"/>-->
+
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="당신의 의견은?"-->
+<!--            android:textSize="17dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:paddingLeft="7dp" />-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/Home_OpinionContainer"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:background="#94B49F"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:gravity="right">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text=">대답하러가기"-->
+<!--                android:textSize="15dp"-->
+<!--                android:layout_gravity="center|bottom" />-->
+
+<!--        </LinearLayout>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="우리가 기여한 연구"-->
+<!--            android:textSize="17dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:paddingLeft="7dp" />-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:orientation="vertical"-->
+<!--            android:background="#94B49F"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:padding="7dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="##에 관한 연구"-->
+<!--                android:textSize="15dp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="#464E2E"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="이화여자대학교 ㅇㅇㅇ 논문 / 2021.12 서베이지에서 설문 진행"-->
+<!--                android:textSize="12dp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/white"/>-->
+
+<!--        </LinearLayout>-->
 
 
 
 
-    </LinearLayout>
+
+
+
+<!--    </LinearLayout>-->
 
 
 
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
