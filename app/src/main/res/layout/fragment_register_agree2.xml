@@ -13,6 +13,7 @@
         android:id="@+id/ToolbarRegisterAgree2"
         android:theme="@style/ToolbarTheme"
         android:background="@color/white"
+
         >
 
         <TextView
@@ -30,14 +31,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="30dp"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="380sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="19"
             android:orientation="vertical">
 
             <TextView
@@ -193,12 +195,13 @@
             android:layout_height="wrap_content"
             style="?android:attr/progressBarStyleHorizontal"
             android:indeterminate="false"
-
+            android:layout_weight="1"
             android:theme="@style/progressBar"
             android:max="5"
             android:progress="2"
             android:minHeight="50dp"/>
         <androidx.appcompat.widget.AppCompatButton
+
             android:id="@+id/RegisterAgree2_Btn"
             android:layout_width="330sp"
             android:layout_height="wrap_content"

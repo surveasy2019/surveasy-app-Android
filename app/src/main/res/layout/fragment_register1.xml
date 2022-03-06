@@ -107,7 +107,9 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:textSize="13sp"
-                    android:textColor="#c9c9c9"
+                    android:textColorHint="#c9c9c9"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:inputType="text"
                     android:background="@drawable/custom_input"/>
 
@@ -160,7 +162,9 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:textSize="13sp"
-                    android:textColor="#c9c9c9"
+                    android:textColorHint="#c9c9c9"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:inputType="text"
                     android:background="@drawable/custom_input"/>
 
@@ -197,7 +201,9 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:textSize="13sp"
-                    android:textColor="#c9c9c9"
+                    android:textColorHint="#c9c9c9"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:inputType="text"
                     android:background="@drawable/custom_input"/>
 
@@ -233,7 +239,9 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:textSize="13sp"
-                    android:textColor="#c9c9c9"
+                    android:textColorHint="#c9c9c9"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:inputType="text"
                     android:background="@drawable/custom_input"/>
 
@@ -269,7 +277,9 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:textSize="13sp"
-                    android:textColor="#c9c9c9"
+                    android:textColorHint="#c9c9c9"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:inputType="text"
                     android:background="@drawable/custom_input"/>
 

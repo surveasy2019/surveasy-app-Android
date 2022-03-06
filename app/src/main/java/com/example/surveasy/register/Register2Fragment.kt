@@ -36,7 +36,7 @@ class Register2Fragment : Fragment() {
 
         // Set Spinners
         setAccountTypeSpinner(view)
-        setInflowPathSpinner(view)
+        //setInflowPathSpinner(view)
 
 
         val registerFragment2_Btn : Button = view!!.findViewById(R.id.RegisterFragment2_Btn)
@@ -151,22 +151,22 @@ class Register2Fragment : Fragment() {
         }
     }
 
-    private fun setInflowPathSpinner(view: View) {
-        val inflowPathList = resources.getStringArray(R.array.inflowPath)
-        val inflowPathAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, inflowPathList)
-        val inflowPathSpinner : Spinner = view.findViewById(R.id.RegisterFragment2_InflowPathSpinner)
-        inflowPathSpinner.adapter = inflowPathAdapter
-        inflowPathSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                inflowPath = inflowPathList[position]
-                Toast.makeText(context, inflowPathList[position], Toast.LENGTH_SHORT).show()
-                Log.d(TAG, "@@@@@@@ inflow : $inflowPath")
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-        }
-    }
+//    private fun setInflowPathSpinner(view: View) {
+//        val inflowPathList = resources.getStringArray(R.array.inflowPath)
+//        val inflowPathAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, inflowPathList)
+//        val inflowPathSpinner : Spinner = view.findViewById(R.id.RegisterFragment2_InflowPathSpinner)
+//        inflowPathSpinner.adapter = inflowPathAdapter
+//        inflowPathSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                inflowPath = inflowPathList[position]
+//                Toast.makeText(context, inflowPathList[position], Toast.LENGTH_SHORT).show()
+//                Log.d(TAG, "@@@@@@@ inflow : $inflowPath")
+//            }
+//
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//            }
+//        }
+//    }
 
 
 
