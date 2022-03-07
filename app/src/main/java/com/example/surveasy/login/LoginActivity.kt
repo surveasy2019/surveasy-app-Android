@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
     val userModel by viewModels<CurrentUserViewModel>()
     var autoLogin: Boolean = true
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -186,6 +187,8 @@ class LoginActivity : AppCompatActivity() {
             docRef.update("fcmToken", token)
         })
     }
+
+
 
 
 }

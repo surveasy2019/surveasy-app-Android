@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/white"
     >
 
     <androidx.appcompat.widget.Toolbar
@@ -11,88 +12,129 @@
         android:layout_height="?android:attr/actionBarSize"
         android:id="@+id/ToolbarFirstSurvey"
         android:theme="@style/ToolbarTheme"
-        android:background="@color/white"
+        android:backgroundTint="@color/white"
         app:titleTextColor="@color/black"/>
 
     <LinearLayout
         android:id="@+id/SurveyListFirstSurvey1_Container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:paddingStart="20dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:paddingBottom="30dp"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
+        android:layout_weight="19"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="*보다 많은 설문조사를 전달해 드리기 위해 기초 정보 조사를 실시합니다. 해당 응답 내용을 바탕으로 설문 대상이 분류되므로, 정확한 응답 부탁드립니다."
-            android:layout_marginBottom="50dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:fontFamily="@font/main_font_sb"
+            android:textStyle="normal"
+            android:textSize="15sp"
+            android:textColor="#707070"
+            android:lineSpacingExtra="2.7sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="15dp">
+            android:layout_marginTop="15dp">
             <TextView
                 android:id="@+id/SurveyListFirstSurvey1_JobText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/main_font_sb"
                 android:text="직업"
-                android:textColor="@color/black" />
+                android:textSize="15dp"
+                android:paddingStart="5dp"
+                android:layout_marginBottom="8dp"/>
             <Spinner
                 android:id="@+id/SurveyListFirstSurvey1_JobSpinner"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="5dp" />
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/custom_spinner"
+                android:fontFamily="@font/main_font_sb"
+                android:paddingStart="10dp"
+                android:textSize="13sp"
+                android:textColorHint="#c9c9c9"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:inputType="text" />
 
             <LinearLayout
                 android:id="@+id/SurveyListFirstSurvey1_GoneContainer"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone" >
+                android:visibility="gone"
+
+                >
 
                 <Spinner
                     android:id="@+id/SurveyListFirstSurvey1_MajorSpinner"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="10dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/custom_spinner"
+                    android:fontFamily="@font/main_font_sb"
+                    android:paddingStart="10dp"
+                    android:textSize="13sp"
+                    android:textColorHint="#c9c9c9"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:inputType="text"
+                    android:layout_marginTop="15dp"/>
 
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/spinner_view"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/custom_spinner"
+                    android:fontFamily="@font/main_font_sb"
+                    android:paddingStart="10dp"
+                    android:textSize="13sp"
+                    android:textColorHint="#c9c9c9"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"/>
 
             </LinearLayout>
 
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/SurveyListFirstSurvey1_UniversityContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone" >
+<!--        <LinearLayout-->
+<!--            android:id="@+id/SurveyListFirstSurvey1_UniversityContainer"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:visibility="gone" >-->
 
-            <TextView
-                android:id="@+id/SurveyListFirstSurvey1_UniversityText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="대학명"
-                android:textColor="@color/black"
-                />
+<!--            <TextView-->
+<!--                android:id="@+id/SurveyListFirstSurvey1_UniversityText"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="대학명"-->
+<!--                android:textColor="@color/black"-->
+<!--                />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center" >
+            android:gravity="center"
+            android:layout_marginTop="15dp">
 
             <TextView
                 android:id="@+id/SurveyListFirstSurvey1_EngSurveyText"
@@ -106,12 +148,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center">
+                android:layout_marginTop="10dp">
 
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_EngSurvey_O"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="40dp"
                     android:text="희망함" />
 
                 <RadioButton
@@ -175,6 +218,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_weight="1"
         android:backgroundTint="#717171"
         android:text="next" />
 

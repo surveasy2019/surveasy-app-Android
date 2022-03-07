@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.adapters.AutoCompleteTextViewBindingAdapter
 import com.example.surveasy.R
@@ -35,7 +36,10 @@ class RegisterActivity : AppCompatActivity() {
         setSupportActionBar(binding.ToolbarRegister)
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setDisplayShowTitleEnabled(false)
+
+            //supportActionBar?.setDisplayShowTitleEnabled(false)
+            supportActionBar?.setTitle("패널가입")
+
         }
         binding.ToolbarRegister.setNavigationOnClickListener {
             onBackPressed()
