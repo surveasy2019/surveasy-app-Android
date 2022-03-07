@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
+    android:backgroundTint="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.Toolbar
@@ -86,7 +87,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:spinnerMode="dropdown"
-                            android:background="@drawable/custom_input"
+                            android:background="@drawable/custom_spinner"
                             android:fontFamily="@font/main_font_sb"
                             android:paddingStart="5dp"
                             android:layout_marginStart="5dp"
