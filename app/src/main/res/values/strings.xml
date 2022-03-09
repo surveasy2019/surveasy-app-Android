@@ -550,7 +550,6 @@
     </string-array>
 
 
-
     <string-array name="housingType">
         <item>주거 형태를 선택해주세요</item>
         <item>아파트/주상복합</item>

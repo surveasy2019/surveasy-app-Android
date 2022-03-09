@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/white"
     >
 
     <androidx.appcompat.widget.Toolbar
@@ -15,254 +16,373 @@
         app:titleTextColor="@color/black"/>
 
 
-    <LinearLayout
-        android:id="@+id/SurveyListFirstSurvey2_Container"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:paddingStart="20dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/SurveyListFirstSurvey2_DistrictText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="거주지역"
-                android:textColor="@color/black" />
-
-            <Spinner
-                android:id="@+id/SurveyListFirstSurvey2_DistrictSpinner"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:paddingVertical="5dp" />
-
-            <Spinner
-                android:id="@+id/SurveyListFirstSurvey2_CitySpinner"
-                android:layout_width="300dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
-                android:paddingVertical="5dp" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/SurveyListFirstSurvey2_PetText"
+            <LinearLayout
+                android:id="@+id/SurveyListFirstSurvey2_Container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="반려동물"
-                android:textColor="@color/black" />
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:paddingBottom="30dp"
+                android:orientation="vertical"
+                >
 
-            <RadioGroup
-                android:id="@+id/SurveyListFirstSurvey2_PetRadioGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/SurveyListFirstSurvey2_PetDog"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:text="반려견"
-                    android:textColor="@drawable/selector_radio_text"/>
+                    android:text="*보다 많은 설문조사를 전달해 드리기 위해 기초 정보 조사를 실시합니다. 해당 응답 내용을 바탕으로 설문 대상이 분류되므로, 정확한 응답 부탁드립니다."
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/main_font_sb"
+                    android:textStyle="normal"
+                    android:textSize="15sp"
+                    android:textColor="#707070"
+                    android:lineSpacingExtra="2.7sp"/>
 
-                <RadioButton
-                    android:id="@+id/SurveyListFirstSurvey2_PetCat"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="15dp">
+
+                    <TextView
+                        android:id="@+id/SurveyListFirstSurvey2_DistrictText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/main_font_sb"
+                        android:text="거주지역"
+                        android:textSize="15dp"
+                        android:paddingStart="5dp"
+                        android:layout_marginBottom="10dp"/>
+
+                    <Spinner
+                        android:id="@+id/SurveyListFirstSurvey2_DistrictSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/custom_spinner"
+                        android:fontFamily="@font/main_font_sb"
+                        android:paddingStart="10dp"
+                        android:textSize="13sp"
+                        android:textColorHint="#c9c9c9"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:inputType="text" />
+
+                    <Spinner
+                        android:id="@+id/SurveyListFirstSurvey2_CitySpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/custom_spinner"
+                        android:fontFamily="@font/main_font_sb"
+                        android:paddingStart="10dp"
+                        android:textSize="13sp"
+                        android:textColorHint="#c9c9c9"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:inputType="text"
+                        android:layout_marginTop="15dp"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="25dp" >
+
+                    <TextView
+                        android:id="@+id/SurveyListFirstSurvey2_PetText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/main_font_sb"
+                        android:textSize="15dp"
+                        android:paddingStart="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="반려동물"
+                        />
+
+                    <RadioGroup
+                        android:id="@+id/SurveyListFirstSurvey2_PetRadioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/SurveyListFirstSurvey2_PetDog"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="15dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="반려견"
+                            android:textColor="@drawable/selector_radio_text"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="5dp"
+                            />
+
+                        <RadioButton
+                            android:id="@+id/SurveyListFirstSurvey2_PetCat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="15dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="반려묘"
+                            android:textColor="@drawable/selector_radio_text"
+                            android:layout_marginEnd="10dp"/>
+
+                        <RadioButton
+                            android:id="@+id/SurveyListFirstSurvey2_PetEtc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="15dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="기타"
+                            android:textColor="@drawable/selector_radio_text"
+                            android:layout_marginEnd="10dp"/>
+
+                        <RadioButton
+                            android:id="@+id/SurveyListFirstSurvey2_PetNone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="15dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="없음"
+                            android:textColor="@drawable/selector_radio_text"
+                            android:layout_marginEnd="10dp"/>
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="25dp">
+
+                    <TextView
+                        android:id="@+id/SurveyListFirstSurvey2_MarriedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/main_font_sb"
+                        android:textSize="15dp"
+                        android:paddingStart="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="혼인여부" />
+
+                    <RadioGroup
+                        android:id="@+id/SurveyListFirstSurvey2_MarriedRadioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/SurveyListFirstSurvey2_MarriedYet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="15dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="미혼"
+                            android:textColor="@drawable/selector_radio_text"
+                            android:layout_marginEnd="10dp"/>
+
+                        <RadioButton
+                            android:id="@+id/SurveyListFirstSurvey2_Married"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="15dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="기혼"
+                            android:textColor="@drawable/selector_radio_text"
+                            android:layout_marginEnd="10dp"/>
+
+                        <RadioButton
+                            android:id="@+id/SurveyListFirstSurvey2_MarriedDivorce"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="15dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="이혼"
+                            android:textColor="@drawable/selector_radio_text"
+                            android:layout_marginEnd="10dp"/>
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:text="반려묘"
-                    android:textColor="@drawable/selector_radio_text"/>
+                    android:orientation="vertical"
+                    android:layout_marginTop="25dp">
 
-                <RadioButton
-                    android:id="@+id/SurveyListFirstSurvey2_PetEtc"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/SurveyListFirstSurvey2_FamilyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/main_font_sb"
+                        android:textSize="15dp"
+                        android:paddingStart="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="가구형태" />
+
+                    <RadioGroup
+                        android:id="@+id/SurveyListFirstSurvey2_FamilyRadioGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/SurveyListFirstSurvey2_Family1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="15dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="1인가구"
+                            android:textColor="@drawable/selector_radio_text"
+                            android:layout_marginEnd="10dp" />
+
+                        <RadioButton
+                            android:id="@+id/SurveyListFirstSurvey2_Family2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="15dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="2인가구"
+                            android:textColor="@drawable/selector_radio_text"
+                            android:layout_marginEnd="10dp" />
+
+                    </RadioGroup>
+                    <RadioGroup
+                        android:id="@+id/SurveyListFirstSurvey2_FamilyRadioGroup2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp">
+                        <RadioButton
+                            android:id="@+id/SurveyListFirstSurvey2_Family3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="15dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="3인가구"
+                            android:textColor="@drawable/selector_radio_text"
+                            android:layout_marginEnd="10dp" />
+
+                        <RadioButton
+                            android:id="@+id/SurveyListFirstSurvey2_Family4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="15dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="4인가구 이상"
+                            android:textColor="@drawable/selector_radio_text"
+                            />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:text="기타"
-                    android:textColor="@drawable/selector_radio_text"/>
+                    android:orientation="vertical"
+                    android:layout_marginTop="25dp">
 
-                <RadioButton
-                    android:id="@+id/SurveyListFirstSurvey2_PetNone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:text="없음"
-                    android:textColor="@drawable/selector_radio_text"/>
+                    <TextView
+                        android:id="@+id/SurveyListFirstSurvey2_HousingTypeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/main_font_sb"
+                        android:textSize="15dp"
+                        android:paddingStart="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="거주 주택 형태" />
 
-            </RadioGroup>
+                    <Spinner
+                        android:id="@+id/SurveyListFirstSurvey2_HousingTypeSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/custom_spinner"
+                        android:fontFamily="@font/main_font_sb"
+                        android:paddingStart="10dp"
+                        android:textSize="13sp"
+                        android:textColorHint="#c9c9c9"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:inputType="text" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/SurveyListFirstSurvey2_Btn"
+                android:layout_width="330sp"
+                android:layout_height="40dp"
+                android:text="다음"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:backgroundTint="#0aab00"
+                android:background="@drawable/register_button"
+                android:layout_marginBottom="30dp"/>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/SurveyListFirstSurvey2_MarriedText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="혼인 여부"
-                android:textColor="@color/black" />
-
-            <RadioGroup
-                android:id="@+id/SurveyListFirstSurvey2_MarriedRadioGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/SurveyListFirstSurvey2_MarriedYet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:text="미혼"
-                    android:textColor="@drawable/selector_radio_text"/>
-
-                <RadioButton
-                    android:id="@+id/SurveyListFirstSurvey2_Married"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:text="기혼"
-                    android:textColor="@drawable/selector_radio_text"/>
-
-                <RadioButton
-                    android:id="@+id/SurveyListFirstSurvey2_MarriedDivorce"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:text="이혼"
-                    android:textColor="@drawable/selector_radio_text"/>
-
-            </RadioGroup>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/SurveyListFirstSurvey2_FamilyText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="가구 형태"
-                android:textColor="@color/black" />
-
-            <RadioGroup
-                android:id="@+id/SurveyListFirstSurvey2_FamilyRadioGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/SurveyListFirstSurvey2_Family1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:text="1인가구"
-                    android:textAlignment="center"
-                    android:textColor="@drawable/selector_radio_text" />
-
-                <RadioButton
-                    android:id="@+id/SurveyListFirstSurvey2_Family2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:text="2인가구"
-                    android:textAlignment="center"
-                    android:textColor="@drawable/selector_radio_text" />
-
-                <RadioButton
-                    android:id="@+id/SurveyListFirstSurvey2_Family3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:text="3인가구"
-                    android:textAlignment="center"
-                    android:textColor="@drawable/selector_radio_text" />
-
-                <RadioButton
-                    android:id="@+id/SurveyListFirstSurvey2_Family4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/selector_radio_button"
-                    android:gravity="center"
-                    android:button="@null"
-                    android:text="4인가구 이상"
-                    android:textAlignment="center"
-                    android:textColor="@drawable/selector_radio_text" />
-            </RadioGroup>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/SurveyListFirstSurvey2_HousingTypeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="거주 주택 형태"
-                android:textColor="@color/black" />
-
-            <Spinner
-                android:id="@+id/SurveyListFirstSurvey2_HousingTypeSpinner"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:paddingVertical="10dp" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/SurveyListFirstSurvey2_Btn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="#717171"
-        android:text="제출하기" />
+    </ScrollView>
 
 
 

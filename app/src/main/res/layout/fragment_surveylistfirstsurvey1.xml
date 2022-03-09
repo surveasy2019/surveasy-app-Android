@@ -23,7 +23,7 @@
         android:paddingEnd="30dp"
         android:paddingBottom="30dp"
         android:orientation="vertical"
-        android:layout_weight="19"
+        android:layout_weight="27"
         >
 
         <TextView
@@ -51,7 +51,7 @@
                 android:text="직업"
                 android:textSize="15dp"
                 android:paddingStart="5dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="10dp"/>
             <Spinner
                 android:id="@+id/SurveyListFirstSurvey1_JobSpinner"
                 android:layout_width="match_parent"
@@ -133,35 +133,60 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="25dp">
 
             <TextView
                 android:id="@+id/SurveyListFirstSurvey1_EngSurveyText"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/main_font_sb"
+                android:textSize="15dp"
+                android:paddingStart="5dp"
+                android:layout_marginBottom="10dp"
                 android:text="영어 설문 참여 의사"
-                android:textColor="@color/black" />
+                />
 
             <RadioGroup
                 android:id="@+id/SurveyListFirstSurvey1_EngSurveyRadioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:paddingStart="5dp"
+                >
 
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_EngSurvey_O"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:button="@color/transparent"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/custom_radiobtn"
+                     />
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="40dp"
-                    android:text="희망함" />
+                    android:textSize="16sp"
+                    android:text="희망함"
+                    android:fontFamily="@font/main_font_sb"
+                    android:textColor="@color/black"/>
 
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_EngSurvey_X"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:button="@color/transparent"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/custom_radiobtn"
+                    android:layout_marginStart="40dp"/>
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="희망하지 않음" />
+                    android:text="희망하지 않음"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/main_font_sb"
+                    android:textColor="@color/black"/>
 
             </RadioGroup>
 
@@ -173,12 +198,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center">
+            android:layout_marginTop="25dp">
 
             <TextView
                 android:id="@+id/SurveyListFirstSurvey1_MilitaryText"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font_sb"
+                android:textSize="15dp"
+                android:paddingStart="5dp"
+                android:layout_marginBottom="8dp"
                 android:text="병역필여부"
                 android:textColor="@color/black" />
 
@@ -187,23 +216,54 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center">
+                android:paddingStart="5dp"
+                >
 
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_MilitaryDone"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:button="@color/transparent"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/custom_radiobtn"
+                     />
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="군필" />
+                    android:textSize="16sp"
+                    android:text="군필"
+                    android:fontFamily="@font/main_font_sb"
+                    android:textColor="@color/black"/>
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_MilitaryYet"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:button="@color/transparent"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/custom_radiobtn"
+                    android:layout_marginStart="40dp" />
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="미필" />
+                    android:textSize="16sp"
+                    android:text="미필"
+                    android:fontFamily="@font/main_font_sb"
+                    android:textColor="@color/black"/>
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_MilitaryNA"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:button="@color/transparent"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/custom_radiobtn"
+                    android:layout_marginStart="40dp" />
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="해당사항 없음" />
+                    android:textSize="16sp"
+                    android:text="해당사항 없음"
+                    android:fontFamily="@font/main_font_sb"
+                    android:textColor="@color/black"/>
 
             </RadioGroup>
 
@@ -212,16 +272,18 @@
 
     </LinearLayout>
 
-
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/SurveyListFirstSurvey1_Btn"
-        android:layout_width="200dp"
+        android:layout_width="330sp"
         android:layout_height="wrap_content"
+        android:text="다음"
+        android:textSize="15sp"
+        android:textStyle="bold"
         android:layout_gravity="center"
-        android:layout_weight="1"
-        android:backgroundTint="#717171"
-        android:text="next" />
-
-
+        android:textColor="@color/white"
+        android:layout_weight="0.5"
+        android:backgroundTint="#0aab00"
+        android:background="@drawable/register_button"
+        android:layout_marginBottom="30dp"/>
 
 </LinearLayout>
