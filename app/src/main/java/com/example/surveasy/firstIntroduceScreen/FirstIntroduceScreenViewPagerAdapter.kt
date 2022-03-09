@@ -1,6 +1,5 @@
 package com.example.surveasy.firstIntroduceScreen
 
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
@@ -8,20 +7,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.R
 import com.example.surveasy.login.LoginActivity
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
-import kotlinx.coroutines.NonDisposableHandle.parent
 
 class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, firstIntroduceScreen : FirstIntroduceScreen)
     : RecyclerView.Adapter<FirstIntroduceScreenViewPagerAdapter.PagerViewHolder>() {
@@ -38,7 +34,7 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, 
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FirstIntroduceScreenViewPagerAdapter.PagerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.firstintroducescreen_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_firstintroducescreen, parent, false)
 
         return PagerViewHolder(view)
     }
@@ -66,6 +62,7 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, 
                 FirebaseMessaging.getInstance().token.addOnCompleteListener(
                     OnCompleteListener { task ->
 
+                        Log.d(TAG, "TTTTTTTTTTTTTTTT ${task.result}")
                         val value = hashMapOf("fcm" to task.result)
                         db.collection("AndroidFirstScreen").document(task.result)
                             .set(value).addOnSuccessListener { Log.d(TAG,"#####save success") }

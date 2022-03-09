@@ -54,7 +54,7 @@
         android:layout_width="110sp"
         android:layout_height="39sp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="30sp"
         android:text="시작하기"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
