@@ -221,10 +221,11 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/RegisterAgree1_Btn"
-            android:layout_width="330sp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="다음"
             android:textSize="15sp"
+            android:layout_marginHorizontal="5dp"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:textColor="@color/white"

@@ -52,4 +52,8 @@ class SurveyListFirstSurveyActivity : AppCompatActivity() {
             .commit()
     }
 
+    fun fin(){
+        finish()
+    }
+
 }
