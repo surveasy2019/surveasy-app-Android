@@ -37,8 +37,8 @@ class RegisterActivity : AppCompatActivity() {
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-            //supportActionBar?.setDisplayShowTitleEnabled(false)
-            supportActionBar?.setTitle("패널가입")
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+
 
         }
         binding.ToolbarRegister.setNavigationOnClickListener {

@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +40,8 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
 
         if(!showCanParticipateList.contains(true)){
             if(boolList[position]){
-                holder.itemTitle.setBackgroundColor(Color.RED)
+                holder.itemContainer.setBackgroundColor(Color.parseColor("#ADADAD"))
+
 
             }
         }else{
@@ -101,6 +103,10 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
         val itemBox : ConstraintLayout = itemView.findViewById(R.id.Surveylist_listItemBox)
         val itemTitle : TextView = itemView.findViewById(R.id.ListItem_Title)
         val itemDate : TextView = itemView.findViewById(R.id.ListItem_date)
+        val itemContainer : LinearLayout = itemView.findViewById(R.id.SurveyList_ItemContainer)
+
+
 //        val itemIcon : ImageView = itemView.findViewById(R.id.ListItem_detailIcon)
+
     }
 }
