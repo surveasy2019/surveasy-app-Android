@@ -13,9 +13,15 @@
         android:background="#A3A2A2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
+
+
+
+
+
+
         app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/ListItem_Title"
@@ -45,12 +51,12 @@
             android:layout_gravity="center_vertical"
             />
 
-        <ImageView
-            android:id="@+id/ListItem_detailIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_dialog_info" />
+<!--        <ImageView-->
+<!--            android:id="@+id/ListItem_detailIcon"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            app:srcCompat="@android:drawable/ic_dialog_info" />-->
 
 
     </LinearLayout>

@@ -8,11 +8,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.surveasy.R
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -44,11 +42,11 @@ class MyViewFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_myview, container, false)
         val userModel by activityViewModels<CurrentUserViewModel>()
 
-        val noticeBtn = view.findViewById<ImageButton>(R.id.MyView_NoticeIcon)
-        val historyIcon = view.findViewById<Button>(R.id.MyView_HistoryIcon)
-        val infoIcon = view.findViewById<Button>(R.id.MyView_InfoIcon)
-        val settingIcon = view.findViewById<Button>(R.id.MyView_SettingIcon)
-        val contactIcon = view.findViewById<Button>(R.id.MyView_ContactIcon)
+        val noticeBtn = view.findViewById<ImageView>(R.id.MyView_NoticeIcon)
+        val historyIcon = view.findViewById<LinearLayout>(R.id.MyView_HistoryIcon)
+        val infoIcon = view.findViewById<LinearLayout>(R.id.MyView_InfoIcon)
+        val settingIcon = view.findViewById<LinearLayout>(R.id.MyView_SettingIcon)
+        val contactIcon = view.findViewById<LinearLayout>(R.id.MyView_ContactIcon)
 
         val userName = view.findViewById<TextView>(R.id.MyView_UserName)
         val userRewardFinAmount = view.findViewById<TextView>(R.id.MyView_UserRewardFinAmount)

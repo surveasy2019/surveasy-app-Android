@@ -1,7 +1,6 @@
 package com.example.surveasy.home
 
 import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,6 @@ import com.example.surveasy.R
 import com.example.surveasy.list.NoticeToPanelDialogActivity
 import com.example.surveasy.list.SurveyItems
 import com.example.surveasy.list.SurveyListDetailActivity
-import com.example.surveasy.list.SurveyListDetailDialogActivity
 
 
 class HomeListItemsAdapter(val homeList: ArrayList<SurveyItems>) : RecyclerView.Adapter<HomeListItemsAdapter.CustomViewHolder>() {
@@ -21,7 +19,7 @@ class HomeListItemsAdapter(val homeList: ArrayList<SurveyItems>) : RecyclerView.
         parent: ViewGroup,
         viewType: Int
     ): HomeListItemsAdapter.CustomViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.homelist_item,parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_homelist,parent,false)
         return CustomViewHolder(itemView)
     }
 

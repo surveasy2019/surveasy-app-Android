@@ -13,7 +13,7 @@ class WaitSurveyItemsAdapter(val waitList : ArrayList<UserSurveyItem>) : Recycle
         parent: ViewGroup,
         viewType: Int
     ): CustomViewHolder {
-         val view = LayoutInflater.from(parent.context).inflate(R.layout.history_item,parent,false)
+         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_history,parent,false)
 
         return CustomViewHolder(view)
     }
