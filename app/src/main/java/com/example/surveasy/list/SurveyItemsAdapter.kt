@@ -7,13 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.surveasy.MainActivity
 import com.example.surveasy.R
-import java.security.AccessController.getContext
-import java.sql.RowId
 
 
 class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: ArrayList<Boolean>, val showCanParticipateList : ArrayList<Boolean>)
@@ -22,7 +21,7 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list,parent,false)
 
         return CustomViewHolder(view).apply {
             itemView.setOnClickListener{
@@ -106,6 +105,8 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
         val itemDate : TextView = itemView.findViewById(R.id.ListItem_date)
         val itemContainer : LinearLayout = itemView.findViewById(R.id.SurveyList_ItemContainer)
 
+
+//        val itemIcon : ImageView = itemView.findViewById(R.id.ListItem_detailIcon)
 
     }
 }

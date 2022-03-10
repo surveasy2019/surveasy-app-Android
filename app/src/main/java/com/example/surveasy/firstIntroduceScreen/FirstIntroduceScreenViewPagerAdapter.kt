@@ -1,6 +1,5 @@
 package com.example.surveasy.firstIntroduceScreen
 
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
@@ -8,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
@@ -19,17 +17,11 @@ import com.example.surveasy.R
 import com.example.surveasy.list.SurveyInfoViewModel
 import com.example.surveasy.list.SurveyItemsAdapter
 import com.example.surveasy.login.LoginActivity
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.NonDisposableHandle.parent
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 
 class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, firstIntroduceScreen : FirstIntroduceScreen)
     : RecyclerView.Adapter<FirstIntroduceScreenViewPagerAdapter.PagerViewHolder>() {
@@ -46,7 +38,7 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, 
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FirstIntroduceScreenViewPagerAdapter.PagerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.firstintroducescreen_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_firstintroducescreen, parent, false)
 
         return PagerViewHolder(view)
     }
@@ -73,15 +65,10 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, 
             holder.startBtn.setOnClickListener{
                 FirebaseMessaging.getInstance().token.addOnCompleteListener(
                     OnCompleteListener { task ->
-
-
                         val fcmVal = task.result
                         val value = hashMapOf("fcm" to fcmVal)
                         db.collection("AndroidFirstScreen").document(fcmVal)
                             .set(value).addOnSuccessListener { Log.d(TAG,"#####save success") }
-
-
-
 
                     })
 

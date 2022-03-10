@@ -14,7 +14,7 @@ class NoticeItemsAdapter(val noticeList : ArrayList<NoticeItems>)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
     : CustomViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.notice_item,parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_notice,parent,false)
         return CustomViewHolder(itemView)
     }
 
