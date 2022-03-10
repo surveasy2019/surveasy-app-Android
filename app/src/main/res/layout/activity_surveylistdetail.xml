@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,66 +9,75 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/ToolbarProof"
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="150dp"
         android:background="@color/white"
-        tools:ignore="MissingConstraints">
-        <RelativeLayout
+        >
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/proofImageView"
-                android:layout_width="50dp"
-                android:layout_height="50dp"/>
 
             <TextView
                 android:id="@+id/toolbar_text"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_alignParentStart="false"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font_sb"
+                android:textColor="@color/black"
                 android:gravity="center"
-                android:text="캡쳐"
-                android:textSize="30sp" />
+                android:layout_gravity="center"
+                android:text="설문 제목"
+                android:textSize="25sp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font_sb"
+                android:textColor="#707070"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="설문조사 완료 화면 캡쳐 후"
+                android:textSize="20sp" />
             <Button
                 android:id="@+id/toolbar_upload"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginRight="80dp"
-                android:text="UPLOAD" />
-            <Button
-                android:id="@+id/toolbar_send"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SEND"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"/>
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="300원 받으러 가기" />
 
 
 
 
-        </RelativeLayout>
+
+        </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
-
-
-
-    <WebView
-        android:id="@+id/surveyWebView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="460dp"
+        android:layout_height="match_parent"
+
+        >
+
+        <WebView
+            android:id="@+id/surveyWebView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
 
-        app:layout_constraintBottom_toBottomOf="parent"
-
-         />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            />
+
+    </ScrollView>
+
+
+
+
+
+
+
+</LinearLayout>
