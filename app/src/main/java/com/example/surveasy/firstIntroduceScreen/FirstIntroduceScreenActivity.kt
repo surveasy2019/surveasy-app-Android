@@ -2,6 +2,7 @@ package com.example.surveasy.firstIntroduceScreen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityFirstintroducescreenBinding
@@ -9,6 +10,7 @@ import com.example.surveasy.databinding.ActivityFirstintroducescreenBinding
 class FirstIntroduceScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFirstintroducescreenBinding
     var last_page : Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,5 +34,10 @@ class FirstIntroduceScreenActivity : AppCompatActivity() {
         springDotIndicator.setViewPager2(binding.FirstIntroduceScreenViewPager)
 
 
+
+
     }
+    
+
+
 }

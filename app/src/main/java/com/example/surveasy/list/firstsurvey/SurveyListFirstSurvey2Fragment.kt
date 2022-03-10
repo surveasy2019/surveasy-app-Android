@@ -52,10 +52,10 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         val petRadioGroup = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey2_PetRadioGroup)
         petRadioGroup.setOnCheckedChangeListener { petRadioGroup, checked ->
             when(checked) {
-                R.id.SurveyListFirstSurvey2_PetDog -> married = "반려견"
-                R.id.SurveyListFirstSurvey2_PetCat -> married = "반려묘"
-                R.id.SurveyListFirstSurvey2_PetEtc -> married = "기타"
-                R.id.SurveyListFirstSurvey2_PetNone -> married = "없음"
+                R.id.SurveyListFirstSurvey2_PetDog -> pet = "반려견"
+                R.id.SurveyListFirstSurvey2_PetCat -> pet = "반려묘"
+                R.id.SurveyListFirstSurvey2_PetEtc -> pet = "기타"
+                R.id.SurveyListFirstSurvey2_PetNone -> pet = "없음"
             }
         }
 
@@ -71,10 +71,15 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
 
         // family
         val familyRadioGroup = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey2_FamilyRadioGroup)
+        val familyRadioGroup2 = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey2_FamilyRadioGroup2)
         familyRadioGroup.setOnCheckedChangeListener { familyRadioGroup, checked ->
             when(checked) {
                 R.id.SurveyListFirstSurvey2_Family1 -> family = "1인가구"
                 R.id.SurveyListFirstSurvey2_Family2 -> family = "2인가구"
+            }
+        }
+        familyRadioGroup2.setOnCheckedChangeListener { familyRadioGroup2, checked ->
+            when(checked) {
                 R.id.SurveyListFirstSurvey2_Family3 -> family = "3인가구"
                 R.id.SurveyListFirstSurvey2_Family4 -> family = "4인가구 이상"
             }
@@ -117,9 +122,11 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
 
             firestore()
 
-            val intent_main : Intent = Intent(context, MainActivity::class.java)
+            val intent_main : Intent = Intent(context, SurveyListFirstSurveyLast::class.java)
             intent_main.putExtra("defaultFragment_list", true)
+
             startActivity(intent_main)
+            (activity as SurveyListFirstSurveyActivity).fin()
         }
 
     }

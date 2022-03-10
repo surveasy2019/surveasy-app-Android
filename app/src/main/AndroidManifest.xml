@@ -15,8 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".list.firstsurvey.SurveyListFirstSurveyLast"
+            android:exported="true" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Splash">
             <intent-filter>
@@ -25,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".register.RegisterTerm2"
             android:exported="true" />
@@ -72,9 +74,7 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".list.firstsurvey.SurveyListFirstSurveyActivity"
             android:exported="true" />
@@ -90,8 +90,7 @@
             android:theme="@style/Theme.MyDialog" />
         <activity
             android:name=".login.LoginActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".register.RegisterActivity"
             android:exported="true" />

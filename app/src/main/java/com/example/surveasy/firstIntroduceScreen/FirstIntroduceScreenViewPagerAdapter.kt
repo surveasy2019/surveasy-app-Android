@@ -10,8 +10,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.R
+import com.example.surveasy.list.SurveyInfoViewModel
+import com.example.surveasy.list.SurveyItemsAdapter
 import com.example.surveasy.login.LoginActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.ktx.firestore
@@ -61,19 +65,18 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, 
             holder.startBtn.setOnClickListener{
                 FirebaseMessaging.getInstance().token.addOnCompleteListener(
                     OnCompleteListener { task ->
-
-                        Log.d(TAG, "TTTTTTTTTTTTTTTT ${task.result}")
-                        val value = hashMapOf("fcm" to task.result)
-                        db.collection("AndroidFirstScreen").document(task.result)
+                        val fcmVal = task.result
+                        val value = hashMapOf("fcm" to fcmVal)
+                        db.collection("AndroidFirstScreen").document(fcmVal)
                             .set(value).addOnSuccessListener { Log.d(TAG,"#####save success") }
 
                     })
 
                 val intent = Intent(context, LoginActivity::class.java)
                 context.startActivity(intent)
+
             }
         }
-
 
     }
 
