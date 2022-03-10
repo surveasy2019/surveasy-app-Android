@@ -6,10 +6,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -44,7 +41,8 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
 
         if(!showCanParticipateList.contains(true)){
             if(boolList[position]){
-                holder.itemTitle.setBackgroundColor(Color.RED)
+                holder.itemContainer.setBackgroundColor(Color.parseColor("#ADADAD"))
+
 
             }
         }else{
@@ -62,11 +60,11 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
             surveyList.get(position).noticeToPanel,surveyList.get(position).progress
         )
 
-        holder.itemIcon.setOnClickListener{
-            val intent = Intent(holder.itemView.context,SurveyListDetailDialogActivity::class.java)
-            intent.putExtra("detailList", detailList)
-            ContextCompat.startActivity(holder.itemView.context,intent,null)
-        }
+//        holder.itemIcon.setOnClickListener{
+//            val intent = Intent(holder.itemView.context,SurveyListDetailDialogActivity::class.java)
+//            intent.putExtra("detailList", detailList)
+//            ContextCompat.startActivity(holder.itemView.context,intent,null)
+//        }
 
 
 
@@ -106,6 +104,8 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
         val itemBox : ConstraintLayout = itemView.findViewById(R.id.Surveylist_listItemBox)
         val itemTitle : TextView = itemView.findViewById(R.id.ListItem_Title)
         val itemDate : TextView = itemView.findViewById(R.id.ListItem_date)
-        val itemIcon : ImageView = itemView.findViewById(R.id.ListItem_detailIcon)
+        val itemContainer : LinearLayout = itemView.findViewById(R.id.SurveyList_ItemContainer)
+
+
     }
 }

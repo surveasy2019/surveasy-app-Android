@@ -16,21 +16,27 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:background="@color/white"
-        app:titleTextAppearance="@style/ToolbarTheme"/>
+        app:titleTextAppearance="@style/ToolbarTheme">
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:paddingTop="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textStyle="normal"-->
-<!--            android:textSize="20sp"-->
-<!--            android:textColor="#000000"-->
-<!--            android:lineSpacingExtra="3.3sp"-->
-<!--            android:layout_gravity="center"-->
-<!--            app:titleTextColor="@color/black"-->
-<!--            android:text="패널가입"-->
-<!--            />-->
-<!--    </androidx.appcompat.widget.Toolbar>-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:paddingTop="0dp"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="3.3sp"
+                android:layout_gravity="center"
+                app:titleTextColor="@color/black"
+                android:text="패널가입"
+                />
+        </RelativeLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
 
 
     <LinearLayout
