@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".home.Opinion.HomeOpinionDetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".list.firstsurvey.SurveyListFirstSurveyLast"
             android:exported="true" />
         <activity
@@ -74,7 +77,10 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
+        <activity
+            android:name=".home.contribution.HomeContributionListDetailActivity"
+            android:exported="true" />
         <activity
             android:name=".list.firstsurvey.SurveyListFirstSurveyActivity"
             android:exported="true" />
@@ -90,7 +96,7 @@
             android:theme="@style/Theme.MyDialog" />
         <activity
             android:name=".login.LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".register.RegisterActivity"
             android:exported="true" />

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:id="@+id/ToolbarHomeOpinionDetail"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/white"
+        app:titleTextColor="@color/black" />
+
+    <TextView
+        android:id="@+id/HomeOpinionDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="당신의 의견은?"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/black" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <TextView
+            android:id="@+id/HomeOpinionDetail_Question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingVertical="5sp"
+            android:text="당신의 의견은 - 질문란"
+            android:textSize="18sp"
+            android:textColor="#0aab00"
+            android:fontFamily="@font/main_font_m"/>
+
+
+        <TextView
+            android:id="@+id/HomeOpinionDetail_Content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="3sp"
+            android:text="당신의 의견은 - 질문 상세 내용란"
+            android:textColor="#000000"
+            android:textSize="13sp"/>
+
+        <TextView
+            android:id="@+id/HomeOpinionDetail_Notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingVertical="10sp"
+            android:text="작성해주신 답변은\n새내기를 위한 컨텐츠로 제작되어 발행됩니다"
+            android:textColor="#000000"
+            android:textSize="10sp"/>
+
+
+
+        <EditText
+            android:id="@+id/Home_Opinion_EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30sp"
+            android:layout_marginHorizontal="10sp"
+            android:hint="내용을 입력해주세요" />
+
+        <Button
+            android:id="@+id/Home_Opinion_FinBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:layout_gravity="center"
+            android:text="답변 제출" />
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

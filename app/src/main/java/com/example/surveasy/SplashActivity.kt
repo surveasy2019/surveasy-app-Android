@@ -1,7 +1,6 @@
 package com.example.surveasy
 
 import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,19 +8,13 @@ import android.os.Handler
 import android.util.Log
 import androidx.activity.viewModels
 import com.example.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
-import com.example.surveasy.home.BannerViewModel
+import com.example.surveasy.home.banner.BannerViewModel
 import com.example.surveasy.login.LoginActivity
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ListResult
-import com.google.firebase.storage.StorageReference
-import java.time.Duration
 
 class SplashActivity : AppCompatActivity() {
     val db = Firebase.firestore
