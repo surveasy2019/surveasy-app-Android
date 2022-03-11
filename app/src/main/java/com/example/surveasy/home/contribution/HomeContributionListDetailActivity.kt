@@ -1,9 +1,12 @@
 package com.example.surveasy.home.contribution
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.net.toUri
+import com.bumptech.glide.Glide
+import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityHomecontributionlistdetailBinding
 import com.example.surveasy.databinding.ActivityMyviewnoticelistdetailBinding
 
@@ -33,6 +36,8 @@ class HomeContributionListDetailActivity : AppCompatActivity() {
         val institute = intent.getStringExtra("institute")
         val content = intent.getStringArrayListExtra("content")
         val img = intent.getStringExtra("img")
+
+        val imgUri : Uri = img!!.toUri()
 
 
         var contentNum = 0
@@ -66,15 +71,16 @@ class HomeContributionListDetailActivity : AppCompatActivity() {
 
         binding.HomeContributionListDetailTitle.text = title
         binding.HomeContributionListDetailInstitute.text = institute
-//        binding.HomeContributionListDetailImg.setImageURI(img!!.toUri())
 
-
-
-
-
+        Glide.with(this)
+            .load(img)
+            .placeholder(R.drawable.checkimg)
+            .into(binding.HomeContributionListDetailImg)
 
 
     }
+
+
 
     private fun content1(content: String) {
         binding.HomeContributionListDetailContent1.text = content
