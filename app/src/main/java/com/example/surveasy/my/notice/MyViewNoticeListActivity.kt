@@ -62,7 +62,7 @@ class MyViewNoticeListActivity : AppCompatActivity() {
                             document["date"] as String, document["content"] as String, document["fixed"] as Boolean)
                         noticeList_fixed.add(item_fixed)
                         noticeRecyclerView_Fixed.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-                        noticeRecyclerView_Fixed.adapter = NoticeItemsAdapter(noticeList_fixed)
+                        noticeRecyclerView_Fixed.adapter = NoticeFixedItemsAdapter(noticeList_fixed)
                     }
                     else {
                         var item : NoticeItems = NoticeItems(document["title"] as String,

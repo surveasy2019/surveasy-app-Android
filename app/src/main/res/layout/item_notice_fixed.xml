@@ -13,7 +13,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/NoticeItem_Date"
+            android:id="@+id/NoticeFixedItem_Date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2021-01-01"
@@ -28,11 +28,20 @@
             android:layout_marginTop="7sp"
             android:orientation="horizontal" >
 
+            <ImageView
+                android:layout_width="18sp"
+                android:layout_height="18sp"
+                android:layout_marginTop="3sp"
+                android:layout_marginLeft="2sp"
+                android:layout_gravity="center"
+                android:src="@drawable/my_notice_fixed" />
+
             <TextView
-                android:id="@+id/NoticeItem_Title"
+                android:id="@+id/NoticeFixedItem_Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:paddingLeft="5sp"
                 android:text="새로운 웹 페이지에 놀러오세요 안녕하세요.."
                 android:textSize="15sp"
                 android:textColor="#000000"
@@ -41,7 +50,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/NoticeItem_Content"
+            android:id="@+id/NoticeFixedItem_Content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="전달용 content"
@@ -52,7 +61,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1sp"
         android:layout_marginTop="4sp"
         android:layout_gravity="bottom"
         android:background="#e2e2e2" />

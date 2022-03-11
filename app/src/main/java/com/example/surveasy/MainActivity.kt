@@ -10,16 +10,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.viewpager2.widget.ViewPager2
+import androidx.fragment.app.activityViewModels
 import com.example.surveasy.databinding.ActivityMainBinding
-import com.example.surveasy.home.BannerViewModel
-import com.example.surveasy.home.BannerViewPagerAdapter
+import com.example.surveasy.home.banner.BannerViewModel
 import com.example.surveasy.home.HomeFragment
+import com.example.surveasy.home.Opinion.HomeOpinionViewModel
+import com.example.surveasy.home.Opinion.OpinionItem
+import com.example.surveasy.home.contribution.ContributionItems
+import com.example.surveasy.home.contribution.ContributionItemsAdapter
+import com.example.surveasy.home.contribution.HomeContributionViewModel
 import com.example.surveasy.list.*
 import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
 import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
-import com.example.surveasy.login.LoginActivity
 import com.example.surveasy.my.MyViewFragment
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
@@ -37,6 +40,8 @@ class MainActivity : AppCompatActivity() {
     val model by viewModels<SurveyInfoViewModel>()
     val userModel by viewModels<CurrentUserViewModel>()
     val bannerModel by viewModels<BannerViewModel>()
+    val contributionModel by viewModels<HomeContributionViewModel>()
+    val opinionModel by viewModels<HomeOpinionViewModel>()
 
     private lateinit var binding: ActivityMainBinding
 
@@ -52,6 +57,8 @@ class MainActivity : AppCompatActivity() {
         fetchBanner()
         fetchCurrentUser(Firebase.auth.currentUser!!.uid)
         fetchSurvey()
+        fetchContribution()
+        fetchOpinion()
 
 
         // Current User
@@ -264,6 +271,47 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    private fun fetchContribution() {
+        db.collection("AppContribution").get()
+            .addOnSuccessListener { documents ->
+                if(documents != null) {
+                    for (document in documents) {
+                        val contribution = ContributionItems(
+                            document["title"].toString(),
+                            document["date"].toString(),
+                            document["institute"].toString(),
+                            document["img"].toString()
+                        )
+                        contribution.content = document["content"] as ArrayList<String>
+
+                        Log.d(TAG, ">>>>>>>>>>>>>>>>>>>>>${contribution.date}")
+                        contributionModel.contributionList.add(contribution)
+                    }
+
+                    Log.d(TAG, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~${contributionModel.contributionList.get(0).content.get(0)}")
+                }
+
+            }
+
+    }
+
+    private fun fetchOpinion() {
+        db.collection("AppOpinion").get()
+            .addOnSuccessListener { documents ->
+                if(documents != null) {
+                    for (document in documents) {
+                        if(document["isValid"] as Boolean == true) {
+                            opinionModel.opinionItem = OpinionItem(
+                                Integer.parseInt(document["id"].toString()),
+                                document["question"].toString(),
+                                document["content"].toString()
+                            )
+                        }
+                    }
+                }
+            }
     }
 
     private fun navColor_On(img: ImageView, text: TextView) {
