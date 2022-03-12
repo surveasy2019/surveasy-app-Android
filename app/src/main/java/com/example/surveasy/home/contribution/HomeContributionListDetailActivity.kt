@@ -74,7 +74,7 @@ class HomeContributionListDetailActivity : AppCompatActivity() {
 
         Glide.with(this)
             .load(img)
-            .placeholder(R.drawable.checkimg)
+            .placeholder(R.drawable.loading)
             .into(binding.HomeContributionListDetailImg)
 
 

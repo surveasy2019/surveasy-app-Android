@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FFFFFF">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -13,47 +14,47 @@
         android:background="@color/white"
         app:titleTextColor="@color/black"/>
 
-    <LinearLayout
-        android:id="@+id/MyViewSettingPush_TitleContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
-
-        <ImageView
-            android:id="@+id/MyViewSettingPush_Icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_popup_reminder" />
-
-        <TextView
-            android:id="@+id/MyViewSettingPush_Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="@string/MyViewSettingPush_Title"
-            android:textSize="24sp"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/MyViewSettingPush_MainContainer"
+    <TextView
+        android:id="@+id/MyViewSettingPush_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="알림"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:fontFamily="@font/main_font_b"/>
+
+
+    <LinearLayout
+        android:id="@+id/MyViewSettingPush_Container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        >
+        android:padding="30dp">
+
 
         <Switch
             android:id="@+id/MyViewSettingPush_PushSwitch"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:switchMinWidth="50dp"
+            android:layout_height="wrap_content"
             android:padding="20dp"
-            android:gravity="center_vertical"
-            android:text="@string/MyViewSettingPush_PushSwitch"
-            />
+            android:gravity="top"
+            android:text="@string/MyViewSettingPush_PushSwitch" />
+<!--            android:track="@drawable/switch_track_selector"-->
+<!--            android:thumb="@drawable/switch_thumb"-->
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="top"
+            android:layout_marginHorizontal="10sp"
+            android:background="#e2e2e2" />
 
     </LinearLayout>
+
+
+
 
 </LinearLayout>

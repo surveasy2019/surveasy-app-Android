@@ -64,6 +64,7 @@ class HomeFragment : Fragment() {
         val register: Button = view.findViewById(R.id.HomeToRegister)
         val login: Button = view.findViewById(R.id.HomeToLogin)
         val greetingText: TextView = view.findViewById(R.id.Home_GreetingText)
+        val surveyNum: TextView = view.findViewById(R.id.Home_SurveyNum)
         val totalReward: TextView = view.findViewById(R.id.Home_RewardAmount)
         val moreBtn : TextView = view.findViewById(R.id.homeList_Btn)
         val noneText : TextView = view.findViewById(R.id.homeList_text)
@@ -133,6 +134,7 @@ class HomeFragment : Fragment() {
         //user name, reward 불러오기
         if (userModel.currentUser.uid != null) {
             greetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
+            surveyNum.text = "${userModel.currentUser.UserSurveyList!!.size}개"
             totalReward.text = "${userModel.currentUser.rewardTotal}원"
         } else {
             if (Firebase.auth.currentUser?.uid != null) {
@@ -141,8 +143,19 @@ class HomeFragment : Fragment() {
                     .get().addOnSuccessListener { document ->
                         greetingText.text = "안녕하세요, ${document["name"].toString()}님"
                         totalReward.text =
-                            "$ ${Integer.parseInt(document["reward_total"].toString())}"
+                            "${(Integer.parseInt(document["reward_total"].toString()))}원"
                     }
+
+                db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+                    .collection("UserSurveyList").get()
+                    .addOnSuccessListener { document ->
+                        var num = 0
+                        for(item in document) {
+                            num++
+                        }
+                        surveyNum.text = num.toString() + "개"
+                    }
+
             } else {
                 greetingText.text = "아직"
                 totalReward.text = "$-----"
