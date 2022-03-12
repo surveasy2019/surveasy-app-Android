@@ -49,12 +49,13 @@
                         android:layout_gravity="center">
 
                         <TextView
+                            android:id="@+id/Home_SurveyNum"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="130개"
                             android:textColor="@color/white"
-                            android:textSize="15sp"
+                            android:textSize="16sp"
                             android:fontFamily="@font/main_font_b" />
 
                         <TextView
@@ -63,7 +64,7 @@
                             android:gravity="center"
                             android:text="참여 설문"
                             android:textColor="@color/white"
-                            android:textSize="14sp"
+                            android:textSize="15sp"
                             android:fontFamily="@font/main_font_m" />
 
                     </LinearLayout>
@@ -88,7 +89,7 @@
                             android:gravity="center"
                             android:text="25000원"
                             android:textColor="@color/white"
-                            android:textSize="15sp"
+                            android:textSize="16sp"
                             android:fontFamily="@font/main_font_b" />
 
                         <TextView
@@ -97,7 +98,7 @@
                             android:gravity="center"
                             android:text="정산 금액"
                             android:textColor="@color/white"
-                            android:textSize="14sp"
+                            android:textSize="15sp"
                             android:fontFamily="@font/main_font_m" />
 
                     </LinearLayout>
@@ -207,9 +208,10 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/Home_Opinion_TextView"
                     android:layout_width="match_parent"
-                    android:layout_height="60sp"
-                    android:layout_marginTop="10sp"
+                    android:layout_height="75sp"
+                    android:layout_marginTop="13sp"
                     android:gravity="center"
                     android:background="#aadc62"
                     android:text="새내기때 꼭 해봐야 하는 것은 ?"
@@ -298,16 +300,16 @@
                         android:gravity="center"
                         android:paddingLeft="7sp"
                         android:text="우리가 기여한 연구"
-                        android:textSize="13sp"
+                        android:textSize="14sp"
                         android:textColor="#000000"
                         android:fontFamily="@font/main_font_b" />
 
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/homeParticipate_recyclerView"
+                    android:id="@+id/HomeContribution_recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"/>
 
 

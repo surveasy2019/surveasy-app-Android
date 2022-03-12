@@ -1,4 +1,4 @@
-package com.example.surveasy.home
+package com.example.surveasy.home.banner
 
 import android.os.Parcelable
 import androidx.lifecycle.ViewModel

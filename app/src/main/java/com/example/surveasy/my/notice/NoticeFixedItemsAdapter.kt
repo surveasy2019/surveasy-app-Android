@@ -9,12 +9,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.surveasy.R
 
-class NoticeItemsAdapter(val noticeList : ArrayList<NoticeItems>)
-    : RecyclerView.Adapter<NoticeItemsAdapter.CustomViewHolder>() {
+class NoticeFixedItemsAdapter(val noticeList : ArrayList<NoticeItems>)
+    : RecyclerView.Adapter<NoticeFixedItemsAdapter.CustomViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
     : CustomViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_notice,parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_notice_fixed,parent,false)
         return CustomViewHolder(itemView)
     }
 
@@ -29,7 +29,7 @@ class NoticeItemsAdapter(val noticeList : ArrayList<NoticeItems>)
             intent.putExtra("title", holder.noticeItemTitle.text)
             intent.putExtra("date", holder.noticeItemDate.text)
             intent.putExtra("content", holder.noticeItemContent.text)
-            intent.putExtra("fixed", false)
+            intent.putExtra("fixed", true)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
     }
@@ -39,9 +39,9 @@ class NoticeItemsAdapter(val noticeList : ArrayList<NoticeItems>)
     }
 
     inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val noticeItemTitle : TextView = itemView.findViewById(R.id.NoticeItem_Title)
-        val noticeItemDate: TextView = itemView.findViewById(R.id.NoticeItem_Date)
-        val noticeItemContent : TextView = itemView.findViewById(R.id.NoticeItem_Content)
+        val noticeItemTitle : TextView = itemView.findViewById(R.id.NoticeFixedItem_Title)
+        val noticeItemDate: TextView = itemView.findViewById(R.id.NoticeFixedItem_Date)
+        val noticeItemContent : TextView = itemView.findViewById(R.id.NoticeFixedItem_Content)
 
     }
 

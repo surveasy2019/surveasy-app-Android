@@ -1,12 +1,14 @@
 package com.example.surveasy.home
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -21,10 +23,16 @@ import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
 import com.example.surveasy.login.*
 import com.example.surveasy.register.RegisterActivity
 import com.example.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
+import com.example.surveasy.home.Opinion.HomeOpinionDetailActivity
+import com.example.surveasy.home.Opinion.HomeOpinionViewModel
+import com.example.surveasy.home.banner.BannerViewModel
+import com.example.surveasy.home.banner.BannerViewPagerAdapter
+import com.example.surveasy.home.contribution.ContributionItems
+import com.example.surveasy.home.contribution.ContributionItemsAdapter
+import com.example.surveasy.home.contribution.HomeContributionViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -44,8 +52,11 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val container : RecyclerView? = view.findViewById(R.id.homeList_recyclerView)
+        val contributionContainer : RecyclerView = view.findViewById(R.id.HomeContribution_recyclerView)
         val userModel by activityViewModels<CurrentUserViewModel>()
         val bannerModel by activityViewModels<BannerViewModel>()
+        val contributionModel by activityViewModels<HomeContributionViewModel>()
+        val opinionModel by activityViewModels<HomeOpinionViewModel>()
         val model by activityViewModels<SurveyInfoViewModel>()
         val current_banner: TextView = view.findViewById(R.id.textView_current_banner)
         val total_banner: TextView = view.findViewById(R.id.textView_total_banner)
@@ -53,9 +64,11 @@ class HomeFragment : Fragment() {
         val register: Button = view.findViewById(R.id.HomeToRegister)
         val login: Button = view.findViewById(R.id.HomeToLogin)
         val greetingText: TextView = view.findViewById(R.id.Home_GreetingText)
+        val surveyNum: TextView = view.findViewById(R.id.Home_SurveyNum)
         val totalReward: TextView = view.findViewById(R.id.Home_RewardAmount)
         val moreBtn : TextView = view.findViewById(R.id.homeList_Btn)
         val noneText : TextView = view.findViewById(R.id.homeList_text)
+        val opinionTextView : TextView = view.findViewById(R.id.Home_Opinion_TextView)
 
 
         // Banner init
@@ -64,7 +77,7 @@ class HomeFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             val banner = CoroutineScope(Dispatchers.IO).async {
                 while (bannerModel.uriList.size == 0) {
-                    // Log.d(TAG, "+++++++BANNER LOADING++++++")
+                    //Log.d(TAG, "+++++++BANNER LOADING++++++")
                 }
                 bannerModel.uriList
             }.await()
@@ -121,7 +134,8 @@ class HomeFragment : Fragment() {
         //user name, reward 불러오기
         if (userModel.currentUser.uid != null) {
             greetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
-            totalReward.text = "$ ${userModel.currentUser.rewardTotal}"
+            surveyNum.text = "${userModel.currentUser.UserSurveyList!!.size}개"
+            totalReward.text = "${userModel.currentUser.rewardTotal}원"
         } else {
             if (Firebase.auth.currentUser?.uid != null) {
                 db.collection("AndroidUser")
@@ -129,8 +143,19 @@ class HomeFragment : Fragment() {
                     .get().addOnSuccessListener { document ->
                         greetingText.text = "안녕하세요, ${document["name"].toString()}님"
                         totalReward.text =
-                            "$ ${Integer.parseInt(document["reward_total"].toString())}"
+                            "${(Integer.parseInt(document["reward_total"].toString()))}원"
                     }
+
+                db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+                    .collection("UserSurveyList").get()
+                    .addOnSuccessListener { document ->
+                        var num = 0
+                        for(item in document) {
+                            num++
+                        }
+                        surveyNum.text = num.toString() + "개"
+                    }
+
             } else {
                 greetingText.text = "아직"
                 totalReward.text = "$-----"
@@ -159,6 +184,45 @@ class HomeFragment : Fragment() {
                 container?.adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
             }
         }
+
+
+        // Contribution
+        CoroutineScope(Dispatchers.Main).launch {
+            val contributionList = CoroutineScope(Dispatchers.IO).async {
+                while(contributionModel.contributionList.size == 0) { }
+                contributionModel.contributionList
+            }.await()
+
+            Log.d(TAG, "+++++++++++ ${contributionList}")
+            contributionContainer.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            contributionContainer.adapter = ContributionItemsAdapter(contributionList)
+
+        }
+
+
+        // Opinion
+        CoroutineScope(Dispatchers.Main).launch {
+            val opinionItem = CoroutineScope(Dispatchers.IO).async {
+                while(opinionModel.opinionItem.question == null) { }
+                opinionModel.opinionItem
+            }.await()
+
+            Log.d(TAG, "+++++++++++ ${opinionModel.opinionItem.question}")
+            opinionTextView.text = opinionModel.opinionItem.question
+
+        }
+
+        opinionTextView.setOnClickListener {
+            val intent = Intent(context, HomeOpinionDetailActivity::class.java)
+            intent.putExtra("id", opinionModel.opinionItem.id)
+            intent.putExtra("question", opinionModel.opinionItem.question)
+            intent.putExtra("content", opinionModel.opinionItem.content)
+
+            startActivity(intent)
+        }
+
+
+
 
             return view
     }
