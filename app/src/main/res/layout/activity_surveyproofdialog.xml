@@ -8,39 +8,80 @@
     android:orientation="vertical"
     android:background="@color/white"
     >
-    <TextView
-        android:id="@+id/dialog_title"
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="캡쳐본을 업로드 해주세요"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toTopOf="@id/dialog_imageview"
-         />
+        android:layout_height="?android:attr/actionBarSize"
+        android:id="@+id/ToolbarSurveyProof"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/white"
+        app:titleTextColor="@color/black">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="응답 인증"
+            android:fontFamily="@font/main_font_sb"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:lineSpacingExtra="3.3sp"
+            android:gravity="center_horizontal"/>
+
+    </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="설문 완료 화면을 (다시) 첨부해주세요"
+            android:textColor="#707070"
+            android:fontFamily="@font/main_font_sb"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dialog_imageview"
+            android:layout_marginBottom="20dp"
+
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginBottom="10dp"
+            android:id="@+id/dialog_editBtn"
+            android:layout_width="330sp"
+            android:layout_height="wrap_content"
+            android:text="다시 선택하기"
+            android:lineSpacingExtra="3.3sp"
+            android:fontFamily="@font/main_font_sb"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="#0aab00"
+            android:background="@drawable/white_button" />
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:id="@+id/dialog_sendBtn"
+            android:layout_width="330sp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_sb"
+            android:text="제출하기"
+            android:lineSpacingExtra="3.3sp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="#0aab00"
+            android:background="@drawable/register_button" />
 
 
-
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:id="@+id/dialog_imageview"
-
-
-        />
-
-
-            <Button
-                android:id="@+id/dialog_sendBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SEND"
-                />
-            <Button
-                android:id="@+id/dialog_editBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="EDIT"/>
-
-
-
+    </LinearLayout>
 
 </LinearLayout>

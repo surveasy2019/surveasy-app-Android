@@ -43,6 +43,7 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
                 holder.itemContainer.setBackgroundColor(Color.parseColor("#ADADAD"))
 
 
+
             }
         }else{
             if(showCanParticipateList[position]){
