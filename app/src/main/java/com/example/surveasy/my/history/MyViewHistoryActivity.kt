@@ -1,5 +1,6 @@
 package com.example.surveasy.my.history
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Layout
 import android.view.View
@@ -46,12 +47,22 @@ class MyViewHistoryActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        binding.MyViewHistoryWaitBtn.setOnClickListener{
+        binding.MyViewHistoryWait.setOnClickListener{
+            binding.MyViewHistoryWaitText.setTextColor(Color.parseColor("#0aab00"))
+            binding.MyViewHistoryWaitLine.visibility = View.VISIBLE
+            binding.MyViewHistoryFinText.setTextColor(Color.parseColor("#707070"))
+            binding.MyViewHistoryFinLine.visibility = View.INVISIBLE
+
             binding.fragmentContainerView1.visibility = View.VISIBLE
             binding.fragmentContainerView2.visibility = View.INVISIBLE
         }
 
-        binding.MyViewHistoryFinBtn.setOnClickListener{
+        binding.MyViewHistoryFin.setOnClickListener{
+            binding.MyViewHistoryWaitText.setTextColor(Color.parseColor("#707070"))
+            binding.MyViewHistoryWaitLine.visibility = View.INVISIBLE
+            binding.MyViewHistoryFinText.setTextColor(Color.parseColor("#0aab00"))
+            binding.MyViewHistoryFinLine.visibility = View.VISIBLE
+
             binding.fragmentContainerView1.visibility = View.INVISIBLE
             binding.fragmentContainerView2.visibility = View.VISIBLE
         }

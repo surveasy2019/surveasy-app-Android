@@ -54,12 +54,14 @@ class MyViewHistoryFinFragment : Fragment() {
                 }
                 finModel.finSurvey.get(0).id
             }.await()
+
             for(i in finModel.finSurvey){
                 finTotalReward+=i.reward!!
             }
-            finReward.text = finTotalReward.toString()
+            finReward.text = finTotalReward.toString() + "원"
 
             if(finModel.finSurvey.size==0){
+                text.visibility = View.VISIBLE
                 text.text = "해당 설문이 없습니다."
             }
             else{

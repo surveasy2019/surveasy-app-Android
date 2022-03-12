@@ -60,9 +60,10 @@ class MyViewHistoryWaitFragment : Fragment() {
             for(i in waitModel.waitSurvey){
                 waitTotalReward+=i.reward!!
             }
-            waitReward.text = waitTotalReward.toString()
+            waitReward.text = waitTotalReward.toString() + "원"
 
             if(waitModel.waitSurvey.size==0){
+                text.visibility = View.VISIBLE
                 text.text = "해당 설문이 없습니다."
             }
             else{
