@@ -10,13 +10,14 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.adapters.AutoCompleteTextViewBindingAdapter
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityRegisterBinding
+
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class RegisterActivity : AppCompatActivity() {
 
 
-    private lateinit var binding:ActivityRegisterBinding
+    private lateinit var binding: ActivityRegisterBinding
     val db = Firebase.firestore
     val registerModel by viewModels<RegisterInfo1ViewModel>()
 
@@ -37,7 +38,10 @@ class RegisterActivity : AppCompatActivity() {
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-            supportActionBar?.setDisplayShowTitleEnabled(false)
+            //supportActionBar?.setDisplayShowTitleEnabled(false)
+            supportActionBar?.setTitle("패널가입")
+
+
 
 
         }

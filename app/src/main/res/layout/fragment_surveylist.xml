@@ -64,7 +64,7 @@
             android:id="@+id/Surveylist_FilterSpinner"
             android:layout_width="70dp"
             android:layout_height="30dp"
-            android:spinnerMode="dropdown"
+            android:spinnerMode="dialog"
             android:background="@drawable/custom_filter"
             android:fontFamily="@font/main_font_sb"
             android:paddingStart="5dp"
@@ -74,6 +74,8 @@
             android:textColor="#c9c9c9"
             android:layout_weight="1"
             />
+
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

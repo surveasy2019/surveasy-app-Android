@@ -7,9 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.RadioButton
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
@@ -27,6 +25,7 @@ import kotlinx.coroutines.*
 class SurveyListFragment() : Fragment() {
 
     val db = Firebase.firestore
+    private var listFilter : String? = null
     val surveyList = arrayListOf<SurveyItems>()
     val model by activityViewModels<SurveyInfoViewModel>()
 
@@ -43,10 +42,33 @@ class SurveyListFragment() : Fragment() {
         val radioParticipate : RadioButton = view.findViewById(R.id.Surveylist_FilterParticipate)
         val radioRecent : RadioButton = view.findViewById(R.id.Surveylist_FilterOngoing)
         var showCanParticipateList = arrayListOf<Boolean>()
+        val filterList = listOf("마감순","최신순")
+        val filterAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, filterList)
+        val filterSpinner : Spinner = view.findViewById(R.id.Surveylist_FilterSpinner)
         var n : Int = 0
+
+
+
+
+
         while (n < model.surveyInfo.size) {
             showCanParticipateList.add(false)
             n++
+        }
+
+        filterSpinner.adapter = filterAdapter
+        filterSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                listFilter = filterList[position]
+                if(listFilter.equals("최신순")){
+                    Toast.makeText(context,"최신순",Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(context,"마감순",Toast.LENGTH_SHORT).show()
+                }
+
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
         }
 
         CoroutineScope(Dispatchers.Main).launch {
@@ -62,6 +84,8 @@ class SurveyListFragment() : Fragment() {
             container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),showCanParticipateList)
         }
         Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
+
+
 
         radioParticipate.setOnClickListener{
             CoroutineScope(Dispatchers.Main).launch {
@@ -113,6 +137,22 @@ class SurveyListFragment() : Fragment() {
 
         return view
     }
+
+//    private fun setFilterSpinner(view: View) {
+//        val filterList = listOf("마감순","최신순")
+//        val filterAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, filterList)
+//        val filterSpinner : Spinner = view.findViewById(R.id.Surveylist_FilterSpinner)
+//        filterSpinner.adapter = filterAdapter
+//        filterSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                listFilter = filterList[position]
+//
+//
+//            }
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//            }
+//        }
+//    }
 
 
     //참여 완료한 survey 를 list 안에서 색 변경
