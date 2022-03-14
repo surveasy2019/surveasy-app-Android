@@ -1,6 +1,8 @@
 package com.example.surveasy.my.info
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,9 @@ import android.widget.*
 import androidx.fragment.app.activityViewModels
 import com.example.surveasy.R
 import com.example.surveasy.my.info.InfoDataViewModel
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 
 
 class MyViewInfo2Fragment : Fragment() {
@@ -19,16 +24,37 @@ class MyViewInfo2Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_myviewinfo2, container, false)
+        val engSwitch : Switch = view.findViewById(R.id.MyViewInfo_InfoItem_EngSurveySwitch)
 
         setAccountTypeSpinner(view, infoDataModel.infoData.accountType!!)
         setEditTextHint(view)
 
         // EngSurvey
-        val engSurveyRadioGroup = view.findViewById<RadioGroup>(R.id.MyViewInfo_InfoItem_EngSurveyRadioGroup)
-        engSurveyRadioGroup.setOnCheckedChangeListener { engSurveyRadioGroup, checked ->
-            when(checked) {
-                R.id.MyViewInfo_InfoItem_EngSurvey_O -> infoDataModel.infoData.EngSurvey = true
-                R.id.MyViewInfo_InfoItem_EngSurvey_X -> infoDataModel.infoData.EngSurvey = false
+//        val engSurveyRadioGroup = view.findViewById<RadioGroup>(R.id.MyViewInfo_InfoItem_EngSurveyRadioGroup)
+//        engSurveyRadioGroup.setOnCheckedChangeListener { engSurveyRadioGroup, checked ->
+//            when(checked) {
+//                R.id.MyViewInfo_InfoItem_EngSurvey_O -> infoDataModel.infoData.EngSurvey = true
+//                R.id.MyViewInfo_InfoItem_EngSurvey_X -> infoDataModel.infoData.EngSurvey = false
+//            }
+//        }
+
+        if (infoDataModel.infoData.EngSurvey == true) {
+            engSwitch.isChecked = true
+            engSwitch.text = "희망함"
+        }
+        else if(infoDataModel.infoData.EngSurvey == false) {
+            engSwitch.isChecked = false
+            engSwitch.text = "희망하지 않음"
+        }
+
+        engSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked) {
+                infoDataModel.infoData.EngSurvey = true
+                engSwitch.text = "희망함"
+            }
+            else {
+                infoDataModel.infoData.EngSurvey = false
+                engSwitch.text = "희망하지 않음"
             }
         }
 

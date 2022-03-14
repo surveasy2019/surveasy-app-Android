@@ -24,8 +24,7 @@ import com.example.surveasy.my.notice.MyViewNoticeListActivity
 import com.example.surveasy.my.setting.MyViewSettingActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
+import kotlinx.coroutines.*
 
 
 class MyViewFragment : Fragment() {
@@ -63,7 +62,19 @@ class MyViewFragment : Fragment() {
             userSurveyCountAmount.text = "${userModel.currentUser.UserSurveyList!!.size}개"
         }
 
-        fetchInfoData()
+        CoroutineScope(Dispatchers.Main).launch {
+            val myInfo = CoroutineScope(Dispatchers.IO).async {
+                fetchInfoData()
+            }.await()
+
+            infoIcon.setOnClickListener {
+                val intent = Intent(context, MyViewInfoActivity::class.java)
+                Log.d(TAG, "____________putEtra ${info.phoneNumber}")
+                intent.putExtra("info", info!!)
+                startActivity(intent)
+            }
+        }
+
 
         noticeBtn.setOnClickListener {
             val intent = Intent(context, MyViewNoticeListActivity::class.java)
@@ -73,12 +84,7 @@ class MyViewFragment : Fragment() {
             val intent = Intent(context, MyViewHistoryActivity::class.java)
             startActivity(intent)
         }
-        infoIcon.setOnClickListener {
-            val intent = Intent(context, MyViewInfoActivity::class.java)
-            Log.d(TAG, "____________putEtra ${info.phoneNumber}")
-            intent.putExtra("info", info!!)
-            startActivity(intent)
-        }
+
         settingIcon.setOnClickListener {
             val intent = Intent(context, MyViewSettingActivity::class.java)
             startActivity(intent)
@@ -97,31 +103,39 @@ class MyViewFragment : Fragment() {
     // Fetch info of current User for MyViewInfo
     private fun fetchInfoData() {
         val docRef = db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
-
-        docRef.get().addOnSuccessListener { document ->
-            if (document != null) {
-                val infoData: InfoData = InfoData(
-                    document["name"] as String,
-                    document["birthDate"] as String,
-                    document["gender"] as String,
-                    document["email"] as String,
-                    document["phoneNumber"] as String,
-                    document["accountType"] as String,
-                    document["accountNumber"] as String,
-                    null
-                )
-                info = infoData
-                Log.d(TAG, "****fetch***1**** ${info.birthDate}")
-            }
-        }
+        var eng: Boolean? = null
 
         docRef.collection("FirstSurvey").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { document ->
                 if (document != null) {
-                    info.EngSurvey = document["EngSurvey"] as Boolean
-                    Log.d(TAG, "****fetch***2**** ${info.EngSurvey}")
+                    eng = document["EngSurvey"] as Boolean
+                    Log.d(TAG, "****fetch***eng**** ${eng}")
+
+
+                    docRef.get().addOnSuccessListener { document ->
+                        if (document != null) {
+                            val infoData: InfoData = InfoData(
+                                document["name"] as String,
+                                document["birthDate"] as String,
+                                document["gender"] as String,
+                                document["email"] as String,
+                                document["phoneNumber"] as String,
+                                document["accountType"] as String,
+                                document["accountNumber"] as String,
+                                eng
+                            )
+                            info = infoData
+                            Log.d(TAG, "****fetch***ENG**** ${info.EngSurvey}")
+                        }
+                    }
+
+
                 }
             }
+
+
+
+
 
     }
 

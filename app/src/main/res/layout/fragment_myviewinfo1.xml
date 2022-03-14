@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_gravity="left"
-    android:padding="20dp">
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:id="@+id/MyViewInfo_InfoItem_PhoneNumberContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:layout_margin="10dp">
+        android:layout_height="60sp"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/MyViewInfo_InfoItem_PhoneNumberTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
             android:text="전화번호"
-            android:textSize="18dp" />
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:fontFamily="@font/main_font_b" />
 
         <TextView
             android:id="@+id/MyViewInfo_InfoItem_PhoneNumber"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:gravity="end"
-            android:textSize="18dp"/>
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="right"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:fontFamily="@font/main_font_r"/>
 
     </LinearLayout>
 
@@ -34,31 +38,37 @@
     <LinearLayout
         android:id="@+id/MyViewInfo_InfoItem_AccountNumberContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_height="60sp"
+        android:gravity="center" >
 
         <TextView
             android:id="@+id/MyViewInfo_InfoItem_AccountNumberTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="계좌번호"
-            android:textSize="18dp" />
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:fontFamily="@font/main_font_b" />
 
         <TextView
             android:id="@+id/MyViewInfo_InfoItem_AccountType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:gravity="end"
-            android:textSize="18dp" />
+            android:gravity="right"
+            android:paddingRight="10sp"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:fontFamily="@font/main_font_r" />
 
         <TextView
             android:id="@+id/MyViewInfo_InfoItem_AccountNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:textSize="18dp"/>
+            android:gravity="right"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:fontFamily="@font/main_font_r" />
 
     </LinearLayout>
 
@@ -66,23 +76,29 @@
     <LinearLayout
         android:id="@+id/MyViewInfo_InfoItem_EngSurveyContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_height="60sp"
+        android:gravity="center" >
 
         <TextView
             android:id="@+id/MyViewInfo_InfoItem_EngSurveyTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="영어설문희망"
-            android:textSize="18dp" />
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:fontFamily="@font/main_font_b" />
 
         <TextView
             android:id="@+id/MyViewInfo_InfoItem_EngSurvey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="4"
-            android:gravity="end"
-            android:textSize="18dp"/>
+            android:gravity="right"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:fontFamily="@font/main_font_r" />
 
     </LinearLayout>
 
