@@ -166,18 +166,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="300sp"
-            android:layout_marginTop="230sp"
-            android:padding="30sp"
+            android:layout_marginTop="220sp"
             android:background="@drawable/my_bottom"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:paddingVertical="20sp"
+            android:paddingHorizontal="30sp">
 
             <LinearLayout
                 android:id="@+id/MyView_HistoryIcon"
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
-                android:paddingLeft="10sp"
                 android:gravity="left"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:paddingLeft="10sp">
 
                 <ImageView
                     android:layout_width="15sp"
@@ -206,9 +207,9 @@
                 android:id="@+id/MyView_InfoIcon"
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
-                android:paddingLeft="10sp"
                 android:gravity="left"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:paddingLeft="10sp">
 
                 <ImageView
                     android:layout_width="14dp"
@@ -221,10 +222,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:fontFamily="@font/main_font_b"
                     android:paddingLeft="10sp"
                     android:text="회원정보 수정"
-                    android:textColor="#000000"
-                    android:fontFamily="@font/main_font_b"/>
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -238,9 +239,9 @@
                 android:id="@+id/MyView_SettingIcon"
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
-                android:paddingLeft="10sp"
                 android:gravity="left"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:paddingLeft="10sp">
 
                 <ImageView
                     android:layout_width="15sp"
@@ -252,10 +253,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:fontFamily="@font/main_font_b"
                     android:paddingLeft="10sp"
                     android:text="설정"
-                    android:textColor="#000000"
-                    android:fontFamily="@font/main_font_b"/>
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -269,9 +270,9 @@
                 android:id="@+id/MyView_ContactIcon"
                 android:layout_width="match_parent"
                 android:layout_height="60sp"
-                android:paddingLeft="10sp"
                 android:gravity="left"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:paddingLeft="10sp">
 
                 <ImageView
                     android:layout_width="15sp"
@@ -283,17 +284,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:fontFamily="@font/main_font_b"
                     android:paddingLeft="10sp"
                     android:text="문의하기"
-                    android:textColor="#000000"
-                    android:fontFamily="@font/main_font_b"/>
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
 
-
         </LinearLayout>
-
 
 
     </FrameLayout>
