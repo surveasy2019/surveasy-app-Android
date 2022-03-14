@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.4"
             android:fontFamily="@font/main_font_r"
-            android:gravity="right"
+            android:gravity="end"
             android:inputType="phone"
             android:textColor="#000000"
             android:textColorHint="#000000"

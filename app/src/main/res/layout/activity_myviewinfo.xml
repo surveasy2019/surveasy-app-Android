@@ -54,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:text="이름"
                         android:textColor="#000000"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:fontFamily="@font/main_font_b"/>
 
                     <TextView
@@ -62,9 +62,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:gravity="end"
+                        android:gravity="right"
                         android:textColor="#000000"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:fontFamily="@font/main_font_r" />
 
                 </LinearLayout>
@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:text="생년월일"
                         android:textColor="#000000"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:fontFamily="@font/main_font_b" />
 
                     <TextView
@@ -91,9 +91,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:gravity="end"
+                        android:gravity="right"
                         android:textColor="#000000"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:fontFamily="@font/main_font_r" />
 
                 </LinearLayout>
@@ -111,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:text="성별"
                         android:textColor="#000000"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:fontFamily="@font/main_font_b" />
 
                     <TextView
@@ -119,9 +119,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:gravity="end"
+                        android:gravity="right"
                         android:textColor="#000000"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:fontFamily="@font/main_font_r" />
 
                 </LinearLayout>
@@ -139,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:text="이메일"
                         android:textColor="#000000"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:fontFamily="@font/main_font_b" />
 
                     <TextView
@@ -147,9 +147,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:gravity="end"
+                        android:gravity="right"
                         android:textColor="#000000"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:fontFamily="@font/main_font_r" />
 
                 </LinearLayout>
@@ -165,8 +165,8 @@
 
             <Button
                 android:id="@+id/MyViewInfo_EditBtn"
-                android:layout_width="300sp"
-                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20sp"
                 android:layout_marginBottom="40sp"
