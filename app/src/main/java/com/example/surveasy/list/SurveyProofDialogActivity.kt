@@ -74,13 +74,16 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         startActivityForResult(photoPick, pickImageFromAlbum)
 
         binding.dialogSendBtn.setOnClickListener {
+            uploadStorage(binding.dialogImageview)
+            Toast.makeText(this@SurveyProofDialogActivity,"제출하는 중",Toast.LENGTH_LONG).show()
 
-            CoroutineScope(Dispatchers.Main).launch {
-                val upload = CoroutineScope(Dispatchers.IO).async {
-                    uploadStorage(binding.dialogImageview)
-                }.await()
-                finish()
-            }
+//            CoroutineScope(Dispatchers.Main).launch {
+//                val upload = CoroutineScope(Dispatchers.IO).async {
+//                    uploadStorage(binding.dialogImageview)
+//
+//                }.await()
+//                //Toast.makeText(this@SurveyProofDialogActivity,"제출 완료",Toast.LENGTH_LONG).show()
+//            }
         }
 
 
@@ -181,7 +184,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         val uploadTask = storageRef.putFile(uriPhoto!!)
 
         uploadTask.addOnSuccessListener {
-            Toast.makeText(this,"업로드 하는 중",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this,"업로드 하는 중",Toast.LENGTH_SHORT).show()
             updateList()
             val intent = Intent(this,SurveyProofLastDialogActivity::class.java)
             intent.putExtra("reward",thisSurveyInfo.get(0).reward)
