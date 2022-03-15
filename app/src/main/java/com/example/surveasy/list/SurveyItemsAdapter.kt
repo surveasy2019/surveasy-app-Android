@@ -33,6 +33,9 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
             holder.itemTitle.text = surveyList.get(position).title
             holder.itemDate.text = surveyList.get(position).uploadDate
+            holder.itemSpendTime.text = surveyList.get(position).spendTime
+            holder.itemTarget.text = surveyList.get(position).target
+            holder.itemReward.text = surveyList.get(position).reward.toString() + "원"
 
         //참여한 설문 박스 색 변경
 
@@ -40,9 +43,7 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
 
         if(!showCanParticipateList.contains(true)){
             if(boolList[position]){
-                holder.itemContainer.setBackgroundColor(Color.parseColor("#ADADAD"))
-
-
+                holder.itemContainer.setBackgroundResource(R.drawable.custom_donbox)
 
             }
         }else{
@@ -104,6 +105,9 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
         val itemBox : ConstraintLayout = itemView.findViewById(R.id.Surveylist_listItemBox)
         val itemTitle : TextView = itemView.findViewById(R.id.ListItem_Title)
         val itemDate : TextView = itemView.findViewById(R.id.ListItem_date)
+        val itemTarget : TextView = itemView.findViewById(R.id.ListItem_target)
+        val itemSpendTime : TextView = itemView.findViewById(R.id.ListItem_spendTime)
+        val itemReward : TextView = itemView.findViewById(R.id.ListItem_reward)
         val itemContainer : LinearLayout = itemView.findViewById(R.id.SurveyList_ItemContainer)
 
 
