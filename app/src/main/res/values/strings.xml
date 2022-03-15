@@ -585,7 +585,7 @@
     // MyViewSettingWithdraw
     <string name="MyViewSettingWithdraw_Title">회원 탈퇴</string>
     <string name="MyViewSettingWithdraw_NoticeTitle">탈퇴를 원하시면/n비밀번호를 입력해주세요.</string>
-    <string name="MyViewSettingWithdraw_PwInput">비밀번호를 입력하시오.</string>
+    <string name="MyViewSettingWithdraw_PwInput">비밀번호를 입력하세요</string>
     <string name="MyViewSettingWithdraw_WithdrawBtn">탈퇴하기</string>
 
     <string-array name="university">

@@ -55,6 +55,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingTop="2sp"
                     android:text="\@surveasypanel"
                     android:textColor="#707070"
                     android:textSize="13sp"
@@ -65,14 +66,14 @@
 
             <Button
                 android:id="@+id/MyViewContact_KakaoTalk"
-                android:layout_width="110sp"
-                android:layout_height="45sp"
+                android:layout_width="100sp"
+                android:layout_height="39sp"
                 android:layout_gravity="center"
                 android:background="@drawable/register_button"
+                android:fontFamily="@font/main_font_b"
                 android:text="바로가기"
-                android:textSize="17sp"
                 android:textColor="#FFFFFF"
-                android:fontFamily="@font/main_font_b"/>
+                android:textSize="15sp" />
 
 
         </LinearLayout>
@@ -109,6 +110,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingTop="2sp"
                     android:text="surveasy2019@yonsei.ac.kr"
                     android:textColor="#707070"
                     android:textSize="13sp"
@@ -119,12 +121,12 @@
 
             <Button
                 android:id="@+id/MyViewContact_Email"
-                android:layout_width="110sp"
-                android:layout_height="45sp"
+                android:layout_width="100sp"
+                android:layout_height="39sp"
                 android:layout_gravity="center"
                 android:background="@drawable/register_button"
                 android:text="복사하기"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:textColor="#FFFFFF"
                 android:fontFamily="@font/main_font_b"/>
 
