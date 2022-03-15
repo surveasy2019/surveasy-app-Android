@@ -24,40 +24,12 @@
         />
 
     <LinearLayout
-        android:id="@+id/Surveylist_FilterContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@id/Surveylist_Title"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        >
-
-        <RadioButton
-            android:id="@+id/Surveylist_FilterOngoing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="최신순"
-
-            android:layout_weight="1"/>
-
-        <RadioButton
-            android:id="@+id/Surveylist_FilterParticipate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="참여"
-            android:layout_weight="5"/>
-
-
-
-    </LinearLayout>
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
-        app:layout_constraintTop_toBottomOf="@id/Surveylist_FilterContainer"
+        app:layout_constraintTop_toBottomOf="@id/Surveylist_Title"
         >
 
         <Spinner
@@ -83,6 +55,7 @@
             android:layout_weight="1"
             android:layout_marginStart="20dp">
             <Switch
+                android:id="@+id/Surveylist_FilterParticipate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:ignore="UseSwitchCompatOrMaterialXml"

@@ -71,7 +71,8 @@
 
         <activity
             android:name=".list.SurveyProofLastDialogActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.MyDialog"/>
         <activity
             android:name=".my.notice.MyViewNoticeListDetailActivity"
             android:exported="true" />

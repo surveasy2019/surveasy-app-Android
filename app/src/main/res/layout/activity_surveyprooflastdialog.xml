@@ -1,27 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:elevation="5sp"
+    android:layout_gravity="center_vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/custom_dialog"
+    >
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp">
 
-    <androidx.appcompat.widget.Toolbar
+        <ImageView
+            android:layout_width="20sp"
+            android:layout_height="19sp"
+            android:layout_marginTop="2sp"
+            android:src="@drawable/checkimg"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="참여 완료되었습니다."
+            android:textSize="17sp"
+            android:fontFamily="@font/main_font_sb"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:id="@+id/ToolbarSurveyListDetailResponseProof"
-        android:theme="@style/ToolbarTheme"
-        android:background="@color/white"
-        app:titleTextColor="@color/black"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right">
+
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:id="@+id/SurveyListDetailResponseProof_BtnMy"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:fontFamily="@font/main_font_sb"
+            android:text="참여내역 보기"
+            android:layout_marginBottom="15dp"
+            android:lineSpacingExtra="3.3sp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_gravity="right"
+            android:textColor="#0aab00"
+            android:background="@drawable/white_button"
+            android:layout_marginEnd="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:id="@+id/SurveyListDetailResponseProof_Btn"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:fontFamily="@font/main_font_sb"
+            android:text="홈으로 가기"
+            android:layout_marginBottom="15dp"
+            android:lineSpacingExtra="3.3sp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_gravity="right"
+            android:textColor="@color/white"
+            android:backgroundTint="#0aab00"
+            android:background="@drawable/register_button"
+            android:layout_marginEnd="10dp"/>
+
+    </LinearLayout>
 
 
-
-    <Button
-        android:id="@+id/SurveyListDetailResponseProof_Btn"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="설문화면"
-        android:layout_weight="1"
-         />
 
 
 </LinearLayout>
+
