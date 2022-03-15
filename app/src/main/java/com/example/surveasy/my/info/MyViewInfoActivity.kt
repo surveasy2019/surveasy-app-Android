@@ -1,6 +1,7 @@
 package com.example.surveasy.my.info
 
 import android.content.ContentValues.TAG
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
@@ -55,7 +56,10 @@ class MyViewInfoActivity : AppCompatActivity() {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.MyViewInfo_View, MyViewInfo2Fragment()).commit()
                 fragment = 2
+
                 binding.MyViewInfoEditBtn.text = "수정완료"
+                binding.MyViewInfoEditBtn.setBackgroundResource(R.drawable.register_button)
+                binding.MyViewInfoEditBtn.setTextColor(Color.parseColor("#FFFFFF"))
             }
             else if(fragment == 2) {
                 updateInfo()
@@ -64,7 +68,10 @@ class MyViewInfoActivity : AppCompatActivity() {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.MyViewInfo_View, MyViewInfo1Fragment()).commit()
                 fragment = 1
+
                 binding.MyViewInfoEditBtn.text = "수정하기"
+                binding.MyViewInfoEditBtn.setBackgroundResource(R.drawable.white_button_myinfo)
+                binding.MyViewInfoEditBtn.setTextColor(Color.parseColor("#0aab00"))
             }
         }
 
@@ -93,7 +100,7 @@ class MyViewInfoActivity : AppCompatActivity() {
         docRef.collection("FirstSurvey").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { document ->
                 if (document != null) {
-                    infoDataModel.infoData.EngSurvey = document["EngSurvey"] as Boolean
+                    infoDataModel.infoData.EngSurvey = document["EngSurvey"]!! as Boolean
                     setVariableInfo(infoDataModel.infoData)
                 }
             }
