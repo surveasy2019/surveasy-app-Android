@@ -82,6 +82,8 @@ class MyViewInfo2Fragment : Fragment() {
 
         phoneNumberEdit.hint = infoDataModel.infoData.phoneNumber
         accountNumberEdit.hint = infoDataModel.infoData.accountNumber
+
+
     }
 
 }

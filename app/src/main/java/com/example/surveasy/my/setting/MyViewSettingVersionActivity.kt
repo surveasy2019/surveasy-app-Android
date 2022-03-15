@@ -11,17 +11,16 @@ class MyViewSettingVersionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_myviewsettingversion)
 
         binding = ActivityMyviewsettingversionBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
+        // Tool bar
         setSupportActionBar(binding.ToolbarMyViewSettingVersion)
-
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
-
         binding.ToolbarMyViewSettingVersion.setNavigationOnClickListener {
             onBackPressed()
         }
