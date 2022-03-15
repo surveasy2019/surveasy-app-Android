@@ -24,7 +24,7 @@ class NoticeToPanelDialogActivity : AppCompatActivity() {
 
         binding.NoticeToPanelText.text = notice
 
-        binding.NoticeToPanelCloseBtn.setOnClickListener { finish() }
+        //binding.NoticeToPanelCloseBtn.setOnClickListener { finish() }
         binding.NoticeToPanelOkBtn.setOnClickListener {
             val intent = Intent(this,SurveyListDetailActivity::class.java)
             intent.putExtra("link",link)
