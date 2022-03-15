@@ -12,6 +12,7 @@ import com.example.surveasy.MainActivity
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivitySurveyprooflastdialogBinding
 import com.example.surveasy.login.CurrentUser
+import com.example.surveasy.my.history.MyViewHistoryActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
@@ -32,22 +33,15 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
 
 
 
-        setSupportActionBar(binding.ToolbarSurveyListDetailResponseProof)
-
-        if (supportActionBar != null) {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setDisplayShowTitleEnabled(false)
-        }
-
-        binding.ToolbarSurveyListDetailResponseProof.setNavigationOnClickListener {
-            onBackPressed()
-        }
-
-
 
         binding.SurveyListDetailResponseProofBtn.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
+
+        }
+        binding.SurveyListDetailResponseProofBtnMy.setOnClickListener {
+            startActivity(Intent(this,MyViewHistoryActivity::class.java))
+
         }
 
         val reward = intent.getIntExtra("reward",0)
