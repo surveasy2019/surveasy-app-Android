@@ -39,8 +39,7 @@ class SurveyListFragment() : Fragment() {
 
         val container : RecyclerView? = view.findViewById(R.id.recyclerContainer)
         val refreshBtn : ImageButton = view.findViewById(R.id.Surveylist_refresh)
-        val radioParticipate : RadioButton = view.findViewById(R.id.Surveylist_FilterParticipate)
-        val radioRecent : RadioButton = view.findViewById(R.id.Surveylist_FilterOngoing)
+        val filterParticipate : Switch = view.findViewById(R.id.Surveylist_FilterParticipate)
         var showCanParticipateList = arrayListOf<Boolean>()
         val filterList = listOf("마감순","최신순")
         val filterAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, filterList)
@@ -61,15 +60,21 @@ class SurveyListFragment() : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 listFilter = filterList[position]
                 if(listFilter.equals("최신순")){
-                    Toast.makeText(context,"최신순",Toast.LENGTH_SHORT).show()
+                    val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),showCanParticipateList)
+                    container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+                    container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),showCanParticipateList)
                 }else{
-                    Toast.makeText(context,"마감순",Toast.LENGTH_SHORT).show()
+                    val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),showCanParticipateList)
+                    container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+                    container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),showCanParticipateList)
                 }
 
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         }
+
+
 
         CoroutineScope(Dispatchers.Main).launch {
             val list = CoroutineScope(Dispatchers.IO).async {
@@ -83,41 +88,54 @@ class SurveyListFragment() : Fragment() {
             container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
             container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),showCanParticipateList)
         }
-        Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
+        //Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
 
-
-
-        radioParticipate.setOnClickListener{
-            CoroutineScope(Dispatchers.Main).launch {
-                val list = CoroutineScope(Dispatchers.IO).async {
-                    val model by activityViewModels<SurveyInfoViewModel>()
-                    while(model.surveyInfo.size==0){
-                        Log.d(TAG,"########loading")
-                    }
-                    model.surveyInfo.get(0).id
-                }.await()
+        filterParticipate.setOnCheckedChangeListener{ button, ischecked ->
+            if(ischecked){
                 val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),changeDoneSurvey())
                 container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
                 container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),changeDoneSurvey())
-            }
-
-        }
-
-        radioRecent.setOnClickListener{
-            CoroutineScope(Dispatchers.Main).launch {
-                val list = CoroutineScope(Dispatchers.IO).async {
-                    val model by activityViewModels<SurveyInfoViewModel>()
-                    while(model.surveyInfo.size==0){
-                        Log.d(TAG,"########loading")
-                    }
-                    model.surveyInfo.get(0).id
-                }.await()
+            }else{
                 val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),showCanParticipateList)
                 container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
                 container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),showCanParticipateList)
             }
-
         }
+
+
+
+
+//        radioParticipate.setOnClickListener{
+//            CoroutineScope(Dispatchers.Main).launch {
+//                val list = CoroutineScope(Dispatchers.IO).async {
+//                    val model by activityViewModels<SurveyInfoViewModel>()
+//                    while(model.surveyInfo.size==0){
+//                        Log.d(TAG,"########loading")
+//                    }
+//                    model.surveyInfo.get(0).id
+//                }.await()
+//                val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),changeDoneSurvey())
+//                container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+//                container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),changeDoneSurvey())
+//            }
+//
+//        }
+
+//        radioRecent.setOnClickListener{
+//            CoroutineScope(Dispatchers.Main).launch {
+//                val list = CoroutineScope(Dispatchers.IO).async {
+//                    val model by activityViewModels<SurveyInfoViewModel>()
+//                    while(model.surveyInfo.size==0){
+//                        Log.d(TAG,"########loading")
+//                    }
+//                    model.surveyInfo.get(0).id
+//                }.await()
+//                val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),showCanParticipateList)
+//                container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+//                container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),showCanParticipateList)
+//            }
+//
+//        }
 
 
 
@@ -137,6 +155,7 @@ class SurveyListFragment() : Fragment() {
 
         return view
     }
+
 
 //    private fun setFilterSpinner(view: View) {
 //        val filterList = listOf("마감순","최신순")
