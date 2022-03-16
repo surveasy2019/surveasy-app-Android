@@ -17,8 +17,8 @@
         android:textAlignment="center"
         android:textSize="23sp"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:paddingBottom="50dp"
+        android:paddingStart="10dp"
+        android:paddingBottom="30dp"
         app:layout_constraintTop_toTopOf="parent"
 
         />
@@ -86,15 +86,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <ImageButton
-        android:id="@+id/Surveylist_refresh"
-        android:layout_width="57dp"
-        android:layout_height="57dp"
-        android:background="@color/black"
-        app:srcCompat="@android:drawable/ic_menu_rotate"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="658dp"
-        tools:ignore="MissingConstraints" />
+<!--    <ImageButton-->
+<!--        android:id="@+id/Surveylist_refresh"-->
+<!--        android:layout_width="57dp"-->
+<!--        android:layout_height="57dp"-->
+<!--        android:background="@color/black"-->
+<!--        app:srcCompat="@android:drawable/ic_menu_rotate"-->
+<!--        tools:layout_editor_absoluteX="0dp"-->
+<!--        tools:layout_editor_absoluteY="658dp"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
