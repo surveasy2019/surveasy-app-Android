@@ -29,14 +29,6 @@ class MyViewInfo2Fragment : Fragment() {
         setAccountTypeSpinner(view, infoDataModel.infoData.accountType!!)
         setEditTextHint(view)
 
-        // EngSurvey
-//        val engSurveyRadioGroup = view.findViewById<RadioGroup>(R.id.MyViewInfo_InfoItem_EngSurveyRadioGroup)
-//        engSurveyRadioGroup.setOnCheckedChangeListener { engSurveyRadioGroup, checked ->
-//            when(checked) {
-//                R.id.MyViewInfo_InfoItem_EngSurvey_O -> infoDataModel.infoData.EngSurvey = true
-//                R.id.MyViewInfo_InfoItem_EngSurvey_X -> infoDataModel.infoData.EngSurvey = false
-//            }
-//        }
 
         if (infoDataModel.infoData.EngSurvey == true) {
             engSwitch.isChecked = true
@@ -62,9 +54,30 @@ class MyViewInfo2Fragment : Fragment() {
 
     }
 
-    private fun setAccountTypeSpinner(view: View, previousType: String) {
-        val accountTypeList = resources.getStringArray(R.array.accountType)
-        val accountTypeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, accountTypeList)
+    private fun spinnerDefault(list : MutableList<String>, i: Int, defaultType: String): MutableList<String> {
+        var setDefaultList = list
+        setDefaultList.removeAt(i)
+        setDefaultList.add(0, "$defaultType")
+
+        return setDefaultList
+    }
+
+    private fun setAccountTypeSpinner(view: View, currentType: String) {
+        val accountTypeList = resources.getStringArray(R.array.accountType).toMutableList()
+        var setDefaultList : MutableList<String> = mutableListOf()
+        when(currentType) {
+            "국민" -> { setDefaultList = accountTypeList }
+            "하나" -> { setDefaultList = spinnerDefault(accountTypeList, 1, "하나") }
+            "우리" -> { setDefaultList = spinnerDefault(accountTypeList, 2, "우리") }
+            "신한" -> { setDefaultList = spinnerDefault(accountTypeList, 3, "신한") }
+            "농협" -> { setDefaultList = spinnerDefault(accountTypeList, 4, "농협") }
+            "IBK 기업" -> { setDefaultList = spinnerDefault(accountTypeList, 5, "IBK 기업") }
+            "새마을금고" -> { setDefaultList = spinnerDefault(accountTypeList, 6, "새마을금고") }
+            "카카오뱅크" -> { setDefaultList = spinnerDefault(accountTypeList, 7, "카카오뱅크") }
+        }
+
+
+        val accountTypeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, setDefaultList)
         val accountTypeSpinner : Spinner = view.findViewById(R.id.MyViewInfo_InfoItem_AccountTypeSpinner)
         accountTypeSpinner.adapter = accountTypeAdapter
         accountTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

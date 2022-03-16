@@ -45,10 +45,10 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
 
         setDistrictSpinner(view)
         setCitySpinner(citySpinner, 0)
-        //etPetSpinner(view)
+        //setPetSpinner(view)
         setHousingTypeSpinner(view)
 
-        // married
+        // pet
         val petRadioGroup = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey2_PetRadioGroup)
         petRadioGroup.setOnCheckedChangeListener { petRadioGroup, checked ->
             when(checked) {
@@ -59,7 +59,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
             }
         }
 
-        // pet
+        // married
         val marriedRadioGroup = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey2_MarriedRadioGroup)
         marriedRadioGroup.setOnCheckedChangeListener { marriedRadioGroup, checked ->
             when(checked) {
@@ -100,17 +100,17 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         else if(city == "시/군/구") {
             Toast.makeText(context, "시/군/구를 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
-        else if(married == null) {
-            Toast.makeText(context, "혼인 여부를 선택해주세요.", Toast.LENGTH_SHORT).show()
-        }
         else if(pet == null) {
             Toast.makeText(context, "반려동물 여부를 선택해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else if(married == null) {
+            Toast.makeText(context, "혼인 여부를 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
         else if(family == null) {
             Toast.makeText(context, "가구 형태를 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
-        else if(housingType == "주거형태를 선택해주세요") {
-            Toast.makeText(context, "주거형태를 선택해주세요.", Toast.LENGTH_SHORT).show()
+        else if(housingType == null || housingType == "주거 형태를 선택해주세요") {
+            Toast.makeText(context, "주거 형태를 선택해주세요", Toast.LENGTH_SHORT).show()
         }
         else {
             firstSurveyModel.firstSurvey.district = district
@@ -170,7 +170,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         districtSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 district = districtList[position]
-                if(position == 7) {
+                if(position == 8) {
                     citySpinner.visibility = View.INVISIBLE
                     city = ""
                 }
@@ -189,21 +189,21 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         var cityList = resources.getStringArray(R.array.서울)
 
         when(districtPosition) {
-            0 -> { cityList = resources.getStringArray(R.array.서울) }
-            1 -> { cityList = resources.getStringArray(R.array.부산) }
-            2 -> { cityList = resources.getStringArray(R.array.대구) }
-            3 -> { cityList = resources.getStringArray(R.array.인천) }
-            4 -> { cityList = resources.getStringArray(R.array.광주) }
-            5 -> { cityList = resources.getStringArray(R.array.대전) }
-            6 -> { cityList = resources.getStringArray(R.array.울산) }
-            8 -> { cityList = resources.getStringArray(R.array.경기) }
-            9 -> { cityList = resources.getStringArray(R.array.충북) }
-            10 -> { cityList = resources.getStringArray(R.array.충남) }
-            11 -> { cityList = resources.getStringArray(R.array.전북) }
-            12 -> { cityList = resources.getStringArray(R.array.전남) }
-            13 -> { cityList = resources.getStringArray(R.array.경북) }
-            14 -> { cityList = resources.getStringArray(R.array.경남) }
-            15 -> { cityList = resources.getStringArray(R.array.제주) }
+            1 -> { cityList = resources.getStringArray(R.array.서울) }
+            2 -> { cityList = resources.getStringArray(R.array.부산) }
+            3 -> { cityList = resources.getStringArray(R.array.대구) }
+            4 -> { cityList = resources.getStringArray(R.array.인천) }
+            5 -> { cityList = resources.getStringArray(R.array.광주) }
+            6 -> { cityList = resources.getStringArray(R.array.대전) }
+            7 -> { cityList = resources.getStringArray(R.array.울산) }
+            9 -> { cityList = resources.getStringArray(R.array.경기) }
+            10 -> { cityList = resources.getStringArray(R.array.충북) }
+            11 -> { cityList = resources.getStringArray(R.array.충남) }
+            12 -> { cityList = resources.getStringArray(R.array.전북) }
+            13 -> { cityList = resources.getStringArray(R.array.전남) }
+            14 -> { cityList = resources.getStringArray(R.array.경북) }
+            15 -> { cityList = resources.getStringArray(R.array.경남) }
+            16 -> { cityList = resources.getStringArray(R.array.제주) }
         }
 
         val cityAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, cityList)
