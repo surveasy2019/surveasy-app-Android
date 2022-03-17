@@ -306,7 +306,8 @@ class MainActivity : AppCompatActivity() {
                             opinionModel.opinionItem = OpinionItem(
                                 Integer.parseInt(document["id"].toString()),
                                 document["question"].toString(),
-                                document["content"].toString()
+                                document["content1"].toString(),
+                                document["content2"].toString()
                             )
                         }
                     }

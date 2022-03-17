@@ -4,8 +4,12 @@ import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.RelativeSizeSpan
+import android.text.style.TypefaceSpan
 import android.util.Log
 import android.widget.Switch
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.surveasy.R
@@ -51,6 +55,7 @@ class MyViewSettingActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
         builder = AlertDialog.Builder(this)
         binding.MyViewSettingLogout.setOnClickListener {
             builder.setTitle("로그아웃 하시겠습니까?")
@@ -67,6 +72,7 @@ class MyViewSettingActivity : AppCompatActivity() {
                     dialogInterface.cancel()
                 }
                 .show()
+
         }
 
         setSupportActionBar(binding.ToolbarMyViewSetting)

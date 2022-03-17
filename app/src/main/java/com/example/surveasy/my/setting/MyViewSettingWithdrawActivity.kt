@@ -49,6 +49,7 @@ class MyViewSettingWithdrawActivity : AppCompatActivity() {
 
 
 
+
         // Withdraw
         builder = AlertDialog.Builder(this)
         binding.MyViewSettingWithdrawWithdrawBtn.setOnClickListener{
@@ -87,7 +88,7 @@ class MyViewSettingWithdrawActivity : AppCompatActivity() {
 
     // function to show Withdraw Dialog
     private fun showDialog() {
-        builder.setTitle("회원탈퇴하시겠습니까?")
+        builder.setTitle("패널탈퇴하시겠습니까?")
             .setCancelable(true)
             .setPositiveButton("예"){ dialogInterface, it ->
                 finish()

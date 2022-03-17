@@ -1,6 +1,7 @@
 package com.example.surveasy.home
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -44,6 +45,12 @@ class HomeFragment : Fragment() {
     val db = Firebase.firestore
     val userList = arrayListOf<UserSurveyItem>()
     private lateinit var bannerPager : ViewPager2
+    private lateinit var mContext: Context
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,6 +78,7 @@ class HomeFragment : Fragment() {
         val opinionTextView : TextView = view.findViewById(R.id.Home_Opinion_TextView)
 
 
+
         // Banner init
         bannerPager = view.findViewById(R.id.Home_BannerViewPager)
 
@@ -80,11 +88,12 @@ class HomeFragment : Fragment() {
                     //Log.d(TAG, "+++++++BANNER LOADING++++++")
                 }
                 bannerModel.uriList
+
             }.await()
 
             total_banner.text = bannerModel.num.toString()
             bannerPager.offscreenPageLimit = bannerModel.num
-            bannerPager.adapter = BannerViewPagerAdapter(context!!, bannerModel.uriList)
+            bannerPager.adapter = BannerViewPagerAdapter(mContext, bannerModel.uriList)
             bannerPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         }
@@ -216,7 +225,8 @@ class HomeFragment : Fragment() {
             val intent = Intent(context, HomeOpinionDetailActivity::class.java)
             intent.putExtra("id", opinionModel.opinionItem.id)
             intent.putExtra("question", opinionModel.opinionItem.question)
-            intent.putExtra("content", opinionModel.opinionItem.content)
+            intent.putExtra("content1", opinionModel.opinionItem.content1)
+            intent.putExtra("content2", opinionModel.opinionItem.content2)
 
             startActivity(intent)
         }
