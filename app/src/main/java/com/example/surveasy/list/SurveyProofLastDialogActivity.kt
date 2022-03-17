@@ -37,12 +37,10 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
         binding.SurveyListDetailResponseProofBtn.setOnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
+            finishAffinity()
 
         }
-        binding.SurveyListDetailResponseProofBtnMy.setOnClickListener {
-            startActivity(Intent(this,MyViewHistoryActivity::class.java))
 
-        }
 
         val reward = intent.getIntExtra("reward",0)
 
