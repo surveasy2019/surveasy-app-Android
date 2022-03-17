@@ -18,10 +18,11 @@
         android:id="@+id/HomeOpinionDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="당신의 의견은?"
         android:gravity="center"
+        android:text="당신의 의견은?"
         android:textSize="20sp"
-        android:textColor="@color/black" />
+        android:textColor="#000000"
+        android:fontFamily="@font/main_font_m" />
 
 
     <LinearLayout
@@ -36,7 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:paddingVertical="5sp"
+            android:layout_marginTop="20sp"
+            android:paddingVertical="20sp"
             android:text="당신의 의견은 - 질문란"
             android:textSize="18sp"
             android:textColor="#0aab00"
@@ -44,49 +46,67 @@
 
 
         <TextView
-            android:id="@+id/HomeOpinionDetail_Content"
+            android:id="@+id/HomeOpinionDetail_Content1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingVertical="3sp"
+            android:layout_marginHorizontal="5sp"
+            android:paddingVertical="10sp"
             android:text="당신의 의견은 - 질문 상세 내용란"
             android:textColor="#000000"
-            android:textSize="13sp"/>
+            android:textSize="14sp"
+            android:fontFamily="@font/main_font_m" />
+
 
         <TextView
-            android:id="@+id/HomeOpinionDetail_Notice"
+            android:id="@+id/HomeOpinionDetail_Content2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_r"
             android:gravity="center"
-            android:paddingVertical="10sp"
-            android:text="작성해주신 답변은\n새내기를 위한 컨텐츠로 제작되어 발행됩니다"
-            android:textColor="#000000"
-            android:textSize="10sp"/>
-
-
+            android:paddingVertical="15sp"
+            android:text="작성해주신 답변은 새내기를 위한 컨텐츠로 제작되어\n발행됩니다"
+            android:textColor="#707070"
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/Home_Opinion_EditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30sp"
+            android:layout_height="53sp"
+            android:layout_marginTop="10sp"
             android:layout_marginHorizontal="10sp"
-            android:hint="내용을 입력해주세요" />
-
-        <Button
-            android:id="@+id/Home_Opinion_FinBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
-            android:layout_gravity="center"
-            android:text="답변 제출" />
+            android:paddingLeft="13sp"
+            android:background="@drawable/custom_input"
+            android:hint="내용을 입력해주세요"
+            android:textSize="15sp"
+            android:fontFamily="@font/main_font_m" />
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="bottom"
+            android:layout_marginHorizontal="10sp" >
+
+            <Button
+                android:id="@+id/Home_Opinion_FinBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/register_button"
+                android:text="제출"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/main_font_b" />
+
+        </LinearLayout>
 
 
 
 
     </LinearLayout>
+
 
 
 

@@ -37,10 +37,12 @@ class HomeOpinionDetailActivity : AppCompatActivity() {
 
         val id = intent.getIntExtra("id", 1)
         val question = intent.getStringExtra("question")
-        val content = intent.getStringExtra("content")
+        val content1 = intent.getStringExtra("content1")
+        val content2 = intent.getStringExtra("content2")
 
         binding.HomeOpinionDetailQuestion.text = "\"" + question + "\""
-        binding.HomeOpinionDetailContent.text = content
+        binding.HomeOpinionDetailContent1.text = content1!!.replace("/", "\n")
+        binding.HomeOpinionDetailContent2.text = content2!!.replace("/", "\n")
 
 
 

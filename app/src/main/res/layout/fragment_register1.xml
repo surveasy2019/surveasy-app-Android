@@ -204,7 +204,7 @@
                     android:textColorHint="#c9c9c9"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:background="@drawable/custom_input"/>
 
             </LinearLayout>
@@ -242,7 +242,7 @@
                     android:textColorHint="#c9c9c9"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:background="@drawable/custom_input"/>
 
             </LinearLayout>
