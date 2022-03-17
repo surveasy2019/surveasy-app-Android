@@ -33,13 +33,15 @@ class RegisterActivity : AppCompatActivity() {
         transaction.add(R.id.RegisterView, RegisterAgree1Fragment()).commit()
 
 
+
+
         val registerToolbar : Toolbar? = findViewById(R.id.ToolbarRegister)
         setSupportActionBar(binding.ToolbarRegister)
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-            //supportActionBar?.setDisplayShowTitleEnabled(false)
-            supportActionBar?.setTitle("패널가입")
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+
 
 
 

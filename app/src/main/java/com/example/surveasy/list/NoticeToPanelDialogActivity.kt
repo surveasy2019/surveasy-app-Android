@@ -19,6 +19,7 @@ class NoticeToPanelDialogActivity : AppCompatActivity() {
         val id = intent.getStringExtra("id")!!
         val index = intent.getIntExtra("index",0)!!
         val notice = intent.getStringExtra("notice")!!
+        val reward = intent.getIntExtra("reward",0)
 
 
 
@@ -30,6 +31,7 @@ class NoticeToPanelDialogActivity : AppCompatActivity() {
             intent.putExtra("link",link)
             intent.putExtra("id", id)
             intent.putExtra("index", index)
+            intent.putExtra("reward",reward)
             startActivity(intent)
             finish()
         }

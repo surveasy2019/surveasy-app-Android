@@ -11,14 +11,14 @@
         android:id="@+id/Surveylist_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
+        android:paddingTop="25dp"
         android:fontFamily="@font/main_font_sb"
         android:text="설문 게시판"
         android:textAlignment="center"
         android:textSize="23sp"
         android:textColor="@color/black"
         android:paddingStart="10dp"
-        android:paddingBottom="30dp"
+        android:paddingBottom="25dp"
         app:layout_constraintTop_toTopOf="parent"
 
         />
@@ -29,6 +29,7 @@
         android:orientation="horizontal"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
+        android:layout_marginBottom="0dp"
         app:layout_constraintTop_toBottomOf="@id/Surveylist_Title"
         >
 

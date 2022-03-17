@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/ToolbarProof"
@@ -14,7 +15,8 @@
         >
         <LinearLayout
             android:gravity="center_vertical"
-            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -26,7 +28,7 @@
                 android:fontFamily="@font/main_font_sb"
                 android:textColor="@color/black"
                 android:layout_marginBottom="5dp"
-                android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:text="설문 제목"
                 android:textSize="25sp" />
 

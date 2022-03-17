@@ -6,11 +6,14 @@ import android.app.AlertDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Paint
 import android.net.Uri
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
@@ -49,8 +52,15 @@ class SurveyListDetailActivity : AppCompatActivity() {
         val url : String = intent.getStringExtra("link")!!
         val id : String = intent.getStringExtra("id",)!!
         val index : Int = intent.getIntExtra("index",0)!!
+        val reward : Int = intent.getIntExtra("reward",0)
 
-        //activity 들어가자마자 permission 확인
+
+        val spannableString = SpannableString(reward.toString()+"원 받으러 가기기")
+        spannableString.setSpan(UnderlineSpan(),0,spannableString.length,0)
+        binding.toolbarUpload.text = spannableString
+
+
+       //activity 들어가자마자 permission 확인
         if(ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE)
             == PackageManager.PERMISSION_GRANTED){
             Toast.makeText(this,"Permission Granted",Toast.LENGTH_LONG).show()
