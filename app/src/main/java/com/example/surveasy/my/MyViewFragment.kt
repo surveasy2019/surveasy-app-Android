@@ -87,6 +87,7 @@ class MyViewFragment : Fragment() {
 
         settingIcon.setOnClickListener {
             val intent = Intent(context, MyViewSettingActivity::class.java)
+            intent.putExtra("reward_current", userModel.currentUser.rewardCurrent)
             startActivity(intent)
         }
         contactIcon.setOnClickListener {

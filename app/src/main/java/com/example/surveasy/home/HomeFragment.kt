@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -20,7 +19,7 @@ import com.example.surveasy.MainActivity
 
 import com.example.surveasy.R
 import com.example.surveasy.list.*
-import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
+import com.example.surveasy.list.firstsurvey.FirstSurveyListFragment
 import com.example.surveasy.login.*
 import com.example.surveasy.register.RegisterActivity
 import com.example.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
@@ -28,7 +27,6 @@ import com.example.surveasy.home.Opinion.HomeOpinionDetailActivity
 import com.example.surveasy.home.Opinion.HomeOpinionViewModel
 import com.example.surveasy.home.banner.BannerViewModel
 import com.example.surveasy.home.banner.BannerViewPagerAdapter
-import com.example.surveasy.home.contribution.ContributionItems
 import com.example.surveasy.home.contribution.ContributionItemsAdapter
 import com.example.surveasy.home.contribution.HomeContributionViewModel
 import com.google.firebase.auth.ktx.auth
@@ -129,7 +127,7 @@ class HomeFragment : Fragment() {
                 (activity as MainActivity).navColor_in_Home()
 
                 val intent_surveylistfirstsurvey: Intent =
-                    Intent(context, FirstSurveyListActivity::class.java)
+                    Intent(context, FirstSurveyListFragment::class.java)
                 intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
                 startActivity(intent_surveylistfirstsurvey)
 

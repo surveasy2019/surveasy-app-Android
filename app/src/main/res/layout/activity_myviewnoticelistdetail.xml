@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    >
+    android:background="#FFFFFF" >
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -18,17 +18,18 @@
         android:id="@+id/MyViewNoticeList_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="공지사항"
         android:gravity="center"
+        android:text="공지사항"
         android:textSize="20sp"
-        android:textColor="@color/black" />
+        android:textColor="#000000"
+        android:fontFamily="@font/main_font_m"/>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="30dp" >
 
         <TextView
             android:id="@+id/MyViewNoticeListDetail_Date"
@@ -36,7 +37,8 @@
             android:layout_height="wrap_content"
             android:text="2021.01.19"
             android:textColor="#000000"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            android:fontFamily="@font/main_font_r"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,7 +51,6 @@
                 android:layout_width="18sp"
                 android:layout_height="18sp"
                 android:layout_marginTop="3sp"
-                android:layout_marginLeft="2sp"
                 android:layout_marginRight="7sp"
                 android:layout_gravity="center"
                 android:src="@drawable/my_notice_fixed"
@@ -64,31 +65,37 @@
                 android:text="새로운 웹 페이지에 놀러오세요 안녕하세요.."
                 android:textSize="15sp"
                 android:textColor="#000000"
-                android:fontFamily="@font/main_font_m"/>
+                android:fontFamily="@font/main_font_b"/>
 
         </LinearLayout>
 
 
 
-        <View
-            android:id="@+id/divider"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="10dp"
-            android:background="?android:attr/listDivider"
-            android:backgroundTint="#000000" />
-        <TextView
-            android:id="@+id/MyViewNoticeListDetail_Content"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:text="Si osculantur puer tuus aut uxorem tuam, osculum, non dico quod omnia quae sunt
+            android:layout_height="match_parent"
+            android:layout_marginTop="30sp">
+
+            <TextView
+                android:id="@+id/MyViewNoticeListDetail_Content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Si osculantur puer tuus aut uxorem tuam, osculum, non dico quod omnia quae sunt
             hominis, et sic non tangetur, si aut ex eis moriatur.Quando ambulabat agendis admonere te
             qualis actio. Si ad corpus, quae plerumque Imaginare tecum in balineo quidam aquam fundes
             aliquod discrimen vituperiis usum alii furantur.Sic de isto et tutius perducit ad actum
             ipsum, ut si dico “Ego autem vadam lavari, ut mens mea in statu naturae conformior.” Et
             similiter circa alias res. Et sic, si contingit ex per se lavantem, et erit hoc paratus
             ut diceret, “Hoc non solum lavari ut desideravit, sed ut animus in statu naturae onvenienter naturae, et non"
-            android:gravity="center_vertical"/>
+
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="3sp"
+                android:fontFamily="@font/main_font_m" />
+
+        </ScrollView>
+
 
 
     </LinearLayout>

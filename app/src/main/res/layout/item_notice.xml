@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2021-01-01"
-            android:textSize="13sp"
+            android:textSize="12sp"
             android:textColor="#000000"
             android:fontFamily="@font/main_font_m"/>
 

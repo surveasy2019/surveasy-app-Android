@@ -41,8 +41,8 @@ class HomeOpinionDetailActivity : AppCompatActivity() {
         val content2 = intent.getStringExtra("content2")
 
         binding.HomeOpinionDetailQuestion.text = "\"" + question + "\""
-        binding.HomeOpinionDetailContent1.text = content1!!.replace("/", "\n")
-        binding.HomeOpinionDetailContent2.text = content2!!.replace("/", "\n")
+        binding.HomeOpinionDetailContent1.text = content1!!.replace("$", "\n")
+        binding.HomeOpinionDetailContent2.text = content2!!.replace("$", "\n")
 
 
 

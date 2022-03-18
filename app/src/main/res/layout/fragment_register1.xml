@@ -326,18 +326,34 @@
 
                     <RadioButton
                         android:id="@+id/RegisterFragment1_RadioMale"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="남성"
-                        android:layout_marginEnd="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:button="@color/transparent"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/custom_radiobtn"
                          />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50dp"
+                        android:fontFamily="@font/main_font_sb"
+                        android:textColor="@color/black"
+                        android:text="남성"/>
                     <RadioButton
                         android:id="@+id/RegisterFragment1_RadioFemale"
-                        android:layout_width="match_parent"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:button="@color/transparent"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/custom_radiobtn"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="여성"
-                        android:layout_marginStart="10dp" />
-
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="@font/main_font_sb"
+                        android:textColor="@color/black"
+                        android:text="여성"/>
 
                 </RadioGroup>
 

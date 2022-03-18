@@ -10,17 +10,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.fragment.app.activityViewModels
 import com.example.surveasy.databinding.ActivityMainBinding
 import com.example.surveasy.home.banner.BannerViewModel
 import com.example.surveasy.home.HomeFragment
 import com.example.surveasy.home.Opinion.HomeOpinionViewModel
 import com.example.surveasy.home.Opinion.OpinionItem
 import com.example.surveasy.home.contribution.ContributionItems
-import com.example.surveasy.home.contribution.ContributionItemsAdapter
 import com.example.surveasy.home.contribution.HomeContributionViewModel
 import com.example.surveasy.list.*
-import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
+import com.example.surveasy.list.firstsurvey.FirstSurveyListFragment
 import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
 import com.example.surveasy.my.MyViewFragment
@@ -111,7 +109,7 @@ class MainActivity : AppCompatActivity() {
 
             if (userModel.currentUser.didFirstSurvey == false) {
                 // Send Current User to Activities
-                val intent_surveylistfirstsurvey: Intent = Intent(this, FirstSurveyListActivity::class.java)
+                val intent_surveylistfirstsurvey: Intent = Intent(this, FirstSurveyListFragment::class.java)
                 intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
                 startActivity(intent_surveylistfirstsurvey)
             } else {
@@ -135,6 +133,8 @@ class MainActivity : AppCompatActivity() {
         //        Log.d("Hash",keyHash)
 
 
+
+
         fun clickList() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.MainView, SurveyListFragment())
@@ -142,6 +142,12 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    fun firstSurvey(){
+        binding.NavList.setOnClickListener {
+
+        }
     }
 
 
@@ -279,18 +285,18 @@ class MainActivity : AppCompatActivity() {
                 if(documents != null) {
                     for (document in documents) {
                         val contribution = ContributionItems(
-                            document["title"].toString(),
                             document["date"].toString(),
+                            document["title"].toString(),
+                            document["journal"].toString(),
+                            document["source"].toString(),
                             document["institute"].toString(),
-                            document["img"].toString()
-                        )
-                        contribution.content = document["content"] as ArrayList<String>
+                            document["img"].toString(),
+                            document["content"].toString()
 
+                        )
                         Log.d(TAG, ">>>>>>>>>>>>>>>>>>>>>${contribution.date}")
                         contributionModel.contributionList.add(contribution)
                     }
-
-                    Log.d(TAG, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~${contributionModel.contributionList.get(0).content.get(0)}")
                 }
 
             }
