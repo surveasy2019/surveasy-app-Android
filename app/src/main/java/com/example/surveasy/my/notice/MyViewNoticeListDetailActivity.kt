@@ -35,7 +35,7 @@ class MyViewNoticeListDetailActivity : AppCompatActivity() {
 
         binding.MyViewNoticeListDetailTitle.text = title
         binding.MyViewNoticeListDetailDate.text = date
-        binding.MyViewNoticeListDetailContent.text = content
+        binding.MyViewNoticeListDetailContent.text = content!!.replace("$", "\n\n")
 
 
     }

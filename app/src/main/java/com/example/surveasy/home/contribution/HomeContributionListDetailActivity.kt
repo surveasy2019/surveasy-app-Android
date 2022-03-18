@@ -30,74 +30,32 @@ class HomeContributionListDetailActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-
-        val title = intent.getStringExtra("title")
         val date = intent.getStringExtra("date")
+        val title = intent.getStringExtra("title")
+        val journal = intent.getStringExtra("journal")
+        val source = intent.getStringExtra("source")
         val institute = intent.getStringExtra("institute")
-        val content = intent.getStringArrayListExtra("content")
         val img = intent.getStringExtra("img")
+        val content = intent.getStringExtra("content")
 
         val imgUri : Uri = img!!.toUri()
 
-
-        var contentNum = 0
-
-        if(content!![1] == "")  contentNum = 1
-        else if(content!![2] == "")  contentNum = 2
-        else if(content!![3] == "")  contentNum = 3
-        else contentNum = 4
-
-        when(contentNum) {
-            1 -> content1(content!![0])
-            2 -> {
-                content1(content!![0])
-                content2(content!![1])
-            }
-            3 -> {
-                content1(content!![0])
-                content2(content!![1])
-                content3(content!![2])
-            }
-            4 -> {
-                content1(content!![0])
-                content2(content!![1])
-                content3(content!![2])
-                content4(content!![3])
-            }
+        if(journal != null) {
+            binding.HomeContributionListDetailJournal.visibility = View.VISIBLE
         }
-
-
-
-
         binding.HomeContributionListDetailTitle.text = title
+        binding.HomeContributionListDetailJournal.text = journal
+        binding.HomeContributionListDetailSource.text = "출처: " + source
         binding.HomeContributionListDetailInstitute.text = institute
 
         Glide.with(this)
             .load(img)
             .placeholder(R.drawable.loading)
             .into(binding.HomeContributionListDetailImg)
+        binding.HomeContributionListDetailContent.text = content
 
 
     }
 
 
-
-    private fun content1(content: String) {
-        binding.HomeContributionListDetailContent1.text = content
-    }
-
-    private fun content2(content: String) {
-        binding.HomeContributionListDetailContent2.visibility = View.VISIBLE
-        binding.HomeContributionListDetailContent2.text = content
-    }
-
-    private fun content3(content: String) {
-        binding.HomeContributionListDetailContent3.visibility = View.VISIBLE
-        binding.HomeContributionListDetailContent3.text = content
-    }
-
-    private fun content4(content: String) {
-        binding.HomeContributionListDetailContent4.visibility = View.VISIBLE
-        binding.HomeContributionListDetailContent4.text = content
-    }
 }

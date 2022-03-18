@@ -20,18 +20,20 @@ class ContributionItemsAdapter(val contributionList : ArrayList<ContributionItem
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val contribution : ContributionItems = contributionList[position]
-        holder.contributionItemTitle.text = contribution.title.substring(0, 17) + "..."
+        holder.contributionItemTitle.text = contribution.title
         holder.contributionItemDate.text = contribution.date + " 설문 진행"
         holder.contributionItemInstitute.text = contribution.institute
 
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView!!.context, HomeContributionListDetailActivity::class.java)
-            intent.putExtra("title", contribution.title)
             intent.putExtra("date", contribution.date)
+            intent.putExtra("title", contribution.title)
+            intent.putExtra("journal", contribution.journal)
+            intent.putExtra("source", contribution.source)
             intent.putExtra("institute", contribution.institute)
             intent.putExtra("img", contribution.img)
-            intent.putStringArrayListExtra("content", contribution.content)
+            intent.putExtra("content", contribution.content)
 
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }

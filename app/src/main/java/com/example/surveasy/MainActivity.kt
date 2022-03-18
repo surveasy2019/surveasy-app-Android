@@ -279,18 +279,18 @@ class MainActivity : AppCompatActivity() {
                 if(documents != null) {
                     for (document in documents) {
                         val contribution = ContributionItems(
-                            document["title"].toString(),
                             document["date"].toString(),
+                            document["title"].toString(),
+                            document["journal"].toString(),
+                            document["source"].toString(),
                             document["institute"].toString(),
-                            document["img"].toString()
-                        )
-                        contribution.content = document["content"] as ArrayList<String>
+                            document["img"].toString(),
+                            document["content"].toString()
 
+                        )
                         Log.d(TAG, ">>>>>>>>>>>>>>>>>>>>>${contribution.date}")
                         contributionModel.contributionList.add(contribution)
                     }
-
-                    Log.d(TAG, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~${contributionModel.contributionList.get(0).content.get(0)}")
                 }
 
             }
