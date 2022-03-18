@@ -8,7 +8,9 @@ import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
 import com.example.surveasy.databinding.ActivityMyviewsettingwithdrawBinding
+import com.example.surveasy.login.CurrentUserViewModel
 import com.example.surveasy.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -39,6 +41,10 @@ class MyViewSettingWithdrawActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+
+        // reward_current
+        val reward_current = intent.getIntExtra("reward_current", 0)
+        binding.MyViewSettingWithdrawCurrentReward.text = "현재 정산 예정 금액 ${reward_current}원"
 
         // Set CheckboxListeners
         binding.MyViewSettingWithdrawReason1.setOnCheckedChangeListener(CheckboxListener())

@@ -12,8 +12,10 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityMyviewsettingBinding
+import com.example.surveasy.login.CurrentUserViewModel
 import com.example.surveasy.login.LoginActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -30,6 +32,7 @@ class MyViewSettingActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        val reward_current = intent.getIntExtra("reward_current", 0)
 
         val db = Firebase.firestore
         var pushOn : Boolean? = null
@@ -52,6 +55,7 @@ class MyViewSettingActivity : AppCompatActivity() {
 
         binding.MyViewSettingWithdraw.setOnClickListener {
             val intent = Intent(this, MyViewSettingWithdrawActivity::class.java)
+            intent.putExtra("reward_current", reward_current)
             startActivity(intent)
         }
 
