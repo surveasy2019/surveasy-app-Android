@@ -38,8 +38,8 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
         //title 길이
         val fullTitle = surveyList.get(position).title
         var shortTitle = ""
-        if(fullTitle.length>17){
-            shortTitle = fullTitle.substring(0,17)+"..."
+        if(fullTitle.length>25){
+            shortTitle = fullTitle.substring(0,25)+"..."
         }else{
             shortTitle = fullTitle
         }
