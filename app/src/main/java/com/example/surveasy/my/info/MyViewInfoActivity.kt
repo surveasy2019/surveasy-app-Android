@@ -4,10 +4,7 @@ import android.content.ContentValues.TAG
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.surveasy.R
@@ -100,7 +97,8 @@ class MyViewInfoActivity : AppCompatActivity() {
         docRef.collection("FirstSurvey").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { document ->
                 if (document != null) {
-                    infoDataModel.infoData.EngSurvey = document["EngSurvey"]!! as Boolean
+                    infoDataModel.infoData.EngSurvey = document["EngSurvey"] as Boolean
+                    Log.d(TAG, "****fetch******* ${infoDataModel.infoData.EngSurvey}")
                     setVariableInfo(infoDataModel.infoData)
                 }
             }
@@ -128,10 +126,12 @@ class MyViewInfoActivity : AppCompatActivity() {
         val accountType = findViewById<TextView>(R.id.MyViewInfo_InfoItem_AccountType)
         val accountNumber = findViewById<TextView>(R.id.MyViewInfo_InfoItem_AccountNumber)
         val EngSurvey = findViewById<TextView>(R.id.MyViewInfo_InfoItem_EngSurvey)
+        val EngSurveySwitch = findViewById<Switch>(R.id.MyViewInfo_InfoItem_EngSurveySwitch)
 
         phoneNumber.text = infoData.phoneNumber
         accountType.text = infoData.accountType
         accountNumber.text = infoData.accountNumber
+
         if(infoData.EngSurvey == true) {
             EngSurvey.text = "희망함"
         }
@@ -155,7 +155,8 @@ class MyViewInfoActivity : AppCompatActivity() {
         }
 
         Log.d(TAG, "~~~~~~~~ ${infoDataModel.infoData.phoneNumber}")
-        docRef.update("phoneNumber", infoDataModel.infoData.phoneNumber,
+        docRef.update(
+            "phoneNumber", infoDataModel.infoData.phoneNumber,
             "accountType", infoDataModel.infoData.accountType,
             "accountNumber", infoDataModel.infoData.accountNumber)
             .addOnSuccessListener {
@@ -167,5 +168,7 @@ class MyViewInfoActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 Log.d(TAG, "##@@@###### info update2 SUCCESS")
             }
+
+
     }
 }

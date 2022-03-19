@@ -44,7 +44,7 @@ class MyViewInfo2Fragment : Fragment() {
                 infoDataModel.infoData.EngSurvey = true
                 engSwitch.text = "희망함"
             }
-            else {
+            else if(!isChecked) {
                 infoDataModel.infoData.EngSurvey = false
                 engSwitch.text = "희망하지 않음"
             }

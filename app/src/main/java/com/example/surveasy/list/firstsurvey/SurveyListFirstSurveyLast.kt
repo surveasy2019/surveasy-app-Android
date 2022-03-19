@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.surveasy.MainActivity
 import com.example.surveasy.R
-import com.example.surveasy.databinding.ActivityFirstSurveyListBinding
 import com.example.surveasy.databinding.ActivitySurveyListFirstSurveyLastBinding
 
 class SurveyListFirstSurveyLast : AppCompatActivity() {

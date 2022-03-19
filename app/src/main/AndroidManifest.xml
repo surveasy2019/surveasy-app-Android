@@ -58,9 +58,9 @@
             android:name=".list.SurveyListDetailDialogActivity"
             android:exported="true"
             android:theme="@style/Theme.MyDialog" />
-        <activity
-            android:name=".list.firstsurvey.FirstSurveyListFragment"
-            android:exported="true" />
+<!--        <activity-->
+<!--            android:name=".list.firstsurvey.FirstSurveyListFragment"-->
+<!--            android:exported="true" />-->
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

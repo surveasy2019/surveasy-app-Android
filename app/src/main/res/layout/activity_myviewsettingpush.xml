@@ -34,10 +34,6 @@
         android:paddingHorizontal="30dp">
 
 
-        <!--            android:track="@drawable/switch_track_selector"-->
-<!--            android:thumb="@drawable/switch_thumb"-->
-
-
         <Switch
             android:id="@+id/MyViewSettingPush_PushSwitch"
             android:layout_width="match_parent"
@@ -47,7 +43,9 @@
             android:paddingLeft="15sp"
             android:text="@string/MyViewSettingPush_PushSwitch"
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_track_selector" />
 
         <View
             android:layout_width="match_parent"
