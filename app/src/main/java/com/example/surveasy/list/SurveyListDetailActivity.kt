@@ -1,6 +1,7 @@
 package com.example.surveasy.list
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
@@ -42,6 +43,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySurveylistdetailBinding
     val db = Firebase.firestore
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -53,17 +55,24 @@ class SurveyListDetailActivity : AppCompatActivity() {
         val id : String = intent.getStringExtra("id",)!!
         val index : Int = intent.getIntExtra("index",0)!!
         val reward : Int = intent.getIntExtra("reward",0)
+        val title : String = intent.getStringExtra("title")!!
 
 
         val spannableString = SpannableString(reward.toString()+"원 받으러 가기기")
         spannableString.setSpan(UnderlineSpan(),0,spannableString.length,0)
         binding.toolbarUpload.text = spannableString
 
+        if(title.length>15){
+            binding.toolbarText.text = title.substring(0,14)+".."
+        }else{
+            binding.toolbarText.text = title
+        }
+
 
        //activity 들어가자마자 permission 확인
         if(ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE)
             == PackageManager.PERMISSION_GRANTED){
-            Toast.makeText(this,"Permission Granted",Toast.LENGTH_LONG).show()
+            //Toast.makeText(this,"Permission Granted",Toast.LENGTH_LONG).show()
         }else{
             requestPermissions(this,REQUIRED_PERMISSION,PERMISSION_CODE)
         }
@@ -138,7 +147,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
                     throw RuntimeException("Empty permission result")
                 }
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(this,"Permission Granted",Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this,"Permission Granted",Toast.LENGTH_LONG).show()
                 } else {
                     if(ActivityCompat.shouldShowRequestPermissionRationale(
                             this,Manifest.permission.READ_EXTERNAL_STORAGE)){
@@ -157,7 +166,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
     //한번 거부한 적 있으면 그 다음부터는 설정으로 이동하는 intent 나타내기
     private fun showDialogToGetPermission(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("권한이 필요합니다").setMessage("설문 완료 후 캡쳐본을 전송해야~")
+        builder.setTitle("권한이 필요합니다").setMessage("설문 완료 인증 캡쳐본을 전송하기 위해서 접근 권한이 필요합니다.")
         builder.setPositiveButton("설정으로 이동") { dialogInterface, i ->
             val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
             Uri.fromParts("package",packageName,null))
@@ -165,7 +174,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
         builder.setNegativeButton("나중에 하기"){ dialogInterface, i ->
-            Toast.makeText(this,"거부되었습니다",Toast.LENGTH_LONG).show()
+            //Toast.makeText(this,"거부되었습니다",Toast.LENGTH_LONG).show()
         }
         val dialog = builder.create()
         dialog.show()

@@ -19,7 +19,6 @@ import com.example.surveasy.MainActivity
 
 import com.example.surveasy.R
 import com.example.surveasy.list.*
-import com.example.surveasy.list.firstsurvey.FirstSurveyListFragment
 import com.example.surveasy.login.*
 import com.example.surveasy.register.RegisterActivity
 import com.example.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
@@ -29,6 +28,7 @@ import com.example.surveasy.home.banner.BannerViewModel
 import com.example.surveasy.home.banner.BannerViewPagerAdapter
 import com.example.surveasy.home.contribution.ContributionItemsAdapter
 import com.example.surveasy.home.contribution.HomeContributionViewModel
+import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -127,7 +127,7 @@ class HomeFragment : Fragment() {
                 (activity as MainActivity).navColor_in_Home()
 
                 val intent_surveylistfirstsurvey: Intent =
-                    Intent(context, FirstSurveyListFragment::class.java)
+                    Intent(context, FirstSurveyListActivity::class.java)
                 intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
                 startActivity(intent_surveylistfirstsurvey)
 

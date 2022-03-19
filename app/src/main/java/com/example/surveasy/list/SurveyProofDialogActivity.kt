@@ -66,7 +66,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
                 thisSurveyInfo.add(item)
 
             }.addOnFailureListener {
-                Toast.makeText(this,"*******저장 실패 ${thisSurveyInfo.toString()}",Toast.LENGTH_LONG).show()
+                //Toast.makeText(this,"*******저장 실패 ${thisSurveyInfo.toString()}",Toast.LENGTH_LONG).show()
             }
 
         var photoPick = Intent(Intent.ACTION_PICK)
@@ -114,9 +114,9 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
             .collection("UserSurveyList").document(id)
             .set(list).addOnSuccessListener {
-                Toast.makeText(this,"#####info save success", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this,"#####info save success", Toast.LENGTH_LONG).show()
             }.addOnFailureListener {
-                Toast.makeText(this,"#####failed", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this,"#####failed", Toast.LENGTH_LONG).show()
             }
 
     }
