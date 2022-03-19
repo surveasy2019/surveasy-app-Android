@@ -36,6 +36,8 @@ class HomeListItemsAdapter(val homeList: ArrayList<SurveyItems>) : RecyclerView.
                 intent.putExtra("link", homeList.get(position).link)
                 intent.putExtra("id", homeList.get(position).id)
                 intent.putExtra("index",position)
+                intent.putExtra("title",homeList.get(position).title)
+                intent.putExtra("reward",homeList.get(position).reward)
                 ContextCompat.startActivity(holder.itemView.context,intent,null)
             }else{
                 val intent = Intent(holder.itemView.context, NoticeToPanelDialogActivity::class.java)
@@ -43,6 +45,8 @@ class HomeListItemsAdapter(val homeList: ArrayList<SurveyItems>) : RecyclerView.
                 intent.putExtra("id", homeList.get(position).id)
                 intent.putExtra("index",position)
                 intent.putExtra("notice", homeList.get(position).noticeToPanel)
+                intent.putExtra("title",homeList.get(position).title)
+                intent.putExtra("reward",homeList.get(position).reward)
                 ContextCompat.startActivity(holder.itemView.context,intent,null)
             }
 

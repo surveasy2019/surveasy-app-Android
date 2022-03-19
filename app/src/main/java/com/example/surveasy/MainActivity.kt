@@ -84,6 +84,8 @@ class MainActivity : AppCompatActivity() {
 
         defaultFrag_list = intent.getBooleanExtra("defaultFragment_list", false)
         if(defaultFrag_list) {
+            navColor_On(binding.NavListImg, binding.NavListText)
+            navColor_Off(binding.NavHomeImg, binding.NavHomeText, binding.NavMyImg, binding.NavMyText)
             setContentView(binding.root)
             transaction.add(R.id.MainView, SurveyListFragment()).commit()
             defaultFrag_list = !defaultFrag_list
