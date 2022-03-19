@@ -107,6 +107,7 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
                 if(surveyList.get(position).noticeToPanel?.length==0){
                     val intent = Intent(holder.itemView.context,SurveyListDetailActivity::class.java)
                     intent.putExtra("link", surveyList.get(position).link)
+                    intent.putExtra("title", surveyList.get(position).title)
                     intent.putExtra("id", surveyList.get(position).id)
                     intent.putExtra("index",position)
                     intent.putExtra("reward",surveyList.get(position).reward)
@@ -114,6 +115,7 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
                 }else{
                     val intent = Intent(holder.itemView.context,NoticeToPanelDialogActivity::class.java)
                     intent.putExtra("link", surveyList.get(position).link)
+                    intent.putExtra("title", surveyList.get(position).title)
                     intent.putExtra("id", surveyList.get(position).id)
                     intent.putExtra("index",position)
                     intent.putExtra("notice", surveyList.get(position).noticeToPanel)
@@ -141,6 +143,7 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
         val itemSpendTime : TextView = itemView.findViewById(R.id.ListItem_spendTime)
         val itemReward : TextView = itemView.findViewById(R.id.ListItem_reward)
         val itemContainer : LinearLayout = itemView.findViewById(R.id.SurveyList_ItemContainer)
+
 
 
 //        val itemIcon : ImageView = itemView.findViewById(R.id.ListItem_detailIcon)

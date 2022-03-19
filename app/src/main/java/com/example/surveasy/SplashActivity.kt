@@ -29,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
 
         Handler().postDelayed({
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            //startActivity(Intent(this,MainActivity::class.java))
+
             finish()
         },3000)
 

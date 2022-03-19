@@ -35,7 +35,9 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
 
 
         binding.SurveyListDetailResponseProofBtn.setOnClickListener {
+
             val intent = Intent(this,MainActivity::class.java)
+            intent.putExtra("defaultFragment_list",true)
             startActivity(intent)
             finishAffinity()
 

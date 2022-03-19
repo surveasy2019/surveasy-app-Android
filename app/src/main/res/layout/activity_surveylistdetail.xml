@@ -29,8 +29,8 @@
                 android:textColor="@color/black"
                 android:layout_marginBottom="5dp"
                 android:layout_gravity="center_horizontal"
-                android:text="설문 제목"
-                android:textSize="25sp" />
+                android:text="설문 제목  "
+                android:textSize="23sp" />
 
             <TextView
                 android:layout_width="wrap_content"

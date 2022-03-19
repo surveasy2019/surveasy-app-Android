@@ -18,6 +18,7 @@ import com.example.surveasy.home.Opinion.OpinionItem
 import com.example.surveasy.home.contribution.ContributionItems
 import com.example.surveasy.home.contribution.HomeContributionViewModel
 import com.example.surveasy.list.*
+import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
 import com.example.surveasy.list.firstsurvey.FirstSurveyListFragment
 import com.example.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
 import com.example.surveasy.login.CurrentUser
