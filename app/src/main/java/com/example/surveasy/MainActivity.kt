@@ -18,7 +18,9 @@ import com.example.surveasy.home.Opinion.OpinionItem
 import com.example.surveasy.home.contribution.ContributionItems
 import com.example.surveasy.home.contribution.HomeContributionViewModel
 import com.example.surveasy.list.*
+import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
 import com.example.surveasy.list.firstsurvey.FirstSurveyListFragment
+import com.example.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
 import com.example.surveasy.login.CurrentUser
 import com.example.surveasy.login.CurrentUserViewModel
 import com.example.surveasy.my.MyViewFragment
@@ -109,9 +111,12 @@ class MainActivity : AppCompatActivity() {
 
             if (userModel.currentUser.didFirstSurvey == false) {
                 // Send Current User to Activities
-                val intent_surveylistfirstsurvey: Intent = Intent(this, FirstSurveyListFragment::class.java)
-                intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
-                startActivity(intent_surveylistfirstsurvey)
+//                val intent_surveylistfirstsurvey: Intent = Intent(this, FirstSurveyListActivity::class.java)
+//                intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
+//                startActivity(intent_surveylistfirstsurvey)
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.MainView, FirstSurveyListFragment())
+                    .commit()
             } else {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.MainView, SurveyListFragment())
@@ -155,6 +160,13 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.MainView, SurveyListFragment())
             .commit()
+    }
+
+    //when click first Survey
+    fun clickItem(){
+        val intent_surveylistfirstsurvey: Intent = Intent(this, SurveyListFirstSurveyActivity::class.java)
+        intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
+        startActivity(intent_surveylistfirstsurvey)
     }
 
 
