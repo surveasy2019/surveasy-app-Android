@@ -20,10 +20,14 @@ class ContributionItemsAdapter(val contributionList : ArrayList<ContributionItem
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val contribution : ContributionItems = contributionList[position]
-        holder.contributionItemTitle.text = contribution.title
-        holder.contributionItemDate.text = contribution.date + " 설문 진행"
-        holder.contributionItemInstitute.text = contribution.institute
 
+        if(contribution.title.length > 18) holder.contributionItemTitle.text = contribution.title.substring(0, 18) + "..."
+        else { holder.contributionItemTitle.text = contribution.title }
+
+        if(contribution.institute.length > 20) holder.contributionItemInstitute.text = contribution.institute.substring(0, 20) + "..."
+        else { holder.contributionItemInstitute.text = contribution.institute }
+
+        holder.contributionItemDate.text = contribution.date + " 설문 진행"
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView!!.context, HomeContributionListDetailActivity::class.java)
