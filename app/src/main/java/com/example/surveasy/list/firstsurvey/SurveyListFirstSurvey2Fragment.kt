@@ -71,15 +71,11 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
 
         // family
         val familyRadioGroup = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey2_FamilyRadioGroup)
-        val familyRadioGroup2 = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey2_FamilyRadioGroup2)
+
         familyRadioGroup.setOnCheckedChangeListener { familyRadioGroup, checked ->
             when(checked) {
                 R.id.SurveyListFirstSurvey2_Family1 -> family = "1인가구"
                 R.id.SurveyListFirstSurvey2_Family2 -> family = "2인가구"
-            }
-        }
-        familyRadioGroup2.setOnCheckedChangeListener { familyRadioGroup2, checked ->
-            when(checked) {
                 R.id.SurveyListFirstSurvey2_Family3 -> family = "3인가구"
                 R.id.SurveyListFirstSurvey2_Family4 -> family = "4인가구 이상"
             }
