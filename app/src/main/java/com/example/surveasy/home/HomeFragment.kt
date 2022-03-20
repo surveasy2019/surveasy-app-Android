@@ -125,11 +125,12 @@ class HomeFragment : Fragment() {
         moreBtn.setOnClickListener {
             if (userModel.currentUser.didFirstSurvey == false) {
                 (activity as MainActivity).navColor_in_Home()
+                (activity as MainActivity).moreBtn()
 
-                val intent_surveylistfirstsurvey: Intent =
-                    Intent(context, FirstSurveyListActivity::class.java)
-                intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
-                startActivity(intent_surveylistfirstsurvey)
+//                val intent_surveylistfirstsurvey: Intent =
+//                    Intent(context, FirstSurveyListActivity::class.java)
+//                intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
+//                startActivity(intent_surveylistfirstsurvey)
 
             } else {
                 (activity as MainActivity).clickList()

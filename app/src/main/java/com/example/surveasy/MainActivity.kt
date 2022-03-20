@@ -358,6 +358,12 @@ class MainActivity : AppCompatActivity() {
         binding.NavMyText.setTextColor(Color.parseColor("#c9c9c9"))
     }
 
+    fun moreBtn() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.MainView, FirstSurveyListFragment())
+            .commit()
+    }
+
     override fun onBackPressed() {
         if(System.currentTimeMillis() > backKeyPressedTime + 2000){
             backKeyPressedTime = System.currentTimeMillis()

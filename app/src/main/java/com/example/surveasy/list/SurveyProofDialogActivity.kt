@@ -103,11 +103,22 @@ class SurveyProofDialogActivity: AppCompatActivity() {
 
         // AndroidUser-UserSurveyList에 참여 설문 추가
         val id: String = intent.getStringExtra("id")!!
+
+        val c = Calendar.getInstance()
+
+        val year = c.get(Calendar.YEAR).toString()
+        var month = (c.get(Calendar.MONTH) + 1).toString()
+        var day = c.get(Calendar.DAY_OF_MONTH).toString()
+        if(month.toInt() < 10) month = "0$month"
+        if(day.toInt() < 10) day = "0$day"
+
+        val date = year + "-" + month + "-" + day
+
         val list = hashMapOf(
             "id" to thisSurveyInfo.get(0).id,
             "title" to thisSurveyInfo.get(0).title,
             "reward" to thisSurveyInfo.get(0).reward,
-            "responseDate" to thisSurveyInfo.get(0).responseDate,
+            "responseDate" to date,
             "isSent" to false
 
         )
