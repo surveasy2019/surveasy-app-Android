@@ -1,6 +1,8 @@
 package com.example.surveasy.my.info
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -18,6 +20,21 @@ import com.google.firebase.messaging.FirebaseMessaging
 
 class MyViewInfo2Fragment : Fragment() {
     val infoDataModel by activityViewModels<InfoDataViewModel>()
+
+    override fun onStart() {
+        super.onStart()
+        val engSwitch : Switch = requireView().findViewById(R.id.MyViewInfo_InfoItem_EngSurveySwitch)
+        if (infoDataModel.infoData.EngSurvey == true) {
+            engSwitch.isChecked = true
+            engSwitch.text = "희망함"
+            Log.d(TAG, "TRUE %%%%%%%%%%%%%%%%")
+        }
+        else if(infoDataModel.infoData.EngSurvey == false) {
+            engSwitch.isChecked = false
+            engSwitch.text = "희망하지 않음"
+            Log.d(TAG, "FALSE %%%%%%%%%%%%%%%%")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +61,7 @@ class MyViewInfo2Fragment : Fragment() {
                 infoDataModel.infoData.EngSurvey = true
                 engSwitch.text = "희망함"
             }
-            else {
+            else if(!isChecked) {
                 infoDataModel.infoData.EngSurvey = false
                 engSwitch.text = "희망하지 않음"
             }

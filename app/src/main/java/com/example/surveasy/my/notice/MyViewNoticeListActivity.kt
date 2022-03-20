@@ -50,7 +50,7 @@ class MyViewNoticeListActivity : AppCompatActivity() {
 
 
         db = FirebaseFirestore.getInstance()
-        db.collection("AppNotice")
+        db.collection("AppNotice").orderBy("date", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { result ->
                 noticeList_fixed.clear()

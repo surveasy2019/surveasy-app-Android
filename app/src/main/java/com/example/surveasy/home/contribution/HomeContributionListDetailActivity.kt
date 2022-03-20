@@ -45,7 +45,7 @@ class HomeContributionListDetailActivity : AppCompatActivity() {
         }
         binding.HomeContributionListDetailTitle.text = title
         binding.HomeContributionListDetailJournal.text = journal
-        binding.HomeContributionListDetailSource.text = "출처: " + source
+        binding.HomeContributionListDetailSource.text = source
         binding.HomeContributionListDetailInstitute.text = institute
 
         Glide.with(this)

@@ -146,6 +146,7 @@ class LoginActivity : AppCompatActivity() {
                                     snapshot.result["autoLogin"] as Boolean,
                                     Integer.parseInt(snapshot.result["reward_current"].toString()),
                                     Integer.parseInt(snapshot.result["reward_total"].toString()),
+                                    snapshot.result["marketingAgree"] as Boolean,
                                     userSurveyList
                                 )
                                 userModel.currentUser = currentUser
@@ -166,10 +167,18 @@ class LoginActivity : AppCompatActivity() {
                         updateFcmToken(uid)
                     }
                     else {
-                        Log.w(TAG, "로그인 실패", task.exception)
-                        Toast.makeText(baseContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show()
-                        // updateUI(null)
+                        //Log.w(TAG, "@@@@@@@@@@@@@ 로그인 실패  ${task.exception} 끝")
+
+                        if(task.exception.toString() == "com.google.firebase.auth.FirebaseAuthInvalidUserException: There is no user record corresponding to this identifier. The user may have been deleted.") {
+                            Toast.makeText(baseContext, "가입되지 않은 이메일 주소입니다.", Toast.LENGTH_SHORT).show()
+                        }
+                        if(task.exception.toString() == "com.google.firebase.auth.FirebaseAuthInvalidCredentialsException: The password is invalid or the user does not have a password.") {
+                            Toast.makeText(baseContext, "비밀번호가 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
+                        }
+                        if(task.exception.toString() == "com.google.firebase.auth.FirebaseAuthInvalidCredentialsException: The email address is badly formatted.") {
+                            Toast.makeText(baseContext, "유효하지 않은 이메일 형식입니다.", Toast.LENGTH_SHORT).show()
+                        }
+//
                     }
                 }
         }

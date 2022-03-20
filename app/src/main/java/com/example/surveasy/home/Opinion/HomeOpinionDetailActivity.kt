@@ -56,6 +56,7 @@ class HomeOpinionDetailActivity : AppCompatActivity() {
                 db.collection("AppOpinion").document(id.toString())
                     .update("opinions", FieldValue.arrayUnion(answer))
                     .addOnSuccessListener {
+                        Toast.makeText(this,"답변이 제출되었습니다",Toast.LENGTH_LONG).show()
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                     }

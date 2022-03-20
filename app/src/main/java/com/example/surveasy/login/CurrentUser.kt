@@ -21,6 +21,7 @@ class CurrentUser(val uid: String? = null,
                   val autoLogin: Boolean? = null,
                   val rewardCurrent : Int? = null,
                   val rewardTotal : Int? = null,
+                  val marketingAgree: Boolean? = null,
                   val UserSurveyList: ArrayList<UserSurveyItem>? = null ) : Parcelable {
 
 }

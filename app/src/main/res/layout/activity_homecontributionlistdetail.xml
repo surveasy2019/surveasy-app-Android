@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="25sp"
+            android:layout_marginBottom="15sp"
             android:paddingVertical="5sp"
             android:text="백신 접종의 혜택–위험 이해도 제고를 위한\n통계정보 시각화 3종의 개발과 효과 검증"
             android:textSize="17sp"
@@ -46,21 +46,22 @@
             android:id="@+id/HomeContributionListDetail_Journal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="3sp"
             android:text="Journal of Integrated Design Research vol.20 | KCI 등재"
             android:textColor="#707070"
             android:textSize="12sp"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:fontFamily="@font/main_font_r"/>
 
         <TextView
             android:id="@+id/HomeContributionListDetail_Institute"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="3sp"
+            android:paddingVertical="1sp"
             android:layout_marginBottom="25sp"
             android:text="연세대학교 일반대학원 디자인경영학협동과정 석사과정 논문"
             android:textColor="#707070"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            android:fontFamily="@font/main_font_r"/>
 
 
 
@@ -79,17 +80,37 @@
                     android:layout_height="120sp"
                     android:src="@drawable/surveasy_logo" />
 
-                <TextView
-                    android:id="@+id/HomeContributionListDetail_Source"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="10sp"
-                    android:layout_marginBottom="25sp"
-                    android:text="출처: "
-                    android:textColor="#707070"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/main_font_r" />
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15sp"
+                    android:layout_marginBottom="30sp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="출처: "
+                        android:textColor="#707070"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/main_font_r" />
+
+                    <TextView
+                        android:id="@+id/HomeContributionListDetail_Source"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:linksClickable="true"
+                        android:autoLink="web"
+                        android:text="하이퍼링크"
+                        android:textColor="#0255a3"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/main_font_r" />
+
+                </LinearLayout>
+
+
 
                 <TextView
                     android:id="@+id/HomeContributionListDetail_Content"

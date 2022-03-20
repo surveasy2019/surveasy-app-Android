@@ -58,6 +58,7 @@
             android:name=".list.SurveyListDetailDialogActivity"
             android:exported="true"
             android:theme="@style/Theme.MyDialog" />
+
         <activity
             android:name=".list.firstsurvey.FirstSurveyListActivity"
             android:exported="true" />

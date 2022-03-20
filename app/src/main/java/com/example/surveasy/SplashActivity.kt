@@ -1,6 +1,7 @@
 package com.example.surveasy
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -48,6 +49,7 @@ class SplashActivity : AppCompatActivity() {
                     return@OnCompleteListener
                 }
                 token = task.result
+                Log.d(TAG, "$$$$$$$$$$$$$$$$$ $token")
 
             })
         db.collection("AndroidFirstScreen").get()

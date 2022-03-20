@@ -17,6 +17,20 @@ class MyViewSettingPushActivity : AppCompatActivity() {
     val db = Firebase.firestore
 
     private lateinit var binding: ActivityMyviewsettingpushBinding
+
+    override fun onStart() {
+        super.onStart()
+        binding = ActivityMyviewsettingpushBinding.inflate(layoutInflater)
+
+        // Get pushOn from MyViewSettingActivity
+        val pushOn = intent.getBooleanExtra("pushOn", false)
+        if(pushOn == true) binding.MyViewSettingPushPushSwitch.isChecked = true
+
+        // Get marketingAgree from MyViewSettingActivity
+        val marketingAgree = intent.getBooleanExtra("marketingAgree", false)
+        if(marketingAgree == true) binding.MyViewSettingPushMarketingSwitch.isChecked = true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,6 +52,10 @@ class MyViewSettingPushActivity : AppCompatActivity() {
         val pushOn = intent.getBooleanExtra("pushOn", false)
         if(pushOn == true) binding.MyViewSettingPushPushSwitch.isChecked = true
 
+        // Get marketingAgree from MyViewSettingActivity
+        val marketingAgree = intent.getBooleanExtra("marketingAgree", false)
+        if(marketingAgree == true) binding.MyViewSettingPushMarketingSwitch.isChecked = true
+
 
         binding.MyViewSettingPushPushSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked) {
@@ -54,6 +72,17 @@ class MyViewSettingPushActivity : AppCompatActivity() {
                 FirebaseMessaging.getInstance().unsubscribeFromTopic("all").addOnSuccessListener {
                     Log.d(TAG, "*********** Off SUccess")
                 }
+            }
+        }
+
+        binding.MyViewSettingPushMarketingSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked) {
+                db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+                    .update("marketingAgree", true)
+            }
+            else {
+                db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+                    .update("marketingAgree", false)
             }
         }
 

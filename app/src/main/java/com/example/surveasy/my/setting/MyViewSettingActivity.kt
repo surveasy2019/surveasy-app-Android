@@ -24,6 +24,30 @@ import com.google.firebase.ktx.Firebase
 class MyViewSettingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMyviewsettingBinding
     private lateinit var builder : AlertDialog.Builder
+    var pushOn : Boolean? = null
+    var marketingAgree : Boolean? = null
+
+    override fun onStart() {
+        super.onStart()
+        binding = ActivityMyviewsettingBinding.inflate(layoutInflater)
+
+        val db = Firebase.firestore
+        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+            .get().addOnSuccessListener { result ->
+                pushOn = result["pushOn"] as Boolean
+                marketingAgree = result["marketingAgree"] as Boolean
+
+                Log.d(TAG, "start-PPPPPPPPPPPPPP : $pushOn")
+                Log.d(TAG, "start-MMMMMMMMMMMMMM : $marketingAgree")
+            }
+
+//        binding.MyViewSettingPush.setOnClickListener {
+//            val intent = Intent(this, MyViewSettingPushActivity::class.java)
+//            intent.putExtra("pushOn", pushOn)
+//            intent.putExtra("marketingAgree", marketingAgree)
+//            startActivity(intent)
+//        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,17 +58,21 @@ class MyViewSettingActivity : AppCompatActivity() {
 
         val reward_current = intent.getIntExtra("reward_current", 0)
 
-        val db = Firebase.firestore
-        var pushOn : Boolean? = null
-        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
-            .get().addOnSuccessListener { result ->
-                pushOn = result["pushOn"] as Boolean
-                Log.d(TAG, "PPPPPPPPPPPPPP : $pushOn")
-            }
-
+//        val db = Firebase.firestore
+//        var pushOn : Boolean? = null
+//        var marketingAgree : Boolean? = null
+//        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+//            .get().addOnSuccessListener { result ->
+//                pushOn = result["pushOn"] as Boolean
+//                marketingAgree = result["marketingAgree"] as Boolean
+//                Log.d(TAG, "PPPPPPPPPPPPPP : $pushOn")
+//                Log.d(TAG, "MMMMMMMMMMMMMM : $marketingAgree")
+//            }
+//
         binding.MyViewSettingPush.setOnClickListener {
             val intent = Intent(this, MyViewSettingPushActivity::class.java)
             intent.putExtra("pushOn", pushOn)
+            intent.putExtra("marketingAgree", marketingAgree)
             startActivity(intent)
         }
 
