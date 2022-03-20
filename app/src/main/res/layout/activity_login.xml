@@ -66,7 +66,8 @@
                 android:fontFamily="@font/main_font_m"
                 android:hint="아이디 (이메일)"
                 android:textColorHint="#c9c9c9"
-                android:background="@drawable/custom_input" />
+                android:background="@drawable/custom_input"
+                android:textCursorDrawable="@drawable/custom_input_cursor"/>
 
             <EditText
                 android:id="@+id/Login_InputPW"
@@ -82,7 +83,8 @@
                 android:fontFamily="@font/main_font_m"
                 android:hint="비밀번호"
                 android:textColorHint="#c9c9c9"
-                android:background="@drawable/custom_input" />
+                android:background="@drawable/custom_input"
+                android:textCursorDrawable="@drawable/custom_input_cursor"/>
 
             <CheckBox
                 android:id="@+id/Login_AutoLogin"

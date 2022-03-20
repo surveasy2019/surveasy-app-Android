@@ -3,6 +3,7 @@ package com.example.surveasy.my.info
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -110,8 +111,21 @@ class MyViewInfo2Fragment : Fragment() {
         val phoneNumberEdit = view.findViewById<EditText>(R.id.MyViewInfo_InfoItem_PhoneNumberEdit)
         val accountNumberEdit = view.findViewById<EditText>(R.id.MyViewInfo_InfoItem_AccountNumberEdit)
 
-        phoneNumberEdit.hint = infoDataModel.infoData.phoneNumber
-        accountNumberEdit.hint = infoDataModel.infoData.accountNumber
+        val phoneNum = infoDataModel.infoData.phoneNumber.toString()
+        phoneNumberEdit.setText(phoneNum)
+
+        val accountNum = infoDataModel.infoData.accountNumber.toString()
+        accountNumberEdit.setText(accountNum)
+
+//        phoneNumberEdit.hint = infoDataModel.infoData.phoneNumber
+//        accountNumberEdit.hint = infoDataModel.infoData.accountNumber
+
+
+//        if(phoneNumberEdit.isFocused == true) phoneNumberEdit.setHintTextColor(Color.parseColor("#c9c9c9"))
+//        else phoneNumberEdit.setHintTextColor(Color.parseColor("#000000"))
+//
+//        if(accountNumberEdit.isFocused == true) accountNumberEdit.setHintTextColor(Color.parseColor("#c9c9c9"))
+//        else accountNumberEdit.setHintTextColor(Color.parseColor("#000000"))
 
 
     }
