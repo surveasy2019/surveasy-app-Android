@@ -21,6 +21,16 @@ class MyViewInfoActivity : AppCompatActivity() {
 
     var fragment : Int = 1
 
+    override fun onStart() {
+        super.onStart()
+        binding = ActivityMyviewinfoBinding.inflate(layoutInflater)
+
+        val infoData = intent.getParcelableExtra<InfoData>("info")!!
+        infoDataModel.infoData = infoData
+        Log.d(TAG, "### infoActivity onStart ----- ${infoDataModel.infoData.EngSurvey}")
+        //setStaticInfo(infoDataModel.infoData)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

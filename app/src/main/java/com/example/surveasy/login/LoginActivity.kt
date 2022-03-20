@@ -146,6 +146,7 @@ class LoginActivity : AppCompatActivity() {
                                     snapshot.result["autoLogin"] as Boolean,
                                     Integer.parseInt(snapshot.result["reward_current"].toString()),
                                     Integer.parseInt(snapshot.result["reward_total"].toString()),
+                                    snapshot.result["marketingAgree"] as Boolean,
                                     userSurveyList
                                 )
                                 userModel.currentUser = currentUser

@@ -32,6 +32,24 @@ class MyViewFragment : Fragment() {
     val db = Firebase.firestore
     var info = InfoData(null, null, null, null, null, null, null, null)
 
+    override fun onStart() {
+        super.onStart()
+        val infoIcon = requireView().findViewById<LinearLayout>(R.id.MyView_InfoIcon)
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val myInfo = CoroutineScope(Dispatchers.IO).async {
+                fetchInfoData()
+            }.await()
+
+            infoIcon.setOnClickListener {
+                val intent = Intent(context, MyViewInfoActivity::class.java)
+                Log.d(TAG, "#### MyViewFrag____onstart___putEtra ${info.EngSurvey}")
+                intent.putExtra("info", info!!)
+                startActivity(intent)
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
