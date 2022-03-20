@@ -5,26 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".register.RegisterTerm1"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:id="@+id/ToolbarRegisterAgree1"
         android:theme="@style/ToolbarTheme"
         android:background="@color/white"
-        app:title="이용약관"
         android:textStyle="normal"
         android:textSize="11.3sp"
+        android:paddingTop="20dp"
         android:textColor="#000000"
         android:lineSpacingExtra="3.3sp"
         android:textAlignment="center"
-        app:titleTextColor="@color/black"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        app:titleTextColor="@color/black">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_sb"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            android:lineSpacingExtra="3.3sp"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:text="이용약관"
+            android:textSize="23sp" />
+    </androidx.appcompat.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="30dp">
+
+        <TextView
+            android:fontFamily="@font/main_font_sb"
+            android:lineSpacingExtra="4.7sp"
+            android:textColor="@color/black"
+            android:paddingTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/registerTerm1"/>

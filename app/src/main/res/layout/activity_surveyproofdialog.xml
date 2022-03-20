@@ -10,22 +10,23 @@
     >
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
         android:id="@+id/ToolbarSurveyProof"
         android:theme="@style/ToolbarTheme"
         android:background="@color/white"
         app:titleTextColor="@color/black">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="응답 인증"
             android:fontFamily="@font/main_font_sb"
-            android:textStyle="normal"
-            android:textSize="20sp"
-            android:textColor="#000000"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
             android:lineSpacingExtra="3.3sp"
-            android:gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:text="응답 인증"
+            android:textSize="20sp"/>
 
     </androidx.appcompat.widget.Toolbar>
     <LinearLayout
@@ -38,12 +39,12 @@
             android:id="@+id/dialog_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="설문 완료 화면을 (다시) 첨부해주세요"
+            android:text="설문 완료 화면을 첨부해주세요"
             android:textColor="#707070"
             android:fontFamily="@font/main_font_sb"
             android:gravity="center"
             android:textSize="17sp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             />
 
         <ImageView

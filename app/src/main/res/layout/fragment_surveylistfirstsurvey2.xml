@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:id="@+id/ToolbarFirstSurvey"
-        android:theme="@style/ToolbarTheme"
-        android:background="@color/white"
-        app:titleTextColor="@color/black"/>
-
 
     <ScrollView
         android:layout_width="match_parent"

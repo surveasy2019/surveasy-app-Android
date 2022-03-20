@@ -28,7 +28,6 @@ import com.example.surveasy.home.banner.BannerViewModel
 import com.example.surveasy.home.banner.BannerViewPagerAdapter
 import com.example.surveasy.home.contribution.ContributionItemsAdapter
 import com.example.surveasy.home.contribution.HomeContributionViewModel
-import com.example.surveasy.list.firstsurvey.FirstSurveyListActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase

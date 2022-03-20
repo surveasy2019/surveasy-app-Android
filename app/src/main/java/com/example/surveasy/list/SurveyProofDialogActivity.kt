@@ -93,6 +93,17 @@ class SurveyProofDialogActivity: AppCompatActivity() {
 
         //Toast.makeText(this,"###${id}",Toast.LENGTH_LONG).show()
 
+        setSupportActionBar(binding.ToolbarSurveyProof)
+
+        if(supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+
+        binding.ToolbarSurveyProof.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
 
 
 

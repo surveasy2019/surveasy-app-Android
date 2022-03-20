@@ -4,24 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:backgroundTint="@color/white"
     android:background="#FFFFFF">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:id="@+id/ToolbarHomeContributionListDetail"
         android:theme="@style/ToolbarTheme"
+        android:paddingTop="20dp"
         android:background="@color/white"
-        app:titleTextColor="@color/black" />
+        app:titleTextColor="@color/black" >
 
-    <TextView
-        android:id="@+id/HomeContributionListDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="우리가 함께 기여한 연구"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/HomeContributionListDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_sb"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            android:lineSpacingExtra="3.3sp"
+            android:layout_gravity="center_horizontal"
+            android:text="우리가 함께 기여한 연구"
+            android:textSize="20sp"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+
 
 
     <LinearLayout

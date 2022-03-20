@@ -10,11 +10,26 @@
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:id="@+id/ToolbarFirstSurveyLast"
         android:theme="@style/ToolbarTheme"
+        android:layout_marginBottom="30dp"
+        android:paddingTop="20dp"
         android:background="@color/white"
-        app:titleTextColor="@color/black"/>
+        app:titleTextColor="@color/black">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_sb"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            android:lineSpacingExtra="3.3sp"
+            android:layout_gravity="center_horizontal"
+            android:text="설문 응답 인증 안내"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"

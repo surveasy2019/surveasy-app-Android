@@ -11,6 +11,7 @@ import androidx.databinding.adapters.AutoCompleteTextViewBindingAdapter
 import com.example.surveasy.R
 import com.example.surveasy.databinding.ActivityRegisterBinding
 
+
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
