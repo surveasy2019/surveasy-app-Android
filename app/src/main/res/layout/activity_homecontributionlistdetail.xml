@@ -49,7 +49,8 @@
             android:text="Journal of Integrated Design Research vol.20 | KCI 등재"
             android:textColor="#707070"
             android:textSize="12sp"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:fontFamily="@font/main_font_r"/>
 
         <TextView
             android:id="@+id/HomeContributionListDetail_Institute"
@@ -59,7 +60,8 @@
             android:layout_marginBottom="25sp"
             android:text="연세대학교 일반대학원 디자인경영학협동과정 석사과정 논문"
             android:textColor="#707070"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            android:fontFamily="@font/main_font_r"/>
 
 
 
