@@ -18,6 +18,7 @@ import com.example.surveasy.login.CurrentUserViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.protobuf.LazyStringArrayList
+import java.util.*
 
 
 class SurveyListFirstSurvey2Fragment() : Fragment() {
@@ -132,8 +133,44 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         // update Firestore 'didFirstSurvey (false -> true)"
         db.collection("AndroidUser").document(userModel.currentUser.uid!!)
             .update("didFirstSurvey", true)
-            .addOnSuccessListener { Log.d(TAG, "@@@@@ didFirstSurvey field updated!") }
+            .addOnSuccessListener { Log.d(TAG, "@@@@@ 1. didFirstSurvey field updated!") }
             Log.d(TAG, "***** ${userModel.currentUser.uid}")
+
+
+        // set Firestore 'userSurveyList"
+        val c = Calendar.getInstance()
+
+        val year = c.get(Calendar.YEAR).toString()
+        var month = (c.get(Calendar.MONTH) + 1).toString()
+        var day = c.get(Calendar.DAY_OF_MONTH).toString()
+        if(month.toInt() < 10) month = "0$month"
+        if(day.toInt() < 10) day = "0$day"
+
+        val date = year + "-" + month + "-" + day
+        val firstSurvey = hashMapOf(
+            "id" to "0",
+            "isSent" to false,
+            "responseDate" to date,
+            "reward" to 200,
+            "title" to "패널 기본 정보 조사"
+        )
+
+        db.collection("AndroidUser").document(userModel.currentUser.uid!!)
+            .collection("UserSurveyList").document("0")
+            .set(firstSurvey)
+            .addOnSuccessListener { Log.d(TAG, "@@@@@ 2. UserSurveyLIst updated!") }
+
+
+
+        // update Firestore reward
+        db.collection("AndroidUser").document(userModel.currentUser.uid!!)
+            .update(
+                "reward_current", userModel.currentUser.rewardCurrent!! + 200,
+                "reward_total", userModel.currentUser.rewardTotal!! + 200
+            )
+            .addOnSuccessListener { Log.d(TAG, "@@@@@ 3. First Survey Reward updated!") }
+        Log.d(TAG, "***** ${userModel.currentUser.uid}")
+
 
 
         // add "FirstSurvey" collection to panelData

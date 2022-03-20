@@ -4,10 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:background="#FFFFFF">
 
-    <androidx.appcompat.widget.Toolbar
+<androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ToolbarFirstSurvey"
@@ -29,7 +28,6 @@
             android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
-
 
 
     <FrameLayout

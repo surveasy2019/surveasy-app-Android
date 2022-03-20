@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF">
 
 
     <ScrollView
@@ -86,7 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="실명을 입력하세요"
-                    android:fontFamily="@font/main_font_sb"
+                    android:fontFamily="@font/main_font_m"
                     android:paddingStart="10dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
@@ -142,7 +143,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="이메일 주소를 입력하세요"
-                    android:fontFamily="@font/main_font_sb"
+                    android:fontFamily="@font/main_font_m"
                     android:paddingStart="10dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
@@ -182,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="8자리 이상"
-                    android:fontFamily="@font/main_font_sb"
+                    android:fontFamily="@font/main_font_m"
                     android:paddingStart="10dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
@@ -221,7 +222,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="비밀번호 확인"
-                    android:fontFamily="@font/main_font_sb"
+                    android:fontFamily="@font/main_font_m"
                     android:paddingStart="10dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
@@ -260,7 +261,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="-제외 입력하세요"
-                    android:fontFamily="@font/main_font_sb"
+                    android:fontFamily="@font/main_font_m"
                     android:paddingStart="10dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"

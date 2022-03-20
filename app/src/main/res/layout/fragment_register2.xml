@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:backgroundTint="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF">
 
 
     <ScrollView
@@ -70,7 +71,7 @@
                             android:layout_height="40dp"
                             android:spinnerMode="dropdown"
                             android:background="@drawable/custom_spinner"
-                            android:fontFamily="@font/main_font_sb"
+                            android:fontFamily="@font/main_font_m"
                             android:paddingStart="5dp"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="5dp"
@@ -118,7 +119,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:fontFamily="@font/main_font_sb"
+                        android:fontFamily="@font/main_font_m"
                         android:paddingStart="10dp"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
@@ -156,7 +157,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:fontFamily="@font/main_font_sb"
+                        android:fontFamily="@font/main_font_m"
                         android:paddingStart="10dp"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"

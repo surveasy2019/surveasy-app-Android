@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
     <TextView
         android:layout_width="match_parent"
@@ -88,13 +89,14 @@
                 android:paddingVertical="25dp">
 
                 <TextView
+                    android:id="@+id/FirstSurveyListItemName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="17sp"
                     android:fontFamily="@font/main_font_sb"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:text="First Survey"
+                    android:text="ㅇㅇㅇ님에 대해 알려주세요!"
                     android:layout_marginBottom="5dp"
                     />
 
@@ -106,7 +108,7 @@
                     android:fontFamily="@font/main_font_sb"
                     android:textColor="#5B5B5B"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:text="first survey에 참여해야 본 설문에 참여가 가능합니다"
+                    android:text="해당 설문에 참여해야 패널 활동이 가능합니다"
                     android:textStyle="normal"
                     />
 
@@ -131,7 +133,7 @@
                     android:fontFamily="@font/main_font_sb"
                     android:textColor="#0aab00"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:text="리워드"
+                    android:text="200원"
                     android:layout_marginBottom="5dp"
                     />
 

@@ -14,6 +14,11 @@ import com.example.surveasy.databinding.ActivityRegisterBinding
 
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -51,11 +56,6 @@ class RegisterActivity : AppCompatActivity() {
         binding.ToolbarRegister.setNavigationOnClickListener {
             onBackPressed()
         }
-
-
-
-
-
 
     }
 
