@@ -23,12 +23,11 @@ class MyViewInfoActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        binding = ActivityMyviewinfoBinding.inflate(layoutInflater)
 
         val infoData = intent.getParcelableExtra<InfoData>("info")!!
         infoDataModel.infoData = infoData
-        Log.d(TAG, "### infoActivity onStart ----- ${infoDataModel.infoData.EngSurvey}")
-        //setStaticInfo(infoDataModel.infoData)
+        //Log.d(TAG, "### infoActivity onStart ----- ${infoDataModel.infoData.EngSurvey}")
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +52,7 @@ class MyViewInfoActivity : AppCompatActivity() {
 
         val infoData = intent.getParcelableExtra<InfoData>("info")!!
         infoDataModel.infoData = infoData
-        Log.d(TAG, "------------ ${infoDataModel.infoData.EngSurvey}")
+        //Log.d(TAG, "------------ ${infoDataModel.infoData.EngSurvey}")
         setStaticInfo(infoDataModel.infoData)
         //setVariableInfo(infoDataModel.infoData)
 
@@ -67,6 +66,7 @@ class MyViewInfoActivity : AppCompatActivity() {
                 binding.MyViewInfoEditBtn.text = "수정완료"
                 binding.MyViewInfoEditBtn.setBackgroundResource(R.drawable.register_button)
                 binding.MyViewInfoEditBtn.setTextColor(Color.parseColor("#FFFFFF"))
+                Log.d(TAG, "****************************************************")
             }
             else if(fragment == 2) {
                 updateInfo()
@@ -79,6 +79,7 @@ class MyViewInfoActivity : AppCompatActivity() {
                 binding.MyViewInfoEditBtn.text = "수정하기"
                 binding.MyViewInfoEditBtn.setBackgroundResource(R.drawable.white_button_myinfo)
                 binding.MyViewInfoEditBtn.setTextColor(Color.parseColor("#0aab00"))
+                Log.d(TAG, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             }
         }
 
