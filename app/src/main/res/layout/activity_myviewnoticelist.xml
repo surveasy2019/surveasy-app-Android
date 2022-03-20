@@ -4,26 +4,32 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/white"
     android:background="#FFFFFF">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/ToolbarMyViewNoticeList"
         android:theme="@style/ToolbarTheme"
         android:background="@color/white"
-        app:titleTextColor="@color/black"/>
+        app:titleTextColor="@color/black">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_sb"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            android:lineSpacingExtra="3.3sp"
+            android:layout_gravity="center_horizontal"
+            android:text="공지사항"
+            android:id="@+id/MyViewNoticeList_Title"
+            android:textSize="20sp"/>
+    </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/MyViewNoticeList_Title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="공지사항"
-        android:gravity="center"
-        android:textSize="19sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/main_font_m"/>
 
 
     <ScrollView
@@ -34,7 +40,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="50sp"
-            android:padding="36dp"
+            android:paddingHorizontal="30dp"
+            android:paddingBottom="30dp"
+
             android:orientation="vertical" >
 
             <androidx.recyclerview.widget.RecyclerView

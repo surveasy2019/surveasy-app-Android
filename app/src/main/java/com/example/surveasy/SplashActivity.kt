@@ -2,14 +2,19 @@ package com.example.surveasy
 
 import android.content.ContentValues
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.activity.viewModels
 import com.example.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.example.surveasy.home.banner.BannerViewModel
+import com.example.surveasy.home.NetworkAlertActivity
 import com.example.surveasy.login.LoginActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.ktx.auth
@@ -26,12 +31,27 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        if(isConnectInternet() != "null"){
+            val handler = Handler(Looper.getMainLooper())
+            handler.postDelayed({
 
-        Handler().postDelayed({
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                finish()
+            },3000)
+        }else{
+            val handler = Handler(Looper.getMainLooper())
+            handler.postDelayed({
+                val intent = Intent(baseContext, NetworkAlertActivity::class.java)
+                startActivity(intent)
+                finish()
+            },3000)
+        }
 
-            finish()
-        },3000)
+
+//        Handler().postDelayed({
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+//
+//            finish()
+//        },3000)
 
         supportActionBar?.hide()
 
@@ -69,6 +89,13 @@ class SplashActivity : AppCompatActivity() {
 //                    }
                 }
             }
+    }
+
+    private fun isConnectInternet() : String {
+        val cm : ConnectivityManager =
+            this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo : NetworkInfo? = cm.activeNetworkInfo
+        return networkInfo.toString()
     }
 
     private fun nextActivity() {

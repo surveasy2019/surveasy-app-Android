@@ -58,7 +58,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
         val title : String = intent.getStringExtra("title")!!
 
 
-        val spannableString = SpannableString(reward.toString()+"원 받으러 가기기")
+        val spannableString = SpannableString(reward.toString()+"원 받으러 가기")
         spannableString.setSpan(UnderlineSpan(),0,spannableString.length,0)
         binding.toolbarUpload.text = spannableString
 
