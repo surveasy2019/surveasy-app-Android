@@ -8,63 +8,6 @@
     android:background="#ffffff"
     tools:context=".register.RegisterAgree1Fragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/ToolbarProof"
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-    <LinearLayout
-        android:gravity="center_vertical"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/main_font_sb"
-            android:textColor="@color/black"
-            android:layout_marginBottom="5dp"
-            android:lineSpacingExtra="3.3sp"
-            android:layout_gravity="center_horizontal"
-            android:text="패널가입"
-            android:textSize="25sp" />
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/main_font_sb"-->
-<!--            android:textColor="#707070"-->
-<!--            android:layout_marginBottom="5dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:text="설문조사 완료 화면 캡쳐 후"-->
-<!--            android:textSize="20sp" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/toolbar_upload"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:fontFamily="@font/main_font_sb"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textColor="#0aab00"-->
-<!--            android:text="300원 받으러 가기" />-->
-
-
-
-
-
-    </LinearLayout>
-    </androidx.appcompat.widget.Toolbar>
-
-
-
-
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

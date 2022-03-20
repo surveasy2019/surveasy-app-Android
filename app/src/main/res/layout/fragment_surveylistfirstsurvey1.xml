@@ -7,13 +7,6 @@
     android:backgroundTint="@color/white"
     >
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:id="@+id/ToolbarFirstSurvey"
-        android:theme="@style/ToolbarTheme"
-        android:backgroundTint="@color/white"
-        app:titleTextColor="@color/black"/>
 
     <LinearLayout
         android:id="@+id/SurveyListFirstSurvey1_Container"
