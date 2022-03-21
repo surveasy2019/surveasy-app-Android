@@ -59,6 +59,14 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
+    fun fin(){
+        finish()
+    }
+
+    fun toolbarHide(){
+        supportActionBar?.hide()
+    }
+
     fun goAgree2(){
         supportFragmentManager.beginTransaction()
             .replace(R.id.RegisterView, RegisterAgree2Fragment())

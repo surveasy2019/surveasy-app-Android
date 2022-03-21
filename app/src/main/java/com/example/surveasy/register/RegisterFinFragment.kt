@@ -23,10 +23,12 @@ class RegisterFinFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_registerfin,container,false)
+        (activity as RegisterActivity).toolbarHide()
 
         val registerFin_Btn : Button = view!!.findViewById(R.id.RegisterFinFragment_Btn)
         registerFin_Btn.setOnClickListener {
             val intent : Intent = Intent(context, LoginActivity::class.java)
+            (activity as RegisterActivity).fin()
             startActivity(intent)
         }
 
