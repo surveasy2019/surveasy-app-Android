@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.surveasy">
+    package="com.app.surveasy">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -17,13 +17,13 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".home.Opinion.HomeOpinionDetailActivity"
+            android:name="com.app.surveasy.home.Opinion.HomeOpinionDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".list.firstsurvey.SurveyListFirstSurveyLast"
+            android:name="com.app.surveasy.list.firstsurvey.SurveyListFirstSurveyLast"
             android:exported="true" />
         <activity
-            android:name=".SplashActivity"
+            android:name="com.app.surveasy.SplashActivity"
             android:exported="true"
             android:theme="@style/Splash">
             <intent-filter>
@@ -33,35 +33,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".register.RegisterTerm2"
+            android:name="com.app.surveasy.register.RegisterTerm2"
             android:exported="true" />
         <activity
-            android:name=".register.RegisterTerm1"
+            android:name="com.app.surveasy.register.RegisterTerm1"
             android:exported="true" />
         <activity
-            android:name=".firstIntroduceScreen.FirstIntroduceScreenActivity"
+            android:name="com.app.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity"
             android:exported="true" />
         <activity
-            android:name=".login.FindPwActivity"
+            android:name="com.app.surveasy.login.FindPwActivity"
             android:exported="true" />
         <activity
-            android:name=".my.setting.MyViewSettingVersionActivity"
+            android:name="com.app.surveasy.my.setting.MyViewSettingVersionActivity"
             android:exported="true" />
         <activity
-            android:name=".list.NoticeToPanelDialogActivity"
+            android:name="com.app.surveasy.list.NoticeToPanelDialogActivity"
             android:exported="true"
             android:theme="@style/Theme.MyDialog" />
         <activity
-            android:name=".list.SurveyDoneAlertDialogActivity"
+            android:name="com.app.surveasy.list.SurveyDoneAlertDialogActivity"
             android:exported="true"
             android:theme="@style/Theme.MyDialog" />
         <activity
-            android:name=".list.SurveyListDetailDialogActivity"
+            android:name="com.app.surveasy.list.SurveyListDetailDialogActivity"
             android:exported="true"
             android:theme="@style/Theme.MyDialog" />
 
         <activity
-            android:name=".home.NetworkAlertActivity"
+            android:name="com.app.surveasy.home.NetworkAlertActivity"
             android:exported="true"
             android:theme="@style/Theme.MyDialog"/>
 
@@ -73,60 +73,60 @@
             android:resource="@color/purple_700" />
 
         <activity
-            android:name=".list.SurveyProofLastDialogActivity"
+            android:name="com.app.surveasy.list.SurveyProofLastDialogActivity"
             android:exported="true"
             android:theme="@style/Theme.MyDialog"/>
         <activity
-            android:name=".my.notice.MyViewNoticeListDetailActivity"
+            android:name="com.app.surveasy.my.notice.MyViewNoticeListDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.app.surveasy.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".home.contribution.HomeContributionListDetailActivity"
+            android:name="com.app.surveasy.home.contribution.HomeContributionListDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".list.firstsurvey.SurveyListFirstSurveyActivity"
+            android:name="com.app.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity"
             android:exported="true" />
         <activity
-            android:name=".list.SurveyListDetailResponseActivity"
+            android:name="com.app.surveasy.list.SurveyListDetailResponseActivity"
             android:exported="true" />
         <activity
-            android:name=".list.SurveyListDetailActivity"
+            android:name="com.app.surveasy.list.SurveyListDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".list.SurveyProofDialogActivity"
+            android:name="com.app.surveasy.list.SurveyProofDialogActivity"
             android:exported="true"
              />
         <activity
-            android:name=".login.LoginActivity"
+            android:name="com.app.surveasy.login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".register.RegisterActivity"
+            android:name="com.app.surveasy.register.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".my.setting.MyViewSettingActivity"
+            android:name="com.app.surveasy.my.setting.MyViewSettingActivity"
             android:exported="true" />
         <activity
-            android:name=".my.setting.MyViewSettingPushActivity"
+            android:name="com.app.surveasy.my.setting.MyViewSettingPushActivity"
             android:exported="true" />
         <activity
-            android:name=".my.setting.MyViewSettingWithdrawActivity"
+            android:name="com.app.surveasy.my.setting.MyViewSettingWithdrawActivity"
             android:exported="true" />
         <activity
-            android:name=".my.history.MyViewHistoryActivity"
+            android:name="com.app.surveasy.my.history.MyViewHistoryActivity"
             android:exported="true" />
         <activity
-            android:name=".my.info.MyViewInfoActivity"
+            android:name="com.app.surveasy.my.info.MyViewInfoActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewContactActivity"
+            android:name="com.app.surveasy.my.MyViewContactActivity"
             android:exported="true" />
         <activity
-            android:name=".my.MyViewInviteActivity"
+            android:name="com.app.surveasy.my.MyViewInviteActivity"
             android:exported="true" />
         <activity
-            android:name=".my.notice.MyViewNoticeListActivity"
+            android:name="com.app.surveasy.my.notice.MyViewNoticeListActivity"
             android:exported="true" /> <!-- <activity -->
         <!-- android:name=".SplashActivity" -->
         <!-- android:exported="true" -->
@@ -137,7 +137,7 @@
         <!-- </intent-filter> -->
         <!-- </activity> -->
         <service
-            android:name=".fcm.MyFirebaseMessagingService"
+            android:name="com.app.surveasy.fcm.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
