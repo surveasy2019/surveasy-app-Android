@@ -21,7 +21,7 @@ class BannerViewPagerAdapter(context: Context, bannerList: ArrayList<String>): R
     }
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
-        Glide.with(context).load(bannerList[position]).placeholder(R.drawable.loading).into(holder.banner)
+        Glide.with(context).load(bannerList[position]).into(holder.banner)
 
     }
 

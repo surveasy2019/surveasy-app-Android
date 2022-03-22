@@ -42,16 +42,19 @@ class HomeContributionListDetailActivity : AppCompatActivity() {
         if(journal != null) {
             binding.HomeContributionListDetailJournal.visibility = View.VISIBLE
         }
+
+        Glide.with(this)
+            .load(img)
+            .into(binding.HomeContributionListDetailImg)
+
+
+        binding.HomeContributionListDetailContent.text = content
         binding.HomeContributionListDetailTitle.text = title
         binding.HomeContributionListDetailJournal.text = journal
         binding.HomeContributionListDetailSource.text = source
         binding.HomeContributionListDetailInstitute.text = institute
 
-        Glide.with(this)
-            .load(img)
-            .placeholder(R.drawable.loading)
-            .into(binding.HomeContributionListDetailImg)
-        binding.HomeContributionListDetailContent.text = content
+
 
 
     }
