@@ -29,6 +29,7 @@ import com.app.surveasy.home.banner.BannerViewModel
 import com.app.surveasy.home.banner.BannerViewPagerAdapter
 import com.app.surveasy.home.contribution.ContributionItemsAdapter
 import com.app.surveasy.home.contribution.HomeContributionViewModel
+import com.app.surveasy.list.firstsurvey.SurveyListFirstSurveyLast
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -120,7 +121,8 @@ class HomeFragment : Fragment() {
         }
 
         register.setOnClickListener {
-            val intent = Intent(context, RegisterActivity::class.java)
+            //val intent = Intent(context, RegisterActivity::class.java)
+            val intent = Intent(context,SurveyListFirstSurveyLast::class.java)
             startActivity(intent)
         }
 

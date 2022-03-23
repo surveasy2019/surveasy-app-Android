@@ -161,9 +161,8 @@
                         android:id="@+id/changeColor_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="불성실한 응답 적발 시, 패널 활동이 강제중지 되며\n응답비는 지급되지 않습니다."
                         android:textSize="15sp"
-                        android:textColor="#0aab00"
+                        android:textColor="@color/black"
                         android:textStyle="normal"/>
 
                 </LinearLayout>
