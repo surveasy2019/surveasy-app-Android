@@ -62,6 +62,8 @@ class Register2Fragment : Fragment() {
         }
         else if(accountOwner == "") {
             Toast.makeText(context, "계좌주를 입력해주세요.", Toast.LENGTH_SHORT).show()
+        }else if(accountNumber.contains(" ") || accountOwner.contains(" ")){
+            Toast.makeText(context,"입력란의 공백을 지워주세요.",Toast.LENGTH_LONG).show()
         }
         else {
             val db = Firebase.firestore
@@ -123,7 +125,7 @@ class Register2Fragment : Fragment() {
                     } else {
                         Toast.makeText(
                             context,
-                            "#####Auth Error: " + task.exception!!.message.toString(),
+                            "회원가입 과정에서 문제가 발생했습니다. 다시 시도해주세요",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -143,7 +145,7 @@ class Register2Fragment : Fragment() {
         accountTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 accountType = accountTypeList[position]
-                Toast.makeText(context, accountTypeList[position], Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, accountTypeList[position], Toast.LENGTH_SHORT).show()
                 Log.d(TAG, "@@@@@@@ account type : $accountType")
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {

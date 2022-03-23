@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:orientation="vertical"
     android:background="@color/white"
     >
@@ -29,35 +28,50 @@
             android:textSize="20sp"/>
 
     </androidx.appcompat.widget.Toolbar>
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
 
-        <LinearLayout
+        >
+
+        <TextView
+            android:id="@+id/dialog_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:layout_height="wrap_content"
+            android:text="설문 완료 화면을 첨부해주세요"
+            android:textColor="#707070"
+            android:fontFamily="@font/main_font_sb"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:layout_marginBottom="10dp"
 
-            <TextView
-                android:id="@+id/dialog_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="설문 완료 화면을 첨부해주세요"
-                android:textColor="#707070"
-                android:fontFamily="@font/main_font_sb"
-                android:gravity="center"
-                android:textSize="17sp"
-                android:layout_marginBottom="20dp"
-                />
+            />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:padding="20dp"
+            android:layout_gravity="center">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:id="@+id/dialog_imageview"
                 android:layout_marginBottom="20dp"
 
                 />
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_marginBottom="10dp"
                 android:id="@+id/dialog_editBtn"
@@ -87,8 +101,8 @@
                 android:background="@drawable/register_button" />
 
 
-        </LinearLayout>
 
-    </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

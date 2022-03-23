@@ -238,7 +238,7 @@
 
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="25dp">
@@ -253,73 +253,81 @@
                         android:paddingStart="5dp"
                         android:layout_marginBottom="10dp"
                         android:text="가구형태" />
-                    <GridView
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:numColumns="2">
+
+                    <Spinner
+                        android:id="@+id/SurveyListFirstSurvey2_FamilyTypeSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/custom_spinner"
+                        android:fontFamily="@font/main_font_sb"
+                        android:paddingStart="10dp"
+                        android:textSize="13sp"
+                        android:textColorHint="#c9c9c9"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:inputType="text" />
 
 
-                    </GridView>
+<!--                    <RadioGroup-->
+<!--                        android:id="@+id/SurveyListFirstSurvey2_FamilyRadioGroup"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal">-->
 
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/SurveyListFirstSurvey2_Family1"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:paddingVertical="5dp"-->
+<!--                            android:paddingHorizontal="15dp"-->
+<!--                            android:background="@drawable/selector_radio_button"-->
+<!--                            android:gravity="center"-->
+<!--                            android:button="@null"-->
+<!--                            android:text="1인가구"-->
+<!--                            android:textColor="@drawable/selector_radio_text"-->
+<!--                            android:layout_marginEnd="10dp" />-->
 
-                    <RadioGroup
-                        android:id="@+id/SurveyListFirstSurvey2_FamilyRadioGroup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/SurveyListFirstSurvey2_Family2"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:paddingVertical="5dp"-->
+<!--                            android:paddingHorizontal="15dp"-->
+<!--                            android:background="@drawable/selector_radio_button"-->
+<!--                            android:gravity="center"-->
+<!--                            android:button="@null"-->
+<!--                            android:text="2인가구"-->
+<!--                            android:textColor="@drawable/selector_radio_text"-->
+<!--                            android:layout_marginEnd="10dp" />-->
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/SurveyListFirstSurvey2_Family3"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:paddingVertical="5dp"-->
+<!--                            android:paddingHorizontal="15dp"-->
+<!--                            android:background="@drawable/selector_radio_button"-->
+<!--                            android:gravity="center"-->
+<!--                            android:button="@null"-->
+<!--                            android:text="3인가구"-->
+<!--                            android:textColor="@drawable/selector_radio_text"-->
+<!--                            android:layout_marginEnd="10dp" />-->
 
-                        <RadioButton
-                            android:id="@+id/SurveyListFirstSurvey2_Family1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="15dp"
-                            android:background="@drawable/selector_radio_button"
-                            android:gravity="center"
-                            android:button="@null"
-                            android:text="1인가구"
-                            android:textColor="@drawable/selector_radio_text"
-                            android:layout_marginEnd="10dp" />
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/SurveyListFirstSurvey2_Family4"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:paddingVertical="5dp"-->
+<!--                            android:paddingHorizontal="15dp"-->
+<!--                            android:background="@drawable/selector_radio_button"-->
+<!--                            android:gravity="center"-->
+<!--                            android:button="@null"-->
+<!--                            android:text="4인가구 이상"-->
+<!--                            android:textColor="@drawable/selector_radio_text"-->
+<!--                            />-->
 
-                        <RadioButton
-                            android:id="@+id/SurveyListFirstSurvey2_Family2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="15dp"
-                            android:background="@drawable/selector_radio_button"
-                            android:gravity="center"
-                            android:button="@null"
-                            android:text="2인가구"
-                            android:textColor="@drawable/selector_radio_text"
-                            android:layout_marginEnd="10dp" />
-                        <RadioButton
-                            android:id="@+id/SurveyListFirstSurvey2_Family3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="15dp"
-                            android:background="@drawable/selector_radio_button"
-                            android:gravity="center"
-                            android:button="@null"
-                            android:text="3인가구"
-                            android:textColor="@drawable/selector_radio_text"
-                            android:layout_marginEnd="10dp" />
-
-                        <RadioButton
-                            android:id="@+id/SurveyListFirstSurvey2_Family4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="15dp"
-                            android:background="@drawable/selector_radio_button"
-                            android:gravity="center"
-                            android:button="@null"
-                            android:text="4인가구 이상"
-                            android:textColor="@drawable/selector_radio_text"
-                            />
-
-                    </RadioGroup>
+<!--                    </RadioGroup>-->
 
 
                 </LinearLayout>

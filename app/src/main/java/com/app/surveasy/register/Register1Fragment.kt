@@ -99,11 +99,15 @@ class Register1Fragment : Fragment() {
 
         if(name == "") {
             Toast.makeText(context, "이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
-        }else if(name.length==1 || name.contains(" ")){
+        }else if(name.length==1){
             Toast.makeText(context, "이름을 올바르게 입력해주세요.", Toast.LENGTH_SHORT).show()
+        }else if(name.contains(" ")){
+            Toast.makeText(context, "이름란의 공백을 지워주세요.", Toast.LENGTH_SHORT).show()
         }
         else if (email == "" || !email.contains("@") || !email.contains(".")) {
             Toast.makeText(context, "이메일을 올바르게 입력해주세요.", Toast.LENGTH_SHORT).show()
+        }else if(email.contains(" ")){
+            Toast.makeText(context, "아이디란의 공백을 지워주세요.", Toast.LENGTH_SHORT).show()
         }
         else if (password == "") {
             Toast.makeText(context, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -113,7 +117,7 @@ class Register1Fragment : Fragment() {
         else if (password != passwordCheck) {
             Toast.makeText(context, "비밀번호를 다시 확인해주세요.", Toast.LENGTH_SHORT).show()
         }
-        else if(phoneNumber.contains("-")||phoneNumber.contains(".")){
+        else if(phoneNumber.contains("-")||phoneNumber.contains(".") || phoneNumber.contains(" ")){
             Toast.makeText(context, "휴대폰번호란에는 숫자만 입력해주세요.", Toast.LENGTH_SHORT).show()
         }
         else if (phoneNumber == "" || phoneNumber.length != 11) {
@@ -124,13 +128,13 @@ class Register1Fragment : Fragment() {
         }
         else if (birthDate == null) {
             Toast.makeText(context, "생년월일을 선택해주세요.", Toast.LENGTH_SHORT).show()
-        }
-        else {
+        }else {
             val registerInfo1 = RegisterInfo1(null, null, name, email, password, phoneNumber, gender, birthDate, registerModel.registerInfo1.marketingAgree)
             registerModel.registerInfo1 = registerInfo1
             (activity as RegisterActivity).goToRegister2()
 
         }
+
     }
 
     // Birth Pickers

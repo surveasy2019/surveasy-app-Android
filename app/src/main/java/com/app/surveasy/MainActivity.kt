@@ -1,5 +1,6 @@
 package com.app.surveasy
 
+import android.app.DownloadManager
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Color
@@ -25,6 +26,7 @@ import com.app.surveasy.login.CurrentUserViewModel
 import com.app.surveasy.my.MyViewFragment
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -235,32 +237,30 @@ class MainActivity : AppCompatActivity() {
 
     fun fetchSurvey() {
 
-        db.collection("AndroidSurvey")
+        db.collection("surveyData")
             // id를 운영진이 올리는 깨끗한 아이디로 설정하면 progress 문제 해결됨.
-            .orderBy("id")
-            .limit(50).get()
+            .orderBy("lastIDChecked", Query.Direction.DESCENDING)
+            .limit(10).get()
             .addOnSuccessListener { result ->
 
                 for (document in result) {
                     val item: SurveyItems = SurveyItems(
-                        document["id"] as String,
+                        Integer.parseInt(document["lastIDChecked"].toString()),
                         document["title"] as String,
                         document["target"] as String,
-                        document["uploadDate"] as String,
-                        document["link"] as String,
-                        document["spendTime"] as String,
-                        document["dueDate"] as String,
-                        document["dueTimeTime"] as String,
-                        Integer.parseInt(document["reward"].toString()),
-                        document["noticeToPanel"] as String,
+                        document["uploadDate"] as String?,
+                        document["link"] as String?,
+                        document["spendTime"] as String?,
+                        document["dueDate"] as String?,
+                        document["dueTimeTime"] as String?,
+                        100,
+                        document["noticeToPanel"] as String?,
                         Integer.parseInt(document["progress"].toString())
                     )
-                    if(Integer.parseInt(document["progress"].toString())>1){
-                        surveyList.add(item)
-                    }
+                    surveyList.add(item)
                     Log.d(
                         TAG,
-                        "################${document["id"]} and ${document["title"]}"
+                        "################${document["title"]} and ${document["uploadDate"]}"
                     )
                 }
 

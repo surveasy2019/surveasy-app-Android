@@ -37,12 +37,12 @@ class MyViewContactActivity : AppCompatActivity() {
         }
 
         binding.MyViewContactEmail.setOnClickListener {
-            val textToCopy = "surveasy"
+            val textToCopy = "surveasy2019@yonsei.ac.kr"
             val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clipData = ClipData.newPlainText("text",textToCopy)
             clipboardManager.setPrimaryClip(clipData)
 
-            Toast.makeText(this,"복사되었습니다", Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"클립보드에 복사되었습니다", Toast.LENGTH_LONG).show()
         }
 
     }

@@ -318,8 +318,8 @@
 
                     <RadioButton
                         android:id="@+id/RegisterFragment1_RadioMale"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:button="@color/transparent"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/custom_radiobtn"
@@ -333,8 +333,8 @@
                         android:text="남성"/>
                     <RadioButton
                         android:id="@+id/RegisterFragment1_RadioFemale"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:button="@color/transparent"
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/custom_radiobtn"

@@ -169,7 +169,7 @@ class SurveyListFragment() : Fragment() {
                     index = -1
                     for (survey in model.surveyInfo) {
                         index++
-                        if (survey.id == done.id) {
+                        if (survey.id.equals(done.id)) {
                             boolList[index] = true
                         }else if(survey.progress >=3){
                             boolList[index] = true
