@@ -253,6 +253,14 @@
                         android:paddingStart="5dp"
                         android:layout_marginBottom="10dp"
                         android:text="가구형태" />
+                    <GridView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:numColumns="2">
+
+
+                    </GridView>
+
 
                     <RadioGroup
                         android:id="@+id/SurveyListFirstSurvey2_FamilyRadioGroup"
