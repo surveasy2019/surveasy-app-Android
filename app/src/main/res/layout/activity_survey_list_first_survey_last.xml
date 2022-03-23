@@ -42,6 +42,7 @@
             android:paddingHorizontal="50dp">
 
             <TextView
+                android:id="@+id/colorRed_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="설문 참여 후 아래 안내대로 응답 인증을 해주세요.\n\n응답 인증을 하지 않거나 잘못된 캡쳐화면을 \n업로드한 경우, 응답비가 지급되지 않습니다."
@@ -57,6 +58,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="30dp"/>
             <TextView
+                android:id="@+id/colorGreen_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="1. 설문이 완료되었다는 화면을 캡쳐 해주세요."
