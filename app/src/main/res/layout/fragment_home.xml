@@ -53,7 +53,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="130개"
+                            android:text="0개"
                             android:textColor="@color/white"
                             android:textSize="16sp"
                             android:fontFamily="@font/main_font_b" />
@@ -87,7 +87,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="25000원"
+                            android:text="0원"
                             android:textColor="@color/white"
                             android:textSize="16sp"
                             android:fontFamily="@font/main_font_b" />
@@ -225,7 +225,7 @@
             <FrameLayout
                 android:id="@+id/Home_Banner_Container"
                 android:layout_width="match_parent"
-                android:layout_height="70sp"
+                android:layout_height="100dp"
                 android:layout_marginTop="10sp"
                 android:layout_marginBottom="10dp" >
 
@@ -257,8 +257,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
-                        android:textSize="10dp"
-                        android:textColor="#FFFFFF" />
+                        android:textSize="10sp"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/main_font_m"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -266,16 +267,18 @@
                         android:layout_marginLeft="4dp"
                         android:layout_marginRight="4dp"
                         android:text="/"
-                        android:textSize="10dp"
-                        android:textColor="#FFFFFF" />
+                        android:textSize="10sp"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/main_font_m"/>
 
                     <TextView
                         android:id="@+id/textView_total_banner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5"
-                        android:textSize="10dp"
-                        android:textColor="#FFFFFF" />
+                        android:text="1"
+                        android:textSize="10sp"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/main_font_m"/>
 
                 </LinearLayout>
             </FrameLayout>
