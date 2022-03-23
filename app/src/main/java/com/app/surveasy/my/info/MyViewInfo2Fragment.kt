@@ -67,6 +67,7 @@ class MyViewInfo2Fragment : Fragment() {
 
     private fun spinnerDefault(list : MutableList<String>, i: Int, defaultType: String): MutableList<String> {
         var setDefaultList = list
+        setDefaultList.removeAt(0)
         setDefaultList.removeAt(i)
         setDefaultList.add(0, "$defaultType")
 

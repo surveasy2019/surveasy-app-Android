@@ -21,7 +21,6 @@ class Register2Fragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     val registerModel by activityViewModels<RegisterInfo1ViewModel>()
     private var accountType : String? = null
-    private var inflowPath : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +54,10 @@ class Register2Fragment : Fragment() {
         val accountNumber: String = view.findViewById<EditText>(R.id.RegisterFragment2_AccountNumberInput).text.toString()
         val accountOwner: String = view.findViewById<EditText>(R.id.RegisterFragment2_AccountOwnerInput).text.toString()
 
-        if(accountNumber == "") {
+        if(accountType == "은행을 선택하세요") {
+            Toast.makeText(context, "은행을 선택해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else if(accountNumber == "") {
             Toast.makeText(context, "계좌번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
         }else if(accountNumber.contains("-")){
             Toast.makeText(context, "계좌번호란에는 숫자만 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -94,7 +96,7 @@ class Register2Fragment : Fragment() {
                                     "accountType" to accountType,
                                     "accountNumber" to accountNumber,
                                     "accountOwner" to accountOwner,
-                                    "inflowPath" to inflowPath,
+                                    "inflowPath" to registerModel.registerInfo1.inflowPath,
                                     "didFirstSurvey" to false,
                                     "pushOn" to false,
                                     "reward_current" to 0,
@@ -143,7 +145,6 @@ class Register2Fragment : Fragment() {
         accountTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 accountType = accountTypeList[position]
-                Toast.makeText(context, accountTypeList[position], Toast.LENGTH_SHORT).show()
                 Log.d(TAG, "@@@@@@@ account type : $accountType")
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {

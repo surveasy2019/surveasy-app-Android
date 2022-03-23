@@ -78,7 +78,6 @@ class HomeFragment : Fragment() {
         val opinionTextView : TextView = view.findViewById(R.id.Home_Opinion_TextView)
 
 
-
         // Banner init
         bannerPager = view.findViewById(R.id.Home_BannerViewPager)
         val bannerDefault : ImageView = view.findViewById(R.id.Home_BannerDefault)

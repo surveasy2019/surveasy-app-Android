@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17sp"
-            android:fontFamily="@font/main_font_sb"
+            android:fontFamily="@font/main_font_m"
             android:textColor="@color/black"
             />
     </LinearLayout>
@@ -44,7 +44,6 @@
         android:layout_marginBottom="15dp"
         android:lineSpacingExtra="3.3sp"
         android:textSize="15sp"
-        android:textStyle="bold"
         android:layout_gravity="right"
         android:textColor="@color/white"
         android:backgroundTint="#0aab00"
