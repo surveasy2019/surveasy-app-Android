@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -29,6 +30,7 @@ import com.app.surveasy.home.banner.BannerViewPagerAdapter
 import com.app.surveasy.home.contribution.ContributionItemsAdapter
 import com.app.surveasy.home.contribution.HomeContributionViewModel
 import com.app.surveasy.list.firstsurvey.SurveyListFirstSurveyLast
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -79,11 +81,13 @@ class HomeFragment : Fragment() {
 
         // Banner init
         bannerPager = view.findViewById(R.id.Home_BannerViewPager)
+        val bannerDefault : ImageView = view.findViewById(R.id.Home_BannerDefault)
 
+        Glide.with(this@HomeFragment).load(R.raw.app_loading).into(bannerDefault)
         CoroutineScope(Dispatchers.Main).launch {
             val banner = CoroutineScope(Dispatchers.IO).async {
                 while (bannerModel.uriList.size == 0) {
-                    //Log.d(TAG, "+++++++BANNER LOADING++++++")
+                    bannerDefault.visibility = View.VISIBLE
                 }
                 bannerModel.uriList
 
