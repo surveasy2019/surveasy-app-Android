@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="서베이지 설문조사 대학원"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textColor="#c9c9c9"
             android:fontFamily="@font/main_font_m"/>
 
@@ -35,7 +35,7 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:text="서베이지 웹사이트 만족도 조사를 위한.."
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textColor="#4da830"
                 android:fontFamily="@font/main_font_m"/>
 
