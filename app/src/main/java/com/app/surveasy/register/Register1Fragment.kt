@@ -19,6 +19,7 @@ class Register1Fragment : Fragment() {
     val registerModel by activityViewModels<RegisterInfo1ViewModel>()
     var gender : String? = null
     var birthDate: String? = null
+    var inflowPath: String? = null
     var cal = Calendar.getInstance()
 
     override fun onCreateView(
@@ -27,6 +28,8 @@ class Register1Fragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_register1, container, false)
+
+        setInflowPathSpinner(view)
 
 
         // gender
@@ -125,8 +128,11 @@ class Register1Fragment : Fragment() {
         else if (birthDate == null) {
             Toast.makeText(context, "생년월일을 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
+        else if (inflowPath == "유입경로를 선택하세요") {
+            Toast.makeText(context, "유입경로를 선택해주세요.", Toast.LENGTH_SHORT).show()
+        }
         else {
-            val registerInfo1 = RegisterInfo1(null, null, name, email, password, phoneNumber, gender, birthDate, registerModel.registerInfo1.marketingAgree)
+            val registerInfo1 = RegisterInfo1(null, null, name, email, password, phoneNumber, gender, birthDate, inflowPath, registerModel.registerInfo1.marketingAgree)
             registerModel.registerInfo1 = registerInfo1
             (activity as RegisterActivity).goToRegister2()
 
@@ -171,5 +177,20 @@ class Register1Fragment : Fragment() {
         var dayStr: String = day.toString()
         if (day < 10) dayStr = "0" + dayStr
         return dayStr
+    }
+
+    private fun setInflowPathSpinner(view: View) {
+        val inflowPathList = resources.getStringArray(R.array.inflowPath)
+        val inflowPathAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, inflowPathList)
+        val inflowPathSpinner : Spinner = view.findViewById(R.id.RegisterFragment1_InflowPathSpinner)
+        inflowPathSpinner.adapter = inflowPathAdapter
+        inflowPathSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                inflowPath = inflowPathList[position]
+                Log.d(TAG, "@@@@@@@ inflow : $inflowPath")
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
     }
 }

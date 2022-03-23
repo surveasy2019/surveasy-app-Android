@@ -111,11 +111,11 @@
                 android:layout_marginHorizontal="5dp"
                 android:textSize="15sp"
                 android:layout_marginBottom="30dp"
-                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:backgroundTint="#0aab00"
-                android:background="@drawable/register_button" />
+                android:background="@drawable/register_button"
+                android:fontFamily="@font/main_font_b"/>
 
 
         </LinearLayout>

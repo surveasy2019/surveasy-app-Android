@@ -208,6 +208,7 @@
 
     // RegisterFragment2
     <string-array name="accountType">
+        <item>은행을 선택하세요</item>
         <item>국민</item>
         <item>하나</item>
         <item>우리</item>
@@ -219,7 +220,7 @@
     </string-array>
 
     <string-array name="inflowPath">
-        <item>유입 경로</item>
+        <item>유입경로를 선택하세요</item>
         <item>카카오톡</item>
         <item>에브리타임</item>
         <item>인스타그램</item>

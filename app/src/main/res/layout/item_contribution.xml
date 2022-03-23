@@ -30,7 +30,7 @@
 
             <TextView
                 android:id="@+id/ContributionItem_Title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center"
@@ -41,9 +41,8 @@
 
             <TextView
                 android:id="@+id/ContributionItem_Date"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
                 android:gravity="right"
                 android:paddingRight="2sp"
                 android:text="2022.03 설문 진행"

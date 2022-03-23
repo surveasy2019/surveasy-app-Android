@@ -38,7 +38,8 @@
                     android:textSize="15sp"
                     android:textColor="#0aab00"
                     android:lineSpacingExtra="3.3sp"
-                    android:text="패널 유의사항"/>
+                    android:text="패널 유의사항"
+                    android:fontFamily="@font/main_font_m"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -57,7 +58,8 @@
                                   인증을 해야 응답으로 인정됩니다."
                         android:textSize="15sp"
                         android:textColor="#0aab00"
-                        android:textStyle="normal"/>
+                        android:textStyle="normal"
+                        android:fontFamily="@font/main_font_m"/>
 
                 </LinearLayout>
                 <TextView
@@ -68,7 +70,8 @@
                     android:textSize="15sp"
                     android:layout_marginTop="5sp"
                     android:textStyle="normal"
-                    android:layout_marginStart="25sp"/>
+                    android:layout_marginStart="25sp"
+                    android:fontFamily="@font/main_font_m"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -85,7 +88,8 @@
                         android:layout_height="wrap_content"
                         android:text="설문 제출 후 화면이 아닌 응답중인 화면을 캡쳐한 경우"
                         android:textColor="@color/black"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp"
+                        android:fontFamily="@font/main_font_r"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -104,7 +108,8 @@
                         android:layout_height="wrap_content"
                         android:text="설문을 제출했으나 캡쳐화면 인증을 하지않은 경우"
                         android:textColor="@color/black"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp"
+                        android:fontFamily="@font/main_font_r"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -123,7 +128,8 @@
                         android:layout_height="wrap_content"
                         android:text="설문 대상에 해당되지 않는 설문에 참여한 경우"
                         android:textColor="@color/black"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp"
+                        android:fontFamily="@font/main_font_r"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -142,7 +148,8 @@
                         android:layout_height="wrap_content"
                         android:text="불성실한 응답이 적발되었을 경우"
                         android:textColor="@color/black"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp"
+                        android:fontFamily="@font/main_font_r"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -163,7 +170,8 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:textColor="@color/black"
-                        android:textStyle="normal"/>
+                        android:textStyle="normal"
+                        android:fontFamily="@font/main_font_m"/>
 
                 </LinearLayout>
                 <TextView
@@ -174,7 +182,7 @@
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:layout_marginTop="20dp"
-                    />
+                    android:fontFamily="@font/main_font_r"/>
 
             </LinearLayout>
 
@@ -192,15 +200,16 @@
         <androidx.appcompat.widget.AppCompatButton
 
             android:id="@+id/RegisterAgree2_Btn"
-            android:layout_width="330sp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5sp"
             android:text="확인했습니다"
             android:textSize="15sp"
-            android:textStyle="bold"
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:backgroundTint="#0aab00"
-            android:background="@drawable/register_button"/>
+            android:background="@drawable/register_button"
+            android:fontFamily="@font/main_font_b"/>
 
 
     </LinearLayout>
