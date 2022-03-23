@@ -24,7 +24,6 @@ import com.google.firebase.messaging.FirebaseMessaging
 
 class SplashActivity : AppCompatActivity() {
     val db = Firebase.firestore
-    val bannerModel by viewModels<BannerViewModel>()
     var token = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -119,7 +118,6 @@ class SplashActivity : AppCompatActivity() {
                     }
                     else {
                         intent = Intent(this, MainActivity::class.java)
-                        intent.putExtra("bannerList", bannerModel.uriList)
                         startActivity(intent)
                     }
                 }
