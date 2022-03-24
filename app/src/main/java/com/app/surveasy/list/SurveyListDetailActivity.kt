@@ -41,7 +41,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
 
         var webView : WebView = binding.surveyWebView
         val url : String = intent.getStringExtra("link")!!
-        val id : String = intent.getStringExtra("id",)!!
+        val id : Int = intent.getIntExtra("id",0)!!
         val index : Int = intent.getIntExtra("index",0)!!
         val reward : Int = intent.getIntExtra("reward",0)
         val title : String = intent.getStringExtra("title")!!
@@ -68,7 +68,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
 
 
         //progress 3인 설문이면 alert 창으로 넘기기
-        db.collection("AndroidSurvey").document(id).get()
+        db.collection("AndroidSurvey").document(id.toString()).get()
             .addOnSuccessListener { document ->
                 if(Integer.parseInt(document["progress"].toString())>2){
                     val intent = Intent(this,SurveyDoneAlertDialogActivity::class.java)

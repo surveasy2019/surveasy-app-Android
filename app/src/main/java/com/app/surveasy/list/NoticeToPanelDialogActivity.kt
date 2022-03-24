@@ -14,7 +14,7 @@ class NoticeToPanelDialogActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val link = intent.getStringExtra("link")!!
-        val id = intent.getStringExtra("id")!!
+        val id = intent.getIntExtra("id",0)!!
         val index = intent.getIntExtra("index",0)!!
         val notice = intent.getStringExtra("notice")!!
         val reward = intent.getIntExtra("reward",0)

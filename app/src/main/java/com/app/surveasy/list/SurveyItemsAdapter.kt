@@ -82,12 +82,12 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
 
         }
 
-        val detailList : SurveyItems = SurveyItems(
-            surveyList.get(position).id, surveyList.get(position).title,surveyList.get(position).target,
-            surveyList.get(position).uploadDate,surveyList.get(position).link,surveyList.get(position).spendTime,
-            surveyList.get(position).dueDate,surveyList.get(position).dueTimeTime,surveyList.get(position).reward,
-            surveyList.get(position).noticeToPanel,surveyList.get(position).progress
-        )
+//        val detailList : SurveyItems = SurveyItems(
+//            surveyList.get(position).id, surveyList.get(position).title,surveyList.get(position).target,
+//            surveyList.get(position).uploadDate,surveyList.get(position).link,surveyList.get(position).spendTime,
+//            surveyList.get(position).dueDate,surveyList.get(position).dueTimeTime,surveyList.get(position).reward,
+//            surveyList.get(position).noticeToPanel,surveyList.get(position).progress
+//        )
 
 //        holder.itemIcon.setOnClickListener{
 //            val intent = Intent(holder.itemView.context,SurveyListDetailDialogActivity::class.java)

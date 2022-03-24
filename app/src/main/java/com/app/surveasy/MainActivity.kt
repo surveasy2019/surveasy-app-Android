@@ -175,7 +175,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchCurrentUser(uid: String) :CurrentUser {
 
-        val docRef = db.collection("AndroidUser").document(uid)
+        val docRef = db.collection("AndroidUser").document(uid.toString())
 
         val userSurveyList = ArrayList<UserSurveyItem>()
 
@@ -183,9 +183,9 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 for(document in documents){
                     var item : UserSurveyItem = UserSurveyItem(
-                        document["id"] as String,
+                        Integer.parseInt(document["lastIDChecked"].toString()),
                         document["title"] as String?,
-                        Integer.parseInt(document["reward"]?.toString()),
+                        Integer.parseInt(document["panelReward"]?.toString()),
                         document["responseDate"] as String?,
                         document["isSent"] as Boolean?
                     )
@@ -237,7 +237,7 @@ class MainActivity : AppCompatActivity() {
 
     fun fetchSurvey() {
 
-        db.collection("surveyData")
+        db.collection("AndroidSurvey")
             // id를 운영진이 올리는 깨끗한 아이디로 설정하면 progress 문제 해결됨.
             .orderBy("lastIDChecked", Query.Direction.DESCENDING)
             .limit(10).get()
@@ -245,7 +245,7 @@ class MainActivity : AppCompatActivity() {
 
                 for (document in result) {
                     val item: SurveyItems = SurveyItems(
-                        Integer.parseInt(document["lastIDChecked"].toString()),
+                        Integer.parseInt(document["lastIDChecked"].toString()) as Int,
                         document["title"] as String,
                         document["target"] as String,
                         document["uploadDate"] as String?,
@@ -253,7 +253,7 @@ class MainActivity : AppCompatActivity() {
                         document["spendTime"] as String?,
                         document["dueDate"] as String?,
                         document["dueTimeTime"] as String?,
-                        100,
+                        Integer.parseInt(document["panelReward"].toString()),
                         document["noticeToPanel"] as String?,
                         Integer.parseInt(document["progress"].toString())
                     )
