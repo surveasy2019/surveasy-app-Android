@@ -4,13 +4,17 @@ import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.widget.MediaController
+import android.widget.VideoView
 import androidx.activity.viewModels
 import com.app.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.app.surveasy.home.banner.BannerViewModel
@@ -29,20 +33,32 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        val video :VideoView = findViewById(R.id.splash_video)
+        val uri : Uri = Uri.parse("android.resource://"+packageName+"/"+R.raw.splash_anim)
+        video.setVideoURI(uri)
+        video.setMediaController(MediaController(this))
+        video.requestFocus()
+        video.setOnPreparedListener{
+            video.start()
+        }
 
         if(isConnectInternet() != "null"){
             val handler = Handler(Looper.getMainLooper())
             handler.postDelayed({
 
                 finish()
-            },3000)
+                video.pause()
+                video.stopPlayback()
+            },4000)
         }else{
             val handler = Handler(Looper.getMainLooper())
             handler.postDelayed({
                 val intent = Intent(baseContext, NetworkAlertActivity::class.java)
                 startActivity(intent)
                 finish()
-            },3000)
+                video.pause()
+                video.stopPlayback()
+            },4000)
         }
 
 
