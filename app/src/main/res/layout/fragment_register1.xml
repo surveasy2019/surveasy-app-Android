@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="* 표시 항목은 추후 변경이 불가능하오니, 신중히 작성하여 \n주시길 바랍니다."
+                android:text="* 표시 항목은 추후 변경이 불가능하오니,\n신중히 작성하여주시길 바랍니다."
                 android:layout_gravity="center"
                 android:fontFamily="@font/main_font_r"
                 android:textStyle="normal"
@@ -48,22 +48,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="18dp">
+                android:layout_marginTop="18sp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="8sp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/main_font_sb"
                         android:text="*"
-                        android:textSize="15dp"
-                        android:paddingStart="5dp"
-                        android:layout_marginEnd="5dp"
+                        android:textSize="15sp"
+                        android:paddingStart="5sp"
+                        android:layout_marginEnd="5sp"
                         android:textColor="#0aab00"/>
 
                     <TextView
@@ -87,8 +87,8 @@
                     android:hint="실명을 입력하세요"
                     android:fontFamily="@font/main_font_m"
                     android:paddingStart="13sp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginEnd="5sp"
                     android:textSize="13sp"
                     android:textColorHint="#c9c9c9"
                     android:textColor="@color/black"
@@ -103,22 +103,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20sp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="8sp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/main_font_sb"
                         android:text="*"
-                        android:textSize="15dp"
-                        android:paddingStart="5dp"
-                        android:layout_marginEnd="5dp"
+                        android:textSize="15sp"
+                        android:paddingStart="5sp"
+                        android:layout_marginEnd="5sp"
                         android:textColor="#0aab00"/>
 
                     <TextView
@@ -142,8 +142,8 @@
                     android:hint="이메일 주소를 입력하세요"
                     android:fontFamily="@font/main_font_m"
                     android:paddingStart="13sp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginEnd="5sp"
                     android:textSize="13sp"
                     android:textColorHint="#c9c9c9"
                     android:textColor="@color/black"
@@ -158,7 +158,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="20sp"
                 >
 
                 <TextView
@@ -169,8 +169,8 @@
                     android:id="@+id/RegisterFragment1_PwText"
                     android:text="비밀번호"
                     android:textSize="13sp"
-                    android:paddingStart="5dp"
-                    android:layout_marginBottom="8dp"
+                    android:paddingStart="5sp"
+                    android:layout_marginBottom="8sp"
                     />
 
                 <EditText
@@ -181,8 +181,8 @@
                     android:hint="8자리 이상"
                     android:fontFamily="@font/main_font_m"
                     android:paddingStart="13sp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginEnd="5sp"
                     android:textSize="13sp"
                     android:textColorHint="#c9c9c9"
                     android:textColor="@color/black"
@@ -196,7 +196,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="20sp"
                 >
 
                 <TextView
@@ -207,8 +207,8 @@
                     android:id="@+id/RegisterFragment1_PwCheckText"
                     android:text="비밀번호 확인"
                     android:textSize="13sp"
-                    android:paddingStart="5dp"
-                    android:layout_marginBottom="8dp"
+                    android:paddingStart="5sp"
+                    android:layout_marginBottom="8sp"
                     />
 
                 <EditText
@@ -219,8 +219,8 @@
                     android:hint="비밀번호 확인"
                     android:fontFamily="@font/main_font_m"
                     android:paddingStart="13sp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginEnd="5sp"
                     android:textSize="13sp"
                     android:textColorHint="#c9c9c9"
                     android:textColor="@color/black"
@@ -234,7 +234,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="20sp"
                 >
 
                 <TextView
@@ -245,8 +245,8 @@
                     android:id="@+id/RegisterFragment1_PhoneNumberText"
                     android:text="휴대폰 번호"
                     android:textSize="13sp"
-                    android:paddingStart="5dp"
-                    android:layout_marginBottom="8dp"
+                    android:paddingStart="5sp"
+                    android:layout_marginBottom="8sp"
                     />
 
                 <EditText
@@ -257,8 +257,8 @@
                     android:hint="-제외 입력하세요"
                     android:fontFamily="@font/main_font_m"
                     android:paddingStart="13sp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginEnd="5sp"
                     android:textSize="13sp"
                     android:textColorHint="#c9c9c9"
                     android:textColor="@color/black"
@@ -272,22 +272,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20sp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10sp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/main_font_sb"
                         android:text="*"
-                        android:textSize="15dp"
-                        android:paddingStart="5dp"
-                        android:layout_marginEnd="5dp"
+                        android:textSize="15sp"
+                        android:paddingStart="5sp"
+                        android:layout_marginEnd="5sp"
                         android:textColor="#0aab00"/>
 
                     <TextView
@@ -306,39 +306,41 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingStart="5dp"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginTop="5sp">
 
                     <RadioButton
                         android:id="@+id/RegisterFragment1_RadioMale"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
                         android:button="@color/transparent"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginEnd="10sp"
                         android:background="@drawable/custom_radiobtn"
                          />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="50dp"
+                        android:layout_marginRight="50sp"
                         android:fontFamily="@font/main_font_sb"
                         android:textColor="@color/black"
-                        android:text="남성"/>
+                        android:text="남성"
+                        android:textSize="14sp"/>
                     <RadioButton
                         android:id="@+id/RegisterFragment1_RadioFemale"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
                         android:button="@color/transparent"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10sp"
                         android:background="@drawable/custom_radiobtn"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="30dp"
+                        android:layout_marginEnd="30sp"
                         android:fontFamily="@font/main_font_sb"
                         android:textColor="@color/black"
-                        android:text="여성"/>
+                        android:text="여성"
+                        android:textSize="14sp"/>
 
                 </RadioGroup>
 
@@ -349,22 +351,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="27dp">
+                android:layout_marginTop="27sp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="8sp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/main_font_sb"
                         android:text="*"
-                        android:textSize="15dp"
-                        android:paddingStart="5dp"
-                        android:layout_marginEnd="5dp"
+                        android:textSize="15sp"
+                        android:paddingStart="5sp"
+                        android:layout_marginEnd="5sp"
                         android:textColor="#0aab00"/>
 
                     <TextView
@@ -387,17 +389,17 @@
                         android:id="@+id/RegisterFragment1_Year"
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
-                        android:layout_margin="10dp" />
+                        android:layout_margin="10sp" />
                     <NumberPicker
                         android:id="@+id/RegisterFragment1_Month"
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
-                        android:layout_margin="10dp" />
+                        android:layout_margin="10sp" />
                     <NumberPicker
                         android:id="@+id/RegisterFragment1_Date"
                         android:layout_width="wrap_content"
                         android:layout_height="60dp"
-                        android:layout_margin="10dp" />
+                        android:layout_margin="10sp" />
 
                 </LinearLayout>
 
@@ -405,23 +407,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginTop="20sp"
+                    android:layout_marginBottom="10sp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginBottom="8dp">
+                        android:layout_marginBottom="8sp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/main_font_sb"
                             android:text="*"
-                            android:textSize="15dp"
-                            android:paddingStart="5dp"
-                            android:layout_marginEnd="5dp"
+                            android:textSize="15sp"
+                            android:paddingStart="5sp"
+                            android:layout_marginEnd="5sp"
                             android:textColor="#0aab00"/>
 
                         <TextView
@@ -442,9 +444,9 @@
                         android:spinnerMode="dropdown"
                         android:background="@drawable/custom_spinner"
                         android:fontFamily="@font/main_font_m"
-                        android:paddingStart="5dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
+                        android:paddingStart="5sp"
+                        android:layout_marginStart="5sp"
+                        android:layout_marginEnd="5sp"
                         android:textSize="12sp"
                         android:textColor="#c9c9c9" />
 
@@ -483,11 +485,12 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/RegisterFragment1_Btn"
-                android:layout_width="330sp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5sp"
                 android:text="다음"
                 android:textSize="15sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/main_font_b"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:backgroundTint="#0aab00"
