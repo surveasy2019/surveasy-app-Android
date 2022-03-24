@@ -32,6 +32,12 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
+import com.amplitude.api.Amplitude
+import com.amplitude.api.AmplitudeClient
+import com.amplitude.api.AmplitudeServerZone
+import org.json.JSONException
+import org.json.JSONObject
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,17 +55,32 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        Log.d(TAG, "########### ${intent.getStringArrayListExtra("bannerList")} ")
 
         fetchBanner()
         fetchCurrentUser(Firebase.auth.currentUser!!.uid)
         fetchSurvey()
         fetchContribution()
         fetchOpinion()
+
+
+
+        // Amplitude init
+//        val client = Amplitude.getInstance()
+//            .initialize(applicationContext, "ae22fbd62558adb236f993284cc62c71")
+//            .enableForegroundTracking(application)
+//        client.setServerZone(AmplitudeServerZone.EU)
+//
+//        client.logEvent("Button Clicked");
+//        val eventProperties = JSONObject()
+//        try {
+//            eventProperties.put("Hover Time", 10).put("prop_2", "value_2")
+//        } catch (e: JSONException) {
+//            System.err.println("Invalid JSON")
+//            e.printStackTrace()
+//        }
+//        client.logEvent("Button Clicked", eventProperties)
 
 
         // Current User

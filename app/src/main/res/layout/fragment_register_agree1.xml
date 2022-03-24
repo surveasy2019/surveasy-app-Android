@@ -31,7 +31,8 @@
                 android:textSize="18sp"
                 android:textColor="#0aab00"
                 android:lineSpacingExtra="3.3sp"
-                android:text="약관 동의"/>
+                android:text="약관 동의"
+                android:fontFamily="@font/main_font_m"/>
 
 
             <LinearLayout
@@ -53,13 +54,13 @@
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:textStyle="normal"
                     android:textSize="15sp"
                     android:textColor="#000000"
                     android:lineSpacingExtra="4.7sp"
                     android:text="모두 동의합니다."
                     android:checked="false"
+                    android:fontFamily="@font/main_font_m"
                     />
 
             </LinearLayout>
@@ -88,12 +89,12 @@
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:textStyle="normal"
                     android:textSize="15sp"
                     android:textColor="#000000"
                     android:lineSpacingExtra="4.7sp"
-                    android:text="(필수) 이용약관 동의"/>
+                    android:text="(필수) 이용약관 동의"
+                    android:fontFamily="@font/main_font_m"/>
                 <TextView
                     android:layout_marginLeft="12dp"
                     android:layout_width="wrap_content"
@@ -103,7 +104,8 @@
                     android:textStyle="normal"
                     android:textSize="15sp"
                     android:textColor="#818181"
-                    android:lineSpacingExtra="4.7sp"/>
+                    android:lineSpacingExtra="4.7sp"
+                    android:fontFamily="@font/main_font_m"/>
 
 
             </LinearLayout>
@@ -126,12 +128,13 @@
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:textStyle="normal"
                     android:textSize="15sp"
                     android:textColor="#000000"
                     android:lineSpacingExtra="4.7sp"
-                    android:text="(필수) 개인 정보 처리 방침 동의"/>
+                    android:text="(필수) 개인 정보 처리 방침 동의"
+                    android:fontFamily="@font/main_font_m"/>
+
                 <TextView
                     android:layout_marginLeft="12dp"
                     android:layout_width="wrap_content"
@@ -141,7 +144,8 @@
                     android:textStyle="normal"
                     android:textSize="15sp"
                     android:textColor="#818181"
-                    android:lineSpacingExtra="4.7sp"/>
+                    android:lineSpacingExtra="4.7sp"
+                    android:fontFamily="@font/main_font_m"/>
 
             </LinearLayout>
 
@@ -169,7 +173,8 @@
                     android:textSize="15sp"
                     android:textColor="#000000"
                     android:lineSpacingExtra="4.7sp"
-                    android:text="(선택) 마케팅/SNS 수신 동의" />
+                    android:text="(선택) 마케팅/SNS 수신 동의"
+                    android:fontFamily="@font/main_font_m"/>
 
 
             </LinearLayout>
@@ -198,14 +203,14 @@
             android:id="@+id/RegisterAgree1_Btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="다음"
-            android:textSize="15sp"
-            android:layout_marginHorizontal="5dp"
-            android:textStyle="bold"
             android:layout_gravity="center"
-            android:textColor="@color/white"
+            android:layout_marginHorizontal="5sp"
+            android:background="@drawable/register_button"
             android:backgroundTint="#0aab00"
-            android:background="@drawable/register_button" />
+            android:fontFamily="@font/main_font_b"
+            android:text="다음"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
 
     </LinearLayout>

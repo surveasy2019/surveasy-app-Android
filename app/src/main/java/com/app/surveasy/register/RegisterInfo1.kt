@@ -8,5 +8,6 @@ class RegisterInfo1(var uid: String?,
                     var phoneNumber: String?,
                     var gender: String?,
                     var birthDate: String?,
+                    var inflowPath: String?,
                     var marketingAgree: Boolean) {
 }
