@@ -78,8 +78,9 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_marginBottom="10dp"
                 android:id="@+id/dialog_editBtn"
-                android:layout_width="330sp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25sp"
                 android:text="다시 선택하기"
                 android:lineSpacingExtra="3.3sp"
                 android:fontFamily="@font/main_font_b"
@@ -90,8 +91,9 @@
             <androidx.appcompat.widget.AppCompatButton
 
                 android:id="@+id/dialog_sendBtn"
-                android:layout_width="330sp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25sp"
                 android:fontFamily="@font/main_font_b"
                 android:text="제출하기"
                 android:lineSpacingExtra="3.3sp"

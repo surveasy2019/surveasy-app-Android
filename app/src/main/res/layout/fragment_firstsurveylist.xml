@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#707070"
-            android:textSize="17sp"
+            android:textSize="14sp"
             android:fontFamily="@font/main_font_m"
             android:text="참여 가능한 설문만 보기"/>
 
@@ -104,7 +104,7 @@
                     android:id="@+id/ListItem_spendTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     android:fontFamily="@font/main_font_sb"
                     android:textColor="#5B5B5B"
                     app:layout_constraintStart_toStartOf="parent"

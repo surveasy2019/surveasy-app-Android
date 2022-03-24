@@ -29,7 +29,6 @@ class SurveyListFirstSurveyLast : AppCompatActivity() {
             onBackPressed()
         }
         binding.SurveyListFirstSurveyLastBtn.setOnClickListener {
-            finish()
             val intent : Intent = Intent(this,MainActivity::class.java)
             intent.putExtra("defaultFragment_list", true)
             intent.putExtra("defaultFragment_list_push", true)
@@ -38,7 +37,7 @@ class SurveyListFirstSurveyLast : AppCompatActivity() {
         }
 
         val spannableString = SpannableString(binding.colorRedText.text)
-        spannableString.setSpan(ForegroundColorSpan(Color.RED),64,79, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(ForegroundColorSpan(Color.RED),63,78, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.colorRedText.text = spannableString
 
         val spannableString2 = SpannableString(binding.colorGreenText.text)

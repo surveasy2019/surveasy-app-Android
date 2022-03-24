@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:text="다음과 같은 상황의 경우 응답비를 지급하지 않습니다."
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:layout_marginTop="5sp"
                     android:textStyle="normal"
                     android:layout_marginStart="25sp"
@@ -168,7 +168,7 @@
                         android:id="@+id/changeColor_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
+                        android:textSize="14sp"
                         android:textColor="@color/black"
                         android:textStyle="normal"
                         android:fontFamily="@font/main_font_m"/>

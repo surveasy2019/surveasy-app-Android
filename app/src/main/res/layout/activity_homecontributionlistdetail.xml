@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="15sp"
+            android:layout_marginBottom="14sp"
             android:paddingVertical="5sp"
             android:text="백신 접종의 혜택–위험 이해도 제고를 위한\n통계정보 시각화 3종의 개발과 효과 검증"
             android:textSize="17sp"

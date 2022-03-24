@@ -24,7 +24,7 @@ class ContributionItemsAdapter(val contributionList : ArrayList<ContributionItem
         if(contribution.title.length > 18) holder.contributionItemTitle.text = contribution.title.substring(0, 18) + "..."
         else { holder.contributionItemTitle.text = contribution.title }
 
-        if(contribution.institute.length > 20) holder.contributionItemInstitute.text = contribution.institute.substring(0, 20) + "..."
+        if(contribution.institute.length > 25) holder.contributionItemInstitute.text = contribution.institute.substring(0, 25) + "..."
         else { holder.contributionItemInstitute.text = contribution.institute }
 
         holder.contributionItemDate.text = contribution.date + " 설문 진행"

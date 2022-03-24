@@ -171,7 +171,8 @@
                     android:padding="20sp"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:visibility="gone"/>
+                    android:visibility="gone"
+                    android:fontFamily="@font/main_font_r"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/homeList_recyclerView"
@@ -225,15 +226,15 @@
             <FrameLayout
                 android:id="@+id/Home_Banner_Container"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="110sp"
                 android:layout_marginTop="10sp"
-                android:layout_marginBottom="10dp" >
+                android:layout_marginBottom="10sp" >
 
                 <ImageView
                     android:id="@+id/Home_BannerDefault"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/Home_BannerViewPager"

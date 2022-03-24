@@ -89,7 +89,7 @@ class HomeFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             val banner = CoroutineScope(Dispatchers.IO).async {
                 while (bannerModel.uriList.size == 0) {
-                    bannerDefault.visibility = View.VISIBLE
+                    //bannerDefault.visibility = View.VISIBLE
                 }
                 bannerDefault.visibility = View.INVISIBLE
                 bannerModel.uriList
@@ -117,11 +117,13 @@ class HomeFragment : Fragment() {
 
 
 
+
     //    login.setOnClickListener {
     //        //val intent = Intent(context, LoginActivity::class.java)
     //        val intent = Intent(context, FirstIntroduceScreenActivity::class.java)
     //        startActivity(intent)
     //    }
+
 
     //    register.setOnClickListener {
     //        val intent = Intent(context, RegisterActivity::class.java)
