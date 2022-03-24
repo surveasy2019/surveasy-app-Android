@@ -55,7 +55,7 @@ class SurveyListFirstSurveyActivity : AppCompatActivity() {
     }
 
     fun fin(){
-        finish()
+        finishAffinity()
     }
 
 }

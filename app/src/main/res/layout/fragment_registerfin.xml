@@ -23,8 +23,9 @@
             android:id="@+id/RegisterFinFragment_Text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="5sp"
             android:text="패널이"
-            android:textSize="30sp"
+            android:textSize="29sp"
             android:textColor="#000000"
             android:fontFamily="@font/main_font_b" />
 
@@ -36,7 +37,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="되신 것을 환영합니다!"
-        android:textSize="30sp"
+        android:textSize="29sp"
         android:textColor="#000000"
         android:fontFamily="@font/main_font_b" />
 

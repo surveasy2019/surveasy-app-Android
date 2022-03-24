@@ -84,7 +84,7 @@ class MyViewSettingActivity : AppCompatActivity() {
             builder.setTitle("로그아웃 하시겠습니까?")
                 .setCancelable(true)
                 .setPositiveButton("예"){ dialogInterface, it ->
-                    finish()
+                    finishAffinity()
                     Firebase.auth.signOut()
                     Log.d(TAG, "((((((((((( logout : ${Firebase.auth.currentUser?.uid}")
 

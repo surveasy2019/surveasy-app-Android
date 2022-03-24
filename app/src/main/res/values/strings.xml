@@ -562,6 +562,14 @@
         <item>기타</item>
     </string-array>
 
+    <string-array name="familyType">
+        <item>가구 형태를 선택해주세요</item>
+        <item>1인 가구</item>
+        <item>2인 가구</item>
+        <item>3인 가구</item>
+        <item>4인 가구 이상</item>
+    </string-array>
+
 
     // MyView
     <string name="MyView_UserRewardText">정산 금액</string>

@@ -52,6 +52,7 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
             Log.d(TAG, "**ENG*Eng** $engSurvey")
         }
 
+
         // military
         val militaryRadioGroup = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey1_MilitaryRadioGroup)
         militaryRadioGroup.setOnCheckedChangeListener { militaryRadioGroup, checked ->

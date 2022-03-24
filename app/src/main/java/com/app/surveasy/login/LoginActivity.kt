@@ -116,9 +116,9 @@ class LoginActivity : AppCompatActivity() {
                             .addOnSuccessListener { documents ->
                                 for(document in documents){
                                     var item : UserSurveyItem = UserSurveyItem(
-                                        document["id"] as String?,
+                                        Integer.parseInt(document["lastIDChecked"].toString()) as Int,
                                         document["title"] as String?,
-                                        Integer.parseInt(document["reward"]?.toString()) as Int?,
+                                        Integer.parseInt(document["panelReward"].toString()) as Int?,
                                         document["responseDate"] as String?,
                                         document["isSent"] as Boolean
                                     )
@@ -159,8 +159,7 @@ class LoginActivity : AppCompatActivity() {
                                 val intent_main : Intent = Intent(this, MainActivity::class.java)
                                 intent_main.putExtra("currentUser_login", currentUser)
                                 startActivity(intent_main)
-
-                                finish()
+                                finishAffinity()
                             }
 
                         }

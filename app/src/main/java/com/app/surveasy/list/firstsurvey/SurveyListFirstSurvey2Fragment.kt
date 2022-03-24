@@ -32,6 +32,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
     private var family : String? = null
     private var housingType: String? = null
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,6 +46,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         setCitySpinner(citySpinner, 0)
         //setPetSpinner(view)
         setHousingTypeSpinner(view)
+        setFamilyTypeSpinner(view)
 
         // pet
         val petRadioGroup = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey2_PetRadioGroup)
@@ -68,16 +70,16 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         }
 
         // family
-        val familyRadioGroup = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey2_FamilyRadioGroup)
-
-        familyRadioGroup.setOnCheckedChangeListener { familyRadioGroup, checked ->
-            when(checked) {
-                R.id.SurveyListFirstSurvey2_Family1 -> family = "1인가구"
-                R.id.SurveyListFirstSurvey2_Family2 -> family = "2인가구"
-                R.id.SurveyListFirstSurvey2_Family3 -> family = "3인가구"
-                R.id.SurveyListFirstSurvey2_Family4 -> family = "4인가구 이상"
-            }
-        }
+//        val familyRadioGroup = view.findViewById<RadioGroup>(R.id.SurveyListFirstSurvey2_FamilyRadioGroup)
+//
+//        familyRadioGroup.setOnCheckedChangeListener { familyRadioGroup, checked ->
+//            when(checked) {
+//                R.id.SurveyListFirstSurvey2_Family1 -> family = "1인가구"
+//                R.id.SurveyListFirstSurvey2_Family2 -> family = "2인가구"
+//                R.id.SurveyListFirstSurvey2_Family3 -> family = "3인가구"
+//                R.id.SurveyListFirstSurvey2_Family4 -> family = "4인가구 이상"
+//            }
+//        }
 
         val surveyListFirstSurvey2Btn : Button = view.findViewById(R.id.SurveyListFirstSurvey2_Btn)
         surveyListFirstSurvey2Btn.setOnClickListener{
@@ -100,11 +102,11 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         else if(married == null) {
             Toast.makeText(context, "혼인 여부를 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
-        else if(family == null) {
+        else if(family == null || family == "가구 형태를 선택해주세요") {
             Toast.makeText(context, "가구 형태를 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
         else if(housingType == null || housingType == "주거 형태를 선택해주세요") {
-            Toast.makeText(context, "주거 형태를 선택해주세요", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "주거 형태를 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
         else {
             firstSurveyModel.firstSurvey.district = district
@@ -143,10 +145,10 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
 
         val date = year + "-" + month + "-" + day
         val firstSurvey = hashMapOf(
-            "id" to "0",
+            "lastIDChecked" to "0",
             "isSent" to false,
             "responseDate" to date,
-            "reward" to 200,
+            "panelReward" to 200,
             "title" to "패널 기본 정보 조사"
         )
 
@@ -269,6 +271,20 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         housingTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 housingType = housingTypeList[position]
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+    }
+
+    private fun setFamilyTypeSpinner(view: View) {
+        val familyTypeList = resources.getStringArray(R.array.familyType)
+        val familyTypeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, familyTypeList)
+        val familyTypeSpinner = view.findViewById<Spinner>(R.id.SurveyListFirstSurvey2_FamilyTypeSpinner)
+        familyTypeSpinner.adapter = familyTypeAdapter
+        familyTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                family = familyTypeList[position]
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }

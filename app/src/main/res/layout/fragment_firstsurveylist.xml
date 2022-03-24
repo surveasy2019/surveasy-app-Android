@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:textColor="#707070"
             android:textSize="17sp"
-            android:fontFamily="@font/main_font_sb"
+            android:fontFamily="@font/main_font_m"
             android:text="참여 가능한 설문만 보기"/>
 
 

@@ -150,8 +150,8 @@
 
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_EngSurvey_O"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:button="@color/transparent"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/custom_radiobtn"
@@ -160,14 +160,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
+                    android:id="@+id/checkText1"
                     android:text="희망함"
                     android:fontFamily="@font/main_font_sb"
                     android:textColor="@color/black"/>
 
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_EngSurvey_X"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:button="@color/transparent"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/custom_radiobtn"
@@ -177,6 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="희망하지 않음"
+                    android:id="@+id/checkText2"
                     android:textSize="16sp"
                     android:fontFamily="@font/main_font_sb"
                     android:textColor="@color/black"/>
@@ -214,8 +216,8 @@
 
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_MilitaryDone"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:button="@color/transparent"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/custom_radiobtn"
@@ -225,36 +227,39 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="군필"
+                    android:id="@+id/checkText3"
                     android:fontFamily="@font/main_font_sb"
                     android:textColor="@color/black"/>
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_MilitaryYet"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:button="@color/transparent"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/custom_radiobtn"
-                    android:layout_marginStart="40dp" />
+                    android:layout_marginStart="35dp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="미필"
+                    android:id="@+id/checkText4"
                     android:fontFamily="@font/main_font_sb"
                     android:textColor="@color/black"/>
                 <RadioButton
                     android:id="@+id/SurveyListFirstSurvey1_MilitaryNA"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:button="@color/transparent"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/custom_radiobtn"
-                    android:layout_marginStart="40dp" />
+                    android:layout_marginStart="35dp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="해당사항 없음"
+                    android:id="@+id/checkText5"
                     android:fontFamily="@font/main_font_sb"
                     android:textColor="@color/black"/>
 
