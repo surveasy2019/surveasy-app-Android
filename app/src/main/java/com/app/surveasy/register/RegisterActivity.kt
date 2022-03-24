@@ -52,7 +52,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun fin(){
-        finish()
+        finishAffinity()
     }
 
     fun toolbarHide(){

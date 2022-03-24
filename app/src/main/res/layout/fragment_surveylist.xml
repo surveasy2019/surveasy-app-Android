@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="50sp"
     android:background="#FFFFFF">
 
     <TextView
@@ -35,8 +36,8 @@
 
         <Spinner
             android:id="@+id/Surveylist_FilterSpinner"
-            android:layout_width="70dp"
-            android:layout_height="30dp"
+            android:layout_width="70sp"
+            android:layout_height="30sp"
             android:spinnerMode="dialog"
             android:background="@drawable/custom_filter"
             android:fontFamily="@font/main_font_sb"
@@ -71,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#707070"
-                android:textSize="17sp"
+                android:textSize="14sp"
                 android:fontFamily="@font/main_font_r"
                 android:text="참여 가능한 설문만 보기"/>
 
@@ -85,9 +86,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerContainer"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="match_parent"
         android:paddingStart="5dp"
-        android:paddingEnd="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

@@ -30,7 +30,7 @@ class RegisterAgree2Fragment : Fragment() {
         val registerAgree2 : Button = view.findViewById(R.id.RegisterAgree2_Btn)
         val textColor : TextView = view.findViewById(R.id.changeColor_text)
 
-        val sen = "불성실한 응답 적발 시, 패널 활동이 강제중지 되며\n응답비는 지급되지 않습니다."
+        val sen = "불성실한 응답 적발 시, 패널 활동이 강제중지 되며 응답비는 지급되지 않습니다."
 
         val spannableString = SpannableString(sen)
         spannableString.setSpan(ForegroundColorSpan(Color.RED),21,26,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)

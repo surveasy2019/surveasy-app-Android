@@ -30,6 +30,7 @@ class RegisterFinFragment : Fragment() {
             val intent : Intent = Intent(context, LoginActivity::class.java)
             (activity as RegisterActivity).fin()
             startActivity(intent)
+
         }
 
         return view

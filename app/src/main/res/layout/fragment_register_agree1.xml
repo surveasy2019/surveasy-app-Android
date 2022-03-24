@@ -42,12 +42,12 @@
                 android:layout_marginBottom="15dp">
 
                 <CheckBox
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
                     android:id="@+id/registerAgree1_agree1"
                     android:button="@color/transparent"
                     android:background="@drawable/custom_checkbox"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="10sp"
                     android:checked="false"
                     />
                 <TextView
@@ -77,8 +77,8 @@
                 android:layout_marginBottom="25dp">
 
                 <CheckBox
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
                     android:id="@+id/registerAgree1_agree2"
                     android:button="@color/transparent"
                     android:background="@drawable/custom_checkbox"
@@ -116,8 +116,8 @@
                 android:layout_marginBottom="25dp">
 
                 <CheckBox
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
                     android:id="@+id/registerAgree1_agree3"
                     android:button="@color/transparent"
                     android:background="@drawable/custom_checkbox"
@@ -156,8 +156,8 @@
                 android:layout_marginBottom="20dp">
 
                 <CheckBox
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
                     android:id="@+id/registerAgree1_agree4"
                     android:button="@color/transparent"
                     android:background="@drawable/custom_checkbox"

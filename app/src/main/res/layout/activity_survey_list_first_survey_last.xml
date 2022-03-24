@@ -39,14 +39,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingHorizontal="50dp">
+            android:paddingHorizontal="35sp">
 
             <TextView
                 android:id="@+id/colorRed_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="설문 참여 후 아래 안내대로 응답 인증을 해주세요.\n\n응답 인증을 하지 않거나 잘못된 캡쳐화면을 \n업로드한 경우, 응답비가 지급되지 않습니다."
-                android:fontFamily="@font/main_font_sb"
+                android:text="설문 참여 후 아래 안내대로 응답 인증을 해주세요.\n\n응답 인증을 하지 않거나\n잘못된 캡쳐화면을 업로드한 경우,\n응답비가 지급되지 않습니다."
+                android:fontFamily="@font/main_font_m"
                 android:textSize="15sp"
                 android:textColor="@color/black"
                 />
@@ -57,22 +57,22 @@
                 android:src="@drawable/custom_smallbar"
                 android:layout_gravity="center"
                 android:layout_marginBottom="30dp"/>
+
             <TextView
                 android:id="@+id/colorGreen_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1. 설문이 완료되었다는 화면을 캡쳐 해주세요."
                 android:fontFamily="@font/main_font_sb"
-                android:textSize="15sp"
+                android:text="1. 설문이 완료되었다는 화면을 캡쳐 해주세요."
                 android:textColor="@color/black"
-                />
+                android:textSize="13.5sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="예시 캡쳐 화면 )"
                 android:fontFamily="@font/main_font_sb"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textColor="#c9c9c9"
                 android:layout_marginStart="65dp"
                 android:layout_marginTop="10dp"
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:text="2. 상단의 ‘OOO원 받으러 가기’ 클릭"
                 android:fontFamily="@font/main_font_sb"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="15dp"
                 />
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:text="3. 1번에서 캡쳐한 사진 업로드 및 제출"
                 android:fontFamily="@font/main_font_sb"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="50dp"
@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="확인했습니다"
-                android:layout_marginHorizontal="5dp"
+                android:layout_marginHorizontal="5sp"
                 android:textSize="15sp"
                 android:layout_marginBottom="30dp"
                 android:layout_gravity="center"
