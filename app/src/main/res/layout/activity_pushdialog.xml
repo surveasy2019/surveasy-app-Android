@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="320dp"
+    android:layout_height="match_parent"
+    android:elevation="5sp"
+    android:background="@drawable/custom_dialog"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="310dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30sp"
+            android:layout_marginBottom="12sp"
+            android:src="@drawable/checkimg" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="16sp"
+            android:text="PUSH 알림 안내"
+            android:textColor="#0aab00"
+            android:textSize="20sp"
+            android:fontFamily="@font/main_font_m" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="푸쉬 알림을 "
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/main_font_r" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="ON"
+                android:textSize="14sp"
+                android:textColor="#0aab00"
+                android:fontFamily="@font/main_font_b" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text=" 하셔야"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/main_font_r" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="설문이 올라왔을 때 놓치지 않고 \n바로 참여할 수 있어요 !"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/main_font_r" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:gravity="center"
+            android:layout_marginTop="30sp"
+            android:layout_marginBottom="20sp"
+            android:orientation="horizontal" >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/PushNotice_OFFBtn"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:layout_marginLeft="24sp"
+                android:layout_marginRight="6sp"
+                android:text="OFF 하기"
+                android:textColor="#0aab00"
+                android:fontFamily="@font/main_font_b"
+                android:background="@drawable/rectangle_white_button" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/PushNotice_ONBtn"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_weight="1"
+                android:layout_marginLeft="6sp"
+                android:layout_marginRight="24sp"
+                android:text="ON 하기"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/main_font_b"
+                android:background="@drawable/rectangle_green_button" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

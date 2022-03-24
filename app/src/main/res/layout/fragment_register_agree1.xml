@@ -182,9 +182,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
+                android:textSize="11.5sp"
                 android:layout_marginStart="30sp"
-                android:id="@+id/SNSAgree_text" />
+                android:id="@+id/SNSAgree_text"
+                android:fontFamily="@font/main_font_r"/>
 
         </LinearLayout>
 

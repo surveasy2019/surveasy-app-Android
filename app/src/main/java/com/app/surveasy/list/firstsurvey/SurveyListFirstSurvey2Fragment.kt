@@ -116,10 +116,8 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
 
             firestore()
 
-            val intent_main : Intent = Intent(context, SurveyListFirstSurveyLast::class.java)
-            intent_main.putExtra("defaultFragment_list", true)
-
-            startActivity(intent_main)
+            val intent : Intent = Intent(context, SurveyListFirstSurveyLast::class.java)
+            startActivity(intent)
             (activity as SurveyListFirstSurveyActivity).fin()
         }
 

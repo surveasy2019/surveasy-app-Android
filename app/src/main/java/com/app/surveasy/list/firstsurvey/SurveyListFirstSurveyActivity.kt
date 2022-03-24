@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import com.app.surveasy.MainActivity
 import com.app.surveasy.R
 import com.app.surveasy.databinding.ActivitySurveylistfirstsurveyBinding
 import com.app.surveasy.login.CurrentUser
@@ -40,6 +41,7 @@ class SurveyListFirstSurveyActivity : AppCompatActivity() {
         binding.ToolbarFirstSurvey.setNavigationOnClickListener {
             onBackPressed()
         }
+
 
         val transaction = supportFragmentManager.beginTransaction()
         setContentView(binding.root)
