@@ -43,6 +43,7 @@ class MyViewContactActivity : AppCompatActivity() {
             clipboardManager.setPrimaryClip(clipData)
 
             Toast.makeText(this,"이메일 주소가 복사되었습니다", Toast.LENGTH_LONG).show()
+
         }
 
     }

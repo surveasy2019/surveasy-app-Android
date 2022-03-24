@@ -32,18 +32,18 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivitySurveyproofdialogBinding.inflate(layoutInflater)
-        val id :String = intent.getStringExtra("id")!!
+        val id :Int = intent.getIntExtra("id",0)!!
 
         setContentView(binding.root)
 
         //설문 정보 가져와서 저장해두기
-        db.collection("AndroidSurvey").document(id)
+        db.collection("AndroidSurvey").document(id.toString())
             .get().addOnSuccessListener { document ->
 
                 val item: UserSurveyItem = UserSurveyItem(
-                    document["id"] as String,
+                    Integer.parseInt(document["lastIDChecked"].toString()) as Int,
                     document["title"] as String?,
-                    Integer.parseInt(document["reward"].toString()),
+                    Integer.parseInt(document["panelReward"].toString()),
                     document["uploadDate"] as String?,
                     false
                 )
@@ -97,7 +97,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
     private fun updateList(){
 
         // AndroidUser-UserSurveyList에 참여 설문 추가
-        val id: String = intent.getStringExtra("id")!!
+        val id: Int = intent.getIntExtra("id",0)!!
 
         val c = Calendar.getInstance()
 
@@ -110,15 +110,15 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         val date = year + "-" + month + "-" + day
 
         val list = hashMapOf(
-            "id" to thisSurveyInfo.get(0).id,
+            "lastIDChecked" to id,
             "title" to thisSurveyInfo.get(0).title,
-            "reward" to thisSurveyInfo.get(0).reward,
+            "panelReward" to thisSurveyInfo.get(0).reward,
             "responseDate" to date,
             "isSent" to false
 
         )
         db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
-            .collection("UserSurveyList").document(id)
+            .collection("UserSurveyList").document(id.toString())
             .set(list).addOnSuccessListener {
                 //Toast.makeText(this,"#####info save success", Toast.LENGTH_LONG).show()
             }.addOnFailureListener {
@@ -184,9 +184,9 @@ class SurveyProofDialogActivity: AppCompatActivity() {
     //firebase storage upload
     private fun uploadStorage(view: View){
         val timestamp = SimpleDateFormat("yyyyMMdd_HHmm").format(Date())
-        val id: String = intent.getStringExtra("id")!!
+        val id: Int = intent.getIntExtra("id",0)!!
         val imgName = Firebase.auth.currentUser!!.uid+"__"+timestamp
-        val storageRef = storage.reference.child(id).child(imgName)
+        val storageRef = storage.reference.child(id.toString()).child(imgName)
         val uploadTask = storageRef.putFile(uriPhoto!!)
 
         uploadTask.addOnSuccessListener {
