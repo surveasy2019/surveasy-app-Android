@@ -15,7 +15,7 @@
                 <shape android:shape="oval">
                     <stroke
                         android:color="#4da830"
-                        android:width="3sp"/>
+                        android:width="2sp"/>
                     <corners android:radius="100dp"/>
                     <solid android:color="@color/white"/>
                 </shape>
