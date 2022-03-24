@@ -71,8 +71,8 @@ class HomeFragment : Fragment() {
         val current_banner: TextView = view.findViewById(R.id.textView_current_banner)
         val total_banner: TextView = view.findViewById(R.id.textView_total_banner)
 //        val springDotsIndicator: SpringDotsIndicator = view.findViewById(R.id.Home_spring_dots_indicator)
-        val register: Button = view.findViewById(R.id.HomeToRegister)
-        val login: Button = view.findViewById(R.id.HomeToLogin)
+        //val register: Button = view.findViewById(R.id.HomeToRegister)
+        //val login: Button = view.findViewById(R.id.HomeToLogin)
         val greetingText: TextView = view.findViewById(R.id.Home_GreetingText)
         val surveyNum: TextView = view.findViewById(R.id.Home_SurveyNum)
         val totalReward: TextView = view.findViewById(R.id.Home_RewardAmount)
@@ -117,17 +117,19 @@ class HomeFragment : Fragment() {
 
 
 
-        login.setOnClickListener {
-            //val intent = Intent(context, LoginActivity::class.java)
-            val intent = Intent(context, FirstIntroduceScreenActivity::class.java)
-            startActivity(intent)
-        }
 
-        register.setOnClickListener {
-            val intent = Intent(context, SurveyListFirstSurveyLast::class.java)
+    //    login.setOnClickListener {
+    //        //val intent = Intent(context, LoginActivity::class.java)
+    //        val intent = Intent(context, FirstIntroduceScreenActivity::class.java)
+    //        startActivity(intent)
+    //    }
 
-            startActivity(intent)
-        }
+
+    //    register.setOnClickListener {
+    //        val intent = Intent(context, RegisterActivity::class.java)
+    //
+     //       startActivity(intent)
+    //    }
 
 
         moreBtn.setOnClickListener {
