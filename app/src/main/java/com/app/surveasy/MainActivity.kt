@@ -35,6 +35,7 @@ import com.google.firebase.storage.StorageReference
 import com.amplitude.api.Amplitude
 import com.amplitude.api.AmplitudeClient
 import com.amplitude.api.AmplitudeServerZone
+import com.app.surveasy.list.firstsurvey.PushDialogActivity
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -103,13 +104,26 @@ class MainActivity : AppCompatActivity() {
         // Determine Fragment of MainActivity
         val transaction = supportFragmentManager.beginTransaction()
         var defaultFrag_list = false
+        var defaultFrag_list_push = false
 
         defaultFrag_list = intent.getBooleanExtra("defaultFragment_list", false)
+        defaultFrag_list_push = intent.getBooleanExtra("defaultFragment_list_push", false)
+
         if(defaultFrag_list) {
             navColor_On(binding.NavListImg, binding.NavListText)
             navColor_Off(binding.NavHomeImg, binding.NavHomeText, binding.NavMyImg, binding.NavMyText)
             setContentView(binding.root)
+
             transaction.add(R.id.MainView, SurveyListFragment()).commit()
+
+            if(defaultFrag_list_push) {
+
+                val intent = Intent(this, PushDialogActivity::class.java)
+                startActivity(intent)
+
+                defaultFrag_list_push = !defaultFrag_list_push
+            }
+
             defaultFrag_list = !defaultFrag_list
         }
         else {

@@ -29,7 +29,10 @@ class SurveyListFirstSurveyLast : AppCompatActivity() {
             onBackPressed()
         }
         binding.SurveyListFirstSurveyLastBtn.setOnClickListener {
+            finish()
             val intent : Intent = Intent(this,MainActivity::class.java)
+            intent.putExtra("defaultFragment_list", true)
+            intent.putExtra("defaultFragment_list_push", true)
             startActivity(intent)
             finish()
         }

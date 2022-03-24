@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,6 +30,7 @@ import com.app.surveasy.home.banner.BannerViewModel
 import com.app.surveasy.home.banner.BannerViewPagerAdapter
 import com.app.surveasy.home.contribution.ContributionItemsAdapter
 import com.app.surveasy.home.contribution.HomeContributionViewModel
+import com.app.surveasy.list.firstsurvey.PushDialogActivity
 import com.app.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
 import com.app.surveasy.list.firstsurvey.SurveyListFirstSurveyLast
 import com.bumptech.glide.Glide
@@ -89,6 +91,7 @@ class HomeFragment : Fragment() {
                 while (bannerModel.uriList.size == 0) {
                     bannerDefault.visibility = View.VISIBLE
                 }
+                bannerDefault.visibility = View.INVISIBLE
                 bannerModel.uriList
 
             }.await()

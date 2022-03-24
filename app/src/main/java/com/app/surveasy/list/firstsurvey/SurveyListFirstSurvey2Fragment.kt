@@ -118,10 +118,8 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
 
             firestore()
 
-            val intent_main : Intent = Intent(context, SurveyListFirstSurveyLast::class.java)
-            intent_main.putExtra("defaultFragment_list", true)
-
-            startActivity(intent_main)
+            val intent : Intent = Intent(context, SurveyListFirstSurveyLast::class.java)
+            startActivity(intent)
             (activity as SurveyListFirstSurveyActivity).fin()
         }
 
@@ -147,10 +145,10 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
 
         val date = year + "-" + month + "-" + day
         val firstSurvey = hashMapOf(
-            "id" to "0",
+            "lastIDChecked" to "0",
             "isSent" to false,
             "responseDate" to date,
-            "reward" to 200,
+            "panelReward" to 200,
             "title" to "패널 기본 정보 조사"
         )
 
