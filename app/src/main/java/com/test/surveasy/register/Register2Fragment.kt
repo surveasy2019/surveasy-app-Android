@@ -103,7 +103,8 @@ class Register2Fragment : Fragment() {
                                     "pushOn" to false,
                                     "reward_current" to 0,
                                     "reward_total" to 0,
-                                    "marketingAgree" to registerModel.registerInfo1.marketingAgree
+                                    "marketingAgree" to registerModel.registerInfo1.marketingAgree,
+                                    "autoLogin" to true
                                 )
                                 db.collection("AndroidUser").document(firebaseUID)
                                     .set(user).addOnSuccessListener { documentReference ->

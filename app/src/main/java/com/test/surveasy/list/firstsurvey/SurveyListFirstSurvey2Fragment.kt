@@ -201,7 +201,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 district = districtList[position]
                 if(position == 8) {
-                    citySpinner.visibility = View.INVISIBLE
+                    citySpinner.visibility = View.GONE
                     city = ""
                 }
                 else {

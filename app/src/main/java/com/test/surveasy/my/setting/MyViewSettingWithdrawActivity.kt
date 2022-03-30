@@ -44,20 +44,23 @@ class MyViewSettingWithdrawActivity : AppCompatActivity() {
         val reward_current = intent.getIntExtra("reward_current", 0)
         binding.MyViewSettingWithdrawCurrentReward.text = "현재 정산 예정 금액 ${reward_current}원"
 
-        // Set CheckboxListeners
-        binding.MyViewSettingWithdrawReason1.setOnCheckedChangeListener(CheckboxListener())
-        binding.MyViewSettingWithdrawReason2.setOnCheckedChangeListener(CheckboxListener())
-        binding.MyViewSettingWithdrawReason3.setOnCheckedChangeListener(CheckboxListener())
-        binding.MyViewSettingWithdrawReason4.setOnCheckedChangeListener(CheckboxListener())
-        binding.MyViewSettingWithdrawReason5.setOnCheckedChangeListener(CheckboxListener())
-
-
 
 
         // Withdraw
         builder = AlertDialog.Builder(this)
         binding.MyViewSettingWithdrawWithdrawBtn.setOnClickListener{
             var pw = binding.MyViewSettingWithdrawPwInput.text.toString()
+
+            // Set CheckboxListeners
+            binding.MyViewSettingWithdrawReason1.setOnCheckedChangeListener(CheckboxListener())
+            binding.MyViewSettingWithdrawReason2.setOnCheckedChangeListener(CheckboxListener())
+            binding.MyViewSettingWithdrawReason3.setOnCheckedChangeListener(CheckboxListener())
+            binding.MyViewSettingWithdrawReason4.setOnCheckedChangeListener(CheckboxListener())
+            binding.MyViewSettingWithdrawReason5.setOnCheckedChangeListener(CheckboxListener())
+
+            for(i in checked) {
+                if(i != null) valid_reason = true
+            }
 
             if(!valid_reason) {
                 Toast.makeText(this, "탈퇴 사유를 선택해주세요.", Toast.LENGTH_SHORT).show()
@@ -153,9 +156,7 @@ class MyViewSettingWithdrawActivity : AppCompatActivity() {
                     else checked[4]  = null
             }
 
-            for(i in checked) {
-                if(i != null) valid_reason = true
-            }
+
 
         }
     }
