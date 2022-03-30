@@ -17,6 +17,9 @@ import com.test.surveasy.login.CurrentUserViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class SurveyListFragment() : Fragment() {
@@ -154,6 +157,8 @@ class SurveyListFragment() : Fragment() {
         var boolList = ArrayList<Boolean>(model.surveyInfo.size)
         var num: Int = 0
 
+
+
         //survey list item 크기와 같은 boolean type list 만들기. 모두 false 로
         while (num < model.surveyInfo.size) {
             boolList.add(false)
@@ -169,9 +174,19 @@ class SurveyListFragment() : Fragment() {
                     index = -1
                     for (survey in model.surveyInfo) {
                         index++
+                        val dueDate = survey.dueDate + " " + survey.dueTimeTime + ":00"
+                        val sf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                        val date = sf.parse(dueDate)
+                        val now = Calendar.getInstance()
+                        val calDate = (date.time - now.time.time) / (60 * 60 * 1000)
+
+                        if (calDate < 0) {
+                            boolList[index] = true
+                        }
+
                         if (survey.id.equals(done.id)) {
                             boolList[index] = true
-                        }else if(survey.progress >=3){
+                        } else if (survey.progress >= 3) {
                             boolList[index] = true
                         }
                     }
