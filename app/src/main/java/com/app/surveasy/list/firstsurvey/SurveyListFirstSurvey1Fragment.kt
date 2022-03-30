@@ -148,6 +148,8 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
         universityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         val universitySpinner = view.findViewById<Spinner>(R.id.spinner_view)
+        universitySpinner.prompt = "대학명을 선택해주세요"
+
         universitySpinner.adapter = universityAdapter
 
         universitySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

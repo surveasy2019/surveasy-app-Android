@@ -225,6 +225,7 @@
         <item>에브리타임</item>
         <item>인스타그램</item>
         <item>지인 추천</item>
+        <item>기타</item>
     </string-array>
 
 
@@ -599,6 +600,7 @@
     <string name="MyViewSettingWithdraw_WithdrawBtn">탈퇴하기</string>
 
     <string-array name="university">
+        <item>대학명을 선택해주세요</item>
         <item>가야대학교(고령)</item>
         <item>가야대학교(김해)</item>
         <item>가천대학교</item>

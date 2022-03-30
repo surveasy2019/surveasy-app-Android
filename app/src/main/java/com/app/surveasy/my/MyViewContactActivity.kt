@@ -30,7 +30,7 @@ class MyViewContactActivity : AppCompatActivity() {
         binding.ToolbarMyViewContact.setNavigationOnClickListener { onBackPressed()  }
 
         binding.MyViewContactKakaoTalk.setOnClickListener {
-            val url = "https://accounts.kakao.com/login?continue=http%3A%2F%2Fpf.kakao.com%2F_xfialK%2Fchat"
+            val url = "http://pf.kakao.com/_exfmwb"
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(url)
             startActivity(i)

@@ -33,7 +33,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/main_font_r"
                     android:textStyle="normal"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     android:textColor="#707070"
                     android:lineSpacingExtra="2.7sp"/>
 
