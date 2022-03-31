@@ -18,6 +18,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.test.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
+import com.test.surveasy.register.AddInfoRegisterAgree1Activity
+import com.test.surveasy.register.AddPanelInfoActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -116,9 +118,46 @@ class LoginActivity : AppCompatActivity() {
                                 for(document in result){   if(document.id == uid) webUser++ }
 
                                 if(webUser==0){
-                                    val intent_main : Intent = Intent(this, RegisterActivity::class.java)
-                                    startActivity(intent_main)
-                                    finishAffinity()
+                                    val docRef = db.collection("userData").document(uid)
+
+                                    //고객 데이터에서 중복 항목 받아오기
+                                    docRef.get().addOnCompleteListener { snapshot ->
+                                        if(snapshot != null) {
+                                            val currentUser : CurrentUser = CurrentUser(
+                                                uid,
+                                                null,
+                                                snapshot.result["name"].toString(),
+                                                snapshot.result["email"].toString(),
+                                                snapshot.result["phoneNumber"].toString(),
+                                                null,
+                                                null,
+                                                null,
+                                                null,
+                                                null,
+                                                null,
+                                                false,
+                                                autoLogin,
+                                                0,
+                                                0,
+                                                false,
+                                                null
+                                            )
+                                            userModel.currentUser = currentUser
+                                            Log.d(TAG, "GGGGGGGG fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
+                                            Log.d(TAG, "FFFFFFFF fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
+
+
+                                            //로그인 한 모든사람에게 알림 전송
+                                            FirebaseMessaging.getInstance().subscribeToTopic("all")
+
+                                            val intent_main : Intent = Intent(this, AddInfoRegisterAgree1Activity::class.java)
+                                            intent_main.putExtra("currentUser_login", currentUser)
+                                            startActivity(intent_main)
+                                            finishAffinity()
+                                        }
+
+                                    }
+
                                 }else{
                                     val docRef = db.collection("AndroidUser").document(uid)
                                     docRef.update("autoLogin", autoLogin)

@@ -17,6 +17,15 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".register.AddPanelInfoFinActivity"
+            android:exported="true" />
+        <activity
+            android:name=".register.AddInfoRegisterAgree2Activity"
+            android:exported="true" />
+        <activity
+            android:name=".register.AddInfoRegisterAgree1Activity"
+            android:exported="true" />
+        <activity
             android:name=".register.AddPanelInfoActivity"
             android:exported="true" />
         <activity
