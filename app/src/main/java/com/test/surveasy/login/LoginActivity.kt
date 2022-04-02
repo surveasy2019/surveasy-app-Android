@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.test.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -26,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
     val db = Firebase.firestore
     val userModel by viewModels<CurrentUserViewModel>()
     var autoLogin: Boolean = true
+    var webUser = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,64 +109,81 @@ class LoginActivity : AppCompatActivity() {
                         val user = auth.currentUser
                         val uid = user!!.uid.toString()
 
-                        val docRef = db.collection("AndroidUser").document(uid)
-                        docRef.update("autoLogin", autoLogin)
 
-                        val userSurveyList = ArrayList<UserSurveyItem>()
+                        db.collection("AndroidUser").get()
+                            .addOnSuccessListener { result ->
 
-                        docRef.collection("UserSurveyList").get()
-                            .addOnSuccessListener { documents ->
-                                for(document in documents){
-                                    var item : UserSurveyItem = UserSurveyItem(
-                                        Integer.parseInt(document["lastIDChecked"].toString()) as Int,
-                                        document["title"] as String?,
-                                        Integer.parseInt(document["panelReward"].toString()) as Int?,
-                                        document["responseDate"] as String?,
-                                        document["isSent"] as Boolean
-                                    )
-                                    userSurveyList.add(item)
+                                for(document in result){   if(document.id == uid) webUser++ }
 
+                                if(webUser==0){
+                                    val intent_main : Intent = Intent(this, RegisterActivity::class.java)
+                                    startActivity(intent_main)
+                                    finishAffinity()
+                                }else{
+                                    val docRef = db.collection("AndroidUser").document(uid)
+                                    docRef.update("autoLogin", autoLogin)
+
+                                    val userSurveyList = ArrayList<UserSurveyItem>()
+
+                                    docRef.collection("UserSurveyList").get()
+                                        .addOnSuccessListener { documents ->
+                                            for(document in documents){
+                                                var item : UserSurveyItem = UserSurveyItem(
+                                                    Integer.parseInt(document["lastIDChecked"].toString()) as Int,
+                                                    document["title"] as String?,
+                                                    Integer.parseInt(document["panelReward"].toString()) as Int?,
+                                                    document["responseDate"] as String?,
+                                                    document["isSent"] as Boolean
+                                                )
+                                                userSurveyList.add(item)
+
+                                            }
+                                        }
+
+                                    docRef.get().addOnCompleteListener { snapshot ->
+                                        if(snapshot != null) {
+                                            val currentUser : CurrentUser = CurrentUser(
+                                                snapshot.result["uid"].toString(),
+                                                snapshot.result["fcmToken"].toString(),
+                                                snapshot.result["name"].toString(),
+                                                snapshot.result["email"].toString(),
+                                                snapshot.result["phone"].toString(),
+                                                snapshot.result["gender"].toString(),
+                                                snapshot.result["birthDate"].toString(),
+                                                snapshot.result["accountType"].toString(),
+                                                snapshot.result["accountNumber"].toString(),
+                                                snapshot.result["accountOwner"].toString(),
+                                                snapshot.result["inflowPath"].toString(),
+                                                snapshot.result["didFirstSurvey"] as Boolean,
+                                                snapshot.result["autoLogin"] as Boolean,
+                                                Integer.parseInt(snapshot.result["reward_current"].toString()),
+                                                Integer.parseInt(snapshot.result["reward_total"].toString()),
+                                                snapshot.result["marketingAgree"] as Boolean,
+                                                userSurveyList
+                                            )
+                                            userModel.currentUser = currentUser
+                                            Log.d(TAG, "GGGGGGGG fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
+                                            Log.d(TAG, "FFFFFFFF fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
+
+
+                                            //로그인 한 모든사람에게 알림 전송
+                                            FirebaseMessaging.getInstance().subscribeToTopic("all")
+
+                                            val intent_main : Intent = Intent(this, MainActivity::class.java)
+                                            intent_main.putExtra("currentUser_login", currentUser)
+                                            startActivity(intent_main)
+                                            finishAffinity()
+                                        }
+
+                                    }
+                                    //updateUI(user)
+                                    updateFcmToken(uid)
                                 }
+
                             }
 
-                        docRef.get().addOnCompleteListener { snapshot ->
-                            if(snapshot != null) {
-                                val currentUser : CurrentUser = CurrentUser(
-                                    snapshot.result["uid"].toString(),
-                                    snapshot.result["fcmToken"].toString(),
-                                    snapshot.result["name"].toString(),
-                                    snapshot.result["email"].toString(),
-                                    snapshot.result["phone"].toString(),
-                                    snapshot.result["gender"].toString(),
-                                    snapshot.result["birthDate"].toString(),
-                                    snapshot.result["accountType"].toString(),
-                                    snapshot.result["accountNumber"].toString(),
-                                    snapshot.result["accountOwner"].toString(),
-                                    snapshot.result["inflowPath"].toString(),
-                                    snapshot.result["didFirstSurvey"] as Boolean,
-                                    snapshot.result["autoLogin"] as Boolean,
-                                    Integer.parseInt(snapshot.result["reward_current"].toString()),
-                                    Integer.parseInt(snapshot.result["reward_total"].toString()),
-                                    snapshot.result["marketingAgree"] as Boolean,
-                                    userSurveyList
-                                )
-                                userModel.currentUser = currentUser
-                                Log.d(TAG, "GGGGGGGG fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
-                                Log.d(TAG, "FFFFFFFF fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
 
 
-                                //로그인 한 모든사람에게 알림 전송
-                                FirebaseMessaging.getInstance().subscribeToTopic("all")
-
-                                val intent_main : Intent = Intent(this, MainActivity::class.java)
-                                intent_main.putExtra("currentUser_login", currentUser)
-                                startActivity(intent_main)
-                                finishAffinity()
-                            }
-
-                        }
-                        //updateUI(user)
-                        updateFcmToken(uid)
                     }
                     else {
                         //Log.w(TAG, "@@@@@@@@@@@@@ 로그인 실패  ${task.exception} 끝")
