@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone" >
+                android:visibility="visible" >
 
                 <Spinner
                     android:id="@+id/SurveyListFirstSurvey1_MajorSpinner"
@@ -97,6 +97,25 @@
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:layout_marginTop="15dp"/>
+
+                <EditText
+                    android:id="@+id/SurveyListFirstSurvey1_EtcUniv"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:hint="대학명을 입력하세요"
+                    android:fontFamily="@font/main_font_m"
+                    android:paddingStart="13sp"
+                    android:textSize="13sp"
+                    android:textColorHint="#c9c9c9"
+                    android:textColor="@color/black"
+                    android:inputType="text"
+                    android:background="@drawable/custom_input"
+                    android:textCursorDrawable="@drawable/custom_input_cursor"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 

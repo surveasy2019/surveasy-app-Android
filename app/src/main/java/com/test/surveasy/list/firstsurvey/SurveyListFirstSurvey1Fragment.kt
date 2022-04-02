@@ -24,6 +24,7 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
     private lateinit var major : String
     private lateinit var universityList : Array<String>
     private var university: String? = null
+    private var etcUniv: String? = ""
     private var military : String? = null
     private var engSurvey : Boolean? = null
 
@@ -77,10 +78,14 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
 
 
     private fun firstSurvey1(view: View) {
+        val etcUnivInput = view.findViewById<EditText>(R.id.SurveyListFirstSurvey1_EtcUniv)
+        etcUniv = etcUnivInput.text.toString()
+
         if(job == "직업을 선택해주세요") Toast.makeText(context, "직업을 선택해주세요.", Toast.LENGTH_SHORT).show()
 
         else if(job == "대학생" && major == "소속 계열을 선택해주세요") Toast.makeText(context, "소속 계열을 선택해주세요.", Toast.LENGTH_SHORT).show()
         else if(job == "대학생" && university == "대학명을 선택해주세요") Toast.makeText(context, "대학명을 선택해주세요.", Toast.LENGTH_SHORT).show()
+        else if(job == "대학생" && university == "기타" && etcUniv == "") Toast.makeText(context, "대학명을 입력해주세요.", Toast.LENGTH_SHORT).show()
 
         else if(engSurvey == null) {
             Toast.makeText(context, "영어 설문 참여 의사를 선택해주세요.", Toast.LENGTH_SHORT).show()
@@ -91,7 +96,7 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
         }
 
         else {
-            val firstSurvey1 = FirstSurvey(job, major, university, engSurvey, military,
+            val firstSurvey1 = FirstSurvey(job, major, university, etcUniv, engSurvey, military,
                 null, null, null, null, null, null)
 
             firstSurveyModel.firstSurvey = firstSurvey1
@@ -148,13 +153,20 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
         universityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         val universitySpinner = view.findViewById<Spinner>(R.id.spinner_view)
-        universitySpinner.prompt = "대학명을 선택해주세요"
+        val etcUnivInput = view.findViewById<EditText>(R.id.SurveyListFirstSurvey1_EtcUniv)
 
         universitySpinner.adapter = universityAdapter
 
         universitySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 university = universityList[position]
+
+                if(university == "기타") {
+                    etcUnivInput.visibility = View.VISIBLE
+                    etcUniv = etcUnivInput.text.toString()
+                }
+
+                else etcUnivInput.visibility = View.GONE
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
