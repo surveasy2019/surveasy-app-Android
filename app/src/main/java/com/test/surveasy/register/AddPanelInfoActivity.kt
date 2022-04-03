@@ -122,7 +122,7 @@ class AddPanelInfoActivity : AppCompatActivity() {
                         "reward_current" to 0,
                         "reward_total" to 0,
                         "marketingAgree" to currentUser.marketingAgree,
-                        "autoLogin" to true
+                        "autoLogin" to false
                     )
                     db.collection("AndroidUser").document(firebaseUID)
                         .set(user).addOnSuccessListener { documentReference ->
