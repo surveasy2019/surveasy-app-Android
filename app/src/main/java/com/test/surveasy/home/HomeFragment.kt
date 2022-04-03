@@ -145,7 +145,12 @@ class HomeFragment : Fragment() {
         //user name, reward 불러오기
         if (userModel.currentUser.uid != null) {
             greetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
-            surveyNum.text = "${userModel.currentUser.UserSurveyList!!.size}개"
+            if(userModel.currentUser.UserSurveyList == null){
+                surveyNum.text = "0개"
+            }else{
+                surveyNum.text = "${userModel.currentUser.UserSurveyList!!.size}개"
+            }
+
             totalReward.text = "${userModel.currentUser.rewardTotal}원"
         } else {
             if (Firebase.auth.currentUser?.uid != null) {
