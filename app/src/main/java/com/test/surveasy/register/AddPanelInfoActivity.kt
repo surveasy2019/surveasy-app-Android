@@ -1,6 +1,7 @@
 package com.test.surveasy.register
 
 import android.content.ContentValues
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,8 +13,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.test.surveasy.MainActivity
 import com.test.surveasy.R
 import com.test.surveasy.databinding.ActivityAddPanelInfoBinding
+import com.test.surveasy.list.UserSurveyItem
 import com.test.surveasy.login.CurrentUser
 import java.util.*
 
@@ -90,9 +93,30 @@ class AddPanelInfoActivity : AppCompatActivity() {
             currentUser.accountType = accountType
             currentUser.accountNumber = accountNumber
             currentUser.accountOwner = accountOwner
-            //intent 이동
 
             val firebaseUID = currentUser.uid.toString()
+
+            val docRef = db.collection("AndroidUser").document(firebaseUID)
+
+
+            val userSurveyList = ArrayList<UserSurveyItem>()
+
+            docRef.collection("UserSurveyList").get()
+                .addOnSuccessListener { documents ->
+                    for(document in documents){
+                        var item : UserSurveyItem = UserSurveyItem(
+                            Integer.parseInt(document["lastIDChecked"].toString()) as Int,
+                            document["title"] as String?,
+                            Integer.parseInt(document["panelReward"].toString()) as Int?,
+                            document["responseDate"] as String?,
+                            document["isSent"] as Boolean
+                        )
+                        userSurveyList.add(item)
+
+                    }
+                }
+            currentUser.UserSurveyList = userSurveyList
+
             FirebaseMessaging.getInstance().token.addOnCompleteListener(
                 OnCompleteListener { task ->
                     if (!task.isSuccessful) {
@@ -118,11 +142,12 @@ class AddPanelInfoActivity : AppCompatActivity() {
                         "accountOwner" to currentUser.accountOwner,
                         "inflowPath" to currentUser.inflowPath,
                         "didFirstSurvey" to false,
-                        "pushOn" to false,
+                        "pushOn" to true,
                         "reward_current" to 0,
                         "reward_total" to 0,
                         "marketingAgree" to currentUser.marketingAgree,
                         "autoLogin" to false
+
                     )
                     db.collection("AndroidUser").document(firebaseUID)
                         .set(user).addOnSuccessListener { documentReference ->
@@ -141,7 +166,11 @@ class AddPanelInfoActivity : AppCompatActivity() {
                             Log.d(ContentValues.TAG, "##### 회원가입 2 set ENG SURVEY 성공")
                         }
                 })
-            //(activity as RegisterActivity).goToRegisterFin()
+            val intent_main : Intent = Intent(this, MainActivity::class.java)
+            intent_main.putExtra("currentUser_login", currentUser)
+            Toast.makeText(this,"패널 가입이 완료되었습니다.",Toast.LENGTH_LONG).show()
+            startActivity(intent_main)
+            finishAffinity()
 
 //            auth.createUserWithEmailAndPassword(registerModel.registerInfo1.email!!, registerModel.registerInfo1.password!!)
 //                .addOnCompleteListener { task ->

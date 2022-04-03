@@ -1,8 +1,10 @@
 package com.test.surveasy.register
 
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
@@ -28,6 +30,7 @@ class AddInfoRegisterAgree1Activity : AppCompatActivity() {
 
         registerAgree1.setOnClickListener {
             if(agree1.isChecked && agree2.isChecked){
+                Log.d(ContentValues.TAG, currentUser.name.toString())
                 if(agree3.isChecked){
                     currentUser.marketingAgree = true
                     val intent_main : Intent = Intent(this, AddInfoRegisterAgree2Activity::class.java)

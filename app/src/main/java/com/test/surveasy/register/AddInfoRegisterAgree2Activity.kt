@@ -1,5 +1,6 @@
 package com.test.surveasy.register
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.test.surveasy.R
@@ -31,6 +33,7 @@ class AddInfoRegisterAgree2Activity : AppCompatActivity() {
         registerAgree2.setOnClickListener {
             val intent_main : Intent = Intent(this, AddPanelInfoActivity::class.java)
             intent_main.putExtra("currentUser_login", currentUser)
+
             startActivity(intent_main)
             finish()
         }

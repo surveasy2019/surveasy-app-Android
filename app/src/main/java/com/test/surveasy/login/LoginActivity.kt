@@ -118,17 +118,22 @@ class LoginActivity : AppCompatActivity() {
                                 for(document in result){   if(document.id == uid) webUser++ }
 
                                 if(webUser==0){
-                                    val docRef = db.collection("userData").document(uid)
+                                    val docRef = db.collection("userData").document(loginEmail)
 
                                     //고객 데이터에서 중복 항목 받아오기
                                     docRef.get().addOnCompleteListener { snapshot ->
                                         if(snapshot != null) {
+
+                                            val name = snapshot.result["name"].toString()
+                                            val email = snapshot.result["email"].toString()
+                                            val phone = snapshot.result["phoneNumber"].toString()
+
                                             val currentUser : CurrentUser = CurrentUser(
                                                 uid,
                                                 null,
-                                                snapshot.result["name"].toString(),
-                                                snapshot.result["email"].toString(),
-                                                snapshot.result["phoneNumber"].toString(),
+                                                name,
+                                                email,
+                                                phone,
                                                 null,
                                                 null,
                                                 null,
@@ -136,19 +141,21 @@ class LoginActivity : AppCompatActivity() {
                                                 null,
                                                 null,
                                                 false,
-                                                autoLogin,
+                                                //처음에만 임의로 auto login false로 지정
+                                                false,
                                                 0,
                                                 0,
                                                 false,
                                                 null
                                             )
-                                            userModel.currentUser = currentUser
-                                            Log.d(TAG, "GGGGGGGG fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
-                                            Log.d(TAG, "FFFFFFFF fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
-
+//                                            userModel.currentUser = currentUser
+//                                            Log.d(TAG, "GGGGGGGG fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
+//                                            Log.d(TAG, "FFFFFFFF fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
+//
 
                                             //로그인 한 모든사람에게 알림 전송
                                             FirebaseMessaging.getInstance().subscribeToTopic("all")
+                                            Log.d(TAG, "GGGGGGGG fetch fun 내부 userModel: ${currentUser.name}, ${name}")
 
                                             val intent_main : Intent = Intent(this, AddInfoRegisterAgree1Activity::class.java)
                                             intent_main.putExtra("currentUser_login", currentUser)
