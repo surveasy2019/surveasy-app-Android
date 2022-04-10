@@ -43,7 +43,7 @@ class MyViewHistoryWaitFragment : Fragment() {
         val waitReward : TextView = view.findViewById(R.id.MyViewHistory_WaitAmount)
         val waitMore : Button = view.findViewById(R.id.historyWait_moreBtn)
         var waitTotalReward : Int = 0
-        var cnt : Int = 0
+        var cnt : Int = 5
 
 
         CoroutineScope(Dispatchers.Main).launch {
@@ -75,7 +75,7 @@ class MyViewHistoryWaitFragment : Fragment() {
             if(cnt>=waitModel.waitSurvey.size-1){
                 Toast.makeText(context,"불러올 수 있는 내역이 없습니다",Toast.LENGTH_LONG).show()
             }else{
-                cnt+=1
+                cnt+=5
                 val adapter = FinSurveyItemsAdapter(changeHistoryList(waitModel.waitSurvey,cnt))
                 container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
                 container?.adapter = FinSurveyItemsAdapter(changeHistoryList(waitModel.waitSurvey,cnt))
@@ -91,10 +91,18 @@ class MyViewHistoryWaitFragment : Fragment() {
         waitSurvey.sortWith(compareByDescending<UserSurveyItem> { it.responseDate })
         val defaultList = arrayListOf<UserSurveyItem>()
         var i : Int = 0
-        while(i <=cnt){
-            defaultList.add(waitSurvey.get(i))
-            i++
+        if(waitSurvey.size < cnt){
+            while(i <=waitSurvey.size-1){
+                defaultList.add(waitSurvey.get(i))
+                i++
+            }
+        }else{
+            while(i <=cnt){
+                defaultList.add(waitSurvey.get(i))
+                i++
+            }
         }
+
         return defaultList
     }
 }
