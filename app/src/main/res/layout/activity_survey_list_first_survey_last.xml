@@ -83,15 +83,33 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/img_4627"
                 android:layout_gravity="center"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/main_font_sb"
                 android:text="2. 상단의 ‘OOO원 받으러 가기’ 클릭"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="예시 캡쳐 화면 )"
                 android:fontFamily="@font/main_font_sb"
                 android:textSize="14sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="15dp"
+                android:textColor="#c9c9c9"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="250sp"
+                android:src="@drawable/image_2"
+                android:layout_gravity="center"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -179,7 +179,46 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6sp"
-                    android:layout_marginBottom="30dp"/>
+                    android:layout_marginBottom="30dp"
+                    android:visibility="gone"/>
+
+                        <LinearLayout
+                            android:id="@+id/HomeList_ItemContainer_first"
+                            android:layout_width="match_parent"
+                            android:layout_height="43sp"
+                            android:layout_marginHorizontal="2sp"
+                            android:layout_marginTop="10sp"
+                            android:layout_marginBottom="27sp"
+                            android:paddingHorizontal="7sp"
+                            android:background="@drawable/home_bottom_list_item"
+                            android:elevation="2sp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/HomeListItem_Title_first"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:paddingLeft="12sp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/main_font_m"
+                                android:text="first survey"
+                                android:textColor="@color/black"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:id="@+id/HomeListItem_Reward_first"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="6"
+                                android:fontFamily="@font/main_font_b"
+                                android:gravity="left"
+                                android:text="200원"
+                                android:textColor="#0aab00"
+                                android:textSize="13sp" />
+
+                        </LinearLayout>
 
 
 
