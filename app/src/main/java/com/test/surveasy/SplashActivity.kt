@@ -12,8 +12,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.MediaController
 import android.widget.VideoView
+import com.bumptech.glide.Glide
 import com.test.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.test.surveasy.home.NetworkAlertActivity
 import com.test.surveasy.login.LoginActivity
@@ -22,6 +24,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
     val db = Firebase.firestore
@@ -30,22 +36,15 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        val video :VideoView = findViewById(R.id.splash_video)
-        val uri : Uri = Uri.parse("android.resource://"+packageName+"/"+R.raw.splash_anim)
-        video.setVideoURI(uri)
-        video.setMediaController(MediaController(this))
-        video.requestFocus()
-        video.setOnPreparedListener{
-            video.start()
-        }
+        Glide.with(this).load(R.raw.splash_animation).override(1200).into(findViewById(R.id.splash_gif))
+
 
         if(isConnectInternet() != "null"){
             val handler = Handler(Looper.getMainLooper())
             handler.postDelayed({
 
                 finish()
-                video.pause()
-                video.stopPlayback()
+
             },4000)
         }else{
             val handler = Handler(Looper.getMainLooper())
@@ -53,8 +52,7 @@ class SplashActivity : AppCompatActivity() {
                 val intent = Intent(baseContext, NetworkAlertActivity::class.java)
                 startActivity(intent)
                 finish()
-                video.pause()
-                video.stopPlayback()
+
             },4000)
         }
 

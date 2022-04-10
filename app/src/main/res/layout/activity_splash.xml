@@ -7,10 +7,10 @@
     android:background="@color/white"
     tools:context=".SplashActivity">
     
-    <VideoView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/splash_video"
+        android:id="@+id/splash_gif"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
