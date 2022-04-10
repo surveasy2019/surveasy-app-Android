@@ -97,6 +97,7 @@ class Register1Fragment : Fragment() {
         val password = view.findViewById<EditText>(R.id.RegisterFragment1_PwInput).text.toString()
         val passwordCheck = view.findViewById<EditText>(R.id.RegisterFragment1_PwCheckInput).text.toString()
         val phoneNumber: String = view.findViewById<EditText>(R.id.RegisterFragment1_PhoneNumberInput).text.toString()
+        inflowPath = view.findViewById<EditText>(R.id.RegisterFragment1_EtcInflowInput).text.toString()
         birthDate = initYearPicker(view) + "-" + initMonthPicker(view) + "-" + initDayPicker(view)
         Log.d(TAG, "@@@@@@@@------- birthdate : $birthDate")
 
@@ -135,6 +136,9 @@ class Register1Fragment : Fragment() {
         }
         else if (inflowPath == "유입경로를 선택하세요") {
             Toast.makeText(context, "유입경로를 선택해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else if(inflowPath == "") {
+            Toast.makeText(context, "기타 유입경로를 입력해주세요.", Toast.LENGTH_SHORT).show()
         }
         else {
             val registerInfo1 = RegisterInfo1(null, null, name, email, password, phoneNumber, gender, birthDate, inflowPath, registerModel.registerInfo1.marketingAgree)
@@ -191,11 +195,17 @@ class Register1Fragment : Fragment() {
         val inflowPathList = resources.getStringArray(R.array.inflowPath)
         val inflowPathAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, inflowPathList)
         val inflowPathSpinner : Spinner = view.findViewById(R.id.RegisterFragment1_InflowPathSpinner)
+        val etcInflowPathContainer : LinearLayout = view.findViewById(R.id.EtcInflowPath_Container)
+
         inflowPathSpinner.adapter = inflowPathAdapter
         inflowPathSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 inflowPath = inflowPathList[position]
-                Log.d(TAG, "@@@@@@@ inflow : $inflowPath")
+//                Log.d(TAG, "@@@@@@@ inflow : $inflowPath")
+                if(inflowPath == "기타") {
+                    etcInflowPathContainer.visibility = View.VISIBLE
+                }
+                else etcInflowPathContainer.visibility = View.GONE
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }

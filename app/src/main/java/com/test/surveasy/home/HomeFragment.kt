@@ -3,12 +3,14 @@ package com.test.surveasy.home
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -66,11 +68,15 @@ class HomeFragment : Fragment() {
 //        val springDotsIndicator: SpringDotsIndicator = view.findViewById(R.id.Home_spring_dots_indicator)
         //val register: Button = view.findViewById(R.id.HomeToRegister)
         //val login: Button = view.findViewById(R.id.HomeToLogin)
+        val firstSurveyContainer : LinearLayout = view.findViewById(R.id.HomeList_ItemContainer_first)
+        val firstSurveyTitle : TextView = view.findViewById(R.id.HomeListItem_Title_first)
+        val homeListContainer: RecyclerView = view.findViewById(R.id.homeList_recyclerView)
+        val noneText : TextView = view.findViewById(R.id.homeList_text)
         val greetingText: TextView = view.findViewById(R.id.Home_GreetingText)
         val surveyNum: TextView = view.findViewById(R.id.Home_SurveyNum)
         val totalReward: TextView = view.findViewById(R.id.Home_RewardAmount)
         val moreBtn : TextView = view.findViewById(R.id.homeList_Btn)
-        val noneText : TextView = view.findViewById(R.id.homeList_text)
+
         val opinionTextView : TextView = view.findViewById(R.id.Home_Opinion_TextView)
 
 
@@ -188,17 +194,52 @@ class HomeFragment : Fragment() {
                 model.surveyInfo.get(0).id
             }.await()
 
-            if (setHomeList(chooseHomeList()).size == 0 || userModel.currentUser.didFirstSurvey == false) {
-                noneText.text = "현재 참여가능한 설문이 없습니다"
-                noneText.visibility = View.VISIBLE
-            }else{
-                val adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
-                container?.layoutManager = LinearLayoutManager(
-                    context,
-                    LinearLayoutManager.VERTICAL, false
-                )
-                container?.adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
+
+            if (userModel.currentUser.didFirstSurvey == false) {
+                firstSurveyContainer.visibility= View.VISIBLE
+                homeListContainer.visibility = View.GONE
+                if (userModel.currentUser.uid != null) {
+                    firstSurveyTitle.text = "${userModel.currentUser.name}님에 대해 알려주세요!"
+                }
+                else {
+                    if (Firebase.auth.currentUser?.uid != null) {
+                        db.collection("AndroidUser")
+                            .document(Firebase.auth.currentUser!!.uid)
+                            .get().addOnSuccessListener { document ->
+                                firstSurveyTitle.text = "${document["name"].toString()}님에 대해 알려주세요!"
+                            }
+                    }
+                }
+
+                firstSurveyContainer.setOnClickListener{
+                    (activity as MainActivity).navColor_in_Home()
+                    (activity as MainActivity).moreBtn()
+                }
+
             }
+
+            else if(userModel.currentUser.didFirstSurvey == true) {
+                if (setHomeList(chooseHomeList()).size == 0) {
+                    firstSurveyContainer.visibility= View.GONE
+                    homeListContainer.visibility = View.GONE
+
+                    noneText.text = "현재 참여가능한 설문이 없습니다"
+                    noneText.visibility = View.VISIBLE
+                }
+
+                else {
+                    firstSurveyContainer.visibility= View.GONE
+                    homeListContainer.visibility = View.VISIBLE
+                    val adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
+                    container?.layoutManager = LinearLayoutManager(
+                        context,
+                        LinearLayoutManager.VERTICAL, false
+                    )
+                    container?.adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
+                }
+
+            }
+
         }
 
 
