@@ -95,7 +95,7 @@ class SurveyListFragment() : Fragment() {
                 while(model.surveyInfo.size==0){
                     Log.d(TAG,"########loading")
                 }
-                model.surveyInfo.get(0).id
+                model.surveyInfo.get(0).idChecked
             }.await()
             val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),showCanParticipateList)
             container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
@@ -184,7 +184,7 @@ class SurveyListFragment() : Fragment() {
                             boolList[index] = true
                         }
 
-                        if (survey.id.equals(done.id)) {
+                        if (survey.idChecked.equals(done.idChecked)) {
                             boolList[index] = true
                         } else if (survey.progress >= 3) {
                             boolList[index] = true

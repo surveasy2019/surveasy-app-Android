@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="6"
+            android:layout_weight="5"
             android:fontFamily="@font/main_font_b"
             android:gravity="left"
             android:text="500원"

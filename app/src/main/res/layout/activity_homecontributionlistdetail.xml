@@ -37,46 +37,54 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="30dp">
+        >
 
-        <TextView
-            android:id="@+id/HomeContributionListDetail_Title"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="14sp"
-            android:paddingVertical="5sp"
-            android:text="백신 접종의 혜택–위험 이해도 제고를 위한\n통계정보 시각화 3종의 개발과 효과 검증"
-            android:textSize="17sp"
-            android:textColor="#0aab00"
-            android:fontFamily="@font/main_font_m"/>
+            android:orientation="vertical"
+            android:padding="30dp">
 
-        <TextView
-            android:id="@+id/HomeContributionListDetail_Journal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Journal of Integrated Design Research vol.20 | KCI 등재"
-            android:textColor="#707070"
-            android:textSize="12sp"
-            android:visibility="gone"
-            android:fontFamily="@font/main_font_r"/>
+            <TextView
+                android:id="@+id/HomeContributionListDetail_Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="14sp"
+                android:paddingVertical="5sp"
+                android:text="백신 접종의 혜택–위험 이해도 제고를 위한\n통계정보 시각화 3종의 개발과 효과 검증"
+                android:textSize="17sp"
+                android:textColor="#0aab00"
+                android:fontFamily="@font/main_font_m"/>
 
-        <TextView
-            android:id="@+id/HomeContributionListDetail_Institute"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="1sp"
-            android:layout_marginBottom="25sp"
-            android:text="연세대학교 일반대학원 디자인경영학협동과정 석사과정 논문"
-            android:textColor="#707070"
-            android:textSize="12sp"
-            android:fontFamily="@font/main_font_r"/>
+            <TextView
+                android:id="@+id/HomeContributionListDetail_Journal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Journal of Integrated Design Research vol.20 | KCI 등재"
+                android:textColor="#707070"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:fontFamily="@font/main_font_r"/>
 
+            <TextView
+                android:id="@+id/HomeContributionListDetail_Institute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="1sp"
+                android:layout_marginBottom="25sp"
+                android:text="연세대학교 일반대학원 디자인경영학협동과정 석사과정 논문"
+                android:textColor="#707070"
+                android:textSize="12sp"
+                android:fontFamily="@font/main_font_r"/>
+
+        </LinearLayout>
 
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:padding="30dp">
 
             <LinearLayout
                 android:layout_width="match_parent"

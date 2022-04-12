@@ -8,7 +8,6 @@ class FirstSurvey(
     val job: String? = null,
     val major: String? = null,
     val university: String? = null,
-    val etcUniv: String? = null,
     val EngSurvey: Boolean? = null,
     val military: String? = null,
     var district: String? = null,

@@ -20,9 +20,9 @@
                 android:id="@+id/SurveyListFirstSurvey2_Container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
-                android:paddingBottom="30dp"
+                android:paddingStart="30sp"
+                android:paddingEnd="30sp"
+                android:paddingBottom="30sp"
                 android:orientation="vertical"
                 >
 
@@ -33,7 +33,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/main_font_r"
                     android:textStyle="normal"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     android:textColor="#707070"
                     android:lineSpacingExtra="2.7sp"/>
 
@@ -41,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="35dp">
 
                     <TextView
                         android:id="@+id/SurveyListFirstSurvey2_DistrictText"
@@ -50,7 +50,7 @@
                         android:textColor="@color/black"
                         android:fontFamily="@font/main_font_sb"
                         android:text="거주지역"
-                        android:textSize="15dp"
+                        android:textSize="14sp"
                         android:paddingStart="5dp"
                         android:layout_marginBottom="10dp"/>
 
@@ -98,13 +98,12 @@
                         android:id="@+id/SurveyListFirstSurvey2_PetText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/main_font_sb"
-                        android:textSize="15dp"
-                        android:paddingStart="5dp"
                         android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/main_font_sb"
+                        android:paddingStart="5dp"
                         android:text="반려동물"
-                        />
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
 
                     <RadioGroup
                         android:id="@+id/SurveyListFirstSurvey2_PetRadioGroup"
@@ -182,7 +181,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:fontFamily="@font/main_font_sb"
-                        android:textSize="15dp"
+                        android:textSize="14sp"
                         android:paddingStart="5dp"
                         android:layout_marginBottom="10dp"
                         android:text="혼인여부" />
@@ -250,7 +249,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:fontFamily="@font/main_font_sb"
-                        android:textSize="15dp"
+                        android:textSize="14sp"
                         android:paddingStart="5dp"
                         android:layout_marginBottom="10dp"
                         android:text="가구형태" />
@@ -346,7 +345,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:fontFamily="@font/main_font_sb"
-                        android:textSize="15dp"
+                        android:textSize="14sp"
                         android:paddingStart="5dp"
                         android:layout_marginBottom="10dp"
                         android:text="거주 주택 형태" />

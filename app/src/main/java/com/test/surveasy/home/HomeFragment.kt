@@ -197,6 +197,7 @@ class HomeFragment : Fragment() {
 
             if (userModel.currentUser.didFirstSurvey == false) {
                 firstSurveyContainer.visibility= View.VISIBLE
+                noneText.visibility = View.GONE
                 homeListContainer.visibility = View.GONE
                 if (userModel.currentUser.uid != null) {
                     firstSurveyTitle.text = "${userModel.currentUser.name}님에 대해 알려주세요!"
@@ -229,6 +230,7 @@ class HomeFragment : Fragment() {
 
                 else {
                     firstSurveyContainer.visibility= View.GONE
+                    noneText.visibility = View.GONE
                     homeListContainer.visibility = View.VISIBLE
                     val adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
                     container?.layoutManager = LinearLayoutManager(

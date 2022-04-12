@@ -15,6 +15,7 @@ class NoticeToPanelDialogActivity : AppCompatActivity() {
 
         val link = intent.getStringExtra("link")!!
         val id = intent.getIntExtra("id",0)!!
+        val idChecked = intent.getIntExtra("idChecked",0)!!
         val index = intent.getIntExtra("index",0)!!
         val notice = intent.getStringExtra("notice")!!
         val reward = intent.getIntExtra("reward",0)
@@ -29,6 +30,7 @@ class NoticeToPanelDialogActivity : AppCompatActivity() {
             val intent = Intent(this,SurveyListDetailActivity::class.java)
             intent.putExtra("link",link)
             intent.putExtra("id", id)
+            intent.putExtra("idChecked", idChecked)
             intent.putExtra("index", index)
             intent.putExtra("reward",reward)
             intent.putExtra("title",title)

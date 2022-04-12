@@ -36,8 +36,8 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
         //title 길이
         val fullTitle = surveyList.get(position).title
         var shortTitle = ""
-        if(fullTitle.length>20){
-            shortTitle = fullTitle.substring(0,20)+".."
+        if(fullTitle.length>18){
+            shortTitle = fullTitle.substring(0,18)+".."
         }else{
             shortTitle = fullTitle
         }
@@ -107,6 +107,7 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
                     intent.putExtra("link", surveyList.get(position).link)
                     intent.putExtra("title", surveyList.get(position).title)
                     intent.putExtra("id", surveyList.get(position).id)
+                    intent.putExtra("idChecked", surveyList.get(position).idChecked)
                     intent.putExtra("index",position)
                     intent.putExtra("reward",surveyList.get(position).reward)
                     ContextCompat.startActivity(holder.itemView.context,intent,null)
@@ -115,6 +116,7 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
                     intent.putExtra("link", surveyList.get(position).link)
                     intent.putExtra("title", surveyList.get(position).title)
                     intent.putExtra("id", surveyList.get(position).id)
+                    intent.putExtra("idChecked", surveyList.get(position).idChecked)
                     intent.putExtra("index",position)
                     intent.putExtra("notice", surveyList.get(position).noticeToPanel)
                     intent.putExtra("reward",surveyList.get(position).reward)

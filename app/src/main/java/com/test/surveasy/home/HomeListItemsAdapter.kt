@@ -24,7 +24,8 @@ class HomeListItemsAdapter(val homeList: ArrayList<SurveyItems>) : RecyclerView.
     }
 
     override fun onBindViewHolder(holder: HomeListItemsAdapter.CustomViewHolder, position: Int) {
-        holder.itemTitle.text = homeList.get(position).title
+        if(homeList.get(position).title.length > 18) holder.itemTitle.text = homeList.get(position).title.substring(0, 18) + "..."
+        else holder.itemTitle.text = homeList.get(position).title
         holder.itemReward.text = homeList.get(position).reward.toString() + "원"
 
 
@@ -35,6 +36,7 @@ class HomeListItemsAdapter(val homeList: ArrayList<SurveyItems>) : RecyclerView.
                 val intent = Intent(holder.itemView.context, SurveyListDetailActivity::class.java)
                 intent.putExtra("link", homeList.get(position).link)
                 intent.putExtra("id", homeList.get(position).id)
+                intent.putExtra("idChecked", homeList.get(position).idChecked)
                 intent.putExtra("index",position)
                 intent.putExtra("title",homeList.get(position).title)
                 intent.putExtra("reward",homeList.get(position).reward)
@@ -43,6 +45,7 @@ class HomeListItemsAdapter(val homeList: ArrayList<SurveyItems>) : RecyclerView.
                 val intent = Intent(holder.itemView.context, NoticeToPanelDialogActivity::class.java)
                 intent.putExtra("link", homeList.get(position).link)
                 intent.putExtra("id", homeList.get(position).id)
+                intent.putExtra("idChecked", homeList.get(position).idChecked)
                 intent.putExtra("index",position)
                 intent.putExtra("notice", homeList.get(position).noticeToPanel)
                 intent.putExtra("title",homeList.get(position).title)

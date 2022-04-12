@@ -105,6 +105,7 @@ class AddPanelInfoActivity : AppCompatActivity() {
                 .addOnSuccessListener { documents ->
                     for(document in documents){
                         var item : UserSurveyItem = UserSurveyItem(
+                            Integer.parseInt(document["id"].toString()),
                             Integer.parseInt(document["lastIDChecked"].toString()) as Int,
                             document["title"] as String?,
                             Integer.parseInt(document["panelReward"].toString()) as Int?,
