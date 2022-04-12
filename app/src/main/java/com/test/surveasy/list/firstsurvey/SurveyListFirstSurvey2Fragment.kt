@@ -145,6 +145,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
 
         val date = year + "-" + month + "-" + day
         val firstSurvey = hashMapOf(
+            "id" to "0",
             "lastIDChecked" to "0",
             "isSent" to false,
             "responseDate" to date,
@@ -175,7 +176,6 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
             "job" to firstSurveyModel.firstSurvey.job,
             "major" to firstSurveyModel.firstSurvey.major,
             "university" to firstSurveyModel.firstSurvey.university,
-            "etcUniv" to firstSurveyModel.firstSurvey.etcUniv,
             "EngSurvey" to firstSurveyModel.firstSurvey.EngSurvey,
             "military" to firstSurveyModel.firstSurvey.military,
             "district" to firstSurveyModel.firstSurvey.district,

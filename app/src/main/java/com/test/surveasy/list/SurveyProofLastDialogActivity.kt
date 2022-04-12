@@ -62,7 +62,7 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
 
         // surveyData-respondedPanel에 currentUser uid 추가
         val id = intent.getIntExtra("id",0)
-        val dbRef = db.collection("AndroidSurvey").document(id.toString())
+        val dbRef = db.collection("surveyData").document(id.toString())
         dbRef.get().addOnSuccessListener { document ->
             val respondList = document["respondedPanel"] as ArrayList<*>
             val text = document["requiredHeadCount"] as String

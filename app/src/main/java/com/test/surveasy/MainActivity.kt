@@ -212,6 +212,7 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 for(document in documents){
                     var item : UserSurveyItem = UserSurveyItem(
+                        Integer.parseInt(document["id"].toString()),
                         Integer.parseInt(document["lastIDChecked"].toString()),
                         document["title"] as String?,
                         Integer.parseInt(document["panelReward"]?.toString()),
@@ -266,31 +267,35 @@ class MainActivity : AppCompatActivity() {
 
     fun fetchSurvey() {
 
-        db.collection("AndroidSurvey")
+        db.collection("surveyData")
             // id를 운영진이 올리는 깨끗한 아이디로 설정하면 progress 문제 해결됨.
             .orderBy("lastIDChecked", Query.Direction.DESCENDING)
-            .limit(10).get()
+            .limit(11).get()
             .addOnSuccessListener { result ->
 
                 for (document in result) {
-                    val item: SurveyItems = SurveyItems(
-                        Integer.parseInt(document["lastIDChecked"].toString()) as Int,
-                        document["title"] as String,
-                        document["target"] as String,
-                        document["uploadDate"] as String?,
-                        document["link"] as String?,
-                        document["spendTime"] as String?,
-                        document["dueDate"] as String?,
-                        document["dueTimeTime"] as String?,
-                        Integer.parseInt(document["panelReward"].toString()),
-                        document["noticeToPanel"] as String?,
-                        Integer.parseInt(document["progress"].toString())
-                    )
-                    surveyList.add(item)
-                    Log.d(
-                        TAG,
-                        "################${document["title"]} and ${document["uploadDate"]}"
-                    )
+                    if(document["panelReward"] != null) {
+                        val item: SurveyItems = SurveyItems(
+                            Integer.parseInt(document["id"].toString()) as Int,
+                            Integer.parseInt(document["lastIDChecked"].toString()) as Int,
+                            document["title"] as String,
+                            document["target"] as String,
+                            document["uploadDate"] as String?,
+                            document["link"] as String?,
+                            document["spendTime"] as String?,
+                            document["dueDate"] as String?,
+                            document["dueTimeTime"] as String?,
+                            Integer.parseInt(document["panelReward"].toString()),
+                            document["noticeToPanel"] as String?,
+                            Integer.parseInt(document["progress"].toString())
+                        )
+                        surveyList.add(item)
+                        Log.d(
+                            TAG,
+                            "################${document["title"]} and ${document["uploadDate"]}"
+                        )
+                    }
+
                 }
 
                 model.surveyInfo.addAll(surveyList)

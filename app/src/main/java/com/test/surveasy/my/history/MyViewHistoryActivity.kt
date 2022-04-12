@@ -66,6 +66,7 @@ class MyViewHistoryActivity : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 for(document in documents){
                     val item: UserSurveyItem = UserSurveyItem(
+                        Integer.parseInt(document["id"].toString()),
                         Integer.parseInt(document["lastIDChecked"].toString()),
                         document["title"] as String?,
                         Integer.parseInt(document["panelReward"].toString()),

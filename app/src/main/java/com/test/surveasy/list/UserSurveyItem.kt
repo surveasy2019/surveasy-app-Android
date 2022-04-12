@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 class UserSurveyItem(
     val id : Int,
+    val idChecked : Int,
     val title : String?,
     val reward : Int?,
     val responseDate : String?,

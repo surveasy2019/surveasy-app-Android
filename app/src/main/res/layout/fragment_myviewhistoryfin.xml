@@ -37,14 +37,15 @@
                 android:fontFamily="@font/main_font_m"
                 android:gravity="center" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/historyFin_moreBtn"
-                android:layout_width="50sp"
-                android:layout_height="15sp"
+                android:layout_width="60sp"
+                android:layout_height="18sp"
                 android:layout_gravity="right"
-                android:background="#e2e2e2"
+                android:background="@drawable/rectangle_white_button"
                 android:text="더 불러오기"
-                android:textSize="8sp"
+                android:textColor="#0aab00"
+                android:textSize="9sp"
                 android:fontFamily="@font/main_font_r" />
 
             <View
