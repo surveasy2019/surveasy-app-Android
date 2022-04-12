@@ -36,7 +36,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        Glide.with(this).load(R.raw.splash_fast).override(1200).into(findViewById(R.id.splash_gif))
+
 
 
         if(isConnectInternet() != "null"){
@@ -88,6 +88,7 @@ class SplashActivity : AppCompatActivity() {
                 for(document in result){   if(document.id == token) i++   }
                 if(i==0){
                     startActivity(Intent(this,FirstIntroduceScreenActivity::class.java))
+                    finish()
                 }
                 else {
                     nextActivity()
@@ -114,6 +115,7 @@ class SplashActivity : AppCompatActivity() {
         if (Firebase.auth.currentUser == null) {
             intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
 

@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.test.surveasy.R
 import com.test.surveasy.login.CurrentUser
 
@@ -17,6 +19,9 @@ class AddInfoRegisterAgree1Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_register_agree1)
+
+        Firebase.auth.signOut()
+        Log.d(ContentValues.TAG, "((((((((((( logout : ${Firebase.auth.currentUser?.uid}")
 
         val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser_login")!!
         val agreeAll : CheckBox = findViewById(R.id.registerAgree1_agree1)
