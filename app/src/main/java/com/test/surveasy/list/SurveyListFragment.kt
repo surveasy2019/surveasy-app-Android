@@ -41,7 +41,7 @@ class SurveyListFragment() : Fragment() {
         //val refreshBtn : ImageButton = view.findViewById(R.id.Surveylist_refresh)
         val filterParticipate : Switch = view.findViewById(R.id.Surveylist_FilterParticipate)
         var showCanParticipateList = arrayListOf<Boolean>()
-        val filterList = listOf("마감순","최신순")
+        val filterList = listOf("최신순","마감순")
         val filterAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, filterList)
         val filterSpinner : Spinner = view.findViewById(R.id.Surveylist_FilterSpinner)
         var n : Int = 0
@@ -97,9 +97,9 @@ class SurveyListFragment() : Fragment() {
                 }
                 model.surveyInfo.get(0).idChecked
             }.await()
-            val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),showCanParticipateList)
+            val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),showCanParticipateList)
             container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-            container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),showCanParticipateList)
+            container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),showCanParticipateList)
         }
         //Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
 

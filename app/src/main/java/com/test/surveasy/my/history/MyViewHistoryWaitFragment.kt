@@ -73,7 +73,7 @@ class MyViewHistoryWaitFragment : Fragment() {
 
         waitMore.setOnClickListener {
             if(cnt>=waitModel.waitSurvey.size-1){
-                Toast.makeText(context,"불러올 수 있는 내역이 없습니다",Toast.LENGTH_LONG).show()
+                Toast.makeText(context,"불러올 수 있는 내역이 없습니다",Toast.LENGTH_SHORT).show()
             }else{
                 cnt+=5
                 val adapter = FinSurveyItemsAdapter(changeHistoryList(waitModel.waitSurvey,cnt))
