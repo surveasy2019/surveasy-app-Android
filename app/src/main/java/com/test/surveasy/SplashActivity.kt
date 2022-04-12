@@ -36,7 +36,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        Glide.with(this).load(R.raw.splash_animation).override(1200).into(findViewById(R.id.splash_gif))
+        Glide.with(this).load(R.raw.splash_fast).override(1200).into(findViewById(R.id.splash_gif))
 
 
         if(isConnectInternet() != "null"){
