@@ -18,6 +18,7 @@ import com.test.surveasy.R
 import com.test.surveasy.databinding.ActivityAddPanelInfoBinding
 import com.test.surveasy.list.UserSurveyItem
 import com.test.surveasy.login.CurrentUser
+import com.test.surveasy.login.LoginActivity
 import java.util.*
 
 class AddPanelInfoActivity : AppCompatActivity() {
@@ -55,6 +56,8 @@ class AddPanelInfoActivity : AppCompatActivity() {
         binding.addInfoBtn.setOnClickListener {
             register1()
         }
+
+
 
     }
 
@@ -167,9 +170,9 @@ class AddPanelInfoActivity : AppCompatActivity() {
                             Log.d(ContentValues.TAG, "##### 회원가입 2 set ENG SURVEY 성공")
                         }
                 })
-            val intent_main : Intent = Intent(this, MainActivity::class.java)
-            intent_main.putExtra("currentUser_login", currentUser)
-            Toast.makeText(this,"패널 가입이 완료되었습니다.",Toast.LENGTH_LONG).show()
+            val intent_main : Intent = Intent(this, LoginActivity::class.java)
+//            intent_main.putExtra("currentUser_login", currentUser)
+            Toast.makeText(this,"패널 가입이 완료되었습니다.\n다시 로그인해주세요.",Toast.LENGTH_LONG).show()
             startActivity(intent_main)
             finishAffinity()
 
