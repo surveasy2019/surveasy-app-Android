@@ -24,9 +24,9 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
     val userModel by activityViewModels<CurrentUserViewModel>()
     val firstSurveyModel by activityViewModels<FirstSurveyViewModel>()
 
-    private lateinit var citySpinner : Spinner
-    private var district : String? = null
+    private lateinit var districtSpinner : Spinner
     private var city : String? = null
+    private var district : String? = null
     private var married: String? = null
     private var pet : String? = null
     private var family : String? = null
@@ -40,10 +40,10 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_surveylistfirstsurvey2,container,false)
-        citySpinner = view.findViewById(R.id.SurveyListFirstSurvey2_CitySpinner)
+        districtSpinner = view.findViewById(R.id.SurveyListFirstSurvey2_DistrictSpinner)
 
-        setDistrictSpinner(view)
-        setCitySpinner(citySpinner, 0)
+        setCitySpinner(view)
+        setDistrictSpinner(districtSpinner, 0)
         //setPetSpinner(view)
         setHousingTypeSpinner(view)
         setFamilyTypeSpinner(view)
@@ -90,10 +90,10 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
     }
 
     private fun firstSurveyFin() {
-        if(district == "시/도") {
+        if(city == "시/도") {
             Toast.makeText(context, "시/도를 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
-        else if(city == "시/군/구") {
+        else if(district == "시/군/구") {
             Toast.makeText(context, "시/군/구를 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
         else if(pet == null) {
@@ -109,8 +109,8 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
             Toast.makeText(context, "주거 형태를 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
         else {
-            firstSurveyModel.firstSurvey.district = district
             firstSurveyModel.firstSurvey.city = city
+            firstSurveyModel.firstSurvey.district = district
             firstSurveyModel.firstSurvey.married = married
             firstSurveyModel.firstSurvey.pet = pet
             firstSurveyModel.firstSurvey.family = family
@@ -178,8 +178,8 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
             "university" to firstSurveyModel.firstSurvey.university,
             "EngSurvey" to firstSurveyModel.firstSurvey.EngSurvey,
             "military" to firstSurveyModel.firstSurvey.military,
-            "district" to firstSurveyModel.firstSurvey.district,
             "city" to firstSurveyModel.firstSurvey.city,
+            "district" to firstSurveyModel.firstSurvey.district,
             "married" to firstSurveyModel.firstSurvey.married,
             "pet" to firstSurveyModel.firstSurvey.pet,
             "family" to firstSurveyModel.firstSurvey.family,
@@ -191,23 +191,23 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
     }
 
 
-    private fun setDistrictSpinner(view: View) {
-        val districtList = resources.getStringArray(R.array.district)
-        val districtAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, districtList)
-        val districtSpinner = view.findViewById<Spinner>(R.id.SurveyListFirstSurvey2_DistrictSpinner)
+    private fun setCitySpinner(view: View) {
+        val cityList = resources.getStringArray(R.array.city)
+        val cityAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, cityList)
         val citySpinner = view.findViewById<Spinner>(R.id.SurveyListFirstSurvey2_CitySpinner)
+        val districtSpinner = view.findViewById<Spinner>(R.id.SurveyListFirstSurvey2_DistrictSpinner)
 
-        districtSpinner.adapter = districtAdapter
-        districtSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        citySpinner.adapter = cityAdapter
+        citySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                district = districtList[position]
+                city = cityList[position]
                 if(position == 8) {
-                    citySpinner.visibility = View.GONE
-                    city = ""
+                    districtSpinner.visibility = View.GONE
+                    district = ""
                 }
                 else {
-                    citySpinner.visibility = View.VISIBLE
-                    setCitySpinner(citySpinner, position)
+                    districtSpinner.visibility = View.VISIBLE
+                    setDistrictSpinner(districtSpinner, position)
                 }
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -216,33 +216,33 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
     }
 
 
-    private fun setCitySpinner(citySpinner: Spinner, districtPosition: Int) {
-        var cityList = resources.getStringArray(R.array.서울)
+    private fun setDistrictSpinner(districtSpinner: Spinner, cityPosition: Int) {
+        var districtList = resources.getStringArray(R.array.서울)
 
-        when(districtPosition) {
-            1 -> { cityList = resources.getStringArray(R.array.서울) }
-            2 -> { cityList = resources.getStringArray(R.array.부산) }
-            3 -> { cityList = resources.getStringArray(R.array.대구) }
-            4 -> { cityList = resources.getStringArray(R.array.인천) }
-            5 -> { cityList = resources.getStringArray(R.array.광주) }
-            6 -> { cityList = resources.getStringArray(R.array.대전) }
-            7 -> { cityList = resources.getStringArray(R.array.울산) }
-            9 -> { cityList = resources.getStringArray(R.array.경기) }
-            10 -> { cityList = resources.getStringArray(R.array.충북) }
-            11 -> { cityList = resources.getStringArray(R.array.충남) }
-            12 -> { cityList = resources.getStringArray(R.array.전북) }
-            13 -> { cityList = resources.getStringArray(R.array.전남) }
-            14 -> { cityList = resources.getStringArray(R.array.경북) }
-            15 -> { cityList = resources.getStringArray(R.array.경남) }
-            16 -> { cityList = resources.getStringArray(R.array.제주) }
+        when(cityPosition) {
+            1 -> { districtList = resources.getStringArray(R.array.서울) }
+            2 -> { districtList = resources.getStringArray(R.array.부산) }
+            3 -> { districtList = resources.getStringArray(R.array.대구) }
+            4 -> { districtList = resources.getStringArray(R.array.인천) }
+            5 -> { districtList = resources.getStringArray(R.array.광주) }
+            6 -> { districtList = resources.getStringArray(R.array.대전) }
+            7 -> { districtList = resources.getStringArray(R.array.울산) }
+            9 -> { districtList = resources.getStringArray(R.array.경기) }
+            10 -> { districtList = resources.getStringArray(R.array.충북) }
+            11 -> { districtList = resources.getStringArray(R.array.충남) }
+            12 -> { districtList = resources.getStringArray(R.array.전북) }
+            13 -> { districtList = resources.getStringArray(R.array.전남) }
+            14 -> { districtList = resources.getStringArray(R.array.경북) }
+            15 -> { districtList = resources.getStringArray(R.array.경남) }
+            16 -> { districtList = resources.getStringArray(R.array.제주) }
         }
 
-        val cityAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, cityList)
-        citySpinner.adapter = cityAdapter
-        citySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        val districtAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, districtList)
+        districtSpinner.adapter = districtAdapter
+        districtSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                city = cityList[position]
-                Log.d(TAG, "***** $city")
+                district = districtList[position]
+                Log.d(TAG, "***** $district")
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }

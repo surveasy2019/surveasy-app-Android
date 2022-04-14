@@ -119,6 +119,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             defaultFrag_list = !defaultFrag_list
+
         }
         else {
             setContentView(binding.root)
