@@ -16,7 +16,7 @@
         android:fontFamily="@font/main_font_sb"
         android:text="설문 게시판"
         android:textAlignment="center"
-        android:textSize="23sp"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:paddingStart="10dp"
         android:paddingBottom="25dp"
@@ -63,18 +63,21 @@
                 android:id="@+id/Surveylist_FilterParticipate"
                 android:layout_width="60dp"
                 android:layout_height="35dp"
+                android:gravity="center_vertical"
                 tools:ignore="UseSwitchCompatOrMaterialXml"
                 android:layout_marginEnd="10dp"
                 android:thumbTextPadding="15dp"
                 android:track="@drawable/custom_switch"
                 android:thumb="@drawable/switch_point"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#707070"
-                android:textSize="14sp"
+                android:layout_gravity="center"
                 android:fontFamily="@font/main_font_r"
-                android:text="참여 가능한 설문만 보기"/>
+                android:text="참여 가능한 설문만 보기"
+                android:textColor="#707070"
+                android:textSize="13sp" />
 
         </LinearLayout>
 

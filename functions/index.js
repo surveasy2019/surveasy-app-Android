@@ -10,7 +10,8 @@ exports.androidPushNotification = functions.firestore.document("NotificationData
                     {
                         notification: {
                             title: snapshot.data().title,
-                            body: snapshot.data().body
+                            body: snapshot.data().body,
+                            click_action: "FCM_EXE_ACTIVITY"
                         }
                     }
 

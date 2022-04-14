@@ -53,7 +53,7 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
             dDay = "마감"
         }else{
             if(calDate<24){
-                dDay = calDate.toString()+"시간 후 마감"
+                dDay = calDate.toString()+"시간 후\n마감"
             }else{
                 dDay = "D - "+(calDate/24).toString()
             }

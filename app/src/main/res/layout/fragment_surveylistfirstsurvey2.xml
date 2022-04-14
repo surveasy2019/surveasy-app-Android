@@ -44,7 +44,7 @@
                     android:layout_marginTop="35dp">
 
                     <TextView
-                        android:id="@+id/SurveyListFirstSurvey2_DistrictText"
+                        android:id="@+id/SurveyListFirstSurvey2_CityText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
@@ -55,7 +55,7 @@
                         android:layout_marginBottom="10dp"/>
 
                     <Spinner
-                        android:id="@+id/SurveyListFirstSurvey2_DistrictSpinner"
+                        android:id="@+id/SurveyListFirstSurvey2_CitySpinner"
                         android:layout_width="match_parent"
                         android:layout_height="45sp"
                         android:layout_marginStart="5dp"
@@ -70,7 +70,7 @@
                         android:inputType="text" />
 
                     <Spinner
-                        android:id="@+id/SurveyListFirstSurvey2_CitySpinner"
+                        android:id="@+id/SurveyListFirstSurvey2_DistrictSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="45sp"
                         android:layout_marginStart="5dp"
@@ -371,11 +371,12 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/SurveyListFirstSurvey2_Btn"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="40sp"
                 android:layout_marginHorizontal="30dp"
                 android:text="다음"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/main_font_m"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:backgroundTint="#0aab00"

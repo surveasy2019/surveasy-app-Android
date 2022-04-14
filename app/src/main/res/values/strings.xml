@@ -259,7 +259,7 @@
 
 
     // SurveyListFirstSurveyFragment2
-    <string-array name="district">
+    <string-array name="city">
         <item>시/도</item>
         <item>서울특별시</item>
         <item>부산광역시</item>

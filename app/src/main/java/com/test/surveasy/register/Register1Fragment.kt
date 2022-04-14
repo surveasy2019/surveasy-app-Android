@@ -97,7 +97,7 @@ class Register1Fragment : Fragment() {
         val password = view.findViewById<EditText>(R.id.RegisterFragment1_PwInput).text.toString()
         val passwordCheck = view.findViewById<EditText>(R.id.RegisterFragment1_PwCheckInput).text.toString()
         val phoneNumber: String = view.findViewById<EditText>(R.id.RegisterFragment1_PhoneNumberInput).text.toString()
-        inflowPath = view.findViewById<EditText>(R.id.RegisterFragment1_EtcInflowInput).text.toString()
+        if(inflowPath == "기타") inflowPath = view.findViewById<EditText>(R.id.RegisterFragment1_EtcInflowInput).text.toString()
         birthDate = initYearPicker(view) + "-" + initMonthPicker(view) + "-" + initDayPicker(view)
         Log.d(TAG, "@@@@@@@@------- birthdate : $birthDate")
 

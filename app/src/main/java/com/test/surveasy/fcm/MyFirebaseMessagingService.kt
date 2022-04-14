@@ -1,5 +1,6 @@
 package com.test.surveasy.fcm
 
+import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -7,12 +8,16 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.test.surveasy.MainActivity
 import com.test.surveasy.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.test.surveasy.FCM_SplashActivity
+import com.test.surveasy.SplashActivity
 
 const val channelId = "notification_channel"
 const val channelName = "com.example.surveasy"
@@ -50,9 +55,13 @@ class MyFirebaseMessagingService :  FirebaseMessagingService() {
 //    }
 
     fun generateNotification(title: String, message: String) {
+        val push_default_list = true
+        val intent = Intent(this, FCM_SplashActivity::class.java)
+            intent.putExtra("push_default_list", push_default_list)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
-        val intent = Intent(this, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        Toast.makeText(baseContext, "***** $push_default_list", Toast.LENGTH_SHORT).show()
+
 
 //        수정하면 되는 부분
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
