@@ -92,6 +92,7 @@
                 android:id="@+id/ListItem_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="right"
                 android:textSize="15sp"
                 android:textStyle="normal"
                 android:fontFamily="@font/main_font_sb"

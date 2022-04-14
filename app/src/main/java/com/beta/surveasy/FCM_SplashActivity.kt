@@ -6,11 +6,19 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
+import android.widget.MediaController
+import android.widget.Toast
+import android.widget.VideoView
+import com.beta.surveasy.MainActivity
+import com.beta.surveasy.R
+import com.bumptech.glide.Glide
 import com.beta.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.beta.surveasy.home.NetworkAlertActivity
 import com.beta.surveasy.login.LoginActivity
@@ -19,14 +27,23 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
-class SplashActivity : AppCompatActivity() {
+class FCM_SplashActivity : AppCompatActivity() {
     val db = Firebase.firestore
     var token = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+
+        Toast.makeText(baseContext, "*****", Toast.LENGTH_SHORT).show()
+
+
 
 
         if(isConnectInternet() != "null"){
@@ -118,12 +135,18 @@ class SplashActivity : AppCompatActivity() {
                     if (snapshot["autoLogin"] == false) {
                         intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
-                        finish()
                     }
                     else {
-                        intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        if(snapshot["didFirstSurvey"] == true) {
+                            intent = Intent(this, MainActivity::class.java)
+                            intent.putExtra("defaultFragment_list", true)
+                            startActivity(intent)
+                        }
+                        else {
+                            intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                        }
+
                     }
                 }
         }
