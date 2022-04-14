@@ -18,19 +18,19 @@ class AddInfoRegisterAgree1Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_register_agree1)
+        setContentView(R.layout.activity_add_panel_agree1)
 
         Firebase.auth.signOut()
         Log.d(ContentValues.TAG, "((((((((((( logout : ${Firebase.auth.currentUser?.uid}")
 
         val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser_login")!!
-        val agreeAll : CheckBox = findViewById(R.id.registerAgree1_agree1)
-        val agree1 : CheckBox = findViewById(R.id.registerAgree1_agree2)
+        val agreeAll : CheckBox = findViewById(R.id.registerAgree1_agree11)
+        val agree1 : CheckBox = findViewById(R.id.registerAgree1_agree22)
         val term1 : TextView = findViewById(R.id.register_goTerm1)
-        val agree2 : CheckBox = findViewById(R.id.registerAgree1_agree3)
+        val agree2 : CheckBox = findViewById(R.id.registerAgree1_agree33)
         val term2 : TextView = findViewById(R.id.register_goTerm2)
-        val agree3 : CheckBox = findViewById(R.id.registerAgree1_agree4)
-        val registerAgree1 : Button = findViewById(R.id.RegisterAgree1_Btn)
+        val agree3 : CheckBox = findViewById(R.id.registerAgree1_agree44)
+        val registerAgree1 : Button = findViewById(R.id.RegisterAgree1_Btn1)
         val text : TextView = findViewById(R.id.SNSAgree_text)
 
         registerAgree1.setOnClickListener {

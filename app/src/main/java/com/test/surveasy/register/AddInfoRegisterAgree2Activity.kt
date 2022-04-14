@@ -17,10 +17,10 @@ import com.test.surveasy.login.CurrentUser
 class AddInfoRegisterAgree2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_register_agree2)
+        setContentView(R.layout.activity_add_panel_agree2)
 
         val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser_login")!!
-        val registerAgree2 : Button = findViewById(R.id.RegisterAgree2_Btn)
+        val registerAgree2 : Button = findViewById(R.id.RegisterAgree2_Btn2)
         val textColor : TextView = findViewById(R.id.changeColor_text)
 
         val sen = "불성실한 응답 적발 시, 패널 활동이 강제중지 되며 응답비는 지급되지 않습니다."
