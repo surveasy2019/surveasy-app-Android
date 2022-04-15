@@ -60,7 +60,7 @@ class MyFirebaseMessagingService :  FirebaseMessagingService() {
             intent.putExtra("push_default_list", push_default_list)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
-        Toast.makeText(baseContext, "***** $push_default_list", Toast.LENGTH_SHORT).show()
+        // Toast.makeText(baseContext, "***** $push_default_list", Toast.LENGTH_SHORT).show()
 
 
 //        수정하면 되는 부분
