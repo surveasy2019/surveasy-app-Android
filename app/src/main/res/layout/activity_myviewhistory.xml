@@ -112,14 +112,14 @@
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainerView1"
-                android:name="com.test.surveasy.my.history.MyViewHistoryWaitFragment"
+                android:name="com.beta.surveasy.my.history.MyViewHistoryWaitFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="visible"/>
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainerView2"
-                android:name="com.test.surveasy.my.history.MyViewHistoryFinFragment"
+                android:name="com.beta.surveasy.my.history.MyViewHistoryFinFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="invisible"/>
