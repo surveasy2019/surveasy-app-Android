@@ -41,10 +41,6 @@ class FCM_SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
 
-        Toast.makeText(baseContext, "*****", Toast.LENGTH_SHORT).show()
-
-
-
 
         if(isConnectInternet() != "null"){
             val handler = Handler(Looper.getMainLooper())
