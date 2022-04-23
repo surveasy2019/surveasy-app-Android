@@ -52,6 +52,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.beta.surveasy.FCM_SplashActivity"
+            android:exported="true"
+            android:theme="@style/Splash">
+            <intent-filter>
+                <action android:name="FCM_EXE_ACTIVITY"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
             android:name="com.beta.surveasy.register.RegisterTerm2"
             android:exported="true" />
         <activity
