@@ -63,6 +63,7 @@ class AddPanelInfoActivity : AppCompatActivity() {
         birthDate = initYearPicker() + "-" + initMonthPicker() + "-" + initDayPicker()
         val accountNumber: String = findViewById<EditText>(R.id.addInfo_AccountNumberInput).text.toString()
         val accountOwner: String = findViewById<EditText>(R.id.addInfo_AccountOwnerInput).text.toString()
+        if(inflowPath == "기타" || inflowPath == "") inflowPath = findViewById<EditText>(R.id.addInfo_EtcInflowInput).text.toString()
 
         Log.d(ContentValues.TAG, "@@@@@@@@------- birthdate : $birthDate")
 
@@ -75,17 +76,26 @@ class AddPanelInfoActivity : AppCompatActivity() {
         }
         else if (inflowPath == "유입경로를 선택하세요") {
             Toast.makeText(this, "유입경로를 선택해주세요.", Toast.LENGTH_SHORT).show()
-        }else if(accountType == "은행을 선택하세요") {
+        }
+        else if(inflowPath == "") {
+            Toast.makeText(this, "기타 유입경로를 입력해주세요.", Toast.LENGTH_SHORT).show()
+        }
+        else if(accountType == "은행을 선택하세요") {
             Toast.makeText(this, "은행을 선택해주세요.", Toast.LENGTH_SHORT).show()
-        }else if(accountNumber == "") {
+        }
+        else if(accountNumber == "") {
             Toast.makeText(this, "계좌번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
-        }else if(accountNumber.contains("-")){
+        }
+        else if(accountNumber.contains("-")){
             Toast.makeText(this, "계좌번호란에는 숫자만 입력해주세요.", Toast.LENGTH_SHORT).show()
-        }else if(accountOwner == "") {
+        }
+        else if(accountOwner == "") {
             Toast.makeText(this, "계좌주를 입력해주세요.", Toast.LENGTH_SHORT).show()
-        }else if(accountNumber.contains(" ") || accountOwner.contains(" ")){
+        }
+        else if(accountNumber.contains(" ") || accountOwner.contains(" ")){
             Toast.makeText(this,"입력란의 공백을 지워주세요.",Toast.LENGTH_LONG).show()
-        }else {
+        }
+        else {
             val db = Firebase.firestore
             currentUser.birthDate = birthDate
             currentUser.gender = gender
@@ -232,15 +242,36 @@ class AddPanelInfoActivity : AppCompatActivity() {
         if (day < 10) dayStr = "0" + dayStr
         return dayStr
     }
+//    private fun setInflowPathSpinner() {
+//        val inflowPathList = resources.getStringArray(R.array.inflowPath)
+//        val inflowPathAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, inflowPathList)
+//        val inflowPathSpinner : Spinner = findViewById(R.id.addInfo_InflowPathSpinner)
+//        inflowPathSpinner.adapter = inflowPathAdapter
+//        inflowPathSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                inflowPath = inflowPathList[position]
+//                Log.d(ContentValues.TAG, "@@@@@@@ inflow : $inflowPath")
+//            }
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//            }
+//        }
+//    }
+
     private fun setInflowPathSpinner() {
         val inflowPathList = resources.getStringArray(R.array.inflowPath)
         val inflowPathAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, inflowPathList)
         val inflowPathSpinner : Spinner = findViewById(R.id.addInfo_InflowPathSpinner)
+        val etcInflowPathContainer : LinearLayout = findViewById(R.id.addInfo_EtcInflowPath_Container)
+
         inflowPathSpinner.adapter = inflowPathAdapter
         inflowPathSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 inflowPath = inflowPathList[position]
-                Log.d(ContentValues.TAG, "@@@@@@@ inflow : $inflowPath")
+//                Log.d(TAG, "@@@@@@@ inflow : $inflowPath")
+                if(inflowPath == "기타") {
+                    etcInflowPathContainer.visibility = View.VISIBLE
+                }
+                else etcInflowPathContainer.visibility = View.GONE
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
