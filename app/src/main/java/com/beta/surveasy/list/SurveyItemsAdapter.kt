@@ -49,11 +49,16 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
         var now = Calendar.getInstance()
         var calDate = (date.time - now.time.time) / (60*60*1000)
         var dDay = ""
-        if(calDate<0){
+        if(calDate<0 || surveyList.get(position).progress>=3){
             dDay = "마감"
         }else{
             if(calDate<24){
-                dDay = calDate.toString()+"시간 후\n마감"
+                if(calDate.equals(0)){
+                    dDay = "1시간 이내 마감"
+                }else{
+                    dDay = calDate.toString()+"시간 후\n마감"
+                }
+
             }else{
                 dDay = "D - "+(calDate/24).toString()
             }
