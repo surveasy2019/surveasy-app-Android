@@ -29,6 +29,10 @@ class RegisterAgree1Fragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_register_agree1,container,false)
         val agreeAll : CheckBox = view.findViewById(R.id.registerAgree1_agree1)
+        val agreeAllText : TextView = view.findViewById(R.id.register_allAgree_text)
+        val agree1Text : TextView = view.findViewById(R.id.register_1Agree_text)
+        val agree2Text : TextView = view.findViewById(R.id.register_2Agree_text)
+        val agree3Text : TextView = view.findViewById(R.id.register_3Agree_text)
         val agree1 : CheckBox = view.findViewById(R.id.registerAgree1_agree2)
         val term1 : TextView = view.findViewById(R.id.register_goTerm1)
         val agree2 : CheckBox = view.findViewById(R.id.registerAgree1_agree3)
@@ -37,6 +41,8 @@ class RegisterAgree1Fragment : Fragment() {
         val registerAgree1 : Button = view.findViewById(R.id.RegisterAgree1_Btn)
         val text : TextView = view.findViewById(R.id.SNSAgree_text)
         val registerModel by activityViewModels<RegisterInfo1ViewModel>()
+
+
 
         registerAgree1.setOnClickListener {
             if(agree1.isChecked && agree2.isChecked){

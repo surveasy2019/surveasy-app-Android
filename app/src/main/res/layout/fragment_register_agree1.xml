@@ -42,8 +42,8 @@
                 android:layout_marginBottom="15dp">
 
                 <CheckBox
-                    android:layout_width="20sp"
-                    android:layout_height="20sp"
+                    android:layout_width="26sp"
+                    android:layout_height="26sp"
                     android:id="@+id/registerAgree1_agree1"
                     android:button="@color/transparent"
                     android:background="@drawable/custom_checkbox"
@@ -59,6 +59,7 @@
                     android:textColor="#000000"
                     android:lineSpacingExtra="4.7sp"
                     android:text="모두 동의합니다."
+                    android:id="@+id/register_allAgree_text"
                     android:checked="false"
                     android:fontFamily="@font/main_font_m"
                     />
@@ -77,8 +78,8 @@
                 android:layout_marginBottom="25dp">
 
                 <CheckBox
-                    android:layout_width="20sp"
-                    android:layout_height="20sp"
+                    android:layout_width="26sp"
+                    android:layout_height="26sp"
                     android:id="@+id/registerAgree1_agree2"
                     android:button="@color/transparent"
                     android:background="@drawable/custom_checkbox"
@@ -94,6 +95,7 @@
                     android:textColor="#000000"
                     android:lineSpacingExtra="4.7sp"
                     android:text="(필수) 이용약관 동의"
+                    android:id="@+id/register_1Agree_text"
                     android:fontFamily="@font/main_font_m"/>
                 <TextView
                     android:layout_marginLeft="12dp"
@@ -116,8 +118,8 @@
                 android:layout_marginBottom="25dp">
 
                 <CheckBox
-                    android:layout_width="20sp"
-                    android:layout_height="20sp"
+                    android:layout_width="26sp"
+                    android:layout_height="26sp"
                     android:id="@+id/registerAgree1_agree3"
                     android:button="@color/transparent"
                     android:background="@drawable/custom_checkbox"
@@ -133,6 +135,7 @@
                     android:textColor="#000000"
                     android:lineSpacingExtra="4.7sp"
                     android:text="(필수) 개인 정보 처리 방침 동의"
+                    android:id="@+id/register_2Agree_text"
                     android:fontFamily="@font/main_font_m"/>
 
                 <TextView
@@ -156,8 +159,8 @@
                 android:layout_marginBottom="20dp">
 
                 <CheckBox
-                    android:layout_width="20sp"
-                    android:layout_height="20sp"
+                    android:layout_width="26sp"
+                    android:layout_height="26sp"
                     android:id="@+id/registerAgree1_agree4"
                     android:button="@color/transparent"
                     android:background="@drawable/custom_checkbox"
@@ -168,7 +171,7 @@
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:id="@+id/register_3Agree_text"
                     android:textStyle="normal"
                     android:textSize="15sp"
                     android:textColor="#000000"
