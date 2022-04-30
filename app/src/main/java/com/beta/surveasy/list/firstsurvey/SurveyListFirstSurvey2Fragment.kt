@@ -128,7 +128,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
     private fun firestore() {
 
         // update Firestore 'didFirstSurvey (false -> true)"
-        db.collection("AndroidUser").document(userModel.currentUser.uid!!)
+        db.collection("panelData").document(userModel.currentUser.uid!!)
             .update("didFirstSurvey", true)
             .addOnSuccessListener { Log.d(TAG, "@@@@@ 1. didFirstSurvey field updated!") }
             Log.d(TAG, "***** ${userModel.currentUser.uid}")
@@ -153,7 +153,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
             "title" to "패널 기본 정보 조사"
         )
 
-        db.collection("AndroidUser").document(userModel.currentUser.uid!!)
+        db.collection("panelData").document(userModel.currentUser.uid!!)
             .collection("UserSurveyList").document("0")
             .set(firstSurvey)
             .addOnSuccessListener { Log.d(TAG, "@@@@@ 2. UserSurveyLIst updated!") }
@@ -161,7 +161,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
 
 
         // update Firestore reward
-        db.collection("AndroidUser").document(userModel.currentUser.uid!!)
+        db.collection("panelData").document(userModel.currentUser.uid!!)
             .update(
                 "reward_current", userModel.currentUser.rewardCurrent!! + 200,
                 "reward_total", userModel.currentUser.rewardTotal!! + 200
@@ -185,7 +185,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
             "family" to firstSurveyModel.firstSurvey.family,
             "housingType" to firstSurveyModel.firstSurvey.housingType
         )
-        db.collection("AndroidUser").document(userModel.currentUser.uid!!)
+        db.collection("panelData").document(userModel.currentUser.uid!!)
             .collection("FirstSurvey").document(userModel.currentUser.uid!!)
             .set(FirstSurvey).addOnSuccessListener { Log.d(TAG, "FFFFFFFFFFFFFF First Survey uploaded!") }
     }

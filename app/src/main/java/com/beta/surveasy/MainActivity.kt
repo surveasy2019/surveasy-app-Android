@@ -205,7 +205,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchCurrentUser(uid: String) :CurrentUser {
 
-        val docRef = db.collection("AndroidUser").document(uid.toString())
+        val docRef = db.collection("panelData").document(uid.toString())
 
         val userSurveyList = ArrayList<UserSurveyItem>()
 

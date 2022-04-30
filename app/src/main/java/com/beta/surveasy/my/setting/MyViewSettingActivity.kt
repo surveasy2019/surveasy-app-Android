@@ -23,7 +23,7 @@ class MyViewSettingActivity : AppCompatActivity() {
         binding = ActivityMyviewsettingBinding.inflate(layoutInflater)
 
         val db = Firebase.firestore
-        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+        db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { result ->
                 pushOn = result["pushOn"] as Boolean
                 marketingAgree = result["marketingAgree"] as Boolean
@@ -52,7 +52,7 @@ class MyViewSettingActivity : AppCompatActivity() {
 //        val db = Firebase.firestore
 //        var pushOn : Boolean? = null
 //        var marketingAgree : Boolean? = null
-//        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+//        db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
 //            .get().addOnSuccessListener { result ->
 //                pushOn = result["pushOn"] as Boolean
 //                marketingAgree = result["marketingAgree"] as Boolean

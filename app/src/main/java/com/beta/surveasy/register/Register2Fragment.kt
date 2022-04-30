@@ -106,7 +106,7 @@ class Register2Fragment : Fragment() {
                                     "marketingAgree" to registerModel.registerInfo1.marketingAgree,
                                     "autoLogin" to true
                                 )
-                                db.collection("AndroidUser").document(firebaseUID)
+                                db.collection("panelData").document(firebaseUID)
                                     .set(user).addOnSuccessListener { documentReference ->
                                         Log.d(TAG, "##### 회원가입 2 set 성공")
                                     }
@@ -117,7 +117,7 @@ class Register2Fragment : Fragment() {
                                 val firstSurvey = hashMapOf(
                                     "EngSurvey" to false
                                 )
-                                db.collection("AndroidUser").document(firebaseUID)
+                                db.collection("panelData").document(firebaseUID)
                                     .collection("FirstSurvey").document(firebaseUID)
                                     .set(firstSurvey).addOnSuccessListener {
                                         Log.d(TAG, "##### 회원가입 2 set ENG SURVEY 성공")

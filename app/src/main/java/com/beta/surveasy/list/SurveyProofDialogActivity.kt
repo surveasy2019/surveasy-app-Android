@@ -98,7 +98,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
     //참여한 설문 리스트 firestore에 업데이트
     private fun updateList(){
 
-        // AndroidUser-UserSurveyList에 참여 설문 추가
+        // panelData-UserSurveyList에 참여 설문 추가
         val id: Int = intent.getIntExtra("id",0)!!
         val idChecked: Int = intent.getIntExtra("idChecked",0)!!
 
@@ -121,7 +121,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
             "isSent" to false
 
         )
-        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+        db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
             .collection("UserSurveyList").document(idChecked.toString())
             .set(list).addOnSuccessListener {
                 //Toast.makeText(this,"#####info save success", Toast.LENGTH_LONG).show()
@@ -191,7 +191,8 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         val id: Int = intent.getIntExtra("id",0)!!
         val idChecked: Int = intent.getIntExtra("idChecked",0)!!
         val imgName = Firebase.auth.currentUser!!.uid+"__"+timestamp
-        val storageRef = storage.reference.child(idChecked.toString()).child(imgName)
+//        val storageRef = storage.reference.child(idChecked.toString()).child(imgName)
+        val storageRef = storage.reference.child(id.toString()).child(imgName)
         val uploadTask = storageRef.putFile(uriPhoto!!)
 
         uploadTask.addOnSuccessListener {

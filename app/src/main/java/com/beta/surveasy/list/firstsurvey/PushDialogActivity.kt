@@ -20,13 +20,13 @@ class PushDialogActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.PushNoticeOFFBtn.setOnClickListener{
-            db.collection("AndroidUser").document(uid)
+            db.collection("panelData").document(uid)
                 .update("pushOn", false)
             finish()
         }
 
         binding.PushNoticeONBtn.setOnClickListener{
-            db.collection("AndroidUser").document(uid)
+            db.collection("panelData").document(uid)
                 .update("pushOn", true)
             finish()
         }

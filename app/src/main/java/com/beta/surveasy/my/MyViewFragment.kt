@@ -120,7 +120,7 @@ class MyViewFragment : Fragment() {
 
     // Fetch info of current User for MyViewInfo
     private fun fetchInfoData() {
-        val docRef = db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+        val docRef = db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
         var eng: Boolean? = null
 
         docRef.collection("FirstSurvey").document(Firebase.auth.currentUser!!.uid)
