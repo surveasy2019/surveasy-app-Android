@@ -106,7 +106,7 @@ class AddPanelInfoActivity : AppCompatActivity() {
 
             val firebaseUID = currentUser.uid.toString()
 
-            val docRef = db.collection("AndroidUser").document(firebaseUID)
+            val docRef = db.collection("panelData").document(firebaseUID)
 
 
             val userSurveyList = ArrayList<UserSurveyItem>()
@@ -160,7 +160,7 @@ class AddPanelInfoActivity : AppCompatActivity() {
                         "autoLogin" to false
 
                     )
-                    db.collection("AndroidUser").document(firebaseUID)
+                    db.collection("panelData").document(firebaseUID)
                         .set(user).addOnSuccessListener { documentReference ->
                             Log.d(ContentValues.TAG, "##### 회원가입 2 set 성공")
                         }
@@ -171,7 +171,7 @@ class AddPanelInfoActivity : AppCompatActivity() {
                     val firstSurvey = hashMapOf(
                         "EngSurvey" to false
                     )
-                    db.collection("AndroidUser").document(firebaseUID)
+                    db.collection("panelData").document(firebaseUID)
                         .collection("FirstSurvey").document(firebaseUID)
                         .set(firstSurvey).addOnSuccessListener {
                             Log.d(ContentValues.TAG, "##### 회원가입 2 set ENG SURVEY 성공")

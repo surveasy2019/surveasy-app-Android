@@ -126,7 +126,7 @@ class FCM_SplashActivity : AppCompatActivity() {
         else {
 
             // CurrentUser의 autoLogin 상태 확인
-            db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+            db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
                 .get().addOnSuccessListener { snapshot ->
                     if (snapshot["autoLogin"] == false) {
                         intent = Intent(this, LoginActivity::class.java)

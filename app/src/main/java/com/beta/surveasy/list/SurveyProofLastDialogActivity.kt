@@ -41,10 +41,10 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
 
         val reward = intent.getIntExtra("reward",0)
 
-        // AndroidUser-reward_current/reward_total 업데이트
+        // panelData-reward_current/reward_total 업데이트
         var reward_current = 0
         var reward_total = 0
-        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+        db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { snapShot ->
                 reward_current = Integer.parseInt(snapShot["reward_current"].toString())
                 reward_total = Integer.parseInt(snapShot["reward_total"].toString())
@@ -52,7 +52,7 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
                 reward_current += reward
                 reward_total += reward
 
-                db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+                db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
                     .update("reward_current", reward_current, "reward_total", reward_total)
 
 

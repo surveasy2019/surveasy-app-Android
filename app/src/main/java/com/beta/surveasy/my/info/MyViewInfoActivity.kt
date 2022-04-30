@@ -86,7 +86,7 @@ class MyViewInfoActivity : AppCompatActivity() {
 
 
     private fun fetchInfoData() {
-        val docRef = db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+        val docRef = db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
         docRef.get().addOnSuccessListener { document ->
             if (document != null) {
                 val infoData: InfoData = InfoData(
@@ -152,7 +152,7 @@ class MyViewInfoActivity : AppCompatActivity() {
 
 
     fun updateInfo() {
-        val docRef = db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+        val docRef = db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
 
         val phoneNumberEdit = findViewById<EditText>(R.id.MyViewInfo_InfoItem_PhoneNumberEdit)
         val accountNumberEdit = findViewById<EditText>(R.id.MyViewInfo_InfoItem_AccountNumberEdit)

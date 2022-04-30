@@ -61,7 +61,7 @@ class MyViewHistoryActivity : AppCompatActivity() {
         }
 
         //viewModel 에 정산 여부에 따라 나눠서 저장
-        db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+        db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
             .collection("UserSurveyList").get()
             .addOnSuccessListener { documents ->
                 for(document in documents){

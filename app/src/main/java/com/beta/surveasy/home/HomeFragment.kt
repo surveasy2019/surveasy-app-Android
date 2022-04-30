@@ -159,7 +159,7 @@ class HomeFragment : Fragment() {
             totalReward.text = "${userModel.currentUser.rewardTotal}원"
         } else {
             if (Firebase.auth.currentUser?.uid != null) {
-                db.collection("AndroidUser")
+                db.collection("panelData")
                     .document(Firebase.auth.currentUser!!.uid)
                     .get().addOnSuccessListener { document ->
                         greetingText.text = "안녕하세요, ${document["name"].toString()}님"
@@ -167,7 +167,7 @@ class HomeFragment : Fragment() {
                             "${(Integer.parseInt(document["reward_total"].toString()))}원"
                     }
 
-                db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+                db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
                     .collection("UserSurveyList").get()
                     .addOnSuccessListener { document ->
                         var num = 0
@@ -203,7 +203,7 @@ class HomeFragment : Fragment() {
                 }
                 else {
                     if (Firebase.auth.currentUser?.uid != null) {
-                        db.collection("AndroidUser")
+                        db.collection("panelData")
                             .document(Firebase.auth.currentUser!!.uid)
                             .get().addOnSuccessListener { document ->
                                 firstSurveyTitle.text = "${document["name"].toString()}님에 대해 알려주세요!"

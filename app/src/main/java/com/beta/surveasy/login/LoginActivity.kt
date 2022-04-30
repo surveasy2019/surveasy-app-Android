@@ -110,7 +110,7 @@ class LoginActivity : AppCompatActivity() {
                         val uid = user!!.uid.toString()
 
 
-                        db.collection("AndroidUser").get()
+                        db.collection("panelData").get()
                             .addOnSuccessListener { result ->
 
                                 for(document in result){   if(document.id == uid) webUser++ }
@@ -164,7 +164,7 @@ class LoginActivity : AppCompatActivity() {
                                     }
 
                                 }else{
-                                    val docRef = db.collection("AndroidUser").document(uid)
+                                    val docRef = db.collection("panelData").document(uid)
                                     docRef.update("autoLogin", autoLogin)
 
                                     val userSurveyList = ArrayList<UserSurveyItem>()
@@ -256,7 +256,7 @@ class LoginActivity : AppCompatActivity() {
             }
             val token = task.result
             val db = Firebase.firestore
-            val docRef = db.collection("AndroidUser").document(uid)
+            val docRef = db.collection("panelData").document(uid)
             docRef.update("fcmToken", token)
         })
     }

@@ -56,7 +56,7 @@ class MyViewSettingPushActivity : AppCompatActivity() {
 
         binding.MyViewSettingPushPushSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked) {
-                db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+                db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
                     .update("pushOn", true)
                 FirebaseMessaging.getInstance().subscribeToTopic("all").addOnSuccessListener {
                     Log.d(TAG, "*********** On SUccess")
@@ -64,7 +64,7 @@ class MyViewSettingPushActivity : AppCompatActivity() {
 
             }
             else {
-                db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+                db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
                     .update("pushOn", false)
                 FirebaseMessaging.getInstance().unsubscribeFromTopic("all").addOnSuccessListener {
                     Log.d(TAG, "*********** Off SUccess")
@@ -74,11 +74,11 @@ class MyViewSettingPushActivity : AppCompatActivity() {
 
         binding.MyViewSettingPushMarketingSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked) {
-                db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+                db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
                     .update("marketingAgree", true)
             }
             else {
-                db.collection("AndroidUser").document(Firebase.auth.currentUser!!.uid)
+                db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
                     .update("marketingAgree", false)
             }
         }
