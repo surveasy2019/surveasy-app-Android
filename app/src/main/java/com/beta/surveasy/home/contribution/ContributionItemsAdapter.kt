@@ -21,7 +21,7 @@ class ContributionItemsAdapter(val contributionList : ArrayList<ContributionItem
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val contribution : ContributionItems = contributionList[position]
 
-        if(contribution.title.length > 28) holder.contributionItemTitle.text = contribution.title.substring(0, 28) + "..."
+        if(contribution.title.length > 20) holder.contributionItemTitle.text = contribution.title.substring(0, 20) + "..."
         else { holder.contributionItemTitle.text = contribution.title }
 
         if(contribution.institute.length > 25) holder.contributionItemInstitute.text = contribution.institute.substring(0, 25) + "..."

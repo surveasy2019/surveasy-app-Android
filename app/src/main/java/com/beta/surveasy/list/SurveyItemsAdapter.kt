@@ -49,20 +49,34 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
         var now = Calendar.getInstance()
         var calDate = (date.time - now.time.time) / (60*60*1000)
         var dDay = ""
-        if(calDate<0){
+        if(calDate<0 || surveyList.get(position).progress>=3){
             dDay = "마감"
         }else{
             if(calDate<24){
-                dDay = calDate.toString()+"시간 후\n마감"
+                if(calDate.equals(0)){
+                    dDay = "1시간 이내 마감"
+                }else{
+                    dDay = calDate.toString()+"시간 후\n마감"
+                }
+
             }else{
                 dDay = "D - "+(calDate/24).toString()
             }
         }
 
+        //대상
+        var target = surveyList.get(position).target
+        var tTarget = ""
+        if(target.length<=20){
+            tTarget = target
+        }else{
+            tTarget = target.substring(0,21)+".."
+        }
+
         holder.itemTitle.text = shortTitle
         holder.itemDate.text = dDay
         holder.itemSpendTime.text = surveyList.get(position).spendTime
-        holder.itemTarget.text = "대상 : "+surveyList.get(position).target
+        holder.itemTarget.text = "대상 : "+tTarget
         holder.itemReward.text = surveyList.get(position).reward.toString() + "원"
 
         //참여한 설문 박스 색 변경
