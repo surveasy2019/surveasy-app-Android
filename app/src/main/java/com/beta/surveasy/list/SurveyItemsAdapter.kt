@@ -64,10 +64,19 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
             }
         }
 
+        //대상
+        var target = surveyList.get(position).target
+        var tTarget = ""
+        if(target.length<=20){
+            tTarget = target
+        }else{
+            tTarget = target.substring(0,21)+".."
+        }
+
         holder.itemTitle.text = shortTitle
         holder.itemDate.text = dDay
         holder.itemSpendTime.text = surveyList.get(position).spendTime
-        holder.itemTarget.text = "대상 : "+surveyList.get(position).target
+        holder.itemTarget.text = "대상 : "+tTarget
         holder.itemReward.text = surveyList.get(position).reward.toString() + "원"
 
         //참여한 설문 박스 색 변경

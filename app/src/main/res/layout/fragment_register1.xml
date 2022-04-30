@@ -545,7 +545,7 @@
                 android:indeterminate="false"
 
                 android:max="5"
-                android:progress="1"
+                android:progress="3"
                 android:minHeight="50dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
