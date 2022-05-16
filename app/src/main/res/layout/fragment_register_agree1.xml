@@ -36,6 +36,7 @@
 
 
             <LinearLayout
+                android:id="@+id/registerAgree1_Container1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -71,7 +72,10 @@
                 android:background="@drawable/path_5"
                 android:layout_marginBottom="15dp">
             </View>
+
+
             <LinearLayout
+                android:id="@+id/registerAgree1_Container2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -111,7 +115,10 @@
 
 
             </LinearLayout>
+
+
             <LinearLayout
+                android:id="@+id/registerAgree1_Container3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -153,6 +160,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/registerAgree1_Container4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"

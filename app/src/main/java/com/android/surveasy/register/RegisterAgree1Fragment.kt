@@ -5,13 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.android.surveasy.R
+import com.google.api.Distribution
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -29,6 +27,7 @@ class RegisterAgree1Fragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_register_agree1,container,false)
         val agreeAll : CheckBox = view.findViewById(R.id.registerAgree1_agree1)
+        val agree_container1 : LinearLayout = view.findViewById(R.id.registerAgree1_Container1)
         val agreeAllText : TextView = view.findViewById(R.id.register_allAgree_text)
         val agree1Text : TextView = view.findViewById(R.id.register_1Agree_text)
         val agree2Text : TextView = view.findViewById(R.id.register_2Agree_text)
@@ -63,7 +62,6 @@ class RegisterAgree1Fragment : Fragment() {
             val intent = Intent(context,RegisterTerm2::class.java)
             startActivity(intent)
         }
-
 
 
 
