@@ -10,7 +10,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.android.surveasy"
+        applicationId "com.surveasy.surveasy"
         minSdk 21
         targetSdk 32
         versionCode 3

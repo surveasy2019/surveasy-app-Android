@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.android.surveasy.FirstFragment"
+        android:name="com.surveasy.surveasy.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/activity_fragment_first" >
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.android.surveasy.SecondFragment"
+        android:name="com.surveasy.surveasy.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/activity_fragment_second" >
 
