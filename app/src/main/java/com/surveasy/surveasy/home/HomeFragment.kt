@@ -31,6 +31,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.surveasy.surveasy.my.history.MyViewHistoryActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -75,6 +76,7 @@ class HomeFragment : Fragment() {
         val surveyNum: TextView = view.findViewById(R.id.Home_SurveyNum)
         val totalReward: TextView = view.findViewById(R.id.Home_RewardAmount)
         val moreBtn : TextView = view.findViewById(R.id.homeList_Btn)
+        val homeTopBox : LinearLayout = view.findViewById(R.id.Home_parSurvey_box)
 
         val opinionTextView : TextView = view.findViewById(R.id.Home_Opinion_TextView)
 
@@ -144,6 +146,11 @@ class HomeFragment : Fragment() {
                 (activity as MainActivity).clickList()
                 (activity as MainActivity).navColor_in_Home()
             }
+        }
+
+        homeTopBox.setOnClickListener {
+            val intent = Intent(context, MyViewHistoryActivity::class.java)
+            startActivity(intent)
         }
 
 

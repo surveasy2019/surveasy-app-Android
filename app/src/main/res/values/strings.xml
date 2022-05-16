@@ -233,6 +233,7 @@
     <string-array name="job">
         <item>직업을 선택해주세요</item>
         <item>대학생</item>
+        <item>대학원생</item>
         <item>사무직</item>
         <item>경영 관리직</item>
         <item>판매/서비스직</item>

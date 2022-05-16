@@ -156,7 +156,7 @@ class Register1Fragment : Fragment() {
         val currentYear = today.get(Calendar.YEAR)
         val numberPicker = view.findViewById<NumberPicker>(R.id.RegisterFragment1_Year)
 //        numberPicker.minValue = currentYear - 35
-        numberPicker.minValue = 1990
+        numberPicker.minValue = 1950
         numberPicker.maxValue = currentYear
         numberPicker.wrapSelectorWheel = false
 

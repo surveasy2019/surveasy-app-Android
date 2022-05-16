@@ -37,6 +37,8 @@ class SurveyProofDialogActivity: AppCompatActivity() {
 
         setContentView(binding.root)
 
+        //binding.surveyProofImgScroll.smoothScrollTo(0,0)
+
         //설문 정보 가져와서 저장해두기
         db.collection("surveyData").document(id.toString())
             .get().addOnSuccessListener { document ->

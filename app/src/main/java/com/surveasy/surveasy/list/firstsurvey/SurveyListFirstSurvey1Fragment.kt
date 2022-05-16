@@ -79,6 +79,7 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
     private fun firstSurvey1(view: View) {
         val etcUnivInput = view.findViewById<EditText>(R.id.SurveyListFirstSurvey1_EtcUniv)
         if((job == "대학생" && university == "기타") || (job == "대학생" && university == "")) university = etcUnivInput.text.toString()
+        if((job == "대학원생" && university == "기타") || (job == "대학원생" && university == "")) university = etcUnivInput.text.toString()
 
 
         if(job == "직업을 선택해주세요") Toast.makeText(context, "직업을 선택해주세요.", Toast.LENGTH_SHORT).show()
@@ -86,6 +87,10 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
         else if(job == "대학생" && major == "소속 계열을 선택해주세요") Toast.makeText(context, "소속 계열을 선택해주세요.", Toast.LENGTH_SHORT).show()
         else if(job == "대학생" && university == "대학명을 선택해주세요") Toast.makeText(context, "대학명을 선택해주세요.", Toast.LENGTH_SHORT).show()
         else if(job == "대학생" && university == "") Toast.makeText(context, "대학명을 입력해주세요.", Toast.LENGTH_SHORT).show()
+
+        else if(job == "대학원생" && major == "소속 계열을 선택해주세요") Toast.makeText(context, "소속 계열을 선택해주세요.", Toast.LENGTH_SHORT).show()
+        else if(job == "대학원생" && university == "대학명을 선택해주세요") Toast.makeText(context, "대학명을 선택해주세요.", Toast.LENGTH_SHORT).show()
+        else if(job == "대학원생" && university == "") Toast.makeText(context, "대학명을 입력해주세요.", Toast.LENGTH_SHORT).show()
 
         else if(engSurvey == null) {
             Toast.makeText(context, "영어 설문 참여 의사를 선택해주세요.", Toast.LENGTH_SHORT).show()
@@ -119,7 +124,7 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
         jobSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 job = jobList[position]
-                if(position == 1) {
+                if(position == 1 || position == 2) {
                     goneContainer.visibility = View.VISIBLE
                 }
                 else {
