@@ -126,7 +126,7 @@
             android:exported="true" />
         <activity
             android:name="com.surveasy.surveasy.login.LoginActivity"
-            android:windowSoftInputMode="adjustResize"
+
             android:exported="true" />
         <activity
             android:name="com.surveasy.surveasy.register.RegisterActivity"

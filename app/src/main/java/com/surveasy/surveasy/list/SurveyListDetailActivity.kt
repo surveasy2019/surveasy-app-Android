@@ -81,6 +81,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
             settings.javaScriptEnabled = true
         }
         webView.loadUrl(url)
+        webView.pageUp(true)
 
         //Toast.makeText(this,"###${id}",Toast.LENGTH_LONG).show()
 
