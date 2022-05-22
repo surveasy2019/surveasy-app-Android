@@ -68,28 +68,25 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ScrollView
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+
+<!--        >-->
+
+<!--        <WebView-->
+<!--            android:id="@+id/surveyWebView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            />-->
+
+<!--    </ScrollView>-->
+
+    <WebView
+        android:id="@+id/surveyWebView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        >
-
-        <WebView
-            android:id="@+id/surveyWebView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-
-
-
-            />
-
-    </ScrollView>
-
-
-
-
-
+        />
 
 
 </LinearLayout>
