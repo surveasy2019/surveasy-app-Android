@@ -271,7 +271,7 @@ class MainActivity : AppCompatActivity() {
         db.collection("surveyData")
             // id를 운영진이 올리는 깨끗한 아이디로 설정하면 progress 문제 해결됨.
             .orderBy("lastIDChecked", Query.Direction.DESCENDING)
-            .limit(11).get()
+            .limit(18).get()
             .addOnSuccessListener { result ->
 
                 for (document in result) {

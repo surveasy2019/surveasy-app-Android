@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Surveasy</string>
+    <string name="app_name">서베이지</string>
     <string name="title_activity_list">ListActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
