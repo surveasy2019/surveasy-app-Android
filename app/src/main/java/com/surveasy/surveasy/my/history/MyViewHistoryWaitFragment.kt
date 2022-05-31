@@ -49,7 +49,7 @@ class MyViewHistoryWaitFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             val list = CoroutineScope(Dispatchers.IO).async {
                 while(waitModel.waitSurvey.size==0){
-                    Log.d(ContentValues.TAG,"########loading")
+
                 }
                 waitModel.waitSurvey.get(0).id
             }.await()
