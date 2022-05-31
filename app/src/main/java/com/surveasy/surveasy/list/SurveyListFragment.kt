@@ -103,6 +103,8 @@ class SurveyListFragment() : Fragment() {
         }
         //Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
 
+        container?.setItemViewCacheSize(20)
+
         filterParticipate.setOnCheckedChangeListener{ button, ischecked ->
             if(ischecked){
                 if(listFilter.equals("최신순")){

@@ -47,7 +47,7 @@ class MyViewHistoryFinFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             val list = CoroutineScope(Dispatchers.IO).async {
                 while(finModel.finSurvey.size==0){
-                    Log.d(ContentValues.TAG,"########loading")
+
                 }
                 finModel.finSurvey.get(0).id
             }.await()

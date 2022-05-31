@@ -20,7 +20,6 @@ import kotlin.collections.ArrayList
 class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: ArrayList<Boolean>, val showCanParticipateList : ArrayList<Boolean>)
     : RecyclerView.Adapter<SurveyItemsAdapter.CustomViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list,parent,false)
@@ -149,6 +148,10 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
     override fun getItemCount(): Int {
         return surveyList.size
     }
+
+//    override fun getItemViewType(position: Int): Int {
+//        return super.getItemViewType(position)
+//    }
 
     inner class CustomViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val itemBox : ConstraintLayout = itemView.findViewById(R.id.Surveylist_listItemBox)
