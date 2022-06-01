@@ -62,6 +62,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         startActivityForResult(photoPick, pickImageFromAlbum)
 
         binding.dialogSendBtn.setOnClickListener {
+            binding.dialogSendBtn.visibility = View.INVISIBLE
             uploadStorage(binding.dialogImageview)
             Toast.makeText(this@SurveyProofDialogActivity,"응답 제출중",Toast.LENGTH_LONG).show()
 

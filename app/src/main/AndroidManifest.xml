@@ -120,6 +120,7 @@
             android:exported="true" />
         <activity
             android:name="com.surveasy.surveasy.list.SurveyListDetailActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name="com.surveasy.surveasy.list.SurveyProofDialogActivity"
