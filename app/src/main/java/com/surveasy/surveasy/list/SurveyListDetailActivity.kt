@@ -18,9 +18,12 @@ import android.webkit.WebViewClient
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.databinding.ActivitySurveylistdetailBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.json.JSONException
+import org.json.JSONObject
 import java.lang.RuntimeException
 
 
@@ -38,6 +41,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
         binding = ActivitySurveylistdetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         var webView : WebView = binding.surveyWebView
         val url : String = intent.getStringExtra("link")!!
         val id : Int = intent.getIntExtra("id",0)!!
@@ -45,6 +49,20 @@ class SurveyListDetailActivity : AppCompatActivity() {
         val index : Int = intent.getIntExtra("index",0)!!
         val reward : Int = intent.getIntExtra("reward",0)
         val title : String = intent.getStringExtra("title")!!
+
+
+        // [Amplitude] List Detail Showed
+        val client = Amplitude.getInstance()
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put("id", id).put("title", title)
+        } catch (e: JSONException) {
+            System.err.println("Invalid JSON")
+            e.printStackTrace()
+        }
+        client.logEvent("List Detail Showed", eventProperties)
+
+
 
 
         val spannableString = SpannableString(reward.toString()+"원 받으러 가기")

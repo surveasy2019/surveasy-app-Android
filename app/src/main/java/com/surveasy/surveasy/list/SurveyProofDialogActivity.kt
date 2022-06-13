@@ -7,11 +7,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.databinding.ActivitySurveyproofdialogBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import org.json.JSONException
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -65,6 +68,17 @@ class SurveyProofDialogActivity: AppCompatActivity() {
             binding.dialogSendBtn.visibility = View.INVISIBLE
             uploadStorage(binding.dialogImageview)
             Toast.makeText(this@SurveyProofDialogActivity,"응답 제출중",Toast.LENGTH_LONG).show()
+
+            // [Amplitude] Survey Submit
+            val client = Amplitude.getInstance()
+            val eventProperties = JSONObject()
+            try {
+                eventProperties.put("id", id).put("title", title)
+            } catch (e: JSONException) {
+                System.err.println("Invalid JSON")
+                e.printStackTrace()
+            }
+            client.logEvent("List Detail Showed", eventProperties)
 
 //            CoroutineScope(Dispatchers.Main).launch {
 //                val upload = CoroutineScope(Dispatchers.IO).async {

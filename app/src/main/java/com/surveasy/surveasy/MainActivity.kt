@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.amplitude.api.Amplitude
+import com.amplitude.api.Identify
 import com.surveasy.surveasy.databinding.ActivityMainBinding
 import com.surveasy.surveasy.home.banner.BannerViewModel
 import com.surveasy.surveasy.home.HomeFragment
@@ -32,6 +34,8 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
 import com.surveasy.surveasy.list.firstsurvey.PushDialogActivity
+import org.json.JSONException
+import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity() {
@@ -58,6 +62,10 @@ class MainActivity : AppCompatActivity() {
         fetchSurvey()
         fetchContribution()
         fetchOpinion()
+
+
+
+
 
 
 
@@ -255,6 +263,20 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "^^^^####$$$$%%%%%%%@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
 
                 Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
+
+
+
+                // [Amplitude] app-start
+                val client = Amplitude.getInstance()
+                val userProperties = JSONObject()
+                try {
+                    userProperties.put("name", userModel.currentUser!!.name).put("reward_total", userModel.currentUser!!.rewardTotal)
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                    System.err.println("Invalid JSON")
+                }
+                client.setUserProperties(userProperties)
+                client.logEvent("app_start")
 
 
 

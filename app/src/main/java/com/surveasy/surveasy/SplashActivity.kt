@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.surveasy.surveasy.home.NetworkAlertActivity
 import com.surveasy.surveasy.login.LoginActivity
@@ -27,6 +28,11 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        // Initialization of Amplitude
+        val client = Amplitude.getInstance()
+            .initialize(getApplicationContext(), "ae22fbd62558adb236f993284cc62c71")
+            .enableForegroundTracking(application)
 
 
         if(isConnectInternet() != "null"){
