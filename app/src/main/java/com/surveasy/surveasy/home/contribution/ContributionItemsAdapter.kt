@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.R
 
 class ContributionItemsAdapter(val contributionList : ArrayList<ContributionItems>)
@@ -30,6 +31,11 @@ class ContributionItemsAdapter(val contributionList : ArrayList<ContributionItem
         holder.contributionItemDate.text = contribution.date + " 설문 진행"
 
         holder.itemView.setOnClickListener {
+
+            // [Amplitude] Contribution Clicked
+            val client = Amplitude.getInstance()
+            client.logEvent("Contribution Clicked")
+
             val intent = Intent(holder.itemView!!.context, HomeContributionListDetailActivity::class.java)
             intent.putExtra("date", contribution.date)
             intent.putExtra("title", contribution.title)

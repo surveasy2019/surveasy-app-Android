@@ -49,13 +49,15 @@ class SurveyListDetailActivity : AppCompatActivity() {
         val index : Int = intent.getIntExtra("index",0)!!
         val reward : Int = intent.getIntExtra("reward",0)
         val title : String = intent.getStringExtra("title")!!
+        val title_amplitude = title
+        val idChecked_amplitude = idChecked
 
 
         // [Amplitude] List Detail Showed
         val client = Amplitude.getInstance()
         val eventProperties = JSONObject()
         try {
-            eventProperties.put("id", id).put("title", title)
+            eventProperties.put("id", idChecked).put("title", title)
         } catch (e: JSONException) {
             System.err.println("Invalid JSON")
             e.printStackTrace()
@@ -100,8 +102,11 @@ class SurveyListDetailActivity : AppCompatActivity() {
         }
         webView.loadUrl(url)
         webView.pageUp(true)
+        val timestamp_start = System.currentTimeMillis() / 1000
 
         //Toast.makeText(this,"###${id}",Toast.LENGTH_LONG).show()
+
+
 
         binding.toolbarUpload.setOnClickListener {
             val intent = Intent(this, SurveyProofDialogActivity::class.java)
@@ -109,6 +114,27 @@ class SurveyListDetailActivity : AppCompatActivity() {
             val index = intent.putExtra("index",index)
             val id = intent.putExtra("id",id)
             val idChecked = intent.putExtra("idChecked",idChecked)
+            val reward = intent.putExtra("reward", reward)
+
+
+            val timestamp_end = System.currentTimeMillis() / 1000
+            val spentTimeInSurvey = (timestamp_end - timestamp_start).toInt()
+
+
+            // [Amplitude] Survey Participated
+            val client = Amplitude.getInstance()
+            val eventProperties = JSONObject()
+            try {
+                eventProperties.put("title", title_amplitude).put("id", idChecked_amplitude)
+                    .put("spentTimeInSurvey", spentTimeInSurvey)
+            } catch (e: JSONException) {
+                System.err.println("Invalid JSON")
+                e.printStackTrace()
+            }
+            client.logEvent("Survey Participated", eventProperties)
+
+
+
 
             //permission 없는 상태로 upload 버튼 누르면 설정으로 이동 유도하는 창
             if(checkPermission()){

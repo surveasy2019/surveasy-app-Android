@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.MainActivity
 import com.surveasy.surveasy.databinding.ActivityLoginBinding
 import com.surveasy.surveasy.list.UserSurveyItem
@@ -18,6 +19,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.surveasy.surveasy.register.AddInfoRegisterAgree1Activity
+import org.json.JSONException
+import org.json.JSONObject
 
 
 class LoginActivity : AppCompatActivity() {
@@ -61,6 +64,9 @@ class LoginActivity : AppCompatActivity() {
         binding.LoginRegister.setOnClickListener {
             intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+
+            val client = Amplitude.getInstance()
+            client.logEvent("Default User Tried to Register")
         }
 
         // Go to FindPwActivity
@@ -109,6 +115,9 @@ class LoginActivity : AppCompatActivity() {
                         val user = auth.currentUser
                         val uid = user!!.uid.toString()
 
+                        // [Amplitude] login at login view
+                        val client = Amplitude.getInstance()
+                        client.logEvent("login at login view")
 
                         db.collection("panelData").get()
                             .addOnSuccessListener { result ->
@@ -159,6 +168,10 @@ class LoginActivity : AppCompatActivity() {
                                             intent_main.putExtra("currentUser_login", currentUser)
                                             startActivity(intent_main)
                                             finishAffinity()
+
+
+
+
                                         }
 
                                     }

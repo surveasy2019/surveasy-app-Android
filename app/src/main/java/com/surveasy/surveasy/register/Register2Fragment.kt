@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.activityViewModels
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.R
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -124,6 +125,10 @@ class Register2Fragment : Fragment() {
                                     }
                             })
                         (activity as RegisterActivity).goToRegisterFin()
+
+                        // [Amplitude] Register Fin
+                        val client = Amplitude.getInstance()
+                        client.logEvent("Register Fin")
 
                     } else {
                         Toast.makeText(

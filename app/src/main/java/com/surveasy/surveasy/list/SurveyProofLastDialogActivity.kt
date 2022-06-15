@@ -6,12 +6,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.MainActivity
 import com.surveasy.surveasy.databinding.ActivitySurveyprooflastdialogBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.json.JSONException
+import org.json.JSONObject
 
 
 class SurveyProofLastDialogActivity : AppCompatActivity() {
@@ -91,6 +94,18 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
         }
 
 
+        // [Amplitude] Survey Submission Fin
+        val idChecked = intent.getIntExtra("idChecked", 0)
+        val title = intent.getStringExtra("title")
+        val client = Amplitude.getInstance()
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put("id", idChecked).put("title", title).put("reward", reward)
+        } catch (e: JSONException) {
+            System.err.println("Invalid JSON")
+            e.printStackTrace()
+        }
+        client.logEvent("Survey Submission Fin", eventProperties)
 
 
     }
