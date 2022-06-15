@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.amplitude.api.Amplitude
+import com.amplitude.api.Identify
 import com.surveasy.surveasy.databinding.ActivityMainBinding
 import com.surveasy.surveasy.home.banner.BannerViewModel
 import com.surveasy.surveasy.home.HomeFragment
@@ -32,6 +34,8 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
 import com.surveasy.surveasy.list.firstsurvey.PushDialogActivity
+import org.json.JSONException
+import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity() {
@@ -59,23 +63,6 @@ class MainActivity : AppCompatActivity() {
         fetchContribution()
         fetchOpinion()
 
-
-
-        // Amplitude init
-//        val client = Amplitude.getInstance()
-//            .initialize(applicationContext, "ae22fbd62558adb236f993284cc62c71")
-//            .enableForegroundTracking(application)
-//        client.setServerZone(AmplitudeServerZone.EU)
-//
-//        client.logEvent("Button Clicked");
-//        val eventProperties = JSONObject()
-//        try {
-//            eventProperties.put("Hover Time", 10).put("prop_2", "value_2")
-//        } catch (e: JSONException) {
-//            System.err.println("Invalid JSON")
-//            e.printStackTrace()
-//        }
-//        client.logEvent("Button Clicked", eventProperties)
 
 
         // Current User
@@ -255,6 +242,19 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "^^^^####$$$$%%%%%%%@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
 
                 Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
+
+
+
+                // [Amplitude] user properties (name, reward_total)
+                val client = Amplitude.getInstance()
+                val userProperties = JSONObject()
+                try {
+                    userProperties.put("name", userModel.currentUser!!.name).put("reward_total", userModel.currentUser!!.rewardTotal)
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                    System.err.println("Invalid JSON")
+                }
+                client.setUserProperties(userProperties)
 
 
 

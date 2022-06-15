@@ -18,9 +18,12 @@ import android.webkit.WebViewClient
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.databinding.ActivitySurveylistdetailBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.json.JSONException
+import org.json.JSONObject
 import java.lang.RuntimeException
 
 
@@ -38,6 +41,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
         binding = ActivitySurveylistdetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         var webView : WebView = binding.surveyWebView
         val url : String = intent.getStringExtra("link")!!
         val id : Int = intent.getIntExtra("id",0)!!
@@ -45,6 +49,22 @@ class SurveyListDetailActivity : AppCompatActivity() {
         val index : Int = intent.getIntExtra("index",0)!!
         val reward : Int = intent.getIntExtra("reward",0)
         val title : String = intent.getStringExtra("title")!!
+        val title_amplitude = title
+        val idChecked_amplitude = idChecked
+
+
+        // [Amplitude] List Detail Showed
+        val client = Amplitude.getInstance()
+        val eventProperties = JSONObject()
+        try {
+            eventProperties.put("id", idChecked).put("title", title)
+        } catch (e: JSONException) {
+            System.err.println("Invalid JSON")
+            e.printStackTrace()
+        }
+        client.logEvent("List Detail Showed", eventProperties)
+
+
 
 
         val spannableString = SpannableString(reward.toString()+"원 받으러 가기")
@@ -82,8 +102,11 @@ class SurveyListDetailActivity : AppCompatActivity() {
         }
         webView.loadUrl(url)
         webView.pageUp(true)
+        val timestamp_start = System.currentTimeMillis() / 1000
 
         //Toast.makeText(this,"###${id}",Toast.LENGTH_LONG).show()
+
+
 
         binding.toolbarUpload.setOnClickListener {
             val intent = Intent(this, SurveyProofDialogActivity::class.java)
@@ -91,6 +114,27 @@ class SurveyListDetailActivity : AppCompatActivity() {
             val index = intent.putExtra("index",index)
             val id = intent.putExtra("id",id)
             val idChecked = intent.putExtra("idChecked",idChecked)
+            val reward = intent.putExtra("reward", reward)
+
+
+            val timestamp_end = System.currentTimeMillis() / 1000
+            val spentTimeInSurvey = (timestamp_end - timestamp_start).toInt()
+
+
+            // [Amplitude] Survey Participated
+            val client = Amplitude.getInstance()
+            val eventProperties = JSONObject()
+            try {
+                eventProperties.put("title", title_amplitude).put("id", idChecked_amplitude)
+                    .put("spentTimeInSurvey", spentTimeInSurvey)
+            } catch (e: JSONException) {
+                System.err.println("Invalid JSON")
+                e.printStackTrace()
+            }
+            client.logEvent("Survey Participated", eventProperties)
+
+
+
 
             //permission 없는 상태로 upload 버튼 누르면 설정으로 이동 유도하는 창
             if(checkPermission()){

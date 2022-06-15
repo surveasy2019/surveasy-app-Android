@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.surveasy.surveasy.home.NetworkAlertActivity
 import com.surveasy.surveasy.login.LoginActivity
@@ -28,6 +29,10 @@ class FCM_SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        // Initialization of Amplitude
+        val client = Amplitude.getInstance()
+            .initialize(getApplicationContext(), "ae22fbd62558adb236f993284cc62c71")
+            .enableForegroundTracking(application)
 
 
         if(isConnectInternet() != "null"){
@@ -133,6 +138,12 @@ class FCM_SplashActivity : AppCompatActivity() {
 
                     }
                 }
+
+            // [Amplitude] app-start
+            val client = Amplitude.getInstance()
+            client.userId = Firebase.auth.currentUser!!.uid
+            client.logEvent("app_start_from_PUSH")
+
         }
     }
 

@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.surveasy.surveasy.home.NetworkAlertActivity
 import com.surveasy.surveasy.login.LoginActivity
@@ -19,6 +20,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import org.json.JSONException
+import org.json.JSONObject
 
 class SplashActivity : AppCompatActivity() {
     val db = Firebase.firestore
@@ -27,6 +30,11 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        // Initialization of Amplitude
+        val client = Amplitude.getInstance()
+            .initialize(getApplicationContext(), "ae22fbd62558adb236f993284cc62c71")
+            .enableForegroundTracking(application)
 
 
         if(isConnectInternet() != "null"){
@@ -126,6 +134,12 @@ class SplashActivity : AppCompatActivity() {
                         finish()
                     }
                 }
+
+
+            // [Amplitude] app-start
+            val client = Amplitude.getInstance()
+            client.userId = Firebase.auth.currentUser!!.uid
+            client.logEvent("app_start")
         }
     }
 

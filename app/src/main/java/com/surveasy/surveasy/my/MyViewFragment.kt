@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.surveasy.surveasy.R
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.login.CurrentUserViewModel
 import com.surveasy.surveasy.my.history.MyViewHistoryActivity
 import com.surveasy.surveasy.my.info.InfoData
@@ -24,6 +25,8 @@ import com.surveasy.surveasy.my.setting.MyViewSettingActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
+import org.json.JSONException
+import org.json.JSONObject
 
 
 class MyViewFragment : Fragment() {
@@ -106,6 +109,11 @@ class MyViewFragment : Fragment() {
             val intent = Intent(context, MyViewSettingActivity::class.java)
             intent.putExtra("reward_current", userModel.currentUser.rewardCurrent)
             startActivity(intent)
+
+            // [Amplitude] Settings View Showed
+            val client = Amplitude.getInstance()
+            client.logEvent("Settings View Showed")
+
         }
         contactIcon.setOnClickListener {
             val intent = Intent(context, MyViewContactActivity::class.java)

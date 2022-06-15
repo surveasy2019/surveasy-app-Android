@@ -16,6 +16,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.MainActivity
 
 import com.surveasy.surveasy.R
@@ -36,6 +37,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import org.json.JSONException
+import org.json.JSONObject
 
 
 class HomeFragment : Fragment() {
@@ -285,6 +288,11 @@ class HomeFragment : Fragment() {
             intent.putExtra("content2", opinionModel.opinionItem.content2)
 
             startActivity(intent)
+
+
+            // [Amplitude] Poll View Showed
+            val client = Amplitude.getInstance()
+            client.logEvent("Poll View Showed")
         }
 
 
