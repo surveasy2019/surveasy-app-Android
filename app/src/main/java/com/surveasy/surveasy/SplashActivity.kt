@@ -20,6 +20,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import org.json.JSONException
+import org.json.JSONObject
 
 class SplashActivity : AppCompatActivity() {
     val db = Firebase.firestore
@@ -132,6 +134,12 @@ class SplashActivity : AppCompatActivity() {
                         finish()
                     }
                 }
+
+
+            // [Amplitude] app-start
+            val client = Amplitude.getInstance()
+            client.userId = Firebase.auth.currentUser!!.uid
+            client.logEvent("app_start")
         }
     }
 

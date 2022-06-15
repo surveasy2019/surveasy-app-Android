@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.login.CurrentUserViewModel
 import com.google.firebase.firestore.ktx.firestore
@@ -117,6 +118,10 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
             firstSurveyModel.firstSurvey.housingType = housingType
 
             firestore()
+
+            // [Amplitude] First Survey Fin
+            val client = Amplitude.getInstance()
+            client.logEvent("First Survey Fin")
 
             val intent : Intent = Intent(context, SurveyListFirstSurveyLast::class.java)
             startActivity(intent)

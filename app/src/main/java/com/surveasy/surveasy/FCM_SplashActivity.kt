@@ -138,6 +138,12 @@ class FCM_SplashActivity : AppCompatActivity() {
 
                     }
                 }
+
+            // [Amplitude] app-start
+            val client = Amplitude.getInstance()
+            client.userId = Firebase.auth.currentUser!!.uid
+            client.logEvent("app_start_from_PUSH")
+
         }
     }
 

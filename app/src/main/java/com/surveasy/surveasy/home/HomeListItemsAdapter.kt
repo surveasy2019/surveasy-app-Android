@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.list.NoticeToPanelDialogActivity
 import com.surveasy.surveasy.list.SurveyItems
@@ -32,6 +33,11 @@ class HomeListItemsAdapter(val homeList: ArrayList<SurveyItems>) : RecyclerView.
 
 
         holder.itemView.setOnClickListener{
+
+            // [Amplitude] Home SurveyList Item Clicked
+            val client = Amplitude.getInstance()
+            client.logEvent("Home SurveyList Item Clicked")
+
             if(homeList.get(position).noticeToPanel?.length==0){
                 val intent = Intent(holder.itemView.context, SurveyListDetailActivity::class.java)
                 intent.putExtra("link", homeList.get(position).link)

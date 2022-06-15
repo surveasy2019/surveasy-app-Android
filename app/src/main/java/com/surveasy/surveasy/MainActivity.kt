@@ -65,27 +65,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
-
-
-        // Amplitude init
-//        val client = Amplitude.getInstance()
-//            .initialize(applicationContext, "ae22fbd62558adb236f993284cc62c71")
-//            .enableForegroundTracking(application)
-//        client.setServerZone(AmplitudeServerZone.EU)
-//
-//        client.logEvent("Button Clicked");
-//        val eventProperties = JSONObject()
-//        try {
-//            eventProperties.put("Hover Time", 10).put("prop_2", "value_2")
-//        } catch (e: JSONException) {
-//            System.err.println("Invalid JSON")
-//            e.printStackTrace()
-//        }
-//        client.logEvent("Button Clicked", eventProperties)
-
-
         // Current User
         val user = Firebase.auth.currentUser
         user?.let {
@@ -266,7 +245,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-                // [Amplitude] app-start
+                // [Amplitude] user properties (name, reward_total)
                 val client = Amplitude.getInstance()
                 val userProperties = JSONObject()
                 try {
@@ -276,7 +255,6 @@ class MainActivity : AppCompatActivity() {
                     System.err.println("Invalid JSON")
                 }
                 client.setUserProperties(userProperties)
-                client.logEvent("app_start")
 
 
 
