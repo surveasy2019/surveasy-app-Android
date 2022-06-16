@@ -16,6 +16,11 @@ import com.surveasy.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.surveasy.surveasy.home.NetworkAlertActivity
 import com.surveasy.surveasy.login.LoginActivity
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
+import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -26,10 +31,15 @@ import org.json.JSONObject
 class SplashActivity : AppCompatActivity() {
     val db = Firebase.firestore
     var token = ""
+    private val REQUEST_CODE_UPDATE = 9999
+    private var appUpdateManager : AppUpdateManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        appUpdateManager = AppUpdateManagerFactory.create(this)
+        checkUpdate()
 
         // Initialization of Amplitude
         val client = Amplitude.getInstance()
@@ -98,6 +108,49 @@ class SplashActivity : AppCompatActivity() {
 //                    }
                 }
             }
+    }
+
+    fun checkUpdate() {
+        var appUpdateInfoTask = appUpdateManager?.appUpdateInfo
+
+        // Checks that the platform will allow the specified type of update.
+        appUpdateInfoTask?.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
+            ) {
+                // Request the update.
+                appUpdateManager?.startUpdateFlowForResult(
+                    appUpdateInfo,
+                    AppUpdateType.IMMEDIATE,
+                    this,
+                    REQUEST_CODE_UPDATE)
+
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        inProgressUpdate()
+
+    }
+
+    fun inProgressUpdate() {
+        var appUpdateInfoTask = appUpdateManager?.appUpdateInfo
+
+        // Checks that the platform will allow the specified type of update.
+        appUpdateInfoTask?.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
+            ) {
+                // If an in-app update is already running, resume the update.
+                appUpdateManager?.startUpdateFlowForResult(
+                    appUpdateInfo,
+                    AppUpdateType.IMMEDIATE,
+                    this,
+                    REQUEST_CODE_UPDATE)
+
+            }
+        }
     }
 
     private fun isConnectInternet() : String {
