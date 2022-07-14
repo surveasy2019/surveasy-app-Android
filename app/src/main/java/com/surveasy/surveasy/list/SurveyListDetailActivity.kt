@@ -6,13 +6,18 @@ import android.app.AlertDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
+import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.Settings
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
 import android.util.Log
+import android.view.View
+import android.view.Window
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.core.app.ActivityCompat
@@ -24,6 +29,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.File
+import java.io.FileOutputStream
 import java.lang.RuntimeException
 
 
@@ -222,12 +229,25 @@ class SurveyListDetailActivity : AppCompatActivity() {
     }
 
 
-
-
-
-
-
-
+//    private fun takeScreenshot(){
+//        try{
+//            Log.d(TAG,"//////ss")
+//            val mPath = Environment.getExternalStorageDirectory().toString()+".jpg"
+//            val v1 : View = getWindow().decorView.rootView
+//            v1.isDrawingCacheEnabled()
+//            val bitmap :Bitmap = Bitmap.createBitmap(v1.getDrawingCache())
+//            val imgFile : File = File(mPath)
+//            val outputStream: FileOutputStream = FileOutputStream(imgFile)
+//            val quality = 100
+//            bitmap.compress(Bitmap.CompressFormat.JPEG , quality,outputStream)
+//            outputStream.flush()
+//            outputStream.close()
+//
+//        }catch (e:Throwable){
+//            Log.d(TAG,"//////fail")
+//            e.printStackTrace()
+//        }
+//    }
 
 
 
