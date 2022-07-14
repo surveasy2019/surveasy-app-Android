@@ -32,6 +32,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerActivity
 import com.surveasy.surveasy.my.history.MyViewHistoryActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -80,8 +81,9 @@ class HomeFragment : Fragment() {
         val totalReward: TextView = view.findViewById(R.id.Home_RewardAmount)
         val moreBtn : TextView = view.findViewById(R.id.homeList_Btn)
         val homeTopBox : LinearLayout = view.findViewById(R.id.Home_parSurvey_box)
-
+        val opinionContainer: LinearLayout = view.findViewById(R.id.Home_Opinion_Q_Container)
         val opinionTextView : TextView = view.findViewById(R.id.Home_Opinion_TextView)
+        val opinionAnswer : LinearLayout = view.findViewById(R.id.Home_Poll_answer_container)
 
 
         // Banner init
@@ -280,7 +282,7 @@ class HomeFragment : Fragment() {
 
         }
 
-        opinionTextView.setOnClickListener {
+        opinionContainer.setOnClickListener {
             val intent = Intent(context, HomeOpinionDetailActivity::class.java)
             intent.putExtra("id", opinionModel.opinionItem.id)
             intent.putExtra("question", opinionModel.opinionItem.question)
@@ -294,6 +296,14 @@ class HomeFragment : Fragment() {
             val client = Amplitude.getInstance()
             client.logEvent("Poll View Showed")
         }
+
+        opinionAnswer.setOnClickListener {
+            val intent = Intent(context, HomeOpinionAnswerActivity::class.java)
+
+            startActivity(intent)
+
+        }
+
 
 
 
