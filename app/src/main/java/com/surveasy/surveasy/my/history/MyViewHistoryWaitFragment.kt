@@ -97,7 +97,7 @@ class MyViewHistoryWaitFragment : Fragment() {
                 i++
             }
         }else{
-            while(i <=cnt){
+            while(i <cnt){
                 defaultList.add(waitSurvey.get(i))
                 i++
             }

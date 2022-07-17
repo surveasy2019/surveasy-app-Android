@@ -117,22 +117,11 @@ class HomeFragment : Fragment() {
             })
         }
 
+        homeTopBox.setOnClickListener {
+            val intent = Intent(context, MyViewHistoryActivity::class.java)
+            startActivity(intent)
+        }
 
-
-
-
-    //    login.setOnClickListener {
-    //        //val intent = Intent(context, LoginActivity::class.java)
-    //        val intent = Intent(context, FirstIntroduceScreenActivity::class.java)
-    //        startActivity(intent)
-    //    }
-
-
-    //    register.setOnClickListener {
-    //        val intent = Intent(context, RegisterActivity::class.java)
-    //
-     //       startActivity(intent)
-    //    }
 
 
         moreBtn.setOnClickListener {
@@ -151,10 +140,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        homeTopBox.setOnClickListener {
-            val intent = Intent(context, MyViewHistoryActivity::class.java)
-            startActivity(intent)
-        }
+
 
 
         //user name, reward 불러오기
