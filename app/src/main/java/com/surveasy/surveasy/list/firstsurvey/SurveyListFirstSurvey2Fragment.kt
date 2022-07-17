@@ -233,13 +233,14 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
             6 -> { districtList = resources.getStringArray(R.array.대전) }
             7 -> { districtList = resources.getStringArray(R.array.울산) }
             9 -> { districtList = resources.getStringArray(R.array.경기) }
-            10 -> { districtList = resources.getStringArray(R.array.충북) }
-            11 -> { districtList = resources.getStringArray(R.array.충남) }
-            12 -> { districtList = resources.getStringArray(R.array.전북) }
-            13 -> { districtList = resources.getStringArray(R.array.전남) }
-            14 -> { districtList = resources.getStringArray(R.array.경북) }
-            15 -> { districtList = resources.getStringArray(R.array.경남) }
-            16 -> { districtList = resources.getStringArray(R.array.제주) }
+            10 -> { districtList = resources.getStringArray(R.array.강원) }
+            11 -> { districtList = resources.getStringArray(R.array.충북) }
+            12 -> { districtList = resources.getStringArray(R.array.충남) }
+            13 -> { districtList = resources.getStringArray(R.array.전북) }
+            14 -> { districtList = resources.getStringArray(R.array.전남) }
+            15 -> { districtList = resources.getStringArray(R.array.경북) }
+            16 -> { districtList = resources.getStringArray(R.array.경남) }
+            17 -> { districtList = resources.getStringArray(R.array.제주) }
         }
 
         val districtAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, districtList)

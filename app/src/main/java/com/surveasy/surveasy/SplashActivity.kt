@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.content.IntentSender
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
@@ -11,11 +12,24 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.accessibility.AccessibilityEventCompat.setAction
 import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.surveasy.surveasy.home.NetworkAlertActivity
 import com.surveasy.surveasy.login.LoginActivity
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.InstallStateUpdatedListener
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
+import com.google.android.play.core.install.model.InstallStatus
+import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -30,6 +44,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
 
         // Initialization of Amplitude
         val client = Amplitude.getInstance()
@@ -61,10 +76,8 @@ class SplashActivity : AppCompatActivity() {
 //            finish()
 //        },3000)
 
+
         supportActionBar?.hide()
-
-
-
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener(
             OnCompleteListener { task ->
@@ -98,7 +111,9 @@ class SplashActivity : AppCompatActivity() {
 //                    }
                 }
             }
+
     }
+
 
     private fun isConnectInternet() : String {
         val cm : ConnectivityManager =
@@ -142,5 +157,8 @@ class SplashActivity : AppCompatActivity() {
             client.logEvent("app_start")
         }
     }
+
+
+
 
 }

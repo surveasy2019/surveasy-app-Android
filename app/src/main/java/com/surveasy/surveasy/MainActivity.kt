@@ -2,14 +2,17 @@ package com.surveasy.surveasy
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.content.IntentSender
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.amplitude.api.Amplitude
 import com.amplitude.api.Identify
 import com.surveasy.surveasy.databinding.ActivityMainBinding
@@ -26,6 +29,14 @@ import com.surveasy.surveasy.login.CurrentUser
 import com.surveasy.surveasy.login.CurrentUserViewModel
 import com.surveasy.surveasy.my.MyViewFragment
 import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.InstallStateUpdatedListener
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.InstallStatus
+import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
@@ -49,6 +60,9 @@ class MainActivity : AppCompatActivity() {
     val contributionModel by viewModels<HomeContributionViewModel>()
     val opinionModel by viewModels<HomeOpinionViewModel>()
 
+    private val REQUEST_CODE_UPDATE = 9999
+    private lateinit var appUpdateManager : AppUpdateManager
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +70,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 인앱 업데이트 체크
+        appUpdateManager = AppUpdateManagerFactory.create(this)
+        checkUpdate()
 
         fetchBanner()
         fetchCurrentUser(Firebase.auth.currentUser!!.uid)
@@ -239,9 +257,8 @@ class MainActivity : AppCompatActivity() {
 //                    startActivity(intent)
 //                }
                 userModel.currentUser = currentUser
-                Log.d(TAG, "^^^^####$$$$%%%%%%%@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
-
-                Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
+                //Log.d(TAG, "^^^^####$$$$%%%%%%%@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
+                //Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
 
 
 
@@ -291,10 +308,7 @@ class MainActivity : AppCompatActivity() {
                             Integer.parseInt(document["progress"].toString())
                         )
                         surveyList.add(item)
-                        Log.d(
-                            TAG,
-                            "################${document["title"]} and ${document["uploadDate"]}"
-                        )
+                        //Log.d(TAG,"################${document["title"]} and ${document["uploadDate"]}")
                     }
 
                 }
@@ -321,7 +335,7 @@ class MainActivity : AppCompatActivity() {
             items.forEachIndexed { index, item ->
                 item.downloadUrl.addOnSuccessListener {
                     bannerModel.uriList.add(it.toString())
-                    Log.d(TAG, "UUUUUUUU--${index}---$itemNum---${bannerModel.num}--${bannerModel.uriList}+++")
+                    //Log.d(TAG, "UUUUUUUU--${index}---$itemNum---${bannerModel.num}--${bannerModel.uriList}+++")
                 }
 
             }
@@ -343,7 +357,7 @@ class MainActivity : AppCompatActivity() {
                             document["content"].toString()
 
                         )
-                        Log.d(TAG, ">>>>>>>>>>>>>>>>>>>>>${contribution.date}")
+                        //Log.d(TAG, ">>>>>>>>>>>>>>>>>>>>>${contribution.date}")
                         contributionModel.contributionList.add(contribution)
                     }
                 }
@@ -408,5 +422,68 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
+
+
+
+    // 인앱 업데이크 가능 여부 체크 메소드
+    private fun checkUpdate() {
+        var appUpdateInfoTask = appUpdateManager.appUpdateInfo
+        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+
+            // 업데이트 가능한 구버전 상태
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
+            ) {
+                // Request the update.
+                appUpdateManager.startUpdateFlowForResult(
+                    appUpdateInfo,
+                    AppUpdateType.IMMEDIATE,
+                    this,
+                    REQUEST_CODE_UPDATE
+                )
+
+            }
+
+            else {
+                // 업데이트 필요 없는 최신 상태
+            }
+
+
+        }
+    }
+
+
+    // 업데이트 취소나 실패 콜백
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_UPDATE) {
+            if (resultCode != RESULT_OK) {
+                Log.e("MY_APP", "Update flow failed! Result code: $resultCode")
+
+            }
+        }
+    }
+
+
+    // 어플이 다시 불러와졌을 경우, 업데이트 이어서 계속 진행
+    override fun onResume() {
+        super.onResume()
+
+        appUpdateManager.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                // If an in-app update is already running, resume the update.
+                appUpdateManager.startUpdateFlowForResult(
+                    appUpdateInfo,
+                    AppUpdateType.IMMEDIATE,
+                    this,
+                    REQUEST_CODE_UPDATE)
+
+            }
+        }
+
+    }
+
+
 }
 
