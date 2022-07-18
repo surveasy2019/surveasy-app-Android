@@ -3,10 +3,25 @@ package com.surveasy.surveasy.home.Opinion
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.surveasy.surveasy.R
+import com.surveasy.surveasy.databinding.ActivityHomeOpinionAnswerBinding
 
 class HomeOpinionAnswerActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityHomeOpinionAnswerBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home_opinion_answer)
+
+        binding = ActivityHomeOpinionAnswerBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+
+        //ToolBar
+        setSupportActionBar(binding.ToolbarHomeOpinionAnswerDetail)
+        if(supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+        binding.ToolbarHomeOpinionAnswerDetail.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 }
