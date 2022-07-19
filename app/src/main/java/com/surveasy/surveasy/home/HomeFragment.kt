@@ -288,6 +288,9 @@ class HomeFragment : Fragment() {
 
             startActivity(intent)
 
+            // [Amplitude] Poll_Answer View Showed
+            val client = Amplitude.getInstance()
+            client.logEvent("Poll_Answer View Showed")
         }
 
 
