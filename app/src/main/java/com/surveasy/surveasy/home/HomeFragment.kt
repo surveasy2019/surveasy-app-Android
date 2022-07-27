@@ -33,6 +33,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerActivity
+import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerTitleViewModel
 import com.surveasy.surveasy.my.history.MyViewHistoryActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -59,6 +60,8 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        var left = 0
+        var right = 1
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val container : RecyclerView? = view.findViewById(R.id.homeList_recyclerView)
         val contributionContainer : RecyclerView = view.findViewById(R.id.HomeContribution_recyclerView)
@@ -66,6 +69,7 @@ class HomeFragment : Fragment() {
         val bannerModel by activityViewModels<BannerViewModel>()
         val contributionModel by activityViewModels<HomeContributionViewModel>()
         val opinionModel by activityViewModels<HomeOpinionViewModel>()
+        val answerModel by activityViewModels<HomeOpinionAnswerTitleViewModel>()
         val model by activityViewModels<SurveyInfoViewModel>()
         val current_banner: TextView = view.findViewById(R.id.textView_current_banner)
         val total_banner: TextView = view.findViewById(R.id.textView_total_banner)
@@ -84,7 +88,10 @@ class HomeFragment : Fragment() {
         val opinionContainer: LinearLayout = view.findViewById(R.id.Home_Opinion_Q_Container)
         val opinionTextView : TextView = view.findViewById(R.id.Home_Opinion_TextView)
         val opinionAnswer : LinearLayout = view.findViewById(R.id.Home_Poll_answer_container)
-
+        val answerTitleL : TextView = view.findViewById(R.id.Home_Opinion_Answer_Title_L)
+        val answerTitleR : TextView = view.findViewById(R.id.Home_Opinion_Answer_Title_R)
+        val answerLBtn : LinearLayout = view.findViewById(R.id.Home_Opinion_L)
+        val answerRBtn : LinearLayout = view.findViewById(R.id.Home_Opinion_R)
 
         // Banner init
         bannerPager = view.findViewById(R.id.Home_BannerViewPager)
@@ -282,6 +289,28 @@ class HomeFragment : Fragment() {
             val client = Amplitude.getInstance()
             client.logEvent("Poll View Showed")
         }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val list = CoroutineScope(Dispatchers.IO).async {
+                val model by activityViewModels<HomeOpinionAnswerTitleViewModel>()
+                while (model.homeAnswerList.size == 0) {
+                    //Log.d(TAG, "########loading")
+                }
+                model.homeAnswerList.get(0).id
+                answerTitleL.text = model.homeAnswerList.get(0).question.toString()
+
+
+
+
+            }.await()
+        }
+        answerRBtn.setOnClickListener{
+            answerTitleL.text = answerModel.homeAnswerList.get(left+1).question.toString()
+            answerTitleR.text = answerModel.homeAnswerList.get(right+1).question.toString()
+        }
+
+
+
 
         opinionAnswer.setOnClickListener {
             val intent = Intent(context, HomeOpinionAnswerActivity::class.java)
