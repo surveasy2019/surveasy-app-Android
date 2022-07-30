@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +25,9 @@ class NoticeFixedItemsAdapter(val noticeList : ArrayList<NoticeItems>)
         holder.noticeItemDate.text = notice.date
         holder.noticeItemContent.text = notice.content
 
+        if(noticeList[position].isOpened == false) holder.noticeNew.visibility = View.VISIBLE
+        else holder.noticeNew.visibility = View.INVISIBLE
+
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView!!.context, MyViewNoticeListDetailActivity::class.java)
             intent.putExtra("title", holder.noticeItemTitle.text)
@@ -42,7 +46,7 @@ class NoticeFixedItemsAdapter(val noticeList : ArrayList<NoticeItems>)
         val noticeItemTitle : TextView = itemView.findViewById(R.id.NoticeFixedItem_Title)
         val noticeItemDate: TextView = itemView.findViewById(R.id.NoticeFixedItem_Date)
         val noticeItemContent : TextView = itemView.findViewById(R.id.NoticeFixedItem_Content)
-
+        val noticeNew : ImageView = itemView.findViewById(R.id.NoticeFixedItem_New)
     }
 
 

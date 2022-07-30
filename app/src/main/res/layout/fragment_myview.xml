@@ -27,12 +27,28 @@
             android:textColor="#000000"
             android:fontFamily="@font/main_font_b"/>
 
-        <ImageView
-            android:id="@+id/MyView_NoticeIcon"
-            android:layout_width="30sp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            app:srcCompat="@drawable/my_notice" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/MyView_NoticeIcon"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_gravity="right"
+                app:srcCompat="@drawable/my_notice" />
+
+            <ImageView
+                android:id="@+id/MyView_NoticeIcon_dot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2sp"
+                android:src="@drawable/notice_new_dot"
+                android:visibility="invisible"/>
+
+        </FrameLayout>
+
+
 
     </LinearLayout>
 
