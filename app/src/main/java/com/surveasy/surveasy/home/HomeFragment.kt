@@ -88,8 +88,8 @@ class HomeFragment : Fragment() {
         val opinionContainer: LinearLayout = view.findViewById(R.id.Home_Opinion_Q_Container)
         val opinionTextView : TextView = view.findViewById(R.id.Home_Opinion_TextView)
         val opinionAnswer : LinearLayout = view.findViewById(R.id.Home_Poll_answer_container)
-        val answerTitleL : TextView = view.findViewById(R.id.Home_Opinion_Answer_Title_L)
-        val answerTitleR : TextView = view.findViewById(R.id.Home_Opinion_Answer_Title_R)
+        var answerTitleL : TextView = view.findViewById(R.id.Home_Opinion_Answer_Title_L)
+        var answerTitleR : TextView = view.findViewById(R.id.Home_Opinion_Answer_Title_R)
         val answerLBtn : LinearLayout = view.findViewById(R.id.Home_Opinion_L)
         val answerRBtn : LinearLayout = view.findViewById(R.id.Home_Opinion_R)
 
@@ -297,17 +297,38 @@ class HomeFragment : Fragment() {
                     //Log.d(TAG, "########loading")
                 }
                 model.homeAnswerList.get(0).id
-                answerTitleL.text = model.homeAnswerList.get(0).question.toString()
-
-
-
+                activity?.runOnUiThread(Runnable {
+                    answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
+                    answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
+                })
 
             }.await()
         }
-        answerRBtn.setOnClickListener{
-            answerTitleL.text = answerModel.homeAnswerList.get(left+1).question.toString()
-            answerTitleR.text = answerModel.homeAnswerList.get(right+1).question.toString()
-        }
+        activity?.runOnUiThread(Runnable() {
+
+
+
+            answerRBtn.setOnClickListener{
+                if(right<answerModel.homeAnswerList.size-1){
+                    left++
+                    right++
+                    answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
+                    answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
+                }
+
+            }
+            answerLBtn.setOnClickListener{
+                if(left>0){
+                    left--
+                    right--
+                    answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
+                    answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
+                }
+
+            }
+        })
+
+
 
 
 

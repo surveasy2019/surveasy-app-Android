@@ -4,6 +4,7 @@ package com.surveasy.surveasy.my
 import android.os.Bundle
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.media.Image
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,30 +14,39 @@ import androidx.fragment.app.Fragment
 import com.surveasy.surveasy.R
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.login.CurrentUserViewModel
 import com.surveasy.surveasy.my.history.MyViewHistoryActivity
 import com.surveasy.surveasy.my.info.InfoData
 import com.surveasy.surveasy.my.info.InfoDataViewModel
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.QuerySnapshot
 import com.surveasy.surveasy.my.info.MyViewInfoActivity
-import com.surveasy.surveasy.my.notice.MyViewNoticeListActivity
 import com.surveasy.surveasy.my.setting.MyViewSettingActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.surveasy.surveasy.my.notice.*
+import com.surveasy.surveasy.my.notice.room.NoticeDatabase
 import kotlinx.coroutines.*
 import org.json.JSONException
 import org.json.JSONObject
 
 
 class MyViewFragment : Fragment() {
-    val infoDataModel by viewModels<InfoDataViewModel>()
     val db = Firebase.firestore
+    val infoDataModel by viewModels<InfoDataViewModel>()
     var info = InfoData(null, null, null, null, null, null, null, null)
+    var noticeNum_fb = 0
+    var noticeNum_room = 0
+    private lateinit var noticeDB : NoticeDatabase
 
     override fun onStart() {
         super.onStart()
         val infoIcon = requireView().findViewById<LinearLayout>(R.id.MyView_InfoIcon)
+        val noticeDot = requireView().findViewById<ImageView>(R.id.MyView_NoticeIcon_dot)
+        val noticeBtn = requireView().findViewById<ImageView>(R.id.MyView_NoticeIcon)
 
         CoroutineScope(Dispatchers.Main).launch {
             val myInfo = CoroutineScope(Dispatchers.IO).async {
@@ -47,6 +57,28 @@ class MyViewFragment : Fragment() {
                 val intent = Intent(context, MyViewInfoActivity::class.java)
                 Log.d(TAG, "#### MyViewFrag____onstart___putEtra ${info.EngSurvey}")
                 intent.putExtra("info", info!!)
+                startActivity(intent)
+            }
+        }
+
+
+        // Initiate Room DB
+        noticeDB = Room.databaseBuilder(
+            context!!,
+            NoticeDatabase::class.java, "NoticeDatabase"
+        ).allowMainThreadQueries().build()
+
+        noticeNum_room = noticeDB.noticeDao().getNum()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val notice = CoroutineScope(Dispatchers.IO).async {
+                fetchNoticeNum(noticeDot)
+            }.await()
+
+            noticeBtn.setOnClickListener {
+                val intent = Intent(context, MyViewNoticeListActivity::class.java)
+                intent.putExtra("noticeDiff", noticeNum_fb - noticeNum_room)
+                intent.putExtra("notice_room", noticeNum_room)
                 startActivity(intent)
             }
         }
@@ -62,6 +94,7 @@ class MyViewFragment : Fragment() {
         val userModel by activityViewModels<CurrentUserViewModel>()
 
         val noticeBtn = view.findViewById<ImageView>(R.id.MyView_NoticeIcon)
+        val noticeDot = view.findViewById<ImageView>(R.id.MyView_NoticeIcon_dot)
         val historyIcon = view.findViewById<LinearLayout>(R.id.MyView_HistoryIcon)
         val infoIcon = view.findViewById<LinearLayout>(R.id.MyView_InfoIcon)
         val settingIcon = view.findViewById<LinearLayout>(R.id.MyView_SettingIcon)
@@ -71,6 +104,10 @@ class MyViewFragment : Fragment() {
         val userRewardFinAmount = view.findViewById<TextView>(R.id.MyView_UserRewardFinAmount)
         val userRewardYetAmount = view.findViewById<TextView>(R.id.MyView_UserRewardYetAmount)
         val userSurveyCountAmount = view.findViewById<TextView>(R.id.MyView_UserSurveyCountAmount)
+
+        userName.setOnClickListener{
+            noticeDB.noticeDao().deleteAll()
+        }
 
 
         // Set UI with userModel
@@ -82,6 +119,8 @@ class MyViewFragment : Fragment() {
             userSurveyCountAmount.text = "${userModel.currentUser.UserSurveyList!!.size}개"
         }
 
+
+        // Fetch User Info
         CoroutineScope(Dispatchers.Main).launch {
             val myInfo = CoroutineScope(Dispatchers.IO).async {
                 fetchInfoData()
@@ -89,17 +128,36 @@ class MyViewFragment : Fragment() {
 
             infoIcon.setOnClickListener {
                 val intent = Intent(context, MyViewInfoActivity::class.java)
-                Log.d(TAG, "____________putEtra ${info.phoneNumber}")
                 intent.putExtra("info", info!!)
                 startActivity(intent)
             }
         }
 
 
-        noticeBtn.setOnClickListener {
-            val intent = Intent(context, MyViewNoticeListActivity::class.java)
-            startActivity(intent)
+        // Initiate Room DB
+        noticeDB = Room.databaseBuilder(
+            context!!,
+            NoticeDatabase::class.java, "NoticeDatabase"
+        ).allowMainThreadQueries().build()
+
+        noticeNum_room = noticeDB.noticeDao().getLastID()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val notice = CoroutineScope(Dispatchers.IO).async {
+                fetchNoticeNum(noticeDot)
+            }.await()
+
+            noticeBtn.setOnClickListener {
+                val intent = Intent(context, MyViewNoticeListActivity::class.java)
+                intent.putExtra("noticeDiff", noticeNum_fb - noticeNum_room)
+                intent.putExtra("notice_room", noticeNum_room)
+                startActivity(intent)
+            }
         }
+
+
+
+
         historyIcon.setOnClickListener {
             val intent = Intent(context, MyViewHistoryActivity::class.java)
             startActivity(intent)
@@ -115,28 +173,25 @@ class MyViewFragment : Fragment() {
             client.logEvent("Settings View Showed")
 
         }
+
         contactIcon.setOnClickListener {
             val intent = Intent(context, MyViewContactActivity::class.java)
             startActivity(intent)
         }
 
             return view
-
-
         }
 
 
     // Fetch info of current User for MyViewInfo
     private fun fetchInfoData() {
         val docRef = db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
-        var eng: Boolean? = null
+        var eng: Boolean? = true
 
         docRef.collection("FirstSurvey").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { document ->
                 if (document != null) {
                     eng = document["EngSurvey"] as Boolean
-                    Log.d(TAG, "****fetch***eng**** ${eng}")
-
 
                     docRef.get().addOnSuccessListener { document ->
                         if (document != null) {
@@ -151,17 +206,38 @@ class MyViewFragment : Fragment() {
                                 eng
                             )
                             info = infoData
-                            Log.d(TAG, "****fetch***ENG**** ${info.EngSurvey}")
                         }
                     }
 
-
                 }
             }
+    }
 
 
+    // Fetch Notice Num from Firestore
+    private fun fetchNoticeNum(dot: ImageView) {
+        val docRef = db.collection("lastID").document("lastNoticeID")
+        docRef.get().addOnSuccessListener { document ->
+            noticeNum_fb = Integer.parseInt(document["lastNoticeID"].toString()) - 1
 
+            if(noticeNum_fb > noticeNum_room) dot.visibility = View.VISIBLE
+            else dot.visibility = View.INVISIBLE
+            Log.d(TAG, "@@@@@@@@@@@@$noticeNum_fb~~~~~~~~$noticeNum_room~~~~~~~~~")
+        }
 
+    }
+
+    private fun fetchNoticeNum2(dot: ImageView) {
+        noticeNum_fb = 0
+        val docRef = db.collection("AppNotice")
+        docRef.get().addOnSuccessListener { documents ->
+            for(document in documents) {
+                noticeNum_fb++
+            }
+
+            if(noticeNum_fb > noticeNum_room) dot.visibility = View.VISIBLE
+            else dot.visibility = View.INVISIBLE
+        }
 
     }
 

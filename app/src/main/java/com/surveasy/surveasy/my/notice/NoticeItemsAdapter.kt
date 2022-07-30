@@ -4,10 +4,14 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.surveasy.surveasy.R
+import com.surveasy.surveasy.my.notice.room.Notice
+import com.surveasy.surveasy.my.notice.room.NoticeDatabase
 
 class NoticeItemsAdapter(val noticeList : ArrayList<NoticeItems>)
     : RecyclerView.Adapter<NoticeItemsAdapter.CustomViewHolder>() {
@@ -23,6 +27,9 @@ class NoticeItemsAdapter(val noticeList : ArrayList<NoticeItems>)
         holder.noticeItemTitle.text = notice.title
         holder.noticeItemDate.text = notice.date
         holder.noticeItemContent.text = notice.content
+
+        if(noticeList[position].isOpened == false) holder.noticeNew.visibility = View.VISIBLE
+        else holder.noticeNew.visibility = View.INVISIBLE
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView!!.context, MyViewNoticeListDetailActivity::class.java)
@@ -42,6 +49,7 @@ class NoticeItemsAdapter(val noticeList : ArrayList<NoticeItems>)
         val noticeItemTitle : TextView = itemView.findViewById(R.id.NoticeItem_Title)
         val noticeItemDate: TextView = itemView.findViewById(R.id.NoticeItem_Date)
         val noticeItemContent : TextView = itemView.findViewById(R.id.NoticeItem_Content)
+        val noticeNew : ImageView = itemView.findViewById(R.id.NoticeItem_New)
 
     }
 
