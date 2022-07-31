@@ -303,7 +303,7 @@
 
 
                     <LinearLayout
-                        android:id="@+id/Home_Poll_answer_container"
+                        android:id="@+id/Home_Poll_answer_containerL"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="2sp"
@@ -338,6 +338,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/Home_Poll_answer_containerR"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

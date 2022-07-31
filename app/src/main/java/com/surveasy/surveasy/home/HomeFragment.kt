@@ -87,7 +87,8 @@ class HomeFragment : Fragment() {
         val homeTopBox : LinearLayout = view.findViewById(R.id.Home_parSurvey_box)
         val opinionContainer: LinearLayout = view.findViewById(R.id.Home_Opinion_Q_Container)
         val opinionTextView : TextView = view.findViewById(R.id.Home_Opinion_TextView)
-        val opinionAnswer : LinearLayout = view.findViewById(R.id.Home_Poll_answer_container)
+        val opinionAnswerL : LinearLayout = view.findViewById(R.id.Home_Poll_answer_containerL)
+        val opinionAnswerR : LinearLayout = view.findViewById(R.id.Home_Poll_answer_containerR)
         var answerTitleL : TextView = view.findViewById(R.id.Home_Opinion_Answer_Title_L)
         var answerTitleR : TextView = view.findViewById(R.id.Home_Opinion_Answer_Title_R)
         val answerLBtn : LinearLayout = view.findViewById(R.id.Home_Opinion_L)
@@ -300,42 +301,48 @@ class HomeFragment : Fragment() {
                 activity?.runOnUiThread(Runnable {
                     answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
                     answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
+
+                    answerRBtn.setOnClickListener{
+                        if(right<answerModel.homeAnswerList.size-1){
+                            left++
+                            right++
+                            answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
+                            answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
+                        }
+
+                    }
+                    answerLBtn.setOnClickListener{
+                        if(left>0){
+                            left--
+                            right--
+                            answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
+                            answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
+                        }
+
+                    }
                 })
 
             }.await()
         }
-        activity?.runOnUiThread(Runnable() {
 
-
-
-            answerRBtn.setOnClickListener{
-                if(right<answerModel.homeAnswerList.size-1){
-                    left++
-                    right++
-                    answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
-                    answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
-                }
-
-            }
-            answerLBtn.setOnClickListener{
-                if(left>0){
-                    left--
-                    right--
-                    answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
-                    answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
-                }
-
-            }
-        })
-
-
-
-
-
-
-        opinionAnswer.setOnClickListener {
+        opinionAnswerL.setOnClickListener {
             val intent = Intent(context, HomeOpinionAnswerActivity::class.java)
+            intent.putExtra("id", answerModel.homeAnswerList.get(left).id)
+            intent.putExtra("content1",answerModel.homeAnswerList.get(left).content1)
+            intent.putExtra("content2",answerModel.homeAnswerList.get(left).content2)
+            intent.putExtra("content3",answerModel.homeAnswerList.get(left).content3)
+            startActivity(intent)
 
+            // [Amplitude] Poll_Answer View Showed
+            val client = Amplitude.getInstance()
+            client.logEvent("Poll_Answer View Showed")
+        }
+        opinionAnswerR.setOnClickListener {
+            val intent = Intent(context, HomeOpinionAnswerActivity::class.java)
+            intent.putExtra("id", answerModel.homeAnswerList.get(right).id)
+            intent.putExtra("content1",answerModel.homeAnswerList.get(right).content1)
+            intent.putExtra("content2",answerModel.homeAnswerList.get(right).content2)
+            intent.putExtra("content3",answerModel.homeAnswerList.get(right).content3)
             startActivity(intent)
 
             // [Amplitude] Poll_Answer View Showed
