@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.room.Room
 import com.amplitude.api.Amplitude
 import com.amplitude.api.Identify
 import com.surveasy.surveasy.databinding.ActivityMainBinding
@@ -45,6 +46,9 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
 import com.surveasy.surveasy.list.firstsurvey.PushDialogActivity
+import com.surveasy.surveasy.my.notice.noticeRoom.NoticeDatabase
+import com.surveasy.surveasy.userRoom.User
+import com.surveasy.surveasy.userRoom.UserDatabase
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -59,6 +63,7 @@ class MainActivity : AppCompatActivity() {
     val bannerModel by viewModels<BannerViewModel>()
     val contributionModel by viewModels<HomeContributionViewModel>()
     val opinionModel by viewModels<HomeOpinionViewModel>()
+    private lateinit var userDB : UserDatabase
 
     private val REQUEST_CODE_UPDATE = 9999
     private lateinit var appUpdateManager : AppUpdateManager
@@ -70,6 +75,13 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Initiate Room UserDB
+        userDB = Room.databaseBuilder(
+            this,
+            UserDatabase::class.java, "UserDatabase"
+        ).allowMainThreadQueries().build()
+
 
         // 인앱 업데이트 체크
         appUpdateManager = AppUpdateManagerFactory.create(this)
@@ -88,7 +100,6 @@ class MainActivity : AppCompatActivity() {
         user?.let {
             val uid = user.uid
             val email = user.email
-            Log.d(TAG, "@@@@@ Firebase auth email: ${user.email}")
         }
 
 
@@ -97,7 +108,6 @@ class MainActivity : AppCompatActivity() {
         if(currentUser != null ) {
             userModel.currentUser = currentUser!!
         }
-        Log.d(TAG, "###### from Login model: ${userModel.currentUser.email}")
 
 
         // Determine Fragment of MainActivity
@@ -116,7 +126,6 @@ class MainActivity : AppCompatActivity() {
             transaction.add(R.id.MainView, SurveyListFragment()).commit()
 
             if(defaultFrag_list_push) {
-
                 val intent = Intent(this, PushDialogActivity::class.java)
                 startActivity(intent)
 
@@ -172,26 +181,14 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        //        val keyHash = Utility.getKeyHash(this)
-        //        Log.d("Hash",keyHash)
-
-
-
-
         fun clickList() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.MainView, SurveyListFragment())
                 .commit()
         }
 
-
     }
 
-    fun firstSurvey(){
-        binding.NavList.setOnClickListener {
-
-        }
-    }
 
 
     fun clickList() {
@@ -199,6 +196,7 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.MainView, SurveyListFragment())
             .commit()
     }
+
 
     //when click first Survey
     fun clickItem(){
@@ -209,9 +207,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun fetchCurrentUser(uid: String) :CurrentUser {
-
         val docRef = db.collection("panelData").document(uid.toString())
-
         val userSurveyList = ArrayList<UserSurveyItem>()
 
         docRef.collection("UserSurveyList").get()
@@ -233,6 +229,37 @@ class MainActivity : AppCompatActivity() {
 
         docRef.get().addOnCompleteListener { snapshot ->
             if(snapshot != null) {
+
+                // Local Room DB에 current user의 User 객체 저장
+                val uidNum = userDB.userDao().getNumUid(snapshot.result["uid"].toString())
+
+                // [case 1] 해당 uid 가진 튜플 없는 경우
+                if(uidNum == 0) {
+                    userDB.userDao().deleteAll()
+                    val user : User = User(
+                        snapshot.result["uid"].toString(),
+                        Integer.parseInt(snapshot.result["birthDate"].toString().substring(0, 4)),
+                        snapshot.result["gender"].toString(),
+                        snapshot.result["fcmToken"].toString(),
+                        snapshot.result["autoLogin"] as Boolean,
+                    )
+                    userDB.userDao().insert(user)
+                    Log.d(TAG, "++++ 1 ++++++++++++++++++++++++++++++++++++++++++++++++++++")
+                }
+
+                // [case 2] 이미 동일한 uid의 튜플이 저장된 경우
+                else if(uidNum == 1) {
+                    userDB.userDao().updateFcm(snapshot.result["uid"].toString(),snapshot.result["fcmToken"].toString())
+                    Log.d(TAG, "++++ 2 ++++++++++++++++++++++++++++++++++++++++++++++++++++")
+                }
+
+
+                val num = userDB.userDao().getNumAll()
+                val user2: User = userDB.userDao().getAll().last()
+                Log.d(TAG, "++++++++++++++++++++++ $num +++++++++++${user2.fcmToken}++++++++++${user2.birthYear}++${user2.gender}++ ${user2.autoLogin}")
+
+
+                // userModel에 유저 정보 저장
                 val currentUser : CurrentUser = CurrentUser(
                     snapshot.result["uid"].toString(),
                     snapshot.result["fcmToken"].toString(),
@@ -252,14 +279,7 @@ class MainActivity : AppCompatActivity() {
                     snapshot.result["marketingAgree"] as Boolean?,
                     userSurveyList
                 )
-//                if(snapshot.result["autoLogin"] == false) {
-//                    intent = Intent(this, LoginActivity::class.java)
-//                    startActivity(intent)
-//                }
                 userModel.currentUser = currentUser
-                //Log.d(TAG, "^^^^####$$$$%%%%%%%@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
-                //Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
-
 
 
                 // [Amplitude] user properties (name, reward_total)
@@ -274,7 +294,6 @@ class MainActivity : AppCompatActivity() {
                 client.setUserProperties(userProperties)
 
 
-
             }
         }.addOnFailureListener { exception ->
             Log.d(TAG, "fail $exception")
@@ -284,7 +303,6 @@ class MainActivity : AppCompatActivity() {
 
 
     fun fetchSurvey() {
-
         db.collection("surveyData")
             // id를 운영진이 올리는 깨끗한 아이디로 설정하면 progress 문제 해결됨.
             .orderBy("lastIDChecked", Query.Direction.DESCENDING)
@@ -308,7 +326,6 @@ class MainActivity : AppCompatActivity() {
                             Integer.parseInt(document["progress"].toString())
                         )
                         surveyList.add(item)
-                        //Log.d(TAG,"################${document["title"]} and ${document["uploadDate"]}")
                     }
 
                 }
@@ -357,7 +374,6 @@ class MainActivity : AppCompatActivity() {
                             document["content"].toString()
 
                         )
-                        //Log.d(TAG, ">>>>>>>>>>>>>>>>>>>>>${contribution.date}")
                         contributionModel.contributionList.add(contribution)
                     }
                 }
@@ -434,6 +450,12 @@ class MainActivity : AppCompatActivity() {
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
                 && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
             ) {
+
+                // [Amplitude] In-app Update Available
+                val client = Amplitude.getInstance()
+                client.logEvent("In-app Update Available")
+
+
                 // Request the update.
                 appUpdateManager.startUpdateFlowForResult(
                     appUpdateInfo,

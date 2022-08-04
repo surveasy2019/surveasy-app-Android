@@ -1,18 +1,16 @@
 package com.surveasy.surveasy.my.notice
 
 import android.content.ContentValues
-import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.surveasy.surveasy.databinding.ActivityMyviewnoticelistBinding
 import com.google.firebase.firestore.*
-import com.surveasy.surveasy.my.notice.room.Notice
-import com.surveasy.surveasy.my.notice.room.NoticeDatabase
+import com.surveasy.surveasy.my.notice.noticeRoom.Notice
+import com.surveasy.surveasy.my.notice.noticeRoom.NoticeDatabase
 
 class MyViewNoticeListActivity : AppCompatActivity() {
 

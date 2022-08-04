@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.my.notice.room
+package com.surveasy.surveasy.my.notice.noticeRoom
 
 import androidx.room.*
 

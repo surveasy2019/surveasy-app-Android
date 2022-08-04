@@ -8,10 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.surveasy.surveasy.R
-import com.surveasy.surveasy.my.notice.room.Notice
-import com.surveasy.surveasy.my.notice.room.NoticeDatabase
 
 class NoticeItemsAdapter(val noticeList : ArrayList<NoticeItems>)
     : RecyclerView.Adapter<NoticeItemsAdapter.CustomViewHolder>() {
