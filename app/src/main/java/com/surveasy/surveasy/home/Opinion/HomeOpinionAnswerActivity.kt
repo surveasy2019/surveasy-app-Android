@@ -4,12 +4,18 @@ import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Task
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivityHomeOpinionAnswerBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class HomeOpinionAnswerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeOpinionAnswerBinding
@@ -45,20 +51,23 @@ class HomeOpinionAnswerActivity : AppCompatActivity() {
         val storageRef : StorageReference = storage.reference.child("AppOpinionAnswerImage").child(id.toString())
         val listAllTask: Task<ListResult> = storageRef.listAll()
 
+        val file1 : StorageReference = storageRef.child("001.png")
+        val file2 : StorageReference = storageRef.child("002.png")
 
-        listAllTask.addOnSuccessListener { result ->
-            val items : List<StorageReference> = result.items
-            val itemNum : Int = result.items.size
+        Glide.with(this).load(R.raw.app_loading).into(binding.HomeOpinionAnswerImg1)
 
-            items.forEachIndexed { index, item ->
-                item.downloadUrl.addOnSuccessListener {
-                    binding.HomeOpinionAnswerImg1.setImageURI(it!!)
-                    binding.HomeOpinionAnswerImg2.setImageURI(it!!)
-                    Log.d(TAG, "UUUUUUUU--${it}")
-                }
 
+        file1.downloadUrl.addOnSuccessListener { item ->
+            file2.downloadUrl.addOnSuccessListener { item1 ->
+                Glide.with(this).load(item1).into(binding.HomeOpinionAnswerImg2)
+                Glide.with(this).load(item).into(binding.HomeOpinionAnswerImg1)
             }
+
         }
+
+
+
+
     }
 
 }
