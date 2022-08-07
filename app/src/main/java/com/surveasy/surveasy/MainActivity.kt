@@ -1,5 +1,6 @@
 package com.surveasy.surveasy
 
+import android.app.backup.BackupAgent
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.IntentSender
@@ -13,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.room.Room
 import com.amplitude.api.Amplitude
 import com.amplitude.api.Identify
 import com.surveasy.surveasy.databinding.ActivityMainBinding
@@ -45,8 +47,14 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
 import com.surveasy.surveasy.list.firstsurvey.PushDialogActivity
+import com.surveasy.surveasy.my.notice.noticeRoom.NoticeDatabase
+import com.surveasy.surveasy.userRoom.User
+import com.surveasy.surveasy.userRoom.UserDatabase
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -59,6 +67,9 @@ class MainActivity : AppCompatActivity() {
     val bannerModel by viewModels<BannerViewModel>()
     val contributionModel by viewModels<HomeContributionViewModel>()
     val opinionModel by viewModels<HomeOpinionViewModel>()
+    private lateinit var userDB : UserDatabase
+    private var age : Int = 0
+    private lateinit var gender : String
 
     private val REQUEST_CODE_UPDATE = 9999
     private lateinit var appUpdateManager : AppUpdateManager
@@ -70,6 +81,13 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Initiate Room UserDB
+        userDB = Room.databaseBuilder(
+            this,
+            UserDatabase::class.java, "UserDatabase"
+        ).allowMainThreadQueries().build()
+
 
         // 인앱 업데이트 체크
         appUpdateManager = AppUpdateManagerFactory.create(this)
@@ -88,7 +106,6 @@ class MainActivity : AppCompatActivity() {
         user?.let {
             val uid = user.uid
             val email = user.email
-            Log.d(TAG, "@@@@@ Firebase auth email: ${user.email}")
         }
 
 
@@ -97,7 +114,6 @@ class MainActivity : AppCompatActivity() {
         if(currentUser != null ) {
             userModel.currentUser = currentUser!!
         }
-        Log.d(TAG, "###### from Login model: ${userModel.currentUser.email}")
 
 
         // Determine Fragment of MainActivity
@@ -116,7 +132,6 @@ class MainActivity : AppCompatActivity() {
             transaction.add(R.id.MainView, SurveyListFragment()).commit()
 
             if(defaultFrag_list_push) {
-
                 val intent = Intent(this, PushDialogActivity::class.java)
                 startActivity(intent)
 
@@ -148,10 +163,6 @@ class MainActivity : AppCompatActivity() {
             navColor_Off(binding.NavHomeImg, binding.NavHomeText, binding.NavMyImg, binding.NavMyText)
 
             if (userModel.currentUser.didFirstSurvey == false) {
-                // Send Current User to Activities
-//                val intent_surveylistfirstsurvey: Intent = Intent(this, FirstSurveyListActivity::class.java)
-//                intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
-//                startActivity(intent_surveylistfirstsurvey)
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.MainView, FirstSurveyListFragment())
                     .commit()
@@ -172,26 +183,14 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        //        val keyHash = Utility.getKeyHash(this)
-        //        Log.d("Hash",keyHash)
-
-
-
-
         fun clickList() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.MainView, SurveyListFragment())
                 .commit()
         }
 
-
     }
 
-    fun firstSurvey(){
-        binding.NavList.setOnClickListener {
-
-        }
-    }
 
 
     fun clickList() {
@@ -199,6 +198,7 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.MainView, SurveyListFragment())
             .commit()
     }
+
 
     //when click first Survey
     fun clickItem(){
@@ -209,9 +209,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun fetchCurrentUser(uid: String) :CurrentUser {
-
         val docRef = db.collection("panelData").document(uid.toString())
-
         val userSurveyList = ArrayList<UserSurveyItem>()
 
         docRef.collection("UserSurveyList").get()
@@ -233,6 +231,30 @@ class MainActivity : AppCompatActivity() {
 
         docRef.get().addOnCompleteListener { snapshot ->
             if(snapshot != null) {
+
+                // Local Room DB에 current user의 User 객체 저장하기
+                val uidNum = userDB.userDao().getNumUid(snapshot.result["uid"].toString())
+
+                // [case 1] 해당 uid 가진 튜플 없는 경우 (INSERT user info)
+                if(uidNum == 0) {
+                    userDB.userDao().deleteAll()
+                    val user : User = User(
+                        snapshot.result["uid"].toString(),
+                        Integer.parseInt(snapshot.result["birthDate"].toString().substring(0, 4)),
+                        snapshot.result["gender"].toString(),
+                        snapshot.result["fcmToken"].toString(),
+                        snapshot.result["autoLogin"] as Boolean,
+                    )
+                    userDB.userDao().insert(user)
+                }
+
+                // [case 2] 이미 동일한 uid의 튜플이 저장된 경우 (UPDATE fcm token)
+                else if(uidNum == 1) {
+                    userDB.userDao().updateFcm(snapshot.result["uid"].toString(),snapshot.result["fcmToken"].toString())
+                }
+
+
+                // userModel에 유저 정보 저장
                 val currentUser : CurrentUser = CurrentUser(
                     snapshot.result["uid"].toString(),
                     snapshot.result["fcmToken"].toString(),
@@ -252,27 +274,22 @@ class MainActivity : AppCompatActivity() {
                     snapshot.result["marketingAgree"] as Boolean?,
                     userSurveyList
                 )
-//                if(snapshot.result["autoLogin"] == false) {
-//                    intent = Intent(this, LoginActivity::class.java)
-//                    startActivity(intent)
-//                }
                 userModel.currentUser = currentUser
-                //Log.d(TAG, "^^^^####$$$$%%%%%%%@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
-                //Log.d(TAG, "@@@@@ fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
-
 
 
                 // [Amplitude] user properties (name, reward_total)
                 val client = Amplitude.getInstance()
                 val userProperties = JSONObject()
                 try {
-                    userProperties.put("name", userModel.currentUser!!.name).put("reward_total", userModel.currentUser!!.rewardTotal)
+                    userProperties.put("name", userModel.currentUser!!.name)
+                        .put("reward_total", userModel.currentUser!!.rewardTotal)
+                        .put("birthDate", userModel.currentUser!!.birthDate)
+                        .put("gender", userModel.currentUser!!.gender)
                 } catch (e: JSONException) {
                     e.printStackTrace()
                     System.err.println("Invalid JSON")
                 }
                 client.setUserProperties(userProperties)
-
 
 
             }
@@ -283,32 +300,96 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    fun checkTargeting(targetingAge : Int, targetingGender : Int) : Boolean {
+
+        // [case 1] 타겟팅 없는 설문
+        if(targetingAge <= 1 && targetingGender <= 1) return true
+
+        // [case 2] 타겟팅 있는 설문
+        else  {
+            when(targetingAge) {
+                2 ->  if(age < 20 || age > 29) return false
+                3 ->  if(age < 20 || age > 24) return false
+                4 ->  if(age < 25 || age > 29) return false
+            }
+
+            when(targetingGender) {
+                2 ->  if(gender == "여") return false
+                3 ->  if(gender == "남") return false
+            }
+        }
+
+        return true
+    }
+
+
     fun fetchSurvey() {
 
+        // [Targeting] Room DB에서 User info 가져오기
+        val birthYear = userDB.userDao().getBirth()
+            val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+            age = currentYear - birthYear + 1
+        gender = userDB.userDao().getGender()
+
+
+        // Fetch from FB
         db.collection("surveyData")
-            // id를 운영진이 올리는 깨끗한 아이디로 설정하면 progress 문제 해결됨.
             .orderBy("lastIDChecked", Query.Direction.DESCENDING)
             .limit(18).get()
             .addOnSuccessListener { result ->
-
                 for (document in result) {
-                    if(document["panelReward"] != null) {
-                        val item: SurveyItems = SurveyItems(
-                            Integer.parseInt(document["id"].toString()) as Int,
-                            Integer.parseInt(document["lastIDChecked"].toString()) as Int,
-                            document["title"] as String,
-                            document["target"] as String,
-                            document["uploadDate"] as String?,
-                            document["link"] as String?,
-                            document["spendTime"] as String?,
-                            document["dueDate"] as String?,
-                            document["dueTimeTime"] as String?,
-                            Integer.parseInt(document["panelReward"].toString()),
-                            document["noticeToPanel"] as String?,
-                            Integer.parseInt(document["progress"].toString())
-                        )
-                        surveyList.add(item)
-                        //Log.d(TAG,"################${document["title"]} and ${document["uploadDate"]}")
+
+                    // [case 1] 타겟팅 추가 이후 설문
+                    if(document["targetingAge"] != null && document["targetingGender"] != null) {
+                        val targetingAge = Integer.parseInt(document["targetingAge"].toString()) as Int
+                        val targetingGender = Integer.parseInt(document["targetingGender"].toString()) as Int
+
+                        if(checkTargeting(targetingAge, targetingGender)) {
+                            if(document["panelReward"] != null) {
+                                val item: SurveyItems = SurveyItems(
+                                    Integer.parseInt(document["id"].toString()) as Int,
+                                    Integer.parseInt(document["lastIDChecked"].toString()) as Int,
+                                    document["title"] as String,
+                                    document["target"] as String,
+                                    document["uploadDate"] as String?,
+                                    document["link"] as String?,
+                                    document["spendTime"] as String?,
+                                    document["dueDate"] as String?,
+                                    document["dueTimeTime"] as String?,
+                                    Integer.parseInt(document["panelReward"].toString()),
+                                    document["noticeToPanel"] as String?,
+                                    Integer.parseInt(document["progress"].toString()),
+                                    Integer.parseInt(document["targetingAge"].toString()) as Int,
+                                    Integer.parseInt(document["targetingGender"].toString()) as Int,
+                                )
+                                surveyList.add(item)
+                            }
+                        }
+
+
+                    }
+
+                    // [case 2] 타겟팅 추가 이전 설문
+                    else {
+                        if(document["panelReward"] != null) {
+                            val item: SurveyItems = SurveyItems(
+                                Integer.parseInt(document["id"].toString()) as Int,
+                                Integer.parseInt(document["lastIDChecked"].toString()) as Int,
+                                document["title"] as String,
+                                document["target"] as String,
+                                document["uploadDate"] as String?,
+                                document["link"] as String?,
+                                document["spendTime"] as String?,
+                                document["dueDate"] as String?,
+                                document["dueTimeTime"] as String?,
+                                Integer.parseInt(document["panelReward"].toString()),
+                                document["noticeToPanel"] as String?,
+                                Integer.parseInt(document["progress"].toString()),
+                                1,
+                                1
+                            )
+                            surveyList.add(item)
+                        }
                     }
 
                 }
@@ -319,6 +400,8 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "fail $exception")
             }
     }
+
+
 
 
     // Get banner img uri from Firebase Storage
@@ -335,7 +418,6 @@ class MainActivity : AppCompatActivity() {
             items.forEachIndexed { index, item ->
                 item.downloadUrl.addOnSuccessListener {
                     bannerModel.uriList.add(it.toString())
-                    //Log.d(TAG, "UUUUUUUU--${index}---$itemNum---${bannerModel.num}--${bannerModel.uriList}+++")
                 }
 
             }
@@ -357,7 +439,6 @@ class MainActivity : AppCompatActivity() {
                             document["content"].toString()
 
                         )
-                        //Log.d(TAG, ">>>>>>>>>>>>>>>>>>>>>${contribution.date}")
                         contributionModel.contributionList.add(contribution)
                     }
                 }
@@ -434,6 +515,12 @@ class MainActivity : AppCompatActivity() {
             if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
                 && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
             ) {
+
+                // [Amplitude] In-app Update Available
+                val client = Amplitude.getInstance()
+                client.logEvent("In-app Update Available")
+
+
                 // Request the update.
                 appUpdateManager.startUpdateFlowForResult(
                     appUpdateInfo,
