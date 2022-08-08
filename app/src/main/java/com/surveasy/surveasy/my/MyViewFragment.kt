@@ -4,7 +4,6 @@ package com.surveasy.surveasy.my
 import android.os.Bundle
 import android.content.ContentValues.TAG
 import android.content.Intent
-import android.media.Image
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,6 @@ import androidx.fragment.app.Fragment
 import com.surveasy.surveasy.R
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.login.CurrentUserViewModel
@@ -22,16 +20,13 @@ import com.surveasy.surveasy.my.history.MyViewHistoryActivity
 import com.surveasy.surveasy.my.info.InfoData
 import com.surveasy.surveasy.my.info.InfoDataViewModel
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.QuerySnapshot
 import com.surveasy.surveasy.my.info.MyViewInfoActivity
 import com.surveasy.surveasy.my.setting.MyViewSettingActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.surveasy.surveasy.my.notice.*
-import com.surveasy.surveasy.my.notice.room.NoticeDatabase
+import com.surveasy.surveasy.my.notice.noticeRoom.NoticeDatabase
 import kotlinx.coroutines.*
-import org.json.JSONException
-import org.json.JSONObject
 
 
 class MyViewFragment : Fragment() {
@@ -186,7 +181,7 @@ class MyViewFragment : Fragment() {
     // Fetch info of current User for MyViewInfo
     private fun fetchInfoData() {
         val docRef = db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
-        var eng: Boolean? = true
+        var eng: Boolean = true
 
         docRef.collection("FirstSurvey").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { document ->

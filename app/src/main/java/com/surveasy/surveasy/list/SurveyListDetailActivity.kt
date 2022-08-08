@@ -2,6 +2,7 @@ package com.surveasy.surveasy.list
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -31,6 +32,9 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import java.lang.Exception
 import java.lang.RuntimeException
 
 
@@ -116,6 +120,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
 
 
         binding.toolbarUpload.setOnClickListener {
+//            captureActivity(this@SurveyListDetailActivity)
             val intent = Intent(this, SurveyProofDialogActivity::class.java)
             val title = intent.putExtra("title",title)
             val index = intent.putExtra("index",index)
@@ -126,6 +131,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
 
             val timestamp_end = System.currentTimeMillis() / 1000
             val spentTimeInSurvey = (timestamp_end - timestamp_start).toInt()
+
 
 
             // [Amplitude] Survey Participated
@@ -226,6 +232,47 @@ class SurveyListDetailActivity : AppCompatActivity() {
     private fun checkPermission() : Boolean {
         return (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 == PackageManager.PERMISSION_GRANTED)
+    }
+
+    //activity capture
+    private fun captureActivity(context : Activity){
+        if(context == null) return
+        val root : View = context.window.decorView.rootView
+        root.isDrawingCacheEnabled = true
+        root.buildDrawingCache()
+        val screenShot : Bitmap = root.drawingCache
+        val location : IntArray = IntArray(2)
+        root.getLocationInWindow(location)
+
+        val bmp : Bitmap = Bitmap.createBitmap(screenShot,location[0],location[1],root.width,root.height,null,false)
+        val path : String = Environment.getExternalStorageDirectory().toString()
+        val folder : File = File(path)
+        Log.d(TAG,"//////fail")
+        if(folder.exists()){
+            folder.mkdirs()
+            Log.d(TAG,"//////fail")
+        }
+
+        val filePath : String = path+"/"+System.currentTimeMillis()+".png"
+        val cacheItem : File = File(filePath)
+        var out : OutputStream? = null
+        try {
+            cacheItem.createNewFile()
+            out = FileOutputStream(cacheItem)
+            bmp.compress(Bitmap.CompressFormat.PNG,100,out)
+            Log.d(TAG,"//////fail11")
+        }
+        catch (e : Exception){
+            e.printStackTrace()
+        }
+        finally {
+            try {
+                out?.close()
+            }
+            catch (e : IOException){
+                e.printStackTrace()
+            }
+        }
     }
 
 
