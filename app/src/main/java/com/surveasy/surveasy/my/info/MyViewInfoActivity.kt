@@ -106,8 +106,8 @@ class MyViewInfoActivity : AppCompatActivity() {
 
         docRef.collection("FirstSurvey").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { document ->
-                if (document != null) {
-                    infoDataModel.infoData.EngSurvey = document["EngSurvey"] as Boolean
+                if (document["EngSurvey"] != null) {
+                    infoDataModel.infoData.EngSurvey = document["EngSurvey"]!! as Boolean
                     Log.d(TAG, "****fetch******* ${infoDataModel.infoData.EngSurvey}")
                     setVariableInfo(infoDataModel.infoData)
                 }

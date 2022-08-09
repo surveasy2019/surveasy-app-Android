@@ -283,7 +283,7 @@ class MainActivity : AppCompatActivity() {
                 try {
                     userProperties.put("name", userModel.currentUser!!.name)
                         .put("reward_total", userModel.currentUser!!.rewardTotal)
-                        .put("birthDate", userModel.currentUser!!.birthDate)
+                        .put("birthYear", userModel.currentUser!!.birthDate!!.substring(0, 4))
                         .put("gender", userModel.currentUser!!.gender)
                 } catch (e: JSONException) {
                     e.printStackTrace()
