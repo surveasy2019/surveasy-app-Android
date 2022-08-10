@@ -9,7 +9,12 @@
     <ImageView
         android:id="@+id/MyView_history_last_photo"
         android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_height="500dp"
         />
+    <Button
+        android:id="@+id/MyView_history_update_btn"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text="update"/>
 
 </LinearLayout>

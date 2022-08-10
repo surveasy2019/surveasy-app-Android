@@ -111,6 +111,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         // panelData-UserSurveyList에 참여 설문 추가
         val id: Int = intent.getIntExtra("id",0)!!
         val idChecked: Int = intent.getIntExtra("idChecked",0)!!
+        // for 재첨부
         val imgName = Firebase.auth.currentUser!!.uid+"__"+timestamp
         val c = Calendar.getInstance()
 

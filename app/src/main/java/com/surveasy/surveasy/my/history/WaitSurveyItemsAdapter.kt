@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.list.UserSurveyItem
@@ -32,6 +33,8 @@ class WaitSurveyItemsAdapter(val waitList : ArrayList<UserSurveyItem>) : Recycle
             intent_history.putExtra("filePath", waitList.get(position).filePath)
             //storage 폴더 접근 위해
             intent_history.putExtra("id", waitList.get(position).id)
+
+            ContextCompat.startActivity(holder.itemView.context,intent_history,null)
         }
     }
 
