@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".my.history.MyViewUpdatePhotoActivity"
+            android:exported="true" />
+        <activity
             android:name=".home.Opinion.HomeOpinionAnswerActivity"
             android:exported="true" />
         <activity

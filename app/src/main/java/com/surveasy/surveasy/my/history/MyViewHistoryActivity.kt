@@ -76,7 +76,8 @@ class MyViewHistoryActivity : AppCompatActivity() {
                         document["title"] as String?,
                         Integer.parseInt(document["panelReward"].toString()),
                         document["responseDate"] as String?,
-                        document["isSent"] as Boolean
+                        document["isSent"] as Boolean,
+                        document["filePath"] as String?
                     )
 
                     if(document["isSent"] as Boolean){
