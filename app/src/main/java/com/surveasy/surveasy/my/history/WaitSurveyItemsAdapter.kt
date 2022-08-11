@@ -33,6 +33,7 @@ class WaitSurveyItemsAdapter(val waitList : ArrayList<UserSurveyItem>) : Recycle
             intent_history.putExtra("filePath", waitList.get(position).filePath)
             //storage 폴더 접근 위해
             intent_history.putExtra("id", waitList.get(position).id)
+            intent_history.putExtra("id", waitList.get(position).idChecked)
 
             ContextCompat.startActivity(holder.itemView.context,intent_history,null)
         }

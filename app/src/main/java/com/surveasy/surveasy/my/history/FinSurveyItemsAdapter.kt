@@ -33,6 +33,7 @@ class FinSurveyItemsAdapter(val finList : ArrayList<UserSurveyItem>) : RecyclerV
             intent_history.putExtra("filePath", finList.get(position).filePath)
             //storage 폴더 접근 위해
             intent_history.putExtra("id", finList.get(position).id)
+            intent_history.putExtra("idChecked", finList.get(position).idChecked)
 
             ContextCompat.startActivity(holder.itemView.context,intent_history,null)
         }
