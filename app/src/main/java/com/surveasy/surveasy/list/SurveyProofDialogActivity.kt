@@ -29,6 +29,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
 
     var pickImageFromAlbum = 0
     var uriPhoto: Uri? = null
+    val timestamp = SimpleDateFormat("yyyyMMdd_HHmm").format(Date())
 
     private lateinit var binding: ActivitySurveyproofdialogBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +53,8 @@ class SurveyProofDialogActivity: AppCompatActivity() {
                     document["title"] as String?,
                     Integer.parseInt(document["panelReward"].toString()),
                     document["uploadDate"] as String?,
-                    false
+                    false,
+                    null
                 )
                 thisSurveyInfo.add(item)
 
@@ -109,7 +111,8 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         // panelData-UserSurveyList에 참여 설문 추가
         val id: Int = intent.getIntExtra("id",0)!!
         val idChecked: Int = intent.getIntExtra("idChecked",0)!!
-
+        // for 재첨부
+        val imgName = Firebase.auth.currentUser!!.uid+"__"+timestamp
         val c = Calendar.getInstance()
 
         val year = c.get(Calendar.YEAR).toString()
@@ -126,7 +129,9 @@ class SurveyProofDialogActivity: AppCompatActivity() {
             "title" to thisSurveyInfo.get(0).title,
             "panelReward" to thisSurveyInfo.get(0).reward,
             "responseDate" to date,
-            "isSent" to false
+            "isSent" to false,
+            //filePath 추가
+            "filePath" to imgName.toString()
 
         )
         db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
@@ -195,7 +200,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
 
     //firebase storage upload
     private fun uploadStorage(view: View){
-        val timestamp = SimpleDateFormat("yyyyMMdd_HHmm").format(Date())
+
         val id: Int = intent.getIntExtra("id",0)!!
         val idChecked: Int = intent.getIntExtra("idChecked",0)!!
         val imgName = Firebase.auth.currentUser!!.uid+"__"+timestamp

@@ -1,7 +1,9 @@
 package com.surveasy.surveasy.my.history
 
+import android.content.ContentValues.TAG
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,10 +14,12 @@ import com.surveasy.surveasy.list.WaitUserSurveyListViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class MyViewHistoryActivity : AppCompatActivity() {
 
     val db = Firebase.firestore
+    val storage = Firebase.storage
     val waitModel by viewModels<WaitUserSurveyListViewModel>()
     val waitList = arrayListOf<UserSurveyItem>()
     val finModel by viewModels<FinUserSurveyListViewModel>()
@@ -39,6 +43,7 @@ class MyViewHistoryActivity : AppCompatActivity() {
         binding.ToolbarMyViewHistory.setNavigationOnClickListener {
             onBackPressed()
         }
+        fetchFileName()
 
         binding.MyViewHistoryWait.setOnClickListener{
             binding.MyViewHistoryWaitText.setTextColor(Color.parseColor("#0aab00"))
@@ -71,7 +76,8 @@ class MyViewHistoryActivity : AppCompatActivity() {
                         document["title"] as String?,
                         Integer.parseInt(document["panelReward"].toString()),
                         document["responseDate"] as String?,
-                        document["isSent"] as Boolean
+                        document["isSent"] as Boolean,
+                        document["filePath"] as String?
                     )
 
                     if(document["isSent"] as Boolean){
@@ -86,6 +92,11 @@ class MyViewHistoryActivity : AppCompatActivity() {
 
             }
 
+
+
+    }
+    private fun fetchFileName(){
+        val storageRef = storage.reference.child("historyTest")
 
 
     }

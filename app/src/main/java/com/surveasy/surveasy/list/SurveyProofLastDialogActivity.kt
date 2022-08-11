@@ -72,7 +72,7 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
             val headCount = Integer.parseInt(text.substring(0,text.length-1))
 
             //마지막 headcount 면 progress 3으로 업데이트
-            if(respondList.size>=headCount-1) {
+            if(respondList.size>=headCount+1) {
                 dbRef.update(
                     "respondedPanel",
                     FieldValue.arrayUnion(Firebase.auth.currentUser!!.uid)

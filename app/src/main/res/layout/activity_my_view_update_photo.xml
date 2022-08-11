@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".my.history.MyViewUpdatePhotoActivity">
+    <TextView
+        android:id="@+id/history_text_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="현재 첨부된 이미지"
+        android:visibility="visible"
+        android:textSize="30dp"/>
+
+    <ImageView
+        android:id="@+id/MyView_history_last_photo"
+        android:layout_width="200dp"
+        android:layout_height="500dp"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/MyView_history_updateSelect_btn"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:text="update"/>
+        <Button
+            android:id="@+id/MyView_history_updateSent_btn"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:text="sent"/>
+    </LinearLayout>
+
+</LinearLayout>
