@@ -120,7 +120,8 @@ class AddPanelInfoActivity : AppCompatActivity() {
                             document["title"] as String?,
                             Integer.parseInt(document["panelReward"].toString()) as Int?,
                             document["responseDate"] as String?,
-                            document["isSent"] as Boolean
+                            document["isSent"] as Boolean,
+                            null
                         )
                         userSurveyList.add(item)
 

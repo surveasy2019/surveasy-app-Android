@@ -2,6 +2,7 @@ package com.surveasy.surveasy.list
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -31,6 +32,9 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import java.lang.Exception
 import java.lang.RuntimeException
 
 
@@ -116,6 +120,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
 
 
         binding.toolbarUpload.setOnClickListener {
+//            captureActivity(this@SurveyListDetailActivity)
             val intent = Intent(this, SurveyProofDialogActivity::class.java)
             val title = intent.putExtra("title",title)
             val index = intent.putExtra("index",index)
@@ -126,6 +131,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
 
             val timestamp_end = System.currentTimeMillis() / 1000
             val spentTimeInSurvey = (timestamp_end - timestamp_start).toInt()
+
 
 
             // [Amplitude] Survey Participated
@@ -229,25 +235,6 @@ class SurveyListDetailActivity : AppCompatActivity() {
     }
 
 
-//    private fun takeScreenshot(){
-//        try{
-//            Log.d(TAG,"//////ss")
-//            val mPath = Environment.getExternalStorageDirectory().toString()+".jpg"
-//            val v1 : View = getWindow().decorView.rootView
-//            v1.isDrawingCacheEnabled()
-//            val bitmap :Bitmap = Bitmap.createBitmap(v1.getDrawingCache())
-//            val imgFile : File = File(mPath)
-//            val outputStream: FileOutputStream = FileOutputStream(imgFile)
-//            val quality = 100
-//            bitmap.compress(Bitmap.CompressFormat.JPEG , quality,outputStream)
-//            outputStream.flush()
-//            outputStream.close()
-//
-//        }catch (e:Throwable){
-//            Log.d(TAG,"//////fail")
-//            e.printStackTrace()
-//        }
-//    }
 
 
 

@@ -45,53 +45,53 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
         val reward = intent.getIntExtra("reward",0)
 
         // panelData-reward_current/reward_total 업데이트
-        var reward_current = 0
-        var reward_total = 0
-        db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
-            .get().addOnSuccessListener { snapShot ->
-                reward_current = Integer.parseInt(snapShot["reward_current"].toString())
-                reward_total = Integer.parseInt(snapShot["reward_total"].toString())
-                Log.d(ContentValues.TAG, "@@@@@@@@@@@@@@@@@@@@ reward_current fetch: $reward_current")
-                reward_current += reward
-                reward_total += reward
-
-                db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
-                    .update("reward_current", reward_current, "reward_total", reward_total)
-
-
-            }
+//        var reward_current = 0
+//        var reward_total = 0
+//        db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
+//            .get().addOnSuccessListener { snapShot ->
+//                reward_current = Integer.parseInt(snapShot["reward_current"].toString())
+//                reward_total = Integer.parseInt(snapShot["reward_total"].toString())
+//                Log.d(ContentValues.TAG, "@@@@@@@@@@@@@@@@@@@@ reward_current fetch: $reward_current")
+//                reward_current += reward
+//                reward_total += reward
+//
+//                db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
+//                    .update("reward_current", reward_current, "reward_total", reward_total)
+//
+//
+//            }
 
 
 
         // surveyData-respondedPanel에 currentUser uid 추가
-        val id = intent.getIntExtra("id",0)
-        val dbRef = db.collection("surveyData").document(id.toString())
-        dbRef.get().addOnSuccessListener { document ->
-            val respondList = document["respondedPanel"] as ArrayList<*>
-            val text = document["requiredHeadCount"] as String
-            val headCount = Integer.parseInt(text.substring(0,text.length-1))
-
-            //마지막 headcount 면 progress 3으로 업데이트
-            if(respondList.size>=headCount-1) {
-                dbRef.update(
-                    "respondedPanel",
-                    FieldValue.arrayUnion(Firebase.auth.currentUser!!.uid)
-                )
-                    .addOnSuccessListener { result ->
-                        Log.d(TAG, "##### surveyData - respondedPanel 성공")
-                    }
-                dbRef.update("progress", 3)
-                    .addOnSuccessListener { Log.d(TAG, "$$$ progress update 성공") }
-            }else{
-                dbRef.update(
-                    "respondedPanel",
-                    FieldValue.arrayUnion(Firebase.auth.currentUser!!.uid)
-                )
-                    .addOnSuccessListener { result ->
-                        Log.d(TAG, "##### surveyData - respondedPanel 성공, progress 그대로")
-                    }
-            }
-        }
+//        val id = intent.getIntExtra("id",0)
+//        val dbRef = db.collection("surveyData").document(id.toString())
+//        dbRef.get().addOnSuccessListener { document ->
+//            val respondList = document["respondedPanel"] as ArrayList<*>
+//            val text = document["requiredHeadCount"] as String
+//            val headCount = Integer.parseInt(text.substring(0,text.length-1))
+//
+//            //마지막 headcount 면 progress 3으로 업데이트
+//            if(respondList.size>=headCount+1) {
+//                dbRef.update(
+//                    "respondedPanel",
+//                    FieldValue.arrayUnion(Firebase.auth.currentUser!!.uid)
+//                )
+//                    .addOnSuccessListener { result ->
+//                        Log.d(TAG, "##### surveyData - respondedPanel 성공")
+//                    }
+//                dbRef.update("progress", 3)
+//                    .addOnSuccessListener { Log.d(TAG, "$$$ progress update 성공") }
+//            }else{
+//                dbRef.update(
+//                    "respondedPanel",
+//                    FieldValue.arrayUnion(Firebase.auth.currentUser!!.uid)
+//                )
+//                    .addOnSuccessListener { result ->
+//                        Log.d(TAG, "##### surveyData - respondedPanel 성공, progress 그대로")
+//                    }
+//            }
+//        }
 
 
         // [Amplitude] Survey Submission Fin
@@ -108,6 +108,14 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
         client.logEvent("Survey Submission Fin", eventProperties)
 
 
+    }
+
+    //제출 완료 한 후에 뒤로가기 누르면 확인 눌렀을 때와 동일하게 동작
+    override fun onBackPressed() {
+        val intent = Intent(this,MainActivity::class.java)
+        intent.putExtra("defaultFragment_list",true)
+        startActivity(intent)
+        finishAffinity()
     }
 
 

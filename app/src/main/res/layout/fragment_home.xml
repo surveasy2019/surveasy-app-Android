@@ -289,38 +289,56 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/Home_Poll_answer_container"
+                        android:id="@+id/Home_Opinion_L"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        >
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="45dp"
+                            android:background="@drawable/n2"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/Home_Poll_answer_containerL"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
                         android:layout_marginRight="2sp"
-                        android:paddingBottom="10sp"
+                        android:layout_weight="1"
                         android:background="@drawable/custom_pollanswer"
-                        android:orientation="vertical">
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingBottom="10sp">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="[Answer]"
                             android:layout_marginBottom="10sp"
+                            android:fontFamily="@font/main_font_b"
                             android:gravity="center"
-                            android:textSize="13sp"
+                            android:text="[Answer]"
                             android:textColor="#aadc62"
-                            android:fontFamily="@font/main_font_b"/>
+                            android:textSize="13sp" />
+
                         <TextView
-                            android:id="@+id/Home_Opinion_Answer_Title"
+                            android:id="@+id/Home_Opinion_Answer_Title_L"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="새내기때 꼭 해봐야 하는 것은 ?"
-                            android:textSize="12sp"
-                            android:textColor="@color/black"
                             android:fontFamily="@font/main_font_l"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
 
                             />
 
                     </LinearLayout>
+
                     <LinearLayout
+                        android:id="@+id/Home_Poll_answer_containerR"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -329,28 +347,54 @@
 
                         android:background="@drawable/custom_pollanswer"
                         android:orientation="vertical">
+
 <!--                        <TextView-->
+<!--                            android:id="@+id/Home_Opinion_Answer_Title_R"-->
 <!--                            android:layout_width="match_parent"-->
 <!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="[Answer]"-->
-<!--                            android:layout_marginBottom="10sp"-->
 <!--                            android:gravity="center"-->
+<!--                            android:text="COMING SOON"-->
+
 <!--                            android:textSize="13sp"-->
 <!--                            android:textColor="#aadc62"-->
-<!--                            android:fontFamily="@font/main_font_b"/>-->
+<!--                            android:fontFamily="@font/main_font_b"-->
+
+<!--                            />-->
                         <TextView
-                            android:id="@+id/Home_Opinion_Answer_Title2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="COMING SOON"
-
-                            android:textSize="13sp"
-                            android:textColor="#aadc62"
+                            android:layout_marginBottom="10sp"
                             android:fontFamily="@font/main_font_b"
+                            android:gravity="center"
+                            android:text="[Answer]"
+                            android:textColor="#aadc62"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/Home_Opinion_Answer_Title_R"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font_l"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
 
                             />
 
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Home_Opinion_R"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        >
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="45dp"
+                            android:background="@drawable/n1"/>
                     </LinearLayout>
 
                 </LinearLayout>

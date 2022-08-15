@@ -1,9 +1,12 @@
 package com.surveasy.surveasy.my.history
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.list.UserSurveyItem
@@ -24,6 +27,16 @@ class WaitSurveyItemsAdapter(val waitList : ArrayList<UserSurveyItem>) : Recycle
         holder.itemTitle.text = waitList.get(position).title
         holder.itemDate.text = waitList.get(position).responseDate
         holder.itemReward.text = waitList.get(position).reward.toString() + "원"
+
+        holder.itemBtn.setOnClickListener {
+            val intent_history : Intent = Intent(holder.itemView.context,MyViewUpdatePhotoActivity::class.java)
+            intent_history.putExtra("filePath", waitList.get(position).filePath)
+            //storage 폴더 접근 위해
+            intent_history.putExtra("id", waitList.get(position).id)
+            intent_history.putExtra("id", waitList.get(position).idChecked)
+
+            ContextCompat.startActivity(holder.itemView.context,intent_history,null)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -34,6 +47,7 @@ class WaitSurveyItemsAdapter(val waitList : ArrayList<UserSurveyItem>) : Recycle
         val itemTitle : TextView = itemView.findViewById(R.id.HistoryItem_Title)
         val itemDate : TextView = itemView.findViewById(R.id.HistoryItem_date)
         val itemReward : TextView = itemView.findViewById(R.id.HistoryItem_Reward)
+        val itemBtn : Button = itemView.findViewById(R.id.MyView_history_photo)
     }
 
 }

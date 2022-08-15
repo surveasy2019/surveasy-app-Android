@@ -46,6 +46,8 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
+import com.surveasy.surveasy.home.Opinion.AnswerItem
+import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerTitleViewModel
 import com.surveasy.surveasy.list.firstsurvey.PushDialogActivity
 import com.surveasy.surveasy.my.notice.noticeRoom.NoticeDatabase
 import com.surveasy.surveasy.userRoom.User
@@ -62,11 +64,13 @@ class MainActivity : AppCompatActivity() {
     val db = Firebase.firestore
     private var backKeyPressedTime : Long = 0
     val surveyList = arrayListOf<SurveyItems>()
+    val answerList = arrayListOf<AnswerItem>()
     val model by viewModels<SurveyInfoViewModel>()
     val userModel by viewModels<CurrentUserViewModel>()
     val bannerModel by viewModels<BannerViewModel>()
     val contributionModel by viewModels<HomeContributionViewModel>()
     val opinionModel by viewModels<HomeOpinionViewModel>()
+    val opinionAnswerModel by viewModels<HomeOpinionAnswerTitleViewModel>()
     private lateinit var userDB : UserDatabase
     private var age : Int = 0
     private lateinit var gender : String
@@ -221,7 +225,8 @@ class MainActivity : AppCompatActivity() {
                         document["title"] as String?,
                         Integer.parseInt(document["panelReward"]?.toString()),
                         document["responseDate"] as String?,
-                        document["isSent"] as Boolean?
+                        document["isSent"] as Boolean?,
+                        null
                     )
                     userSurveyList.add(item)
 
@@ -462,6 +467,26 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
+            }
+        db.collection("AppAnswer").get()
+            .addOnSuccessListener { documents ->
+                if(documents != null){
+                    for (document in documents){
+                        val answerItem : AnswerItem = AnswerItem(
+                            Integer.parseInt(document["id"].toString()) as Int,
+                            document["question"] as String,
+                            document["content1"] as String?,
+                            document["content2"] as String?,
+                            document["content3"] as String?
+                        )
+                        answerList.add(answerItem)
+                    }
+
+
+                }
+                opinionAnswerModel.homeAnswerList.addAll(answerList.sortedByDescending { it.id })
+            }.addOnFailureListener{ exception ->
+                Log.d(TAG, "fail $exception")
             }
     }
 
