@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -93,6 +94,7 @@ class HomeFragment : Fragment() {
         var answerTitleR : TextView = view.findViewById(R.id.Home_Opinion_Answer_Title_R)
         val answerLBtn : LinearLayout = view.findViewById(R.id.Home_Opinion_L)
         val answerRBtn : LinearLayout = view.findViewById(R.id.Home_Opinion_R)
+
 
         // Banner init
         bannerPager = view.findViewById(R.id.Home_BannerViewPager)
@@ -299,6 +301,9 @@ class HomeFragment : Fragment() {
                 }
                 model.homeAnswerList.get(0).id
                 activity?.runOnUiThread(Runnable {
+                    if(answerModel.homeAnswerList.get(left).id==2){
+
+                    }
                     answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
                     answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
 
@@ -326,24 +331,29 @@ class HomeFragment : Fragment() {
         }
 
         opinionAnswerL.setOnClickListener {
-            val intent = Intent(context, HomeOpinionAnswerActivity::class.java)
-            intent.putExtra("id", answerModel.homeAnswerList.get(left).id)
-            intent.putExtra("content1",answerModel.homeAnswerList.get(left).content1)
-            intent.putExtra("content2",answerModel.homeAnswerList.get(left).content2)
-            intent.putExtra("content3",answerModel.homeAnswerList.get(left).content3)
-            startActivity(intent)
+            if(answerModel.homeAnswerList.get(left).id!=2){
+                val intent = Intent(context, HomeOpinionAnswerActivity::class.java)
+                intent.putExtra("id", answerModel.homeAnswerList.get(left).id)
+                intent.putExtra("content1",answerModel.homeAnswerList.get(left).content1)
+                intent.putExtra("content2",answerModel.homeAnswerList.get(left).content2)
+                intent.putExtra("content3",answerModel.homeAnswerList.get(left).content3)
+                startActivity(intent)
+            }
+
 
             // [Amplitude] Poll_Answer View Showed
             val client = Amplitude.getInstance()
             client.logEvent("Poll_Answer View Showed")
         }
         opinionAnswerR.setOnClickListener {
-            val intent = Intent(context, HomeOpinionAnswerActivity::class.java)
-            intent.putExtra("id", answerModel.homeAnswerList.get(right).id)
-            intent.putExtra("content1",answerModel.homeAnswerList.get(right).content1)
-            intent.putExtra("content2",answerModel.homeAnswerList.get(right).content2)
-            intent.putExtra("content3",answerModel.homeAnswerList.get(right).content3)
-            startActivity(intent)
+            if(answerModel.homeAnswerList.get(right).id!=2){
+                val intent = Intent(context, HomeOpinionAnswerActivity::class.java)
+                intent.putExtra("id", answerModel.homeAnswerList.get(right).id)
+                intent.putExtra("content1",answerModel.homeAnswerList.get(right).content1)
+                intent.putExtra("content2",answerModel.homeAnswerList.get(right).content2)
+                intent.putExtra("content3",answerModel.homeAnswerList.get(right).content3)
+                startActivity(intent)
+            }
 
             // [Amplitude] Poll_Answer View Showed
             val client = Amplitude.getInstance()
