@@ -311,15 +311,17 @@
                         android:background="@drawable/custom_pollanswer"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
-                        android:paddingBottom="10sp">
+                        android:paddingBottom="3sp">
 
                         <TextView
+                            android:id="@+id/Home_Opinion_ans_L"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10sp"
                             android:fontFamily="@font/main_font_b"
                             android:gravity="center"
                             android:text="[Answer]"
+                            android:visibility="visible"
                             android:textColor="#aadc62"
                             android:textSize="13sp" />
 
@@ -332,6 +334,7 @@
                             android:text=""
                             android:textColor="@color/black"
                             android:textSize="12sp"
+                            android:layout_marginHorizontal="6dp"
 
                             />
 
@@ -344,29 +347,20 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:layout_marginRight="2sp"
+                        android:paddingBottom="3sp"
 
                         android:background="@drawable/custom_pollanswer"
                         android:orientation="vertical">
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/Home_Opinion_Answer_Title_R"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:gravity="center"-->
-<!--                            android:text="COMING SOON"-->
-
-<!--                            android:textSize="13sp"-->
-<!--                            android:textColor="#aadc62"-->
-<!--                            android:fontFamily="@font/main_font_b"-->
-
-<!--                            />-->
                         <TextView
+                            android:id="@+id/Home_Opinion_ans_R"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10sp"
                             android:fontFamily="@font/main_font_b"
                             android:gravity="center"
                             android:text="[Answer]"
+                            android:visibility="visible"
                             android:textColor="#aadc62"
                             android:textSize="13sp" />
 
@@ -379,6 +373,8 @@
                             android:text=""
                             android:textColor="@color/black"
                             android:textSize="12sp"
+
+                            android:layout_marginHorizontal="6dp"
 
                             />
 
