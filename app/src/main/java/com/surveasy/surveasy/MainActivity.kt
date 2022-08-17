@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
     val opinionAnswerModel by viewModels<HomeOpinionAnswerTitleViewModel>()
     private lateinit var userDB : UserDatabase
     private var age : Int = 0
-    private lateinit var gender : String
+    private var gender : String = ""
 
     private val REQUEST_CODE_UPDATE = 9999
     private lateinit var appUpdateManager : AppUpdateManager
@@ -316,6 +316,8 @@ class MainActivity : AppCompatActivity() {
                 2 ->  if(age < 20 || age > 29) return false
                 3 ->  if(age < 20 || age > 24) return false
                 4 ->  if(age < 25 || age > 29) return false
+                5 ->  if(age < 20 || age > 39) return false
+                6 ->  if(age < 20 || age > 49) return false
             }
 
             when(targetingGender) {
