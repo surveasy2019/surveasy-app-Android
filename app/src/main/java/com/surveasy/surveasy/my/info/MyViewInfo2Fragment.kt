@@ -21,12 +21,10 @@ class MyViewInfo2Fragment : Fragment() {
         if (infoDataModel.infoData.EngSurvey == true) {
             engSwitch.isChecked = true
             engSwitch.text = "희망함"
-            Log.d(TAG, "TRUE %%%%%%%%%%%%%%%%")
         }
         else if(infoDataModel.infoData.EngSurvey == false) {
             engSwitch.isChecked = false
             engSwitch.text = "희망하지 않음"
-            Log.d(TAG, "FALSE %%%%%%%%%%%%%%%%")
         }
     }
 
@@ -83,9 +81,10 @@ class MyViewInfo2Fragment : Fragment() {
             "우리" -> { setDefaultList = spinnerDefault(accountTypeList, 2, "우리") }
             "신한" -> { setDefaultList = spinnerDefault(accountTypeList, 3, "신한") }
             "농협" -> { setDefaultList = spinnerDefault(accountTypeList, 4, "농협") }
-            "IBK 기업" -> { setDefaultList = spinnerDefault(accountTypeList, 5, "IBK 기업") }
-            "새마을금고" -> { setDefaultList = spinnerDefault(accountTypeList, 6, "새마을금고") }
-            "카카오뱅크" -> { setDefaultList = spinnerDefault(accountTypeList, 7, "카카오뱅크") }
+            "수협" -> { setDefaultList = spinnerDefault(accountTypeList, 5, "수협") }
+            "IBK 기업" -> { setDefaultList = spinnerDefault(accountTypeList, 6, "IBK 기업") }
+            "새마을금고" -> { setDefaultList = spinnerDefault(accountTypeList, 7, "새마을금고") }
+            "카카오뱅크" -> { setDefaultList = spinnerDefault(accountTypeList, 8, "카카오뱅크") }
         }
 
 
@@ -110,16 +109,6 @@ class MyViewInfo2Fragment : Fragment() {
 
         val accountNum = infoDataModel.infoData.accountNumber.toString()
         accountNumberEdit.setText(accountNum)
-
-//        phoneNumberEdit.hint = infoDataModel.infoData.phoneNumber
-//        accountNumberEdit.hint = infoDataModel.infoData.accountNumber
-
-
-//        if(phoneNumberEdit.isFocused == true) phoneNumberEdit.setHintTextColor(Color.parseColor("#c9c9c9"))
-//        else phoneNumberEdit.setHintTextColor(Color.parseColor("#000000"))
-//
-//        if(accountNumberEdit.isFocused == true) accountNumberEdit.setHintTextColor(Color.parseColor("#c9c9c9"))
-//        else accountNumberEdit.setHintTextColor(Color.parseColor("#000000"))
 
 
     }

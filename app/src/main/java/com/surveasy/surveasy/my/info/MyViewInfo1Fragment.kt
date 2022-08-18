@@ -39,13 +39,12 @@ class MyViewInfo1Fragment : Fragment() {
         phoneNumber.text = infoData.phoneNumber
         accountType.text = infoData.accountType
         accountNumber.text = infoData.accountNumber
+
         if(infoData.EngSurvey == true) {
             EngSurvey.text = "희망함"
-            Log.d(ContentValues.TAG, "Frag1 TRUE %%%%%%%%%%%%%%%%")
         }
         else if(infoData.EngSurvey == false) {
             EngSurvey.text = "희망하지 않음"
-            Log.d(ContentValues.TAG, "Frag1 FALSE %%%%%%%%%%%%%%%%")
         }
     }
 

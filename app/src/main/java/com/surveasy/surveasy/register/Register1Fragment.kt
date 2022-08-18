@@ -47,28 +47,6 @@ class Register1Fragment : Fragment() {
         birthDate = initYearPicker(view) + "-" + initMonthPicker(view) + "-" + initDayPicker(view)
 
 
-
-//        // Create OnDateSetListener
-//        val dateSetListener = object : DatePickerDialog.OnDateSetListener {
-//            override fun onDateSet(view1: DatePicker?, year: Int, month: Int, day: Int) {
-//                cal.set(Calendar.YEAR, year)
-//                cal.set(Calendar.MONTH, month)
-//                cal.set(Calendar.DAY_OF_MONTH, day)
-//                getBirthDate(view)
-//            }
-//        }
-//
-//        // Show DatePickerDialog
-//        val birthDatePickerBtn = view.findViewById<Button>(R.id.RegisterFragment1_BirthDatePickerBtn)
-//        birthDatePickerBtn.setOnClickListener(object : View.OnClickListener {
-//            override fun onClick(view: View) {
-//                DatePickerDialog(context!!, dateSetListener,
-//                    cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
-//                    .show()
-//            }
-//        })
-
-
         val registerFragment1Btn: Button = view.findViewById(R.id.RegisterFragment1_Btn)
         registerFragment1Btn.setOnClickListener {
             auth = FirebaseAuth.getInstance()
@@ -77,17 +55,6 @@ class Register1Fragment : Fragment() {
 
         return view
     }
-
-
-//    private fun getBirthDate(view: View) {
-//        val format = "yyyy-MM-dd"
-//        val sdf = SimpleDateFormat(format)
-//        birthDate = sdf.format(cal.time)
-//        val birthDateSelected = view.findViewById<TextView>(R.id.RegisterFragment1_BirthDateSelected)
-//        birthDateSelected.text = birthDate
-//        Log.d(TAG, "@@@@@@@@------- birthdate : $birthDate")
-//
-//    }
 
 
     // Register1
@@ -99,7 +66,6 @@ class Register1Fragment : Fragment() {
         val phoneNumber: String = view.findViewById<EditText>(R.id.RegisterFragment1_PhoneNumberInput).text.toString()
         if(inflowPath == "기타" || inflowPath == "") inflowPath = view.findViewById<EditText>(R.id.RegisterFragment1_EtcInflowInput).text.toString()
         birthDate = initYearPicker(view) + "-" + initMonthPicker(view) + "-" + initDayPicker(view)
-        Log.d(TAG, "@@@@@@@@------- birthdate : $birthDate")
 
         if(name == "") {
             Toast.makeText(context, "이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
