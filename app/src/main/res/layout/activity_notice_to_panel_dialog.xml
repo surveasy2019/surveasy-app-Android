@@ -29,26 +29,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17sp"
+            android:layout_marginEnd="35sp"
             android:fontFamily="@font/main_font_m"
             android:textColor="@color/black"
             />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal">
 
-        android:id="@+id/NoticeToPanel_okBtn"
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:fontFamily="@font/main_font_sb"
-        android:text="확인"
-        android:layout_marginBottom="15dp"
-        android:lineSpacingExtra="3.3sp"
-        android:textSize="15sp"
-        android:layout_gravity="right"
-        android:textColor="@color/white"
-        android:backgroundTint="#0aab00"
-        android:background="@drawable/register_button"
-        android:layout_marginEnd="10dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:id="@+id/NoticeToPanel_okBtn"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:fontFamily="@font/main_font_sb"
+            android:text="예"
+            android:layout_marginBottom="15dp"
+            android:lineSpacingExtra="3.3sp"
+            android:textSize="15sp"
+
+            android:textColor="@color/white"
+            android:backgroundTint="#0aab00"
+            android:background="@drawable/register_button"
+            android:layout_marginEnd="10dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:id="@+id/NoticeToPanel_closeBtn"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:fontFamily="@font/main_font_sb"
+            android:text="아니오"
+            android:layout_marginBottom="15dp"
+            android:lineSpacingExtra="3.3sp"
+            android:textSize="15sp"
+
+            android:textColor="@color/white"
+            android:backgroundTint="#0aab00"
+            android:background="@drawable/register_button"
+            android:layout_marginEnd="30dp"/>
+
+
+    </LinearLayout>
+
+
 
 
 

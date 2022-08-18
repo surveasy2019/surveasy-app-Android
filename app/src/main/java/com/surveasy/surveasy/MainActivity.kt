@@ -223,7 +223,7 @@ class MainActivity : AppCompatActivity() {
                         Integer.parseInt(document["id"].toString()),
                         Integer.parseInt(document["lastIDChecked"].toString()),
                         document["title"] as String?,
-                        Integer.parseInt(document["panelReward"]?.toString()),
+                        Integer.parseInt(document["panelReward"].toString()) as Int?,
                         document["responseDate"] as String?,
                         document["isSent"] as Boolean?,
                         null

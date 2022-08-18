@@ -73,6 +73,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         binding.dialogSendBtn.setOnClickListener {
             binding.dialogSendBtn.visibility = View.INVISIBLE
             backBtnBool = true
+
             uploadStorage(binding.dialogImageview)
             updateFBInfo()
             updateReward()
@@ -108,6 +109,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         if(!backBtnBool){
             super.onBackPressed()
         }
+
     }
 
     //참여한 설문 리스트 firestore에 업데이트

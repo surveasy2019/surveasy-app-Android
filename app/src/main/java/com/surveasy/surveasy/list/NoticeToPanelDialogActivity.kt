@@ -37,5 +37,9 @@ class NoticeToPanelDialogActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        binding.NoticeToPanelCloseBtn.setOnClickListener {
+            onBackPressed()
+        }
     }
 }
