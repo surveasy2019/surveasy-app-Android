@@ -193,7 +193,7 @@ class HomeFragment : Fragment() {
 
         //list 불러오기
         CoroutineScope(Dispatchers.Main).launch {
-            val list = CoroutineScope(Dispatchers.IO).async {
+            val list : Int? = CoroutineScope(Dispatchers.IO).async {
                 val model by activityViewModels<SurveyInfoViewModel>()
                 while (model.surveyInfo.size == 0) {
                     //Log.d(TAG, "########loading")
