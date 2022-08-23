@@ -292,42 +292,45 @@ class HomeFragment : Fragment() {
             val client = Amplitude.getInstance()
             client.logEvent("Poll View Showed")
         }
-
+        //null 오류 다시 체크
         CoroutineScope(Dispatchers.Main).launch {
-            val list = CoroutineScope(Dispatchers.IO).async {
+            val list : Int? = CoroutineScope(Dispatchers.IO).async {
                 val model by activityViewModels<HomeOpinionAnswerTitleViewModel>()
                 while (model.homeAnswerList.size == 0) {
                     //Log.d(TAG, "########loading")
                 }
-                model.homeAnswerList.get(0).id
-                activity?.runOnUiThread(Runnable {
-                    if(answerModel.homeAnswerList.get(left).id==2){
+//                model.homeAnswerList.get(0).id
+                1
 
-                    }
-                    answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
-                    answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
-
-                    answerRBtn.setOnClickListener{
-                        if(right<answerModel.homeAnswerList.size-1){
-                            left++
-                            right++
-                            answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
-                            answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
-                        }
-
-                    }
-                    answerLBtn.setOnClickListener{
-                        if(left>0){
-                            left--
-                            right--
-                            answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
-                            answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
-                        }
-
-                    }
-                })
 
             }.await()
+
+            activity?.runOnUiThread(Runnable {
+                if(answerModel.homeAnswerList.get(left).id==2){
+
+                }
+                answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
+                answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
+
+                answerRBtn.setOnClickListener{
+                    if(right<answerModel.homeAnswerList.size-1){
+                        left++
+                        right++
+                        answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
+                        answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
+                    }
+
+                }
+                answerLBtn.setOnClickListener{
+                    if(left>0){
+                        left--
+                        right--
+                        answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
+                        answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
+                    }
+
+                }
+            })
         }
 
         opinionAnswerL.setOnClickListener {
