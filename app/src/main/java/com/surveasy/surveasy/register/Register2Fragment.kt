@@ -131,7 +131,7 @@ class Register2Fragment : Fragment() {
 
                     } else {
                         Toast.makeText(
-                            context,
+                            view.context,
                             "이미 가입된 아이디입니다. 가입된 아이디로 로그인 해주세요",
                             Toast.LENGTH_SHORT
                         ).show()

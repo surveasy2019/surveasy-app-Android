@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:id="@+id/SurveyListDetail_MainView"
     android:layout_gravity="center_horizontal">
 
     <androidx.appcompat.widget.Toolbar
