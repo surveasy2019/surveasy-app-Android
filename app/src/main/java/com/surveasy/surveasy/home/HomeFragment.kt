@@ -36,12 +36,10 @@ import com.google.firebase.ktx.Firebase
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerActivity
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerTitleViewModel
 import com.surveasy.surveasy.my.history.MyViewHistoryActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.json.JSONException
 import org.json.JSONObject
+import java.lang.Runnable
 
 
 class HomeFragment : Fragment() {
@@ -102,15 +100,15 @@ class HomeFragment : Fragment() {
 
         Glide.with(this@HomeFragment).load(R.raw.app_loading).into(bannerDefault)
         CoroutineScope(Dispatchers.Main).launch {
-            val banner = CoroutineScope(Dispatchers.IO).async {
+            val job = CoroutineScope(Dispatchers.IO).launch {
                 while (bannerModel.uriList.size == 0) {
                     //bannerDefault.visibility = View.VISIBLE
                 }
-                bannerDefault.visibility = View.INVISIBLE
-                bannerModel.uriList
-
-            }.await()
-
+            }
+            Log.d(TAG, "########coroutine not done ${System.currentTimeMillis()}")
+            job.join()
+            Log.d(TAG, "########coroutine done ${System.currentTimeMillis()}")
+            bannerDefault.visibility = View.INVISIBLE
             total_banner.text = bannerModel.num.toString()
             bannerPager.offscreenPageLimit = bannerModel.num
             bannerPager.adapter = BannerViewPagerAdapter(mContext, bannerModel.uriList)
@@ -191,9 +189,9 @@ class HomeFragment : Fragment() {
             }
         }
 
-        //list 불러오기 git test
+        //list 불러오기
         CoroutineScope(Dispatchers.Main).launch {
-            val list : Int? = CoroutineScope(Dispatchers.IO).async {
+            val job = CoroutineScope(Dispatchers.IO).async {
                 val model by activityViewModels<SurveyInfoViewModel>()
                 while (model.surveyInfo.size == 0) {
                     //Log.d(TAG, "########loading")
