@@ -191,7 +191,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        //list 불러오기
+        //list 불러오기 git test
         CoroutineScope(Dispatchers.Main).launch {
             val list : Int? = CoroutineScope(Dispatchers.IO).async {
                 val model by activityViewModels<SurveyInfoViewModel>()
