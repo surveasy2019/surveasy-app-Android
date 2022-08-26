@@ -150,6 +150,43 @@
                     android:textSize="15sp"
                     android:fontFamily="@font/main_font_m" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginBottom="5sp">
+
+                    <CheckBox
+                        android:id="@+id/MyViewSettingWithdraw_Reason6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:buttonTint="#0aab00"
+                        android:text="기타"
+                        android:textColor="#000000"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/main_font_m" />
+
+                    <EditText
+                        android:id="@+id/MyViewSettingWithdraw_Reason6_EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="36sp"
+                        android:layout_weight="1"
+                        android:paddingLeft="11sp"
+                        android:background="@drawable/custom_input"
+                        android:hint="기타 사유를 작성해주세요"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/main_font_m"
+                        android:inputType="text" />
+
+
+
+
+                </LinearLayout>
+
+
+
             </LinearLayout>
 
 

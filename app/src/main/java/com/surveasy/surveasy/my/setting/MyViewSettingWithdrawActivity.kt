@@ -20,8 +20,9 @@ class MyViewSettingWithdrawActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMyviewsettingwithdrawBinding
     private lateinit var builder : AlertDialog.Builder
     val db = Firebase.firestore
-    var checked = arrayOf<String?>(null, null, null, null, null)
+    var checked = arrayOf<String?>(null, null, null, null, null, null)
     var valid_reason = false
+    var etc_reason = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,25 +46,36 @@ class MyViewSettingWithdrawActivity : AppCompatActivity() {
         binding.MyViewSettingWithdrawCurrentReward.text = "현재 정산 예정 금액 ${reward_current}원"
 
 
+        // Set CheckboxListeners
+        binding.MyViewSettingWithdrawReason1.setOnCheckedChangeListener(CheckboxListener())
+        binding.MyViewSettingWithdrawReason2.setOnCheckedChangeListener(CheckboxListener())
+        binding.MyViewSettingWithdrawReason3.setOnCheckedChangeListener(CheckboxListener())
+        binding.MyViewSettingWithdrawReason4.setOnCheckedChangeListener(CheckboxListener())
+        binding.MyViewSettingWithdrawReason5.setOnCheckedChangeListener(CheckboxListener())
+        binding.MyViewSettingWithdrawReason6.setOnCheckedChangeListener(CheckboxListener())
+
 
         // Withdraw
         builder = AlertDialog.Builder(this)
         binding.MyViewSettingWithdrawWithdrawBtn.setOnClickListener{
+            valid_reason = false
+            etc_reason = binding.MyViewSettingWithdrawReason6EditText.text.toString()
             var pw = binding.MyViewSettingWithdrawPwInput.text.toString()
-
-            // Set CheckboxListeners
-            binding.MyViewSettingWithdrawReason1.setOnCheckedChangeListener(CheckboxListener())
-            binding.MyViewSettingWithdrawReason2.setOnCheckedChangeListener(CheckboxListener())
-            binding.MyViewSettingWithdrawReason3.setOnCheckedChangeListener(CheckboxListener())
-            binding.MyViewSettingWithdrawReason4.setOnCheckedChangeListener(CheckboxListener())
-            binding.MyViewSettingWithdrawReason5.setOnCheckedChangeListener(CheckboxListener())
 
             for(i in checked) {
                 if(i != null) valid_reason = true
             }
 
+            if(checked[5] != null && etc_reason != "") {
+                checked[5] = "기타 : " + etc_reason
+                Log.d(TAG, "++++++++++++++++++++++++ ${checked[5]}")
+            }
+
             if(!valid_reason) {
                 Toast.makeText(this, "탈퇴 사유를 선택해주세요.", Toast.LENGTH_SHORT).show()
+            }
+            else if(checked[5] != null && etc_reason == "") {
+                Toast.makeText(this, "기타 사유를 작성해주세요.", Toast.LENGTH_SHORT).show()
             }
             else if(pw == "") {
                 Toast.makeText(this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -128,7 +140,7 @@ class MyViewSettingWithdrawActivity : AppCompatActivity() {
         user.delete()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "########User account deleted.")
+                    Log.d(TAG, "######## User account deleted.")
                 }
             }
     }
@@ -138,6 +150,7 @@ class MyViewSettingWithdrawActivity : AppCompatActivity() {
     // CheckBox Listener
     inner class CheckboxListener: CompoundButton.OnCheckedChangeListener {
         override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+
             when(buttonView?.id) {
                 binding.MyViewSettingWithdrawReason1.id ->
                     if(isChecked) checked[0] = binding.MyViewSettingWithdrawReason1.text.toString()
@@ -154,10 +167,11 @@ class MyViewSettingWithdrawActivity : AppCompatActivity() {
                 binding.MyViewSettingWithdrawReason5.id ->
                     if(isChecked) checked[4] = binding.MyViewSettingWithdrawReason5.text.toString()
                     else checked[4]  = null
+                binding.MyViewSettingWithdrawReason6.id ->
+                    if(isChecked) checked[5] = binding.MyViewSettingWithdrawReason6.text.toString()
+                    else checked[5]  = null
+
             }
-
-
-
         }
     }
 
