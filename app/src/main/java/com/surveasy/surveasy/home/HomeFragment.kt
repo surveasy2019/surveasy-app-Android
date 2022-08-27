@@ -100,14 +100,9 @@ class HomeFragment : Fragment() {
 
         Glide.with(this@HomeFragment).load(R.raw.app_loading).into(bannerDefault)
         CoroutineScope(Dispatchers.Main).launch {
-            val job = CoroutineScope(Dispatchers.IO).launch {
-                while (bannerModel.uriList.size == 0) {
-                    //bannerDefault.visibility = View.VISIBLE
-                }
-            }
-            Log.d(TAG, "########coroutine not done ${System.currentTimeMillis()}")
-            job.join()
-            Log.d(TAG, "########coroutine done ${System.currentTimeMillis()}")
+
+            getBannerImg(bannerModel)
+
             bannerDefault.visibility = View.INVISIBLE
             total_banner.text = bannerModel.num.toString()
             bannerPager.offscreenPageLimit = bannerModel.num
@@ -191,14 +186,9 @@ class HomeFragment : Fragment() {
 
         //list 불러오기
         CoroutineScope(Dispatchers.Main).launch {
-            val job = CoroutineScope(Dispatchers.IO).async {
-                val model by activityViewModels<SurveyInfoViewModel>()
-                while (model.surveyInfo.size == 0) {
-                    //Log.d(TAG, "########loading")
-                }
-                model.surveyInfo.get(0).id
-            }.await()
-
+            Log.d(TAG, "########coroutine not done ${System.currentTimeMillis()}")
+            getHomeList(model)
+            Log.d(TAG, "########coroutine done ${System.currentTimeMillis()}")
 
             if (userModel.currentUser.didFirstSurvey == false) {
                 firstSurveyContainer.visibility= View.VISIBLE
@@ -427,6 +417,21 @@ class HomeFragment : Fragment() {
 
         }
         return finList
+    }
+
+    private suspend fun getBannerImg(bannerModel : BannerViewModel){
+        withContext(Dispatchers.IO){
+            while (bannerModel.uriList.size == 0) {
+                //bannerDefault.visibility = View.VISIBLE
+            }
+        }
+    }
+    private suspend fun getHomeList(listModel : SurveyInfoViewModel){
+        withContext(Dispatchers.IO){
+            while (listModel.surveyInfo.size == 0) {
+                //Log.d(TAG, "########loading")
+            }
+        }
     }
 
 
