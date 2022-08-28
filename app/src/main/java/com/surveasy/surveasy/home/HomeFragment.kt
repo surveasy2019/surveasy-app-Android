@@ -36,12 +36,13 @@ import com.google.firebase.ktx.Firebase
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerActivity
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerTitleViewModel
 import com.surveasy.surveasy.my.history.MyViewHistoryActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.json.JSONException
 import org.json.JSONObject
+import java.lang.Runnable
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
@@ -111,10 +112,13 @@ class HomeFragment : Fragment() {
 
             }.await()
 
+            bannerDefault.visibility = View.INVISIBLE
             total_banner.text = bannerModel.num.toString()
+            Log.d(TAG, "########coroutine exit1 ${System.currentTimeMillis()}")
             bannerPager.offscreenPageLimit = bannerModel.num
             bannerPager.adapter = BannerViewPagerAdapter(mContext, bannerModel.uriList)
             bannerPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            Log.d(TAG, "########coroutine exit2 ${System.currentTimeMillis()}")
 
         }
 
@@ -191,7 +195,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        //list 불러오기 git test
+        //list 불러오기
         CoroutineScope(Dispatchers.Main).launch {
             val list : Int? = CoroutineScope(Dispatchers.IO).async {
                 val model by activityViewModels<SurveyInfoViewModel>()
@@ -396,6 +400,16 @@ class HomeFragment : Fragment() {
                     index = -1
                     for (survey in model.surveyInfo) {
                         index++
+                        //homelist 마감 체크
+                        val dueDate = survey.dueDate + " " + survey.dueTimeTime + ":00"
+                        val sf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                        val date = sf.parse(dueDate)
+                        val now = Calendar.getInstance()
+                        val calDate = (date.time - now.time.time) / (60 * 60 * 1000)
+
+                        if(calDate<0){
+                            boolList[index] = true
+                        }
                         if (survey.id.equals(done.id)) {
                             boolList[index] = true
                         }else if(survey.progress >=3){
@@ -430,6 +444,27 @@ class HomeFragment : Fragment() {
         }
         return finList
     }
+    //Coroutine test -ing
+//    private suspend fun getBannerImg(bannerModel : BannerViewModel){
+//        withContext(Dispatchers.IO){
+//            Log.d(TAG, "########coroutine ${print("where")}")
+//            while (bannerModel.uriList.size == 0) {
+//                //bannerDefault.visibility = View.VISIBLE
+//            }
+//        }
+//    }
+//    private suspend fun getHomeList(listModel : SurveyInfoViewModel){
+//        withContext(Dispatchers.IO){
+//            Log.d(TAG, "########coroutine ${print("where2")}")
+//            while (listModel.surveyInfo.size == 0) {
+//                //Log.d(TAG, "########loading")
+//            }
+//        }
+//    }
+//
+//    fun <T>print(msg : T){
+//        kotlin.io.println("$msg [${Thread.currentThread().name}")
+//    }
 
 
 
