@@ -40,6 +40,9 @@ import kotlinx.coroutines.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.lang.Runnable
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
@@ -100,10 +103,14 @@ class HomeFragment : Fragment() {
 
         Glide.with(this@HomeFragment).load(R.raw.app_loading).into(bannerDefault)
         CoroutineScope(Dispatchers.Main).launch {
+            val banner = CoroutineScope(Dispatchers.IO).async {
+                while (bannerModel.uriList.size == 0) {
+                    //bannerDefault.visibility = View.VISIBLE
+                }
+                bannerDefault.visibility = View.INVISIBLE
+                bannerModel.uriList
 
-            Log.d(TAG, "########coroutine not done ${print("main")}")
-            getBannerImg(bannerModel)
-            Log.d(TAG, "########coroutine not done ${print("main")}")
+            }.await()
 
             bannerDefault.visibility = View.INVISIBLE
             total_banner.text = bannerModel.num.toString()
@@ -190,8 +197,13 @@ class HomeFragment : Fragment() {
 
         //list 불러오기
         CoroutineScope(Dispatchers.Main).launch {
-
-            getHomeList(model)
+            val list : Int? = CoroutineScope(Dispatchers.IO).async {
+                val model by activityViewModels<SurveyInfoViewModel>()
+                while (model.surveyInfo.size == 0) {
+                    //Log.d(TAG, "########loading")
+                }
+                model.surveyInfo.get(0).id
+            }.await()
 
 
             if (userModel.currentUser.didFirstSurvey == false) {
@@ -388,6 +400,16 @@ class HomeFragment : Fragment() {
                     index = -1
                     for (survey in model.surveyInfo) {
                         index++
+                        //homelist 마감 체크
+                        val dueDate = survey.dueDate + " " + survey.dueTimeTime + ":00"
+                        val sf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                        val date = sf.parse(dueDate)
+                        val now = Calendar.getInstance()
+                        val calDate = (date.time - now.time.time) / (60 * 60 * 1000)
+
+                        if(calDate<0){
+                            boolList[index] = true
+                        }
                         if (survey.id.equals(done.id)) {
                             boolList[index] = true
                         }else if(survey.progress >=3){
@@ -422,27 +444,27 @@ class HomeFragment : Fragment() {
         }
         return finList
     }
-
-    private suspend fun getBannerImg(bannerModel : BannerViewModel){
-        withContext(Dispatchers.IO){
-            Log.d(TAG, "########coroutine ${print("where")}")
-            while (bannerModel.uriList.size == 0) {
-                //bannerDefault.visibility = View.VISIBLE
-            }
-        }
-    }
-    private suspend fun getHomeList(listModel : SurveyInfoViewModel){
-        withContext(Dispatchers.IO){
-            Log.d(TAG, "########coroutine ${print("where2")}")
-            while (listModel.surveyInfo.size == 0) {
-                //Log.d(TAG, "########loading")
-            }
-        }
-    }
-
-    fun <T>print(msg : T){
-        kotlin.io.println("$msg [${Thread.currentThread().name}")
-    }
+    //Coroutine test -ing
+//    private suspend fun getBannerImg(bannerModel : BannerViewModel){
+//        withContext(Dispatchers.IO){
+//            Log.d(TAG, "########coroutine ${print("where")}")
+//            while (bannerModel.uriList.size == 0) {
+//                //bannerDefault.visibility = View.VISIBLE
+//            }
+//        }
+//    }
+//    private suspend fun getHomeList(listModel : SurveyInfoViewModel){
+//        withContext(Dispatchers.IO){
+//            Log.d(TAG, "########coroutine ${print("where2")}")
+//            while (listModel.surveyInfo.size == 0) {
+//                //Log.d(TAG, "########loading")
+//            }
+//        }
+//    }
+//
+//    fun <T>print(msg : T){
+//        kotlin.io.println("$msg [${Thread.currentThread().name}")
+//    }
 
 
 
