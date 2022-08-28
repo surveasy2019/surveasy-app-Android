@@ -101,13 +101,17 @@ class HomeFragment : Fragment() {
         Glide.with(this@HomeFragment).load(R.raw.app_loading).into(bannerDefault)
         CoroutineScope(Dispatchers.Main).launch {
 
+            Log.d(TAG, "########coroutine not done ${print("main")}")
             getBannerImg(bannerModel)
+            Log.d(TAG, "########coroutine not done ${print("main")}")
 
             bannerDefault.visibility = View.INVISIBLE
             total_banner.text = bannerModel.num.toString()
+            Log.d(TAG, "########coroutine exit1 ${System.currentTimeMillis()}")
             bannerPager.offscreenPageLimit = bannerModel.num
             bannerPager.adapter = BannerViewPagerAdapter(mContext, bannerModel.uriList)
             bannerPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            Log.d(TAG, "########coroutine exit2 ${System.currentTimeMillis()}")
 
         }
 
@@ -186,9 +190,9 @@ class HomeFragment : Fragment() {
 
         //list 불러오기
         CoroutineScope(Dispatchers.Main).launch {
-            Log.d(TAG, "########coroutine not done ${System.currentTimeMillis()}")
+
             getHomeList(model)
-            Log.d(TAG, "########coroutine done ${System.currentTimeMillis()}")
+
 
             if (userModel.currentUser.didFirstSurvey == false) {
                 firstSurveyContainer.visibility= View.VISIBLE
@@ -421,6 +425,7 @@ class HomeFragment : Fragment() {
 
     private suspend fun getBannerImg(bannerModel : BannerViewModel){
         withContext(Dispatchers.IO){
+            Log.d(TAG, "########coroutine ${print("where")}")
             while (bannerModel.uriList.size == 0) {
                 //bannerDefault.visibility = View.VISIBLE
             }
@@ -428,10 +433,15 @@ class HomeFragment : Fragment() {
     }
     private suspend fun getHomeList(listModel : SurveyInfoViewModel){
         withContext(Dispatchers.IO){
+            Log.d(TAG, "########coroutine ${print("where2")}")
             while (listModel.surveyInfo.size == 0) {
                 //Log.d(TAG, "########loading")
             }
         }
+    }
+
+    fun <T>print(msg : T){
+        kotlin.io.println("$msg [${Thread.currentThread().name}")
     }
 
 
