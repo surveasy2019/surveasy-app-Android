@@ -11,6 +11,7 @@ class UserSurveyItem(
     val title : String?,
     val reward : Int?,
     val responseDate : String?,
+    val progress : Int?,
     val isSent : Boolean?,
     val filePath : String?
     ):Parcelable{
