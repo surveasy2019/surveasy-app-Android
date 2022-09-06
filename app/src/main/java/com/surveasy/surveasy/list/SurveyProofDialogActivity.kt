@@ -57,7 +57,6 @@ class SurveyProofDialogActivity: AppCompatActivity() {
                     document["title"] as String?,
                     Integer.parseInt(document["panelReward"].toString()),
                     document["uploadDate"] as String?,
-                    null,
                     false,
                     null
                 )

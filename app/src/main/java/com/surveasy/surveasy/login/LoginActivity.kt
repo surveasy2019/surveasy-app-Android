@@ -191,7 +191,6 @@ class LoginActivity : AppCompatActivity() {
                                                     document["title"] as String?,
                                                     Integer.parseInt(document["panelReward"].toString()) as Int?,
                                                     document["responseDate"] as String?,
-                                                    Integer.parseInt(document["progress"].toString()) as Int,
                                                     document["isSent"] as Boolean,
                                                     null
                                                 )

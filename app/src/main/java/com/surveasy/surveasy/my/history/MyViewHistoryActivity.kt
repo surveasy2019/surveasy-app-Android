@@ -28,7 +28,6 @@ class MyViewHistoryActivity : AppCompatActivity() {
     val waitList = arrayListOf<UserSurveyItem>()
     val finModel by viewModels<FinUserSurveyListViewModel>()
     val finList = arrayListOf<UserSurveyItem>()
-    private var surveyProgress : Int = 0
 
     private lateinit var binding : ActivityMyviewhistoryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,35 +69,33 @@ class MyViewHistoryActivity : AppCompatActivity() {
             binding.fragmentContainerView2.visibility = View.VISIBLE
         }
 
-        CoroutineScope(Dispatchers.Main).launch {
-            //viewModel 에 정산 여부에 따라 나눠서 저장
-            db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
-                .collection("UserSurveyList").get()
-                .addOnSuccessListener { documents ->
-                    for(document in documents){
-                        val item: UserSurveyItem = UserSurveyItem(
-                            Integer.parseInt(document["id"].toString()),
-                            Integer.parseInt(document["lastIDChecked"].toString()),
-                            document["title"] as String?,
-                            Integer.parseInt(document["panelReward"].toString()),
-                            document["responseDate"] as String?,
-                            null,
-                            document["isSent"] as Boolean,
-                            document["filePath"] as String?
-                        )
+        //viewModel 에 정산 여부에 따라 나눠서 저장
+        db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
+            .collection("UserSurveyList").get()
+            .addOnSuccessListener { documents ->
+                for(document in documents){
+                    val item: UserSurveyItem = UserSurveyItem(
+                        Integer.parseInt(document["id"].toString()),
+                        Integer.parseInt(document["lastIDChecked"].toString()),
+                        document["title"] as String?,
+                        Integer.parseInt(document["panelReward"].toString()),
+                        document["responseDate"] as String?,
+                        document["isSent"] as Boolean,
+                        document["filePath"] as String?
+                    )
 
-                        if(document["isSent"] as Boolean){
-                            finList.add(item)
-                        }else{
-                            waitList.add(item)
-                        }
+                    if(document["isSent"] as Boolean){
+                        finList.add(item)
+                    }else{
+                        waitList.add(item)
                     }
-                    waitModel.waitSurvey.addAll(waitList)
-                    finModel.finSurvey.addAll(finList)
-
-
                 }
-        }
+                waitModel.waitSurvey.addAll(waitList)
+                finModel.finSurvey.addAll(finList)
+
+
+            }
+
 
 
 
@@ -111,14 +108,5 @@ class MyViewHistoryActivity : AppCompatActivity() {
 
 
 
-    private suspend fun fetchProgress(id : Int) : Int{
-        withContext(Dispatchers.IO){
-            db.collection("surveyData").document(id.toString()).get()
-                .addOnSuccessListener {
-                    document ->
-                    surveyProgress = Integer.parseInt(document["progress"].toString()) as Int
-                }
-        }
-        return surveyProgress
-    }
+
 }
