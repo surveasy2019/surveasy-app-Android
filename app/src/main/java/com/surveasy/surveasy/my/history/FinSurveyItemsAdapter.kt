@@ -1,6 +1,8 @@
 package com.surveasy.surveasy.my.history
 
+import android.content.ContentValues.TAG
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,10 +34,10 @@ class FinSurveyItemsAdapter(val finList : ArrayList<UserSurveyItem>) : RecyclerV
             val intent_history : Intent = Intent(holder.itemView.context,MyViewHistoryDetailActivity::class.java)
             intent_history.putExtra("filePath", finList.get(position).filePath)
             //storage 폴더 접근 위해
-            intent_history.putExtra("id", finList.get(position).id)
-            intent_history.putExtra("id", finList.get(position).idChecked)
+            intent_history.putExtra("id", finList.get(position).id.toString())
+            intent_history.putExtra("idChecked", finList.get(position).idChecked)
 
-            ContextCompat.startActivity(holder.itemView.context,intent_history,null)
+            startActivity(holder.itemView.context,intent_history,null)
         }
     }
 
