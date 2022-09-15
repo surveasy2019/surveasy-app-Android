@@ -1,38 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".my.history.MyViewUpdatePhotoActivity">
-    <TextView
-        android:id="@+id/history_text_update"
+    android:background="@color/white"
+    >
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="현재 첨부된 이미지"
-        android:visibility="visible"
-        android:textSize="30dp"/>
+        android:paddingTop="20dp"
+        android:id="@+id/ToolbarUpdatePhoto"
+        android:theme="@style/ToolbarTheme"
+        android:background="@color/white"
+        app:titleTextColor="@color/black">
 
-    <ImageView
-        android:id="@+id/MyView_history_last_photo"
-        android:layout_width="200dp"
-        android:layout_height="500dp"
-        />
-    <LinearLayout
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_sb"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            android:lineSpacingExtra="3.3sp"
+            android:layout_gravity="center_horizontal"
+            android:text="설문 화면 변경"
+            android:textSize="20sp"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/MyView_history_updateSelect_btn"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:text="update"/>
-        <Button
-            android:id="@+id/MyView_history_updateSent_btn"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:text="sent"/>
-    </LinearLayout>
+        android:text="첨부하신 이미지로 설문 인증 화면이 변경됩니다."
+        android:textColor="#707070"
+        android:fontFamily="@font/main_font_sb"
+        android:gravity="center"
+        android:textSize="17sp"
+        android:layout_marginBottom="10dp" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="500sp"
+                android:paddingHorizontal="17sp"
+                android:paddingVertical="10sp"
+                android:layout_gravity="center">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/historyUpdateImage"
+                    android:layout_marginBottom="20sp"
+
+                    />
+
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="15sp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_marginBottom="10sp"
+                    android:id="@+id/historyUpdateEditBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25sp"
+                    android:text="다시 선택하기"
+                    android:lineSpacingExtra="3.3sp"
+                    android:fontFamily="@font/main_font_b"
+                    android:textSize="15sp"
+                    android:layout_gravity="center"
+                    android:textColor="#0aab00"
+                    android:background="@drawable/white_button" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/historyUpdatesendBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25sp"
+                    android:fontFamily="@font/main_font_b"
+                    android:text="변경하기"
+                    android:lineSpacingExtra="3.3sp"
+                    android:textSize="15sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:backgroundTint="#0aab00"
+                    android:background="@drawable/register_button" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
 
 </LinearLayout>

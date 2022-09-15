@@ -32,19 +32,19 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             fetchProgress(id)
 
-            binding.MyViewHistoryReuploadBtn.setOnClickListener {
-                if(surveyProgress>=3){
-                    Toast.makeText(applicationContext,"progress 2", Toast.LENGTH_LONG).show()
-                    val intent = Intent(this@MyViewHistoryDetailActivity, MyViewUpdatePhotoActivity::class.java)
-                    //intent.putExtra("filePath", filePath)
-                    //storage 폴더 접근 위해
-                    intent.putExtra("id", id)
-                    intent.putExtra("idChecked", lastIdCheck)
-                    startActivity(intent)
-                }else{
-                    Toast.makeText(applicationContext,"progress 3", Toast.LENGTH_LONG).show()
-                }
-            }
+//            binding.MyViewHistoryReuploadBtn.setOnClickListener {
+//                if(surveyProgress>=3){
+//                    Toast.makeText(applicationContext,"progress 2", Toast.LENGTH_LONG).show()
+//                    val intent = Intent(this@MyViewHistoryDetailActivity, MyViewUpdatePhotoActivity::class.java)
+//                    //intent.putExtra("filePath", filePath)
+//                    //storage 폴더 접근 위해
+//                    intent.putExtra("id", id)
+//                    intent.putExtra("idChecked", lastIdCheck)
+//                    startActivity(intent)
+//                }else{
+//                    Toast.makeText(applicationContext,"progress 3", Toast.LENGTH_LONG).show()
+//                }
+//            }
 
         }
 
