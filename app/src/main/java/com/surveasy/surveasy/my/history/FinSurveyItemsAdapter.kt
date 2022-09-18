@@ -34,8 +34,11 @@ class FinSurveyItemsAdapter(val finList : ArrayList<UserSurveyItem>) : RecyclerV
             val intent_history : Intent = Intent(holder.itemView.context,MyViewHistoryDetailActivity::class.java)
             intent_history.putExtra("filePath", finList.get(position).filePath)
             //storage 폴더 접근 위해
-            intent_history.putExtra("id", finList.get(position).id.toString())
+            intent_history.putExtra("id", finList.get(position).id)
             intent_history.putExtra("idChecked", finList.get(position).idChecked)
+            intent_history.putExtra("title", finList.get(position).title)
+            intent_history.putExtra("date", finList.get(position).responseDate)
+            intent_history.putExtra("reward", finList.get(position).reward)
 
             startActivity(holder.itemView.context,intent_history,null)
         }

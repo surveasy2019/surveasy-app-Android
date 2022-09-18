@@ -99,6 +99,7 @@
                     android:layout_height="wrap_content"
                     android:text="100원"
                     android:fontFamily="@font/main_font_sb"
+                    android:id="@+id/historyDetailReward"
                     android:textSize="11dp"
                     android:textColor="@color/black"
                     android:layout_marginStart="160dp"
