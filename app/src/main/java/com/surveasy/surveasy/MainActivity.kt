@@ -1,22 +1,17 @@
 package com.surveasy.surveasy
 
-import android.app.backup.BackupAgent
 import android.content.ContentValues.TAG
 import android.content.Intent
-import android.content.IntentSender
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
-import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.room.Room
 import com.amplitude.api.Amplitude
-import com.amplitude.api.Identify
 import com.surveasy.surveasy.databinding.ActivityMainBinding
 import com.surveasy.surveasy.home.banner.BannerViewModel
 import com.surveasy.surveasy.home.HomeFragment
@@ -31,13 +26,9 @@ import com.surveasy.surveasy.login.CurrentUser
 import com.surveasy.surveasy.login.CurrentUserViewModel
 import com.surveasy.surveasy.my.MyViewFragment
 import com.google.android.gms.tasks.Task
-import com.google.android.material.snackbar.BaseTransientBottomBar
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
-import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.Query
@@ -47,14 +38,12 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
 import com.surveasy.surveasy.home.Opinion.AnswerItem
-import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerTitleViewModel
+import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerViewModel
 import com.surveasy.surveasy.list.firstsurvey.PushDialogActivity
-import com.surveasy.surveasy.my.notice.noticeRoom.NoticeDatabase
 import com.surveasy.surveasy.userRoom.User
 import com.surveasy.surveasy.userRoom.UserDatabase
 import org.json.JSONException
 import org.json.JSONObject
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -70,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     val bannerModel by viewModels<BannerViewModel>()
     val contributionModel by viewModels<HomeContributionViewModel>()
     val opinionModel by viewModels<HomeOpinionViewModel>()
-    val opinionAnswerModel by viewModels<HomeOpinionAnswerTitleViewModel>()
+    val opinionAnswerModel by viewModels<HomeOpinionAnswerViewModel>()
     private lateinit var userDB : UserDatabase
     private var age : Int = 0
     private var gender : String = ""

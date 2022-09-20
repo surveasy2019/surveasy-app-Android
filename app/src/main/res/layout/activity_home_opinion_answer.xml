@@ -7,38 +7,33 @@
     android:background="#FFFFFF">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/ToolbarHomeOpinionAnswerDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:id="@+id/ToolbarHomeOpinionAnswerDetail"
-        android:theme="@style/ToolbarTheme"
         android:background="@color/white"
+        android:paddingTop="20sp"
+        android:theme="@style/ToolbarTheme"
         app:titleTextColor="@color/black">
-
 
 
         <TextView
             android:id="@+id/HomeOpinionDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/main_font_sb"
-            android:textColor="@color/black"
-            android:layout_marginBottom="5dp"
-            android:lineSpacingExtra="3.3sp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5sp"
+            android:fontFamily="@font/main_font_sb"
+            android:lineSpacingExtra="3.3sp"
             android:text="Answer"
-            android:textSize="20sp"/>
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/HomeOpinionDetail_Answer_content1"
@@ -46,12 +41,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-
-            android:paddingVertical="20sp"
+            android:paddingVertical="15sp"
             android:text=""
             android:textSize="18sp"
             android:textColor="#0aab00"
             android:fontFamily="@font/main_font_m"/>
+
         <TextView
             android:id="@+id/HomeOpinionDetail_Answer_content2"
             android:layout_width="match_parent"
@@ -61,29 +56,27 @@
             android:text=""
             android:textSize="15sp"
             android:textColor="@color/black"
-            android:fontFamily="@font/main_font_m"/>
+            android:fontFamily="@font/main_font_m"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-
-            android:layout_marginHorizontal="20sp" >
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginBottom="30sp" >
 
             <ImageView
-                android:id="@+id/HomeOpinionAnswer_img1"
-                android:layout_width="wrap_content"
-                android:layout_height="350dp"
-                />
-            <ImageView
-                android:id="@+id/HomeOpinionAnswer_img2"
+                android:id="@+id/HomeOpinion_Answer_Loading"
                 android:layout_width="match_parent"
-                android:layout_marginVertical="10dp"
-                android:layout_height="350dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/app_loading"
+                android:visibility="visible" />
 
-                />
-
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/HomeOpinionAnswer_RV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
@@ -91,10 +84,6 @@
 
 
     </LinearLayout>
-
-</ScrollView>
-
-
 
 
 </LinearLayout>
