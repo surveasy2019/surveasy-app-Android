@@ -107,13 +107,15 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
 
         val storageRef = storage.reference.child(id.toString()).child(imgName)
         val uploadTask = storageRef.putFile(uriPhoto!!)
-        updateFilePath(idChecked,imgName)
+
         uploadTask.addOnSuccessListener {
+            Toast.makeText(this,"업로드 완료",Toast.LENGTH_SHORT)
             Log.d(TAG, "uploadStorage: success upload")
-            deletePhoto(filePath)
+            updateFilePath(idChecked,imgName)
             val intent = Intent(this,MyViewHistoryUpdateFinDialogActivity::class.java)
             startActivity(intent)
-            finishAffinity()
+            deletePhoto(filePath)
+
         }
 
     }
@@ -121,7 +123,7 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
     // 이전 사진 삭제하기
     private fun deletePhoto(storageRef : StorageReference){
         storageRef.delete().addOnSuccessListener {
-            Toast.makeText(this,"업로드 완료",Toast.LENGTH_SHORT)
+            Log.d(TAG, "deletePhoto: delete 완료")
 
         }
     }

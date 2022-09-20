@@ -33,9 +33,11 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerActivity
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerViewModel
 import com.surveasy.surveasy.my.history.MyViewHistoryActivity
@@ -55,6 +57,7 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment() {
 
     val db = Firebase.firestore
+    val storage = Firebase.storage
     val userList = arrayListOf<UserSurveyItem>()
     private lateinit var bannerPager : ViewPager2
     private lateinit var mContext: Context

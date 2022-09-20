@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -69,14 +70,16 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
             binding.historyDetailUploadBtn.setOnClickListener{
                 //permission 없는 상태로 upload 버튼 누르면 설정으로 이동 유도하는 창
                 if(surveyProgress==2){
+
                     Toast.makeText(applicationContext,"progress 2", Toast.LENGTH_LONG).show()
                     val intent = Intent(this@MyViewHistoryDetailActivity, MyViewUpdatePhotoActivity::class.java)
-                    //intent.putExtra("filePath", filePath)
+                    intent.putExtra("filePath", filePath)
                     //storage 폴더 접근 위해
                     intent.putExtra("id", id)
                     intent.putExtra("idChecked", lastIdCheck)
                     startActivity(intent)
                 }else{
+
                     Toast.makeText(applicationContext,"progress 3", Toast.LENGTH_LONG).show()
                 }
 
@@ -102,6 +105,11 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
         file1.downloadUrl.addOnSuccessListener { item ->
             Log.d(TAG, "fetchLastImg: $item")
             Glide.with(this).load(item).into(binding.historyDetailLastCapture)
+        }.addOnFailureListener{
+            binding.historyDetailLastCapture.visibility = View.GONE
+            binding.historyDetailAlert.visibility = View.GONE
+            binding.historyDetailAlert2.visibility = View.VISIBLE
+            binding.historyDetailUploadBtn.visibility = View.GONE
         }
     }
 
