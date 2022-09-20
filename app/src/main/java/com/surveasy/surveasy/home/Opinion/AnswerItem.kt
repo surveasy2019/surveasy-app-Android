@@ -8,5 +8,4 @@ class AnswerItem(
     var content3: String?,
 ) {
 
-
 }
