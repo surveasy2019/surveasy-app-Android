@@ -81,10 +81,10 @@ class MyViewHistoryFinFragment : Fragment() {
 
         }
 
-
-
         return view
     }
+
+
     private fun changeHistoryList(finSurvey : ArrayList<UserSurveyItem>, cnt : Int) : ArrayList<UserSurveyItem>{
         finSurvey.sortWith(compareByDescending<UserSurveyItem> { it.responseDate })
         val defaultList = arrayListOf<UserSurveyItem>()
