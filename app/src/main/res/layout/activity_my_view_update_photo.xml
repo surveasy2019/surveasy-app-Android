@@ -97,6 +97,7 @@
                     android:layout_marginHorizontal="25sp"
                     android:fontFamily="@font/main_font_b"
                     android:text="변경하기"
+                    android:visibility="visible"
                     android:lineSpacingExtra="3.3sp"
                     android:textSize="15sp"
                     android:layout_gravity="center"

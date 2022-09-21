@@ -68,6 +68,8 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
 
         binding.historyUpdateSendBtn.setOnClickListener {
             uploadStorage()
+            binding.historyUpdateSendBtn.visibility = View.INVISIBLE
+            Toast.makeText(this,"완료 화면을 변경 중입니다.", Toast.LENGTH_LONG).show()
         }
         binding.historyUpdateEditBtn.setOnClickListener {
             editPhoto()
@@ -109,12 +111,12 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
         val uploadTask = storageRef.putFile(uriPhoto!!)
 
         uploadTask.addOnSuccessListener {
-            Toast.makeText(this,"업로드 완료",Toast.LENGTH_SHORT)
-            Log.d(TAG, "uploadStorage: success upload")
             updateFilePath(idChecked,imgName)
             val intent = Intent(this,MyViewHistoryUpdateFinDialogActivity::class.java)
             startActivity(intent)
+            finish()
             deletePhoto(filePath)
+            Log.d(TAG, "uploadStorage: success delete")
 
         }
 

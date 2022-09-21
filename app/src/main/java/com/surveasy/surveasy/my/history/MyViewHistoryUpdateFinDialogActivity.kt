@@ -14,9 +14,8 @@ class MyViewHistoryUpdateFinDialogActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.myHistoryUpdateFinBtn.setOnClickListener {
-            val intent = Intent(this,MyViewHistoryActivity::class.java)
-            startActivity(intent)
-            finishAffinity()
+
+            finish()
         }
     }
 }

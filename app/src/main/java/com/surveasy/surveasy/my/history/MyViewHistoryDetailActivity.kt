@@ -7,6 +7,7 @@ import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,10 +24,7 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivityMyViewHistoryDetailBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.lang.RuntimeException
 import kotlin.properties.Delegates
 
@@ -60,32 +58,59 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
         val date : String = intent.getStringExtra("date")!!
         val reward : Int = intent.getIntExtra("reward",0)
 
-        binding.historyDetailTitle.text = title
+        if(title.length>18){
+            binding.historyDetailTitle.text = title.substring(0,19)+"\n"+title.substring(19).trim()
+        }else{
+            binding.historyDetailTitle.text = title
+        }
         binding.historyDetailReward.text = reward.toString()+"원"
         binding.historyDetailDate.text = "참여일자 : $date"
-        fetchLastImg(id, filePath)
         CoroutineScope(Dispatchers.Main).launch {
-            fetchProgress(id)
+            val progressF = CoroutineScope(Dispatchers.IO).async {
+                fetchProgress(id)
+                //surveyProgress
+                //Log.d(TAG, "onCreate: id####DD")
+            }.await()
+            //Log.d(TAG, "onCreate: $progressF")
+            if(progressF<3){
+                //Log.d(TAG, "onCreate: id####ee")
+                fetchLastImg(id, filePath)
+            }else{
+                //Log.d(TAG, "onCreate: id####")
+                binding.historyDetailLastCapture.visibility = View.GONE
+                binding.historyDetailAlert.visibility = View.GONE
+                binding.historyDetailAlert2.visibility = View.VISIBLE
+                binding.historyDetailUploadBtn.visibility = View.GONE
+                binding.historyDetailNoneBtn.visibility = View.VISIBLE
+            }
 
             binding.historyDetailUploadBtn.setOnClickListener{
                 //permission 없는 상태로 upload 버튼 누르면 설정으로 이동 유도하는 창
-                if(surveyProgress==2){
+                if(progressF==2){
 
-                    Toast.makeText(applicationContext,"progress 2", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(applicationContext,"progress 2", Toast.LENGTH_LONG).show()
                     val intent = Intent(this@MyViewHistoryDetailActivity, MyViewUpdatePhotoActivity::class.java)
                     intent.putExtra("filePath", filePath)
                     //storage 폴더 접근 위해
                     intent.putExtra("id", id)
                     intent.putExtra("idChecked", lastIdCheck)
                     startActivity(intent)
+                    finish()
                 }else{
 
-                    Toast.makeText(applicationContext,"progress 3", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,"마감된 설문은 완료 화면 변경이 불가합니다.", Toast.LENGTH_LONG).show()
                 }
 
             }
 
         }
+        // ToolBar
+        setSupportActionBar(binding.ToolbarHistoryDetail)
+        if (supportActionBar != null) {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+        binding.ToolbarHistoryDetail.setNavigationOnClickListener { onBackPressed() }
 
 
 
@@ -106,26 +131,30 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
             Log.d(TAG, "fetchLastImg: $item")
             Glide.with(this).load(item).into(binding.historyDetailLastCapture)
         }.addOnFailureListener{
+            Log.d(TAG, "fetchLastImg: fail###")
             binding.historyDetailLastCapture.visibility = View.GONE
             binding.historyDetailAlert.visibility = View.GONE
             binding.historyDetailAlert2.visibility = View.VISIBLE
             binding.historyDetailUploadBtn.visibility = View.GONE
+            binding.historyDetailNoneBtn.visibility = View.VISIBLE
         }
     }
 
-    private suspend fun fetchProgress(id : Int){
+    private suspend fun fetchProgress(id : Int) : Int{
+        var p = 0
         withContext(Dispatchers.IO){
             db.collection("surveyData").document(id.toString()).get()
                 .addOnSuccessListener {
                         document ->
                     if(id==0){
-                        surveyProgress = 3
+                        p = 3
                     }else{
-                        surveyProgress = Integer.parseInt(document["progress"].toString())
+                        p = Integer.parseInt(document["progress"].toString())
                     }
                 }
             Log.d(TAG, "fetchProgress: $surveyProgress")
         }
+        return p
 
     }
 

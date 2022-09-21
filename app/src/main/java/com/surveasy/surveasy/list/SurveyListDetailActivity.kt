@@ -125,7 +125,7 @@ class SurveyListDetailActivity : AppCompatActivity() {
 
 
         binding.toolbarUpload.setOnClickListener {
-            captureActivity()
+            //captureActivity()
             val intent = Intent(this, SurveyProofDialogActivity::class.java)
             val title = intent.putExtra("title",title)
             val index = intent.putExtra("index",index)
@@ -240,46 +240,46 @@ class SurveyListDetailActivity : AppCompatActivity() {
     }
 
     // capture view
-    private fun captureActivity(){
-        ActivityCompat.requestPermissions(this,
-            arrayOf<String>(Manifest.permission.WRITE_EXTERNAL_STORAGE),1)
-        val view : View = binding.SurveyListDetailMainView
-        val result : Bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
-        val canvas : Canvas = Canvas(result)
-        view.draw(canvas)
-        var fos : OutputStream? = null
-
-        //안드로이드 10 이상
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
-            this.contentResolver?.also { resolver ->
-                val contentValues = ContentValues()
-                contentValues.apply {
-                    put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
-                    put(MediaStore.MediaColumns.DISPLAY_NAME,"${System.currentTimeMillis()}.png")
-                    put(MediaStore.MediaColumns.MIME_TYPE,"image/jpg")
-                }
-
-                val imageUri: Uri? = resolver.insert(MediaStore.Images.Media.
-                EXTERNAL_CONTENT_URI, contentValues)
-                Toast.makeText(this,"Android ver10 이상",Toast.LENGTH_SHORT).show()
-                fos = imageUri?.let { resolver.openOutputStream(it) }
-            }
-            //안드로이드 10 이하
-        }else{
-            val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-            val image = File(imagesDir, "${System.currentTimeMillis()}.png")
-            Toast.makeText(this,"Android ver10 이하",Toast.LENGTH_SHORT).show()
-            fos = FileOutputStream(image)
-        }
-        fos?.use {
-            result.compress(Bitmap.CompressFormat.PNG,100,it)
-
-        }
-
-
-
-
-    }
+//    private fun captureActivity(){
+//        ActivityCompat.requestPermissions(this,
+//            arrayOf<String>(Manifest.permission.WRITE_EXTERNAL_STORAGE),1)
+//        val view : View = binding.SurveyListDetailMainView
+//        val result : Bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+//        val canvas : Canvas = Canvas(result)
+//        view.draw(canvas)
+//        var fos : OutputStream? = null
+//
+//        //안드로이드 10 이상
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+//            this.contentResolver?.also { resolver ->
+//                val contentValues = ContentValues()
+//                contentValues.apply {
+//                    put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
+//                    put(MediaStore.MediaColumns.DISPLAY_NAME,"${System.currentTimeMillis()}.png")
+//                    put(MediaStore.MediaColumns.MIME_TYPE,"image/jpg")
+//                }
+//
+//                val imageUri: Uri? = resolver.insert(MediaStore.Images.Media.
+//                EXTERNAL_CONTENT_URI, contentValues)
+//                Toast.makeText(this,"Android ver10 이상",Toast.LENGTH_SHORT).show()
+//                fos = imageUri?.let { resolver.openOutputStream(it) }
+//            }
+//            //안드로이드 10 이하
+//        }else{
+//            val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+//            val image = File(imagesDir, "${System.currentTimeMillis()}.png")
+//            Toast.makeText(this,"Android ver10 이하",Toast.LENGTH_SHORT).show()
+//            fos = FileOutputStream(image)
+//        }
+//        fos?.use {
+//            result.compress(Bitmap.CompressFormat.PNG,100,it)
+//
+//        }
+//
+//
+//
+//
+//    }
 
 
 
