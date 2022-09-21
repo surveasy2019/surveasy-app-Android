@@ -67,10 +67,19 @@ class SurveyItemsAdapter(val surveyList: ArrayList<SurveyItems>, val boolList: A
         //대상
         var target = surveyList.get(position).target
         var tTarget = ""
-        if(target.length<=20){
-            tTarget = target
-        }else{
-            tTarget = target.substring(0,21)+".."
+        if (target != null) {
+            if(target.length<2){
+                holder.itemTarget.visibility = View.GONE
+            }else{
+                if(target.length<=20){
+                    tTarget = target
+                    holder.itemTarget.text = "대상 : "+tTarget
+
+                }else{
+                    tTarget = target.substring(0,21)+".."
+                    holder.itemTarget.text = "대상 : "+tTarget
+                }
+            }
         }
 
         holder.itemTitle.text = shortTitle

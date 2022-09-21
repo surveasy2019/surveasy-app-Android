@@ -1,6 +1,8 @@
 package com.surveasy.surveasy.my.history
 
+import android.content.ContentValues.TAG
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,15 +30,18 @@ class FinSurveyItemsAdapter(val finList : ArrayList<UserSurveyItem>) : RecyclerV
         holder.itemTitle.text = finList.get(position).title
         holder.itemDate.text = finList.get(position).responseDate
         holder.itemReward.text = finList.get(position).reward.toString() + "원"
-//        holder.itemBtn.setOnClickListener {
-//            val intent_history : Intent = Intent(holder.itemView.context,MyViewUpdatePhotoActivity::class.java)
-//            intent_history.putExtra("filePath", finList.get(position).filePath)
-//            //storage 폴더 접근 위해
-//            intent_history.putExtra("id", finList.get(position).id)
-//            intent_history.putExtra("idChecked", finList.get(position).idChecked)
-//
-//            ContextCompat.startActivity(holder.itemView.context,intent_history,null)
-//        }
+        holder.itemReward.setOnClickListener {
+            val intent_history : Intent = Intent(holder.itemView.context,MyViewHistoryDetailActivity::class.java)
+            intent_history.putExtra("filePath", finList.get(position).filePath)
+            //storage 폴더 접근 위해
+            intent_history.putExtra("id", finList.get(position).id)
+            intent_history.putExtra("idChecked", finList.get(position).idChecked)
+            intent_history.putExtra("title", finList.get(position).title)
+            intent_history.putExtra("date", finList.get(position).responseDate)
+            intent_history.putExtra("reward", finList.get(position).reward)
+
+            startActivity(holder.itemView.context,intent_history,null)
+        }
     }
 
     override fun getItemCount(): Int {

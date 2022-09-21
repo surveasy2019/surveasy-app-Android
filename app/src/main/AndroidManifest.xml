@@ -18,6 +18,13 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".my.history.MyViewHistoryUpdateFinDialogActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyDialog"/>
+        <activity
+            android:name=".my.history.MyViewHistoryDetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".my.history.MyViewUpdatePhotoActivity"
             android:exported="true" />
         <activity
