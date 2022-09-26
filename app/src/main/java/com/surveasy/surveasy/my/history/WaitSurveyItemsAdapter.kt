@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +30,7 @@ class WaitSurveyItemsAdapter(val waitList : ArrayList<UserSurveyItem>) : Recycle
         holder.itemDate.text = waitList.get(position).responseDate
         holder.itemReward.text = waitList.get(position).reward.toString() + "원"
 
-        holder.itemReward.setOnClickListener {
+        holder.itemBtn.setOnClickListener {
             val intent_history : Intent = Intent(holder.itemView.context,MyViewHistoryDetailActivity::class.java)
             intent_history.putExtra("filePath", waitList.get(position).filePath)
             //storage 폴더 접근 위해
@@ -51,6 +52,7 @@ class WaitSurveyItemsAdapter(val waitList : ArrayList<UserSurveyItem>) : Recycle
         val itemTitle : TextView = itemView.findViewById(R.id.HistoryItem_Title)
         val itemDate : TextView = itemView.findViewById(R.id.HistoryItem_date)
         val itemReward : TextView = itemView.findViewById(R.id.HistoryItem_Reward)
+        val itemBtn : ImageView = itemView.findViewById(R.id.historyItem_picBtn)
         //val itemBtn : Button = itemView.findViewById(R.id.MyView_history_photo)
     }
 
