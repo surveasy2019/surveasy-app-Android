@@ -59,7 +59,7 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
         val reward : Int = intent.getIntExtra("reward",0)
 
         if(title.length>18){
-            binding.historyDetailTitle.text = title.substring(0,19)+"\n"+title.substring(19).trim()
+            binding.historyDetailTitle.text = title.substring(0,19)+"\n"+title.substring(19,36).trim()+"..."
         }else{
             binding.historyDetailTitle.text = title
         }
