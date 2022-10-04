@@ -29,7 +29,7 @@ class WaitSurveyItemsAdapter(val waitList : ArrayList<UserSurveyItem>) : Recycle
         holder.itemTitle.text = waitList.get(position).title
         holder.itemDate.text = waitList.get(position).responseDate
         holder.itemReward.text = waitList.get(position).reward.toString() + "원"
-
+        //holder.itemBtn.visibility = View.VISIBLE
         holder.itemBtn.setOnClickListener {
             val intent_history : Intent = Intent(holder.itemView.context,MyViewHistoryDetailActivity::class.java)
             intent_history.putExtra("filePath", waitList.get(position).filePath)
