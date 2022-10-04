@@ -184,27 +184,30 @@ class MyViewFragment : Fragment() {
         var eng: Boolean = true
 
         docRef.collection("FirstSurvey").document(Firebase.auth.currentUser!!.uid)
-            .get().addOnSuccessListener { document ->
-                if (document != null) {
-                    eng = document["EngSurvey"] as Boolean
+            .get().addOnSuccessListener { documents ->
+                if(documents != null) {
+                        eng = documents["EngSurvey"] as Boolean
 
-                    docRef.get().addOnSuccessListener { document ->
-                        if (document != null) {
-                            val infoData: InfoData = InfoData(
-                                document["name"] as String,
-                                document["birthDate"] as String,
-                                document["gender"] as String,
-                                document["email"] as String,
-                                document["phoneNumber"] as String,
-                                document["accountType"] as String,
-                                document["accountNumber"] as String,
-                                eng
-                            )
-                            info = infoData
-                        }
+                        docRef.get().addOnSuccessListener { document ->
+                            if (document != null) {
+                                val infoData: InfoData = InfoData(
+                                    document["name"] as String,
+                                    document["birthDate"] as String,
+                                    document["gender"] as String,
+                                    document["email"] as String,
+                                    document["phoneNumber"] as String,
+                                    document["accountType"] as String,
+                                    document["accountNumber"] as String,
+                                    eng
+                                )
+                                info = infoData
+                                Log.d(TAG, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+ infoData.email.toString())
+                            }
+
                     }
-
                 }
+
+
             }
     }
 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:elevation="5sp"
+    android:layout_gravity="center_vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/custom_dialog"
+    >
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp">
+
+        <ImageView
+            android:layout_width="20sp"
+            android:layout_height="19sp"
+            android:layout_marginTop="2sp"
+            android:src="@drawable/checkimg"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/myHistoryUpdateFin_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="변경이 완료되었습니다."
+            android:textSize="17sp"
+            android:fontFamily="@font/main_font_m"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+
+        android:id="@+id/myHistoryUpdateFin_btn"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/main_font_sb"
+        android:text="확인"
+        android:layout_marginBottom="15dp"
+        android:lineSpacingExtra="3.3sp"
+        android:textSize="15sp"
+        android:layout_gravity="right"
+        android:textColor="@color/white"
+        android:backgroundTint="#0aab00"
+        android:background="@drawable/register_button"
+        android:layout_marginEnd="10dp"/>
+
+
+
+
+</LinearLayout>

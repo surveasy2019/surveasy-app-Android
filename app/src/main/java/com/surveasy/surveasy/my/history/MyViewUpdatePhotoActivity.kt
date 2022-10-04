@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -48,83 +49,75 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
         binding = ActivityMyViewUpdatePhotoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //activity 들어가자마자 permission 확인
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-            == PackageManager.PERMISSION_GRANTED){
-            //Toast.makeText(this,"Permission Granted",Toast.LENGTH_LONG).show()
-        }else{
-            ActivityCompat.requestPermissions(this, REQUIRED_PERMISSION, PERMISSION_CODE)
-        }
+
 
         //val filePath = intent.getStringExtra("filePath")
         val filePath = intent.getStringExtra("filePath").toString()
         val id = intent.getIntExtra("id",0)
 
-        fetchLastImg(id, filePath)
+        if(checkPermission()){
 
-        binding.MyViewHistoryUpdateSelectBtn.setOnClickListener{
-            //permission 없는 상태로 upload 버튼 누르면 설정으로 이동 유도하는 창
-            if(checkPermission()){
-
-                // 앨범으로
-                var photoPick = Intent(Intent.ACTION_PICK)
-                photoPick.type = "image/*"
-                startActivityForResult(photoPick, pickImageFromAlbum)
-            }else{
-                showDialogToGetPermission()
-            }
-
+            // 앨범으로
+            var photoPick = Intent(Intent.ACTION_PICK)
+            photoPick.type = "image/*"
+            startActivityForResult(photoPick, pickImageFromAlbum)
+        }else{
+            showDialogToGetPermission()
         }
 
-        binding.MyViewHistoryUpdateSentBtn.setOnClickListener {
+
+        binding.historyUpdateSendBtn.setOnClickListener {
             uploadStorage()
+            binding.historyUpdateSendBtn.visibility = View.INVISIBLE
+            Toast.makeText(this,"완료 화면을 변경 중입니다.", Toast.LENGTH_LONG).show()
+        }
+        binding.historyUpdateEditBtn.setOnClickListener {
+            editPhoto()
         }
     }
 
-    // 기존에 첨부한 이미지 보여주기
-    private fun fetchLastImg(id : Int, filePath : String) {
 
-
-        val storageRef: StorageReference = storage.reference.child("historyTest")
-//        val storageRef: StorageReference = storage.reference.child(id.toString())
-        val file1: StorageReference = storageRef.child("surveytips2image(3).jpeg")
-//        val file1: StorageReference = storageRef.child(filePath.toString())
-
-        Glide.with(this).load(R.raw.app_loading).into(binding.MyViewHistoryLastPhoto)
-
-        file1.downloadUrl.addOnSuccessListener { item ->
-            Glide.with(this).load(item).into(binding.MyViewHistoryLastPhoto)
-        }
-    }
 
     //화면에 사진 나타내기
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        binding.historyTextUpdate.text = "새로 첨부할 이미지"
+        //binding.historyTextUpdate.text = "새로 첨부할 이미지"
         if(requestCode == pickImageFromAlbum){
             if(resultCode == Activity.RESULT_OK){
                 uriPhoto = data?.data
-                binding.MyViewHistoryLastPhoto.setImageURI(uriPhoto)
+                binding.historyUpdateImage.setImageURI(uriPhoto)
 
             }
         }
     }
 
+    private fun editPhoto(){
+        var photoPick = Intent(Intent.ACTION_PICK)
+        photoPick.type = "image/*"
+        startActivityForResult(photoPick,pickImageFromAlbum)
+    }
+
     //firebase storage upload
     private fun uploadStorage(){
-//        val file = intent.getStringExtra("filePath").toString()
-        val file = "surveytips2image(2).jpeg"
-        val filePath = storage.reference.child("historyTest").child(file.toString())
+        val file = intent.getStringExtra("filePath").toString()
+//        val file = "surveytips2image(2).jpeg"
         val id: Int = intent.getIntExtra("id",0)!!
+        val filePath = storage.reference.child(id.toString()).child(file.toString())
         val idChecked = intent.getIntExtra("idChecked",0)!!
         val timestamp = SimpleDateFormat("yyyyMMdd_HHmm").format(Date())
         val imgName = Firebase.auth.currentUser!!.uid+"__"+timestamp
 
-        val storageRef = storage.reference.child("historyTest").child(imgName)
+        val storageRef = storage.reference.child(id.toString()).child(imgName)
         val uploadTask = storageRef.putFile(uriPhoto!!)
-        updateFilePath(idChecked,imgName)
+
         uploadTask.addOnSuccessListener {
+            updateFilePath(idChecked,imgName)
+            val intent = Intent(this,MyViewHistoryUpdateFinDialogActivity::class.java)
+            startActivity(intent)
+            finish()
             deletePhoto(filePath)
+            Log.d(TAG, "uploadStorage: success delete")
+
         }
 
     }
@@ -132,7 +125,8 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
     // 이전 사진 삭제하기
     private fun deletePhoto(storageRef : StorageReference){
         storageRef.delete().addOnSuccessListener {
-            Toast.makeText(this,"업로드 완료",Toast.LENGTH_SHORT)
+            Log.d(TAG, "deletePhoto: delete 완료")
+
         }
     }
 
@@ -166,7 +160,7 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
                     //Toast.makeText(this,"Permission Granted",Toast.LENGTH_LONG).show()
                 } else {
                     if(ActivityCompat.shouldShowRequestPermissionRationale(
-                            this,Manifest.permission.READ_EXTERNAL_STORAGE)){
+                            this, Manifest.permission.READ_EXTERNAL_STORAGE)){
                         Log.d(ContentValues.TAG,"denied")
                         showDialogToGetPermission()
 
@@ -202,4 +196,6 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
         return (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 == PackageManager.PERMISSION_GRANTED)
     }
+
+
 }
