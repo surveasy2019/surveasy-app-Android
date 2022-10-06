@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context=".my.history.MyViewHistoryDetailActivity">
+
+
+
+    <androidx.core.widget.NestedScrollView
+
+        android:background="#FFFFFF"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:background="@drawable/custom_historydetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_marginBottom="30dp"
+                android:id="@+id/historyDetailLogo"
+                android:layout_width="110dp"
+                android:layout_height="30dp"
+                android:src="@drawable/surveasy_logo"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/historyDetailType"
+                android:text="참여 리서치 : 설문"
+                android:paddingStart="50sp"
+                android:fontFamily="@font/main_font_sb"
+                android:textSize="13dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/historyDetailDate"
+                android:text="참여 일자"
+                android:paddingStart="50sp"
+                android:fontFamily="@font/main_font_sb"
+                android:textSize="13dp"
+                android:textColor="@color/black"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/historyDetailLine1"
+                android:src="@drawable/vector"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/historyDetailTitle"
+                    android:text="설문 제목"
+                    android:paddingStart="50sp"
+                    android:paddingEnd="5dp"
+                    android:fontFamily="@font/main_font_sb"
+                    android:textSize="13dp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="20dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="100원"
+                    android:paddingStart="17dp"
+                    android:fontFamily="@font/main_font_sb"
+                    android:id="@+id/historyDetailReward"
+                    android:textSize="13dp"
+                    android:textColor="@color/black"
+
+                    android:layout_marginTop="20dp"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/historyDetailLine2"
+                android:src="@drawable/vector"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:visibility="visible"
+                android:id="@+id/historyDetailFinTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="설문 완료 화면"
+                android:fontFamily="@font/main_font_sb"
+                android:textColor="@color/black"
+                android:textFontWeight="700"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"/>
+
+            <ImageView
+                android:visibility="visible"
+                android:id="@+id/historyDetailLastCapture"
+                android:layout_width="210dp"
+                android:layout_height="380dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:id="@+id/historyDetailAlert"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="※화면 변경 시, 기존에 제출했던 화면은 삭제됩니다."
+                android:textSize="14dp"
+                android:fontFamily="@font/main_font_sb"
+                android:textColor="#FF0000"
+                android:textFontWeight="400"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_marginTop="100dp"
+                android:id="@+id/historyDetailAlert2"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="※마감된 설문의 설문 완료 화면은 변경이 불가합니다."
+                android:textSize="14dp"
+                android:fontFamily="@font/main_font_sb"
+                android:textColor="#FF0000"
+                android:textFontWeight="400"
+                android:layout_gravity="center"
+                />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/historyDetailUploadBtn"
+                android:visibility="visible"
+                android:layout_width="230dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="25sp"
+                android:fontFamily="@font/main_font_b"
+                android:text="설문 완료 화면 변경하기"
+                android:lineSpacingExtra="3.3sp"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:backgroundTint="#0aab00"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/register_button" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/historyDetailNoneBtn"
+                android:visibility="gone"
+                android:layout_width="230dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="25sp"
+                android:fontFamily="@font/main_font_b"
+                android:text="설문 완료 화면 변경하기"
+                android:lineSpacingExtra="3.3sp"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:backgroundTint="#E2E2E2"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/register_button" />
+
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
