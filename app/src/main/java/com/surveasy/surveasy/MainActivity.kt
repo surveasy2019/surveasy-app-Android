@@ -81,6 +81,8 @@ class MainActivity : AppCompatActivity() {
             UserDatabase::class.java, "UserDatabase"
         ).allowMainThreadQueries().build()
 
+        Log.d(TAG, "onCreate: ${userDB.userDao().getAll().get(0).uid}")
+
 
         // 인앱 업데이트 체크
         appUpdateManager = AppUpdateManagerFactory.create(this)

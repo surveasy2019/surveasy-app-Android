@@ -54,7 +54,7 @@ class MyViewHistoryDetailFragment : Fragment() {
             }else{
                 detailTitle.text = model.detailModel[0].title
             }
-            detailReward.text = model.detailModel[0].reward.toString()
+            detailReward.text = model.detailModel[0].reward.toString()+"원"
             detailDate.text = "참여일자 : ${model.detailModel[0].date}"
 
             if(model.progress[0].progress<3){
