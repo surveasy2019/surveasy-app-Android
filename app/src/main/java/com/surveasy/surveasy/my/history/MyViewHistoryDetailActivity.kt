@@ -2,46 +2,46 @@ package com.surveasy.surveasy.my.history
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivityMyViewHistoryDetailBinding
+import com.surveasy.surveasy.home.HomeFragment
 import kotlinx.coroutines.*
-import java.lang.RuntimeException
-import kotlin.properties.Delegates
 
 class MyViewHistoryDetailActivity : AppCompatActivity() {
     lateinit var binding: ActivityMyViewHistoryDetailBinding
+    val model by viewModels<MyViewHistoryDetailViewModel>()
     val db = Firebase.firestore
     val storage = Firebase.storage
     var surveyProgress = 0
     val PERMISSION_CODE = 101
     var pickImageFromAlbum = 0
     val REQUIRED_PERMISSION = arrayOf<String>(Manifest.permission.READ_EXTERNAL_STORAGE)
+
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMyViewHistoryDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.historyDetailFragment, MyViewHistoryDetailFragment()).commit()
 
         //activity 들어가자마자 permission 확인
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -58,52 +58,15 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
         val date : String = intent.getStringExtra("date")!!
         val reward : Int = intent.getIntExtra("reward",0)
 
-        if(title.length>18){
-            binding.historyDetailTitle.text = title.substring(0,19)+"\n"+title.substring(19).trim()
-        }else{
-            binding.historyDetailTitle.text = title
-        }
-        binding.historyDetailReward.text = reward.toString()+"원"
-        binding.historyDetailDate.text = "참여일자 : $date"
+        val item = MyViewDetailItem(id, lastIdCheck, filePath, null, date, title, reward)
+
+
         CoroutineScope(Dispatchers.Main).launch {
-            val progressF = CoroutineScope(Dispatchers.IO).async {
-                fetchProgress(id)
-                //surveyProgress
-                //Log.d(TAG, "onCreate: id####DD")
-            }.await()
-            //Log.d(TAG, "onCreate: $progressF")
-            if(progressF<3){
-                //Log.d(TAG, "onCreate: id####ee")
-                fetchLastImg(id, filePath)
-            }else{
-                //Log.d(TAG, "onCreate: id####")
-                binding.historyDetailLastCapture.visibility = View.GONE
-                binding.historyDetailAlert.visibility = View.GONE
-                binding.historyDetailAlert2.visibility = View.VISIBLE
-                binding.historyDetailUploadBtn.visibility = View.GONE
-                binding.historyDetailNoneBtn.visibility = View.VISIBLE
-            }
-
-            binding.historyDetailUploadBtn.setOnClickListener{
-                //permission 없는 상태로 upload 버튼 누르면 설정으로 이동 유도하는 창
-                if(progressF==2){
-
-                    //Toast.makeText(applicationContext,"progress 2", Toast.LENGTH_LONG).show()
-                    val intent = Intent(this@MyViewHistoryDetailActivity, MyViewUpdatePhotoActivity::class.java)
-                    intent.putExtra("filePath", filePath)
-                    //storage 폴더 접근 위해
-                    intent.putExtra("id", id)
-                    intent.putExtra("idChecked", lastIdCheck)
-                    startActivity(intent)
-                    finish()
-                }else{
-
-                    Toast.makeText(applicationContext,"마감된 설문은 완료 화면 변경이 불가합니다.", Toast.LENGTH_LONG).show()
-                }
-
-            }
-
+            fetchProgress(id)
+            uploadModel(item)
         }
+
+
         // ToolBar
         setSupportActionBar(binding.ToolbarHistoryDetail)
         if (supportActionBar != null) {
@@ -116,47 +79,32 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
 
     }
 
-    // 기존에 첨부한 이미지 보여주기
-    private fun fetchLastImg(id : Int, filePath : String?) {
 
-
-//        val storageRef: StorageReference = storage.reference.child("historyTest")
-        val storageRef: StorageReference = storage.reference.child(id.toString())
-//        val file1: StorageReference = storageRef.child("surveytips2image(3).png")
-        val file1: StorageReference = storageRef.child(filePath.toString())
-
-        Glide.with(this).load(R.raw.app_loading).into(binding.historyDetailLastCapture)
-
-        file1.downloadUrl.addOnSuccessListener { item ->
-            Log.d(TAG, "fetchLastImg: $item")
-            Glide.with(this).load(item).into(binding.historyDetailLastCapture)
-        }.addOnFailureListener{
-            Log.d(TAG, "fetchLastImg: fail###")
-            binding.historyDetailLastCapture.visibility = View.GONE
-            binding.historyDetailAlert.visibility = View.GONE
-            binding.historyDetailAlert2.visibility = View.VISIBLE
-            binding.historyDetailUploadBtn.visibility = View.GONE
-            binding.historyDetailNoneBtn.visibility = View.VISIBLE
-        }
+    fun activityFinish(){
+        finish()
     }
 
-    private suspend fun fetchProgress(id : Int) : Int{
-        var p = 0
+
+
+    @DelicateCoroutinesApi
+    private suspend fun fetchProgress(id : Int){
         withContext(Dispatchers.IO){
             db.collection("surveyData").document(id.toString()).get()
-                .addOnSuccessListener {
-                        document ->
-                    if(id==0){
-                        p = 3
-                    }else{
-                        p = Integer.parseInt(document["progress"].toString())
+                .addOnSuccessListener { document ->
+                    if (id == 0) {
+                        model.progress.add(MyViewDetailProgress(3))
+                        Log.d(TAG, "fetchProgress: progress 0 일때")
+                    } else {
+                        model.progress.add(MyViewDetailProgress(Integer.parseInt(document["progress"].toString())))
+                        Log.d(TAG, "fetchProgress: ${Integer.parseInt(document["progress"].toString())}")
                     }
                 }
-            Log.d(TAG, "fetchProgress: $surveyProgress")
-        }
-        return p
 
+        }
     }
 
+    private suspend fun uploadModel(item : MyViewDetailItem){
+        model.detailModel.add(item)
 
+    }
 }

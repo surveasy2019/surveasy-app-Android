@@ -2,11 +2,13 @@ package com.surveasy.surveasy.my.history
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
@@ -30,6 +32,7 @@ class FinSurveyItemsAdapter(val finList : ArrayList<UserSurveyItem>) : RecyclerV
         holder.itemTitle.text = finList.get(position).title
         holder.itemDate.text = finList.get(position).responseDate
         holder.itemReward.text = finList.get(position).reward.toString() + "원"
+       // holder.itemBtn.visibility = View.INVISIBLE
         holder.itemReward.setOnClickListener {
             val intent_history : Intent = Intent(holder.itemView.context,MyViewHistoryDetailActivity::class.java)
             intent_history.putExtra("filePath", finList.get(position).filePath)
@@ -52,6 +55,7 @@ class FinSurveyItemsAdapter(val finList : ArrayList<UserSurveyItem>) : RecyclerV
         val itemTitle : TextView = itemView.findViewById(R.id.HistoryItem_Title)
         val itemDate : TextView = itemView.findViewById(R.id.HistoryItem_date)
         val itemReward : TextView = itemView.findViewById(R.id.HistoryItem_Reward)
+        val itemBtn : ImageView = itemView.findViewById(R.id.historyItem_picBtn)
         //val itemBtn : Button = itemView.findViewById(R.id.MyView_history_photo)
     }
 
