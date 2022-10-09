@@ -1,6 +1,7 @@
 package com.surveasy.surveasy.my.history
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -21,7 +22,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MyViewHistoryActivity : AppCompatActivity() {
-
     val db = Firebase.firestore
     val storage = Firebase.storage
     val waitModel by viewModels<WaitUserSurveyListViewModel>()
@@ -104,6 +104,9 @@ class MyViewHistoryActivity : AppCompatActivity() {
         val storageRef = storage.reference.child("historyTest")
 
 
+    }
+    fun finishActivity(){
+        finish()
     }
 
 

@@ -115,9 +115,12 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         var defaultFrag_list = false
         var defaultFrag_list_push = false
+        var defaultFrag_my = false
 
         defaultFrag_list = intent.getBooleanExtra("defaultFragment_list", false)
         defaultFrag_list_push = intent.getBooleanExtra("defaultFragment_list_push", false)
+        defaultFrag_my = intent.getBooleanExtra("defaultFragment_my", false)
+
 
         if(defaultFrag_list) {
             navColor_On(binding.NavListImg, binding.NavListText)
@@ -135,6 +138,12 @@ class MainActivity : AppCompatActivity() {
 
             defaultFrag_list = !defaultFrag_list
 
+        }else if(defaultFrag_my){
+            navColor_On(binding.NavMyImg, binding.NavMyText)
+            navColor_Off(binding.NavHomeImg, binding.NavHomeText, binding.NavListImg, binding.NavListText)
+            setContentView(binding.root)
+
+            transaction.add(R.id.MainView, MyViewFragment()).commit()
         }
         else {
             setContentView(binding.root)

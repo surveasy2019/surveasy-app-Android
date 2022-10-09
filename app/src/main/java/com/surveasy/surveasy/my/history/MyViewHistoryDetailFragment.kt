@@ -44,13 +44,11 @@ class MyViewHistoryDetailFragment : Fragment() {
         val detailReward = view.findViewById<TextView>(R.id.historyDetailReward)
 
         CoroutineScope(Dispatchers.Main).launch {
-            Log.d(TAG, "onCreateView: 시작")
             fetchModel()
-            Log.d(TAG, "onCreateView: 끝")
 
-            if(model.detailModel[0].title.length>18){
+            if(model.detailModel[0].title.length>15){
                 detailTitle.text =
-                    model.detailModel[0].title.substring(0,19)+"\n"+model.detailModel[0].title.substring(19,36).trim()+"..."
+                    model.detailModel[0].title.substring(0,15)+"..."
             }else{
                 detailTitle.text = model.detailModel[0].title
             }
@@ -60,7 +58,6 @@ class MyViewHistoryDetailFragment : Fragment() {
             if(model.progress[0].progress<3){
                 fetchLastImg(model.detailModel[0].id, model.detailModel[0].filePath)
             }else{
-                Log.d(TAG, "onCreateView: 프로그래스 ${model.progress[0].progress}")
                 lastImg.visibility = View.GONE
                 alert.visibility = View.GONE
                 alert2.visibility = View.VISIBLE
@@ -76,7 +73,8 @@ class MyViewHistoryDetailFragment : Fragment() {
                     intent.putExtra("id", model.detailModel[0].id)
                     intent.putExtra("idChecked", model.detailModel[0].lastId)
                     startActivity(intent)
-                    (activity as MyViewHistoryDetailActivity).activityFinish()
+                    //(activity as MyViewHistoryDetailActivity).activityFinish()
+                    //(activity as MyViewHistoryActivity).finishActivity()
                 }else{
                     Toast.makeText(context,"마감된 설문은 완료 화면 변경이 불가합니다.", Toast.LENGTH_LONG).show()
                 }
@@ -111,10 +109,8 @@ class MyViewHistoryDetailFragment : Fragment() {
         Glide.with(this).load(R.raw.app_loading).into(lastImg)
 
         file1.downloadUrl.addOnSuccessListener { item ->
-            Log.d(ContentValues.TAG, "fetchLastImg: $item")
             Glide.with(this).load(item).into(lastImg)
         }.addOnFailureListener{
-            Log.d(ContentValues.TAG, "fetchLastImg: fail###")
             lastImg.visibility = View.GONE
             alert.visibility = View.GONE
             alert2.visibility = View.VISIBLE

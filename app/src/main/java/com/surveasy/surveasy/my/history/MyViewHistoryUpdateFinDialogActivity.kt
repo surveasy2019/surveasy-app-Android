@@ -3,6 +3,7 @@ package com.surveasy.surveasy.my.history
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.surveasy.surveasy.MainActivity
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivityMyViewHistoryUpdateFinDialogBinding
 
@@ -15,6 +16,9 @@ class MyViewHistoryUpdateFinDialogActivity : AppCompatActivity() {
 
         binding.myHistoryUpdateFinBtn.setOnClickListener {
 
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("defaultFragment_my",true)
+            startActivity(intent)
             finish()
         }
     }

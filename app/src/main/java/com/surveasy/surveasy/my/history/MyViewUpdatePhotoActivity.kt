@@ -114,7 +114,7 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
             updateFilePath(idChecked,imgName)
             val intent = Intent(this,MyViewHistoryUpdateFinDialogActivity::class.java)
             startActivity(intent)
-            finish()
+            //finish()
             deletePhoto(filePath)
             Log.d(TAG, "uploadStorage: success delete")
 
