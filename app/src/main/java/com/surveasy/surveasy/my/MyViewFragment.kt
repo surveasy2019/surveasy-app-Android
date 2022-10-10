@@ -35,6 +35,7 @@ class MyViewFragment : Fragment() {
     var info = InfoData(null, null, null, null, null, null, null, null)
     var noticeNum_fb = 0
     var noticeNum_room = 0
+    val userModel by activityViewModels<CurrentUserViewModel>()
     private lateinit var noticeDB : NoticeDatabase
 
     override fun onStart() {
@@ -42,6 +43,10 @@ class MyViewFragment : Fragment() {
         val infoIcon = requireView().findViewById<LinearLayout>(R.id.MyView_InfoIcon)
         val noticeDot = requireView().findViewById<ImageView>(R.id.MyView_NoticeIcon_dot)
         val noticeBtn = requireView().findViewById<ImageView>(R.id.MyView_NoticeIcon)
+        val userName = requireView().findViewById<TextView>(R.id.MyView_UserName)
+        val userRewardFinAmount = requireView().findViewById<TextView>(R.id.MyView_UserRewardFinAmount)
+        val userRewardYetAmount = requireView().findViewById<TextView>(R.id.MyView_UserRewardYetAmount)
+        val userSurveyCountAmount = requireView().findViewById<TextView>(R.id.MyView_UserSurveyCountAmount)
 
         CoroutineScope(Dispatchers.Main).launch {
             val myInfo = CoroutineScope(Dispatchers.IO).async {
@@ -54,6 +59,28 @@ class MyViewFragment : Fragment() {
                 intent.putExtra("info", info!!)
                 startActivity(intent)
             }
+        }
+
+        // Fetch User Info
+        CoroutineScope(Dispatchers.Main).launch {
+            val myInfo = CoroutineScope(Dispatchers.IO).async {
+                fetchInfoData()
+            }.await()
+
+            infoIcon.setOnClickListener {
+                val intent = Intent(context, MyViewInfoActivity::class.java)
+                intent.putExtra("info", info!!)
+                startActivity(intent)
+            }
+        }
+
+        // Set UI with userModel
+        if(userModel.currentUser.uid != null) {
+            userName.text = "${userModel.currentUser.name}님"
+            val rewardFin = (userModel.currentUser.rewardTotal!!) - (userModel.currentUser.rewardCurrent!!)
+            userRewardFinAmount.text = "${rewardFin}원"
+            userRewardYetAmount.text = "${userModel.currentUser.rewardCurrent}원"
+            userSurveyCountAmount.text = "${userModel.currentUser.UserSurveyList!!.size}개"
         }
 
 
@@ -102,30 +129,6 @@ class MyViewFragment : Fragment() {
 
         userName.setOnClickListener{
             noticeDB.noticeDao().deleteAll()
-        }
-
-
-        // Set UI with userModel
-        if(userModel.currentUser.uid != null) {
-            userName.text = "${userModel.currentUser.name}님"
-            val rewardFin = (userModel.currentUser.rewardTotal!!) - (userModel.currentUser.rewardCurrent!!)
-            userRewardFinAmount.text = "${rewardFin}원"
-            userRewardYetAmount.text = "${userModel.currentUser.rewardCurrent}원"
-            userSurveyCountAmount.text = "${userModel.currentUser.UserSurveyList!!.size}개"
-        }
-
-
-        // Fetch User Info
-        CoroutineScope(Dispatchers.Main).launch {
-            val myInfo = CoroutineScope(Dispatchers.IO).async {
-                fetchInfoData()
-            }.await()
-
-            infoIcon.setOnClickListener {
-                val intent = Intent(context, MyViewInfoActivity::class.java)
-                intent.putExtra("info", info!!)
-                startActivity(intent)
-            }
         }
 
 

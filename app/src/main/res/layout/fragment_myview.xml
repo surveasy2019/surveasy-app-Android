@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingLeft="10sp"
-            android:text="최진혁 님"
+            android:text="- 님"
             android:textSize="23sp"
             android:textColor="#000000"
             android:fontFamily="@font/main_font_b"/>
@@ -86,7 +86,7 @@
                     android:layout_weight="1"
                     android:gravity="right"
                     android:paddingRight="5sp"
-                    android:text="120,300원"
+                    android:text="불러오는 중"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:fontFamily="@font/main_font_b" />
@@ -116,7 +116,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="130개"
+                        android:text="- 개"
                         android:textColor="@color/white"
                         android:textSize="17sp"
                         android:fontFamily="@font/main_font_b" />
@@ -146,7 +146,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="1300원"
+                        android:text="- 원"
                         android:textColor="@color/white"
                         android:textSize="17sp"
                         android:fontFamily="@font/main_font_b" />
