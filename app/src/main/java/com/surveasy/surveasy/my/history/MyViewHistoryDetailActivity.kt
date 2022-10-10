@@ -13,6 +13,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -38,6 +39,8 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
         binding = ActivityMyViewHistoryDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        model.filePath.clear()
+
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.historyDetailFragment, MyViewHistoryDetailFragment()).commit()
 
@@ -51,16 +54,17 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
 
         val id : Int = intent.getIntExtra("id",0)
         val lastIdCheck : Int = intent.getIntExtra("idChecked",0)
-        val filePath : String? = intent.getStringExtra("filePath")
+        //val filePath : String? = intent.getStringExtra("filePath")
         val title : String = intent.getStringExtra("title")!!
         val date : String = intent.getStringExtra("date")!!
         val reward : Int = intent.getIntExtra("reward",0)
 
-        val item = MyViewDetailItem(id, lastIdCheck, filePath, null, date, title, reward)
+        val item = MyViewDetailItem(id, lastIdCheck, null, date, title, reward)
 
 
         CoroutineScope(Dispatchers.Main).launch {
             fetchProgress(id)
+            fetchFilePath(lastIdCheck)
             uploadModel(item)
         }
 
@@ -97,6 +101,19 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
                 }
 
         }
+    }
+
+    private suspend fun fetchFilePath(lastId : Int){
+        val uid = Firebase.auth.currentUser!!.uid
+        withContext(Dispatchers.IO){
+            db.collection("panelData").document(uid.toString())
+                .collection("UserSurveyList").document(lastId.toString()).get()
+                .addOnSuccessListener { document ->
+                    model.filePath.add(MyViewFilePath(document["filePath"].toString()))
+
+                }
+        }
+
     }
 
     private suspend fun uploadModel(item : MyViewDetailItem){

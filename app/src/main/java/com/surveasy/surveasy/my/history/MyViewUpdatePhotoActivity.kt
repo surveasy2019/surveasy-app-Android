@@ -52,7 +52,7 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
 
 
         //val filePath = intent.getStringExtra("filePath")
-        val filePath = intent.getStringExtra("filePath").toString()
+        //val filePath = intent.getStringExtra("filePath").toString()
         val id = intent.getIntExtra("id",0)
 
         if(checkPermission()){
@@ -114,7 +114,7 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
             updateFilePath(idChecked,imgName)
             val intent = Intent(this,MyViewHistoryUpdateFinDialogActivity::class.java)
             startActivity(intent)
-            //finish()
+            finish()
             deletePhoto(filePath)
             Log.d(TAG, "uploadStorage: success delete")
 

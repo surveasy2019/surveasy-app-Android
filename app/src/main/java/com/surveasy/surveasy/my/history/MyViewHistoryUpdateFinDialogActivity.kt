@@ -16,9 +16,6 @@ class MyViewHistoryUpdateFinDialogActivity : AppCompatActivity() {
 
         binding.myHistoryUpdateFinBtn.setOnClickListener {
 
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("defaultFragment_my",true)
-            startActivity(intent)
             finish()
         }
     }
