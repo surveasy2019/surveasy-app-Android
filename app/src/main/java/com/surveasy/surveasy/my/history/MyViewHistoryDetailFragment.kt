@@ -90,7 +90,7 @@ class MyViewHistoryDetailFragment : Fragment() {
         withContext(Dispatchers.IO){
             while (model.detailModel.size==0 || model.progress.size==0 || model.filePath.size==0){ }
         }
-        Log.d(TAG, "모델 개수 : ${model.filePath}")
+        //Log.d(TAG, "모델 개수 : ${model.filePath}")
     }
 
     // 기존에 첨부한 이미지 보여주기

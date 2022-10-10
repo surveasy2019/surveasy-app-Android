@@ -93,10 +93,10 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
                 .addOnSuccessListener { document ->
                     if (id == 0) {
                         model.progress.add(MyViewDetailProgress(3))
-                        Log.d(TAG, "fetchProgress: progress 0 일때")
+                        //Log.d(TAG, "fetchProgress: progress 0 일때")
                     } else {
                         model.progress.add(MyViewDetailProgress(Integer.parseInt(document["progress"].toString())))
-                        Log.d(TAG, "fetchProgress: ${Integer.parseInt(document["progress"].toString())}")
+                        //Log.d(TAG, "fetchProgress: ${Integer.parseInt(document["progress"].toString())}")
                     }
                 }
 
