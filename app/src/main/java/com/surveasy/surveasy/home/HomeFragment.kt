@@ -123,11 +123,9 @@ class HomeFragment : Fragment() {
 
             bannerDefault.visibility = View.INVISIBLE
             total_banner.text = bannerModel.num.toString()
-            Log.d(TAG, "########coroutine exit1 ${System.currentTimeMillis()}")
             bannerPager.offscreenPageLimit = bannerModel.num
             bannerPager.adapter = BannerViewPagerAdapter(mContext, bannerModel.uriList)
             bannerPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-            Log.d(TAG, "########coroutine exit2 ${System.currentTimeMillis()}")
 
         }
 

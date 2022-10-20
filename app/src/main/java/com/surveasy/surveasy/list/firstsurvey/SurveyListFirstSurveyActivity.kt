@@ -22,7 +22,7 @@ class SurveyListFirstSurveyActivity : AppCompatActivity() {
         // Current User from MainActivity [P]
         val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser_main")
         userModel.currentUser = currentUser!!
-        Log.d(TAG, "~~~~~~~~~${currentUser.name}")
+        //Log.d(TAG, "~~~~~~~~~${currentUser.name}")
 
 
         binding = ActivitySurveylistfirstsurveyBinding.inflate(layoutInflater)

@@ -160,8 +160,6 @@ class Register2Fragment : Fragment() {
                 accountType = accountTypeList[position]
 
                 //Toast.makeText(context, accountTypeList[position], Toast.LENGTH_SHORT).show()
-
-                Log.d(TAG, "@@@@@@@ account type : $accountType")
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }

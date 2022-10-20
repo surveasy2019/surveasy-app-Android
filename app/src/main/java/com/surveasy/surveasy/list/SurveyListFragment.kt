@@ -93,7 +93,7 @@ class SurveyListFragment() : Fragment() {
             val list = CoroutineScope(Dispatchers.IO).async {
                 val model by activityViewModels<SurveyInfoViewModel>()
                 while(model.surveyInfo.size==0){
-                    Log.d(TAG,"########loading")
+                    //Log.d(TAG,"########loading")
                 }
                 model.surveyInfo.get(0).idChecked
             }.await()

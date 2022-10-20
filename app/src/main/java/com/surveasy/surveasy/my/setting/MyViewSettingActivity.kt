@@ -28,8 +28,6 @@ class MyViewSettingActivity : AppCompatActivity() {
                 pushOn = result["pushOn"] as Boolean
                 marketingAgree = result["marketingAgree"] as Boolean
 
-                Log.d(TAG, "start-PPPPPPPPPPPPPP : $pushOn")
-                Log.d(TAG, "start-MMMMMMMMMMMMMM : $marketingAgree")
             }
 
 //        binding.MyViewSettingPush.setOnClickListener {
@@ -86,7 +84,6 @@ class MyViewSettingActivity : AppCompatActivity() {
                 .setPositiveButton("예"){ dialogInterface, it ->
                     finishAffinity()
                     Firebase.auth.signOut()
-                    Log.d(TAG, "((((((((((( logout : ${Firebase.auth.currentUser?.uid}")
 
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
