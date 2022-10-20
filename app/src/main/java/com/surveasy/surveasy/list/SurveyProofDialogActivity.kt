@@ -205,7 +205,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
             .get().addOnSuccessListener { snapShot ->
                 reward_current = Integer.parseInt(snapShot["reward_current"].toString())
                 reward_total = Integer.parseInt(snapShot["reward_total"].toString())
-                Log.d(ContentValues.TAG, "@@@@@@@@@@@@@@@@@@@@ reward_current fetch: $reward_current")
+                //Log.d(ContentValues.TAG, "@@@@@@@@@@@@@@@@@@@@ reward_current fetch: $reward_current")
                 reward_current += reward
                 reward_total += reward
 

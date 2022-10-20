@@ -40,7 +40,6 @@ class Register1Fragment : Fragment() {
                 R.id.RegisterFragment1_RadioFemale -> gender = "여"
 
             }
-            Log.d(TAG, "~~~~~~~~gender: $gender")
         }
 
         // BirthDate

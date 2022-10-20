@@ -90,7 +90,6 @@ class SplashActivity : AppCompatActivity() {
                     return@OnCompleteListener
                 }
                 token = task.result
-                Log.d(TAG, "$$$$$$$$$$$$$$$$$ $token")
 
             })
         db.collection("AndroidFirstScreen").get()

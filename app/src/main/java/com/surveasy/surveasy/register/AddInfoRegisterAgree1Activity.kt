@@ -21,7 +21,6 @@ class AddInfoRegisterAgree1Activity : AppCompatActivity() {
         setContentView(R.layout.activity_add_panel_agree1)
 
         Firebase.auth.signOut()
-        Log.d(ContentValues.TAG, "((((((((((( logout : ${Firebase.auth.currentUser?.uid}")
 
         val currentUser = intent.getParcelableExtra<CurrentUser>("currentUser_login")!!
         val agreeAll : CheckBox = findViewById(R.id.registerAgree1_agree11)

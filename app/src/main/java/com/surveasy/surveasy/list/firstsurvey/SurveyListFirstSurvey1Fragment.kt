@@ -49,7 +49,6 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
                 R.id.SurveyListFirstSurvey1_EngSurvey_O -> engSurvey = true
                 R.id.SurveyListFirstSurvey1_EngSurvey_X -> engSurvey = false
             }
-            Log.d(TAG, "**ENG*Eng** $engSurvey")
         }
 
 
@@ -105,7 +104,6 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
                 null, null, null, null, null, null)
 
             firstSurveyModel.firstSurvey = firstSurvey1
-            Log.d(TAG, "FFFFFFFF first1 : ${firstSurveyModel.firstSurvey.military}")
 
             (activity as SurveyListFirstSurveyActivity).next()
         }
@@ -132,7 +130,6 @@ class SurveyListFirstSurvey1Fragment() : Fragment() {
                     major = ""
                     university = ""
                 }
-                Log.d(TAG, "PPPPPPPPPPPPPPPPPPP $position" )
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }

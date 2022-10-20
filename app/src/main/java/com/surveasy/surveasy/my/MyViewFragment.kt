@@ -55,7 +55,6 @@ class MyViewFragment : Fragment() {
 
             infoIcon.setOnClickListener {
                 val intent = Intent(context, MyViewInfoActivity::class.java)
-                Log.d(TAG, "#### MyViewFrag____onstart___putEtra ${info.EngSurvey}")
                 intent.putExtra("info", info!!)
                 startActivity(intent)
             }
@@ -220,7 +219,6 @@ class MyViewFragment : Fragment() {
 
             if(noticeNum_fb > noticeNum_room) dot.visibility = View.VISIBLE
             else dot.visibility = View.INVISIBLE
-            Log.d(TAG, "@@@@@@@@@@@@$noticeNum_fb~~~~~~~~$noticeNum_room~~~~~~~~~")
         }
 
     }

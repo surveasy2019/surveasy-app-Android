@@ -44,7 +44,6 @@ class AddPanelInfoActivity : AppCompatActivity() {
                 R.id.addInfo_RadioFemale -> gender = "여"
 
             }
-            Log.d(ContentValues.TAG, "~~~~~~~~gender: $gender")
         }
 
         // BirthDate
@@ -64,8 +63,6 @@ class AddPanelInfoActivity : AppCompatActivity() {
         val accountNumber: String = findViewById<EditText>(R.id.addInfo_AccountNumberInput).text.toString()
         val accountOwner: String = findViewById<EditText>(R.id.addInfo_AccountOwnerInput).text.toString()
         if(inflowPath == "기타" || inflowPath == "") inflowPath = findViewById<EditText>(R.id.addInfo_EtcInflowInput).text.toString()
-
-        Log.d(ContentValues.TAG, "@@@@@@@@------- birthdate : $birthDate")
 
         if(gender == null) {
             Toast.makeText(this, "성별을 선택해주세요.", Toast.LENGTH_SHORT).show()

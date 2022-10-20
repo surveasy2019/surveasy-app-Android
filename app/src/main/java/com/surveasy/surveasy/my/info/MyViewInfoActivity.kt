@@ -65,7 +65,6 @@ class MyViewInfoActivity : AppCompatActivity() {
                 binding.MyViewInfoEditBtn.text = "수정완료"
                 binding.MyViewInfoEditBtn.setBackgroundResource(R.drawable.register_button)
                 binding.MyViewInfoEditBtn.setTextColor(Color.parseColor("#FFFFFF"))
-                Log.d(TAG, "****************************************************")
             }
             else if(fragment == 2) {
                 updateInfo()
@@ -78,7 +77,6 @@ class MyViewInfoActivity : AppCompatActivity() {
                 binding.MyViewInfoEditBtn.text = "수정하기"
                 binding.MyViewInfoEditBtn.setBackgroundResource(R.drawable.white_button_myinfo)
                 binding.MyViewInfoEditBtn.setTextColor(Color.parseColor("#0aab00"))
-                Log.d(TAG, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             }
         }
 
@@ -100,7 +98,6 @@ class MyViewInfoActivity : AppCompatActivity() {
                     null
                 )
                 infoDataModel.infoData = infoData
-                Log.d(TAG, "****fetch******* ${infoDataModel.infoData.birthDate}")
             }
         }
 
@@ -108,7 +105,6 @@ class MyViewInfoActivity : AppCompatActivity() {
             .get().addOnSuccessListener { document ->
                 if (document["EngSurvey"] != null) {
                     infoDataModel.infoData.EngSurvey = document["EngSurvey"]!! as Boolean
-                    Log.d(TAG, "****fetch******* ${infoDataModel.infoData.EngSurvey}")
                     setVariableInfo(infoDataModel.infoData)
                 }
             }
@@ -164,7 +160,6 @@ class MyViewInfoActivity : AppCompatActivity() {
             infoDataModel.infoData.accountNumber = accountNumberEdit.text.toString()
         }
 
-        Log.d(TAG, "~~~~~~~~ ${infoDataModel.infoData.phoneNumber}")
         docRef.update(
             "phoneNumber", infoDataModel.infoData.phoneNumber,
             "accountType", infoDataModel.infoData.accountType,
