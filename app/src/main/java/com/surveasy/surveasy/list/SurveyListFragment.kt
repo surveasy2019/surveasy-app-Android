@@ -90,13 +90,9 @@ class SurveyListFragment() : Fragment() {
 
 
         CoroutineScope(Dispatchers.Main).launch {
-            val list = CoroutineScope(Dispatchers.IO).async {
-                val model by activityViewModels<SurveyInfoViewModel>()
-                while(model.surveyInfo.size==0){
-                    //Log.d(TAG,"########loading")
-                }
-                model.surveyInfo.get(0).idChecked
-            }.await()
+            val model by activityViewModels<SurveyInfoViewModel>()
+            getSurveyList(model)
+
             val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),showCanParticipateList)
             container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
             container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),showCanParticipateList)
@@ -148,7 +144,13 @@ class SurveyListFragment() : Fragment() {
         return view
     }
 
-
+    private suspend fun getSurveyList(listModel : SurveyInfoViewModel){
+        withContext(Dispatchers.IO){
+            while (listModel.surveyInfo.size == 0) {
+                //Log.d(TAG, "########loading")
+            }
+        }
+    }
 
 
     //참여 완료한 survey 를 list 안에서 색 변경

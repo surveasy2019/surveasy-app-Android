@@ -2,12 +2,15 @@ package com.surveasy.surveasy.list
 
 import android.app.Activity
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.databinding.ActivitySurveyproofdialogBinding
@@ -19,6 +22,8 @@ import com.google.firebase.storage.ktx.storage
 import org.json.JSONException
 import org.json.JSONObject
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -197,20 +202,28 @@ class SurveyProofDialogActivity: AppCompatActivity() {
     }
 
     // panelData-reward_current/reward_total 업데이트
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun updateReward(){
         val reward : Int = thisSurveyInfo.get(0).reward!!
         var reward_current = 0
         var reward_total = 0
+        var participateDate = FieldValue.serverTimestamp()
+        val docRef = db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
         db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { snapShot ->
                 reward_current = Integer.parseInt(snapShot["reward_current"].toString())
                 reward_total = Integer.parseInt(snapShot["reward_total"].toString())
-                //Log.d(ContentValues.TAG, "@@@@@@@@@@@@@@@@@@@@ reward_current fetch: $reward_current")
                 reward_current += reward
                 reward_total += reward
 
-                db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
-                    .update("reward_current", reward_current, "reward_total", reward_total)
+                docRef.update("reward_current", reward_current, "reward_total", reward_total, "lastParticipatedDate", participateDate)
+
+
+
+                //Log.d(ContentValues.TAG, "@@@@@@@@@@@@@@@@@@@@ reward_current fetch: $reward_current")
+
+
+
 
 
             }
