@@ -207,7 +207,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         val reward : Int = thisSurveyInfo.get(0).reward!!
         var reward_current = 0
         var reward_total = 0
-        var participateDate = LocalDateTime.now().toString()
+        var participateDate = FieldValue.serverTimestamp()
         val docRef = db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
         db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { snapShot ->
