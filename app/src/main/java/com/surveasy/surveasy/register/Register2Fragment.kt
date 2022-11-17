@@ -1,6 +1,7 @@
 package com.surveasy.surveasy.register
 
 import android.content.ContentValues.TAG
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.R
@@ -16,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import java.time.LocalDate
 
 
 class Register2Fragment : Fragment() {
@@ -27,6 +30,7 @@ class Register2Fragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,10 +54,11 @@ class Register2Fragment : Fragment() {
 
 
     // Register2
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun register2(view: View) {
         val accountNumber: String = view.findViewById<EditText>(R.id.RegisterFragment2_AccountNumberInput).text.toString()
         val accountOwner: String = view.findViewById<EditText>(R.id.RegisterFragment2_AccountOwnerInput).text.toString()
-
+        val date : String = LocalDate.now().toString()
         if(accountType == "은행을 선택하세요") {
             Toast.makeText(context, "은행을 선택해주세요.", Toast.LENGTH_SHORT).show()
         }
@@ -104,7 +109,8 @@ class Register2Fragment : Fragment() {
                                     "reward_current" to 0,
                                     "reward_total" to 0,
                                     "marketingAgree" to registerModel.registerInfo1.marketingAgree,
-                                    "autoLogin" to true
+                                    "autoLogin" to true,
+                                    "registerDate" to date
                                 )
                                 db.collection("panelData").document(firebaseUID)
                                     .set(user).addOnSuccessListener { documentReference ->

@@ -13,9 +13,12 @@
     <androidx.core.widget.NestedScrollView
 
         android:background="#FFFFFF"
-        android:padding="20dp"
+        android:paddingTop="10dp"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,16 +28,17 @@
             android:background="@drawable/custom_historydetail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="60dp"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="15dp"
                 android:id="@+id/historyDetailLogo"
                 android:layout_width="110dp"
                 android:layout_height="30dp"
                 android:src="@drawable/surveasy_logo"
                 android:layout_gravity="center"
-                android:layout_marginTop="50dp"/>
+                android:layout_marginTop="35dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -115,6 +119,7 @@
                 android:id="@+id/historyDetailLastCapture"
                 android:layout_width="210dp"
                 android:layout_height="380dp"
+                android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp" />
 

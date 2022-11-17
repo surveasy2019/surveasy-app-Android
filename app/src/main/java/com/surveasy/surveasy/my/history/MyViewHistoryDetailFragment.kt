@@ -48,13 +48,13 @@ class MyViewHistoryDetailFragment : Fragment() {
             fetchModel()
             Log.d(TAG, "onCreateView: 끝")
 
-            if(model.detailModel[0].title.length>18){
+            if(model.detailModel[0].title.length>15){
                 detailTitle.text =
-                    model.detailModel[0].title.substring(0,19)+"\n"+model.detailModel[0].title.substring(19,36).trim()+"..."
+                    model.detailModel[0].title.substring(0,15)+"..."
             }else{
                 detailTitle.text = model.detailModel[0].title
             }
-            detailReward.text = model.detailModel[0].reward.toString()
+            detailReward.text = model.detailModel[0].reward.toString()+"원"
             detailDate.text = "참여일자 : ${model.detailModel[0].date}"
 
             if(model.progress[0].progress<3){

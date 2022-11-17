@@ -39,6 +39,7 @@
                 android:layout_height="17sp"
                 android:src="@drawable/navigation_home" />
 
+
             <TextView
                 android:id="@+id/Nav_Home_Text"
                 android:layout_width="wrap_content"

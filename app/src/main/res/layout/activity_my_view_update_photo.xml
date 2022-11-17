@@ -38,7 +38,7 @@
         android:fontFamily="@font/main_font_sb"
         android:gravity="center"
         android:textSize="17sp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="30dp" />
 
 
     <ScrollView
