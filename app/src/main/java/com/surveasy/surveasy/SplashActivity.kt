@@ -17,6 +17,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.accessibility.AccessibilityEventCompat.setAction
+import androidx.room.Room
 import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.surveasy.surveasy.home.NetworkAlertActivity
@@ -34,12 +35,17 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.surveasy.surveasy.userRoom.UserDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
 
 class SplashActivity : AppCompatActivity() {
     val db = Firebase.firestore
     var token = ""
+    private lateinit var userDB : UserDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +98,23 @@ class SplashActivity : AppCompatActivity() {
                 token = task.result
 
             })
+        /*
+        userDB = Room.databaseBuilder(
+            this,
+            UserDatabase::class.java, "UserDatabase"
+        ).allowMainThreadQueries().build()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            //val bool : Boolean? = userDB.userDao().getFS()
+            Log.d(TAG, "onCreate: ####${userDB.userDao().getFS()}")
+            if(userDB.userDao().getFS()==null || userDB.userDao().getFS()==false){
+                startActivity(Intent(this@SplashActivity,FirstIntroduceScreenActivity::class.java))
+                finish()
+            }else{
+                nextActivity()
+            }
+        } */
+
         db.collection("AndroidFirstScreen").get()
             .addOnSuccessListener { result ->
                 var i = 0

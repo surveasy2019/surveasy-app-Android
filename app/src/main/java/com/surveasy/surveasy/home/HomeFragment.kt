@@ -206,7 +206,7 @@ class HomeFragment : Fragment() {
         //list 불러오기
         CoroutineScope(Dispatchers.Main).launch {
             //Log.d(TAG, "onCreateView: 시작 전")
-            val model by activityViewModels<SurveyInfoViewModel>()
+            //val model by activityViewModels<SurveyInfoViewModel>()
             getHomeList(model)
             //Log.d(TAG, "onCreateView: 끝")
 

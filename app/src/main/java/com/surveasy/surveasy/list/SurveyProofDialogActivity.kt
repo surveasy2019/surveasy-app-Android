@@ -41,6 +41,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
     var backBtnBool :Boolean = false
 
     private lateinit var binding: ActivitySurveyproofdialogBinding
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -76,14 +77,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         startActivityForResult(photoPick, pickImageFromAlbum)
 
         binding.dialogSendBtn.setOnClickListener {
-            binding.dialogSendBtn.visibility = View.INVISIBLE
-            backBtnBool = true
-
             uploadStorage(binding.dialogImageview)
-            updateFBInfo()
-            updateReward()
-            Toast.makeText(this@SurveyProofDialogActivity,"응답 제출중",Toast.LENGTH_LONG).show()
-
         }
 
 
@@ -172,6 +166,7 @@ class SurveyProofDialogActivity: AppCompatActivity() {
 
 
     //firebase storage upload
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun uploadStorage(view: View){
 
         val id: Int = intent.getIntExtra("id",0)!!
@@ -179,18 +174,30 @@ class SurveyProofDialogActivity: AppCompatActivity() {
         val imgName = Firebase.auth.currentUser!!.uid+"__"+timestamp
 //        val storageRef = storage.reference.child(idChecked.toString()).child(imgName)
         val storageRef = storage.reference.child(id.toString()).child(imgName)
-        val uploadTask = storageRef.putFile(uriPhoto!!)
+        if(uriPhoto==null){
+            Toast.makeText(this, "사진을 선택하세요", Toast.LENGTH_LONG).show()
+        }else{
+            binding.dialogSendBtn.visibility = View.INVISIBLE
+            backBtnBool = true
+            val uploadTask = storageRef.putFile(uriPhoto!!)
+            uploadTask.addOnSuccessListener {
+                //Toast.makeText(this,"업로드 하는 중",Toast.LENGTH_SHORT).show()
+                updateList()
+                val intent = Intent(this,SurveyProofLastDialogActivity::class.java)
+                intent.putExtra("reward",thisSurveyInfo.get(0).reward)
+                intent.putExtra("title", thisSurveyInfo.get(0).title)
+                intent.putExtra("idChecked",idChecked)
+                intent.putExtra("id",id)
+                startActivity(intent)
+            }
+            updateFBInfo()
+            updateReward()
+            Toast.makeText(this@SurveyProofDialogActivity,"응답 제출중",Toast.LENGTH_LONG).show()
 
-        uploadTask.addOnSuccessListener {
-            //Toast.makeText(this,"업로드 하는 중",Toast.LENGTH_SHORT).show()
-            updateList()
-            val intent = Intent(this,SurveyProofLastDialogActivity::class.java)
-            intent.putExtra("reward",thisSurveyInfo.get(0).reward)
-            intent.putExtra("title", thisSurveyInfo.get(0).title)
-            intent.putExtra("idChecked",idChecked)
-            intent.putExtra("id",id)
-            startActivity(intent)
         }
+
+
+
 
     }
 

@@ -68,8 +68,7 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
 
         binding.historyUpdateSendBtn.setOnClickListener {
             uploadStorage()
-            binding.historyUpdateSendBtn.visibility = View.INVISIBLE
-            Toast.makeText(this,"완료 화면을 변경 중입니다.", Toast.LENGTH_LONG).show()
+
         }
         binding.historyUpdateEditBtn.setOnClickListener {
             editPhoto()
@@ -108,17 +107,25 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
         val imgName = Firebase.auth.currentUser!!.uid+"__"+timestamp
 
         val storageRef = storage.reference.child(id.toString()).child(imgName)
-        val uploadTask = storageRef.putFile(uriPhoto!!)
+        //null 방지
+        if(uriPhoto==null){
+            Toast.makeText(this, "사진을 선택하세요", Toast.LENGTH_LONG).show()
+        }else{
+            val uploadTask = storageRef.putFile(uriPhoto!!)
+            uploadTask.addOnSuccessListener {
+                updateFilePath(idChecked,imgName)
+                val intent = Intent(this,MyViewHistoryUpdateFinDialogActivity::class.java)
+                startActivity(intent)
+                finish()
+                deletePhoto(filePath)
+                Log.d(TAG, "uploadStorage: success delete")
 
-        uploadTask.addOnSuccessListener {
-            updateFilePath(idChecked,imgName)
-            val intent = Intent(this,MyViewHistoryUpdateFinDialogActivity::class.java)
-            startActivity(intent)
-            finish()
-            deletePhoto(filePath)
-            Log.d(TAG, "uploadStorage: success delete")
-
+            }
+            binding.historyUpdateSendBtn.visibility = View.INVISIBLE
+            Toast.makeText(this,"완료 화면을 변경 중입니다.", Toast.LENGTH_LONG).show()
         }
+
+
 
     }
 

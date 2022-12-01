@@ -11,13 +11,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.login.LoginActivity
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.surveasy.surveasy.userRoom.UserDatabase
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, firstIntroduceScreen : FirstIntroduceScreen)
     : RecyclerView.Adapter<FirstIntroduceScreenViewPagerAdapter.PagerViewHolder>() {
@@ -31,6 +37,7 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, 
     val imgList = firstIntroduceScreen.imgList
     val titleList = firstIntroduceScreen.titleList
     val contentList = firstIntroduceScreen.contentList
+    private lateinit var userDB : UserDatabase
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FirstIntroduceScreenViewPagerAdapter.PagerViewHolder {
@@ -47,6 +54,18 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, 
         holder.img.setImageResource(imgList[position])
         holder.title.text = titleList[position]
         holder.content.text = contentList[position]
+        userDB = Room.databaseBuilder(
+            context,
+            UserDatabase::class.java, "UserDatabase"
+        ).allowMainThreadQueries().build()
+
+        /*
+        CoroutineScope(Dispatchers.Main).launch {
+            val bool : Boolean? = userDB.userDao().getFS()
+
+        }
+
+         */
 
 
         if(position == imgList.size-1) {
@@ -54,6 +73,10 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, 
 
             holder.startBtn.visibility = View.VISIBLE
             holder.lastTitle.visibility = View.VISIBLE
+
+            /*holder.startBtn.setOnClickListener {
+                userDB.userDao().updateShowFS(Firebase.auth.currentUser!!.uid, true)
+            }*/
 
             holder.startBtn.setOnClickListener{
                 FirebaseMessaging.getInstance().token.addOnCompleteListener(

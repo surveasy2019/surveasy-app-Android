@@ -25,8 +25,8 @@ class MyViewSettingActivity : AppCompatActivity() {
         val db = Firebase.firestore
         db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { result ->
-                pushOn = result["pushOn"] as Boolean
-                marketingAgree = result["marketingAgree"] as Boolean
+                pushOn = result["pushOn"] as Boolean?
+                marketingAgree = result["marketingAgree"] as Boolean?
 
             }
 
