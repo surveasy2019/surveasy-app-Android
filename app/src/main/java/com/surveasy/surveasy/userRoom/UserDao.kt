@@ -15,6 +15,9 @@ interface UserDao {
     @Query("UPDATE UserTable SET fcmToken = :FcmToken WHERE uid = :Uid")
     fun updateFcm(Uid : String, FcmToken : String)
 
+    //@Query("UPDATE UserTable SET firstScreen = :FS WHERE uid = :Uid")
+    //fun updateShowFS(Uid : String, FS : Boolean)
+
     @Delete
     fun delete(vararg users: User)
 
@@ -29,6 +32,9 @@ interface UserDao {
 
     @Query("SELECT uid FROM UserTable")
     fun getUid() : String
+
+    //@Query("SELECT firstScreen FROM UserTable")
+    //fun getFS() : Boolean?
 
     @Query("SELECT birthYear FROM UserTable")
     fun getBirth() : Int

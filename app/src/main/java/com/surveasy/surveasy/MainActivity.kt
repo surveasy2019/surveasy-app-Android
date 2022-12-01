@@ -86,8 +86,7 @@ class MainActivity : AppCompatActivity() {
             UserDatabase::class.java, "UserDatabase"
         ).allowMainThreadQueries().build()
 
-        Log.d(TAG, "onCreate: 시간 : ${LocalDate.now()}")
-
+        Log.d(TAG, "onCreate: ### ${userDB.userDao().getAll()}")
 
         // 인앱 업데이트 체크
         appUpdateManager = AppUpdateManagerFactory.create(this)
@@ -254,6 +253,7 @@ class MainActivity : AppCompatActivity() {
                         snapshot.result["gender"].toString(),
                         snapshot.result["fcmToken"].toString(),
                         snapshot.result["autoLogin"] as Boolean,
+
                     )
                     userDB.userDao().insert(user)
                 }

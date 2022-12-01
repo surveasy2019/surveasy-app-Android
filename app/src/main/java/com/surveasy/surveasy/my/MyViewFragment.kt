@@ -60,6 +60,8 @@ class MyViewFragment : Fragment() {
             }
         }
 
+        Log.d(TAG, "onStart: #### ${Firebase.auth.currentUser!!.uid}")
+
         // Fetch User Info
         CoroutineScope(Dispatchers.Main).launch {
             val myInfo = CoroutineScope(Dispatchers.IO).async {
@@ -183,12 +185,13 @@ class MyViewFragment : Fragment() {
     // Fetch info of current User for MyViewInfo
     private fun fetchInfoData() {
         val docRef = db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
-        var eng: Boolean = true
+        var eng: Boolean? = true
 
         docRef.collection("FirstSurvey").document(Firebase.auth.currentUser!!.uid)
             .get().addOnSuccessListener { document ->
                 if (document != null) {
-                    eng = document["EngSurvey"] as Boolean
+
+                    eng = document["EngSurvey"] as Boolean?
 
                     docRef.get().addOnSuccessListener { document ->
                         if (document != null) {
