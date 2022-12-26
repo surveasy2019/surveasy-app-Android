@@ -68,7 +68,6 @@ class MyViewSettingWithdrawActivity : AppCompatActivity() {
 
             if(checked[5] != null && etc_reason != "") {
                 checked[5] = "기타 : " + etc_reason
-                Log.d(TAG, "++++++++++++++++++++++++ ${checked[5]}")
             }
 
             if(!valid_reason) {
@@ -132,7 +131,7 @@ class MyViewSettingWithdrawActivity : AppCompatActivity() {
             "reason" to checkedNotNull
         )
         db.collection("AndroidWithdrawData").document(Firebase.auth.currentUser!!.uid).set(item)
-            .addOnSuccessListener { Log.d(TAG, "TTTTTTTTTT ${checkedNotNull}") }
+            .addOnSuccessListener { Log.d(TAG, "TTTTTTTTTT") }
 
 
         // Withdraw User

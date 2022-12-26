@@ -62,6 +62,13 @@ class HomeFragment : Fragment() {
     val userList = arrayListOf<UserSurveyItem>()
     private lateinit var bannerPager : ViewPager2
     private lateinit var mContext: Context
+    private val userModel by activityViewModels<CurrentUserViewModel>()
+    private val bannerModel by activityViewModels<BannerViewModel>()
+    private val contributionModel by activityViewModels<HomeContributionViewModel>()
+    private val opinionModel by activityViewModels<HomeOpinionViewModel>()
+    private val answerModel by activityViewModels<HomeOpinionAnswerViewModel>()
+    private val model by activityViewModels<SurveyInfoViewModel>()
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -78,12 +85,6 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val container : RecyclerView? = view.findViewById(R.id.homeList_recyclerView)
         val contributionContainer : RecyclerView = view.findViewById(R.id.HomeContribution_recyclerView)
-        val userModel by activityViewModels<CurrentUserViewModel>()
-        val bannerModel by activityViewModels<BannerViewModel>()
-        val contributionModel by activityViewModels<HomeContributionViewModel>()
-        val opinionModel by activityViewModels<HomeOpinionViewModel>()
-        val answerModel by activityViewModels<HomeOpinionAnswerViewModel>()
-        val model by activityViewModels<SurveyInfoViewModel>()
         val current_banner: TextView = view.findViewById(R.id.textView_current_banner)
         val total_banner: TextView = view.findViewById(R.id.textView_total_banner)
 //        val springDotsIndicator: SpringDotsIndicator = view.findViewById(R.id.Home_spring_dots_indicator)
@@ -123,11 +124,9 @@ class HomeFragment : Fragment() {
 
             bannerDefault.visibility = View.INVISIBLE
             total_banner.text = bannerModel.num.toString()
-            Log.d(TAG, "########coroutine exit1 ${System.currentTimeMillis()}")
             bannerPager.offscreenPageLimit = bannerModel.num
             bannerPager.adapter = BannerViewPagerAdapter(mContext, bannerModel.uriList)
             bannerPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-            Log.d(TAG, "########coroutine exit2 ${System.currentTimeMillis()}")
 
         }
 
@@ -206,13 +205,10 @@ class HomeFragment : Fragment() {
 
         //list 불러오기
         CoroutineScope(Dispatchers.Main).launch {
-            val list : Int? = CoroutineScope(Dispatchers.IO).async {
-                val model by activityViewModels<SurveyInfoViewModel>()
-                while (model.surveyInfo.size == 0) {
-                    //Log.d(TAG, "########loading")
-                }
-                model.surveyInfo.get(0).id
-            }.await()
+            //Log.d(TAG, "onCreateView: 시작 전")
+            val model by activityViewModels<SurveyInfoViewModel>()
+            getHomeList(model)
+            //Log.d(TAG, "onCreateView: 끝")
 
 
             if (userModel.currentUser.didFirstSurvey == false) {
@@ -387,8 +383,8 @@ class HomeFragment : Fragment() {
 
     //설문 참여, 마감 유무 boolean list
     private fun chooseHomeList() : ArrayList<Boolean>{
-        val userModel by activityViewModels<CurrentUserViewModel>()
-        val model by activityViewModels<SurveyInfoViewModel>()
+//        val userModel by activityViewModels<CurrentUserViewModel>()
+//        val model by activityViewModels<SurveyInfoViewModel>()
         val doneSurvey = userModel.currentUser.UserSurveyList
         var boolList = ArrayList<Boolean>(model.sortSurvey().size)
         var num: Int = 0
@@ -461,14 +457,13 @@ class HomeFragment : Fragment() {
 //            }
 //        }
 //    }
-//    private suspend fun getHomeList(listModel : SurveyInfoViewModel){
-//        withContext(Dispatchers.IO){
-//            Log.d(TAG, "########coroutine ${print("where2")}")
-//            while (listModel.surveyInfo.size == 0) {
-//                //Log.d(TAG, "########loading")
-//            }
-//        }
-//    }
+    private suspend fun getHomeList(listModel : SurveyInfoViewModel){
+        withContext(Dispatchers.IO){
+            while (listModel.surveyInfo.size == 0) {
+                //Log.d(TAG, "########loading")
+            }
+        }
+    }
 //
 //    fun <T>print(msg : T){
 //        kotlin.io.println("$msg [${Thread.currentThread().name}")

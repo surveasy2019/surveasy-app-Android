@@ -3,6 +3,7 @@ package com.surveasy.surveasy
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.room.Room
 import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.databinding.ActivityMainBinding
@@ -31,6 +33,7 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -44,6 +47,8 @@ import com.surveasy.surveasy.userRoom.User
 import com.surveasy.surveasy.userRoom.UserDatabase
 import org.json.JSONException
 import org.json.JSONObject
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -81,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             UserDatabase::class.java, "UserDatabase"
         ).allowMainThreadQueries().build()
 
-        Log.d(TAG, "onCreate: ${userDB.userDao().getAll().get(0).uid}")
+        Log.d(TAG, "onCreate: 시간 : ${LocalDate.now()}")
 
 
         // 인앱 업데이트 체크
@@ -115,9 +120,12 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         var defaultFrag_list = false
         var defaultFrag_list_push = false
+        var defaultFrag_my = false
 
         defaultFrag_list = intent.getBooleanExtra("defaultFragment_list", false)
         defaultFrag_list_push = intent.getBooleanExtra("defaultFragment_list_push", false)
+        defaultFrag_my = intent.getBooleanExtra("defaultFragment_my", false)
+
 
         if(defaultFrag_list) {
             navColor_On(binding.NavListImg, binding.NavListText)
@@ -135,6 +143,12 @@ class MainActivity : AppCompatActivity() {
 
             defaultFrag_list = !defaultFrag_list
 
+        }else if(defaultFrag_my){
+            navColor_On(binding.NavMyImg, binding.NavMyText)
+            navColor_Off(binding.NavHomeImg, binding.NavHomeText, binding.NavListImg, binding.NavListText)
+            setContentView(binding.root)
+
+            transaction.add(R.id.MainView, MyViewFragment()).commit()
         }
         else {
             setContentView(binding.root)

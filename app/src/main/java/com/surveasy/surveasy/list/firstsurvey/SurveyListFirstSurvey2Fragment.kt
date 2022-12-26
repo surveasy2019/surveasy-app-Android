@@ -136,7 +136,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         db.collection("panelData").document(userModel.currentUser.uid!!)
             .update("didFirstSurvey", true)
             .addOnSuccessListener { Log.d(TAG, "@@@@@ 1. didFirstSurvey field updated!") }
-            Log.d(TAG, "***** ${userModel.currentUser.uid}")
+            Log.d(TAG, "*****")
 
 
         // set Firestore 'userSurveyList"
@@ -172,7 +172,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
                 "reward_total", userModel.currentUser.rewardTotal!! + 200
             )
             .addOnSuccessListener { Log.d(TAG, "@@@@@ 3. First Survey Reward updated!") }
-        Log.d(TAG, "***** ${userModel.currentUser.uid}")
+        Log.d(TAG, "*****")
 
 
 
@@ -248,7 +248,7 @@ class SurveyListFirstSurvey2Fragment() : Fragment() {
         districtSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 district = districtList[position]
-                Log.d(TAG, "***** $district")
+
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }

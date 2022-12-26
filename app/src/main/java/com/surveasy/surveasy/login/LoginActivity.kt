@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
         // Auto Login Checkbox
         binding.LoginAutoLogin.setOnCheckedChangeListener { button, isChecked ->
             autoLogin = button.isChecked
-            Log.d(TAG, "AUTOOOOOOOOOOOOO  $autoLogin")
+            //Log.d(TAG, "AUTOOOOOOOOOOOOO  $autoLogin")
         }
 
         // Login
@@ -89,10 +89,10 @@ class LoginActivity : AppCompatActivity() {
         auth.currentUser!!.reload().addOnCompleteListener { task ->
             if(task.isSuccessful) {
                 // updateUI(auth.currentUser)
-                Log.d(ContentValues.TAG, "##### reload Success $task")
+                Log.d(ContentValues.TAG, "##### reload Success")
             }
             else {
-                Log.e(ContentValues.TAG, "##### reload Fail", task.exception)
+                Log.e(ContentValues.TAG, "##### reload Fail")
             }
         }
     }
@@ -162,7 +162,7 @@ class LoginActivity : AppCompatActivity() {
 
                                             //로그인 한 모든사람에게 알림 전송
                                             FirebaseMessaging.getInstance().subscribeToTopic("all")
-                                            Log.d(TAG, "GGGGGGGG fetch fun 내부 userModel: ${currentUser.name}, ${name}")
+                                            //Log.d(TAG, "GGGGGGGG fetch fun 내부 userModel: ${currentUser.name}, ${name}")
 
                                             val intent_main : Intent = Intent(this, AddInfoRegisterAgree1Activity::class.java)
                                             intent_main.putExtra("currentUser_login", currentUser)
@@ -221,8 +221,8 @@ class LoginActivity : AppCompatActivity() {
                                                 userSurveyList
                                             )
                                             userModel.currentUser = currentUser
-                                            Log.d(TAG, "GGGGGGGG fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
-                                            Log.d(TAG, "FFFFFFFF fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
+                                            //Log.d(TAG, "GGGGGGGG fetch fun 내부 userModel: ${userModel.currentUser.didFirstSurvey}")
+                                            //Log.d(TAG, "FFFFFFFF fetch fun 내부 userModel: ${userModel.currentUser.UserSurveyList.toString()}")
 
 
                                             //로그인 한 모든사람에게 알림 전송
@@ -265,7 +265,7 @@ class LoginActivity : AppCompatActivity() {
     private fun updateFcmToken(uid: String) {
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if(!task.isSuccessful) {
-                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                //Log.w(TAG, "Fetching FCM registration token failed", task.exception)
                 return@OnCompleteListener
             }
             val token = task.result

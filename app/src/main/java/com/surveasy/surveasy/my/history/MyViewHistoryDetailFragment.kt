@@ -44,9 +44,7 @@ class MyViewHistoryDetailFragment : Fragment() {
         val detailReward = view.findViewById<TextView>(R.id.historyDetailReward)
 
         CoroutineScope(Dispatchers.Main).launch {
-            Log.d(TAG, "onCreateView: 시작")
             fetchModel()
-            Log.d(TAG, "onCreateView: 끝")
 
             if(model.detailModel[0].title.length>15){
                 detailTitle.text =
@@ -58,9 +56,8 @@ class MyViewHistoryDetailFragment : Fragment() {
             detailDate.text = "참여일자 : ${model.detailModel[0].date}"
 
             if(model.progress[0].progress<3){
-                fetchLastImg(model.detailModel[0].id, model.detailModel[0].filePath)
+                fetchLastImg(model.detailModel[0].id, model.filePath[0].filePath)
             }else{
-                Log.d(TAG, "onCreateView: 프로그래스 ${model.progress[0].progress}")
                 lastImg.visibility = View.GONE
                 alert.visibility = View.GONE
                 alert2.visibility = View.VISIBLE
@@ -71,12 +68,13 @@ class MyViewHistoryDetailFragment : Fragment() {
             uploadBtn.setOnClickListener {
                 if(model.progress[0].progress<3){
                     val intent = Intent(context, MyViewUpdatePhotoActivity::class.java)
-                    intent.putExtra("filePath", model.detailModel[0].filePath)
+                    intent.putExtra("filePath", model.filePath[0].filePath)
                     //storage 폴더 접근 위해
                     intent.putExtra("id", model.detailModel[0].id)
                     intent.putExtra("idChecked", model.detailModel[0].lastId)
                     startActivity(intent)
                     (activity as MyViewHistoryDetailActivity).activityFinish()
+                    //(activity as MyViewHistoryActivity).finishActivity()
                 }else{
                     Toast.makeText(context,"마감된 설문은 완료 화면 변경이 불가합니다.", Toast.LENGTH_LONG).show()
                 }
@@ -90,8 +88,9 @@ class MyViewHistoryDetailFragment : Fragment() {
 
     private suspend fun fetchModel(){
         withContext(Dispatchers.IO){
-            while (model.detailModel.size==0 || model.progress.size==0){ }
+            while (model.detailModel.size==0 || model.progress.size==0 || model.filePath.size==0){ }
         }
+        //Log.d(TAG, "모델 개수 : ${model.filePath}")
     }
 
     // 기존에 첨부한 이미지 보여주기
@@ -111,10 +110,8 @@ class MyViewHistoryDetailFragment : Fragment() {
         Glide.with(this).load(R.raw.app_loading).into(lastImg)
 
         file1.downloadUrl.addOnSuccessListener { item ->
-            Log.d(ContentValues.TAG, "fetchLastImg: $item")
             Glide.with(this).load(item).into(lastImg)
         }.addOnFailureListener{
-            Log.d(ContentValues.TAG, "fetchLastImg: fail###")
             lastImg.visibility = View.GONE
             alert.visibility = View.GONE
             alert2.visibility = View.VISIBLE

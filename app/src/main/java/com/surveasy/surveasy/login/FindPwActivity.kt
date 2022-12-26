@@ -46,7 +46,7 @@ class FindPwActivity : AppCompatActivity() {
             Firebase.auth.sendPasswordResetEmail(emailAddress)
                 .addOnCompleteListener { task ->
                     if(task.isSuccessful) {
-                        Log.d(TAG, "EEEEEEE Email sent.")
+                        //Log.d(TAG, "EEEEEEE Email sent.")
                         Toast.makeText(this@FindPwActivity, "비밀번호 재설정 이메일이 발송되었습니다.", Toast.LENGTH_SHORT).show()
                         intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)

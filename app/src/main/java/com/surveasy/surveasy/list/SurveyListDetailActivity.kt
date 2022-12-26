@@ -204,11 +204,11 @@ class SurveyListDetailActivity : AppCompatActivity() {
                 } else {
                     if(ActivityCompat.shouldShowRequestPermissionRationale(
                             this,Manifest.permission.READ_EXTERNAL_STORAGE)){
-                        Log.d(TAG,"denied")
+                        //Log.d(TAG,"denied")
                         showDialogToGetPermission()
 
                     }else{
-                        Log.d(TAG,"no more")
+                        //Log.d(TAG,"no more")
                         showDialogToGetPermission()
                     }
                 }

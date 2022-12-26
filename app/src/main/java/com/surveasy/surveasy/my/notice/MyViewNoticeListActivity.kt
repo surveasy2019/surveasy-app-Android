@@ -87,7 +87,6 @@ class MyViewNoticeListActivity : AppCompatActivity() {
                                 isOpened = false
                             )
                             noticeList_fixed.add(item_fixed)
-                            Log.d(ContentValues.TAG, "___________________1")
                         } else {
                             var item_fixed: NoticeItems = NoticeItems(
                                 Integer.parseInt(document["id"].toString()),
@@ -98,7 +97,6 @@ class MyViewNoticeListActivity : AppCompatActivity() {
                                 isOpened = true
                             )
                             noticeList_fixed.add(item_fixed)
-                            Log.d(ContentValues.TAG, "___________________2")
                         }
 
                         noticeRecyclerView_Fixed.layoutManager =
@@ -118,7 +116,6 @@ class MyViewNoticeListActivity : AppCompatActivity() {
                                 isOpened = false
                             )
                             noticeList.add(item)
-                            Log.d(ContentValues.TAG, "___________________3")
                         } else {
                             var item: NoticeItems = NoticeItems(
                                 Integer.parseInt(document["id"].toString()),
@@ -129,7 +126,6 @@ class MyViewNoticeListActivity : AppCompatActivity() {
                                 isOpened = true
                             )
                             noticeList.add(item)
-                            Log.d(ContentValues.TAG, "___________________4")
                         }
 
                         noticeRecyclerView.layoutManager =

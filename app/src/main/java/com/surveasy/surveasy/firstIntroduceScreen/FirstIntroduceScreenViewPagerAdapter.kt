@@ -49,9 +49,6 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, 
         holder.content.text = contentList[position]
 
 
-        Log.d(TAG, "****************  $position")
-
-
         if(position == imgList.size-1) {
             //indicator.visibility = View.INVISIBLE
 
