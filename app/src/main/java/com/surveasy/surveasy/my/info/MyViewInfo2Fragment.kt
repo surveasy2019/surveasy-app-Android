@@ -73,7 +73,7 @@ class MyViewInfo2Fragment : Fragment() {
     }
 
     private fun setAccountTypeSpinner(view: View, currentType: String) {
-        val accountTypeList = resources.getStringArray(R.array.accountType).toMutableList()
+        val accountTypeList = resources.getStringArray(R.array.accountTypeChange).toMutableList()
         var setDefaultList : MutableList<String> = mutableListOf()
         when(currentType) {
             "국민" -> { setDefaultList = accountTypeList }
@@ -85,6 +85,7 @@ class MyViewInfo2Fragment : Fragment() {
             "IBK 기업" -> { setDefaultList = spinnerDefault(accountTypeList, 6, "IBK 기업") }
             "새마을금고" -> { setDefaultList = spinnerDefault(accountTypeList, 7, "새마을금고") }
             "카카오뱅크" -> { setDefaultList = spinnerDefault(accountTypeList, 8, "카카오뱅크") }
+            "토스" -> { setDefaultList = spinnerDefault(accountTypeList, 9, "토스") }
         }
 
 
