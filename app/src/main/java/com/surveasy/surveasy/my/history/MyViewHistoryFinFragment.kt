@@ -45,7 +45,7 @@ class MyViewHistoryFinFragment : Fragment() {
         var cnt : Int = 5
 
         CoroutineScope(Dispatchers.Main).launch {
-            val list = CoroutineScope(Dispatchers.IO).async {
+            CoroutineScope(Dispatchers.IO).async {
                 while(finModel.finSurvey.size==0){
 
                 }
