@@ -179,6 +179,7 @@ class HomeFragment : Fragment() {
             totalReward.text = "${userModel.currentUser.rewardTotal}원"
         } else {
             if (Firebase.auth.currentUser?.uid != null) {
+                //query 보다 원래 방법이 더 빠름
                 db.collection("panelData")
                     .document(Firebase.auth.currentUser!!.uid)
                     .get().addOnSuccessListener { document ->
