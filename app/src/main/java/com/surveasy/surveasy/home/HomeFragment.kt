@@ -435,7 +435,7 @@ class HomeFragment : Fragment() {
     //home list에 들어갈 list return 하기
     private fun setHomeList(boolList : ArrayList<Boolean>) : ArrayList<SurveyItems>{
         val finList = arrayListOf<SurveyItems>()
-        val model by activityViewModels<SurveyInfoViewModel>()
+        //val model by activityViewModels<SurveyInfoViewModel>()
         var index = 0
         while(index < model.surveyInfo.size){
             if(!boolList[index]){
