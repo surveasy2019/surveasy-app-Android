@@ -28,6 +28,7 @@ class SurveyListFragment() : Fragment() {
     private var listFilter : String? = null
     val surveyList = arrayListOf<SurveyItems>()
     val model by activityViewModels<SurveyInfoViewModel>()
+    val userModel by activityViewModels<CurrentUserViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -156,7 +157,7 @@ class SurveyListFragment() : Fragment() {
     //참여 완료한 survey 를 list 안에서 색 변경
     private fun changeDoneSurvey() : ArrayList<Boolean> {
 
-        val userModel by activityViewModels<CurrentUserViewModel>()
+
         val doneSurvey = userModel.currentUser.UserSurveyList
         var boolList = ArrayList<Boolean>(model.surveyInfo.size)
         var num: Int = 0

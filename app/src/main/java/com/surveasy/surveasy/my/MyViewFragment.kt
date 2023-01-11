@@ -60,6 +60,8 @@ class MyViewFragment : Fragment() {
             }
         }
 
+        Log.d(TAG, "onStart: #### ${Firebase.auth.currentUser!!.uid}")
+
         // Fetch User Info
         CoroutineScope(Dispatchers.Main).launch {
             val myInfo = CoroutineScope(Dispatchers.IO).async {
@@ -183,33 +185,31 @@ class MyViewFragment : Fragment() {
     // Fetch info of current User for MyViewInfo
     private fun fetchInfoData() {
         val docRef = db.collection("panelData").document(Firebase.auth.currentUser!!.uid)
-        var eng: Boolean = true
+        var eng: Boolean? = true
 
         docRef.collection("FirstSurvey").document(Firebase.auth.currentUser!!.uid)
-            .get().addOnSuccessListener { documents ->
-                if(documents != null) {
-                        eng = documents["EngSurvey"] as Boolean
+            .get().addOnSuccessListener { document ->
+                if (document != null) {
 
-                        docRef.get().addOnSuccessListener { document ->
-                            if (document != null) {
-                                val infoData: InfoData = InfoData(
-                                    document["name"] as String,
-                                    document["birthDate"] as String,
-                                    document["gender"] as String,
-                                    document["email"] as String,
-                                    document["phoneNumber"] as String,
-                                    document["accountType"] as String,
-                                    document["accountNumber"] as String,
-                                    eng
-                                )
-                                info = infoData
-                                Log.d(TAG, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+ infoData.email.toString())
-                            }
+                    eng = document["EngSurvey"] as Boolean?
 
+                    docRef.get().addOnSuccessListener { document ->
+                        if (document != null) {
+                            val infoData: InfoData = InfoData(
+                                document["name"] as String,
+                                document["birthDate"] as String,
+                                document["gender"] as String,
+                                document["email"] as String,
+                                document["phoneNumber"] as String,
+                                document["accountType"] as String,
+                                document["accountNumber"] as String,
+                                eng
+                            )
+                            info = infoData
+                        }
                     }
+
                 }
-
-
             }
     }
 
