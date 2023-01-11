@@ -86,8 +86,6 @@ class MainActivity : AppCompatActivity() {
             UserDatabase::class.java, "UserDatabase"
         ).allowMainThreadQueries().build()
 
-        Log.d(TAG, "onCreate: ### ${userDB.userDao().getAll()}")
-
         // 인앱 업데이트 체크
         appUpdateManager = AppUpdateManagerFactory.create(this)
         checkUpdate()
@@ -460,11 +458,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchOpinion() {
+        //query 문으로 수정함. 확인 후 뒤 주석처리 지우기
+        db.collection("AppOpinion").whereEqualTo("isValid", true)
+            .get().addOnCompleteListener{ documents ->
+                val opinion = documents.result.documents[0]
+                opinionModel.opinionItem = OpinionItem(
+                    Integer.parseInt(opinion["id"].toString()),
+                    opinion["question"].toString(),
+                    opinion["content1"].toString(),
+                    opinion["content2"].toString()
+                )
+            }
+
+        /*
         db.collection("AppOpinion").get()
             .addOnSuccessListener { documents ->
                 if(documents != null) {
                     for (document in documents) {
                         if(document["isValid"] as Boolean == true) {
+                            Log.d(TAG, "fetchOpinion: 속도 비교2 ${document["id"].toString()}")
                             opinionModel.opinionItem = OpinionItem(
                                 Integer.parseInt(document["id"].toString()),
                                 document["question"].toString(),
@@ -474,7 +486,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
-            }
+            }*/
         db.collection("AppAnswer").get()
             .addOnSuccessListener { documents ->
                 if(documents != null){

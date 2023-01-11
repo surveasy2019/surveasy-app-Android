@@ -179,6 +179,7 @@ class HomeFragment : Fragment() {
             totalReward.text = "${userModel.currentUser.rewardTotal}원"
         } else {
             if (Firebase.auth.currentUser?.uid != null) {
+                //query 보다 원래 방법이 더 빠름
                 db.collection("panelData")
                     .document(Firebase.auth.currentUser!!.uid)
                     .get().addOnSuccessListener { document ->
@@ -435,7 +436,7 @@ class HomeFragment : Fragment() {
     //home list에 들어갈 list return 하기
     private fun setHomeList(boolList : ArrayList<Boolean>) : ArrayList<SurveyItems>{
         val finList = arrayListOf<SurveyItems>()
-        val model by activityViewModels<SurveyInfoViewModel>()
+        //val model by activityViewModels<SurveyInfoViewModel>()
         var index = 0
         while(index < model.surveyInfo.size){
             if(!boolList[index]){

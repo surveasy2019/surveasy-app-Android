@@ -91,7 +91,7 @@ class SurveyListFragment() : Fragment() {
 
 
         CoroutineScope(Dispatchers.Main).launch {
-            val model by activityViewModels<SurveyInfoViewModel>()
+            //val model by activityViewModels<SurveyInfoViewModel>()
             getSurveyList(model)
 
             val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),showCanParticipateList)
