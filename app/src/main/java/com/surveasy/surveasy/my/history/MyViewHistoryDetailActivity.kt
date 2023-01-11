@@ -32,12 +32,14 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
     var pickImageFromAlbum = 0
     val REQUIRED_PERMISSION = arrayOf<String>(Manifest.permission.READ_EXTERNAL_STORAGE)
 
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMyViewHistoryDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         model.filePath.clear()
 
@@ -68,6 +70,7 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
             uploadModel(item)
         }
 
+
         // ToolBar
         setSupportActionBar(binding.ToolbarHistoryDetail)
         if (supportActionBar != null) {
@@ -79,6 +82,7 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
 
 
     }
+
 
     fun activityFinish(){
         finish()

@@ -63,11 +63,16 @@ class MyViewInfo2Fragment : Fragment() {
 
     }
 
+    // 0번째 원소와 i번째 원소(defaultType) 자리 바꾸기 -> defaultType이 제일 먼저 보이게끔
     private fun spinnerDefault(list : MutableList<String>, i: Int, defaultType: String): MutableList<String> {
         var setDefaultList = list
-        setDefaultList.removeAt(0)
-        setDefaultList.removeAt(i)
-        setDefaultList.add(0, "$defaultType")
+        var first_item = setDefaultList[0]
+
+        setDefaultList.removeAt(i)         // i번째 원소 (defaultType) 제거
+        setDefaultList.removeAt(0)   // 0번째 원소 제거
+
+        setDefaultList.add(0, "$defaultType")  // 0번째 자리에 i번째 원소 add
+        setDefaultList.add(first_item)                      // 맨 마지막에 원래 0번째 원소 add
 
         return setDefaultList
     }

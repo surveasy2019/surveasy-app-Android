@@ -40,6 +40,7 @@ class WaitSurveyItemsAdapter(val waitList : ArrayList<UserSurveyItem>) : Recycle
             intent_history.putExtra("date", waitList.get(position).responseDate)
             intent_history.putExtra("reward", waitList.get(position).reward)
 
+
             ContextCompat.startActivity(holder.itemView.context,intent_history,null)
         }
     }
