@@ -40,6 +40,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
+import com.google.gson.internal.bind.util.ISO8601Utils
 import com.surveasy.surveasy.home.Opinion.AnswerItem
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerViewModel
 import com.surveasy.surveasy.list.firstsurvey.PushDialogActivity
@@ -47,6 +48,7 @@ import com.surveasy.surveasy.userRoom.User
 import com.surveasy.surveasy.userRoom.UserDatabase
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
@@ -96,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         fetchContribution()
         fetchOpinion()
 
-
+        
 
         // Current User
         val user = Firebase.auth.currentUser
