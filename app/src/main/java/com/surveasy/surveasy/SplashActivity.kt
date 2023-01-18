@@ -115,6 +115,7 @@ class SplashActivity : AppCompatActivity() {
             }
         } */
 
+
         db.collection("AndroidFirstScreen").get()
             .addOnSuccessListener { result ->
                 var i = 0
