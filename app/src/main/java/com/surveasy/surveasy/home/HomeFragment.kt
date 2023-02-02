@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -38,6 +39,10 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
+import com.kakao.sdk.common.model.ClientError
+import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.user.UserApiClient
+import com.surveasy.surveasy.auth.loginWithKakao
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerActivity
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerViewModel
 import com.surveasy.surveasy.my.history.MyViewHistoryActivity
@@ -142,8 +147,24 @@ class HomeFragment : Fragment() {
         }
 
         homeTopBox.setOnClickListener {
-            val intent = Intent(context, MyViewHistoryActivity::class.java)
-            startActivity(intent)
+            lifecycleScope.launch { 
+                try {
+                    val oAuthToken = context?.let { it1 -> UserApiClient.loginWithKakao(context = it1) }
+                    Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.accessToken}")
+                    Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.refreshToken}")
+                    Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.accessTokenExpiresAt}")
+                    Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.refreshTokenExpiresAt}")
+                }catch (error: Throwable) {
+                    if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
+                        Log.d("MainActivity", "사용자가 취소")
+                    } else {
+                        Log.e("MainActivity", "인증 에러", error)
+                    }
+                }
+            }
+//            val intent = Intent(context, MyViewHistoryActivity::class.java)
+//            startActivity(intent)
+            
         }
 
 
@@ -378,6 +399,8 @@ class HomeFragment : Fragment() {
 
             return view
     }
+
+
 
 
 
