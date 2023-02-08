@@ -1,8 +1,12 @@
 package com.surveasy.surveasy.auth
 
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.util.Log
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -11,9 +15,19 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
+@SuppressLint("StaticFieldLeak")
+private val db = Firebase.firestore
 
 suspend fun UserApiClient.Companion.loginWithKakao(context: Context): OAuthToken {
-    instance.me { user, error -> Log.d(TAG, "loginWithKakao: $user") }
+//    instance.me { user, error ->
+//        if (user != null) {
+//            Log.d(TAG, "loginWithKakao: ${user.id}")
+//
+//        }
+//
+//    }
+    //checkAuthWithFB("auth")
+
     return if (instance.isKakaoTalkLoginAvailable(context)) {
         try {
             UserApiClient.loginWithKakaoTalk(context)
@@ -28,6 +42,18 @@ suspend fun UserApiClient.Companion.loginWithKakao(context: Context): OAuthToken
         UserApiClient.loginWithKakaoAccount(context)
     }
 }
+
+//fun checkAuthWithFB(id : String){
+//    val data = hashMapOf(
+//    )
+//    db.collection("panelData").document(Firebase.auth.uid.toString()).set(data)
+//        .addOnSuccessListener { Log.d(TAG, "checkAuthWithFB: 업로드 성공") }
+//
+////    Log.d(TAG, "checkAuthWithFB: 사이즈 ${db.collection("authCode").whereEqualTo("authCode", id).get().result.size()}")
+////
+////    db.collection("authCode").document(id.toString()).set(data)
+////        .addOnSuccessListener { Log.d(TAG, "checkAuthWithFB: 업로드 성공") }
+//}
 
 //카카오톡으로 로그인
 suspend fun UserApiClient.Companion.loginWithKakaoTalk(context: Context): OAuthToken {

@@ -117,21 +117,22 @@ class SplashActivity : AppCompatActivity() {
 
         db.collection("AndroidFirstScreen").get()
             .addOnSuccessListener { result ->
-                var i = 0
-                for(document in result){   if(document.id == token) i++   }
-                if(i==0){
-                    startActivity(Intent(this,FirstIntroduceScreenActivity::class.java))
-                    finish()
-                }
-                else {
-                    nextActivity()
-
-//                    var bannerIndex = 0
-//                    for(item in bannerModel.uriList) {
-//                        intent.putExtra(item, "banner" + bannerIndex.toString())
-//                        bannerIndex++
-//                    }
-                }
+                nextActivity()
+//                var i = 0
+//                for(document in result){   if(document.id == token) i++   }
+//                if(i==0){
+//                    startActivity(Intent(this,FirstIntroduceScreenActivity::class.java))
+//                    finish()
+//                }
+//                else {
+//                    nextActivity()
+//
+////                    var bannerIndex = 0
+////                    for(item in bannerModel.uriList) {
+////                        intent.putExtra(item, "banner" + bannerIndex.toString())
+////                        bannerIndex++
+////                    }
+//                }
             }
 
     }
