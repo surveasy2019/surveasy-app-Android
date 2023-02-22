@@ -11,16 +11,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.amplitude.api.Amplitude
-import com.surveasy.surveasy.MainActivity
 
-import com.surveasy.surveasy.R
 import com.surveasy.surveasy.list.*
 import com.surveasy.surveasy.login.*
 import com.surveasy.surveasy.home.Opinion.HomeOpinionDetailActivity
@@ -42,6 +42,7 @@ import com.google.firebase.storage.ktx.storage
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
+import com.surveasy.surveasy.*
 import com.surveasy.surveasy.auth.loginWithKakao
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerActivity
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerViewModel
@@ -73,6 +74,10 @@ class HomeFragment : Fragment() {
     private val opinionModel by activityViewModels<HomeOpinionViewModel>()
     private val answerModel by activityViewModels<HomeOpinionAnswerViewModel>()
     private val model by activityViewModels<SurveyInfoViewModel>()
+
+    //auth check
+    private lateinit var mainViewModel : MainViewModel
+    private lateinit var mainViewModelFactory: MainViewModelFactory
 
 
     override fun onAttach(context: Context) {
@@ -110,6 +115,19 @@ class HomeFragment : Fragment() {
         var answerTitleR : TextView = view.findViewById(R.id.Home_Opinion_Answer_Title_R)
         val answerLBtn : LinearLayout = view.findViewById(R.id.Home_Opinion_L)
         val answerRBtn : LinearLayout = view.findViewById(R.id.Home_Opinion_R)
+
+        // fetch auth info
+        mainViewModelFactory = MainViewModelFactory(MainRepository())
+        mainViewModel = ViewModelProvider(this, mainViewModelFactory)[MainViewModel::class.java]
+        
+        CoroutineScope(Dispatchers.Main).launch { 
+            mainViewModel.fetchDidAuth(Firebase.auth.uid.toString())
+            mainViewModel.repositories1.observe(viewLifecycleOwner){
+                if(!it.didAuth){
+                    Toast.makeText(context, "인증 필요", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
 
         // Banner init

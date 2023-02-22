@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
     val opinionModel by viewModels<HomeOpinionViewModel>()
     val opinionAnswerModel by viewModels<HomeOpinionAnswerViewModel>()
     private lateinit var userDB : UserDatabase
+
     private var age : Int = 0
     private var gender : String = ""
 
@@ -92,6 +93,8 @@ class MainActivity : AppCompatActivity() {
             this,
             UserDatabase::class.java, "UserDatabase"
         ).allowMainThreadQueries().build()
+
+        //Log.d(TAG, "onCreate: ${userDB.userDao().getAutoLogin()}")
 
         // 인앱 업데이트 체크
         appUpdateManager = AppUpdateManagerFactory.create(this)
@@ -314,26 +317,26 @@ class MainActivity : AppCompatActivity() {
                 client.setUserProperties(userProperties)
 
                 //카카오 인증 코드
-                if(snapshot.result["authCode"]==null){
-                    lifecycleScope.launch {
-                        try {
-                            val oAuthToken = this@MainActivity.let { it1 -> UserApiClient.loginWithKakao(context = it1) }
-                            Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.accessToken}")
-                            Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.refreshToken}")
-                            Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.accessTokenExpiresAt}")
-                            Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.refreshTokenExpiresAt}")
-                        }catch (error: Throwable) {
-                            if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
-                                Log.d("MainActivity", "사용자가 취소")
-                            } else {
-                                Log.e("MainActivity", "인증 에러", error)
-                            }
-                        }
-                    }
-                }else{
-                    val code = AuthModel(snapshot.result["authCode"].toString())
-                    Toast.makeText(this, "인증 완료 계정 $code", Toast.LENGTH_LONG).show()
-                }
+//                if(snapshot.result["authCode"]==null){
+//                    lifecycleScope.launch {
+//                        try {
+//                            val oAuthToken = this@MainActivity.let { it1 -> UserApiClient.loginWithKakao(context = it1) }
+//                            Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.accessToken}")
+//                            Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.refreshToken}")
+//                            Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.accessTokenExpiresAt}")
+//                            Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.refreshTokenExpiresAt}")
+//                        }catch (error: Throwable) {
+//                            if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
+//                                Log.d("MainActivity", "사용자가 취소")
+//                            } else {
+//                                Log.e("MainActivity", "인증 에러", error)
+//                            }
+//                        }
+//                    }
+//                }else{
+//                    val code = AuthModel(snapshot.result["authCode"].toString())
+//                    Toast.makeText(this, "인증 완료 계정 $code", Toast.LENGTH_LONG).show()
+//                }
 
 
             }
