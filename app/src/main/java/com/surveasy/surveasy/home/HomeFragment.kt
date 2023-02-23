@@ -43,6 +43,7 @@ import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.surveasy.surveasy.*
+import com.surveasy.surveasy.auth.AuthProcessActivity
 import com.surveasy.surveasy.auth.loginWithKakao
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerActivity
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerViewModel
@@ -165,13 +166,22 @@ class HomeFragment : Fragment() {
         }
 
         homeTopBox.setOnClickListener {
-            lifecycleScope.launch { 
+            lifecycleScope.launch {
                 try {
-                    val oAuthToken = context?.let { it1 -> UserApiClient.loginWithKakao(context = it1) }
-                    Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.accessToken}")
-                    Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.refreshToken}")
-                    Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.accessTokenExpiresAt}")
-                    Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.refreshTokenExpiresAt}")
+                    context?.let { it1 -> UserApiClient.loginWithKakao(it1) }
+
+                    UserApiClient.instance.me { user, error ->
+                        if (user != null) {
+                            Log.d(TAG, "onCreateView: $$$$${user.id}")
+                            val intent = Intent(context, AuthProcessActivity::class.java)
+                            intent.putExtra("snsUid", user.id.toString())
+                            startActivity(intent)
+                        }else{
+                            Toast.makeText(context, "문제가 발생했습니다. 다시 시도해주세요", Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
+
                 }catch (error: Throwable) {
                     if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
                         Log.d("MainActivity", "사용자가 취소")
@@ -180,6 +190,7 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
+
 //            val intent = Intent(context, MyViewHistoryActivity::class.java)
 //            startActivity(intent)
             

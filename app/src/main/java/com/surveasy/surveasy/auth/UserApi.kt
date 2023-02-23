@@ -43,17 +43,6 @@ suspend fun UserApiClient.Companion.loginWithKakao(context: Context): OAuthToken
     }
 }
 
-//fun checkAuthWithFB(id : String){
-//    val data = hashMapOf(
-//    )
-//    db.collection("panelData").document(Firebase.auth.uid.toString()).set(data)
-//        .addOnSuccessListener { Log.d(TAG, "checkAuthWithFB: 업로드 성공") }
-//
-////    Log.d(TAG, "checkAuthWithFB: 사이즈 ${db.collection("authCode").whereEqualTo("authCode", id).get().result.size()}")
-////
-////    db.collection("authCode").document(id.toString()).set(data)
-////        .addOnSuccessListener { Log.d(TAG, "checkAuthWithFB: 업로드 성공") }
-//}
 
 //카카오톡으로 로그인
 suspend fun UserApiClient.Companion.loginWithKakaoTalk(context: Context): OAuthToken {
