@@ -43,6 +43,7 @@ import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.surveasy.surveasy.*
+import com.surveasy.surveasy.auth.AuthDialogActivity
 import com.surveasy.surveasy.auth.AuthProcessActivity
 import com.surveasy.surveasy.auth.loginWithKakao
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerActivity
@@ -166,30 +167,32 @@ class HomeFragment : Fragment() {
         }
 
         homeTopBox.setOnClickListener {
-            lifecycleScope.launch {
-                try {
-                    context?.let { it1 -> UserApiClient.loginWithKakao(it1) }
-
-                    UserApiClient.instance.me { user, error ->
-                        if (user != null) {
-                            Log.d(TAG, "onCreateView: $$$$${user.id}")
-                            val intent = Intent(context, AuthProcessActivity::class.java)
-                            intent.putExtra("snsUid", user.id.toString())
-                            startActivity(intent)
-                        }else{
-                            Toast.makeText(context, "문제가 발생했습니다. 다시 시도해주세요", Toast.LENGTH_SHORT).show()
-                        }
-
-                    }
-
-                }catch (error: Throwable) {
-                    if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
-                        Log.d("MainActivity", "사용자가 취소")
-                    } else {
-                        Log.e("MainActivity", "인증 에러", error)
-                    }
-                }
-            }
+            val intent = Intent(context, AuthDialogActivity::class.java)
+            startActivity(intent)
+//            lifecycleScope.launch {
+//                try {
+//                    context?.let { it1 -> UserApiClient.loginWithKakao(it1) }
+//
+//                    UserApiClient.instance.me { user, error ->
+//                        if (user != null) {
+//                            Log.d(TAG, "onCreateView: $$$$${user.id}")
+//                            val intent = Intent(context, AuthProcessActivity::class.java)
+//                            intent.putExtra("snsUid", user.id.toString())
+//                            startActivity(intent)
+//                        }else{
+//                            Toast.makeText(context, "문제가 발생했습니다. 다시 시도해주세요", Toast.LENGTH_SHORT).show()
+//                        }
+//
+//                    }
+//
+//                }catch (error: Throwable) {
+//                    if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
+//                        Log.d("MainActivity", "사용자가 취소")
+//                    } else {
+//                        Log.e("MainActivity", "인증 에러", error)
+//                    }
+//                }
+//            }
 
 //            val intent = Intent(context, MyViewHistoryActivity::class.java)
 //            startActivity(intent)

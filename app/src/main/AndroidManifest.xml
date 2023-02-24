@@ -19,11 +19,16 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".auth.AuthDialogActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MyDialog"/>
+        <activity
             android:name=".my.history.MyViewHistoryUpdateFinDialogActivity"
             android:exported="true"
             android:theme="@style/Theme.MyDialog" />
-        <activity android:name=".auth.AuthProcessActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".auth.AuthProcessActivity"
+            android:exported="true" />
         <activity
             android:name=".my.history.MyViewHistoryDetailActivity"
             android:exported="true" />

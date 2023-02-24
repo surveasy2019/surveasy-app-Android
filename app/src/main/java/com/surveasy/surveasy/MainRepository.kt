@@ -31,11 +31,11 @@ class MainRepository : MainRepositoryInterface {
         val docRef = db.collection("panelData").document(uid.toString())
         docRef.get().addOnCompleteListener { snapshot ->
             val auth: DidAuthModel
-            if (snapshot.result["SNSAuth"] == null) {
+            if (snapshot.result["snsAuth"] == null) {
                 auth = DidAuthModel(false)
             } else {
                 auth = DidAuthModel(
-                    snapshot.result["SNSAuth"] as Boolean
+                    snapshot.result["snsAuth"] as Boolean
                 )
             }
             model.postValue(auth)
