@@ -31,6 +31,7 @@ class AuthDialogActivity : AppCompatActivity() {
                             val intent = Intent(this@AuthDialogActivity, AuthProcessActivity::class.java)
                             intent.putExtra("snsUid", user.id.toString())
                             startActivity(intent)
+                            finish()
                         }else{
                             Toast.makeText(this@AuthDialogActivity, "문제가 발생했습니다. 다시 시도해주세요", Toast.LENGTH_SHORT).show()
                         }
