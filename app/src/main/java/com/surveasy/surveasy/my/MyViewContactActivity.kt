@@ -29,15 +29,15 @@ class MyViewContactActivity : AppCompatActivity() {
 
         binding.ToolbarMyViewContact.setNavigationOnClickListener { onBackPressed()  }
 
-        binding.MyViewContactKakaoTalk.setOnClickListener {
-            val url = "http://pf.kakao.com/_exfmwb"
-            val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url)
-            startActivity(i)
-        }
+//        binding.MyViewContactKakaoTalk.setOnClickListener {
+//            val url = "http://pf.kakao.com/_exfmwb"
+//            val i = Intent(Intent.ACTION_VIEW)
+//            i.data = Uri.parse(url)
+//            startActivity(i)
+//        }
 
         binding.MyViewContactEmail.setOnClickListener {
-            val textToCopy = "surveasy2019@yonsei.ac.kr"
+            val textToCopy = "official@gosurveasy.com"
             val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clipData = ClipData.newPlainText("text",textToCopy)
             clipboardManager.setPrimaryClip(clipData)

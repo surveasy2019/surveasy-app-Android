@@ -46,6 +46,7 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.surveasy.surveasy.auth.AuthModel
 import com.surveasy.surveasy.auth.loginWithKakao
+import com.google.gson.internal.bind.util.ISO8601Utils
 import com.surveasy.surveasy.home.Opinion.AnswerItem
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerViewModel
 import com.surveasy.surveasy.list.firstsurvey.PushDialogActivity
@@ -54,6 +55,7 @@ import com.surveasy.surveasy.userRoom.UserDatabase
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
@@ -106,7 +108,7 @@ class MainActivity : AppCompatActivity() {
         fetchContribution()
         fetchOpinion()
 
-
+        
 
         // Current User
         val user = Firebase.auth.currentUser
