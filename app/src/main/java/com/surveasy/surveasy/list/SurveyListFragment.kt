@@ -10,12 +10,17 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.ktx.auth
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.login.CurrentUserViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.surveasy.surveasy.MainRepository
+import com.surveasy.surveasy.MainViewModel
+import com.surveasy.surveasy.MainViewModelFactory
 import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,6 +34,9 @@ class SurveyListFragment() : Fragment() {
     val surveyList = arrayListOf<SurveyItems>()
     val model by activityViewModels<SurveyInfoViewModel>()
     val userModel by activityViewModels<CurrentUserViewModel>()
+    //auth check
+    private lateinit var mainViewModel : MainViewModel
+    private lateinit var mainViewModelFactory: MainViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,7 +56,19 @@ class SurveyListFragment() : Fragment() {
         var n : Int = 0
 
 
+        // fetch auth info
+        mainViewModelFactory = MainViewModelFactory(MainRepository())
+        mainViewModel = ViewModelProvider(this, mainViewModelFactory)[MainViewModel::class.java]
 
+        CoroutineScope(Dispatchers.Main).launch {
+            mainViewModel.fetchDidAuth(Firebase.auth.uid.toString())
+            mainViewModel.repositories1.observe(viewLifecycleOwner){
+                Log.d(TAG, "onCreateView: list $it")
+                if(!it.didAuth){
+                    Toast.makeText(context, "인증 필요", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
 
         while (n < model.surveyInfo.size) {
