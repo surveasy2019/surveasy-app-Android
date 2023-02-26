@@ -54,27 +54,29 @@ class AuthProcessActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             authViewModel.checkAuthWithFB(uid, id)
             authViewModel.repositories1.observe(this@AuthProcessActivity){
-                if(it.check==true) check = true
-            }
+                if(it.check==true) {
+                    Toast.makeText(this@AuthProcessActivity, "이미 존재하는 사용자", Toast.LENGTH_SHORT).show()
+                    invalidAuth()
+                }else {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        authViewModel.updateAuthStatus(uid, id)
+                        authViewModel.repositories2.observe(this@AuthProcessActivity) {
+                            Log.d(TAG, "checkAuthWithFB: viewModel observe")
+                            if (it.check == true) {
+                                binding.authDialogText.text = "본인 확인이 완료되었습니다."
+                                binding.authDoneBtn.visibility = View.VISIBLE
+                                binding.authDoneBtn.text = "설문 참여하러 가기"
 
-            if(check){
-                Toast.makeText(this@AuthProcessActivity, "이미 존재하는 사용자", Toast.LENGTH_SHORT).show()
-                invalidAuth()
-            }else {
-                authViewModel.updateAuthStatus(uid, id)
-                authViewModel.repositories2.observe(this@AuthProcessActivity) {
-                    Log.d(TAG, "checkAuthWithFB: viewModel observe")
-                    if (it.check == true) {
-                        binding.authDialogText.text = "본인 확인이 완료되었습니다."
-                        binding.authDoneBtn.visibility = View.VISIBLE
-                        binding.authDoneBtn.text = "설문 참여하러 가기"
-
-                        binding.authDoneBtn.setOnClickListener {
-                            finish()
+                                binding.authDoneBtn.setOnClickListener {
+                                    finish()
+                                }
+                            }
                         }
                     }
                 }
             }
+
+
 
         }
     }

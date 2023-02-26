@@ -1,5 +1,7 @@
 package com.surveasy.surveasy.auth
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -18,6 +20,7 @@ class AuthRepository : AuthRepositoryInterface {
             .addOnSuccessListener { snapshot ->
                 for (res in snapshot) {
                     if (res.id == snsUid) flag = true
+                   Log.d(TAG, "checkAuthWithFB: ㅇㅏ이디 같음")
                 }
                 model.postValue(AuthCheckModel(flag))
 
