@@ -2,6 +2,7 @@ package com.surveasy.surveasy.list
 
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,6 +22,7 @@ import com.google.firebase.ktx.Firebase
 import com.surveasy.surveasy.MainRepository
 import com.surveasy.surveasy.MainViewModel
 import com.surveasy.surveasy.MainViewModelFactory
+import com.surveasy.surveasy.auth.AuthDialogActivity
 import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -63,9 +65,9 @@ class SurveyListFragment() : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             mainViewModel.fetchDidAuth(Firebase.auth.uid.toString())
             mainViewModel.repositories1.observe(viewLifecycleOwner){
-                Log.d(TAG, "onCreateView: list $it")
                 if(!it.didAuth){
-                    Toast.makeText(context, "인증 필요", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(context, AuthDialogActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }
