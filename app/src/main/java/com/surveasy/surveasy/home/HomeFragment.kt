@@ -126,7 +126,8 @@ class HomeFragment : Fragment() {
             mainViewModel.fetchDidAuth(Firebase.auth.uid.toString())
             mainViewModel.repositories1.observe(viewLifecycleOwner){
                 if(!it.didAuth){
-                    Toast.makeText(context, "인증 필요", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(context, AuthDialogActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }
@@ -169,30 +170,6 @@ class HomeFragment : Fragment() {
         homeTopBox.setOnClickListener {
             val intent = Intent(context, AuthDialogActivity::class.java)
             startActivity(intent)
-//            lifecycleScope.launch {
-//                try {
-//                    context?.let { it1 -> UserApiClient.loginWithKakao(it1) }
-//
-//                    UserApiClient.instance.me { user, error ->
-//                        if (user != null) {
-//                            Log.d(TAG, "onCreateView: $$$$${user.id}")
-//                            val intent = Intent(context, AuthProcessActivity::class.java)
-//                            intent.putExtra("snsUid", user.id.toString())
-//                            startActivity(intent)
-//                        }else{
-//                            Toast.makeText(context, "문제가 발생했습니다. 다시 시도해주세요", Toast.LENGTH_SHORT).show()
-//                        }
-//
-//                    }
-//
-//                }catch (error: Throwable) {
-//                    if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
-//                        Log.d("MainActivity", "사용자가 취소")
-//                    } else {
-//                        Log.e("MainActivity", "인증 에러", error)
-//                    }
-//                }
-//            }
 
 //            val intent = Intent(context, MyViewHistoryActivity::class.java)
 //            startActivity(intent)
@@ -205,11 +182,6 @@ class HomeFragment : Fragment() {
             if (userModel.currentUser.didFirstSurvey == false) {
                 (activity as MainActivity).navColor_in_Home()
                 (activity as MainActivity).moreBtn()
-
-//                val intent_surveylistfirstsurvey: Intent =
-//                    Intent(context, FirstSurveyListActivity::class.java)
-//                intent_surveylistfirstsurvey.putExtra("currentUser_main", userModel.currentUser)
-//                startActivity(intent_surveylistfirstsurvey)
 
             } else {
                 (activity as MainActivity).clickList()

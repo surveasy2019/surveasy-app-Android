@@ -81,6 +81,9 @@ class AuthProcessActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+    }
+
     private fun invalidAuth(){
         binding.authDialogText.text = "다른 계정에서 이미 인증된 사용자입니다."
         binding.authDoneBtn.visibility = View.VISIBLE
