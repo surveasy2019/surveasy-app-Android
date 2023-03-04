@@ -23,10 +23,10 @@
             android:layout_marginEnd="10dp"
             android:layout_gravity="center"/>
         <TextView
-            android:text="본인인증 절차를 거쳐야 설문에 참여 가능합니다."
+            android:text="1인 1계정 확인을 위한 본인인증 절차를 거쳐야 설문에 참여 가능합니다."
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
+            android:textSize="16sp"
             android:layout_marginEnd="35sp"
             android:fontFamily="@font/main_font_m"
             android:textColor="@color/black"

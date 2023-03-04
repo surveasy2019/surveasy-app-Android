@@ -55,7 +55,6 @@ class AuthProcessActivity : AppCompatActivity() {
             authViewModel.checkAuthWithFB(uid, id)
             authViewModel.repositories1.observe(this@AuthProcessActivity){
                 if(it.check==true) {
-                    Toast.makeText(this@AuthProcessActivity, "이미 존재하는 사용자", Toast.LENGTH_SHORT).show()
                     invalidAuth()
                 }else {
                     CoroutineScope(Dispatchers.Main).launch {
