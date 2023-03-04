@@ -168,11 +168,9 @@ class HomeFragment : Fragment() {
         }
 
         homeTopBox.setOnClickListener {
-            val intent = Intent(context, AuthDialogActivity::class.java)
-            startActivity(intent)
 
-//            val intent = Intent(context, MyViewHistoryActivity::class.java)
-//            startActivity(intent)
+            val intent = Intent(context, MyViewHistoryActivity::class.java)
+            startActivity(intent)
             
         }
 
