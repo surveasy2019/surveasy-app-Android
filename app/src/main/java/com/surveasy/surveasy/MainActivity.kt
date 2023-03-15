@@ -47,6 +47,7 @@ import com.kakao.sdk.user.UserApiClient
 import com.surveasy.surveasy.auth.AuthModel
 import com.surveasy.surveasy.auth.loginWithKakao
 import com.google.gson.internal.bind.util.ISO8601Utils
+import com.kakao.sdk.common.util.Utility
 import com.surveasy.surveasy.home.Opinion.AnswerItem
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerViewModel
 import com.surveasy.surveasy.list.firstsurvey.PushDialogActivity
@@ -89,6 +90,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+//        var keyHash = Utility.getKeyHash(this)
+//        Log.d(TAG, "onCreate: $keyHash")
+
 
         // Initiate Room UserDB
         userDB = Room.databaseBuilder(
