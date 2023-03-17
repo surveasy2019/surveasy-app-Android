@@ -52,9 +52,9 @@ class SurveyListFragment() : Fragment() {
         //val refreshBtn : ImageButton = view.findViewById(R.id.Surveylist_refresh)
         val filterParticipate : Switch = view.findViewById(R.id.Surveylist_FilterParticipate)
         var showCanParticipateList = arrayListOf<Boolean>()
-        val filterList = listOf("최신순","마감순")
-        val filterAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, filterList)
-        val filterSpinner : Spinner = view.findViewById(R.id.Surveylist_FilterSpinner)
+//        val filterList = listOf("최신순","마감순")
+//        val filterAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, filterList)
+//        val filterSpinner : Spinner = view.findViewById(R.id.Surveylist_FilterSpinner)
         var n : Int = 0
 
 
@@ -78,37 +78,37 @@ class SurveyListFragment() : Fragment() {
             n++
         }
 
-        filterSpinner.adapter = filterAdapter
-        filterSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                listFilter = filterList[position]
-                if(listFilter.equals("최신순")){
-                    if(filterParticipate.isChecked){
-                        val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),changeDoneSurvey())
-                        container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-                        container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),changeDoneSurvey())
-                    }else{
-                        val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),showCanParticipateList)
-                        container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-                        container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),showCanParticipateList)
-                    }
-
-                }else{
-                    if(filterParticipate.isChecked){
-                        val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),changeDoneSurvey())
-                        container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-                        container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),changeDoneSurvey())
-                    }else{
-                        val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),showCanParticipateList)
-                        container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-                        container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),showCanParticipateList)
-                    }
-                }
-
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-        }
+//        filterSpinner.adapter = filterAdapter
+//        filterSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                listFilter = filterList[position]
+//                if(listFilter.equals("최신순")){
+//                    if(filterParticipate.isChecked){
+//                        val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),changeDoneSurvey())
+//                        container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+//                        container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),changeDoneSurvey())
+//                    }else{
+//                        val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),showCanParticipateList)
+//                        container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+//                        container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),showCanParticipateList)
+//                    }
+//
+//                }else{
+//                    if(filterParticipate.isChecked){
+//                        val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),changeDoneSurvey())
+//                        container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+//                        container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),changeDoneSurvey())
+//                    }else{
+//                        val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),showCanParticipateList)
+//                        container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+//                        container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),showCanParticipateList)
+//                    }
+//                }
+//
+//            }
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//            }
+//        }
 
 
 
@@ -126,27 +126,14 @@ class SurveyListFragment() : Fragment() {
 
         filterParticipate.setOnCheckedChangeListener{ button, ischecked ->
             if(ischecked){
-                if(listFilter.equals("최신순")){
-                    val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),changeDoneSurvey())
-                    container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-                    container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),changeDoneSurvey())
-                }
-                else{
-                    val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),changeDoneSurvey())
-                    container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-                    container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),changeDoneSurvey())
-                }
+                val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),changeDoneSurvey())
+                container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+                container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),changeDoneSurvey())
 
             }else{
-                if(listFilter.equals("최신순")){
-                    val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),showCanParticipateList)
-                    container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-                    container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),showCanParticipateList)
-                }else{
-                    val adapter = SurveyItemsAdapter(model.sortSurvey(), changeDoneSurvey(),showCanParticipateList)
-                    container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-                    container?.adapter = SurveyItemsAdapter(model.sortSurvey(),changeDoneSurvey(),showCanParticipateList)
-                }
+                val adapter = SurveyItemsAdapter(model.sortSurveyRecent(), changeDoneSurvey(),showCanParticipateList)
+                container?.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+                container?.adapter = SurveyItemsAdapter(model.sortSurveyRecent(),changeDoneSurvey(),showCanParticipateList)
 
             }
         }
