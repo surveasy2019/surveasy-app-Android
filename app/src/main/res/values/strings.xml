@@ -638,7 +638,7 @@
     <string name="MyViewSettingWithdraw_NoticeTitle">탈퇴를 원하시면/n비밀번호를 입력해주세요.</string>
     <string name="MyViewSettingWithdraw_PwInput">비밀번호를 입력하세요</string>
     <string name="MyViewSettingWithdraw_WithdrawBtn">탈퇴하기</string>
-    <string name="kakao_nativeAppKey">c3dd0da30ec3cf75837fef9022ca48a4</string>
+    <string name="kakao_nativeAppKey">7e4b58d21baa44b30d29fa743c5bffeb</string>
 
     <string-array name="university">
         <item>대학명을 선택해주세요</item>
