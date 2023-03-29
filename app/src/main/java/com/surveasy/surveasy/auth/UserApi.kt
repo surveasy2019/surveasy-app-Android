@@ -19,14 +19,6 @@ import kotlin.coroutines.suspendCoroutine
 private val db = Firebase.firestore
 
 suspend fun UserApiClient.Companion.loginWithKakao(context: Context): OAuthToken {
-//    instance.me { user, error ->
-//        if (user != null) {
-//            Log.d(TAG, "loginWithKakao: ${user.id}")
-//
-//        }
-//
-//    }
-    //checkAuthWithFB("auth")
 
     return if (instance.isKakaoTalkLoginAvailable(context)) {
         try {
