@@ -323,28 +323,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 client.setUserProperties(userProperties)
 
-                //카카오 인증 코드
-//                if(snapshot.result["authCode"]==null){
-//                    lifecycleScope.launch {
-//                        try {
-//                            val oAuthToken = this@MainActivity.let { it1 -> UserApiClient.loginWithKakao(context = it1) }
-//                            Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.accessToken}")
-//                            Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.refreshToken}")
-//                            Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.accessTokenExpiresAt}")
-//                            Log.d(TAG, "onCreateView: %%%%%${oAuthToken?.refreshTokenExpiresAt}")
-//                        }catch (error: Throwable) {
-//                            if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
-//                                Log.d("MainActivity", "사용자가 취소")
-//                            } else {
-//                                Log.e("MainActivity", "인증 에러", error)
-//                            }
-//                        }
-//                    }
-//                }else{
-//                    val code = AuthModel(snapshot.result["authCode"].toString())
-//                    Toast.makeText(this, "인증 완료 계정 $code", Toast.LENGTH_LONG).show()
-//                }
-
 
             }
         }.addOnFailureListener { exception ->
@@ -355,7 +333,7 @@ class MainActivity : AppCompatActivity() {
 
 
     fun checkTargeting(targetingAge : Int, targetingGender : Int,
-                       targetingAgeOption : Int, targetingAgeOptionList : Array<String>) : Boolean {
+                       targetingAgeOption : Int, targetingAgeOptionList : ArrayList<String>) : Boolean {
         // 기존 타겟팅
         if(targetingAge != -1){
             // [case 1] 타겟팅 없는 설문
@@ -384,10 +362,22 @@ class MainActivity : AppCompatActivity() {
 
             // [case 2] 타겟팅 있는 설문
             else{
-
+                var flag = false;
+                for(value : String in targetingAgeOptionList){
+                    val startAge : Int = Integer.parseInt(value.substring(0,2))
+                    val endAge : Int = startAge + 4
+                    if(age >= startAge || age <= endAge) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if(!flag) return false;
+                when(targetingGender) {
+                    2 ->  if(gender == "여") return false
+                    3 ->  if(gender == "남") return false
+                }
             }
         }
-
 
         return true
     }
@@ -405,7 +395,8 @@ class MainActivity : AppCompatActivity() {
         // Fetch from FB
         db.collection("surveyData")
             .orderBy("lastIDChecked", Query.Direction.DESCENDING)
-            .limit(18).get()
+            .limit(18)
+            .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
 
@@ -413,8 +404,16 @@ class MainActivity : AppCompatActivity() {
                     if(document["targetingAge"] != null && document["targetingGender"] != null) {
                         val targetingAge = Integer.parseInt(document["targetingAge"].toString()) as Int
                         val targetingGender = Integer.parseInt(document["targetingGender"].toString()) as Int
+                        var targetingAgeOption = 0
+                        var targetingAgeOptionList = ArrayList<String>()
+                        if(document["targetingAgeOption"] != null && document["targetingAgeOptionList"] != null){
+                            targetingAgeOption = Integer.parseInt(document["targetingAgeOption"].toString()) as Int
+                            targetingAgeOptionList = document["targetingAgeOptionList"] as ArrayList<String>
+                        }
+                        Log.d(TAG, "fetchSurvey: %%%% $targetingAgeOption $targetingAgeOptionList")
+                        Log.d(TAG, "fetchSurvey: ${checkTargeting(targetingAge, targetingGender, targetingAgeOption, targetingAgeOptionList)}")
 
-                        if(checkTargeting(targetingAge, targetingGender)) {
+                        if(checkTargeting(targetingAge, targetingGender, targetingAgeOption, targetingAgeOptionList)) {
                             if(document["panelReward"] != null) {
                                 val item: SurveyItems = SurveyItems(
                                     Integer.parseInt(document["id"].toString()) as Int,
@@ -530,23 +529,6 @@ class MainActivity : AppCompatActivity() {
                 )
             }
 
-        /*
-        db.collection("AppOpinion").get()
-            .addOnSuccessListener { documents ->
-                if(documents != null) {
-                    for (document in documents) {
-                        if(document["isValid"] as Boolean == true) {
-                            Log.d(TAG, "fetchOpinion: 속도 비교2 ${document["id"].toString()}")
-                            opinionModel.opinionItem = OpinionItem(
-                                Integer.parseInt(document["id"].toString()),
-                                document["question"].toString(),
-                                document["content1"].toString(),
-                                document["content2"].toString()
-                            )
-                        }
-                    }
-                }
-            }*/
         db.collection("AppAnswer").get()
             .addOnSuccessListener { documents ->
                 if(documents != null){
