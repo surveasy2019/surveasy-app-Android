@@ -215,12 +215,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    //카카오 인증 여부
-    private fun fetchAuthInfo(){
-
-    }
-
-
 
     fun clickList() {
         supportFragmentManager.beginTransaction()
@@ -366,7 +360,7 @@ class MainActivity : AppCompatActivity() {
                 for(value : String in targetingAgeOptionList){
                     val startAge : Int = Integer.parseInt(value.substring(0,2))
                     val endAge : Int = startAge + 4
-                    if(age >= startAge || age <= endAge) {
+                    if(age in startAge..endAge) {
                         flag = true;
                         break;
                     }
@@ -410,8 +404,6 @@ class MainActivity : AppCompatActivity() {
                             targetingAgeOption = Integer.parseInt(document["targetingAgeOption"].toString()) as Int
                             targetingAgeOptionList = document["targetingAgeOptionList"] as ArrayList<String>
                         }
-                        Log.d(TAG, "fetchSurvey: %%%% $targetingAgeOption $targetingAgeOptionList")
-                        Log.d(TAG, "fetchSurvey: ${checkTargeting(targetingAge, targetingGender, targetingAgeOption, targetingAgeOptionList)}")
 
                         if(checkTargeting(targetingAge, targetingGender, targetingAgeOption, targetingAgeOptionList)) {
                             if(document["panelReward"] != null) {
