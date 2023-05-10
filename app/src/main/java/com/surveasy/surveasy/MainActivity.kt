@@ -332,7 +332,6 @@ class MainActivity : AppCompatActivity() {
         if(targetingAge != -1){
             // [case 1] 타겟팅 없는 설문
             if(targetingAge <= 1 && targetingGender <= 1) return true
-
             // [case 2] 타겟팅 있는 설문
             else  {
                 when(targetingAge) {
@@ -342,7 +341,6 @@ class MainActivity : AppCompatActivity() {
                     5 ->  if(age < 20 || age > 39) return false
                     6 ->  if(age < 20 || age > 49) return false
                 }
-
                 when(targetingGender) {
                     2 ->  if(gender == "여") return false
                     3 ->  if(gender == "남") return false
