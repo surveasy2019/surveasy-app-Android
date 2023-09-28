@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.register
+package com.surveasy.surveasy.register.agree
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,8 @@ import androidx.fragment.app.activityViewModels
 import com.surveasy.surveasy.R
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.surveasy.surveasy.register.RegisterActivity
+import com.surveasy.surveasy.register.RegisterInfo1ViewModel
 
 class RegisterAgree1Fragment : Fragment() {
 
@@ -54,11 +56,11 @@ class RegisterAgree1Fragment : Fragment() {
         }
 
         term1.setOnClickListener {
-            val intent = Intent(context,RegisterTerm1::class.java)
+            val intent = Intent(context, RegisterTerm1::class.java)
             startActivity(intent)
         }
         term2.setOnClickListener {
-            val intent = Intent(context,RegisterTerm2::class.java)
+            val intent = Intent(context, RegisterTerm2::class.java)
             startActivity(intent)
         }
 

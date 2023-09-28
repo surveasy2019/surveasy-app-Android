@@ -10,6 +10,8 @@ import com.surveasy.surveasy.databinding.ActivityRegisterBinding
 
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.surveasy.surveasy.register.agree.RegisterAgree1Fragment
+import com.surveasy.surveasy.register.agree.RegisterAgree2Fragment
 
 class RegisterActivity : AppCompatActivity() {
 

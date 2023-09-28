@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.home
+package com.surveasy.surveasy.home.list
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -19,12 +19,12 @@ class HomeListItemsAdapter(val homeList: ArrayList<SurveyItems>) : RecyclerView.
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): HomeListItemsAdapter.CustomViewHolder {
+    ): CustomViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_homelist,parent,false)
         return CustomViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: HomeListItemsAdapter.CustomViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         if(homeList.get(position).title.length > 18) holder.itemTitle.text = homeList.get(position).title.substring(0, 18) + "..."
         else holder.itemTitle.text = homeList.get(position).title
         holder.itemReward.text = homeList.get(position).reward.toString() + "원"

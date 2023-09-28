@@ -18,9 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
-import com.surveasy.surveasy.register.AddInfoRegisterAgree1Activity
-import org.json.JSONException
-import org.json.JSONObject
+import com.surveasy.surveasy.register.addinfo.AddInfoRegisterAgree1Activity
 
 
 class LoginActivity : AppCompatActivity() {

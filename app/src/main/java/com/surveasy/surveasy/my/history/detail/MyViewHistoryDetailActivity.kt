@@ -1,14 +1,9 @@
-package com.surveasy.surveasy.my.history
+package com.surveasy.surveasy.my.history.detail
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -19,7 +14,6 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivityMyViewHistoryDetailBinding
-import com.surveasy.surveasy.home.HomeFragment
 import kotlinx.coroutines.*
 
 class MyViewHistoryDetailActivity : AppCompatActivity() {

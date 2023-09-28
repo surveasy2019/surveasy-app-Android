@@ -12,7 +12,7 @@ import androidx.core.app.NotificationCompat
 import com.surveasy.surveasy.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.surveasy.surveasy.FCM_SplashActivity
+import com.surveasy.surveasy.splash.FCM_SplashActivity
 
 const val channelId = "notification_channel"
 const val channelName = "com.example.surveasy"

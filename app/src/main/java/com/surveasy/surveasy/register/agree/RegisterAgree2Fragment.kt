@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.register
+package com.surveasy.surveasy.register.agree
 
 import android.graphics.Color
 import android.os.Bundle
@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.surveasy.surveasy.R
+import com.surveasy.surveasy.register.RegisterActivity
 
 class RegisterAgree2Fragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.register
+package com.surveasy.surveasy.register.addinfo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

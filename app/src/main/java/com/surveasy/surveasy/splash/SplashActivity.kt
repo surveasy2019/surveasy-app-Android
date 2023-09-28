@@ -1,7 +1,6 @@
-package com.surveasy.surveasy
+package com.surveasy.surveasy.splash
 
 import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -12,7 +11,6 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import com.amplitude.api.Amplitude
-import com.surveasy.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.surveasy.surveasy.home.NetworkAlertActivity
 import com.surveasy.surveasy.login.LoginActivity
 import com.google.android.gms.tasks.OnCompleteListener
@@ -20,14 +18,19 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.surveasy.surveasy.MainActivity
+import com.surveasy.surveasy.R
+import com.surveasy.surveasy.userRoom.UserDatabase
 
-class FCM_SplashActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     val db = Firebase.firestore
     var token = ""
+    private lateinit var userDB : UserDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
 
         // Initialization of Amplitude
         val client = Amplitude.getInstance()
@@ -59,10 +62,8 @@ class FCM_SplashActivity : AppCompatActivity() {
 //            finish()
 //        },3000)
 
+
         supportActionBar?.hide()
-
-
-
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener(
             OnCompleteListener { task ->
@@ -75,28 +76,48 @@ class FCM_SplashActivity : AppCompatActivity() {
                     return@OnCompleteListener
                 }
                 token = task.result
-                Log.d(TAG, "$$$$$$$$$$$$$$$$$ $token")
 
             })
+        /*
+        userDB = Room.databaseBuilder(
+            this,
+            UserDatabase::class.java, "UserDatabase"
+        ).allowMainThreadQueries().build()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            //val bool : Boolean? = userDB.userDao().getFS()
+            Log.d(TAG, "onCreate: ####${userDB.userDao().getFS()}")
+            if(userDB.userDao().getFS()==null || userDB.userDao().getFS()==false){
+                startActivity(Intent(this@SplashActivity,FirstIntroduceScreenActivity::class.java))
+                finish()
+            }else{
+                nextActivity()
+            }
+        } */
+
+
         db.collection("AndroidFirstScreen").get()
             .addOnSuccessListener { result ->
-                var i = 0
-                for(document in result){   if(document.id == token) i++   }
-                if(i==0){
-                    startActivity(Intent(this,FirstIntroduceScreenActivity::class.java))
-                    finish()
-                }
-                else {
-                    nextActivity()
-
-//                    var bannerIndex = 0
-//                    for(item in bannerModel.uriList) {
-//                        intent.putExtra(item, "banner" + bannerIndex.toString())
-//                        bannerIndex++
-//                    }
-                }
+                nextActivity()
+//                var i = 0
+//                for(document in result){   if(document.id == token) i++   }
+//                if(i==0){
+//                    startActivity(Intent(this,FirstIntroduceScreenActivity::class.java))
+//                    finish()
+//                }
+//                else {
+//                    nextActivity()
+//
+////                    var bannerIndex = 0
+////                    for(item in bannerModel.uriList) {
+////                        intent.putExtra(item, "banner" + bannerIndex.toString())
+////                        bannerIndex++
+////                    }
+//                }
             }
+
     }
+
 
     private fun isConnectInternet() : String {
         val cm : ConnectivityManager =
@@ -124,27 +145,24 @@ class FCM_SplashActivity : AppCompatActivity() {
                     if (snapshot["autoLogin"] == false) {
                         intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
+                        finish()
                     }
                     else {
-                        if(snapshot["didFirstSurvey"] == true) {
-                            intent = Intent(this, MainActivity::class.java)
-                            intent.putExtra("defaultFragment_list", true)
-                            startActivity(intent)
-                        }
-                        else {
-                            intent = Intent(this, MainActivity::class.java)
-                            startActivity(intent)
-                        }
-
+                        intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                 }
+
 
             // [Amplitude] app-start
             val client = Amplitude.getInstance()
             client.userId = Firebase.auth.currentUser!!.uid
-            client.logEvent("app_start_from_PUSH")
-
+            client.logEvent("app_start")
         }
     }
+
+
+
 
 }

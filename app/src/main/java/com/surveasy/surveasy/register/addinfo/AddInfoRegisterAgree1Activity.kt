@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.register
+package com.surveasy.surveasy.register.addinfo
 
 import android.content.ContentValues
 import android.content.Intent
@@ -13,6 +13,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.login.CurrentUser
+import com.surveasy.surveasy.register.agree.RegisterTerm1
+import com.surveasy.surveasy.register.agree.RegisterTerm2
 
 class AddInfoRegisterAgree1Activity : AppCompatActivity() {
 
@@ -55,11 +57,11 @@ class AddInfoRegisterAgree1Activity : AppCompatActivity() {
         }
 
         term1.setOnClickListener {
-            val intent = Intent(this,RegisterTerm1::class.java)
+            val intent = Intent(this, RegisterTerm1::class.java)
             startActivity(intent)
         }
         term2.setOnClickListener {
-            val intent = Intent(this,RegisterTerm2::class.java)
+            val intent = Intent(this, RegisterTerm2::class.java)
             startActivity(intent)
         }
 

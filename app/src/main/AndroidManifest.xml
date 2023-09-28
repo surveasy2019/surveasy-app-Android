@@ -23,35 +23,35 @@
             android:exported="false"
             android:theme="@style/Theme.MyDialog"/>
         <activity
-            android:name=".my.history.MyViewHistoryUpdateFinDialogActivity"
+            android:name=".my.history.detail.MyViewHistoryUpdateFinDialogActivity"
             android:exported="true"
             android:theme="@style/Theme.MyDialog" />
         <activity
             android:name=".auth.AuthProcessActivity"
             android:exported="true" />
         <activity
-            android:name=".my.history.MyViewHistoryDetailActivity"
+            android:name=".my.history.detail.MyViewHistoryDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".my.history.MyViewUpdatePhotoActivity"
+            android:name=".my.history.detail.MyViewUpdatePhotoActivity"
             android:exported="true" />
         <activity
             android:name=".home.Opinion.HomeOpinionAnswerActivity"
             android:exported="true" />
         <activity
-            android:name=".register.AddPanelnfoFinActivity"
+            android:name=".register.addinfo.AddPanelnfoFinActivity"
             android:exported="true" />
         <activity
-            android:name=".register.AddPanelInfoFinActivity"
+            android:name=".register.addinfo.AddPanelInfoFinActivity"
             android:exported="true" />
         <activity
-            android:name=".register.AddInfoRegisterAgree2Activity"
+            android:name=".register.addinfo.AddInfoRegisterAgree2Activity"
             android:exported="true" />
         <activity
-            android:name=".register.AddInfoRegisterAgree1Activity"
+            android:name=".register.addinfo.AddInfoRegisterAgree1Activity"
             android:exported="true" />
         <activity
-            android:name=".register.AddPanelInfoActivity"
+            android:name=".register.addinfo.AddPanelInfoActivity"
             android:exported="true" />
         <activity
             android:name=".list.firstsurvey.PushDialogActivity"
@@ -64,7 +64,7 @@
             android:name=".list.firstsurvey.SurveyListFirstSurveyLast"
             android:exported="true" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".splash.SplashActivity"
             android:exported="true"
             android:theme="@style/Splash">
             <intent-filter>
@@ -74,7 +74,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FCM_SplashActivity"
+            android:name=".splash.FCM_SplashActivity"
             android:exported="true"
             android:theme="@style/Splash">
             <intent-filter>
@@ -84,10 +84,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".register.RegisterTerm2"
+            android:name=".register.agree.RegisterTerm2"
             android:exported="true" />
         <activity
-            android:name=".register.RegisterTerm1"
+            android:name=".register.agree.RegisterTerm1"
             android:exported="true" />
         <activity
             android:name=".firstIntroduceScreen.FirstIntroduceScreenActivity"

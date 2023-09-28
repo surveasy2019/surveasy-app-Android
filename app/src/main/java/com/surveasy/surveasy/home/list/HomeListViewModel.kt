@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.home
+package com.surveasy.surveasy.home.list
 
 import androidx.lifecycle.ViewModel
 import com.surveasy.surveasy.list.SurveyItems
