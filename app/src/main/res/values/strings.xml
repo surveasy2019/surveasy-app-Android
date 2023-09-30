@@ -639,6 +639,14 @@
     <string name="MyViewSettingWithdraw_PwInput">비밀번호를 입력하세요</string>
     <string name="MyViewSettingWithdraw_WithdrawBtn">탈퇴하기</string>
     <string name="kakao_nativeAppKey">c3dd0da30ec3cf75837fef9022ca48a4</string>
+    <string name="login_main1">에</string>
+    <string name="login_main2">오신 것을 환영합니다.</string>
+    <string name="login_id">아이디 (이메일)</string>
+    <string name="login_pw">비밀번호</string>
+    <string name="login_auto">자동 로그인</string>
+    <string name="login_login_btn">로그인</string>
+    <string name="login_register_btn">패널 가입</string>
+    <string name="login_find_pw"><![CDATA[비밀번호 찾기 >]]></string>
 
     <string-array name="university">
         <item>대학명을 선택해주세요</item>
