@@ -2,50 +2,50 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main_layout"
     tools:context=".MainActivity">
 
     <FrameLayout
         android:id="@+id/fl_main"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <LinearLayout
         android:id="@+id/ll_nav_home"
         android:layout_width="0dp"
         android:layout_height="60sp"
-        app:layout_constraintBottom_toBottomOf="@id/fl_main"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/ll_nav_list"
-        android:gravity="center"
         android:background="#FFFFFF"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/fl_main"
+        app:layout_constraintEnd_toStartOf="@id/ll_nav_list"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/iv_nav_home"
             android:layout_width="17sp"
             android:layout_height="17sp"
-            android:paddingVertical="20dp"
             android:layout_marginBottom="7dp"
-            android:background="@drawable/navigation_home" />
+            android:background="@drawable/navigation_home"
+            android:paddingVertical="20dp" />
 
 
         <TextView
             android:id="@+id/tv_nav_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_m"
             android:text="HOME"
-            android:textSize="9sp"
             android:textColor="#0aab00"
-            android:fontFamily="@font/main_font_m" />
+            android:textSize="9sp" />
 
     </LinearLayout>
 
@@ -53,29 +53,29 @@
         android:id="@+id/ll_nav_list"
         android:layout_width="0dp"
         android:layout_height="60sp"
-        app:layout_constraintBottom_toBottomOf="@id/fl_main"
-        app:layout_constraintStart_toEndOf="@id/ll_nav_home"
-        app:layout_constraintEnd_toStartOf="@id/ll_nav_my"
-        android:gravity="center"
         android:background="#FFFFFF"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/fl_main"
+        app:layout_constraintEnd_toStartOf="@id/ll_nav_my"
+        app:layout_constraintStart_toEndOf="@id/ll_nav_home">
 
         <ImageView
             android:id="@+id/iv_nav_list"
             android:layout_width="17sp"
             android:layout_height="17sp"
-            android:paddingVertical="20dp"
             android:layout_marginBottom="7dp"
-            android:background="@drawable/navigation_list" />
+            android:background="@drawable/navigation_list"
+            android:paddingVertical="20dp" />
 
         <TextView
             android:id="@+id/tv_nav_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_m"
             android:text="LIST"
-            android:textSize="9sp"
             android:textColor="#c9c9c9"
-            android:fontFamily="@font/main_font_m" />
+            android:textSize="9sp" />
 
     </LinearLayout>
 
@@ -84,32 +84,31 @@
         android:id="@+id/ll_nav_my"
         android:layout_width="0dp"
         android:layout_height="60sp"
-        app:layout_constraintStart_toEndOf="@id/ll_nav_list"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/fl_main"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center"
-        android:background="#FFFFFF"
-        android:orientation="vertical">
+        app:layout_constraintStart_toEndOf="@id/ll_nav_list">
 
         <ImageView
             android:id="@+id/iv_nav_my"
             android:layout_width="17sp"
             android:layout_height="17sp"
-            android:paddingVertical="20dp"
             android:layout_marginBottom="7dp"
-            android:background="@drawable/navigation_my" />
+            android:background="@drawable/navigation_my"
+            android:paddingVertical="20dp" />
 
         <TextView
             android:id="@+id/tv_nav_my"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_m"
             android:text="MY PAGE"
-            android:textSize="9sp"
             android:textColor="#c9c9c9"
-            android:fontFamily="@font/main_font_m" />
+            android:textSize="9sp" />
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

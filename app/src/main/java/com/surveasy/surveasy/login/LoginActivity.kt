@@ -47,19 +47,19 @@ class LoginActivity : AppCompatActivity() {
 
 
         // Auto Login Checkbox
-        binding.LoginAutoLogin.setOnCheckedChangeListener { button, isChecked ->
+        binding.cbAutoLogin.setOnCheckedChangeListener { button, _ ->
             autoLogin = button.isChecked
             //Log.d(TAG, "AUTOOOOOOOOOOOOO  $autoLogin")
         }
 
         // Login
         auth = FirebaseAuth.getInstance()
-        binding.LoginBtn.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             login()
         }
 
         // Go to RegisterActivity
-        binding.LoginRegister.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
             intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
 
@@ -68,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         // Go to FindPwActivity
-        binding.LoginFindPw.setOnClickListener {
+        binding.tvFindPw.setOnClickListener {
             intent = Intent(this, FindPwActivity::class.java)
             startActivity(intent)
         }
@@ -96,8 +96,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login() {
-        val loginEmail : String = binding.LoginInputEmail.text.toString()
-        val loginPassword : String = binding.LoginInputPW.text.toString()
+        val loginEmail : String = binding.etIdInput.text.toString()
+        val loginPassword : String = binding.etPwInput.text.toString()
 
         if(loginEmail == "") {
             Toast.makeText(this@LoginActivity, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
