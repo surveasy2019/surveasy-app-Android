@@ -14,8 +14,6 @@ import com.surveasy.surveasy.register.agree.RegisterAgree1Fragment
 import com.surveasy.surveasy.register.agree.RegisterAgree2Fragment
 
 class RegisterActivity : AppCompatActivity() {
-
-
     private lateinit var binding: ActivityRegisterBinding
     val db = Firebase.firestore
     val registerModel by viewModels<RegisterInfo1ViewModel>()
@@ -29,40 +27,35 @@ class RegisterActivity : AppCompatActivity() {
 
         val transaction = supportFragmentManager.beginTransaction()
         setContentView(binding.root)
-        transaction.add(R.id.RegisterView, RegisterAgree1Fragment()).commit()
+        transaction.add(R.id.fl_register_main, RegisterAgree1Fragment()).commit()
 
 
-
-
-        val registerToolbar : Toolbar? = findViewById(R.id.ToolbarRegister)
-        setSupportActionBar(binding.ToolbarRegister)
-        if(supportActionBar != null){
+        val registerToolbar: Toolbar? = findViewById(R.id.tb_register)
+        setSupportActionBar(binding.tbRegister)
+        if (supportActionBar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
             supportActionBar?.setDisplayShowTitleEnabled(false)
 
 
-
-
-
         }
-        binding.ToolbarRegister.setNavigationOnClickListener {
+        binding.tbRegister.setNavigationOnClickListener {
             onBackPressed()
         }
 
     }
 
-    fun fin(){
+    fun fin() {
         finishAffinity()
     }
 
-    fun toolbarHide(){
+    fun toolbarHide() {
         supportActionBar?.hide()
     }
 
-    fun goAgree2(){
+    fun goAgree2() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.RegisterView, RegisterAgree2Fragment())
+            .replace(R.id.fl_register_main, RegisterAgree2Fragment())
             .commit()
 
 
@@ -71,7 +64,7 @@ class RegisterActivity : AppCompatActivity() {
 
     fun goToRegister1() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.RegisterView, Register1Fragment())
+            .replace(R.id.fl_register_main, Register1Fragment())
             .commit()
 
 
@@ -80,7 +73,7 @@ class RegisterActivity : AppCompatActivity() {
 
     fun goToRegister2() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.RegisterView, Register2Fragment())
+            .replace(R.id.fl_register_main, Register2Fragment())
             .commit()
 
 
@@ -88,7 +81,7 @@ class RegisterActivity : AppCompatActivity() {
 
     fun goToRegisterFin() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.RegisterView, RegisterFinFragment())
+            .replace(R.id.fl_register_main, RegisterFinFragment())
             .commit()
     }
 }
