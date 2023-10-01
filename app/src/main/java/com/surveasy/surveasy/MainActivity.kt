@@ -207,13 +207,6 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
 
-
-        fun clickList() {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fl_main, SurveyListFragment())
-                .commit()
-        }
-
     }
 
 
