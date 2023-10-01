@@ -647,6 +647,14 @@
     <string name="login_login_btn">로그인</string>
     <string name="login_register_btn">패널 가입</string>
     <string name="login_find_pw"><![CDATA[비밀번호 찾기 >]]></string>
+    <string name="toolbar_agree">약관 동의</string>
+    <string name="agree_all">모두 동의합니다.</string>
+    <string name="agree_1">(필수) 이용약관 동의</string>
+    <string name="agree_detail">보기</string>
+    <string name="agree_2">(필수) 개인 정보 처리 방침 동의</string>
+    <string name="agree_3">(선택) 마케팅/SNS 수신 동의</string>
+    <string name="btn_next">다음</string>
+    <string name="agree_marketing">할인 쿠폰 및 혜택, 이벤트 등 유익한 정보를\nSMS나 이메일로 받아보실 수 있습니다.</string>
 
     <string-array name="university">
         <item>대학명을 선택해주세요</item>

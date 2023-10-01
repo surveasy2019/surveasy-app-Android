@@ -11,114 +11,105 @@ import androidx.fragment.app.activityViewModels
 import com.surveasy.surveasy.R
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.surveasy.surveasy.databinding.FragmentRegisterAgree1Binding
 import com.surveasy.surveasy.register.RegisterActivity
 import com.surveasy.surveasy.register.RegisterInfo1ViewModel
 
 class RegisterAgree1Fragment : Fragment() {
 
     val db = Firebase.firestore
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var _binding : FragmentRegisterAgree1Binding? = null
+    private val binding get() = _binding!!
+    private val registerModel by activityViewModels<RegisterInfo1ViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        _binding = FragmentRegisterAgree1Binding.inflate(layoutInflater)
 
-        val view = inflater.inflate(R.layout.fragment_register_agree1,container,false)
-        val agreeAll : CheckBox = view.findViewById(R.id.registerAgree1_agree1)
-        val agree_container1 : LinearLayout = view.findViewById(R.id.registerAgree1_Container1)
-        val agreeAllText : TextView = view.findViewById(R.id.register_allAgree_text)
-        val agree1Text : TextView = view.findViewById(R.id.register_1Agree_text)
-        val agree2Text : TextView = view.findViewById(R.id.register_2Agree_text)
-        val agree3Text : TextView = view.findViewById(R.id.register_3Agree_text)
-        val agree1 : CheckBox = view.findViewById(R.id.registerAgree1_agree2)
-        val term1 : TextView = view.findViewById(R.id.register_goTerm1)
-        val agree2 : CheckBox = view.findViewById(R.id.registerAgree1_agree3)
-        val term2 : TextView = view.findViewById(R.id.register_goTerm2)
-        val agree3 : CheckBox = view.findViewById(R.id.registerAgree1_agree4)
-        val registerAgree1 : Button = view.findViewById(R.id.RegisterAgree1_Btn)
-        val text : TextView = view.findViewById(R.id.SNSAgree_text)
-        val registerModel by activityViewModels<RegisterInfo1ViewModel>()
+        initView()
 
 
+        return binding.root
+    }
 
-        registerAgree1.setOnClickListener {
-            if(agree1.isChecked && agree2.isChecked){
-                (activity as RegisterActivity).goAgree2()
-            }else{
-                Toast.makeText(context,"필수 항목에 동의해주세요",Toast.LENGTH_LONG).show()
-            }
-            if(agree3.isChecked){
-                registerModel.registerInfo1.marketingAgree = true
-            }
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
-        term1.setOnClickListener {
-            val intent = Intent(context, RegisterTerm1::class.java)
-            startActivity(intent)
-        }
-        term2.setOnClickListener {
-            val intent = Intent(context, RegisterTerm2::class.java)
-            startActivity(intent)
-        }
-
-
-
-        agreeAll.setOnClickListener { view ->
-            if(agreeAll.isChecked){
-                agree1.isChecked = true
-                agree2.isChecked = true
-                agree3.isChecked = true
-            }else{
-                agree1.isChecked = false
-                agree2.isChecked = false
-                agree3.isChecked = false
-            }
-            if(agree3.isChecked){
-                text.text ="할인 쿠폰 및 혜택, 이벤트 등 유익한 정보를 SMS나\n" +
-                        "이메일로 받아보실 수 있습니다."
-            }else{
-                text.text=""
+    private fun initView(){
+        with(binding) {
+            btnNext.setOnClickListener {
+                if(cbAgree2.isChecked && cbAgree3.isChecked){
+                    (activity as RegisterActivity).goAgree2()
+                }else{
+                    Toast.makeText(context,"필수 항목에 동의해주세요",Toast.LENGTH_LONG).show()
+                }
+                if(cbAgree4.isChecked){
+                    registerModel.registerInfo1.marketingAgree = true
+                }
             }
 
-        }
-        agree1.setOnClickListener {
-            if(!agree1.isChecked||!agree2.isChecked||!agree3.isChecked){
-                agreeAll.isChecked=false
+            tvDetail2.setOnClickListener {
+                val intent = Intent(context, RegisterTerm1::class.java)
+                startActivity(intent)
             }
-            if(agree1.isChecked && agree2.isChecked && agree3.isChecked){
-                agreeAll.isChecked=true
+            tvDetail3.setOnClickListener {
+                val intent = Intent(context, RegisterTerm2::class.java)
+                startActivity(intent)
+            }
+
+
+
+            cbAgree1.setOnClickListener {
+                if(cbAgree1.isChecked){
+                    cbAgree2.isChecked = true
+                    cbAgree3.isChecked = true
+                    cbAgree4.isChecked = true
+                }else{
+                    cbAgree2.isChecked = false
+                    cbAgree3.isChecked = false
+                    cbAgree4.isChecked = false
+                }
+                showMarketingText()
+
+            }
+            cbAgree2.setOnClickListener {
+                checkAgreeAll()
+            }
+
+            cbAgree3.setOnClickListener {
+                checkAgreeAll()
+            }
+
+            cbAgree4.setOnClickListener {
+                checkAgreeAll()
+                showMarketingText()
             }
         }
-        agree2.setOnClickListener {
-            if(!agree1.isChecked||!agree2.isChecked||!agree3.isChecked){
-                agreeAll.isChecked=false
+    }
+
+    private fun checkAgreeAll() {
+        with(binding){
+            if(!cbAgree2.isChecked || !cbAgree3.isChecked || !cbAgree4.isChecked){
+                cbAgree1.isChecked = false
             }
-            if(agree1.isChecked && agree2.isChecked && agree3.isChecked){
-                agreeAll.isChecked=true
+            if(cbAgree2.isChecked && cbAgree3.isChecked && cbAgree4.isChecked){
+                cbAgree1.isChecked = true
             }
         }
-        agree3.setOnClickListener {
-            if(!agree1.isChecked||!agree2.isChecked||!agree3.isChecked){
-                agreeAll.isChecked=false
-            }
-            if(agree1.isChecked && agree2.isChecked && agree3.isChecked){
-                agreeAll.isChecked=true
-            }
-            if(agree3.isChecked){
-                text.text ="할인 쿠폰 및 혜택, 이벤트 등 유익한 정보를 SMS나\n" +
-                        "이메일로 받아보실 수 있습니다."
-            }else{
-                text.text=""
+    }
+
+    private fun showMarketingText() {
+        with(binding) {
+            tvSnsText.visibility = if(cbAgree4.isChecked) {
+                View.VISIBLE
+            } else {
+                View.GONE
             }
         }
-
-
-
-
-        return view
     }
 
 
