@@ -1,21 +1,17 @@
 package com.surveasy.surveasy.home
 
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -39,19 +35,14 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
-import com.kakao.sdk.common.model.ClientError
-import com.kakao.sdk.common.model.ClientErrorCause
-import com.kakao.sdk.user.UserApiClient
 import com.surveasy.surveasy.*
 import com.surveasy.surveasy.auth.AuthDialogActivity
-import com.surveasy.surveasy.auth.AuthProcessActivity
-import com.surveasy.surveasy.auth.loginWithKakao
+import com.surveasy.surveasy.databinding.FragmentHomeBinding
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerActivity
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerViewModel
+import com.surveasy.surveasy.home.list.HomeListItemsAdapter
 import com.surveasy.surveasy.my.history.MyViewHistoryActivity
 import kotlinx.coroutines.*
-import org.json.JSONException
-import org.json.JSONObject
 import java.lang.Runnable
 import java.text.SimpleDateFormat
 import java.util.*
@@ -60,15 +51,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import java.time.LocalDate
 
 
 class HomeFragment : Fragment() {
 
     val db = Firebase.firestore
     val storage = Firebase.storage
-    val userList = arrayListOf<UserSurveyItem>()
-    private lateinit var bannerPager : ViewPager2
+    private var _binding : FragmentHomeBinding? = null
+    private val binding get() = _binding!!
     private lateinit var mContext: Context
     private val userModel by activityViewModels<CurrentUserViewModel>()
     private val bannerModel by activityViewModels<BannerViewModel>()
@@ -94,29 +84,7 @@ class HomeFragment : Fragment() {
     ): View? {
         var left = 0
         var right = 1
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-        val container : RecyclerView? = view.findViewById(R.id.homeList_recyclerView)
-        val contributionContainer : RecyclerView = view.findViewById(R.id.HomeContribution_recyclerView)
-        val current_banner: TextView = view.findViewById(R.id.textView_current_banner)
-        val total_banner: TextView = view.findViewById(R.id.textView_total_banner)
-//        val springDotsIndicator: SpringDotsIndicator = view.findViewById(R.id.Home_spring_dots_indicator)
-        val firstSurveyContainer : LinearLayout = view.findViewById(R.id.HomeList_ItemContainer_first)
-        val firstSurveyTitle : TextView = view.findViewById(R.id.HomeListItem_Title_first)
-        val homeListContainer: RecyclerView = view.findViewById(R.id.homeList_recyclerView)
-        val noneText : TextView = view.findViewById(R.id.homeList_text)
-        val greetingText: TextView = view.findViewById(R.id.Home_GreetingText)
-        val surveyNum: TextView = view.findViewById(R.id.Home_SurveyNum)
-        val totalReward: TextView = view.findViewById(R.id.Home_RewardAmount)
-        val moreBtn : TextView = view.findViewById(R.id.homeList_Btn)
-        val homeTopBox : LinearLayout = view.findViewById(R.id.Home_parSurvey_box)
-        val opinionContainer: LinearLayout = view.findViewById(R.id.Home_Opinion_Q_Container)
-        val opinionTextView : TextView = view.findViewById(R.id.Home_Opinion_TextView)
-        val opinionAnswerL : LinearLayout = view.findViewById(R.id.Home_Poll_answer_containerL)
-        val opinionAnswerR : LinearLayout = view.findViewById(R.id.Home_Poll_answer_containerR)
-        var answerTitleL : TextView = view.findViewById(R.id.Home_Opinion_Answer_Title_L)
-        var answerTitleR : TextView = view.findViewById(R.id.Home_Opinion_Answer_Title_R)
-        val answerLBtn : LinearLayout = view.findViewById(R.id.Home_Opinion_L)
-        val answerRBtn : LinearLayout = view.findViewById(R.id.Home_Opinion_R)
+        _binding = FragmentHomeBinding.inflate(layoutInflater)
 
         // fetch auth info
         mainViewModelFactory = MainViewModelFactory(MainRepository())
@@ -134,40 +102,38 @@ class HomeFragment : Fragment() {
 
 
         // Banner init
-        bannerPager = view.findViewById(R.id.Home_BannerViewPager)
-        val bannerDefault : ImageView = view.findViewById(R.id.Home_BannerDefault)
 
-        Glide.with(this@HomeFragment).load(R.raw.app_loading).into(bannerDefault)
+        Glide.with(this@HomeFragment).load(R.raw.app_loading).into(binding.HomeBannerDefault)
         CoroutineScope(Dispatchers.Main).launch {
             val banner = CoroutineScope(Dispatchers.IO).async {
                 while (bannerModel.uriList.size == 0) {
                     //bannerDefault.visibility = View.VISIBLE
                 }
-                bannerDefault.visibility = View.INVISIBLE
+                binding.HomeBannerDefault.visibility = View.INVISIBLE
                 bannerModel.uriList
 
             }.await()
 
-            bannerDefault.visibility = View.INVISIBLE
-            total_banner.text = bannerModel.num.toString()
-            bannerPager.offscreenPageLimit = bannerModel.num
-            bannerPager.adapter = BannerViewPagerAdapter(mContext, bannerModel.uriList)
-            bannerPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            binding.HomeBannerDefault.visibility = View.INVISIBLE
+            binding.textViewTotalBanner.text = bannerModel.num.toString()
+            binding.HomeBannerViewPager.offscreenPageLimit = bannerModel.num
+            binding.HomeBannerViewPager.adapter = BannerViewPagerAdapter(mContext, bannerModel.uriList)
+            binding.HomeBannerViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         }
 
 
         // Banner 넘기면 [현재 페이지/전체 페이지] 변화
-        bannerPager.apply {
+        binding.HomeBannerViewPager.apply {
             registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    current_banner.text = "${position+1}"
+                    binding.textViewCurrentBanner.text = "${position+1}"
                 }
             })
         }
 
-        homeTopBox.setOnClickListener {
+        binding.HomeParSurveyBox.setOnClickListener {
 
             val intent = Intent(context, MyViewHistoryActivity::class.java)
             startActivity(intent)
@@ -176,7 +142,7 @@ class HomeFragment : Fragment() {
 
 
 
-        moreBtn.setOnClickListener {
+        binding.homeListBtn.setOnClickListener {
             if (userModel.currentUser.didFirstSurvey == false) {
                 (activity as MainActivity).navColor_in_Home()
                 (activity as MainActivity).moreBtn()
@@ -192,22 +158,22 @@ class HomeFragment : Fragment() {
 
         //user name, reward 불러오기
         if (userModel.currentUser.uid != null) {
-            greetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
+            binding.HomeGreetingText.text = "안녕하세요, ${userModel.currentUser.name}님!"
             if(userModel.currentUser.UserSurveyList == null){
-                surveyNum.text = "0개"
+                binding.HomeSurveyNum.text = "0개"
             }else{
-                surveyNum.text = "${userModel.currentUser.UserSurveyList!!.size}개"
+                binding.HomeSurveyNum.text = "${userModel.currentUser.UserSurveyList!!.size}개"
             }
 
-            totalReward.text = "${userModel.currentUser.rewardTotal}원"
+            binding.HomeRewardAmount.text = "${userModel.currentUser.rewardTotal}원"
         } else {
             if (Firebase.auth.currentUser?.uid != null) {
                 //query 보다 원래 방법이 더 빠름
                 db.collection("panelData")
                     .document(Firebase.auth.currentUser!!.uid)
                     .get().addOnSuccessListener { document ->
-                        greetingText.text = "안녕하세요, ${document["name"].toString()}님"
-                        totalReward.text =
+                        binding.HomeGreetingText.text = "안녕하세요, ${document["name"].toString()}님"
+                        binding.HomeRewardAmount.text =
                             "${(Integer.parseInt(document["reward_total"].toString()))}원"
                     }
 
@@ -218,12 +184,12 @@ class HomeFragment : Fragment() {
                         for(item in document) {
                             num++
                         }
-                        surveyNum.text = num.toString() + "개"
+                        binding.HomeSurveyNum.text = num.toString() + "개"
                     }
 
             } else {
-                greetingText.text = "아직"
-                totalReward.text = "$-----"
+                binding.HomeGreetingText.text = "아직"
+                binding.HomeRewardAmount.text = "$-----"
             }
         }
 
@@ -236,23 +202,23 @@ class HomeFragment : Fragment() {
 
 
             if (userModel.currentUser.didFirstSurvey == false) {
-                firstSurveyContainer.visibility= View.VISIBLE
-                noneText.visibility = View.GONE
-                homeListContainer.visibility = View.GONE
+                binding.HomeListItemContainerFirst.visibility= View.VISIBLE
+                binding.homeListText.visibility = View.GONE
+                binding.homeListRecyclerView.visibility = View.GONE
                 if (userModel.currentUser.uid != null) {
-                    firstSurveyTitle.text = "${userModel.currentUser.name}님에 대해 알려주세요!"
+                    binding.HomeListItemTitleFirst.text = "${userModel.currentUser.name}님에 대해 알려주세요!"
                 }
                 else {
                     if (Firebase.auth.currentUser?.uid != null) {
                         db.collection("panelData")
                             .document(Firebase.auth.currentUser!!.uid)
                             .get().addOnSuccessListener { document ->
-                                firstSurveyTitle.text = "${document["name"].toString()}님에 대해 알려주세요!"
+                                binding.HomeListItemTitleFirst.text = "${document["name"].toString()}님에 대해 알려주세요!"
                             }
                     }
                 }
 
-                firstSurveyContainer.setOnClickListener{
+                binding.HomeListItemContainerFirst.setOnClickListener{
                     (activity as MainActivity).navColor_in_Home()
                     (activity as MainActivity).moreBtn()
                 }
@@ -261,23 +227,23 @@ class HomeFragment : Fragment() {
 
             else if(userModel.currentUser.didFirstSurvey == true) {
                 if (setHomeList(chooseHomeList()).size == 0) {
-                    firstSurveyContainer.visibility= View.GONE
-                    homeListContainer.visibility = View.GONE
+                    binding.HomeListItemContainerFirst.visibility= View.GONE
+                    binding.homeListRecyclerView.visibility = View.GONE
 
-                    noneText.text = "현재 참여가능한 설문이 없습니다"
-                    noneText.visibility = View.VISIBLE
+                    binding.homeListText.text = "현재 참여가능한 설문이 없습니다"
+                    binding.homeListText.visibility = View.VISIBLE
                 }
 
                 else {
-                    firstSurveyContainer.visibility= View.GONE
-                    noneText.visibility = View.GONE
-                    homeListContainer.visibility = View.VISIBLE
+                    binding.HomeListItemContainerFirst.visibility= View.GONE
+                    binding.homeListText.visibility = View.GONE
+                    binding.homeListRecyclerView.visibility = View.VISIBLE
                     val adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
-                    container?.layoutManager = LinearLayoutManager(
+                    binding.homeListRecyclerView.layoutManager = LinearLayoutManager(
                         context,
                         LinearLayoutManager.VERTICAL, false
                     )
-                    container?.adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
+                    binding.homeListRecyclerView.adapter = HomeListItemsAdapter(setHomeList(chooseHomeList()))
                 }
 
             }
@@ -292,8 +258,8 @@ class HomeFragment : Fragment() {
                 contributionModel.contributionList
             }.await()
 
-            contributionContainer.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            contributionContainer.adapter = ContributionItemsAdapter(contributionList)
+            binding.HomeContributionRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            binding.HomeContributionRecyclerView.adapter = ContributionItemsAdapter(contributionList)
 
         }
 
@@ -305,10 +271,10 @@ class HomeFragment : Fragment() {
                 opinionModel.opinionItem
             }.await()
 
-            opinionTextView.text = opinionModel.opinionItem.question
+            binding.HomeOpinionTextView.text = opinionModel.opinionItem.question
         }
 
-        opinionContainer.setOnClickListener {
+        binding.HomeOpinionQContainer.setOnClickListener {
             val intent = Intent(context, HomeOpinionDetailActivity::class.java)
             intent.putExtra("id", opinionModel.opinionItem.id)
             intent.putExtra("question", opinionModel.opinionItem.question)
@@ -339,24 +305,24 @@ class HomeFragment : Fragment() {
                 if(answerModel.homeAnswerList.get(left).id==2){
 
                 }
-                answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
-                answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
+                binding.HomeOpinionAnswerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
+                binding.HomeOpinionAnswerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
 
-                answerRBtn.setOnClickListener{
+                binding.HomeOpinionR.setOnClickListener{
                     if(right<answerModel.homeAnswerList.size-1){
                         left++
                         right++
-                        answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
-                        answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
+                        binding.HomeOpinionAnswerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
+                        binding.HomeOpinionAnswerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
                     }
 
                 }
-                answerLBtn.setOnClickListener{
+                binding.HomeOpinionL.setOnClickListener{
                     if(left>0){
                         left--
                         right--
-                        answerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
-                        answerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
+                        binding.HomeOpinionAnswerTitleL.text = answerModel.homeAnswerList.get(left).question.toString()
+                        binding.HomeOpinionAnswerTitleR.text = answerModel.homeAnswerList.get(right).question.toString()
                     }
 
                 }
@@ -364,7 +330,7 @@ class HomeFragment : Fragment() {
         }
 
 
-        opinionAnswerL.setOnClickListener {
+        binding.HomePollAnswerContainerL.setOnClickListener {
             if(answerModel.homeAnswerList.get(left).id!=2){
                 val intent = Intent(context, HomeOpinionAnswerActivity::class.java)
                 intent.putExtra("id", answerModel.homeAnswerList.get(left).id)
@@ -383,7 +349,7 @@ class HomeFragment : Fragment() {
         }
 
 
-        opinionAnswerR.setOnClickListener {
+        binding.HomePollAnswerContainerR.setOnClickListener {
             if(answerModel.homeAnswerList.get(right).id!=2){
                 val intent = Intent(context, HomeOpinionAnswerActivity::class.java)
                 intent.putExtra("id", answerModel.homeAnswerList.get(right).id)
@@ -399,7 +365,12 @@ class HomeFragment : Fragment() {
             client.logEvent("Poll_Answer View Showed")
         }
 
-            return view
+            return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 

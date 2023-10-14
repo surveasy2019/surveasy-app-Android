@@ -1,10 +1,7 @@
-package com.surveasy.surveasy.my.history
+package com.surveasy.surveasy.my.history.detail
 
-import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +20,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.w3c.dom.Text
 
 class MyViewHistoryDetailFragment : Fragment() {
     val storage = Firebase.storage

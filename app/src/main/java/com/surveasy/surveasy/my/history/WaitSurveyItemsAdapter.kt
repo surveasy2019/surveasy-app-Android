@@ -4,14 +4,13 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.list.UserSurveyItem
-import okhttp3.internal.wait
+import com.surveasy.surveasy.my.history.detail.MyViewHistoryDetailActivity
 
 class WaitSurveyItemsAdapter(val waitList : ArrayList<UserSurveyItem>) : RecyclerView.Adapter<WaitSurveyItemsAdapter.CustomViewHolder>() {
     override fun onCreateViewHolder(
@@ -31,7 +30,8 @@ class WaitSurveyItemsAdapter(val waitList : ArrayList<UserSurveyItem>) : Recycle
         holder.itemReward.text = waitList.get(position).reward.toString() + "원"
         //holder.itemBtn.visibility = View.VISIBLE
         holder.itemBtn.setOnClickListener {
-            val intent_history : Intent = Intent(holder.itemView.context,MyViewHistoryDetailActivity::class.java)
+            val intent_history : Intent = Intent(holder.itemView.context,
+                MyViewHistoryDetailActivity::class.java)
             intent_history.putExtra("filePath", waitList.get(position).filePath)
             //storage 폴더 접근 위해
             intent_history.putExtra("id", waitList.get(position).id)

@@ -1,22 +1,22 @@
-package com.surveasy.surveasy.register
+package com.surveasy.surveasy.register.agree
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import com.surveasy.surveasy.R
 
-class RegisterTerm1 : AppCompatActivity() {
+class RegisterTerm2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register_term1)
+        setContentView(R.layout.activity_register_term2)
 
-        val term1Toolbar : Toolbar? = findViewById(R.id.ToolbarRegisterAgree1)
-        setSupportActionBar(term1Toolbar)
+        val term2Toolbar : Toolbar? = findViewById(R.id.ToolbarRegisterAgree2)
+        setSupportActionBar(term2Toolbar)
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
-        term1Toolbar?.setNavigationOnClickListener {
+        term2Toolbar?.setNavigationOnClickListener {
             onBackPressed()
         }
     }

@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.my.history
+package com.surveasy.surveasy.my.history.detail
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

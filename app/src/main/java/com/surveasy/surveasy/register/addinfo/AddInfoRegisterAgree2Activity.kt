@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.register
+package com.surveasy.surveasy.register.addinfo
 
 import android.content.Intent
 import android.graphics.Color

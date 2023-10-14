@@ -1,22 +1,8 @@
 package com.surveasy.surveasy
 
-import android.content.ContentValues
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.amplitude.api.Amplitude
-import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ListResult
-import com.google.firebase.storage.StorageReference
-import com.surveasy.surveasy.home.Opinion.AnswerItem
-import com.surveasy.surveasy.home.Opinion.OpinionItem
-import com.surveasy.surveasy.home.contribution.ContributionItems
-import com.surveasy.surveasy.list.UserSurveyItem
-import com.surveasy.surveasy.login.CurrentUser
 
 class MainRepository : MainRepositoryInterface {
     companion object {

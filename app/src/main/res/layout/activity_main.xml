@@ -2,118 +2,113 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main_layout"
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:id="@+id/MainView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bottomNav_container"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:id="@+id/fl_main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <LinearLayout
-        android:id="@+id/bottomNav_container"
-        android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:orientation="horizontal"
-        android:elevation="2sp"
+        android:id="@+id/ll_nav_home"
+        android:layout_width="0dp"
+        android:layout_height="60sp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@id/MainView">
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/fl_main"
+        app:layout_constraintEnd_toStartOf="@id/ll_nav_list"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
-            android:id="@+id/Nav_Home"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center" >
-
-            <ImageView
-                android:id="@+id/Nav_Home_Img"
-                android:layout_width="17sp"
-                android:layout_height="17sp"
-                android:src="@drawable/navigation_home" />
+        <ImageView
+            android:id="@+id/iv_nav_home"
+            android:layout_width="17sp"
+            android:layout_height="17sp"
+            android:layout_marginBottom="7dp"
+            android:background="@drawable/nav_home_green"
+            android:paddingVertical="20dp" />
 
 
-            <TextView
-                android:id="@+id/Nav_Home_Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="HOME"
-                android:textSize="9sp"
-                android:textColor="#0aab00"
-                android:fontFamily="@font/main_font_m" />
+        <TextView
+            android:id="@+id/tv_nav_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_m"
+            android:text="HOME"
+            android:textColor="#0aab00"
+            android:textSize="9sp" />
 
+    </LinearLayout>
 
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_nav_list"
+        android:layout_width="0dp"
+        android:layout_height="60sp"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/fl_main"
+        app:layout_constraintEnd_toStartOf="@id/ll_nav_my"
+        app:layout_constraintStart_toEndOf="@id/ll_nav_home">
 
-        <LinearLayout
-            android:id="@+id/Nav_List"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center" >
+        <ImageView
+            android:id="@+id/iv_nav_list"
+            android:layout_width="17sp"
+            android:layout_height="17sp"
+            android:layout_marginBottom="7dp"
+            android:background="@drawable/nav_list_gray"
+            android:paddingVertical="20dp" />
 
-            <ImageView
-                android:id="@+id/Nav_List_Img"
-                android:layout_width="17sp"
-                android:layout_height="17sp"
-                android:src="@drawable/navigation_list" />
-
-            <TextView
-                android:id="@+id/Nav_List_Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LIST"
-                android:textSize="9sp"
-                android:textColor="#c9c9c9"
-                android:fontFamily="@font/main_font_m" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/Nav_My"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/Nav_My_Img"
-                android:layout_width="17sp"
-                android:layout_height="17sp"
-                android:src="@drawable/navigation_my" />
-
-            <TextView
-                android:id="@+id/Nav_My_Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MY PAGE"
-                android:textSize="9sp"
-                android:textColor="#c9c9c9"
-                android:fontFamily="@font/main_font_m" />
-
-
-        </LinearLayout>
-
-
-
-
-
-
+        <TextView
+            android:id="@+id/tv_nav_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_m"
+            android:text="LIST"
+            android:textColor="#c9c9c9"
+            android:textSize="9sp" />
 
     </LinearLayout>
 
 
+    <LinearLayout
+        android:id="@+id/ll_nav_my"
+        android:layout_width="0dp"
+        android:layout_height="60sp"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/fl_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ll_nav_list">
 
+        <ImageView
+            android:id="@+id/iv_nav_my"
+            android:layout_width="17sp"
+            android:layout_height="17sp"
+            android:layout_marginBottom="7dp"
+            android:background="@drawable/nav_my_gray"
+            android:paddingVertical="20dp" />
+
+        <TextView
+            android:id="@+id/tv_nav_my"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_m"
+            android:text="MY PAGE"
+            android:textColor="#c9c9c9"
+            android:textSize="9sp" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

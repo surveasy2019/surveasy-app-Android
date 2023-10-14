@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.my.history
+package com.surveasy.surveasy.my.history.detail
 
 import android.Manifest
 import android.app.Activity
@@ -16,20 +16,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ListResult
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
-import com.surveasy.surveasy.R
-import com.surveasy.surveasy.databinding.ActivityHomeOpinionAnswerBinding
 import com.surveasy.surveasy.databinding.ActivityMyViewUpdatePhotoBinding
-import com.surveasy.surveasy.list.SurveyProofLastDialogActivity
 import java.lang.RuntimeException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -114,7 +106,7 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
             val uploadTask = storageRef.putFile(uriPhoto!!)
             uploadTask.addOnSuccessListener {
                 updateFilePath(idChecked,imgName)
-                val intent = Intent(this,MyViewHistoryUpdateFinDialogActivity::class.java)
+                val intent = Intent(this, MyViewHistoryUpdateFinDialogActivity::class.java)
                 startActivity(intent)
                 finish()
                 deletePhoto(filePath)

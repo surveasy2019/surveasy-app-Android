@@ -1,4 +1,4 @@
-package com.surveasy.surveasy
+package com.surveasy.surveasy.splash
 
 import android.content.ContentValues
 import android.content.ContentValues.TAG
@@ -20,6 +20,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.surveasy.surveasy.MainActivity
+import com.surveasy.surveasy.R
 
 class FCM_SplashActivity : AppCompatActivity() {
     val db = Firebase.firestore
