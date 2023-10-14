@@ -19,6 +19,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.surveasy.surveasy.userRoom.MIGRATION_1_2
 import com.surveasy.surveasy.userRoom.UserDatabase
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 import kotlinx.coroutines.CoroutineScope
@@ -57,7 +58,7 @@ class FirstIntroduceScreenViewPagerAdapter(context: Context, view_parent: View, 
         userDB = Room.databaseBuilder(
             context,
             UserDatabase::class.java, "UserDatabase"
-        ).allowMainThreadQueries().build()
+        ).addMigrations(MIGRATION_1_2).allowMainThreadQueries().build()
 
         /*
         CoroutineScope(Dispatchers.Main).launch {

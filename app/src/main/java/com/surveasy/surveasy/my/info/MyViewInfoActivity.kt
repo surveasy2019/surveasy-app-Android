@@ -7,11 +7,14 @@ import android.util.Log
 import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivityMyviewinfoBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.surveasy.surveasy.userRoom.MIGRATION_1_2
+import com.surveasy.surveasy.userRoom.UserDatabase
 
 class MyViewInfoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMyviewinfoBinding

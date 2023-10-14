@@ -3,6 +3,8 @@ package com.surveasy.surveasy
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.ColorFilter
+import android.graphics.PorterDuff
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -51,8 +53,10 @@ import com.kakao.sdk.common.util.Utility
 import com.surveasy.surveasy.home.Opinion.AnswerItem
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerViewModel
 import com.surveasy.surveasy.list.firstsurvey.PushDialogActivity
+import com.surveasy.surveasy.userRoom.MIGRATION_1_2
 import com.surveasy.surveasy.userRoom.User
 import com.surveasy.surveasy.userRoom.UserDatabase
+import com.surveasy.surveasy.util.NavType
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
@@ -99,7 +103,7 @@ class MainActivity : AppCompatActivity() {
         userDB = Room.databaseBuilder(
             this,
             UserDatabase::class.java, "UserDatabase"
-        ).allowMainThreadQueries().build()
+        ).addMigrations(MIGRATION_1_2).allowMainThreadQueries().build()
 
         //Log.d(TAG, "onCreate: ${userDB.userDao().getAutoLogin()}")
 
@@ -142,11 +146,11 @@ class MainActivity : AppCompatActivity() {
 
 
         if(defaultFrag_list) {
-            navColor_On(binding.NavListImg, binding.NavListText)
-            navColor_Off(binding.NavHomeImg, binding.NavHomeText, binding.NavMyImg, binding.NavMyText)
+            navColorOn(NavType.LIST)
+            navColorOff(NavType.HOME, NavType.MY)
             setContentView(binding.root)
 
-            transaction.add(R.id.MainView, SurveyListFragment()).commit()
+            transaction.add(R.id.fl_main, SurveyListFragment()).commit()
 
             if(defaultFrag_list_push) {
                 val intent = Intent(this, PushDialogActivity::class.java)
@@ -158,57 +162,50 @@ class MainActivity : AppCompatActivity() {
             defaultFrag_list = !defaultFrag_list
 
         }else if(defaultFrag_my){
-            navColor_On(binding.NavMyImg, binding.NavMyText)
-            navColor_Off(binding.NavHomeImg, binding.NavHomeText, binding.NavListImg, binding.NavListText)
+            navColorOn(NavType.MY)
+            navColorOff(NavType.HOME, NavType.LIST)
             setContentView(binding.root)
 
-            transaction.add(R.id.MainView, MyViewFragment()).commit()
+            transaction.add(R.id.fl_main, MyViewFragment()).commit()
         }
         else {
             setContentView(binding.root)
-            transaction.add(R.id.MainView, HomeFragment()).commit()
+            transaction.add(R.id.fl_main, HomeFragment()).commit()
         }
 
 
 
         // Navigation Bars
-        binding.NavHome.setOnClickListener {
-            navColor_On(binding.NavHomeImg, binding.NavHomeText)
-            navColor_Off(binding.NavListImg, binding.NavListText, binding.NavMyImg, binding.NavMyText)
+        binding.llNavHome.setOnClickListener {
+            navColorOn(NavType.HOME)
+            navColorOff(NavType.LIST, NavType.MY)
 
             supportFragmentManager.beginTransaction()
-                .replace(R.id.MainView, HomeFragment())
+                .replace(R.id.fl_main, HomeFragment())
                 .commit()
         }
 
-        binding.NavList.setOnClickListener {
-            navColor_On(binding.NavListImg, binding.NavListText)
-            navColor_Off(binding.NavHomeImg, binding.NavHomeText, binding.NavMyImg, binding.NavMyText)
+        binding.llNavList.setOnClickListener {
+            navColorOn(NavType.LIST)
+            navColorOff(NavType.HOME, NavType.MY)
 
             if (userModel.currentUser.didFirstSurvey == false) {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.MainView, FirstSurveyListFragment())
+                    .replace(R.id.fl_main, FirstSurveyListFragment())
                     .commit()
             } else {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.MainView, SurveyListFragment())
+                    .replace(R.id.fl_main, SurveyListFragment())
                     .commit()
             }
         }
 
-        binding.NavMy.setOnClickListener {
-            navColor_On(binding.NavMyImg, binding.NavMyText)
-            navColor_Off(binding.NavHomeImg, binding.NavHomeText, binding.NavListImg, binding.NavListText)
+        binding.llNavMy.setOnClickListener {
+            navColorOn(NavType.MY)
+            navColorOff(NavType.HOME, NavType.LIST)
 
             supportFragmentManager.beginTransaction()
-                .replace(R.id.MainView, MyViewFragment())
-                .commit()
-        }
-
-
-        fun clickList() {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.MainView, SurveyListFragment())
+                .replace(R.id.fl_main, MyViewFragment())
                 .commit()
         }
 
@@ -218,7 +215,7 @@ class MainActivity : AppCompatActivity() {
 
     fun clickList() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.MainView, SurveyListFragment())
+            .replace(R.id.fl_main, SurveyListFragment())
             .commit()
     }
 
@@ -268,7 +265,7 @@ class MainActivity : AppCompatActivity() {
                         snapshot.result["gender"].toString(),
                         snapshot.result["fcmToken"].toString(),
                         snapshot.result["autoLogin"] as Boolean,
-
+                        true
                     )
                     userDB.userDao().insert(user)
                 }
@@ -541,31 +538,78 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun navColor_On(img: ImageView, text: TextView) {
-        img.setColorFilter(Color.parseColor("#0aab00"))
-        text.setTextColor(Color.parseColor("#0aab00"))
+    private fun switchHomeNav(on : Boolean) {
+        with(binding) {
+            if(on) {
+                ivNavHome.setBackgroundResource(R.drawable.nav_home_green)
+                tvNavHome.setTextColor(Color.parseColor("#0aab00"))
+            } else {
+                ivNavHome.setBackgroundResource(R.drawable.nav_home_gray)
+                tvNavHome.setTextColor(Color.parseColor("#c9c9c9"))
+            }
+        }
     }
 
-    private fun navColor_Off(img1: ImageView, text1: TextView, img2: ImageView, text2: TextView) {
-        img1.setColorFilter(Color.parseColor("#c9c9c9"))
-        text1.setTextColor(Color.parseColor("#c9c9c9"))
-
-        img2.setColorFilter(Color.parseColor("#c9c9c9"))
-        text2.setTextColor(Color.parseColor("#c9c9c9"))
+    private fun switchListNav(on : Boolean) {
+        with(binding) {
+            if(on) {
+                ivNavList.setBackgroundResource(R.drawable.nav_list_green)
+                tvNavList.setTextColor(Color.parseColor("#0aab00"))
+            } else {
+                ivNavList.setBackgroundResource(R.drawable.nav_list_gray)
+                tvNavList.setTextColor(Color.parseColor("#c9c9c9"))
+            }
+        }
     }
 
-    fun navColor_in_Home() {
-        binding.NavHomeImg.setColorFilter(Color.parseColor("#c9c9c9"))
-        binding.NavHomeText.setTextColor(Color.parseColor("#c9c9c9"))
-        binding.NavListImg.setColorFilter(Color.parseColor("#0aab00"))
-        binding.NavListText.setTextColor(Color.parseColor("#0aab00"))
-        binding.NavMyImg.setColorFilter(Color.parseColor("#c9c9c9"))
-        binding.NavMyText.setTextColor(Color.parseColor("#c9c9c9"))
+    private fun switchMyNav(on : Boolean) {
+        with(binding) {
+            if(on) {
+                ivNavMy.setBackgroundResource(R.drawable.nav_my_green)
+                tvNavMy.setTextColor(Color.parseColor("#0aab00"))
+            } else {
+                ivNavMy.setBackgroundResource(R.drawable.nav_my_gray)
+                tvNavMy.setTextColor(Color.parseColor("#c9c9c9"))
+            }
+        }
+    }
+
+    private fun navColorOn(nav : NavType) {
+        when(nav) {
+            NavType.HOME -> switchHomeNav(true)
+            NavType.LIST -> switchListNav(true)
+            NavType.MY -> switchMyNav(true)
+        }
+    }
+
+    private fun navColorOff(nav1 : NavType, nav2 : NavType) {
+        when(nav1) {
+            NavType.HOME -> switchHomeNav(false)
+            NavType.LIST -> switchListNav(false)
+            NavType.MY -> switchMyNav(false)
+        }
+
+        when(nav2) {
+            NavType.HOME -> switchHomeNav(false)
+            NavType.LIST -> switchListNav(false)
+            NavType.MY -> switchMyNav(false)
+        }
+    }
+
+    fun navColor_In_Home() {
+        with(binding){
+            ivNavHome.setColorFilter(Color.parseColor("#c9c9c9"))
+            tvNavHome.setTextColor(Color.parseColor("#c9c9c9"))
+            ivNavList.setColorFilter(Color.parseColor("#0aab00"))
+            tvNavList.setTextColor(Color.parseColor("#0aab00"))
+            ivNavMy.setColorFilter(Color.parseColor("#c9c9c9"))
+            tvNavMy.setTextColor(Color.parseColor("#c9c9c9"))
+        }
     }
 
     fun moreBtn() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.MainView, FirstSurveyListFragment())
+            .replace(R.id.fl_main, FirstSurveyListFragment())
             .commit()
     }
 
