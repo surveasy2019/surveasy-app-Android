@@ -144,12 +144,12 @@ class HomeFragment : Fragment() {
 
         binding.homeListBtn.setOnClickListener {
             if (userModel.currentUser.didFirstSurvey == false) {
-                (activity as MainActivity).navColor_in_Home()
+                (activity as MainActivity).navColor_In_Home()
                 (activity as MainActivity).moreBtn()
 
             } else {
                 (activity as MainActivity).clickList()
-                (activity as MainActivity).navColor_in_Home()
+                (activity as MainActivity).navColor_In_Home()
             }
         }
 
@@ -219,7 +219,7 @@ class HomeFragment : Fragment() {
                 }
 
                 binding.HomeListItemContainerFirst.setOnClickListener{
-                    (activity as MainActivity).navColor_in_Home()
+                    (activity as MainActivity).navColor_In_Home()
                     (activity as MainActivity).moreBtn()
                 }
 

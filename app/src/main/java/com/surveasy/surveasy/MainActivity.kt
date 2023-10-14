@@ -56,6 +56,7 @@ import com.surveasy.surveasy.list.firstsurvey.PushDialogActivity
 import com.surveasy.surveasy.userRoom.MIGRATION_1_2
 import com.surveasy.surveasy.userRoom.User
 import com.surveasy.surveasy.userRoom.UserDatabase
+import com.surveasy.surveasy.util.NavType
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
@@ -145,8 +146,8 @@ class MainActivity : AppCompatActivity() {
 
 
         if(defaultFrag_list) {
-            navColor_On(binding.ivNavList, binding.tvNavList)
-            navColor_Off(binding.ivNavHome, binding.tvNavHome, binding.ivNavMy, binding.tvNavMy)
+            navColorOn(NavType.LIST)
+            navColorOff(NavType.HOME, NavType.MY)
             setContentView(binding.root)
 
             transaction.add(R.id.fl_main, SurveyListFragment()).commit()
@@ -161,8 +162,8 @@ class MainActivity : AppCompatActivity() {
             defaultFrag_list = !defaultFrag_list
 
         }else if(defaultFrag_my){
-            navColor_On(binding.ivNavMy, binding.tvNavMy)
-            navColor_Off(binding.ivNavHome, binding.tvNavHome, binding.ivNavList, binding.tvNavList)
+            navColorOn(NavType.MY)
+            navColorOff(NavType.HOME, NavType.LIST)
             setContentView(binding.root)
 
             transaction.add(R.id.fl_main, MyViewFragment()).commit()
@@ -176,8 +177,8 @@ class MainActivity : AppCompatActivity() {
 
         // Navigation Bars
         binding.llNavHome.setOnClickListener {
-            navColor_On(binding.ivNavHome, binding.tvNavHome)
-            navColor_Off(binding.ivNavList, binding.tvNavList, binding.ivNavMy, binding.tvNavMy)
+            navColorOn(NavType.HOME)
+            navColorOff(NavType.LIST, NavType.MY)
 
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fl_main, HomeFragment())
@@ -185,8 +186,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.llNavList.setOnClickListener {
-            navColor_On(binding.ivNavList, binding.tvNavList)
-            navColor_Off(binding.ivNavHome, binding.tvNavHome, binding.ivNavMy, binding.tvNavMy)
+            navColorOn(NavType.LIST)
+            navColorOff(NavType.HOME, NavType.MY)
 
             if (userModel.currentUser.didFirstSurvey == false) {
                 supportFragmentManager.beginTransaction()
@@ -200,8 +201,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.llNavMy.setOnClickListener {
-            navColor_On(binding.ivNavMy, binding.tvNavMy)
-            navColor_Off(binding.ivNavHome, binding.tvNavHome, binding.ivNavList, binding.tvNavList)
+            navColorOn(NavType.MY)
+            navColorOff(NavType.HOME, NavType.LIST)
 
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fl_main, MyViewFragment())
@@ -537,20 +538,65 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun navColor_On(img: ImageView, text: TextView) {
-        img.setColorFilter(Color.parseColor("#0aab00"))
-        text.setTextColor(Color.parseColor("#0aab00"))
+    private fun switchHomeNav(on : Boolean) {
+        with(binding) {
+            if(on) {
+                ivNavHome.setBackgroundResource(R.drawable.nav_home_green)
+                tvNavHome.setTextColor(Color.parseColor("#0aab00"))
+            } else {
+                ivNavHome.setBackgroundResource(R.drawable.nav_home_gray)
+                tvNavHome.setTextColor(Color.parseColor("#c9c9c9"))
+            }
+        }
     }
 
-    private fun navColor_Off(img1: ImageView, text1: TextView, img2: ImageView, text2: TextView) {
-        img1.setColorFilter(Color.parseColor("#c9c9c9"))
-        text1.setTextColor(Color.parseColor("#c9c9c9"))
-
-        img2.setColorFilter(Color.parseColor("#c9c9c9"))
-        text2.setTextColor(Color.parseColor("#c9c9c9"))
+    private fun switchListNav(on : Boolean) {
+        with(binding) {
+            if(on) {
+                ivNavList.setBackgroundResource(R.drawable.nav_list_green)
+                tvNavList.setTextColor(Color.parseColor("#0aab00"))
+            } else {
+                ivNavList.setBackgroundResource(R.drawable.nav_list_gray)
+                tvNavList.setTextColor(Color.parseColor("#c9c9c9"))
+            }
+        }
     }
 
-    fun navColor_in_Home() {
+    private fun switchMyNav(on : Boolean) {
+        with(binding) {
+            if(on) {
+                ivNavMy.setBackgroundResource(R.drawable.nav_my_green)
+                tvNavMy.setTextColor(Color.parseColor("#0aab00"))
+            } else {
+                ivNavMy.setBackgroundResource(R.drawable.nav_my_gray)
+                tvNavMy.setTextColor(Color.parseColor("#c9c9c9"))
+            }
+        }
+    }
+
+    private fun navColorOn(nav : NavType) {
+        when(nav) {
+            NavType.HOME -> switchHomeNav(true)
+            NavType.LIST -> switchListNav(true)
+            NavType.MY -> switchMyNav(true)
+        }
+    }
+
+    private fun navColorOff(nav1 : NavType, nav2 : NavType) {
+        when(nav1) {
+            NavType.HOME -> switchHomeNav(false)
+            NavType.LIST -> switchListNav(false)
+            NavType.MY -> switchMyNav(false)
+        }
+
+        when(nav2) {
+            NavType.HOME -> switchHomeNav(false)
+            NavType.LIST -> switchListNav(false)
+            NavType.MY -> switchMyNav(false)
+        }
+    }
+
+    fun navColor_In_Home() {
         with(binding){
             ivNavHome.setColorFilter(Color.parseColor("#c9c9c9"))
             tvNavHome.setTextColor(Color.parseColor("#c9c9c9"))
