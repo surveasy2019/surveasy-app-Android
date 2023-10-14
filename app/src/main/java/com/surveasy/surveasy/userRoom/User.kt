@@ -10,6 +10,7 @@ data class User(
     val gender: String,
     val fcmToken: String,
     val autoLogin: Boolean,
+    val testRoom : Boolean
     //val firstScreen : Boolean?
 ) {
 }

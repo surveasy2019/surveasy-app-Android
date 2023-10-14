@@ -51,6 +51,7 @@ import com.kakao.sdk.common.util.Utility
 import com.surveasy.surveasy.home.Opinion.AnswerItem
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerViewModel
 import com.surveasy.surveasy.list.firstsurvey.PushDialogActivity
+import com.surveasy.surveasy.userRoom.MIGRATION_1_2
 import com.surveasy.surveasy.userRoom.User
 import com.surveasy.surveasy.userRoom.UserDatabase
 import kotlinx.coroutines.launch
@@ -99,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         userDB = Room.databaseBuilder(
             this,
             UserDatabase::class.java, "UserDatabase"
-        ).allowMainThreadQueries().build()
+        ).addMigrations(MIGRATION_1_2).allowMainThreadQueries().build()
 
         //Log.d(TAG, "onCreate: ${userDB.userDao().getAutoLogin()}")
 
@@ -268,7 +269,7 @@ class MainActivity : AppCompatActivity() {
                         snapshot.result["gender"].toString(),
                         snapshot.result["fcmToken"].toString(),
                         snapshot.result["autoLogin"] as Boolean,
-
+                        true
                     )
                     userDB.userDao().insert(user)
                 }

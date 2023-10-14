@@ -45,7 +45,6 @@ import org.json.JSONObject
 class SplashActivity : AppCompatActivity() {
     val db = Firebase.firestore
     var token = ""
-    private lateinit var userDB : UserDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,12 +75,6 @@ class SplashActivity : AppCompatActivity() {
         }
 
 
-//        Handler().postDelayed({
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-//
-//            finish()
-//        },3000)
-
 
         supportActionBar?.hide()
 
@@ -98,22 +91,6 @@ class SplashActivity : AppCompatActivity() {
                 token = task.result
 
             })
-        /*
-        userDB = Room.databaseBuilder(
-            this,
-            UserDatabase::class.java, "UserDatabase"
-        ).allowMainThreadQueries().build()
-
-        CoroutineScope(Dispatchers.Main).launch {
-            //val bool : Boolean? = userDB.userDao().getFS()
-            Log.d(TAG, "onCreate: ####${userDB.userDao().getFS()}")
-            if(userDB.userDao().getFS()==null || userDB.userDao().getFS()==false){
-                startActivity(Intent(this@SplashActivity,FirstIntroduceScreenActivity::class.java))
-                finish()
-            }else{
-                nextActivity()
-            }
-        } */
 
 
         db.collection("AndroidFirstScreen").get()
