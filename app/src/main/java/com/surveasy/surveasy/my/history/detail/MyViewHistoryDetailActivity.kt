@@ -40,13 +40,6 @@ class MyViewHistoryDetailActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.historyDetailFragment, MyViewHistoryDetailFragment()).commit()
 
-        //activity 들어가자마자 permission 확인
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-            == PackageManager.PERMISSION_GRANTED){
-            //Toast.makeText(this,"Permission Granted",Toast.LENGTH_LONG).show()
-        }else{
-            ActivityCompat.requestPermissions(this, REQUIRED_PERMISSION, PERMISSION_CODE)
-        }
 
         val id : Int = intent.getIntExtra("id",0)
         val lastIdCheck : Int = intent.getIntExtra("idChecked",0)

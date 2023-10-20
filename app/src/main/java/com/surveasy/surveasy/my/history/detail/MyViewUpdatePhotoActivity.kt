@@ -47,15 +47,10 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
         //val filePath = intent.getStringExtra("filePath").toString()
         val id = intent.getIntExtra("id",0)
 
-        if(checkPermission()){
-
-            // 앨범으로
-            var photoPick = Intent(Intent.ACTION_PICK)
-            photoPick.type = "image/*"
-            startActivityForResult(photoPick, pickImageFromAlbum)
-        }else{
-            showDialogToGetPermission()
-        }
+        // 앨범으로
+        var photoPick = Intent(Intent.ACTION_PICK)
+        photoPick.type = "image/*"
+        startActivityForResult(photoPick, pickImageFromAlbum)
 
 
         binding.historyUpdateSendBtn.setOnClickListener {
@@ -140,60 +135,6 @@ class MyViewUpdatePhotoActivity : AppCompatActivity() {
             .addOnSuccessListener { result ->
                 Log.d(ContentValues.TAG, "##### filePath update 성공")
             }
-    }
-
-    //permission 동의 여부에 따라
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        when(requestCode) {
-            PERMISSION_CODE -> {
-                if(grantResults.isEmpty()){
-                    throw RuntimeException("Empty permission result")
-                }
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    //Toast.makeText(this,"Permission Granted",Toast.LENGTH_LONG).show()
-                } else {
-                    if(ActivityCompat.shouldShowRequestPermissionRationale(
-                            this, Manifest.permission.READ_EXTERNAL_STORAGE)){
-                        Log.d(ContentValues.TAG,"denied")
-                        showDialogToGetPermission()
-
-                    }else{
-                        Log.d(ContentValues.TAG,"no more")
-                        showDialogToGetPermission()
-                    }
-                }
-            }
-        }
-    }
-
-    //한번 거부한 적 있으면 그 다음부터는 설정으로 이동하는 intent 나타내기
-    private fun showDialogToGetPermission(){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("권한이 필요합니다").setMessage("설문 완료 인증 캡쳐본을 전송하기 위해서 접근 권한이 필요합니다.")
-        builder.setPositiveButton("설정으로 이동") { dialogInterface, i ->
-            val intent = Intent(
-                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                Uri.fromParts("package",packageName,null))
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-        }
-        builder.setNegativeButton("나중에 하기"){ dialogInterface, i ->
-            //Toast.makeText(this,"거부되었습니다",Toast.LENGTH_LONG).show()
-        }
-        val dialog = builder.create()
-        dialog.show()
-    }
-
-    //upload 버튼 누를 때 permission 상태 확인
-    private fun checkPermission() : Boolean {
-        return (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                == PackageManager.PERMISSION_GRANTED)
     }
 
 
