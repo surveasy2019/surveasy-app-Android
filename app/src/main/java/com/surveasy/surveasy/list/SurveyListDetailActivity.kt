@@ -186,36 +186,6 @@ class SurveyListDetailActivity : AppCompatActivity() {
         }
     }
 
-    //permission 동의 여부에 따라
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        when(requestCode) {
-            PERMISSION_CODE -> {
-                if(grantResults.isEmpty()){
-                    throw RuntimeException("Empty permission result")
-                }
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    //Toast.makeText(this,"Permission Granted",Toast.LENGTH_LONG).show()
-                } else {
-                    if(ActivityCompat.shouldShowRequestPermissionRationale(
-                            this,Manifest.permission.READ_EXTERNAL_STORAGE)){
-                        //Log.d(TAG,"denied")
-                        showDialogToGetPermission()
-
-                    }else{
-                        //Log.d(TAG,"no more")
-                        showDialogToGetPermission()
-                    }
-                }
-            }
-        }
-    }
-
     //한번 거부한 적 있으면 그 다음부터는 설정으로 이동하는 intent 나타내기
     private fun showDialogToGetPermission(){
         val builder = AlertDialog.Builder(this)
@@ -225,69 +195,39 @@ class SurveyListDetailActivity : AppCompatActivity() {
             Uri.fromParts("package",packageName,null))
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
+            dialogInterface.cancel()
         }
         builder.setNegativeButton("나중에 하기"){ dialogInterface, i ->
-            //Toast.makeText(this,"거부되었습니다",Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"권한을 허용하지 않을 경우, 설문 완료 캡쳐본 전송이 불가합니다.",Toast.LENGTH_LONG).show()
+            dialogInterface.cancel()
         }
         val dialog = builder.create()
         dialog.show()
     }
 
+
     //upload 버튼 누를 때 permission 상태 확인
     private fun checkPermission() : Boolean {
-        return (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                == PackageManager.PERMISSION_GRANTED)
+        val permissions = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Manifest.permission.READ_MEDIA_IMAGES
+        } else {
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        }
+
+        when (PackageManager.PERMISSION_GRANTED) {
+            // 권한이 이미 승인되어 있는지를 확인
+            ContextCompat.checkSelfPermission(
+                this,
+                permissions
+            ) -> {
+                return true
+            }
+            else -> {
+                // 권한이 승인되어있지 않은 상태. 권한 설명 없이 바로 권한 승인 여부에 대한 대화상자 표시.
+                return false
+            }
+        }
     }
-
-    // capture view
-//    private fun captureActivity(){
-//        ActivityCompat.requestPermissions(this,
-//            arrayOf<String>(Manifest.permission.WRITE_EXTERNAL_STORAGE),1)
-//        val view : View = binding.SurveyListDetailMainView
-//        val result : Bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
-//        val canvas : Canvas = Canvas(result)
-//        view.draw(canvas)
-//        var fos : OutputStream? = null
-//
-//        //안드로이드 10 이상
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
-//            this.contentResolver?.also { resolver ->
-//                val contentValues = ContentValues()
-//                contentValues.apply {
-//                    put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
-//                    put(MediaStore.MediaColumns.DISPLAY_NAME,"${System.currentTimeMillis()}.png")
-//                    put(MediaStore.MediaColumns.MIME_TYPE,"image/jpg")
-//                }
-//
-//                val imageUri: Uri? = resolver.insert(MediaStore.Images.Media.
-//                EXTERNAL_CONTENT_URI, contentValues)
-//                Toast.makeText(this,"Android ver10 이상",Toast.LENGTH_SHORT).show()
-//                fos = imageUri?.let { resolver.openOutputStream(it) }
-//            }
-//            //안드로이드 10 이하
-//        }else{
-//            val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-//            val image = File(imagesDir, "${System.currentTimeMillis()}.png")
-//            Toast.makeText(this,"Android ver10 이하",Toast.LENGTH_SHORT).show()
-//            fos = FileOutputStream(image)
-//        }
-//        fos?.use {
-//            result.compress(Bitmap.CompressFormat.PNG,100,it)
-//
-//        }
-//
-//
-//
-//
-//    }
-
-
-
-
-
-
-
-
 
     }
 
