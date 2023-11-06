@@ -11,9 +11,10 @@ import com.surveasy.surveasy.presentation.login.CurrentUser
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.math.log
 
-class MainViewModel(private val repository: MainRepository) : ViewModel() {
+class MainViewModel @Inject constructor(private val repository: MainRepository) : ViewModel() {
     private val _repositoriesFetchAuth = MutableLiveData<DidAuthModel>()
     val repositories1 : MutableLiveData<DidAuthModel>
         get() = _repositoriesFetchAuth
