@@ -15,7 +15,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.room.Room
 import com.amplitude.api.Amplitude
-import com.surveasy.surveasy.login.CurrentUserViewModel
+import com.surveasy.surveasy.presentation.login.CurrentUserViewModel
 import com.surveasy.surveasy.my.history.MyViewHistoryActivity
 import com.surveasy.surveasy.my.info.InfoData
 import com.surveasy.surveasy.my.info.InfoDataViewModel

@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.surveasy.surveasy.R
-import com.surveasy.surveasy.login.CurrentUserViewModel
+import com.surveasy.surveasy.presentation.login.CurrentUserViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.surveasy.surveasy.MainRepository

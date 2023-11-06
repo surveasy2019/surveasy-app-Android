@@ -27,8 +27,8 @@ import com.surveasy.surveasy.home.contribution.HomeContributionViewModel
 import com.surveasy.surveasy.list.*
 import com.surveasy.surveasy.list.firstsurvey.FirstSurveyListFragment
 import com.surveasy.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
-import com.surveasy.surveasy.login.CurrentUser
-import com.surveasy.surveasy.login.CurrentUserViewModel
+import com.surveasy.surveasy.presentation.login.CurrentUser
+import com.surveasy.surveasy.presentation.login.CurrentUserViewModel
 import com.surveasy.surveasy.my.MyViewFragment
 import com.google.android.gms.tasks.Task
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -228,7 +228,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun fetchCurrentUser(uid: String) :CurrentUser {
+    private fun fetchCurrentUser(uid: String) : CurrentUser {
         val docRef = db.collection("panelData").document(uid.toString())
         val userSurveyList = ArrayList<UserSurveyItem>()
 

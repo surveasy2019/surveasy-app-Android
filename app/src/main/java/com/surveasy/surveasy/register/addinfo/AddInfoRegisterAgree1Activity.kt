@@ -12,7 +12,7 @@ import android.widget.Toast
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.surveasy.surveasy.R
-import com.surveasy.surveasy.login.CurrentUser
+import com.surveasy.surveasy.presentation.login.CurrentUser
 import com.surveasy.surveasy.register.agree.RegisterTerm1
 import com.surveasy.surveasy.register.agree.RegisterTerm2
 

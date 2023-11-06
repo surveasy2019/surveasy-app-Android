@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.surveasy.surveasy.databinding.ActivityMyviewsettingwithdrawBinding
-import com.surveasy.surveasy.login.LoginActivity
+import com.surveasy.surveasy.presentation.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore

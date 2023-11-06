@@ -2,7 +2,7 @@ package com.surveasy.surveasy
 
 
 import androidx.lifecycle.MutableLiveData
-import com.surveasy.surveasy.login.CurrentUser
+import com.surveasy.surveasy.presentation.login.CurrentUser
 
 interface MainRepositoryInterface {
 

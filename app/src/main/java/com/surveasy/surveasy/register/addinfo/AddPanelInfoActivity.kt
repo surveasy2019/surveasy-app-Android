@@ -14,8 +14,8 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivityAddPanelInfoBinding
 import com.surveasy.surveasy.list.UserSurveyItem
-import com.surveasy.surveasy.login.CurrentUser
-import com.surveasy.surveasy.login.LoginActivity
+import com.surveasy.surveasy.presentation.login.CurrentUser
+import com.surveasy.surveasy.presentation.login.LoginActivity
 import java.util.*
 
 class AddPanelInfoActivity : AppCompatActivity() {
