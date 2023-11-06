@@ -18,7 +18,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.amplitude.api.Amplitude
 
 import com.surveasy.surveasy.list.*
-import com.surveasy.surveasy.login.*
+import com.surveasy.surveasy.presentation.login.*
 import com.surveasy.surveasy.home.Opinion.HomeOpinionDetailActivity
 import com.surveasy.surveasy.home.Opinion.HomeOpinionViewModel
 import com.surveasy.surveasy.home.banner.BannerViewModel
@@ -42,6 +42,7 @@ import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerActivity
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerViewModel
 import com.surveasy.surveasy.home.list.HomeListItemsAdapter
 import com.surveasy.surveasy.my.history.MyViewHistoryActivity
+import com.surveasy.surveasy.presentation.login.CurrentUserViewModel
 import kotlinx.coroutines.*
 import java.lang.Runnable
 import java.text.SimpleDateFormat

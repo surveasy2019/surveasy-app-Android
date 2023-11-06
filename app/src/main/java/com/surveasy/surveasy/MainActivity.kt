@@ -27,8 +27,8 @@ import com.surveasy.surveasy.home.contribution.HomeContributionViewModel
 import com.surveasy.surveasy.list.*
 import com.surveasy.surveasy.list.firstsurvey.FirstSurveyListFragment
 import com.surveasy.surveasy.list.firstsurvey.SurveyListFirstSurveyActivity
-import com.surveasy.surveasy.login.CurrentUser
-import com.surveasy.surveasy.login.CurrentUserViewModel
+import com.surveasy.surveasy.presentation.login.CurrentUser
+import com.surveasy.surveasy.presentation.login.CurrentUserViewModel
 import com.surveasy.surveasy.my.MyViewFragment
 import com.google.android.gms.tasks.Task
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -57,6 +57,7 @@ import com.surveasy.surveasy.userRoom.MIGRATION_1_2
 import com.surveasy.surveasy.userRoom.User
 import com.surveasy.surveasy.userRoom.UserDatabase
 import com.surveasy.surveasy.util.NavType
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
@@ -66,9 +67,10 @@ import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    val vm : TestViewModel by viewModels()
     val db = Firebase.firestore
     private var backKeyPressedTime : Long = 0
     val surveyList = arrayListOf<SurveyItems>()
@@ -94,6 +96,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        vm.test("4epJfl21XyciHHDF0i1Ev148JIt2")
 
 //        var keyHash = Utility.getKeyHash(this)
 //        Log.d(TAG, "onCreate: $keyHash")
@@ -228,7 +232,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun fetchCurrentUser(uid: String) :CurrentUser {
+    private fun fetchCurrentUser(uid: String) : CurrentUser {
         val docRef = db.collection("panelData").document(uid.toString())
         val userSurveyList = ArrayList<UserSurveyItem>()
 

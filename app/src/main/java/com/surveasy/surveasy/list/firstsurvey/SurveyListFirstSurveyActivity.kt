@@ -7,8 +7,8 @@ import android.util.Log
 import androidx.activity.viewModels
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivitySurveylistfirstsurveyBinding
-import com.surveasy.surveasy.login.CurrentUser
-import com.surveasy.surveasy.login.CurrentUserViewModel
+import com.surveasy.surveasy.presentation.login.CurrentUser
+import com.surveasy.surveasy.presentation.login.CurrentUserViewModel
 
 class SurveyListFirstSurveyActivity : AppCompatActivity() {
 

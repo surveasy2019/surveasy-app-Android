@@ -13,7 +13,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.surveasy.surveasy.R
-import com.surveasy.surveasy.login.LoginActivity
+import com.surveasy.surveasy.presentation.login.LoginActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore

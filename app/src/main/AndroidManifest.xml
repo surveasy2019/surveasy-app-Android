@@ -95,7 +95,7 @@
             android:name=".firstIntroduceScreen.FirstIntroduceScreenActivity"
             android:exported="true" />
         <activity
-            android:name=".login.FindPwActivity"
+            android:name=".presentation.login.FindPwActivity"
             android:exported="true" />
         <activity
             android:name=".my.setting.MyViewSettingVersionActivity"
@@ -151,7 +151,7 @@
             android:name=".list.SurveyProofDialogActivity"
             android:exported="true" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".presentation.login.LoginActivity"
             android:exported="true" />
         <activity
             android:name=".register.RegisterActivity"

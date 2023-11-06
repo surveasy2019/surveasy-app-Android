@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.surveasy.surveasy.MainActivity
 import com.surveasy.surveasy.R
-import com.surveasy.surveasy.login.CurrentUserViewModel
+import com.surveasy.surveasy.presentation.login.CurrentUserViewModel
 
 class FirstSurveyListFragment : Fragment() {
     override fun onCreateView(

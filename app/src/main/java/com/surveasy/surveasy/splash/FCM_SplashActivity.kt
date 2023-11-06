@@ -14,7 +14,7 @@ import android.util.Log
 import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.firstIntroduceScreen.FirstIntroduceScreenActivity
 import com.surveasy.surveasy.home.NetworkAlertActivity
-import com.surveasy.surveasy.login.LoginActivity
+import com.surveasy.surveasy.presentation.login.LoginActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore

@@ -10,7 +10,7 @@ import android.text.style.ForegroundColorSpan
 import android.widget.Button
 import android.widget.TextView
 import com.surveasy.surveasy.R
-import com.surveasy.surveasy.login.CurrentUser
+import com.surveasy.surveasy.presentation.login.CurrentUser
 
 class AddInfoRegisterAgree2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

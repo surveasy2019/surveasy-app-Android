@@ -7,7 +7,7 @@ import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.surveasy.surveasy.databinding.ActivityMyviewsettingBinding
-import com.surveasy.surveasy.login.LoginActivity
+import com.surveasy.surveasy.presentation.login.LoginActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
