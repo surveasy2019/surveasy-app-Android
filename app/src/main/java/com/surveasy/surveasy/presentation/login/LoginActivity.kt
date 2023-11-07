@@ -12,13 +12,11 @@ import com.amplitude.api.Amplitude
 import com.surveasy.surveasy.MainActivity
 import com.surveasy.surveasy.databinding.ActivityLoginBinding
 import com.surveasy.surveasy.list.UserSurveyItem
-import com.surveasy.surveasy.register.RegisterActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
-import com.surveasy.surveasy.register.addinfo.AddInfoRegisterAgree1Activity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -51,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
 
         // Go to RegisterActivity
         binding.btnRegister.setOnClickListener {
-            intent = Intent(this, RegisterActivity::class.java)
+            intent = Intent(this, com.surveasy.surveasy.presentation.register.RegisterActivity::class.java)
             startActivity(intent)
 
             val client = Amplitude.getInstance()
@@ -153,10 +151,10 @@ class LoginActivity : AppCompatActivity() {
                                             FirebaseMessaging.getInstance().subscribeToTopic("all")
                                             //Log.d(TAG, "GGGGGGGG fetch fun 내부 userModel: ${currentUser.name}, ${name}")
 
-                                            val intent_main : Intent = Intent(this, AddInfoRegisterAgree1Activity::class.java)
-                                            intent_main.putExtra("currentUser_login", currentUser)
-                                            startActivity(intent_main)
-                                            finishAffinity()
+//                                            val intent_main : Intent = Intent(this, AddInfoRegisterAgree1Activity::class.java)
+//                                            intent_main.putExtra("currentUser_login", currentUser)
+//                                            startActivity(intent_main)
+//                                            finishAffinity()
 
 
 

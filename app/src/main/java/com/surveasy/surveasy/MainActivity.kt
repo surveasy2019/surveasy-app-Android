@@ -97,8 +97,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        vm.test("4epJfl21XyciHHDF0i1Ev148JIt2")
-
 //        var keyHash = Utility.getKeyHash(this)
 //        Log.d(TAG, "onCreate: $keyHash")
 
