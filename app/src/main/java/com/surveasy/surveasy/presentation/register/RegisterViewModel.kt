@@ -12,6 +12,9 @@ import kotlinx.coroutines.launch
 
 sealed class RegisterEvents{
     object NavigateToRegisterWarn : RegisterEvents()
+    object NavigateToRegisterInput1 : RegisterEvents()
+    object NavigateToRegisterInput2 : RegisterEvents()
+    object NavigateToBack : RegisterEvents()
 }
 
 class RegisterViewModel : ViewModel() {
@@ -33,9 +36,14 @@ class RegisterViewModel : ViewModel() {
         checkMarketing()
     }
 
-    fun navigateToWarn(){
+    fun navigateRegisterPages(type : RegisterEventType){
         viewModelScope.launch {
-            _events.emit(RegisterEvents.NavigateToRegisterWarn)
+            _events.emit(when(type){
+                RegisterEventType.TO_WARN -> RegisterEvents.NavigateToRegisterWarn
+                RegisterEventType.TO_INPUT1 -> RegisterEvents.NavigateToRegisterInput1
+                RegisterEventType.TO_INPUT2 -> RegisterEvents.NavigateToRegisterInput2
+                RegisterEventType.TO_BACK -> RegisterEvents.NavigateToBack
+            })
         }
     }
 

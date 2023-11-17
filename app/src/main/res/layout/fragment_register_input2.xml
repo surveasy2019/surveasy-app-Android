@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="com.surveasy.surveasy.presentation.register.RegisterEventType"/>
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.register.RegisterViewModel" />
     </data>
 
     <LinearLayout
@@ -208,8 +211,8 @@
                 android:text="패널 가입 완료"
                 android:textSize="15sp"
                 android:layout_gravity="center"
+                android:onClick="@{() -> vm.navigateRegisterPages(RegisterEventType.TO_BACK)}"
                 android:textColor="@color/white"
-                android:backgroundTint="#0aab00"
                 android:background="@drawable/register_button"
                 android:fontFamily="@font/main_font_b" />
 

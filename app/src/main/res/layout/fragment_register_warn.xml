@@ -4,7 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="com.surveasy.surveasy.presentation.register.RegisterEventType"/>
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.register.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -238,9 +241,9 @@
             android:layout_marginHorizontal="5sp"
             android:text="@string/agree2_btn"
             android:textSize="15sp"
+            android:onClick="@{() -> vm.navigateRegisterPages(RegisterEventType.TO_INPUT1)}"
             android:layout_gravity="center"
             android:textColor="@color/white"
-            android:backgroundTint="#0aab00"
             android:background="@drawable/register_button"
             android:fontFamily="@font/main_font_b"
             app:layout_constraintBottom_toBottomOf="parent"

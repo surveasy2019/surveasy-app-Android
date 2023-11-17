@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.surveasy.surveasy.presentation.register.RegisterEventType"/>
         <variable
             name="vm"
             type="com.surveasy.surveasy.presentation.register.RegisterViewModel" />
@@ -224,7 +225,7 @@
             android:fontFamily="@font/main_font_b"
             android:text="@string/btn_next"
             android:enabled="@{vm.agreeMust1 &amp;&amp; vm.agreeMust2}"
-            android:onClick="@{() -> vm.navigateToWarn()}"
+            android:onClick="@{() -> vm.navigateRegisterPages(RegisterEventType.TO_WARN)}"
             android:textColor="@color/white"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
