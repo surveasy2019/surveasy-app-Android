@@ -7,14 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.surveasy.surveasy.MainRepository
-import com.surveasy.surveasy.MainViewModel
-import com.surveasy.surveasy.MainViewModelFactory
 import com.surveasy.surveasy.databinding.ActivityAuthProcessBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

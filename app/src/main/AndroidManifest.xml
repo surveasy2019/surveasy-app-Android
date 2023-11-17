@@ -41,21 +41,6 @@
             android:name=".home.Opinion.HomeOpinionAnswerActivity"
             android:exported="true" />
         <activity
-            android:name=".register.addinfo.AddPanelnfoFinActivity"
-            android:exported="true" />
-        <activity
-            android:name=".register.addinfo.AddPanelInfoFinActivity"
-            android:exported="true" />
-        <activity
-            android:name=".register.addinfo.AddInfoRegisterAgree2Activity"
-            android:exported="true" />
-        <activity
-            android:name=".register.addinfo.AddInfoRegisterAgree1Activity"
-            android:exported="true" />
-        <activity
-            android:name=".register.addinfo.AddPanelInfoActivity"
-            android:exported="true" />
-        <activity
             android:name=".list.firstsurvey.PushDialogActivity"
             android:exported="true"
             android:theme="@style/Theme.MyDialog" />
@@ -66,7 +51,7 @@
             android:name=".list.firstsurvey.SurveyListFirstSurveyLast"
             android:exported="true" />
         <activity
-            android:name=".splash.SplashActivity"
+            android:name=".presentation.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/Splash">
             <intent-filter>
@@ -76,7 +61,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".splash.FCM_SplashActivity"
+            android:name=".presentation.splash.FCM_SplashActivity"
             android:exported="true"
             android:theme="@style/Splash">
             <intent-filter>
@@ -86,10 +71,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".register.agree.RegisterTerm2"
+            android:name=".presentation.register.agree.RegisterTerm2"
             android:exported="true" />
         <activity
-            android:name=".register.agree.RegisterTerm1"
+            android:name=".presentation.register.agree.RegisterTerm1"
             android:exported="true" />
         <activity
             android:name=".firstIntroduceScreen.FirstIntroduceScreenActivity"
@@ -132,7 +117,7 @@
             android:name=".my.notice.MyViewNoticeListDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true" />
         <activity
             android:name=".home.contribution.HomeContributionListDetailActivity"
@@ -154,7 +139,7 @@
             android:name=".presentation.login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".register.RegisterActivity"
+            android:name=".presentation.register.RegisterActivity"
             android:exported="true" />
         <activity
             android:name=".my.setting.MyViewSettingActivity"

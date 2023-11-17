@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="#FFFFFF">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="30dp"
+                android:paddingBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15sp"
+                    android:text="개인정보 입력"
+                    android:fontFamily="@font/main_font_sb"
+                    android:textStyle="normal"
+                    android:textSize="18sp"
+                    android:textColor="#0aab00"
+                    android:lineSpacingExtra="3.3sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="* 표시 항목은 추후 변경이 불가능하오니,\n신중히 작성하여주시길 바랍니다."
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/main_font_r"
+                    android:textStyle="normal"
+                    android:textSize="13sp"
+                    android:textColor="#707070"
+                    android:lineSpacingExtra="2.7sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="18sp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8sp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font_sb"
+                            android:text="*"
+                            android:textSize="15sp"
+                            android:paddingStart="5sp"
+                            android:layout_marginEnd="5sp"
+                            android:textColor="#0aab00" />
+
+                        <TextView
+                            android:id="@+id/RegisterFragment1_NameText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/main_font_sb"
+                            android:text="이름"
+                            android:textSize="13sp"
+                            android:textColor="#000000" />
+
+                    </LinearLayout>
+
+
+                    <EditText
+                        android:id="@+id/RegisterFragment1_NameInput"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="45sp"
+                        android:hint="실명을 입력하세요"
+                        android:fontFamily="@font/main_font_m"
+                        android:paddingStart="13sp"
+                        android:layout_marginStart="5sp"
+                        android:layout_marginEnd="5sp"
+                        android:textSize="13sp"
+                        android:textColorHint="#c9c9c9"
+                        android:textColor="@color/black"
+                        android:inputType="text"
+                        android:background="@drawable/custom_input"
+                        android:textCursorDrawable="@drawable/custom_input_cursor" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20sp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8sp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font_sb"
+                            android:text="*"
+                            android:textSize="15sp"
+                            android:paddingStart="5sp"
+                            android:layout_marginEnd="5sp"
+                            android:textColor="#0aab00" />
+
+                        <TextView
+                            android:id="@+id/RegisterFragment1_EmailText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="아이디 (이메일)"
+                            android:fontFamily="@font/main_font_sb"
+                            android:textSize="13sp"
+                            android:textColor="#000000" />
+
+                    </LinearLayout>
+
+
+                    <EditText
+                        android:id="@+id/RegisterFragment1_EmailInput"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="45sp"
+                        android:hint="이메일 주소를 입력하세요"
+                        android:fontFamily="@font/main_font_m"
+                        android:paddingStart="13sp"
+                        android:layout_marginStart="5sp"
+                        android:layout_marginEnd="5sp"
+                        android:textSize="13sp"
+                        android:textColorHint="#c9c9c9"
+                        android:textColor="@color/black"
+                        android:inputType="textEmailAddress"
+                        android:background="@drawable/custom_input"
+                        android:textCursorDrawable="@drawable/custom_input_cursor" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20sp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/main_font_sb"
+                        android:textColor="#000000"
+                        android:id="@+id/RegisterFragment1_PwText"
+                        android:text="비밀번호"
+                        android:textSize="13sp"
+                        android:paddingStart="5sp"
+                        android:layout_marginBottom="8sp" />
+
+                    <EditText
+                        android:id="@+id/RegisterFragment1_PwInput"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="45sp"
+                        android:hint="8자리 이상"
+                        android:fontFamily="@font/main_font_m"
+                        android:paddingStart="13sp"
+                        android:layout_marginStart="5sp"
+                        android:layout_marginEnd="5sp"
+                        android:textSize="13sp"
+                        android:textColorHint="#c9c9c9"
+                        android:textColor="@color/black"
+                        android:inputType="textPassword"
+                        android:background="@drawable/custom_input"
+                        android:textCursorDrawable="@drawable/custom_input_cursor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20sp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/main_font_sb"
+                        android:textColor="#000000"
+                        android:id="@+id/RegisterFragment1_PwCheckText"
+                        android:text="비밀번호 확인"
+                        android:textSize="13sp"
+                        android:paddingStart="5sp"
+                        android:layout_marginBottom="8sp" />
+
+                    <EditText
+                        android:id="@+id/RegisterFragment1_PwCheckInput"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="45sp"
+                        android:hint="비밀번호 확인"
+                        android:fontFamily="@font/main_font_m"
+                        android:paddingStart="13sp"
+                        android:layout_marginStart="5sp"
+                        android:layout_marginEnd="5sp"
+                        android:textSize="13sp"
+                        android:textColorHint="#c9c9c9"
+                        android:textColor="@color/black"
+                        android:inputType="textPassword"
+                        android:background="@drawable/custom_input"
+                        android:textCursorDrawable="@drawable/custom_input_cursor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20sp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/main_font_sb"
+                        android:textColor="#000000"
+                        android:id="@+id/RegisterFragment1_PhoneNumberText"
+                        android:text="휴대폰 번호"
+                        android:textSize="13sp"
+                        android:paddingStart="5sp"
+                        android:layout_marginBottom="8sp" />
+
+                    <EditText
+                        android:id="@+id/RegisterFragment1_PhoneNumberInput"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="45sp"
+                        android:hint="-제외 입력하세요"
+                        android:fontFamily="@font/main_font_m"
+                        android:paddingStart="13sp"
+                        android:layout_marginStart="5sp"
+                        android:layout_marginEnd="5sp"
+                        android:textSize="13sp"
+                        android:textColorHint="#c9c9c9"
+                        android:textColor="@color/black"
+                        android:inputType="phone"
+                        android:background="@drawable/custom_input"
+                        android:textCursorDrawable="@drawable/custom_input_cursor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20sp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="10sp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font_sb"
+                            android:text="*"
+                            android:textSize="15sp"
+                            android:paddingStart="5sp"
+                            android:layout_marginEnd="5sp"
+                            android:textColor="#0aab00" />
+
+                        <TextView
+                            android:id="@+id/RegisterFragment1_GenderText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="성별"
+                            android:fontFamily="@font/main_font_sb"
+                            android:textSize="13sp"
+                            android:textColor="#000000" />
+
+                    </LinearLayout>
+
+                    <RadioGroup
+                        android:id="@+id/RegisterFragment1_RadioGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginTop="5sp">
+
+                        <RadioButton
+                            android:id="@+id/RegisterFragment1_RadioMale"
+                            android:layout_width="20sp"
+                            android:layout_height="20sp"
+                            android:button="@color/transparent"
+                            android:layout_marginEnd="10sp"
+                            android:background="@drawable/custom_radiobtn" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="50sp"
+                            android:fontFamily="@font/main_font_sb"
+                            android:textColor="@color/black"
+                            android:text="남성"
+                            android:textSize="14sp" />
+
+                        <RadioButton
+                            android:id="@+id/RegisterFragment1_RadioFemale"
+                            android:layout_width="20sp"
+                            android:layout_height="20sp"
+                            android:button="@color/transparent"
+                            android:layout_marginRight="10sp"
+                            android:background="@drawable/custom_radiobtn" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="30sp"
+                            android:fontFamily="@font/main_font_sb"
+                            android:textColor="@color/black"
+                            android:text="여성"
+                            android:textSize="14sp" />
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="27sp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8sp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font_sb"
+                            android:text="*"
+                            android:textSize="15sp"
+                            android:paddingStart="5sp"
+                            android:layout_marginEnd="5sp"
+                            android:textColor="#0aab00" />
+
+                        <TextView
+                            android:id="@+id/RegisterFragment1_BirthDateText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="생년월일"
+                            android:fontFamily="@font/main_font_sb"
+                            android:textSize="13sp"
+                            android:textColor="#000000" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <NumberPicker
+                            android:id="@+id/RegisterFragment1_Year"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:layout_marginVertical="20sp"
+                            android:layout_marginHorizontal="20sp"
+                            android:scaleX="1.5"
+                            android:scaleY="1.5" />
+
+                        <NumberPicker
+                            android:id="@+id/RegisterFragment1_Month"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:layout_marginVertical="20sp"
+                            android:layout_marginHorizontal="20sp"
+                            android:scaleX="1.5"
+                            android:scaleY="1.5" />
+
+                        <NumberPicker
+                            android:id="@+id/RegisterFragment1_Date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:layout_marginVertical="20sp"
+                            android:layout_marginHorizontal="20sp"
+                            android:scaleX="1.5"
+                            android:scaleY="1.5" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="20sp"
+                        android:layout_marginBottom="10sp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="8sp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/main_font_sb"
+                                android:text="*"
+                                android:textSize="15sp"
+                                android:paddingStart="5sp"
+                                android:layout_marginEnd="5sp"
+                                android:textColor="#0aab00" />
+
+                            <TextView
+                                android:id="@+id/RegisterFragment1_INflowText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/main_font_sb"
+                                android:text="유입경로"
+                                android:textSize="13sp"
+                                android:textColor="#000000" />
+
+                        </LinearLayout>
+
+                        <Spinner
+                            android:id="@+id/RegisterFragment1_InflowPathSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="45sp"
+                            android:spinnerMode="dropdown"
+                            android:background="@drawable/custom_spinner"
+                            android:fontFamily="@font/main_font_m"
+                            android:paddingStart="5sp"
+                            android:layout_marginStart="5sp"
+                            android:layout_marginEnd="5sp"
+                            android:textSize="12sp"
+                            android:textColor="#c9c9c9" />
+
+
+                        <LinearLayout
+                            android:id="@+id/EtcInflowPath_Container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="20sp"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginBottom="8sp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/main_font_sb"
+                                    android:text="*"
+                                    android:textSize="15sp"
+                                    android:paddingStart="5sp"
+                                    android:layout_marginEnd="5sp"
+                                    android:textColor="#0aab00" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/main_font_sb"
+                                    android:text="기타 유입경로"
+                                    android:textSize="13sp"
+                                    android:textColor="#000000" />
+
+                            </LinearLayout>
+
+                            <EditText
+                                android:id="@+id/RegisterFragment1_EtcInflowInput"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="45sp"
+                                android:hint="기타 유입경로를 입력하세요"
+                                android:fontFamily="@font/main_font_m"
+                                android:paddingStart="13sp"
+                                android:layout_marginStart="5sp"
+                                android:layout_marginEnd="5sp"
+                                android:textSize="13sp"
+                                android:textColorHint="#c9c9c9"
+                                android:textColor="@color/black"
+                                android:inputType="text"
+                                android:background="@drawable/custom_input"
+                                android:textCursorDrawable="@drawable/custom_input_cursor" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <!--        <TextView-->
+                <!--            android:id="@+id/RegisterFragment1_BirthDateSelected"-->
+                <!--            android:layout_width="200dp"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:text="생년월일을 선택해주세요."-->
+                <!--            android:textColor="#50CF17"-->
+                <!--            android:textSize="12dp"-->
+                <!--            android:layout_gravity="center"/>-->
+
+                <!--        <Button-->
+                <!--            android:id="@+id/RegisterFragment1_BirthDatePickerBtn"-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:text="날짜 선택" />-->
+
+
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:theme="@style/progressBar"
+                    android:indeterminate="false"
+
+                    android:max="5"
+                    android:progress="3"
+                    android:minHeight="50dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/RegisterFragment1_Btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5sp"
+                    android:text="다음"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/main_font_b"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:backgroundTint="#0aab00"
+                    android:background="@drawable/register_button" />
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+    </LinearLayout>
+</layout>
