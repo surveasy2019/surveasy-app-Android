@@ -1,54 +1,82 @@
 package com.surveasy.surveasy.presentation.register
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+
+sealed class RegisterEvents{
+    object NavigateToRegisterWarn : RegisterEvents()
+}
 
 class RegisterViewModel : ViewModel() {
-    private var _agreeAll = MutableLiveData<Boolean>()
-    val agreeAll get() = _agreeAll
-    private var _agreeMust1 = MutableLiveData<Boolean>()
-    val agreeMust1 get() = _agreeMust1
-    private var _agreeMust2 = MutableLiveData<Boolean>()
-    val agreeMust2 get() = _agreeMust2
-    private var _agreeMarketing = MutableLiveData<Boolean>()
-    val agreeMarketing get() = _agreeMarketing
+    val agreeAll = MutableStateFlow(false)
+    val agreeMust1 = MutableStateFlow(false)
+    val agreeMust2 = MutableStateFlow(false)
+    val agreeMarketing = MutableStateFlow(false)
+
+    private val _events = MutableSharedFlow<RegisterEvents>(
+        replay = 0
+    )
+
+    val events : SharedFlow<RegisterEvents> = _events.asSharedFlow()
 
     init {
-        _agreeAll.value = false
-        _agreeMust1.value = false
-        _agreeMust2.value = false
-        _agreeMarketing.value = false
-
+        checkAgreeAll()
+        checkMust1()
+        checkMust2()
+        checkMarketing()
     }
 
-
-    fun checkAgree(index : Int) {
-        when(index){
-            0 -> {
-
-                if(agreeAll.value == false){
-                    _agreeAll.value = true
-                    _agreeMust1.value = true
-                    _agreeMust2.value = true
-                    _agreeMarketing.value = true
-                } else {
-                    _agreeAll.value = false
-                    _agreeMust1.value = false
-                    _agreeMust2.value = false
-                    _agreeMarketing.value = false
-                }
-
-
-//                _agreeMust1.value = agreeAll.value == false
-//                _agreeMust2.value = agreeAll.value == false
-//                _agreeMarketing.value = agreeAll.value == false
-            }
-            1 -> {
-                _agreeMust1.value = if(_agreeMust1.value == true) false else true
-                _agreeAll.value = checkAllChecked()
-            }
+    fun navigateToWarn(){
+        viewModelScope.launch {
+            _events.emit(RegisterEvents.NavigateToRegisterWarn)
         }
     }
 
-    private fun checkAllChecked() = (agreeMust1.value == true) && (agreeMust2.value == true) && (agreeMarketing.value == true)
+    // all click logic 추가
+    private fun checkAgreeAll() {
+        agreeAll.onEach { all ->
+            if(all){
+                agreeMust1.emit(true)
+                agreeMust2.emit(true)
+                agreeMarketing.emit(true)
+            }
+
+        }.launchIn(viewModelScope)
+    }
+
+    private fun checkMust1(){
+        agreeMust1.onEach { check ->
+            agreeMust1.emit(check)
+            agreeAll.emit(
+                isAllChecked()
+            )
+        }.launchIn(viewModelScope)
+    }
+
+    private fun checkMust2(){
+        agreeMust2.onEach { check ->
+            agreeMust2.emit(check)
+            agreeAll.emit(
+                isAllChecked()
+            )
+        }.launchIn(viewModelScope)
+    }
+
+    private fun checkMarketing(){
+        agreeMarketing.onEach { check ->
+            agreeMarketing.emit(check)
+            agreeAll.emit(
+                isAllChecked()
+            )
+        }.launchIn(viewModelScope)
+    }
+
+    private fun isAllChecked() = agreeMust1.value && agreeMust2.value && agreeMarketing.value
 }
