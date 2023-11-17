@@ -51,7 +51,7 @@
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/main_font_sb"
                 android:lineSpacingExtra="3.3sp"
-                android:text="패널가입"
+                android:text="@string/register_top_title"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
         </androidx.appcompat.widget.Toolbar>

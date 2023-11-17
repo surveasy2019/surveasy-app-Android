@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.surveasy.surveasy.presentation.register.RegisterEventType"/>
         <variable
             name="vm"
             type="com.surveasy.surveasy.presentation.register.RegisterViewModel" />
@@ -37,7 +38,6 @@
             android:background="@drawable/custom_checkbox"
             android:button="@color/transparent"
             android:checked="@={vm.agreeAll}"
-            android:onCheckedChanged="@{()->vm.checkAgree(0)}"
             app:layout_constraintEnd_toStartOf="@id/tv_agree1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_agree_title"
@@ -78,7 +78,6 @@
             android:background="@drawable/custom_checkbox"
             android:button="@color/transparent"
             android:checked="@={vm.agreeMust1}"
-            android:onCheckedChanged="@{()->vm.checkAgree(1)}"
             app:layout_constraintEnd_toStartOf="@id/tv_agree2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/v_line"
@@ -122,7 +121,7 @@
             android:layout_marginEnd="10dp"
             android:background="@drawable/custom_checkbox"
             android:button="@color/transparent"
-            android:checked="false"
+            android:checked="@={vm.agreeMust2}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cb_agree2"
             app:layout_constraintVertical_chainStyle="packed" />
@@ -166,7 +165,7 @@
             android:layout_marginEnd="10dp"
             android:background="@drawable/custom_checkbox"
             android:button="@color/transparent"
-            android:checked="false"
+            android:checked="@={vm.agreeMarketing}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cb_agree3"
             app:layout_constraintVertical_chainStyle="packed" />
@@ -223,9 +222,10 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="5sp"
             android:background="@drawable/register_button"
-            android:backgroundTint="#0aab00"
             android:fontFamily="@font/main_font_b"
             android:text="@string/btn_next"
+            android:enabled="@{vm.agreeMust1 &amp;&amp; vm.agreeMust2}"
+            android:onClick="@{() -> vm.navigateRegisterPages(RegisterEventType.TO_WARN)}"
             android:textColor="@color/white"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
