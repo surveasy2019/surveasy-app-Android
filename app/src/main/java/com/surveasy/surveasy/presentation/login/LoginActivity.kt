@@ -9,7 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.amplitude.api.Amplitude
-import com.surveasy.surveasy.MainActivity
+import com.surveasy.surveasy.presentation.MainActivity
 import com.surveasy.surveasy.databinding.ActivityLoginBinding
 import com.surveasy.surveasy.list.UserSurveyItem
 import com.google.android.gms.tasks.OnCompleteListener
