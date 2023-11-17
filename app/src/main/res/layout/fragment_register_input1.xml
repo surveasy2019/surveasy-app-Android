@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/main_font_sb"
                     android:lineSpacingExtra="3.3sp"
-                    android:text="개인정보 입력"
+                    android:text="@string/register1_title"
                     android:textColor="#0aab00"
                     android:textSize="18sp"
                     android:textStyle="normal"
@@ -49,7 +49,7 @@
                     android:layout_marginTop="15sp"
                     android:fontFamily="@font/main_font_r"
                     android:lineSpacingExtra="2.7sp"
-                    android:text="* 표시 항목은 추후 변경이 불가능하오니,\n신중히 작성하여주시길 바랍니다."
+                    android:text="@string/register1_warn"
                     android:textColor="#707070"
                     android:textSize="13sp"
                     android:textStyle="normal"
@@ -60,7 +60,7 @@
                     android:id="@+id/tv_star1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="*"
+                    android:text="@string/register1_star"
                     android:textColor="@color/main_green"
                     app:layout_constraintBottom_toBottomOf="@id/tv_name_label"
                     app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="18dp"
                     android:fontFamily="@font/main_font_sb"
-                    android:text="이름"
+                    android:text="@string/register1_name"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@id/tv_star1"
@@ -90,7 +90,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_name_label"
-                    app:placeholderText="닉네임을 입력하세요."
+                    app:placeholderText="@string/register1_name_ph"
                     app:placeholderTextAppearance="@font/main_font_m"
                     app:placeholderTextColor="#c9c9c9">
 
@@ -104,7 +104,7 @@
                     android:id="@+id/tv_star2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="*"
+                    android:text="@string/register1_star"
                     android:textColor="@color/main_green"
                     app:layout_constraintBottom_toBottomOf="@id/tv_email_label"
                     app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="18dp"
                     android:fontFamily="@font/main_font_sb"
-                    android:text="아이디 (이메일)"
+                    android:text="@string/register1_id"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@id/tv_star2"
@@ -134,7 +134,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_email_label"
-                    app:placeholderText="이메일 주소를 입력하세요."
+                    app:placeholderText="@string/register1_id_ph"
                     app:placeholderTextAppearance="@font/main_font_m"
                     app:placeholderTextColor="#c9c9c9">
 
@@ -152,7 +152,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="18dp"
                     android:fontFamily="@font/main_font_sb"
-                    android:text="비밀번호"
+                    android:text="@string/register1_pw"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -169,7 +169,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_pw_label"
-                    app:placeholderText="8자리 이상 입력해주세요."
+                    app:placeholderText="@string/register1_pw_ph"
                     app:placeholderTextAppearance="@font/main_font_m"
                     app:placeholderTextColor="#c9c9c9">
 
@@ -186,7 +186,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="18dp"
                     android:fontFamily="@font/main_font_sb"
-                    android:text="비밀번호 확인"
+                    android:text="@string/register1_pw_check"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -203,7 +203,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_pw_check_label"
-                    app:placeholderText="비밀번호를 다시 입력해주세요."
+                    app:placeholderText="@string/register1_pw_check_ph"
                     app:placeholderTextAppearance="@font/main_font_m"
                     app:placeholderTextColor="#c9c9c9">
 
@@ -220,7 +220,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="18dp"
                     android:fontFamily="@font/main_font_sb"
-                    android:text="휴대폰 번호"
+                    android:text="@string/register1_phone"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -237,7 +237,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_phone_label"
-                    app:placeholderText="숫자만 입력해주세요."
+                    app:placeholderText="@string/register1_number_ph"
                     app:placeholderTextAppearance="@font/main_font_m"
                     app:placeholderTextColor="#c9c9c9">
 
@@ -251,7 +251,7 @@
                     android:id="@+id/tv_star3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="*"
+                    android:text="@string/register1_star"
                     android:textColor="@color/main_green"
                     app:layout_constraintBottom_toBottomOf="@id/tv_gender_label"
                     app:layout_constraintStart_toStartOf="parent"
@@ -264,7 +264,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="18dp"
                     android:fontFamily="@font/main_font_sb"
-                    android:text="성별"
+                    android:text="@string/register1_gender"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@id/tv_star3"
@@ -283,14 +283,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="남자" />
+                        android:text="@string/register1_man" />
 
                     <RadioButton
                         android:id="@+id/rb_gender_female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp"
-                        android:text="여자" />
+                        android:text="@string/register1_woman" />
 
                 </RadioGroup>
 
@@ -298,7 +298,7 @@
                     android:id="@+id/tv_star4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="*"
+                    android:text="@string/register1_star"
                     android:textColor="@color/main_green"
                     app:layout_constraintBottom_toBottomOf="@id/tv_birth_label"
                     app:layout_constraintStart_toStartOf="parent"
@@ -311,7 +311,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="18dp"
                     android:fontFamily="@font/main_font_sb"
-                    android:text="생년월일"
+                    android:text="@string/register1_birth"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@id/tv_star4"
@@ -319,11 +319,11 @@
 
                 <LinearLayout
                     android:id="@+id/ll_birth"
-                    app:layout_constraintTop_toBottomOf="@id/tv_birth_label"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_birth_label">
 
                     <NumberPicker
                         android:id="@+id/np_year"
@@ -358,7 +358,7 @@
                     android:id="@+id/tv_star5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="*"
+                    android:text="@string/register1_star"
                     android:textColor="@color/main_green"
                     app:layout_constraintBottom_toBottomOf="@id/tv_inflow_label"
                     app:layout_constraintStart_toStartOf="parent"
@@ -371,7 +371,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="18dp"
                     android:fontFamily="@font/main_font_sb"
-                    android:text="유입경로"
+                    android:text="@string/register1_inflow"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@id/tv_star5"
@@ -384,12 +384,12 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/custom_spinner"
                     android:paddingStart="8dp"
-                    app:layout_goneMarginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_inflow_label" />
-<!--                android:entries="@{vm.locationList}"-->
-<!--                android:selectedItemPosition="@={vm.locationPosition}"-->
+                    app:layout_constraintTop_toBottomOf="@id/tv_inflow_label"
+                    app:layout_goneMarginTop="4dp" />
+                <!--                android:entries="@{vm.locationList}"-->
+                <!--                android:selectedItemPosition="@={vm.locationPosition}"-->
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -399,32 +399,32 @@
 
         <ProgressBar
             android:id="@+id/pb_progress"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btn_next"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:theme="@style/progressBar"
             android:indeterminate="false"
             android:max="5"
+            android:minHeight="50dp"
             android:progress="3"
-            android:minHeight="50dp" />
+            android:theme="@style/progressBar"
+            app:layout_constraintBottom_toTopOf="@id/btn_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="다음"
-            android:onClick="@{() -> vm.navigateRegisterPages(RegisterEventType.TO_INPUT2)}"
-            android:textSize="15sp"
-            android:fontFamily="@font/main_font_b"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="5sp"
+            android:background="@drawable/register_button"
+            android:fontFamily="@font/main_font_b"
+            android:onClick="@{() -> vm.navigateRegisterPages(RegisterEventType.TO_INPUT2)}"
+            android:text="@string/btn_next"
             android:textColor="@color/white"
-            android:background="@drawable/register_button" />
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
