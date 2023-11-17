@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
+import android.widget.CompoundButton.OnCheckedChangeListener
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -21,11 +23,13 @@ class RegisterAgreeFragment :
         navController = Navigation.findNavController(view)
         bind {
             vm = viewModel
+            lifecycleOwner = viewLifecycleOwner
             btnNext.setOnClickListener {
                 navController.navigate(
                     RegisterAgreeFragmentDirections.actionRegisterAgreeFragmentToRegisterWarnFragment()
                 )
             }
+
         }
     }
 
