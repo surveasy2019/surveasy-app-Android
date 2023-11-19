@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="HelperTextStyle">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/main_font_l</item>
+        <item name="android:textColor">#C12828</item>
+    </style>
+</resources>

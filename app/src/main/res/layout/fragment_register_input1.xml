@@ -82,10 +82,10 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_nick"
+                    set_helper_text="@{vm.uiState.nameState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:helperText="text"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +97,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_nick"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.name}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -126,10 +127,10 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_email"
+                    set_helper_text="@{vm.uiState.emailState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:helperText="text"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -141,7 +142,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_email"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.email}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -161,10 +163,10 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_pw"
+                    set_helper_text="@{vm.uiState.pwState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:helperText="text"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -176,7 +178,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_pw"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.pw}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -195,10 +198,10 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_pw_check"
+                    set_helper_text="@{vm.uiState.pwCheckState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:helperText="text"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -210,7 +213,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_pw_check"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.pwCheck}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -229,10 +233,10 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_phone"
+                    set_helper_text="@{vm.uiState.phoneState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:helperText="text"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -244,7 +248,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_phone"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.phone}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
