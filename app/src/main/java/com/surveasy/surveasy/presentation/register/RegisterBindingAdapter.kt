@@ -1,5 +1,6 @@
 package com.surveasy.surveasy.presentation.register
 
+import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
 import com.surveasy.surveasy.R
@@ -16,4 +17,10 @@ fun TextInputLayout.nameHelperText(state: InputState) {
     }
 
     setHelperTextTextAppearance(R.style.HelperTextStyle)
+}
+
+@BindingAdapter("set_next_enable")
+fun AppCompatButton.setNextEnable(uiState: Register1UiState) {
+    isEnabled =
+        uiState.nameState.isValid && uiState.emailState.isValid && uiState.pwState.isValid && uiState.pwCheckState.isValid && uiState.phoneState.isValid
 }

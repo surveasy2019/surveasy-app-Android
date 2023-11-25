@@ -11,6 +11,8 @@ import androidx.navigation.Navigation
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterInput1Binding
 import com.surveasy.surveasy.presentation.base.BaseFragment
+import com.surveasy.surveasy.presentation.util.showCalendarDatePicker
+import java.util.Calendar
 
 class RegisterInput1Fragment :
     BaseFragment<FragmentRegisterInput1Binding>(FragmentRegisterInput1Binding::inflate) {
@@ -21,8 +23,10 @@ class RegisterInput1Fragment :
         super.onViewCreated(view, savedInstanceState)
 
         initView(view)
+        initDatePicker()
 
     }
+
 
     private fun initView(view: View) {
         navController = Navigation.findNavController(view)
@@ -37,6 +41,7 @@ class RegisterInput1Fragment :
                         is RegisterEvents.NavigateToRegisterInput2 -> navController.navigate(
                             RegisterInput1FragmentDirections.actionRegisterInput1FragmentToRegisterInput2Fragment()
                         )
+
                         is RegisterEvents.NavigateToBack -> navController.navigate(
                             RegisterInput1FragmentDirections.actionRegisterInput1FragmentToRegisterWarnFragment()
                         )
@@ -47,4 +52,12 @@ class RegisterInput1Fragment :
         }
     }
 
+    private fun initDatePicker() {
+        bind {
+            ivCalendar.setOnClickListener { showCalendarDatePicker(parentFragmentManager){
+                viewModel.setBirth(it)
+            } }
+        }
+    }
 }
+

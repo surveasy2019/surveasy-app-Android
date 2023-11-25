@@ -26,6 +26,7 @@ data class Register1UiState(
     val pwState: InputState = InputState(),
     val pwCheckState: InputState = InputState(),
     val phoneState: InputState = InputState(),
+    val birthState : InputState = InputState(),
 )
 
 data class InputState(
@@ -42,6 +43,7 @@ class RegisterViewModel : ViewModel() {
     val pw = MutableStateFlow("")
     val pwCheck = MutableStateFlow("")
     val phone = MutableStateFlow("")
+    val birth = MutableStateFlow("생년월일을 선택해주세요.")
 
     private val _uiState = MutableStateFlow(Register1UiState())
     val uiState: StateFlow<Register1UiState> = _uiState.asStateFlow()
@@ -59,6 +61,7 @@ class RegisterViewModel : ViewModel() {
         observePw()
         observePwCheck()
         observePhone()
+        observeBirth()
     }
 
     fun navigateRegisterPages(type: RegisterEventType) {
@@ -76,7 +79,7 @@ class RegisterViewModel : ViewModel() {
 
     private fun observeName() {
         name.onEach { name ->
-            val isValid = name.length > 1
+            val isValid = name.length > NAME_LENGTH
             _uiState.update { state ->
                 state.copy(
                     nameState = InputState(
@@ -89,9 +92,8 @@ class RegisterViewModel : ViewModel() {
     }
 
     private fun observeEmail() {
-        // 정규식으로 수정
         email.onEach { email ->
-            val isValid = email.length > 5
+            val isValid = email.matches(EMAIL_REGEX)
             _uiState.update { state ->
                 state.copy(
                     emailState = InputState(
@@ -105,7 +107,7 @@ class RegisterViewModel : ViewModel() {
 
     private fun observePw() {
         pw.onEach { pw ->
-            val isValid = pw.length >= 8
+            val isValid = pw.length > PW_LENGTH
             _uiState.update { state ->
                 state.copy(
                     pwState = InputState(
@@ -132,9 +134,8 @@ class RegisterViewModel : ViewModel() {
     }
 
     private fun observePhone() {
-        // 정규식으로 수정
         phone.onEach { phone ->
-            val isValid = phone.length == 11
+            val isValid = phone.matches(PHONE_REGEX)
             _uiState.update { state ->
                 state.copy(
                     phoneState = InputState(
@@ -145,6 +146,22 @@ class RegisterViewModel : ViewModel() {
             }
         }.launchIn(viewModelScope)
     }
+
+    fun setBirth(date : String){
+        viewModelScope.launch { birth.emit(date) }
+    }
+
+    private fun observeBirth() {
+        birth.onEach { birth ->
+            val isValid = birth.matches(BIRTH_REGEX)
+            _uiState.update { state ->
+                state.copy(
+                    birthState = InputState(isValid = isValid)
+                )
+            }
+        }.launchIn(viewModelScope)
+    }
+
 
     // all click logic 추가
     private fun checkAgreeAll() {
@@ -186,4 +203,12 @@ class RegisterViewModel : ViewModel() {
     }
 
     private fun isAllChecked() = agreeMust1.value && agreeMust2.value && agreeMarketing.value
+
+    companion object {
+        const val NAME_LENGTH = 1
+        const val PW_LENGTH = 7
+        val EMAIL_REGEX = Regex("""^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})${'$'}""")
+        val PHONE_REGEX = Regex("""^[0-9]{11}${'$'}""")
+        val BIRTH_REGEX = Regex("""^\d{4}/\d{2}/\d{2}${'$'}""")
+    }
 }
