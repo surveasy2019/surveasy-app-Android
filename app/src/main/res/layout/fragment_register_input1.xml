@@ -367,18 +367,18 @@
                     app:layout_constraintStart_toEndOf="@id/tv_star5"
                     app:layout_constraintTop_toBottomOf="@id/tv_birth" />
 
-<!--                index 로 주고받는거 논의하기-->
-<!--                <Spinner-->
-<!--                    android:id="@+id/s_inflow"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="56dp"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:background="@drawable/custom_spinner"-->
-<!--                    android:paddingStart="8dp"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@id/tv_inflow_label"-->
-<!--                    app:layout_goneMarginTop="4dp" />-->
+                <!--                index 로 주고받는거 논의하기-->
+                <Spinner
+                    android:id="@+id/s_inflow"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/custom_spinner"
+                    android:paddingStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_inflow_label"
+                    app:layout_goneMarginTop="4dp" />
                 <!--                android:entries="@{vm.locationList}"-->
                 <!--                android:selectedItemPosition="@={vm.locationPosition}"-->
 
@@ -404,13 +404,13 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
+            set_next_enable="@{vm.uiState}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="5sp"
             android:background="@drawable/register_button"
             android:fontFamily="@font/main_font_b"
-            set_next_enable="@{vm.uiState}"
             android:onClick="@{() -> vm.navigateRegisterPages(RegisterEventType.TO_INPUT2)}"
             android:text="@string/btn_next"
             android:textColor="@color/white"

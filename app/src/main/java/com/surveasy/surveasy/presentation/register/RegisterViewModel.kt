@@ -1,5 +1,6 @@
 package com.surveasy.surveasy.presentation.register
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -20,13 +21,17 @@ sealed class RegisterEvents {
     object NavigateToBack : RegisterEvents()
 }
 
-data class Register1UiState(
+data class RegisterUiState(
     val nameState: InputState = InputState(),
     val emailState: InputState = InputState(),
     val pwState: InputState = InputState(),
     val pwCheckState: InputState = InputState(),
     val phoneState: InputState = InputState(),
-    val birthState : InputState = InputState(),
+    val birthState: InputState = InputState(),
+    val inflowState: InputState = InputState(),
+    val bankState: InputState = InputState(),
+    val accountState: InputState = InputState(),
+    val accountOwnerState: InputState = InputState(),
 )
 
 data class InputState(
@@ -44,9 +49,13 @@ class RegisterViewModel : ViewModel() {
     val pwCheck = MutableStateFlow("")
     val phone = MutableStateFlow("")
     val birth = MutableStateFlow("생년월일을 선택해주세요.")
+    val inflow = MutableStateFlow("")
+    val bank = MutableStateFlow("")
+    val account = MutableStateFlow("")
+    val accountOwner = MutableStateFlow("")
 
-    private val _uiState = MutableStateFlow(Register1UiState())
-    val uiState: StateFlow<Register1UiState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(RegisterUiState())
+    val uiState: StateFlow<RegisterUiState> = _uiState.asStateFlow()
 
     private val _events = MutableSharedFlow<RegisterEvents>(replay = 0)
     val events: SharedFlow<RegisterEvents> = _events.asSharedFlow()
@@ -62,6 +71,10 @@ class RegisterViewModel : ViewModel() {
         observePwCheck()
         observePhone()
         observeBirth()
+        observeInflow()
+        observeBank()
+        observeAccount()
+        observeAccountOwner()
     }
 
     fun navigateRegisterPages(type: RegisterEventType) {
@@ -147,7 +160,7 @@ class RegisterViewModel : ViewModel() {
         }.launchIn(viewModelScope)
     }
 
-    fun setBirth(date : String){
+    fun setBirth(date: String) {
         viewModelScope.launch { birth.emit(date) }
     }
 
@@ -157,6 +170,65 @@ class RegisterViewModel : ViewModel() {
             _uiState.update { state ->
                 state.copy(
                     birthState = InputState(isValid = isValid)
+                )
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun setInflow(select: String) {
+        viewModelScope.launch { inflow.emit(select) }
+    }
+
+    private fun observeInflow() {
+        inflow.onEach { inflow ->
+            val isValid = inflow != INFLOW_DEFAULT
+            _uiState.update { state ->
+                state.copy(
+                    inflowState = InputState(isValid = isValid)
+                )
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun setBank(select: String) {
+        viewModelScope.launch { bank.emit(select) }
+    }
+
+    private fun observeBank() {
+        bank.onEach { bank ->
+            val isValid = bank != BANK_DEFAULT
+            _uiState.update { state ->
+                state.copy(
+                    bankState = InputState(isValid = isValid)
+                )
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    private fun observeAccount() {
+        account.onEach { account ->
+            val isValid = account.matches(ACCOUNT_REGEX)
+            _uiState.update { state ->
+                state.copy(
+                    accountState = InputState(
+                        helperText = if (account.isEmpty()) HelperText.NONE else if (isValid) HelperText.VALID else HelperText.ACCOUNT_INVALID,
+                        isValid = isValid
+                    )
+                )
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    private fun observeAccountOwner() {
+        accountOwner.onEach { accountOwner ->
+            val isValid = accountOwner.length > NAME_LENGTH
+            Log.d("TEST", "$isValid, $accountOwner")
+            _uiState.update { state ->
+                state.copy(
+                    accountOwnerState = InputState(
+                        helperText = if (accountOwner.isEmpty()) HelperText.NONE else if (isValid) HelperText.VALID else HelperText.OWNER_INVALID,
+                        isValid = isValid
+                    )
                 )
             }
         }.launchIn(viewModelScope)
@@ -207,8 +279,12 @@ class RegisterViewModel : ViewModel() {
     companion object {
         const val NAME_LENGTH = 1
         const val PW_LENGTH = 7
-        val EMAIL_REGEX = Regex("""^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})${'$'}""")
+        val EMAIL_REGEX =
+            Regex("""^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})${'$'}""")
         val PHONE_REGEX = Regex("""^[0-9]{11}${'$'}""")
         val BIRTH_REGEX = Regex("""^\d{4}/\d{2}/\d{2}${'$'}""")
+        val ACCOUNT_REGEX = Regex("\\d+")
+        const val INFLOW_DEFAULT = "유입경로를 선택하세요"
+        const val BANK_DEFAULT = "은행을 선택하세요"
     }
 }

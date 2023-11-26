@@ -8,4 +8,6 @@ enum class HelperText {
     PW_INVALID,
     PW_CHECK_INVALID,
     PHONE_INVALID,
+    ACCOUNT_INVALID,
+    OWNER_INVALID
 }
