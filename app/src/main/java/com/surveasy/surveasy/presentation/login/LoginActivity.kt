@@ -9,7 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.amplitude.api.Amplitude
-import com.surveasy.surveasy.presentation.MainActivity
+import com.surveasy.surveasy.presentation.Main1Activity
 import com.surveasy.surveasy.databinding.ActivityLoginBinding
 import com.surveasy.surveasy.list.UserSurveyItem
 import com.google.android.gms.tasks.OnCompleteListener
@@ -215,7 +215,7 @@ class LoginActivity : AppCompatActivity() {
                                             //로그인 한 모든사람에게 알림 전송
                                             FirebaseMessaging.getInstance().subscribeToTopic("all")
 
-                                            val intent_main : Intent = Intent(this, MainActivity::class.java)
+                                            val intent_main : Intent = Intent(this, Main1Activity::class.java)
                                             intent_main.putExtra("currentUser_login", currentUser)
                                             startActivity(intent_main)
                                             finishAffinity()

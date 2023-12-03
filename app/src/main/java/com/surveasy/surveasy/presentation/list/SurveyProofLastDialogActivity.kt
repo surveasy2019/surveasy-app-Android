@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.amplitude.api.Amplitude
-import com.surveasy.surveasy.presentation.MainActivity
+import com.surveasy.surveasy.presentation.Main1Activity
 import com.surveasy.surveasy.databinding.ActivitySurveyprooflastdialogBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -29,7 +29,7 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
 
         binding.SurveyListDetailResponseProofBtn.setOnClickListener {
 
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, Main1Activity::class.java)
             intent.putExtra("defaultFragment_list",true)
             startActivity(intent)
             finishAffinity()
@@ -107,7 +107,7 @@ class SurveyProofLastDialogActivity : AppCompatActivity() {
 
     //제출 완료 한 후에 뒤로가기 누르면 확인 눌렀을 때와 동일하게 동작
     override fun onBackPressed() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, Main1Activity::class.java)
         intent.putExtra("defaultFragment_list",true)
         startActivity(intent)
         finishAffinity()

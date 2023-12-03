@@ -32,11 +32,10 @@
                     android:id="@+id/tv_input1_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/main_font_sb"
+                    style="@style/TextMediumBold"
                     android:lineSpacingExtra="3.3sp"
                     android:text="@string/register1_title"
-                    android:textColor="#0aab00"
-                    android:textSize="18sp"
+                    android:textColor="@color/main_green"
                     android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -47,11 +46,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="15sp"
-                    android:fontFamily="@font/main_font_r"
+                    style="@style/Caption"
                     android:lineSpacingExtra="2.7sp"
                     android:text="@string/register1_warn"
                     android:textColor="#707070"
-                    android:textSize="13sp"
                     android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_input1_title" />
@@ -82,10 +80,10 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_nick"
+                    set_helper_text="@{vm.uiState.nameState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:helperText="text"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +95,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_nick"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.name}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -126,10 +125,10 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_email"
+                    set_helper_text="@{vm.uiState.emailState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:helperText="text"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -141,7 +140,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_email"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.email}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -161,10 +161,10 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_pw"
+                    set_helper_text="@{vm.uiState.pwState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:helperText="text"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -176,7 +176,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_pw"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.pw}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -195,10 +196,10 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_pw_check"
+                    set_helper_text="@{vm.uiState.pwCheckState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:helperText="text"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -210,7 +211,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_pw_check"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.pwCheck}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -229,10 +231,10 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_phone"
+                    set_helper_text="@{vm.uiState.phoneState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:helperText="text"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -244,7 +246,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_phone"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.phone}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -317,42 +320,27 @@
                     app:layout_constraintStart_toEndOf="@id/tv_star4"
                     app:layout_constraintTop_toBottomOf="@id/rg_gender" />
 
-                <LinearLayout
-                    android:id="@+id/ll_birth"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_birth"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/main_font_m"
+                    android:text="@{vm.birth}"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_birth_label">
+                    app:layout_constraintTop_toBottomOf="@id/tv_birth_label" />
 
-                    <NumberPicker
-                        android:id="@+id/np_year"
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:layout_marginHorizontal="20sp"
-                        android:layout_marginVertical="20sp"
-                        android:scaleX="1.5"
-                        android:scaleY="1.5" />
+                <ImageView
+                    android:id="@+id/iv_calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_calendar"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_birth"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_birth" />
 
-                    <NumberPicker
-                        android:id="@+id/np_month"
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:layout_marginHorizontal="20sp"
-                        android:layout_marginVertical="20sp"
-                        android:scaleX="1.5"
-                        android:scaleY="1.5" />
-
-                    <NumberPicker
-                        android:id="@+id/np_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:layout_marginHorizontal="20sp"
-                        android:layout_marginVertical="20sp"
-                        android:scaleX="1.5"
-                        android:scaleY="1.5" />
-
-                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_star5"
@@ -369,14 +357,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="@font/main_font_sb"
                     android:text="@string/register1_inflow"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@id/tv_star5"
-                    app:layout_constraintTop_toBottomOf="@id/ll_birth" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_birth" />
 
+                <!--                index 로 주고받는거 논의하기-->
                 <Spinner
                     android:id="@+id/s_inflow"
                     android:layout_width="0dp"
@@ -413,6 +402,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
+            set_next_enable="@{vm.uiState}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

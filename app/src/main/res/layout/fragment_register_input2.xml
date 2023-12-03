@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.surveasy.surveasy.presentation.register.RegisterEventType"/>
+
+        <import type="com.surveasy.surveasy.presentation.register.RegisterEventType" />
+
         <variable
             name="vm"
             type="com.surveasy.surveasy.presentation.register.RegisterViewModel" />
@@ -74,12 +76,10 @@
                     android:layout_marginTop="8dp"
                     android:background="@drawable/custom_spinner"
                     android:paddingStart="8dp"
-                    app:layout_goneMarginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_bank_label" />
-                <!--                android:entries="@{vm.locationList}"-->
-                <!--                android:selectedItemPosition="@={vm.locationPosition}"-->
+                    app:layout_constraintTop_toBottomOf="@id/tv_bank_label"
+                    app:layout_goneMarginTop="4dp" />
 
                 <TextView
                     android:id="@+id/tv_account_label"
@@ -95,25 +95,23 @@
                     app:layout_constraintTop_toBottomOf="@id/s_bank" />
 
 
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_account"
+                    set_helper_text="@{vm.uiState.accountState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:helperText="text"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_account_label"
-                    app:placeholderText="@string/register2_account_ph"
-                    app:placeholderTextAppearance="@font/main_font_m"
                     app:placeholderTextColor="#c9c9c9">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_account"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.account}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -132,25 +130,22 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_owner"
+                    set_helper_text="@{vm.uiState.accountOwnerState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:helperText="text"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_owner_label"
-                    app:placeholderText="@string/register2_owner_ph"
-                    app:placeholderTextAppearance="@font/main_font_m"
                     app:placeholderTextColor="#c9c9c9">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_owner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.accountOwner}" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -160,31 +155,33 @@
 
         <ProgressBar
             android:id="@+id/pb_progress"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btn_register_done"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:theme="@style/progressBar"
             android:indeterminate="false"
             android:max="5"
+            android:minHeight="50dp"
             android:progress="4"
-            android:minHeight="50dp" />
+            android:theme="@style/progressBar"
+            app:layout_constraintBottom_toTopOf="@id/btn_register_done"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_register_done"
+            set_done_enable="@{vm.uiState}"
+            android:onClick="@{() -> vm.navigateRegisterPages(RegisterEventType.TO_MAIN)}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="@string/register2_done"
-            android:textSize="15sp"
-            android:fontFamily="@font/main_font_b"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="5sp"
+            android:background="@drawable/register_button"
+            android:fontFamily="@font/main_font_b"
+            android:text="@string/register2_done"
             android:textColor="@color/white"
-            android:background="@drawable/register_button" />
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

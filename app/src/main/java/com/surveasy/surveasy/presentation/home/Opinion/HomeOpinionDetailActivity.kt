@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.surveasy.surveasy.presentation.MainActivity
+import com.surveasy.surveasy.presentation.Main1Activity
 import com.surveasy.surveasy.databinding.ActivityHomeopiniondetailBinding
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
@@ -55,7 +55,7 @@ class HomeOpinionDetailActivity : AppCompatActivity() {
                     .update("opinions", FieldValue.arrayUnion(answer))
                     .addOnSuccessListener {
                         Toast.makeText(this,"답변이 제출되었습니다",Toast.LENGTH_LONG).show()
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, Main1Activity::class.java)
                         startActivity(intent)
                     }
             }

@@ -4,12 +4,12 @@
     package="com.surveasy.surveasy">
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <application
         android:name=".auth.GlobalApplication"
@@ -23,7 +23,7 @@
         <activity
             android:name=".auth.AuthDialogActivity"
             android:exported="false"
-            android:theme="@style/Theme.MyDialog"/>
+            android:theme="@style/Theme.MyDialog" />
         <activity
             android:name=".my.history.detail.MyViewHistoryUpdateFinDialogActivity"
             android:exported="true"
@@ -117,7 +117,10 @@
             android:name=".my.notice.MyViewNoticeListDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.main.MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.Main1Activity"
             android:exported="true" />
         <activity
             android:name=".home.contribution.HomeContributionListDetailActivity"
