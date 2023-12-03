@@ -42,6 +42,7 @@ import com.surveasy.surveasy.list.firstsurvey.PushDialogActivity
 import com.surveasy.surveasy.data.userRoom.MIGRATION_1_2
 import com.surveasy.surveasy.data.userRoom.User
 import com.surveasy.surveasy.data.userRoom.UserDatabase
+import com.surveasy.surveasy.databinding.ActivityMain1Binding
 import com.surveasy.surveasy.presentation.util.NavType
 import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONException
@@ -50,7 +51,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class Main1Activity : AppCompatActivity() {
 
     val vm : TestViewModel by viewModels()
     val db = Firebase.firestore
@@ -71,12 +72,12 @@ class MainActivity : AppCompatActivity() {
     private val REQUEST_CODE_UPDATE = 9999
     private lateinit var appUpdateManager : AppUpdateManager
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMain1Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMain1Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
 //        var keyHash = Utility.getKeyHash(this)

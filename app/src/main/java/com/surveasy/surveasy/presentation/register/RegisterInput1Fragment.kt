@@ -41,9 +41,8 @@ class RegisterInput1Fragment :
                             RegisterInput1FragmentDirections.actionRegisterInput1FragmentToRegisterInput2Fragment()
                         )
 
-                        is RegisterEvents.NavigateToBack -> navController.navigate(
-                            RegisterInput1FragmentDirections.actionRegisterInput1FragmentToRegisterWarnFragment()
-                        )
+                        is RegisterEvents.NavigateToBack -> navController.navigateUp()
+
                     }
                 }
             }

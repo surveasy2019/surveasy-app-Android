@@ -1,5 +1,6 @@
 package com.surveasy.surveasy.presentation.register
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -10,6 +11,7 @@ import androidx.navigation.Navigation
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterInput2Binding
 import com.surveasy.surveasy.presentation.base.BaseFragment
+import com.surveasy.surveasy.presentation.main.MainActivity
 
 class RegisterInput2Fragment :
     BaseFragment<FragmentRegisterInput2Binding>(FragmentRegisterInput2Binding::inflate) {
@@ -34,7 +36,8 @@ class RegisterInput2Fragment :
                 viewModel.events.collect { event ->
                     when (event) {
                         is RegisterEvents.NavigateToBack ->
-                            navController.navigate(RegisterInput2FragmentDirections.actionRegisterInput2FragmentToRegisterInput1Fragment())
+                            navController.navigateUp()
+                        is RegisterEvents.NavigateToMain -> navigateToMain()
                     }
                 }
             }
@@ -65,5 +68,11 @@ class RegisterInput2Fragment :
                 }
             }
         }
+    }
+
+    private fun navigateToMain(){
+        val intent = Intent(context, MainActivity::class.java)
+        //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
     }
 }

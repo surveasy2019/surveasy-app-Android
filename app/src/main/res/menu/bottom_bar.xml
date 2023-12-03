@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment2"
+        android:icon="@drawable/nav_home_gray"
+        android:enabled="true"
+        android:title="HOME"/>
+
+    <item
+        android:id="@+id/listFragment"
+        android:icon="@drawable/nav_list_gray"
+        android:enabled="true"
+        android:title="LIST"/>
+
+    <item
+        android:id="@+id/myFragment"
+        android:icon="@drawable/nav_my_gray"
+        android:enabled="true"
+        android:title="MY"/>
+</menu>

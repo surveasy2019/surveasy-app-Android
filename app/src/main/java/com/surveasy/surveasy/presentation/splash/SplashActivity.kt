@@ -18,7 +18,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
-import com.surveasy.surveasy.presentation.MainActivity
+import com.surveasy.surveasy.presentation.Main1Activity
 import com.surveasy.surveasy.R
 
 class SplashActivity : AppCompatActivity() {
@@ -124,7 +124,7 @@ class SplashActivity : AppCompatActivity() {
                         finish()
                     }
                     else {
-                        intent = Intent(this, MainActivity::class.java)
+                        intent = Intent(this, Main1Activity::class.java)
                         startActivity(intent)
                         finish()
                     }

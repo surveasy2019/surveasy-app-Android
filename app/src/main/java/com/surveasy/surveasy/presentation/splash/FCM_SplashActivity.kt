@@ -20,7 +20,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
-import com.surveasy.surveasy.presentation.MainActivity
+import com.surveasy.surveasy.presentation.Main1Activity
 import com.surveasy.surveasy.R
 
 class FCM_SplashActivity : AppCompatActivity() {
@@ -129,12 +129,12 @@ class FCM_SplashActivity : AppCompatActivity() {
                     }
                     else {
                         if(snapshot["didFirstSurvey"] == true) {
-                            intent = Intent(this, MainActivity::class.java)
+                            intent = Intent(this, Main1Activity::class.java)
                             intent.putExtra("defaultFragment_list", true)
                             startActivity(intent)
                         }
                         else {
-                            intent = Intent(this, MainActivity::class.java)
+                            intent = Intent(this, Main1Activity::class.java)
                             startActivity(intent)
                         }
 

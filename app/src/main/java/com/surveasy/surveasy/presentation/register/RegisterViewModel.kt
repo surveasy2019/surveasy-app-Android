@@ -19,6 +19,7 @@ sealed class RegisterEvents {
     object NavigateToRegisterInput1 : RegisterEvents()
     object NavigateToRegisterInput2 : RegisterEvents()
     object NavigateToBack : RegisterEvents()
+    object NavigateToMain : RegisterEvents()
 }
 
 data class RegisterUiState(
@@ -85,6 +86,7 @@ class RegisterViewModel : ViewModel() {
                     RegisterEventType.TO_INPUT1 -> RegisterEvents.NavigateToRegisterInput1
                     RegisterEventType.TO_INPUT2 -> RegisterEvents.NavigateToRegisterInput2
                     RegisterEventType.TO_BACK -> RegisterEvents.NavigateToBack
+                    RegisterEventType.TO_MAIN -> RegisterEvents.NavigateToMain
                 }
             )
         }

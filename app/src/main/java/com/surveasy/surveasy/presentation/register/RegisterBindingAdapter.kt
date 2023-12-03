@@ -23,11 +23,11 @@ fun TextInputLayout.nameHelperText(state: InputState) {
 
 @BindingAdapter("set_next_enable")
 fun AppCompatButton.setNextEnable(uiState: RegisterUiState) = with(uiState) {
-    isEnabled =
-        nameState.isValid && emailState.isValid && pwState.isValid && pwCheckState.isValid && phoneState.isValid && birthState.isValid && inflowState.isValid
+//    isEnabled =
+//        nameState.isValid && emailState.isValid && pwState.isValid && pwCheckState.isValid && phoneState.isValid && birthState.isValid && inflowState.isValid
 }
 
 @BindingAdapter("set_done_enable")
 fun AppCompatButton.setDoneEnable(uiState: RegisterUiState) = with(uiState) {
-    isEnabled = bankState.isValid && accountState.isValid && accountOwnerState.isValid
+    // isEnabled = bankState.isValid && accountState.isValid && accountOwnerState.isValid
 }

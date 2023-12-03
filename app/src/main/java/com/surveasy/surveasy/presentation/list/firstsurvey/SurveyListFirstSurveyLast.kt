@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
-import com.surveasy.surveasy.presentation.MainActivity
+import com.surveasy.surveasy.presentation.Main1Activity
 import com.surveasy.surveasy.databinding.ActivitySurveyListFirstSurveyLastBinding
 
 class SurveyListFirstSurveyLast : AppCompatActivity() {
@@ -29,7 +29,7 @@ class SurveyListFirstSurveyLast : AppCompatActivity() {
             onBackPressed()
         }
         binding.SurveyListFirstSurveyLastBtn.setOnClickListener {
-            val intent : Intent = Intent(this, MainActivity::class.java)
+            val intent : Intent = Intent(this, Main1Activity::class.java)
             intent.putExtra("defaultFragment_list", true)
             intent.putExtra("defaultFragment_list_push", true)
             startActivity(intent)

@@ -37,7 +37,7 @@ import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerActivity
 import com.surveasy.surveasy.home.Opinion.HomeOpinionAnswerViewModel
 import com.surveasy.surveasy.home.list.HomeListItemsAdapter
 import com.surveasy.surveasy.my.history.MyViewHistoryActivity
-import com.surveasy.surveasy.presentation.MainActivity
+import com.surveasy.surveasy.presentation.Main1Activity
 import com.surveasy.surveasy.presentation.MainRepository
 import com.surveasy.surveasy.presentation.MainViewModel
 import com.surveasy.surveasy.presentation.MainViewModelFactory
@@ -144,12 +144,12 @@ class HomeFragment : Fragment() {
 
         binding.homeListBtn.setOnClickListener {
             if (userModel.currentUser.didFirstSurvey == false) {
-                (activity as MainActivity).navColor_In_Home()
-                (activity as MainActivity).moreBtn()
+                (activity as Main1Activity).navColor_In_Home()
+                (activity as Main1Activity).moreBtn()
 
             } else {
-                (activity as MainActivity).clickList()
-                (activity as MainActivity).navColor_In_Home()
+                (activity as Main1Activity).clickList()
+                (activity as Main1Activity).navColor_In_Home()
             }
         }
 
@@ -219,8 +219,8 @@ class HomeFragment : Fragment() {
                 }
 
                 binding.HomeListItemContainerFirst.setOnClickListener{
-                    (activity as MainActivity).navColor_In_Home()
-                    (activity as MainActivity).moreBtn()
+                    (activity as Main1Activity).navColor_In_Home()
+                    (activity as Main1Activity).moreBtn()
                 }
 
             }
