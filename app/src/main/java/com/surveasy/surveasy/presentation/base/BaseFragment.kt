@@ -32,6 +32,12 @@ abstract class BaseFragment<B : ViewDataBinding>(
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+        initEventObserver()
+    }
+
     fun LifecycleOwner.repeatOnStarted(block: suspend CoroutineScope.() -> Unit) {
         viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED, block)
@@ -46,4 +52,8 @@ abstract class BaseFragment<B : ViewDataBinding>(
     protected inline fun bind(crossinline action: B.() -> Unit) {
         binding.run(action)
     }
+
+    abstract fun initView()
+
+    abstract fun initEventObserver()
 }
