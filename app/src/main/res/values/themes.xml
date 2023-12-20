@@ -10,25 +10,31 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-<!--        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>-->
+        <!--        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>-->
         <!-- Customize your theme here. -->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">true</item>
     </style>
+
     <style name="Theme.Surveasy.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="ToolbarTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="colorControlNormal">@color/black</item>
     </style>
+
     <style name="Theme.Surveasy.AppBarOverlay" parent="Theme.AppCompat.Light.NoActionBar" />
+
     <style name="Theme.Surveasy.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="Splash" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimaryDark">#3D553F</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:statusBarColor">@color/white</item>
     </style>
+
     <style name="Theme.MyDialog" parent="@style/Theme.AppCompat">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -39,14 +45,18 @@
         <item name="colorPrimaryDark">@color/transparent</item>
 
 
-
-<!--        <item name="android:windowMinWidthMajor">@dimen/dialog_min_width_major</item>-->
-<!--        <item name="android:windowMinWidthMinor">@dimen/dialog_min_width_minor</item>-->
+        <!--        <item name="android:windowMinWidthMajor">@dimen/dialog_min_width_major</item>-->
+        <!--        <item name="android:windowMinWidthMinor">@dimen/dialog_min_width_minor</item>-->
     </style>
+
     <style name="progressBar">
         <item name="colorAccent">#4da830</item>
     </style>
-
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Surveasy" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
 
 
 </resources>

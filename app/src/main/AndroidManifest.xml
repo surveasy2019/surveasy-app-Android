@@ -20,6 +20,13 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.main.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.Surveasy">
+
+        </activity>
+        <activity
             android:name=".presentation.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/Splash" />
@@ -33,9 +40,6 @@
         <activity
             android:name=".presentation.register.agree.RegisterTerm1"
             android:exported="true" />
-        <activity
-            android:name=".firstIntroduceScreen.FirstIntroduceScreenActivity"
-            android:exported="true" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -45,7 +49,10 @@
             android:resource="@color/main_green" />
 
         <activity
-            android:name=".presentation.main.MainActivity"
+            android:name=".presentation.login.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.register.RegisterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,35 +60,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".presentation.login.LoginActivity"
-            android:exported="true" />
-        <activity
-            android:name=".presentation.register.RegisterActivity"
-            android:exported="true" />
-
-        <service
-            android:name=".fcm.MyFirebaseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <!--        <activity-->
-        <!--            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"-->
-        <!--            android:exported="true">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="android.intent.action.VIEW" />-->
-
-        <!--                <category android:name="android.intent.category.DEFAULT" />-->
-        <!--                <category android:name="android.intent.category.BROWSABLE" />-->
-
-        <!--                <data-->
-        <!--                    android:host="oauth"-->
-        <!--                    android:scheme="kakaoc3dd0da30ec3cf75837fef9022ca48a4" />-->
-        <!--            </intent-filter>-->
-        <!--        </activity>-->
     </application>
 
 </manifest>
