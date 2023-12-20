@@ -7,7 +7,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivityMainBinding
 import com.surveasy.surveasy.presentation.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController

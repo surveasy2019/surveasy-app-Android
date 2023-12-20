@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterInput2Binding
 import com.surveasy.surveasy.presentation.base.BaseFragment
@@ -16,27 +17,26 @@ import com.surveasy.surveasy.presentation.main.MainActivity
 class RegisterInput2Fragment :
     BaseFragment<FragmentRegisterInput2Binding>(R.layout.fragment_register_input2) {
     private val viewModel: RegisterViewModel by viewModels()
-    private lateinit var navController: NavController
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initEventObserver() {
 
-        initView(view)
-        initBankSpinner()
     }
 
-    private fun initView(view: View) {
-        navController = Navigation.findNavController(view)
+    override fun initData() {
+
+    }
+
+    override fun initView() {
+        initBankSpinner()
         bind {
             vm = viewModel
             lifecycleOwner = viewLifecycleOwner
-            navController = Navigation.findNavController(view)
 
             repeatOnStarted {
                 viewModel.events.collect { event ->
                     when (event) {
                         is RegisterEvents.NavigateToBack ->
-                            navController.navigateUp()
+                            findNavController().navigateUp()
                         is RegisterEvents.NavigateToMain -> navigateToMain()
                         else -> Unit
                     }

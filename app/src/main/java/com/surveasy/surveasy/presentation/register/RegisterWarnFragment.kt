@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterWarnBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
@@ -16,27 +17,19 @@ import com.surveasy.surveasy.presentation.base.BaseFragment
 class RegisterWarnFragment :
     BaseFragment<FragmentRegisterWarnBinding>(R.layout.fragment_register_warn) {
     private val viewModel : RegisterViewModel by viewModels()
-    private lateinit var navController: NavController
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView(view)
-    }
-
-    private fun initView(view: View) {
-        navController = Navigation.findNavController(view)
+    override fun initView() {
         bind {
             vm = viewModel
             lifecycleOwner = viewLifecycleOwner
-            navController = Navigation.findNavController(view)
 
             repeatOnStarted {
                 viewModel.events.collect { event ->
                     when (event) {
-                        is RegisterEvents.NavigateToRegisterInput1 -> navController.navigate(
+                        is RegisterEvents.NavigateToRegisterInput1 -> findNavController().navigate(
                             RegisterWarnFragmentDirections.actionRegisterWarnFragmentToRegisterInput1Fragment()
                         )
-                        is RegisterEvents.NavigateToBack -> navController.navigate(
+                        is RegisterEvents.NavigateToBack -> findNavController().navigate(
                             RegisterWarnFragmentDirections.actionRegisterWarnFragmentToRegisterAgreeFragment()
                         )
                         else -> Unit
@@ -45,5 +38,13 @@ class RegisterWarnFragment :
             }
 
         }
+    }
+
+    override fun initEventObserver() {
+
+    }
+
+    override fun initData() {
+
     }
 }

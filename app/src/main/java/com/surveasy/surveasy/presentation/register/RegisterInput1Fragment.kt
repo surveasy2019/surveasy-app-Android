@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterInput1Binding
 import com.surveasy.surveasy.presentation.base.BaseFragment
@@ -15,33 +16,30 @@ import com.surveasy.surveasy.presentation.util.showCalendarDatePicker
 class RegisterInput1Fragment :
     BaseFragment<FragmentRegisterInput1Binding>(R.layout.fragment_register_input1) {
     private val viewModel: RegisterViewModel by viewModels()
-    private lateinit var navController: NavController
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        initView(view)
-        initDatePicker()
-        initInflowPathSpinner()
+    override fun initEventObserver() {
 
     }
 
+    override fun initData() {
 
-    private fun initView(view: View) {
-        navController = Navigation.findNavController(view)
+    }
+
+    override fun initView() {
+        initDatePicker()
+        initInflowPathSpinner()
         bind {
             vm = viewModel
             lifecycleOwner = viewLifecycleOwner
-            navController = Navigation.findNavController(view)
 
             repeatOnStarted {
                 viewModel.events.collect { event ->
                     when (event) {
-                        is RegisterEvents.NavigateToRegisterInput2 -> navController.navigate(
+                        is RegisterEvents.NavigateToRegisterInput2 -> findNavController().navigate(
                             RegisterInput1FragmentDirections.actionRegisterInput1FragmentToRegisterInput2Fragment()
                         )
 
-                        is RegisterEvents.NavigateToBack -> navController.navigateUp()
+                        is RegisterEvents.NavigateToBack -> findNavController().navigateUp()
                         else -> Unit
                     }
                 }
