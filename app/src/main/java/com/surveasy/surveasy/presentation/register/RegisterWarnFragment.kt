@@ -14,7 +14,7 @@ import com.surveasy.surveasy.databinding.FragmentRegisterWarnBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
 
 class RegisterWarnFragment :
-    BaseFragment<FragmentRegisterWarnBinding>(FragmentRegisterWarnBinding::inflate) {
+    BaseFragment<FragmentRegisterWarnBinding>(R.layout.fragment_register_warn) {
     private val viewModel : RegisterViewModel by viewModels()
     private lateinit var navController: NavController
 
@@ -39,6 +39,7 @@ class RegisterWarnFragment :
                         is RegisterEvents.NavigateToBack -> navController.navigate(
                             RegisterWarnFragmentDirections.actionRegisterWarnFragmentToRegisterAgreeFragment()
                         )
+                        else -> Unit
                     }
                 }
             }

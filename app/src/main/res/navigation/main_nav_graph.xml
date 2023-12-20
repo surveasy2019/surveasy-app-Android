@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/homeFragment2">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/listFragment"
@@ -16,8 +16,8 @@
         android:label="fragment_my"
         tools:layout="@layout/fragment_my" />
     <fragment
-        android:id="@+id/homeFragment2"
+        android:id="@+id/homeFragment"
         android:name="com.surveasy.surveasy.presentation.main.home.HomeFragment"
-        android:label="fragment_home2"
-        tools:layout="@layout/fragment_home2" />
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>

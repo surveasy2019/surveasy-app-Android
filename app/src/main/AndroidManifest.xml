@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.surveasy.surveasy">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -12,7 +11,7 @@
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <application
-        android:name=".auth.GlobalApplication"
+        android:name=".GlobalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_main"
         android:label="@string/app_name"
@@ -21,55 +20,13 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".auth.AuthDialogActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MyDialog" />
-        <activity
-            android:name=".my.history.detail.MyViewHistoryUpdateFinDialogActivity"
-            android:exported="true"
-            android:theme="@style/Theme.MyDialog" />
-        <activity
-            android:name=".auth.AuthProcessActivity"
-            android:exported="true" />
-        <activity
-            android:name=".my.history.detail.MyViewHistoryDetailActivity"
-            android:exported="true" />
-        <activity
-            android:name=".my.history.detail.MyViewUpdatePhotoActivity"
-            android:exported="true" />
-        <activity
-            android:name=".home.Opinion.HomeOpinionAnswerActivity"
-            android:exported="true" />
-        <activity
-            android:name=".list.firstsurvey.PushDialogActivity"
-            android:exported="true"
-            android:theme="@style/Theme.MyDialog" />
-        <activity
-            android:name=".home.Opinion.HomeOpinionDetailActivity"
-            android:exported="true" />
-        <activity
-            android:name=".list.firstsurvey.SurveyListFirstSurveyLast"
-            android:exported="true" />
-        <activity
             android:name=".presentation.splash.SplashActivity"
             android:exported="true"
-            android:theme="@style/Splash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Splash" />
         <activity
             android:name=".presentation.splash.FCM_SplashActivity"
             android:exported="true"
-            android:theme="@style/Splash">
-            <intent-filter>
-                <action android:name="FCM_EXE_ACTIVITY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Splash" />
         <activity
             android:name=".presentation.register.agree.RegisterTerm2"
             android:exported="true" />
@@ -79,28 +36,6 @@
         <activity
             android:name=".firstIntroduceScreen.FirstIntroduceScreenActivity"
             android:exported="true" />
-        <activity
-            android:name=".presentation.login.FindPwActivity"
-            android:exported="true" />
-        <activity
-            android:name=".my.setting.MyViewSettingVersionActivity"
-            android:exported="true" />
-        <activity
-            android:name=".list.NoticeToPanelDialogActivity"
-            android:exported="true"
-            android:theme="@style/Theme.MyDialog" />
-        <activity
-            android:name=".list.SurveyDoneAlertDialogActivity"
-            android:exported="true"
-            android:theme="@style/Theme.MyDialog" />
-        <activity
-            android:name=".list.SurveyListDetailDialogActivity"
-            android:exported="true"
-            android:theme="@style/Theme.MyDialog" />
-        <activity
-            android:name=".home.NetworkAlertActivity"
-            android:exported="true"
-            android:theme="@style/Theme.MyDialog" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -110,72 +45,21 @@
             android:resource="@color/main_green" />
 
         <activity
-            android:name=".list.SurveyProofLastDialogActivity"
-            android:exported="true"
-            android:theme="@style/Theme.MyDialog" />
-        <activity
-            android:name=".my.notice.MyViewNoticeListDetailActivity"
-            android:exported="true" />
-        <activity
             android:name=".presentation.main.MainActivity"
-            android:exported="true" />
-        <activity
-            android:name=".presentation.Main1Activity"
-            android:exported="true" />
-        <activity
-            android:name=".home.contribution.HomeContributionListDetailActivity"
-            android:exported="true" />
-        <activity
-            android:name=".list.firstsurvey.SurveyListFirstSurveyActivity"
-            android:exported="true" />
-        <activity
-            android:name=".list.SurveyListDetailResponseActivity"
-            android:exported="true" />
-        <activity
-            android:name=".list.SurveyListDetailActivity"
-            android:exported="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".list.SurveyProofDialogActivity"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".presentation.login.LoginActivity"
             android:exported="true" />
         <activity
             android:name=".presentation.register.RegisterActivity"
             android:exported="true" />
-        <activity
-            android:name=".my.setting.MyViewSettingActivity"
-            android:exported="true" />
-        <activity
-            android:name=".my.setting.MyViewSettingPushActivity"
-            android:exported="true" />
-        <activity
-            android:name=".my.setting.MyViewSettingWithdrawActivity"
-            android:exported="true" />
-        <activity
-            android:name=".my.history.MyViewHistoryActivity"
-            android:exported="true" />
-        <activity
-            android:name=".my.info.MyViewInfoActivity"
-            android:exported="true" />
-        <activity
-            android:name=".my.MyViewContactActivity"
-            android:exported="true" />
-        <activity
-            android:name=".my.MyViewInviteActivity"
-            android:exported="true" />
-        <activity
-            android:name=".my.notice.MyViewNoticeListActivity"
-            android:exported="true" /> <!-- <activity -->
-        <!-- android:name=".SplashActivity" -->
-        <!-- android:exported="true" -->
-        <!-- android:theme="@style/Splash"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
+
         <service
             android:name=".fcm.MyFirebaseMessagingService"
             android:exported="false">
@@ -184,20 +68,20 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+        <!--        <activity-->
+        <!--            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"-->
+        <!--            android:exported="true">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.VIEW" />-->
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+        <!--                <category android:name="android.intent.category.DEFAULT" />-->
+        <!--                <category android:name="android.intent.category.BROWSABLE" />-->
 
-                <data
-                    android:host="oauth"
-                    android:scheme="kakaoc3dd0da30ec3cf75837fef9022ca48a4" />
-            </intent-filter>
-        </activity>
+        <!--                <data-->
+        <!--                    android:host="oauth"-->
+        <!--                    android:scheme="kakaoc3dd0da30ec3cf75837fef9022ca48a4" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
     </application>
 
 </manifest>

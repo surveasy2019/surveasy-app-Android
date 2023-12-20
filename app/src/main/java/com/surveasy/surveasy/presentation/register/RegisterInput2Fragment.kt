@@ -14,7 +14,7 @@ import com.surveasy.surveasy.presentation.base.BaseFragment
 import com.surveasy.surveasy.presentation.main.MainActivity
 
 class RegisterInput2Fragment :
-    BaseFragment<FragmentRegisterInput2Binding>(FragmentRegisterInput2Binding::inflate) {
+    BaseFragment<FragmentRegisterInput2Binding>(R.layout.fragment_register_input2) {
     private val viewModel: RegisterViewModel by viewModels()
     private lateinit var navController: NavController
 
@@ -38,6 +38,7 @@ class RegisterInput2Fragment :
                         is RegisterEvents.NavigateToBack ->
                             navController.navigateUp()
                         is RegisterEvents.NavigateToMain -> navigateToMain()
+                        else -> Unit
                     }
                 }
             }
@@ -48,7 +49,7 @@ class RegisterInput2Fragment :
     private fun initBankSpinner() {
         val bankList = resources.getStringArray(R.array.accountType)
         val bankAdapter =
-            ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, bankList)
+            ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, bankList)
 
         bind {
             sBank.apply {

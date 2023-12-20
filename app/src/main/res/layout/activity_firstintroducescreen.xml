@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".firstIntroduceScreen.FirstIntroduceScreenActivity">
+    android:gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,11 +14,6 @@
         android:layout_gravity="center"
         android:gravity="center">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/FirstIntroduceScreen_ViewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="top"/>
 
     </LinearLayout>
 
@@ -32,18 +26,6 @@
         android:layout_gravity="center"
         android:gravity="center">
 
-        <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
-            android:id="@+id/spring_dots_indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:dampingRatio="0.5"
-            app:dotsColor="#0aab00"
-            app:dotsStrokeColor="#e2e2e2"
-            app:dotsSize="7dp"
-            app:dotsSpacing="6dp"
-            app:dotsStrokeWidth="3.5dp"
-            app:stiffness="300" />
 
     </LinearLayout>
 
