@@ -56,4 +56,6 @@ abstract class BaseFragment<B : ViewDataBinding>(
     abstract fun initView()
 
     abstract fun initEventObserver()
+
+    abstract fun initData()
 }

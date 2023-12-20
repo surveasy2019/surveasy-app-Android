@@ -12,4 +12,8 @@ class MyFragment : BaseFragment<FragmentMyBinding>(R.layout.fragment_my) {
     override fun initEventObserver() {
 
     }
+
+    override fun initData() {
+
+    }
 }

@@ -12,4 +12,8 @@ class ListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
     override fun initEventObserver() {
 
     }
+
+    override fun initData() {
+
+    }
 }

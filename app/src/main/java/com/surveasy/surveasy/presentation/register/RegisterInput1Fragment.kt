@@ -21,6 +21,10 @@ class RegisterInput1Fragment :
 
     }
 
+    override fun initData() {
+
+    }
+
     override fun initView() {
         initDatePicker()
         initInflowPathSpinner()

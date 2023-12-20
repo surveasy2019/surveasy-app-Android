@@ -43,4 +43,8 @@ class RegisterWarnFragment :
     override fun initEventObserver() {
 
     }
+
+    override fun initData() {
+
+    }
 }

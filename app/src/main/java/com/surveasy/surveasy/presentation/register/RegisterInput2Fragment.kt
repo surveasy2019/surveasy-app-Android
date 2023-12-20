@@ -22,6 +22,10 @@ class RegisterInput2Fragment :
 
     }
 
+    override fun initData() {
+
+    }
+
     override fun initView() {
         initBankSpinner()
         bind {

@@ -45,4 +45,8 @@ class RegisterAgreeFragment :
 
     }
 
+    override fun initData() {
+
+    }
+
 }
