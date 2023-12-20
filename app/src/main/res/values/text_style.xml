@@ -8,19 +8,31 @@
     </style>
 
     <style name="TextMediumLight">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="fontFamily">@font/main_font_l</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="TextMediumRegular">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="fontFamily">@font/main_font_m</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="TextMediumBold">
         <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/main_font_b</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextTitleRegular">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/main_font_m</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextTitleBold">
+        <item name="android:textSize">18sp</item>
         <item name="fontFamily">@font/main_font_b</item>
         <item name="android:textColor">@color/black</item>
     </style>
