@@ -15,8 +15,11 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnv_nav_bar"
+            style="@style/TextMediumRegular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:itemBackground="@color/white"
+            app:itemActiveIndicatorStyle="@color/transparent"
             app:itemIconTint="@drawable/menu_selector_style"
             app:itemTextColor="@drawable/menu_selector_style"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -4,17 +4,17 @@
         android:id="@+id/homeFragment"
         android:enabled="true"
         android:icon="@drawable/nav_home_gray"
-        android:title="홈" />
+        android:title="HOME" />
 
     <item
         android:id="@+id/listFragment"
         android:enabled="true"
         android:icon="@drawable/nav_list_gray"
-        android:title="리스트" />
+        android:title="LIST" />
 
     <item
         android:id="@+id/myFragment"
         android:enabled="true"
         android:icon="@drawable/nav_my_gray"
-        android:title="마이페이지" />
+        android:title="MY" />
 </menu>
