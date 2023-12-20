@@ -1,11 +1,14 @@
 package com.surveasy.surveasy.data.remote
 
-import com.surveasy.surveasy.data.model.request.SignupRequest
-import com.surveasy.surveasy.data.model.response.SignupResponse
+import com.surveasy.surveasy.data.model.response.PanelInfoResponse
+import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface SurveasyApi {
-    @POST("/panel/auth/existing")
-    suspend fun signupExistingPanel(@Body uid : SignupRequest): SignupResponse
+
+    //home
+    @GET("panel/home")
+    suspend fun queryPanelInfo(): Response<PanelInfoResponse>
 }
