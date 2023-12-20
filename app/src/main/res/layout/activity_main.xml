@@ -13,30 +13,31 @@
         tools:context=".presentation.main.MainActivity">
 
 
-        <androidx.fragment.app.FragmentContainerView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/bnv_nav_bar"
-            android:id="@+id/nav_host_fragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/main_nav_graph" />
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnv_nav_bar"
+            style="@style/TextMediumRegular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            app:itemBackground="@color/white"
+            app:itemActiveIndicatorStyle="@color/transparent"
             app:itemIconTint="@drawable/menu_selector_style"
             app:itemTextColor="@drawable/menu_selector_style"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/nav_host_fragment"
-            app:menu="@menu/bottom_bar" />
+            app:menu="@menu/bottom_menu" />
 
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@id/bnv_nav_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/main_nav_graph" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

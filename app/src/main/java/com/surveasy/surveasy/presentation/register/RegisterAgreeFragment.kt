@@ -10,13 +10,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterAgreeBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
 import kotlinx.coroutines.flow.collect
 
 
 class RegisterAgreeFragment :
-    BaseFragment<FragmentRegisterAgreeBinding>(FragmentRegisterAgreeBinding::inflate) {
+    BaseFragment<FragmentRegisterAgreeBinding>(R.layout.fragment_register_agree) {
     private val viewModel: RegisterViewModel by viewModels()
     private lateinit var navController: NavController
 
@@ -39,6 +40,7 @@ class RegisterAgreeFragment :
                     when (event) {
                         is RegisterEvents.NavigateToRegisterWarn ->
                             navController.navigate(RegisterAgreeFragmentDirections.actionRegisterAgreeFragmentToRegisterWarnFragment())
+                        else -> Unit
                     }
                 }
             }

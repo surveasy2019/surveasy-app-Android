@@ -13,7 +13,7 @@ import com.surveasy.surveasy.presentation.base.BaseFragment
 import com.surveasy.surveasy.presentation.util.showCalendarDatePicker
 
 class RegisterInput1Fragment :
-    BaseFragment<FragmentRegisterInput1Binding>(FragmentRegisterInput1Binding::inflate) {
+    BaseFragment<FragmentRegisterInput1Binding>(R.layout.fragment_register_input1) {
     private val viewModel: RegisterViewModel by viewModels()
     private lateinit var navController: NavController
 
@@ -42,7 +42,7 @@ class RegisterInput1Fragment :
                         )
 
                         is RegisterEvents.NavigateToBack -> navController.navigateUp()
-
+                        else -> Unit
                     }
                 }
             }
@@ -64,7 +64,7 @@ class RegisterInput1Fragment :
         val inflowPathList = resources.getStringArray(R.array.inflowPath)
         val inflowPathAdapter = ArrayAdapter(
             requireContext(),
-            R.layout.support_simple_spinner_dropdown_item,
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
             inflowPathList
         )
 

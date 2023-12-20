@@ -1,7 +1,6 @@
 package com.surveasy.surveasy.data.userRoom
 
 import androidx.room.*
-import com.surveasy.surveasy.my.notice.noticeRoom.Notice
 
 @Dao
 interface UserDao {
