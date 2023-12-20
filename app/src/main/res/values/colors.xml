@@ -11,5 +11,7 @@
     <color name="back">#c9c9c9</color>
     <color name="highlight">#4da830</color>
     <color name="main_green">#0aab00</color>
+    <color name="main_green_10">#1A0AAB00</color>
     <color name="gray">#707070</color>
+    <color name="light_gray">#A5A5A5</color>
 </resources>
