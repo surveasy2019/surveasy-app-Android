@@ -17,4 +17,13 @@
         android:id="@+id/myFragment"
         android:name="com.surveasy.surveasy.presentation.main.my.MyFragment"
         android:label="MyFragment" />
+    <action
+        android:id="@+id/action_global_homeFragment"
+        app:destination="@id/homeFragment" />
+    <action
+        android:id="@+id/action_global_listFragment"
+        app:destination="@id/listFragment" />
+    <action
+        android:id="@+id/action_global_myFragment"
+        app:destination="@id/myFragment" />
 </navigation>
