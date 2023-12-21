@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/list_nav_graph"
+    app:startDestination="@id/surveyDetailFragment">
+
+    <fragment
+        android:id="@+id/surveyDetailFragment"
+        android:name="com.surveasy.surveasy.presentation.main.survey.SurveyDetailFragment"
+        android:label="SurveyDetailFragment">
+        <action
+            android:id="@+id/action_surveyDetailFragment_to_surveyFragment"
+            app:destination="@id/surveyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyFragment"
+        android:name="com.surveasy.surveasy.presentation.main.survey.SurveyFragment"
+        android:label="SurveyFragment">
+        <action
+            android:id="@+id/action_surveyFragment_to_surveyProofFragment"
+            app:destination="@id/surveyProofFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyProofFragment"
+        android:name="com.surveasy.surveasy.presentation.main.survey.SurveyProofFragment"
+        android:label="SurveyProofFragment">
+        <action
+            android:id="@+id/action_surveyProofFragment_to_surveyDoneFragment"
+            app:destination="@id/surveyDoneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surveyDoneFragment"
+        android:name="com.surveasy.surveasy.presentation.main.survey.SurveyDoneFragment"
+        android:label="SurveyDoneFragment" />
+</navigation>

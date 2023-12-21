@@ -4,7 +4,7 @@
     <style name="HelperTextStyle">
         <item name="android:textSize">12sp</item>
         <item name="fontFamily">@font/main_font_l</item>
-        <item name="android:textColor">#C12828</item>
+        <item name="android:textColor">@color/red</item>
     </style>
 
     <style name="TextMediumLight">

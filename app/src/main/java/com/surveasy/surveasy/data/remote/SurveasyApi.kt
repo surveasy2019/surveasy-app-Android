@@ -8,6 +8,9 @@ import retrofit2.http.POST
 
 interface SurveasyApi {
 
+    @GET("panel/auth/token/1")
+    suspend fun getTempToken(): Response<String>
+
     //home
     @GET("panel/home")
     suspend fun queryPanelInfo(): Response<PanelInfoResponse>

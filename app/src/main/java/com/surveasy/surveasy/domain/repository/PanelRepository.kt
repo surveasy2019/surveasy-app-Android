@@ -5,5 +5,8 @@ import com.surveasy.surveasy.domain.model.PanelInfo
 import kotlinx.coroutines.flow.Flow
 
 interface PanelRepository {
+
+    fun getTempToken(): Flow<BaseState<String>>
+
     fun queryPanelInfo(): Flow<BaseState<PanelInfo>>
 }

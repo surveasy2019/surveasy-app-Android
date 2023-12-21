@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.main.survey.SurveyViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="40dp">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_confirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="20dp"
+                android:paddingBottom="20dp"
+                tools:context=".presentation.main.survey.SurveyDetailFragment">
+
+                <View
+                    android:id="@+id/v_detail_bar"
+                    android:layout_width="0dp"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_back"
+                    app:layout_constraintBottom_toBottomOf="@id/v_detail_bar"
+                    app:layout_constraintStart_toStartOf="@id/v_detail_bar"
+                    app:layout_constraintTop_toTopOf="@id/v_detail_bar" />
+
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    style="@style/TextMediumBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="대학생에 대한 설문"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/v_detail_bar" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_detail_box"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/custom_detail_white_box"
+                    android:paddingVertical="28dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+                    <TextView
+                        android:id="@+id/tv_reward_label"
+                        style="@style/TextSmallRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="패널비"
+                        android:textColor="@color/light_gray"
+                        app:layout_constraintEnd_toStartOf="@id/tv_time_label"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintStart_toStartOf="@id/cl_detail_box"
+                        app:layout_constraintTop_toTopOf="@id/cl_detail_box" />
+
+                    <TextView
+                        android:id="@+id/tv_time_label"
+                        style="@style/TextSmallRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="소요시간"
+                        android:textColor="@color/light_gray"
+                        app:layout_constraintEnd_toStartOf="@id/tv_participate_label"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toEndOf="@id/tv_reward_label"
+                        app:layout_constraintTop_toTopOf="@id/cl_detail_box" />
+
+                    <TextView
+                        android:id="@+id/tv_participate_label"
+                        style="@style/TextSmallRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="참여현황"
+                        android:textColor="@color/light_gray"
+                        app:layout_constraintEnd_toEndOf="@id/cl_detail_box"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toEndOf="@id/tv_time_label"
+                        app:layout_constraintTop_toTopOf="@id/cl_detail_box" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/md_divider1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginVertical="12dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_time_label" />
+
+                    <TextView
+                        android:id="@+id/tv_reward"
+                        style="@style/TextSmallBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="300원"
+                        android:textColor="@color/main_green"
+                        app:layout_constraintEnd_toEndOf="@id/tv_reward_label"
+                        app:layout_constraintStart_toStartOf="@id/tv_reward_label"
+                        app:layout_constraintTop_toBottomOf="@id/md_divider1" />
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        style="@style/TextSmallBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="1-3분"
+                        android:textColor="@color/main_green"
+                        app:layout_constraintEnd_toEndOf="@id/tv_time_label"
+                        app:layout_constraintStart_toStartOf="@id/tv_time_label"
+                        app:layout_constraintTop_toBottomOf="@id/md_divider1" />
+
+                    <TextView
+                        android:id="@+id/tv_participate"
+                        style="@style/TextSmallBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="34/100명"
+                        android:textColor="@color/main_green"
+                        app:layout_constraintEnd_toEndOf="@id/tv_participate_label"
+                        app:layout_constraintStart_toStartOf="@id/tv_participate_label"
+                        app:layout_constraintTop_toBottomOf="@id/md_divider1" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_target_label"
+                    style="@style/TextSmallBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="✅ 설문 대상"
+                    android:textColor="@color/gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_detail_box" />
+
+                <TextView
+                    android:id="@+id/tv_target"
+                    style="@style/TextSmallRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="서울 1등급 호텔 이용자"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_target_label" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/md_divider2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:dividerThickness="0.7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_target" />
+
+                <TextView
+                    android:id="@+id/tv_warn_label"
+                    style="@style/TextSmallBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="❗️ 패널 유의사항"
+                    android:textColor="@color/gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/md_divider2" />
+
+                <TextView
+                    android:id="@+id/tv_warn"
+                    style="@style/TextSmallRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="주관식 문항에 성심성의껏 답변해주세요!"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_warn_label" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/md_divider3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:dividerThickness="0.7dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_warn" />
+
+                <TextView
+                    android:id="@+id/tv_description_label"
+                    style="@style/TextSmallBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="✍🏻 설문 설명"
+                    android:textColor="@color/gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/md_divider3" />
+
+                <TextView
+                    android:id="@+id/tv_description"
+                    style="@style/TextSmallRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다.본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다.본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다.본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다.본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다.본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다.본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다."
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_description_label" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            style="@style/TextSmallBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:text="유의 사항을 확인했습니다."
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toTopOf="@id/btn_participate"
+            app:layout_constraintEnd_toEndOf="@id/btn_participate"
+            app:layout_constraintStart_toStartOf="@id/btn_participate" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_participate"
+            style="@style/TextTitleBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_box_ongoing"
+            android:onClick="@{() -> vm.navigateToSurvey()}"
+            android:paddingHorizontal="24dp"
+            android:text="설문 참여하러 가기"
+            android:textColor="@color/main_green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

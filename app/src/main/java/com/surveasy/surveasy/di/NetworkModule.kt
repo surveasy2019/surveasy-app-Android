@@ -2,6 +2,7 @@ package com.surveasy.surveasy.di
 
 import com.google.gson.GsonBuilder
 import com.surveasy.surveasy.BuildConfig
+import com.surveasy.surveasy.data.config.AccessTokenInterceptor
 import com.surveasy.surveasy.data.remote.SurveasyApi
 import dagger.Module
 import dagger.Provides
@@ -22,11 +23,13 @@ object NetworkModule {
     @Provides
     fun provideOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
+        accessTokenInterceptor: AccessTokenInterceptor,
     ): OkHttpClient {
 
         return OkHttpClient.Builder()
             .readTimeout(3000, TimeUnit.MILLISECONDS)
             .connectTimeout(3000, TimeUnit.MILLISECONDS)
+            .addNetworkInterceptor(accessTokenInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .build()
     }
@@ -38,6 +41,9 @@ object NetworkModule {
                 if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         }
     }
+
+    @Provides
+    fun provideAccessTokenInterceptor(): AccessTokenInterceptor = AccessTokenInterceptor()
 
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
