@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.presentation.main.list
+package com.surveasy.surveasy.presentation.main.survey
 
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentSurveyProofBinding
