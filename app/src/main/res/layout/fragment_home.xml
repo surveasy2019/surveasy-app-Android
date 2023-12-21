@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.main.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,9 +61,19 @@
                     style="@style/TextMediumBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="안녕하세요, ID 님!"
+                    android:text="안녕하세요, "
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="@id/guide_begin"
+                    app:layout_constraintTop_toTopOf="@id/guide_top" />
+
+                <TextView
+                    android:id="@+id/tv_nick_name"
+                    style="@style/TextMediumBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:nameTitle="@{vm.uiState.name}"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@id/tv_greeting_title"
                     app:layout_constraintTop_toTopOf="@id/guide_top" />
 
                 <View
@@ -79,7 +91,7 @@
                     style="@style/TextSmallBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0개"
+                    app:countTitle="@{vm.uiState.count}"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@id/tv_survey_num_label"
@@ -116,7 +128,7 @@
                     style="@style/TextSmallBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0원"
+                    app:rewardTitle="@{vm.uiState.rewardTotal}"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@id/tv_reward_label"
