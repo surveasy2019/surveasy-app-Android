@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.main.survey.SurveyViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -257,6 +261,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_box_ongoing"
+            android:onClick="@{() -> vm.navigateToSurvey()}"
             android:paddingHorizontal="24dp"
             android:text="설문 참여하러 가기"
             android:textColor="@color/main_green"

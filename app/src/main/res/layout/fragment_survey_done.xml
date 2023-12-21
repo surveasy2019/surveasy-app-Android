@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.main.survey.SurveyViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,6 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/white_button"
+            android:onClick="@{() -> vm.navigateToMy()}"
             android:paddingHorizontal="12dp"
             android:text="마이페이지로 가기"
             android:textColor="@color/main_green"
@@ -58,6 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/register_button"
+            android:onClick="@{() -> vm.navigateToList()}"
             android:paddingHorizontal="29dp"
             android:text="목록으로 가기"
             android:textColor="@color/white"

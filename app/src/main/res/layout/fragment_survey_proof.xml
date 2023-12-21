@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.main.survey.SurveyViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,9 +71,9 @@
             style="@style/TextTitleBold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/white_button"
             android:text="사진 다시 선택하기"
-            android:layout_marginBottom="12dp"
             android:textColor="@color/main_green"
             app:layout_constraintBottom_toTopOf="@id/btn_submit"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
@@ -81,6 +85,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/register_button"
+            android:onClick="@{() -> vm.navigateToDone()}"
             android:text="제출하기"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/guide_bottom"

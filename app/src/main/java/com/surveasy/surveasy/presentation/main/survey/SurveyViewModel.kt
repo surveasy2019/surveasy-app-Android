@@ -31,10 +31,20 @@ class SurveyViewModel @Inject constructor() : ViewModel() {
         viewModelScope.launch { _events.emit(SurveyEvents.NavigateToDone) }
     }
 
+    fun navigateToMy() {
+        viewModelScope.launch { _events.emit(SurveyEvents.NavigateToMy) }
+    }
+
+    fun navigateToList() {
+        viewModelScope.launch { _events.emit(SurveyEvents.NavigateToList) }
+    }
+
 }
 
 sealed class SurveyEvents {
     data object NavigateToSurvey : SurveyEvents()
     data object NavigateToProof : SurveyEvents()
     data object NavigateToDone : SurveyEvents()
+    data object NavigateToMy : SurveyEvents()
+    data object NavigateToList : SurveyEvents()
 }
