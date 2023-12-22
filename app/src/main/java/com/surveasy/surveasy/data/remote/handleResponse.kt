@@ -5,7 +5,7 @@ import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.base.StatusCode
 import retrofit2.Response
 
-suspend fun <T> runRemote(block: suspend () -> Response<T>): BaseState<T> {
+suspend fun <T> handleResponse(block: suspend () -> Response<T>): BaseState<T> {
     return try {
         val response = block()
         if (response.isSuccessful) {
