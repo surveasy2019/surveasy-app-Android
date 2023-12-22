@@ -26,11 +26,6 @@
             android:name=".presentation.main.MainActivity"
             android:exported="false"
             android:theme="@style/Theme.Surveasy">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.splash.SplashActivity"
@@ -61,7 +56,13 @@
         </activity>
         <activity
             android:name=".presentation.register.RegisterActivity"
-            android:exported="true"/>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -3,8 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/registerAgreeFragment">
+    app:startDestination="@id/loginFragment">
 
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.surveasy.surveasy.presentation.register.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_existUserFragment"
+            app:destination="@id/existUserFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerAgreeFragment"
+            app:destination="@id/registerAgreeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/existUserFragment"
+        android:name="com.surveasy.surveasy.presentation.register.ExistUserFragment"
+        android:label="ExistUserFragment" />
     <fragment
         android:id="@+id/registerAgreeFragment"
         android:name="com.surveasy.surveasy.presentation.register.RegisterAgreeFragment"
@@ -22,9 +37,6 @@
         <action
             android:id="@+id/action_registerWarnFragment_to_registerInput1Fragment"
             app:destination="@id/registerInput1Fragment" />
-        <action
-            android:id="@+id/action_registerWarnFragment_to_registerAgreeFragment"
-            app:destination="@id/registerAgreeFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerInput1Fragment"
@@ -34,17 +46,10 @@
         <action
             android:id="@+id/action_registerInput1Fragment_to_registerInput2Fragment"
             app:destination="@id/registerInput2Fragment" />
-        <action
-            android:id="@+id/action_registerInput1Fragment_to_registerWarnFragment"
-            app:destination="@id/registerWarnFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerInput2Fragment"
         android:name="com.surveasy.surveasy.presentation.register.RegisterInput2Fragment"
         android:label="fragment_register_input2"
-        tools:layout="@layout/fragment_register_input2" >
-        <action
-            android:id="@+id/action_registerInput2Fragment_to_registerInput1Fragment"
-            app:destination="@id/registerInput1Fragment" />
-    </fragment>
+        tools:layout="@layout/fragment_register_input2" />
 </navigation>

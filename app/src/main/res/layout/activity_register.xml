@@ -32,29 +32,13 @@
             android:orientation="vertical"
             app:layout_constraintGuide_end="30dp" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_register"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/nav_host_fragment_container"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_top"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingVertical="20dp"
-            android:theme="@style/ToolbarTheme">
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="40dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/main_font_sb"
-                android:lineSpacingExtra="3.3sp"
-                android:text="@string/register_top_title"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-        </androidx.appcompat.widget.Toolbar>
 
 
         <androidx.fragment.app.FragmentContainerView
@@ -64,7 +48,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:navGraph="@navigation/intro_nav_graph"
-            app:layout_constraintTop_toBottomOf="@id/tb_register"
+            app:layout_constraintTop_toTopOf="@id/guide_top"
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
             app:layout_constraintBottom_toBottomOf="@id/guide_bottom" />

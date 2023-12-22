@@ -27,22 +27,19 @@ class RegisterAgreeFragment :
         bind {
             vm = viewModel
             lifecycleOwner = viewLifecycleOwner
-
-            repeatOnStarted {
-                viewModel.events.collect { event ->
-                    when (event) {
-                        is RegisterEvents.NavigateToRegisterWarn ->
-                            findNavController().navigate(RegisterAgreeFragmentDirections.actionRegisterAgreeFragmentToRegisterWarnFragment())
-                        else -> Unit
-                    }
-                }
-            }
-
         }
     }
 
     override fun initEventObserver() {
-
+        repeatOnStarted {
+            viewModel.events.collect { event ->
+                when (event) {
+                    is RegisterEvents.NavigateToRegisterWarn ->
+                        findNavController().navigate(RegisterAgreeFragmentDirections.actionRegisterAgreeFragmentToRegisterWarnFragment())
+                    else -> Unit
+                }
+            }
+        }
     }
 
     override fun initData() {

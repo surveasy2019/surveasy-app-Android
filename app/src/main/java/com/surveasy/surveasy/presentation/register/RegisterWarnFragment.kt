@@ -29,9 +29,7 @@ class RegisterWarnFragment :
                         is RegisterEvents.NavigateToRegisterInput1 -> findNavController().navigate(
                             RegisterWarnFragmentDirections.actionRegisterWarnFragmentToRegisterInput1Fragment()
                         )
-                        is RegisterEvents.NavigateToBack -> findNavController().navigate(
-                            RegisterWarnFragmentDirections.actionRegisterWarnFragmentToRegisterAgreeFragment()
-                        )
+                        is RegisterEvents.NavigateToBack -> findNavController().navigateUp()
                         else -> Unit
                     }
                 }

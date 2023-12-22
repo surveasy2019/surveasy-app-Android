@@ -15,11 +15,13 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 sealed class RegisterEvents {
-    object NavigateToRegisterWarn : RegisterEvents()
-    object NavigateToRegisterInput1 : RegisterEvents()
-    object NavigateToRegisterInput2 : RegisterEvents()
-    object NavigateToBack : RegisterEvents()
-    object NavigateToMain : RegisterEvents()
+    data object NavigateToExistLogin : RegisterEvents()
+    data object NavigateToRegisterAgree : RegisterEvents()
+    data object NavigateToRegisterWarn : RegisterEvents()
+    data object NavigateToRegisterInput1 : RegisterEvents()
+    data object NavigateToRegisterInput2 : RegisterEvents()
+    data object NavigateToBack : RegisterEvents()
+    data object NavigateToMain : RegisterEvents()
 }
 
 data class RegisterUiState(
@@ -82,6 +84,8 @@ class RegisterViewModel : ViewModel() {
         viewModelScope.launch {
             _events.emit(
                 when (type) {
+                    RegisterEventType.TO_EXIST_LOGIN -> RegisterEvents.NavigateToExistLogin
+                    RegisterEventType.TO_AGREE -> RegisterEvents.NavigateToRegisterAgree
                     RegisterEventType.TO_WARN -> RegisterEvents.NavigateToRegisterWarn
                     RegisterEventType.TO_INPUT1 -> RegisterEvents.NavigateToRegisterInput1
                     RegisterEventType.TO_INPUT2 -> RegisterEvents.NavigateToRegisterInput2

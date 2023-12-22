@@ -149,7 +149,6 @@
             android:layout_marginTop="15dp"
             android:backgroundTint="#0aab00"
             android:fontFamily="@font/main_font_b"
-            android:text="@string/login_login_btn"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
