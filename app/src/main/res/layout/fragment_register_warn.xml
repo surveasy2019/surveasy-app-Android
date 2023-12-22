@@ -4,10 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.surveasy.surveasy.presentation.register.RegisterEventType"/>
+        <import type="com.surveasy.surveasy.presentation.intro.RegisterEventType"/>
         <variable
             name="vm"
-            type="com.surveasy.surveasy.presentation.register.RegisterViewModel" />
+            type="com.surveasy.surveasy.presentation.intro.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -36,10 +36,10 @@
             android:exported="true"
             android:theme="@style/Splash" />
         <activity
-            android:name=".presentation.register.agree.RegisterTerm2"
+            android:name=".presentation.intro.agree.RegisterTerm2"
             android:exported="true" />
         <activity
-            android:name=".presentation.register.agree.RegisterTerm1"
+            android:name=".presentation.intro.agree.RegisterTerm1"
             android:exported="true" />
 
         <meta-data
@@ -48,14 +48,8 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/main_green" />
-
         <activity
-            android:name=".presentation.login.LoginActivity"
-            android:exported="true" >
-
-        </activity>
-        <activity
-            android:name=".presentation.register.RegisterActivity"
+            android:name=".presentation.intro.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -7,13 +7,13 @@
 
         <variable
             name="vm"
-            type="com.surveasy.surveasy.presentation.register.RegisterViewModel" />
+            type="com.surveasy.surveasy.presentation.intro.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.register.ExistUserFragment">
+        tools:context=".presentation.intro.login.ExistUserFragment">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide_top"

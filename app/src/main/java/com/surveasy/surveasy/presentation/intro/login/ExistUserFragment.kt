@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.presentation.register
+package com.surveasy.surveasy.presentation.intro.login
 
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentExistUserBinding

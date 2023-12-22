@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.presentation.register
+package com.surveasy.surveasy.presentation.intro
 
 import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.BindingAdapter

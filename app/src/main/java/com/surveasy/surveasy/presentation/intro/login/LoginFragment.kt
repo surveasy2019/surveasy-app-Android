@@ -1,10 +1,12 @@
-package com.surveasy.surveasy.presentation.register
+package com.surveasy.surveasy.presentation.intro.login
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentLoginBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
+import com.surveasy.surveasy.presentation.intro.RegisterEvents
+import com.surveasy.surveasy.presentation.intro.RegisterViewModel
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login){
     private val viewModel: RegisterViewModel by viewModels()

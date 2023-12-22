@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.presentation.register
+package com.surveasy.surveasy.presentation.intro
 
 enum class RegisterEventType {
     TO_EXIST_LOGIN,
