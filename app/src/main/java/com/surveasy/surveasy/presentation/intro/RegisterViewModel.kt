@@ -1,8 +1,10 @@
-package com.surveasy.surveasy.presentation.register
+package com.surveasy.surveasy.presentation.intro
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -13,33 +15,10 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-sealed class RegisterEvents {
-    object NavigateToRegisterWarn : RegisterEvents()
-    object NavigateToRegisterInput1 : RegisterEvents()
-    object NavigateToRegisterInput2 : RegisterEvents()
-    object NavigateToBack : RegisterEvents()
-    object NavigateToMain : RegisterEvents()
-}
-
-data class RegisterUiState(
-    val nameState: InputState = InputState(),
-    val emailState: InputState = InputState(),
-    val pwState: InputState = InputState(),
-    val pwCheckState: InputState = InputState(),
-    val phoneState: InputState = InputState(),
-    val birthState: InputState = InputState(),
-    val inflowState: InputState = InputState(),
-    val bankState: InputState = InputState(),
-    val accountState: InputState = InputState(),
-    val accountOwnerState: InputState = InputState(),
-)
-
-data class InputState(
-    val helperText: HelperText = HelperText.NONE, val isValid: Boolean = false
-)
-
-class RegisterViewModel : ViewModel() {
+@HiltViewModel
+class RegisterViewModel @Inject constructor() : ViewModel() {
     val agreeAll = MutableStateFlow(false)
     val agreeMust1 = MutableStateFlow(false)
     val agreeMust2 = MutableStateFlow(false)
@@ -58,7 +37,11 @@ class RegisterViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(RegisterUiState())
     val uiState: StateFlow<RegisterUiState> = _uiState.asStateFlow()
 
-    private val _events = MutableSharedFlow<RegisterEvents>(replay = 0)
+    private val _events = MutableSharedFlow<RegisterEvents>(
+        replay = 0,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST,
+        extraBufferCapacity = 1
+    )
     val events: SharedFlow<RegisterEvents> = _events.asSharedFlow()
 
     init {
@@ -82,6 +65,8 @@ class RegisterViewModel : ViewModel() {
         viewModelScope.launch {
             _events.emit(
                 when (type) {
+                    RegisterEventType.TO_EXIST_LOGIN -> RegisterEvents.NavigateToExistLogin
+                    RegisterEventType.TO_AGREE -> RegisterEvents.NavigateToRegisterAgree
                     RegisterEventType.TO_WARN -> RegisterEvents.NavigateToRegisterWarn
                     RegisterEventType.TO_INPUT1 -> RegisterEvents.NavigateToRegisterInput1
                     RegisterEventType.TO_INPUT2 -> RegisterEvents.NavigateToRegisterInput2
@@ -289,4 +274,32 @@ class RegisterViewModel : ViewModel() {
         const val INFLOW_DEFAULT = "유입경로를 선택하세요"
         const val BANK_DEFAULT = "은행을 선택하세요"
     }
+}
+
+
+data class RegisterUiState(
+    val nameState: InputState = InputState(),
+    val emailState: InputState = InputState(),
+    val pwState: InputState = InputState(),
+    val pwCheckState: InputState = InputState(),
+    val phoneState: InputState = InputState(),
+    val birthState: InputState = InputState(),
+    val inflowState: InputState = InputState(),
+    val bankState: InputState = InputState(),
+    val accountState: InputState = InputState(),
+    val accountOwnerState: InputState = InputState(),
+)
+
+data class InputState(
+    val helperText: HelperText = HelperText.NONE, val isValid: Boolean = false
+)
+
+sealed class RegisterEvents {
+    data object NavigateToExistLogin : RegisterEvents()
+    data object NavigateToRegisterAgree : RegisterEvents()
+    data object NavigateToRegisterWarn : RegisterEvents()
+    data object NavigateToRegisterInput1 : RegisterEvents()
+    data object NavigateToRegisterInput2 : RegisterEvents()
+    data object NavigateToBack : RegisterEvents()
+    data object NavigateToMain : RegisterEvents()
 }

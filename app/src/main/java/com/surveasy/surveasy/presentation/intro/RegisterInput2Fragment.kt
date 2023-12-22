@@ -1,13 +1,10 @@
-package com.surveasy.surveasy.presentation.register
+package com.surveasy.surveasy.presentation.intro
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterInput2Binding

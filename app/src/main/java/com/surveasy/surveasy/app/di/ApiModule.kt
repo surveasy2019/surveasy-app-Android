@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.di
+package com.surveasy.surveasy.app.di
 
 import com.surveasy.surveasy.data.remote.SurveasyApi
 import dagger.Module
