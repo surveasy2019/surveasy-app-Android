@@ -1,9 +1,9 @@
 package com.surveasy.surveasy.app.di
 
-import com.google.gson.GsonBuilder
 import com.surveasy.surveasy.BuildConfig
+import com.surveasy.surveasy.app.DataStoreManager
 import com.surveasy.surveasy.data.config.AccessTokenInterceptor
-import com.surveasy.surveasy.data.remote.SurveasyApi
+import com.surveasy.surveasy.data.config.BearerInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -24,6 +23,7 @@ object NetworkModule {
     fun provideOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
         accessTokenInterceptor: AccessTokenInterceptor,
+        bearerInterceptor: BearerInterceptor
     ): OkHttpClient {
 
         return OkHttpClient.Builder()
@@ -31,6 +31,7 @@ object NetworkModule {
             .connectTimeout(3000, TimeUnit.MILLISECONDS)
             .addNetworkInterceptor(accessTokenInterceptor)
             .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(bearerInterceptor)
             .build()
     }
 
@@ -43,7 +44,7 @@ object NetworkModule {
     }
 
     @Provides
-    fun provideAccessTokenInterceptor(): AccessTokenInterceptor = AccessTokenInterceptor()
+    fun provideAccessTokenInterceptor(dataStoreManager: DataStoreManager): AccessTokenInterceptor = AccessTokenInterceptor(dataStoreManager)
 
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {

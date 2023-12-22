@@ -1,16 +1,11 @@
 package com.surveasy.surveasy.presentation.login
 
-import android.os.Bundle
-import android.os.PersistableBundle
-import androidx.appcompat.app.AppCompatActivity
+import com.surveasy.surveasy.databinding.ActivityLoginBinding
+import com.surveasy.surveasy.presentation.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class LoginActivity : AppCompatActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-    }
-
+@AndroidEntryPoint
+class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate) {
 
 
 
