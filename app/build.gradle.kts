@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -88,4 +89,7 @@ dependencies {
     // datastore preferences
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("androidx.datastore:datastore-core:1.0.0")
+
+    // firebase
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
 }
