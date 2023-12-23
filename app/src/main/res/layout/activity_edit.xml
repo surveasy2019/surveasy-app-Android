@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.main.my.edit.MyEditViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -78,7 +81,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="18dp"
                     android:text="이름"
                     android:textColor="@color/gray"
                     app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +92,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="이름"
+                    android:text="@{vm.uiState.name}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_name_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_name_label" />
@@ -99,7 +102,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="24dp"
                     android:text="생년월일"
                     android:textColor="@color/gray"
                     app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +113,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2024-01-01"
+                    android:text="@{vm.uiState.birth}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_birth_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_birth_label" />
@@ -120,7 +123,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="24dp"
                     android:text="성별"
                     android:textColor="@color/gray"
                     app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +134,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="여"
+                    android:text="@{vm.uiState.gender}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_gender_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_gender_label" />
@@ -141,7 +144,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="24dp"
                     android:text="이메일"
                     android:textColor="@color/gray"
                     app:layout_constraintStart_toStartOf="parent"
@@ -152,7 +155,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test@test.com"
+                    android:text="@{vm.uiState.email}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_email_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_email_label" />
@@ -162,7 +165,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="24dp"
                     android:text="휴대폰 번호"
                     android:textColor="@color/gray"
                     app:layout_constraintStart_toStartOf="parent"
@@ -173,7 +176,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="01012341234"
+                    android:text="@{vm.uiState.phoneNumber}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_phone_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_phone_label" />
@@ -200,7 +203,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="24dp"
                     android:text="은행"
                     android:textColor="@color/gray"
                     app:layout_constraintStart_toStartOf="parent"
@@ -211,7 +214,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="은행"
+                    android:text="@{vm.uiState.accountType}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_bank_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_bank_label" />
@@ -234,7 +237,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="24dp"
                     android:text="계좌번호"
                     android:textColor="@color/gray"
                     app:layout_constraintStart_toStartOf="parent"
@@ -245,7 +248,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12341234"
+                    android:text="@{vm.uiState.accountNumber}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_account_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_account_label" />
@@ -272,7 +275,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="24dp"
                     android:text="계좌주"
                     android:textColor="@color/gray"
                     app:layout_constraintStart_toStartOf="parent"
@@ -283,7 +286,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="이름"
+                    android:text="@{vm.uiState.accountOwner}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_owner_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_owner_label" />
@@ -310,7 +313,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="24dp"
                     android:text="영어 설문"
                     android:textColor="@color/gray"
                     app:layout_constraintStart_toStartOf="parent"
@@ -321,7 +324,7 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="영어 설문에 참여합니다."
+                    app:englishTitle="@{vm.uiState.english}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_english_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_english_label" />

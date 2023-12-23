@@ -25,7 +25,7 @@ interface SurveasyApi {
         @Body body: NewRegisterRequest
     ): Response<RegisterResponse>
 
-    @POST("panel")
+    @GET("panel")
     suspend fun queryPanelDetailInfo(): Response<PanelDetailInfoResponse>
 
     //home
