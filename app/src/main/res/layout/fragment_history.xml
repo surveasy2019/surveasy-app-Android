@@ -37,7 +37,7 @@
             android:text="정산내역"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/v_history_bar" />
+            app:layout_constraintTop_toBottomOf="@id/iv_back" />
 
         <TextView
             android:id="@+id/tv_info_title"
@@ -166,7 +166,7 @@
             app:layout_constraintTop_toBottomOf="@id/cl_box"
             app:tabIndicatorAnimationDuration="0"
             app:tabIndicatorColor="@color/main_green"
-            app:tabRippleColor="@color/transparent"
+            app:tabRippleColor="@color/white"
             app:tabSelectedTextColor="@color/main_green">
 
             <com.google.android.material.tabs.TabItem
@@ -191,7 +191,7 @@
             app:layout_constraintEnd_toEndOf="@id/cl_box"
             app:layout_constraintStart_toStartOf="@id/cl_box"
             app:layout_constraintTop_toBottomOf="@id/tb_history"
-            tools:listitem="@layout/item_history"/>
+            tools:listitem="@layout/item_history" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
