@@ -1,6 +1,7 @@
 package com.surveasy.surveasy.data.remote
 
 import com.surveasy.surveasy.data.model.request.ExistRegisterRequest
+import com.surveasy.surveasy.data.model.request.NewRegisterRequest
 import com.surveasy.surveasy.data.model.response.PanelInfoResponse
 import com.surveasy.surveasy.data.model.response.RegisterResponse
 import retrofit2.Response
@@ -16,6 +17,11 @@ interface SurveasyApi {
     @POST("panel/signup/existing")
     suspend fun createExistPanel(
         @Body body: ExistRegisterRequest
+    ): Response<RegisterResponse>
+
+    @POST("panel/signup")
+    suspend fun createNewPanel(
+        @Body body: NewRegisterRequest
     ): Response<RegisterResponse>
 
     //home

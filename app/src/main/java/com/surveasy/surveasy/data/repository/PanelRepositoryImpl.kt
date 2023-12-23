@@ -1,6 +1,7 @@
 package com.surveasy.surveasy.data.repository
 
 import com.surveasy.surveasy.data.model.request.ExistRegisterRequest
+import com.surveasy.surveasy.data.model.request.NewRegisterRequest
 import com.surveasy.surveasy.data.model.response.PanelInfoResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.RegisterResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.remote.SurveasyApi
@@ -28,6 +29,48 @@ class PanelRepositoryImpl @Inject constructor(private val api: SurveasyApi) : Pa
     ): Flow<BaseState<Register>> = flow {
         when (val result =
             handleResponse { api.createExistPanel(ExistRegisterRequest(uid, email, platform)) }) {
+            is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
+            is BaseState.Error -> emit(result)
+        }
+    }
+
+    override fun createNewPanel(
+        name: String,
+        email: String,
+        fcmToken: String,
+        gender: String,
+        birth: String,
+        accountOwner: String,
+        accountType: String,
+        accountNumber: String,
+        inflowPath: String,
+        inflowPathEtc: String,
+        phoneNumber: String,
+        platform: String,
+        pushOn: Boolean,
+        marketing: Boolean
+    ): Flow<BaseState<Register>> = flow {
+        when (val result =
+            handleResponse {
+                api.createNewPanel(
+                    NewRegisterRequest(
+                        name,
+                        email,
+                        fcmToken,
+                        gender,
+                        birth,
+                        accountOwner,
+                        accountType,
+                        accountNumber,
+                        inflowPath,
+                        inflowPathEtc,
+                        phoneNumber,
+                        platform,
+                        pushOn,
+                        marketing
+                    )
+                )
+            }) {
             is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
             is BaseState.Error -> emit(result)
         }
