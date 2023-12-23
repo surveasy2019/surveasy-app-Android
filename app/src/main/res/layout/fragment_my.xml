@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.main.my.MyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,9 +40,9 @@
             style="@style/TextMediumBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ID 님"
             app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintTop_toTopOf="@id/guide_top" />
+            app:layout_constraintTop_toTopOf="@id/guide_top"
+            app:nameTitle="@{vm.uiState.name}" />
 
 
         <View
@@ -70,10 +73,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:text="1,000원"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintTop_toTopOf="@id/tv_done_label" />
+            app:layout_constraintTop_toTopOf="@id/tv_done_label"
+            app:rewardTitle="@{vm.uiState.rewardTotal}" />
 
         <View
             android:id="@+id/v_left"
@@ -105,8 +108,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
-            android:text="-개"
             android:textColor="@color/white"
+            app:countTitle="@{vm.uiState.count}"
             app:layout_constraintBottom_toTopOf="@id/tv_left_label"
             app:layout_constraintEnd_toEndOf="@id/v_left"
             app:layout_constraintStart_toStartOf="@id/v_left"
@@ -133,13 +136,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
-            android:text="-원"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@id/tv_right_label"
             app:layout_constraintEnd_toEndOf="@id/v_right"
             app:layout_constraintStart_toStartOf="@id/v_right"
             app:layout_constraintTop_toTopOf="@id/v_right"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            app:rewardTitle="@{vm.uiState.rewardCurrent}" />
 
         <TextView
             android:id="@+id/tv_right_label"
@@ -179,6 +182,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_my_warn" />
 
+        <View
+            android:id="@+id/v_history"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="@{()->vm.navigateToHistory()}"
+            app:layout_constraintBottom_toBottomOf="@id/md_divider1"
+            app:layout_constraintEnd_toEndOf="@id/guide_end"
+            app:layout_constraintStart_toStartOf="@id/md_divider1"
+            app:layout_constraintTop_toTopOf="@id/iv_history" />
+
         <ImageView
             android:id="@+id/iv_history"
             android:layout_width="15dp"
@@ -208,6 +221,16 @@
             app:layout_constraintEnd_toEndOf="@id/guide_end"
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintTop_toBottomOf="@id/iv_history" />
+
+        <View
+            android:id="@+id/v_edit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="@{()->vm.navigateToEdit()}"
+            app:layout_constraintBottom_toBottomOf="@id/md_divider2"
+            app:layout_constraintEnd_toEndOf="@id/guide_end"
+            app:layout_constraintStart_toStartOf="@id/md_divider1"
+            app:layout_constraintTop_toTopOf="@id/md_divider1" />
 
         <ImageView
             android:id="@+id/iv_info"
@@ -239,6 +262,16 @@
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintTop_toBottomOf="@id/iv_info" />
 
+        <View
+            android:id="@+id/v_setting"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="@{()->vm.navigateToSetting()}"
+            app:layout_constraintBottom_toBottomOf="@id/md_divider3"
+            app:layout_constraintEnd_toEndOf="@id/guide_end"
+            app:layout_constraintStart_toStartOf="@id/md_divider2"
+            app:layout_constraintTop_toTopOf="@id/md_divider2" />
+
         <ImageView
             android:id="@+id/iv_setting"
             android:layout_width="15dp"
@@ -269,6 +302,16 @@
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintTop_toBottomOf="@id/iv_setting" />
 
+        <View
+            android:id="@+id/v_contact"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="@{()->vm.navigateToContact()}"
+            app:layout_constraintBottom_toBottomOf="@id/iv_contact"
+            app:layout_constraintEnd_toEndOf="@id/guide_end"
+            app:layout_constraintStart_toStartOf="@id/md_divider3"
+            app:layout_constraintTop_toTopOf="@id/md_divider3" />
+
         <ImageView
             android:id="@+id/iv_contact"
             android:layout_width="15dp"
@@ -292,117 +335,4 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--        xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:orientation="vertical"-->
-    <!--        android:layout_marginBottom="50sp"-->
-    <!--        android:background="#FFFFFF">-->
-
-
-    <!--                <View-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="1sp"-->
-    <!--                    android:background="#66bcbcbc" />-->
-
-
-    <!--                <LinearLayout-->
-    <!--                    android:id="@+id/MyView_InfoIcon"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="60sp"-->
-    <!--                    android:gravity="left"-->
-    <!--                    android:orientation="horizontal"-->
-    <!--                    android:paddingLeft="10sp">-->
-
-    <!--                    <ImageView-->
-    <!--                        android:layout_width="14dp"-->
-    <!--                        android:layout_height="14dp"-->
-    <!--                        android:layout_gravity="center"-->
-    <!--                        android:layout_marginLeft="1sp"-->
-    <!--                        android:src="@drawable/my_info" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_gravity="center"-->
-    <!--                        android:fontFamily="@font/main_font_b"-->
-    <!--                        android:paddingLeft="10sp"-->
-    <!--                        android:text="회원정보 수정"-->
-    <!--                        android:textColor="#000000" />-->
-
-    <!--                </LinearLayout>-->
-
-    <!--                <View-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="1sp"-->
-    <!--                    android:background="#66bcbcbc" />-->
-
-
-    <!--                <LinearLayout-->
-    <!--                    android:id="@+id/MyView_SettingIcon"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="60sp"-->
-    <!--                    android:gravity="left"-->
-    <!--                    android:orientation="horizontal"-->
-    <!--                    android:paddingLeft="10sp">-->
-
-    <!--                    <ImageView-->
-    <!--                        android:layout_width="15sp"-->
-    <!--                        android:layout_height="15sp"-->
-    <!--                        android:layout_gravity="center"-->
-    <!--                        android:src="@drawable/my_setting" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_gravity="center"-->
-    <!--                        android:fontFamily="@font/main_font_b"-->
-    <!--                        android:paddingLeft="10sp"-->
-    <!--                        android:text="설정"-->
-    <!--                        android:textColor="#000000" />-->
-
-    <!--                </LinearLayout>-->
-
-    <!--                <View-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="1sp"-->
-    <!--                    android:background="#66bcbcbc" />-->
-
-
-    <!--                <LinearLayout-->
-    <!--                    android:id="@+id/MyView_ContactIcon"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="60sp"-->
-    <!--                    android:gravity="left"-->
-    <!--                    android:orientation="horizontal"-->
-    <!--                    android:paddingLeft="10sp">-->
-
-    <!--                    <ImageView-->
-    <!--                        android:layout_width="15sp"-->
-    <!--                        android:layout_height="15sp"-->
-    <!--                        android:layout_gravity="center"-->
-    <!--                        android:src="@drawable/my_contact" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_gravity="center"-->
-    <!--                        android:fontFamily="@font/main_font_b"-->
-    <!--                        android:paddingLeft="10sp"-->
-    <!--                        android:text="문의하기"-->
-    <!--                        android:textColor="#000000" />-->
-
-    <!--                </LinearLayout>-->
-
-
-    <!--            </LinearLayout>-->
-
-
-    <!--        </FrameLayout>-->
-
-
-    <!--    </LinearLayout>-->
-
 </layout>

@@ -34,6 +34,7 @@ class RegisterInput2Fragment :
                     when (event) {
                         is RegisterEvents.NavigateToBack ->
                             findNavController().navigateUp()
+
                         is RegisterEvents.NavigateToMain -> navigateToMain()
                         else -> Unit
                     }
@@ -46,7 +47,11 @@ class RegisterInput2Fragment :
     private fun initBankSpinner() {
         val bankList = resources.getStringArray(R.array.accountType)
         val bankAdapter =
-            ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, bankList)
+            ArrayAdapter(
+                requireContext(),
+                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                bankList
+            )
 
         bind {
             sBank.apply {
@@ -68,9 +73,9 @@ class RegisterInput2Fragment :
         }
     }
 
-    private fun navigateToMain(){
+    private fun navigateToMain() {
         val intent = Intent(context, MainActivity::class.java)
-        //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
 }
