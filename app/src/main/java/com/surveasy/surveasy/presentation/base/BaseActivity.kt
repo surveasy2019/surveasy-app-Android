@@ -13,11 +13,12 @@ import kotlinx.coroutines.launch
 
 abstract class BaseActivity<T : ViewDataBinding>(private val inflater: (LayoutInflater) -> T) :
     AppCompatActivity() {
-        lateinit var binding : T
+    lateinit var binding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = inflater(layoutInflater)
+        binding.lifecycleOwner = this
         setContentView(binding.root)
     }
 
