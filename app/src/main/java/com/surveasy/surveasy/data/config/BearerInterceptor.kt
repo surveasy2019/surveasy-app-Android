@@ -3,7 +3,7 @@ package com.surveasy.surveasy.data.config
 import android.util.Log
 import com.surveasy.surveasy.app.DataStoreManager
 import com.surveasy.surveasy.data.remote.SurveasyApi
-import com.surveasy.surveasy.data.remote.runRemote
+import com.surveasy.surveasy.data.remote.handleResponse
 import com.surveasy.surveasy.domain.base.BaseState
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -76,7 +76,7 @@ class BearerInterceptor @Inject constructor(
             .client(okHttpClient)
             .build()
         val api = retrofit.create(SurveasyApi::class.java)
-        return runRemote { api.getTempToken() }
+        return handleResponse { api.getTempToken() }
     }
 
     companion object {
