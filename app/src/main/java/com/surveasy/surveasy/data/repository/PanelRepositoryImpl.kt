@@ -2,11 +2,13 @@ package com.surveasy.surveasy.data.repository
 
 import com.surveasy.surveasy.data.model.request.ExistRegisterRequest
 import com.surveasy.surveasy.data.model.request.NewRegisterRequest
+import com.surveasy.surveasy.data.model.response.PanelDetailInfoResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.PanelInfoResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.RegisterResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.remote.SurveasyApi
 import com.surveasy.surveasy.data.remote.handleResponse
 import com.surveasy.surveasy.domain.base.BaseState
+import com.surveasy.surveasy.domain.model.PanelDetailInfo
 import com.surveasy.surveasy.domain.model.PanelInfo
 import com.surveasy.surveasy.domain.model.Register
 import com.surveasy.surveasy.domain.repository.PanelRepository
@@ -79,6 +81,16 @@ class PanelRepositoryImpl @Inject constructor(private val api: SurveasyApi) : Pa
     override fun queryPanelInfo(): Flow<BaseState<PanelInfo>> = flow {
 
         when (val result = handleResponse { api.queryPanelInfo() }) {
+            is BaseState.Success -> {
+                emit(BaseState.Success(result.data.toDomainModel()))
+            }
+
+            is BaseState.Error -> emit(result)
+        }
+    }
+
+    override fun queryPanelDetailInfo(): Flow<BaseState<PanelDetailInfo>> = flow {
+        when (val result = handleResponse { api.queryPanelDetailInfo() }) {
             is BaseState.Success -> {
                 emit(BaseState.Success(result.data.toDomainModel()))
             }
