@@ -3,6 +3,7 @@ package com.surveasy.surveasy.presentation.intro
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.surveasy.surveasy.domain.usecase.CreateNewPanelUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,7 +19,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor() : ViewModel() {
+class RegisterViewModel @Inject constructor(
+    private val newPanelUseCase: CreateNewPanelUseCase
+) : ViewModel() {
     val agreeAll = MutableStateFlow(false)
     val agreeMust1 = MutableStateFlow(false)
     val agreeMust2 = MutableStateFlow(false)
@@ -218,6 +221,27 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
                     )
                 )
             }
+        }.launchIn(viewModelScope)
+    }
+
+    fun createNewPanel(){
+        newPanelUseCase(
+            name = name.value,
+            email = email.value,
+            fcmToken = "temp",
+            gender = "여",
+            birth = birth.value,
+            accountOwner = accountOwner.value,
+            accountType = bank.value,
+            accountNumber = account.value,
+            inflowPath = inflow.value,
+            inflowPathEtc = "temp",
+            phoneNumber = phone.value,
+            platform = "ANDROID",
+            pushOn = false,
+            marketing = agreeMarketing.value
+        ).onEach {
+
         }.launchIn(viewModelScope)
     }
 
