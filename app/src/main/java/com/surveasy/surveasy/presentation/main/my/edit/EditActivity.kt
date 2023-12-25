@@ -12,10 +12,24 @@ class EditActivity : BaseActivity<ActivityEditBinding>(ActivityEditBinding::infl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initData()
+        initEventObserver()
         binding.vm = viewModel
     }
 
     private fun initData() {
         viewModel.queryPanelDetailInfo()
+    }
+
+    private fun initEventObserver() {
+        repeatOnStarted {
+            viewModel.events.collect {
+                when (it) {
+                    is MyEditUiEvents.DoneEdit -> {
+                        showToastMessage("수정이 완료되었습니다.")
+                        initData()
+                    }
+                }
+            }
+        }
     }
 }
