@@ -5,8 +5,10 @@ import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterAgreeBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 
-
+@AndroidEntryPoint
 class RegisterAgreeFragment :
     BaseFragment<FragmentRegisterAgreeBinding>(R.layout.fragment_register_agree) {
     private val viewModel: RegisterViewModel by viewModels()

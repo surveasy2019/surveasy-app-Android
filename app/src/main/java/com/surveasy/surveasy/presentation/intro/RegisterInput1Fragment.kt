@@ -9,7 +9,9 @@ import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterInput1Binding
 import com.surveasy.surveasy.presentation.base.BaseFragment
 import com.surveasy.surveasy.presentation.util.showCalendarDatePicker
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterInput1Fragment :
     BaseFragment<FragmentRegisterInput1Binding>(R.layout.fragment_register_input1) {
     private val viewModel: RegisterViewModel by viewModels()

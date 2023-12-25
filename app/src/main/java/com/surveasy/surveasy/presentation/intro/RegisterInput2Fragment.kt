@@ -10,7 +10,9 @@ import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterInput2Binding
 import com.surveasy.surveasy.presentation.base.BaseFragment
 import com.surveasy.surveasy.presentation.main.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterInput2Fragment :
     BaseFragment<FragmentRegisterInput2Binding>(R.layout.fragment_register_input2) {
     private val viewModel: RegisterViewModel by viewModels()
