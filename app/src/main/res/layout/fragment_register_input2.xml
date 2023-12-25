@@ -182,7 +182,7 @@
             android:layout_marginHorizontal="5sp"
             android:background="@drawable/register_button"
             android:fontFamily="@font/main_font_b"
-            android:onClick="@{() -> vm.navigateRegisterPages(RegisterEventType.TO_MAIN)}"
+            android:onClick="@{() -> vm.createNewPanel()}"
             android:text="@string/register2_done"
             android:textColor="@color/white"
             android:textSize="15sp"

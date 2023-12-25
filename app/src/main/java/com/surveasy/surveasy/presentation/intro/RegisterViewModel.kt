@@ -3,6 +3,7 @@ package com.surveasy.surveasy.presentation.intro
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.CreateNewPanelUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
@@ -235,13 +236,18 @@ class RegisterViewModel @Inject constructor(
             accountType = bank.value,
             accountNumber = account.value,
             inflowPath = inflow.value,
-            inflowPathEtc = "temp",
+            inflowPathEtc = "",
             phoneNumber = phone.value,
             platform = "ANDROID",
             pushOn = false,
             marketing = agreeMarketing.value
-        ).onEach {
-
+        ).onEach { register ->
+            when(register){
+                is BaseState.Success -> {
+                    _events.emit(RegisterEvents.NavigateToMain)
+                }
+                is BaseState.Error -> Log.d("TEST", "failed")
+            }
         }.launchIn(viewModelScope)
     }
 
