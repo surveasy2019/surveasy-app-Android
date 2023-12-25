@@ -20,12 +20,29 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.main.my.setting.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.main.my.edit.EditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.main.my.contact.ContactActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.main.my.history.HistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.main.survey.SurveyActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.main.MainActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/Theme.Surveasy">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.splash.SplashActivity"
@@ -48,15 +65,10 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/main_green" />
+
         <activity
             android:name=".presentation.intro.IntroActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="com.surveasy.surveasy.presentation.main.my.edit.MyEditViewModel" />
@@ -74,7 +76,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingBottom="20dp">
 
                 <TextView
                     android:id="@+id/tv_name_label"
@@ -177,6 +180,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{vm.uiState.phoneNumber}"
+                    android:visibility="@{vm.uiState.editMode? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_phone_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_phone_label" />
@@ -186,7 +190,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:visibility="gone"
+                    android:visibility="@{vm.uiState.editMode? View.VISIBLE : View.GONE}"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -195,7 +199,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_phone"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.editPhone}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -215,6 +220,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{vm.uiState.accountType}"
+                    android:visibility="@{vm.uiState.editMode? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_bank_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_bank_label" />
@@ -225,8 +231,8 @@
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/custom_spinner"
-                    android:paddingStart="8dp"
-                    android:visibility="gone"
+                    android:paddingHorizontal="8dp"
+                    android:visibility="@{vm.uiState.editMode? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_bank_label"
@@ -249,6 +255,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{vm.uiState.accountNumber}"
+                    android:visibility="@{vm.uiState.editMode? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_account_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_account_label" />
@@ -258,7 +265,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:visibility="gone"
+                    android:visibility="@{vm.uiState.editMode? View.VISIBLE : View.GONE}"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -267,7 +274,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_account"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.editAccount}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -287,6 +295,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{vm.uiState.accountOwner}"
+                    android:visibility="@{vm.uiState.editMode? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_owner_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_owner_label" />
@@ -296,7 +305,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:visibility="gone"
+                    android:visibility="@{vm.uiState.editMode? View.VISIBLE : View.GONE}"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -305,7 +314,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_owner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.editOwner}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -324,10 +334,33 @@
                     style="@style/TextTitleRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="@{vm.uiState.editMode? View.GONE : View.VISIBLE}"
                     app:englishTitle="@{vm.uiState.english}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_english_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_english_label" />
+
+                <TextView
+                    android:id="@+id/tv_english_state"
+                    style="@style/TextTitleRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@{vm.editEnglish? @string/my_english_yes : @string/my_english_no}"
+                    android:visibility="@{vm.uiState.editMode? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_english_label" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/sm_english"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{vm.uiState.english}"
+                    android:onCheckedChanged="@{(a,b) -> vm.observeEnglish(b)}"
+                    android:visibility="@{vm.uiState.editMode? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_english_state"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_english_state" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -339,7 +372,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/register_button"
-            android:text="수정하기"
+            android:onClick="@{() -> vm.onClickEditBtn()}"
+            android:text="@{vm.uiState.editMode? @string/my_edit_done : @string/my_edit}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/guide_bottom"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
