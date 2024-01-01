@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.surveasy.surveasy.presentation.intro.RegisterEventType"/>
+
+        <import type="com.surveasy.surveasy.presentation.intro.RegisterEventType" />
+
         <variable
             name="vm"
             type="com.surveasy.surveasy.presentation.intro.RegisterViewModel" />
@@ -204,8 +206,6 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_weight="1"
             android:indeterminate="false"
             android:max="5"
             android:minHeight="50dp"
@@ -222,10 +222,10 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="5sp"
             android:background="@drawable/register_button"
-            android:fontFamily="@font/main_font_b"
-            android:text="@string/btn_next"
             android:enabled="@{vm.agreeMust1 &amp;&amp; vm.agreeMust2}"
+            android:fontFamily="@font/main_font_b"
             android:onClick="@{() -> vm.navigateRegisterPages(RegisterEventType.TO_WARN)}"
+            android:text="@string/btn_next"
             android:textColor="@color/white"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"

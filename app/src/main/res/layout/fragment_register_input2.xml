@@ -101,6 +101,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    app:boxStrokeColor="@color/main_green"
+                    app:boxStrokeWidthFocused="1dp"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +113,8 @@
                         android:id="@+id/et_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={vm.account}" />
+                        android:text="@={vm.account}"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -134,6 +137,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    app:boxStrokeColor="@color/main_green"
+                    app:boxStrokeWidthFocused="1dp"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -144,7 +149,8 @@
                         android:id="@+id/et_owner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={vm.accountOwner}" />
+                        android:text="@={vm.accountOwner}"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -170,13 +176,13 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_register_done"
             set_done_enable="@{vm.uiState}"
-            android:onClick="@{() -> vm.navigateRegisterPages(RegisterEventType.TO_MAIN)}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="5sp"
             android:background="@drawable/register_button"
             android:fontFamily="@font/main_font_b"
+            android:onClick="@{() -> vm.createNewPanel()}"
             android:text="@string/register2_done"
             android:textColor="@color/white"
             android:textSize="15sp"

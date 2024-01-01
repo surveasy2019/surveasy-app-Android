@@ -30,9 +30,9 @@
 
                 <TextView
                     android:id="@+id/tv_input1_title"
+                    style="@style/TextMediumBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/TextMediumBold"
                     android:lineSpacingExtra="3.3sp"
                     android:text="@string/register1_title"
                     android:textColor="@color/main_green"
@@ -42,11 +42,11 @@
 
                 <TextView
                     android:id="@+id/tv_input1_warn"
+                    style="@style/Caption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="15sp"
-                    style="@style/Caption"
                     android:lineSpacingExtra="2.7sp"
                     android:text="@string/register1_warn"
                     android:textColor="#707070"
@@ -84,6 +84,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    app:boxStrokeColor="@color/main_green"
+                    app:boxStrokeWidthFocused="1dp"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +98,8 @@
                         android:id="@+id/et_nick"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={vm.name}" />
+                        android:text="@={vm.name}"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -129,7 +132,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:helperTextTextAppearance="@font/main_font_l"
+                    app:boxStrokeColor="@color/main_green"
+                    app:boxStrokeWidthFocused="1dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_email_label"
@@ -141,7 +145,9 @@
                         android:id="@+id/et_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={vm.email}" />
+                        android:inputType="textEmailAddress"
+                        android:text="@={vm.email}"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -165,6 +171,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    app:boxStrokeColor="@color/main_green"
+                    app:boxStrokeWidthFocused="1dp"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -177,7 +185,9 @@
                         android:id="@+id/et_pw"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={vm.pw}" />
+                        android:inputType="textPassword"
+                        android:text="@={vm.pw}"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -200,6 +210,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    app:boxStrokeColor="@color/main_green"
+                    app:boxStrokeWidthFocused="1dp"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -212,7 +224,9 @@
                         android:id="@+id/et_pw_check"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={vm.pwCheck}" />
+                        android:inputType="textPassword"
+                        android:text="@={vm.pwCheck}"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -235,6 +249,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    app:boxStrokeColor="@color/main_green"
+                    app:boxStrokeWidthFocused="1dp"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -247,7 +263,8 @@
                         android:id="@+id/et_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={vm.phone}" />
+                        android:text="@={vm.phone}"
+                        android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
