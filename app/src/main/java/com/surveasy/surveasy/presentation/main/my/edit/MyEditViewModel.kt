@@ -31,6 +31,12 @@ class MyEditViewModel @Inject constructor(
     val editOwner = MutableStateFlow("")
     val editEnglish = MutableStateFlow(false)
 
+//    private val phoneValid = MutableStateFlow(true)
+//    private val accountValid = MutableStateFlow(true)
+//    private val ownerValid = MutableStateFlow(true)
+
+    val editAvailable = MutableStateFlow(true)
+
     private val _uiState = MutableStateFlow(MyEditUiState())
     val uiState: StateFlow<MyEditUiState> = _uiState.asStateFlow()
 
@@ -40,6 +46,12 @@ class MyEditViewModel @Inject constructor(
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
     val events: SharedFlow<MyEditUiEvents> = _events.asSharedFlow()
+
+    init {
+        observePhone()
+        observeAccount()
+        observeOwner()
+    }
 
     fun queryPanelDetailInfo() {
         queryPanelDetailInfoUseCase().onEach { state ->
@@ -96,6 +108,36 @@ class MyEditViewModel @Inject constructor(
         _uiState.update { state -> state.copy(editMode = false) }
         viewModelScope.launch { _events.emit(MyEditUiEvents.DoneEdit) }
 
+    }
+
+    private fun observePhone() {
+        editPhone.onEach {
+            editAvailable.emit(
+                it.matches(PHONE_REGEX)
+            )
+        }.launchIn(viewModelScope)
+    }
+
+    private fun observeAccount() {
+        editAccount.onEach {
+            editAvailable.emit(
+                it.matches(ACCOUNT_REGEX)
+            )
+        }.launchIn(viewModelScope)
+    }
+
+    private fun observeOwner() {
+        editOwner.onEach {
+            editAvailable.emit(
+                it.length > NAME_LENGTH
+            )
+        }.launchIn(viewModelScope)
+    }
+
+    companion object {
+        val PHONE_REGEX = Regex("""^[0-9]{11}${'$'}""")
+        val ACCOUNT_REGEX = Regex("\\d+")
+        const val NAME_LENGTH = 1
     }
 }
 
