@@ -1,5 +1,6 @@
 package com.surveasy.surveasy.data.repository
 
+import com.surveasy.surveasy.data.model.request.EditInfoRequest
 import com.surveasy.surveasy.data.model.request.ExistRegisterRequest
 import com.surveasy.surveasy.data.model.request.NewRegisterRequest
 import com.surveasy.surveasy.data.model.response.PanelDetailInfoResponse.Companion.toDomainModel
@@ -97,6 +98,26 @@ class PanelRepositoryImpl @Inject constructor(private val api: SurveasyApi) : Pa
 
             is BaseState.Error -> emit(result)
         }
+    }
+
+    override fun editPanelInfo(
+        phoneNumber: String,
+        accountOwner: String,
+        accountType: String,
+        accountNumber: String,
+        english: Boolean
+    ): Flow<BaseState<Unit>> = flow {
+        when (val result = handleResponse {
+            api.editPanelInfo(
+                EditInfoRequest(
+                    phoneNumber, accountOwner, accountType, accountNumber, english
+                )
+            )
+        }) {
+            is BaseState.Success -> emit(BaseState.Success(Unit))
+            is BaseState.Error -> emit(result)
+        }
+
     }
 
 }

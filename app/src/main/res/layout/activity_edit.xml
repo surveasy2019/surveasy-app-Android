@@ -372,7 +372,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/register_button"
-            android:enabled="@{!vm.uiState.editMode || vm.editAvailable}"
+            android:enabled="@{!vm.uiState.editMode || (vm.phoneValid &amp; vm.accountValid &amp; vm.ownerValid)}"
             android:onClick="@{() -> vm.onClickEditBtn()}"
             android:text="@{vm.uiState.editMode? @string/my_edit_done : @string/my_edit}"
             android:textColor="@color/white"
