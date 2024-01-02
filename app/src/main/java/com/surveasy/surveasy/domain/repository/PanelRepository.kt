@@ -36,4 +36,12 @@ interface PanelRepository {
     fun queryPanelInfo(): Flow<BaseState<PanelInfo>>
 
     fun queryPanelDetailInfo(): Flow<BaseState<PanelDetailInfo>>
+
+    fun editPanelInfo(
+        phoneNumber: String,
+        accountOwner: String,
+        accountType: String,
+        accountNumber: String,
+        english: Boolean,
+    ): Flow<BaseState<Unit>>
 }
