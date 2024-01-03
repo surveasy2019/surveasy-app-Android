@@ -28,7 +28,6 @@ class MyEditViewModel @Inject constructor(
 ) : ViewModel() {
 
     val editPhone = MutableStateFlow("")
-    val editBankIndex = MutableStateFlow(-1)
     val editBank = MutableStateFlow("")
     val editAccount = MutableStateFlow("")
     val editOwner = MutableStateFlow("")
@@ -58,6 +57,7 @@ class MyEditViewModel @Inject constructor(
         queryPanelDetailInfoUseCase().onEach { state ->
             when (state) {
                 is BaseState.Success -> {
+                    editBank.emit(state.data.accountType)
                     state.data.toUiPanelDetailData().apply {
                         _uiState.update { info ->
                             info.copy(
@@ -94,7 +94,7 @@ class MyEditViewModel @Inject constructor(
         }
         with(uiState.value) {
             editPhone.value = phoneNumber
-            editBank.value = accountType
+            //editBank.value = accountType
             editAccount.value = accountNumber
             editOwner.value = accountOwner
             editEnglish.value = english
@@ -148,6 +148,10 @@ class MyEditViewModel @Inject constructor(
                 it.length > NAME_LENGTH
             )
         }.launchIn(viewModelScope)
+    }
+
+    fun setBank(select: String) {
+        viewModelScope.launch { editBank.emit(select) }
     }
 
     companion object {
