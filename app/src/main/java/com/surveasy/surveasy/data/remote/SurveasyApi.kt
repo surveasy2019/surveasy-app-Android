@@ -6,6 +6,7 @@ import com.surveasy.surveasy.data.model.request.NewRegisterRequest
 import com.surveasy.surveasy.data.model.response.PanelDetailInfoResponse
 import com.surveasy.surveasy.data.model.response.PanelInfoResponse
 import com.surveasy.surveasy.data.model.response.RegisterResponse
+import com.surveasy.surveasy.data.model.response.SurveyResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -38,4 +39,8 @@ interface SurveasyApi {
     //home
     @GET("panel/home")
     suspend fun queryPanelInfo(): Response<PanelInfoResponse>
+
+    //survey
+    @GET("survey/app")
+    suspend fun listSurvey(): Response<SurveyResponse>
 }
