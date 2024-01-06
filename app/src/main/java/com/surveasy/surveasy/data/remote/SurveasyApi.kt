@@ -6,12 +6,14 @@ import com.surveasy.surveasy.data.model.request.NewRegisterRequest
 import com.surveasy.surveasy.data.model.response.PanelDetailInfoResponse
 import com.surveasy.surveasy.data.model.response.PanelInfoResponse
 import com.surveasy.surveasy.data.model.response.RegisterResponse
+import com.surveasy.surveasy.data.model.response.SurveyDetailInfoResponse
 import com.surveasy.surveasy.data.model.response.SurveyResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface SurveasyApi {
 
@@ -43,4 +45,7 @@ interface SurveasyApi {
     //survey
     @GET("survey/app")
     suspend fun listSurvey(): Response<SurveyResponse>
+
+    @GET("survey/app/{surveyId}")
+    suspend fun querySurveyDetail(@Path("surveyId") sid: Int): Response<SurveyDetailInfoResponse>
 }

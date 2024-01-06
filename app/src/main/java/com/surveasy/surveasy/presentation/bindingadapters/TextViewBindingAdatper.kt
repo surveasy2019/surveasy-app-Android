@@ -15,7 +15,7 @@ fun TextView.countTitle(count: Int) {
 
 @BindingAdapter("rewardTitle")
 fun TextView.rewardTitle(reward: Int) {
-    text = "${reward}개"
+    text = "${reward}원"
 }
 
 @BindingAdapter("englishTitle")
@@ -25,5 +25,5 @@ fun TextView.englishTitle(english: Boolean) {
 
 @BindingAdapter("respondedCnt", "totalCnt")
 fun TextView.participatedTitle(responded: Int, total: Int) {
-    text = "${responded}/${total}"
+    text = "${responded}/${total}명"
 }
