@@ -55,7 +55,7 @@
                     style="@style/TextMediumBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="대학생에 대한 설문"
+                    android:text="@{vm.uiState.title}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/v_detail_bar" />
 
@@ -123,11 +123,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="300원"
                         android:textColor="@color/main_green"
                         app:layout_constraintEnd_toEndOf="@id/tv_reward_label"
                         app:layout_constraintStart_toStartOf="@id/tv_reward_label"
-                        app:layout_constraintTop_toBottomOf="@id/md_divider1" />
+                        app:layout_constraintTop_toBottomOf="@id/md_divider1"
+                        app:rewardTitle="@{vm.uiState.reward}" />
 
                     <TextView
                         android:id="@+id/tv_time"
@@ -135,7 +135,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="1-3분"
+                        android:text="@{vm.uiState.spendTime}"
                         android:textColor="@color/main_green"
                         app:layout_constraintEnd_toEndOf="@id/tv_time_label"
                         app:layout_constraintStart_toStartOf="@id/tv_time_label"
@@ -147,11 +147,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="34/100명"
                         android:textColor="@color/main_green"
                         app:layout_constraintEnd_toEndOf="@id/tv_participate_label"
                         app:layout_constraintStart_toStartOf="@id/tv_participate_label"
-                        app:layout_constraintTop_toBottomOf="@id/md_divider1" />
+                        app:layout_constraintTop_toBottomOf="@id/md_divider1"
+                        app:respondedCnt="@{vm.uiState.responseCount}"
+                        app:totalCnt="@{vm.uiState.responseCount}" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -172,7 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="서울 1등급 호텔 이용자"
+                    android:text="@{vm.uiState.targetInput}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_target_label" />
 
@@ -203,7 +204,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="주관식 문항에 성심성의껏 답변해주세요!"
+                    android:text="@{vm.uiState.noticeToPanel}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_warn_label" />
 
@@ -234,7 +235,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다.본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다.본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다.본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다.본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다.본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다.본 설문은 서비스 개발 전 조사를 위한 목적으로 작성되었습니다.\n바쁘시더라도 모든 필수 항목에 답변해주시기 바랍니다.\n감사합니다."
+                    android:text="@{vm.uiState.surveyDescription}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_description_label" />
 
