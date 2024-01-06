@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:paddingEnd="20dp"
-            android:text="대학생에 대한 설문"
+            android:text="@{vm.uiState.title}"
             app:layout_constraintBottom_toBottomOf="@id/v_survey_bar"
             app:layout_constraintStart_toEndOf="@id/iv_back"
             app:layout_constraintTop_toTopOf="@id/v_survey_bar" />
@@ -79,7 +79,7 @@
             android:background="@drawable/register_button"
             android:onClick="@{() -> vm.navigateToProof()}"
             android:paddingHorizontal="12dp"
-            android:text="300원 받으러 가기"
+            app:rewardBtn="@{vm.uiState.reward}"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
             app:layout_constraintTop_toBottomOf="@id/v_survey_bar" />
