@@ -6,6 +6,7 @@ import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentListBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
 import com.surveasy.surveasy.presentation.main.survey.SurveyActivity
+import com.surveasy.surveasy.presentation.util.IntentId.SURVEY_ID
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,9 +27,8 @@ class ListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
         repeatOnStarted {
             viewModel.events.collect {
                 when (it) {
-                    is ListEvents.ClickSurveyItem -> {
-                        startActivity(Intent(context, SurveyActivity::class.java))
-                    }
+                    is ListEvents.ClickSurveyItem -> navigateToSurveyDetail(it.id)
+
                 }
             }
         }
@@ -36,5 +36,11 @@ class ListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
 
     override fun initData() {
         viewModel.listSurvey()
+    }
+
+    private fun navigateToSurveyDetail(id : Int){
+        val intent = Intent(context, SurveyActivity::class.java)
+        intent.putExtra(SURVEY_ID, id)
+        startActivity(intent)
     }
 }

@@ -6,6 +6,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivitySurveyBinding
 import com.surveasy.surveasy.presentation.base.BaseActivity
+import com.surveasy.surveasy.presentation.util.IntentId.SURVEY_ID
 
 class SurveyActivity : BaseActivity<ActivitySurveyBinding>(ActivitySurveyBinding::inflate) {
     private lateinit var navHostFragment: NavHostFragment
@@ -16,5 +17,12 @@ class SurveyActivity : BaseActivity<ActivitySurveyBinding>(ActivitySurveyBinding
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+
+        initData()
+    }
+
+    private fun initData(){
+        val sId = intent.getIntExtra(SURVEY_ID, -1)
+        showToastMessage(sId.toString())
     }
 }
