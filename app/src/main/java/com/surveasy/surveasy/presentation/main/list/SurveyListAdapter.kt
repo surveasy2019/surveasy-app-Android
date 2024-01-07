@@ -52,7 +52,7 @@ class SurveyListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (holder.itemViewType) {
             ONGOING -> (holder as OngoingSurveyViewHolder).bind(getItem(position), clickItem)
-            else -> (holder as DoneSurveyViewHolder).bind(getItem(position), clickItem)
+            else -> (holder as DoneSurveyViewHolder).bind(getItem(position))
         }
     }
 
@@ -81,11 +81,8 @@ class OngoingSurveyViewHolder(
 class DoneSurveyViewHolder(
     private val binding: ItemListDoneBinding
 ) : ViewHolder(binding.root) {
-    fun bind(item: UiSurveyListData, listener: (Int) -> Unit) = with(binding) {
+    fun bind(item: UiSurveyListData) = with(binding) {
         this.item = item
-        root.run {
-            setOnClickListener { listener(item.id) }
-        }
         executePendingBindings()
     }
 }

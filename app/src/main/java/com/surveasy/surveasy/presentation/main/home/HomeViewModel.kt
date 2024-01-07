@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.GetTempTokenUseCase
+import com.surveasy.surveasy.domain.usecase.ListHomeSurveyUseCase
 import com.surveasy.surveasy.domain.usecase.QueryPanelInfoUseCase
 import com.surveasy.surveasy.presentation.main.home.mapper.toUiPanelData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,8 +24,9 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val queryPanelInfoUseCase: QueryPanelInfoUseCase,
-    private val getTempTokenUseCase: GetTempTokenUseCase
-): ViewModel() {
+    private val getTempTokenUseCase: GetTempTokenUseCase,
+    private val listHomeSurveyUseCase: ListHomeSurveyUseCase,
+) : ViewModel() {
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
@@ -36,21 +38,27 @@ class HomeViewModel @Inject constructor(
 //    val events: SharedFlow<HomeEvents> = _events.asSharedFlow()
 
     init {
-        //tempToken()
+        listHomeSurvey()
     }
 
-    private fun tempToken(){
+    fun listHomeSurvey() {
+        listHomeSurveyUseCase().onEach {
+            Log.d("TEST", "$it")
+        }.launchIn(viewModelScope)
+    }
+
+    private fun tempToken() {
         getTempTokenUseCase().onEach {
-            when(it){
+            when (it) {
                 is BaseState.Success -> Log.d("TEST", "${it.data}")
                 else -> Unit
             }
         }.launchIn(viewModelScope)
     }
 
-    fun queryPanelInfo(){
+    fun queryPanelInfo() {
         queryPanelInfoUseCase().onEach { state ->
-            when(state) {
+            when (state) {
                 is BaseState.Success -> {
                     state.data.toUiPanelData().apply {
                         _uiState.update { panel ->
@@ -63,6 +71,7 @@ class HomeViewModel @Inject constructor(
                         }
                     }
                 }
+
                 else -> Unit
             }
         }.launchIn(viewModelScope)
@@ -71,8 +80,8 @@ class HomeViewModel @Inject constructor(
 }
 
 data class HomeUiState(
-    val name : String = "",
+    val name: String = "",
     val count: Int = 0,
-    val rewardCurrent : Int = 0,
+    val rewardCurrent: Int = 0,
     val rewardTotal: Int = 0,
 )
