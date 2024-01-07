@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="com.surveasy.surveasy.presentation.main.home.HomeViewModel" />
@@ -71,10 +72,10 @@
                     style="@style/TextMediumBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:nameTitle="@{vm.uiState.name}"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toEndOf="@id/tv_greeting_title"
-                    app:layout_constraintTop_toTopOf="@id/guide_top" />
+                    app:layout_constraintTop_toTopOf="@id/guide_top"
+                    app:nameTitle="@{vm.uiState.name}" />
 
                 <View
                     android:id="@+id/v_home_middle_container"
@@ -91,9 +92,9 @@
                     style="@style/TextSmallBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:countTitle="@{vm.uiState.count}"
                     android:textColor="@color/white"
                     android:textSize="16sp"
+                    app:countTitle="@{vm.uiState.count}"
                     app:layout_constraintBottom_toTopOf="@id/tv_survey_num_label"
                     app:layout_constraintEnd_toEndOf="@id/iv_divider"
                     app:layout_constraintStart_toStartOf="@id/v_home_middle_container"
@@ -128,14 +129,14 @@
                     style="@style/TextSmallBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:rewardTitle="@{vm.uiState.rewardTotal}"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@id/tv_reward_label"
                     app:layout_constraintEnd_toEndOf="@id/v_home_middle_container"
                     app:layout_constraintStart_toStartOf="@id/iv_divider"
                     app:layout_constraintTop_toTopOf="@id/v_home_middle_container"
-                    app:layout_constraintVertical_chainStyle="packed" />
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:rewardTitle="@{vm.uiState.rewardTotal}" />
 
                 <TextView
                     android:id="@+id/tv_reward_label"
@@ -200,12 +201,14 @@
                     android:id="@+id/rv_home_list"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="@id/guide_end"
                     app:layout_constraintStart_toStartOf="@id/guide_begin"
                     app:layout_constraintTop_toBottomOf="@id/tv_label1"
-                    tools:listitem="@layout/item_home_list" />
+                    app:list="@{vm.uiState.list}"
+                    tools:listitem="@layout/item_list_home" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
