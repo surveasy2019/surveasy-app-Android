@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.main.my.history.HistoryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:text="참여 일자"
+                    android:text="@{vm.detailUiState.createdAt}"
                     app:layout_constraintStart_toStartOf="@id/iv_divider1"
                     app:layout_constraintTop_toBottomOf="@id/iv_logo" />
 
@@ -63,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="설문 제목"
+                    android:text="@{vm.detailUiState.title}"
                     app:layout_constraintStart_toStartOf="@id/iv_divider1"
                     app:layout_constraintTop_toBottomOf="@id/iv_divider1" />
 
@@ -73,10 +78,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="100원"
                     app:layout_constraintBottom_toBottomOf="@id/tv_title"
                     app:layout_constraintStart_toEndOf="@id/tv_title"
-                    app:layout_constraintTop_toTopOf="@id/tv_title" />
+                    app:layout_constraintTop_toTopOf="@id/tv_title"
+                    app:rewardTitle="@{vm.detailUiState.reward}" />
 
                 <ImageView
                     android:id="@+id/iv_divider2"
@@ -116,6 +121,7 @@
                     android:layout_marginTop="40dp"
                     android:text="※사진 변경 시, 기존에 제출했던 사진은 삭제됩니다."
                     android:textColor="@color/red"
+                    android:visibility="@{vm.mainUiState.isBefore? View.VISIBLE : View.INVISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_last_image" />
@@ -128,6 +134,7 @@
                     android:layout_marginTop="40dp"
                     android:text="※마감된 설문의 설문 완료 화면은 변경이 불가합니다."
                     android:textColor="@color/red"
+                    android:visibility="@{vm.mainUiState.isBefore? View.INVISIBLE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_last_image" />
@@ -140,7 +147,7 @@
                     android:layout_marginHorizontal="25sp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/register_button"
-                    android:fontFamily="@font/main_font_b"
+                    android:enabled="@{vm.mainUiState.isBefore}"
                     android:text="설문 완료 화면 변경하기"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"

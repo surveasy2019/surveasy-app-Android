@@ -1,6 +1,6 @@
 package com.surveasy.surveasy.presentation.main.my.history
 
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.surveasy.surveasy.R
@@ -10,7 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HistoryFragment : BaseFragment<FragmentHistoryBinding>(R.layout.fragment_history) {
-    private val viewModel: HistoryViewModel by viewModels()
+    private val viewModel: HistoryViewModel by activityViewModels()
     private val adapter = HistoryAdapter {
         viewModel.navigateToDetail(it)
     }
@@ -31,7 +31,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(R.layout.fragment_h
         repeatOnStarted {
             viewModel.events.collect {
                 when (it) {
-                    is HistoryEvents.NavigateToDetail -> navigateToDetail(it.id)
+                    is HistoryEvents.NavigateToDetail -> navigateToDetail()
                 }
             }
         }
@@ -51,7 +51,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(R.layout.fragment_h
         })
     }
 
-    private fun navigateToDetail(id: Int) = findNavController().navigate(
-        HistoryFragmentDirections.actionHistoryFragmentToHistoryDetailFragment(id)
+    private fun navigateToDetail() = findNavController().navigate(
+        HistoryFragmentDirections.actionHistoryFragmentToHistoryDetailFragment()
     )
 }

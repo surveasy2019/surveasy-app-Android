@@ -25,8 +25,14 @@ import javax.inject.Inject
 class HistoryViewModel @Inject constructor(
     private val listHistoryUseCase: ListHistoryUseCase,
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow(HistoryUiState())
-    val uiState: StateFlow<HistoryUiState> = _uiState.asStateFlow()
+    private val sid = MutableStateFlow(-1)
+
+    private val _mainUiState = MutableStateFlow(HistoryUiState())
+    val mainUiState: StateFlow<HistoryUiState> = _mainUiState.asStateFlow()
+
+    private val _detailUiState = MutableStateFlow(HistoryDetailUiState())
+    val detailUiState: StateFlow<HistoryDetailUiState> = _detailUiState.asStateFlow()
+
     private val _events = MutableSharedFlow<HistoryEvents>(
         replay = 0,
         extraBufferCapacity = 1,
@@ -40,7 +46,7 @@ class HistoryViewModel @Inject constructor(
             when (state) {
                 is BaseState.Success -> {
                     state.data.let { history ->
-                        _uiState.update {
+                        _mainUiState.update {
                             val data =
                                 history.responseList.map { list -> list.toUiHistorySurveyData() }
                             it.copy(
@@ -57,8 +63,29 @@ class HistoryViewModel @Inject constructor(
 
     }
 
+    fun getHistoryDetail() {
+        mainUiState.value.list.find { it.id == sid.value }.apply {
+            Log.d("TEST", "$this")
+            this ?: return@apply
+            _detailUiState.update { state ->
+                state.copy(
+                    title = title,
+                    reward = reward,
+                    imgUrl = imgUrl,
+                    createdAt = createdAt,
+                    sentAt = sentAt
+                )
+            }
+        }
+
+
+    }
+
     fun navigateToDetail(id: Int) {
-        viewModelScope.launch { _events.emit(HistoryEvents.NavigateToDetail(id)) }
+        viewModelScope.launch {
+            _events.emit(HistoryEvents.NavigateToDetail)
+            sid.emit(id)
+        }
     }
 
     companion object {
@@ -69,7 +96,7 @@ class HistoryViewModel @Inject constructor(
 }
 
 sealed class HistoryEvents {
-    data class NavigateToDetail(val id: Int) : HistoryEvents()
+    data object NavigateToDetail : HistoryEvents()
 }
 
 data class HistoryUiState(
@@ -82,4 +109,12 @@ data class HistoryUiState(
     val totalPages: Int = 0,
     val isBefore: Boolean = true,
     val list: List<UiHistorySurveyData> = emptyList()
+)
+
+data class HistoryDetailUiState(
+    val title: String = "",
+    val reward: Int = 0,
+    val imgUrl: String = "",
+    val createdAt: String = "",
+    val sentAt: String? = null,
 )

@@ -22,10 +22,6 @@
         <action
             android:id="@+id/action_historyDetailFragment_to_historyEditFragment"
             app:destination="@id/historyEditFragment" />
-        <argument
-            android:name="sid"
-            android:defaultValue="-1"
-            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/historyEditFragment"
