@@ -1,10 +1,12 @@
 package com.surveasy.surveasy.data.repository
 
+import com.surveasy.surveasy.data.model.response.HomeSurveyResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.SurveyDetailInfoResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.SurveyResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.remote.SurveasyApi
 import com.surveasy.surveasy.data.remote.handleResponse
 import com.surveasy.surveasy.domain.base.BaseState
+import com.surveasy.surveasy.domain.model.HomeSurvey
 import com.surveasy.surveasy.domain.model.Survey
 import com.surveasy.surveasy.domain.model.SurveyDetailInfo
 import com.surveasy.surveasy.domain.repository.SurveyRepository
@@ -17,6 +19,13 @@ class SurveyRepositoryImpl @Inject constructor(
 ) : SurveyRepository {
     override fun listSurvey(): Flow<BaseState<Survey>> = flow {
         when (val result = handleResponse { api.listSurvey() }) {
+            is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
+            is BaseState.Error -> emit(result)
+        }
+    }
+
+    override fun listHomeSurvey(): Flow<BaseState<HomeSurvey>> = flow {
+        when (val result = handleResponse { api.listHomeSurvey() }) {
             is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
             is BaseState.Error -> emit(result)
         }

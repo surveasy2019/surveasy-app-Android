@@ -3,6 +3,7 @@ package com.surveasy.surveasy.data.remote
 import com.surveasy.surveasy.data.model.request.EditInfoRequest
 import com.surveasy.surveasy.data.model.request.ExistRegisterRequest
 import com.surveasy.surveasy.data.model.request.NewRegisterRequest
+import com.surveasy.surveasy.data.model.response.HomeSurveyResponse
 import com.surveasy.surveasy.data.model.response.PanelDetailInfoResponse
 import com.surveasy.surveasy.data.model.response.PanelInfoResponse
 import com.surveasy.surveasy.data.model.response.RegisterResponse
@@ -45,6 +46,9 @@ interface SurveasyApi {
     //survey
     @GET("survey/app")
     suspend fun listSurvey(): Response<SurveyResponse>
+
+    @GET("survey/app/home")
+    suspend fun listHomeSurvey(): Response<HomeSurveyResponse>
 
     @GET("survey/app/{surveyId}")
     suspend fun querySurveyDetail(@Path("surveyId") sid: Int): Response<SurveyDetailInfoResponse>

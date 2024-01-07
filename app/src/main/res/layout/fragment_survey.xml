@@ -79,16 +79,17 @@
             android:background="@drawable/register_button"
             android:onClick="@{() -> vm.navigateToProof()}"
             android:paddingHorizontal="12dp"
-            app:rewardBtn="@{vm.uiState.reward}"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintTop_toBottomOf="@id/v_survey_bar" />
+            app:layout_constraintTop_toBottomOf="@id/v_survey_bar"
+            app:rewardBtn="@{vm.uiState.reward}" />
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <WebView
+            android:id="@+id/wv_form"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="12dp"
-            android:background="@color/light_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_reward" />
