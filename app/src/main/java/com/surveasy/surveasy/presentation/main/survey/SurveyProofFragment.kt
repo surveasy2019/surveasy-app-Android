@@ -9,6 +9,7 @@ import android.os.Build
 import android.provider.MediaStore
 import android.provider.Settings
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -46,6 +47,15 @@ class SurveyProofFragment :
             viewModel.events.collect { event ->
                 when (event) {
                     is SurveyEvents.NavigateToDone -> findNavController().toSurveyDone()
+                    is SurveyEvents.ShowLoading -> {
+                        showLoading(requireContext())
+                        requireActivity().onBackPressedDispatcher.addCallback(object :
+                            OnBackPressedCallback(true) {
+                            override fun handleOnBackPressed() = Unit
+                        })
+                    }
+
+                    is SurveyEvents.DismissLoading -> dismissLoading()
                     else -> Unit
                 }
             }
@@ -127,19 +137,7 @@ class SurveyProofFragment :
     private fun uploadToFb() {
         repeatOnStarted {
             imgUrl ?: return@repeatOnStarted
-            viewModel.test(imgUrl.toString(), 0, "test")
+            viewModel.test(imgUrl.toString(), 0, "test2")
         }
     }
-
-//        val imgName = Firebase.auth.currentUser!!.uid+"__"+timestamp
-//        val storageRef = storage.reference.child(id.toString()).child(imgName)
-//        if(uriPhoto==null){
-//            Toast.makeText(this, "사진을 선택하세요", Toast.LENGTH_LONG).show()
-//        }else{
-//
-//            val uploadTask = storageRef.putFile(uriPhoto!!)
-//            uploadTask.addOnSuccessListener {
-//
-//            }
-//    }
 }

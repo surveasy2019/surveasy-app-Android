@@ -1,5 +1,6 @@
 package com.surveasy.surveasy.data.repository
 
+import com.surveasy.surveasy.data.model.request.ResponseImgRequest
 import com.surveasy.surveasy.data.model.response.HistoryResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.HomeSurveyResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.SurveyDetailInfoResponse.Companion.toDomainModel
@@ -41,8 +42,15 @@ class SurveyRepositoryImpl @Inject constructor(
     }
 
     override fun listHistory(type: String): Flow<BaseState<History>> = flow {
-        when (val result = handleResponse { api.listHistory(type) }){
+        when (val result = handleResponse { api.listHistory(type) }) {
             is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
+            is BaseState.Error -> emit(result)
+        }
+    }
+
+    override fun createResponse(sid: Int, url: String): Flow<BaseState<Unit>> = flow {
+        when (val result = handleResponse { api.createResponse(sid, ResponseImgRequest(url)) }) {
+            is BaseState.Success -> emit(BaseState.Success(Unit))
             is BaseState.Error -> emit(result)
         }
     }

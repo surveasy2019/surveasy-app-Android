@@ -4,7 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
-import com.surveasy.surveasy.domain.repository.FirebaseRepository
+import com.surveasy.surveasy.domain.usecase.CreateResponseUseCase
+import com.surveasy.surveasy.domain.usecase.LoadImageUseCase
 import com.surveasy.surveasy.domain.usecase.QuerySurveyDetailUseCase
 import com.surveasy.surveasy.presentation.main.list.mapper.toSurveyDetailData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,6 +18,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -25,7 +27,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SurveyViewModel @Inject constructor(
     private val querySurveyDetailUseCase: QuerySurveyDetailUseCase,
-    private val repository: FirebaseRepository
+    private val loadImageUseCase: LoadImageUseCase,
+    private val createResponseUseCase: CreateResponseUseCase,
 ) : ViewModel() {
     private val sId = MutableStateFlow(0)
 
@@ -41,11 +44,22 @@ class SurveyViewModel @Inject constructor(
 
 
     suspend fun test(uri: String, id: Int, name: String) {
-        val v = viewModelScope.async {
-            repository.loadImage(uri, id, name)
+        _events.emit(SurveyEvents.ShowLoading)
+        val imgUrl = viewModelScope.async {
+            loadImageUseCase(uri, id, name)
         }.await()
 
-        Log.d("TEST", "$v, ${v.length}")
+        createResponseUseCase(sId.value, imgUrl).onEach { state ->
+            when (state) {
+                is BaseState.Success -> {
+                    _events.emit(SurveyEvents.NavigateToDone)
+                }
+
+                else -> Log.d("TEST", "failed")
+            }
+        }.onCompletion {
+            _events.emit(SurveyEvents.DismissLoading)
+        }.launchIn(viewModelScope)
     }
 
     fun querySurveyDetail() {
@@ -104,6 +118,8 @@ sealed class SurveyEvents {
     data object NavigateToDone : SurveyEvents()
     data object NavigateToMy : SurveyEvents()
     data object NavigateToList : SurveyEvents()
+    data object ShowLoading : SurveyEvents()
+    data object DismissLoading : SurveyEvents()
 }
 
 data class SurveyUiState(
