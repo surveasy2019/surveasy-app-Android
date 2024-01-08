@@ -58,6 +58,7 @@ class SurveyFragment : BaseFragment<FragmentSurveyBinding>(R.layout.fragment_sur
 //            })
     }
 
+
     private fun NavController.toSurveyProof() {
         navigate(SurveyFragmentDirections.actionSurveyFragmentToSurveyProofFragment())
     }

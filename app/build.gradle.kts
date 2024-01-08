@@ -91,5 +91,7 @@ dependencies {
     implementation("androidx.datastore:datastore-core:1.0.0")
 
     // firebase
-    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
+    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-storage-ktx")
 }

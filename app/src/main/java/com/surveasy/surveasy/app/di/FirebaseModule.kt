@@ -1,6 +1,6 @@
 package com.surveasy.surveasy.app.di
 
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,5 +12,5 @@ import javax.inject.Singleton
 object FirebaseModule {
     @Provides
     @Singleton
-    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
+    fun provideFirebaseStorage(): Firebase = Firebase
 }

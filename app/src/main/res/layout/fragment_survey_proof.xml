@@ -66,6 +66,17 @@
             app:layout_constraintStart_toEndOf="@id/iv_back"
             app:layout_constraintTop_toTopOf="@id/v_survey_bar" />
 
+        <ImageView
+            android:id="@+id/iv_pick_img"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_pick"
+            app:layout_constraintEnd_toEndOf="@id/guide_end"
+            app:layout_constraintStart_toStartOf="@id/guide_begin"
+            app:layout_constraintTop_toBottomOf="@id/v_survey_bar" />
+
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_pick"
             style="@style/TextTitleBold"
@@ -85,13 +96,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/register_button"
-            android:onClick="@{() -> vm.navigateToDone()}"
             android:text="제출하기"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/guide_bottom"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintStart_toStartOf="@id/guide_begin" />
 
+            app:layout_constraintStart_toStartOf="@id/guide_begin" />
+        <!--        android:onClick="@{() -> vm.navigateToDone()}"-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
