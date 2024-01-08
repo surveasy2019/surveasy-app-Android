@@ -96,13 +96,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/register_button"
-            android:onClick="@{() -> vm.navigateToDone()}"
             android:text="제출하기"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/guide_bottom"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintStart_toStartOf="@id/guide_begin" />
 
+            app:layout_constraintStart_toStartOf="@id/guide_begin" />
+        <!--        android:onClick="@{() -> vm.navigateToDone()}"-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

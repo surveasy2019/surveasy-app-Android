@@ -4,9 +4,11 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
+import com.surveasy.surveasy.domain.repository.FirebaseRepository
 import com.surveasy.surveasy.domain.usecase.QuerySurveyDetailUseCase
 import com.surveasy.surveasy.presentation.main.list.mapper.toSurveyDetailData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,6 +25,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SurveyViewModel @Inject constructor(
     private val querySurveyDetailUseCase: QuerySurveyDetailUseCase,
+    private val repository: FirebaseRepository
 ) : ViewModel() {
     private val sId = MutableStateFlow(0)
 
@@ -35,6 +38,15 @@ class SurveyViewModel @Inject constructor(
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
     val events: SharedFlow<SurveyEvents> = _events.asSharedFlow()
+
+
+    suspend fun test(uri: String, id: Int, name: String) {
+        val v = viewModelScope.async {
+            repository.loadImage(uri, id, name)
+        }.await()
+
+        Log.d("TEST", "$v, ${v.length}")
+    }
 
     fun querySurveyDetail() {
         querySurveyDetailUseCase(sid = sId.value).onEach { state ->

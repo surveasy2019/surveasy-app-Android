@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.provider.Settings
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -26,6 +25,8 @@ class SurveyProofFragment :
     BaseFragment<FragmentSurveyProofBinding>(R.layout.fragment_survey_proof) {
     private val viewModel: SurveyViewModel by activityViewModels()
 
+    private var imgUrl: Uri? = null
+
     override fun initData() {
 
     }
@@ -35,6 +36,7 @@ class SurveyProofFragment :
         bind {
             vm = viewModel
             btnPick.setOnClickListener { openOrSetting() }
+            btnSubmit.setOnClickListener { uploadToFb() }
         }
 
     }
@@ -117,9 +119,27 @@ class SurveyProofFragment :
 
                 uri?.let {
                     binding.ivPickImg.setImageURI(it)
-                    Log.d("TEST", it.toString())
+                    imgUrl = it
                 }
             }
         }
 
+    private fun uploadToFb() {
+        repeatOnStarted {
+            imgUrl ?: return@repeatOnStarted
+            viewModel.test(imgUrl.toString(), 0, "test")
+        }
+    }
+
+//        val imgName = Firebase.auth.currentUser!!.uid+"__"+timestamp
+//        val storageRef = storage.reference.child(id.toString()).child(imgName)
+//        if(uriPhoto==null){
+//            Toast.makeText(this, "사진을 선택하세요", Toast.LENGTH_LONG).show()
+//        }else{
+//
+//            val uploadTask = storageRef.putFile(uriPhoto!!)
+//            uploadTask.addOnSuccessListener {
+//
+//            }
+//    }
 }
