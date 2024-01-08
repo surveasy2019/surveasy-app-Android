@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.CreateExistPanelUseCase
-import com.surveasy.surveasy.domain.usecase.GetUidUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.BufferOverflow
@@ -20,11 +19,9 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.math.log
 
 @HiltViewModel
 class ExistUserViewModel @Inject constructor(
-    private val getUidUseCase: GetUidUseCase,
     private val createExistPanelUseCase: CreateExistPanelUseCase
 ) : ViewModel() {
     val email = MutableStateFlow("")
@@ -65,43 +62,43 @@ class ExistUserViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    private suspend fun getUid(): String? {
-        return viewModelScope.async {
-            var result: String? = null
-            getUidUseCase(email.value, pw.value).onEach { login ->
-                result = when (login) {
-                    is BaseState.Success -> {
-                        Log.d("TEST", "login success")
-                        login.data
-                    }
+//    private suspend fun getUid(): String? {
+//        return viewModelScope.async {
+//            var result: String? = null
+//            getUidUseCase(email.value, pw.value).onEach { login ->
+//                result = when (login) {
+//                    is BaseState.Success -> {
+//                        Log.d("TEST", "login success")
+//                        login.data
+//                    }
+//
+//                    is BaseState.Error -> {
+//                        Log.d("TEST", "login fail")
+//                        null
+//                    }
+//                }
+//            }.launchIn(viewModelScope)
+//            result
+//        }.await()
+//    }
 
-                    is BaseState.Error -> {
-                        Log.d("TEST", "login fail")
-                        null
-                    }
-                }
-            }.launchIn(viewModelScope)
-            result
-        }.await()
-    }
-
-    fun existLogin() {
-        viewModelScope.launch {
-            val uid = getUid()
-            uid ?: return@launch
-            Log.d("TEST", "register start")
-            createExistPanelUseCase(uid, email.value).onEach { register ->
-                when (register) {
-                    is BaseState.Success -> {
-                        _events.emit(ExistUserEvents.NavigateToMain)
-                    }
-
-                    is BaseState.Error -> Log.d("TEST", "register fail")
-                }
-            }.launchIn(viewModelScope)
-        }
-
-    }
+//    fun existLogin() {
+//        viewModelScope.launch {
+//            val uid = getUid()
+//            uid ?: return@launch
+//            Log.d("TEST", "register start")
+//            createExistPanelUseCase(uid, email.value).onEach { register ->
+//                when (register) {
+//                    is BaseState.Success -> {
+//                        _events.emit(ExistUserEvents.NavigateToMain)
+//                    }
+//
+//                    is BaseState.Error -> Log.d("TEST", "register fail")
+//                }
+//            }.launchIn(viewModelScope)
+//        }
+//
+//    }
 
 }
 
