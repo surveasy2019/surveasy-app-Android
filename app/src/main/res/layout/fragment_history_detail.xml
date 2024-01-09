@@ -152,6 +152,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/register_button"
                     android:enabled="@{vm.mainUiState.isBefore}"
+                    android:onClick="@{() -> vm.navigateToEdit()}"
                     android:text="설문 완료 화면 변경하기"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"

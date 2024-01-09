@@ -88,6 +88,10 @@ class HistoryViewModel @Inject constructor(
         }
     }
 
+    fun navigateToEdit() {
+        viewModelScope.launch { _events.emit(HistoryEvents.NavigateToEdit) }
+    }
+
     companion object {
         const val BEFORE = "before"
         const val AFTER = "after"
@@ -97,6 +101,7 @@ class HistoryViewModel @Inject constructor(
 
 sealed class HistoryEvents {
     data object NavigateToDetail : HistoryEvents()
+    data object NavigateToEdit : HistoryEvents()
 }
 
 data class HistoryUiState(

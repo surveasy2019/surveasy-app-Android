@@ -137,7 +137,7 @@ class SurveyProofFragment :
     private fun uploadToFb() {
         repeatOnStarted {
             imgUrl ?: return@repeatOnStarted
-            viewModel.test(imgUrl.toString(), 0, "test2")
+            viewModel.test(imgUrl.toString(), 0, "test3")
         }
     }
 }
