@@ -14,11 +14,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MyFragment : BaseFragment<FragmentMyBinding>(R.layout.fragment_my) {
     private val viewModel: MyViewModel by viewModels()
-    override fun initView() {
-        bind {
-            vm = viewModel
-        }
-
+    override fun initView() = with(binding) {
+        vm = viewModel
     }
 
     override fun initEventObserver() {

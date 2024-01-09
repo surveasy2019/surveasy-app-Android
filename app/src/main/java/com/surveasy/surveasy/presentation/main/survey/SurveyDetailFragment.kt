@@ -16,10 +16,8 @@ class SurveyDetailFragment :
         viewModel.querySurveyDetail()
     }
 
-    override fun initView() {
-        bind {
-            vm = viewModel
-        }
+    override fun initView() = with(binding) {
+        vm = viewModel
     }
 
     override fun initEventObserver() {

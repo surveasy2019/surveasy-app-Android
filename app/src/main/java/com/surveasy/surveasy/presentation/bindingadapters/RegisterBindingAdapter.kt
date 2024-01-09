@@ -1,9 +1,12 @@
-package com.surveasy.surveasy.presentation.intro
+package com.surveasy.surveasy.presentation.bindingadapters
 
 import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
 import com.surveasy.surveasy.R
+import com.surveasy.surveasy.presentation.intro.HelperText
+import com.surveasy.surveasy.presentation.intro.InputState
+import com.surveasy.surveasy.presentation.intro.RegisterUiState
 
 @BindingAdapter("set_helper_text")
 fun TextInputLayout.nameHelperText(state: InputState) {

@@ -10,12 +10,10 @@ import com.surveasy.surveasy.presentation.intro.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login){
+class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login) {
     private val viewModel: RegisterViewModel by viewModels()
-    override fun initView() {
-        bind {
-            vm = viewModel
-        }
+    override fun initView() = with(binding) {
+        vm = viewModel
     }
 
     override fun initEventObserver() {

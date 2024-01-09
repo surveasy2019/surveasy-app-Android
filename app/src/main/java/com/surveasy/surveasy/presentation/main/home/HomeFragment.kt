@@ -21,11 +21,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         viewModel.listHomeSurvey()
     }
 
-    override fun initView() {
-        bind {
-            vm = viewModel
-            rvHomeList.adapter = adapter
-        }
+    override fun initView() = with(binding) {
+        vm = viewModel
+        rvHomeList.adapter = adapter
     }
 
     override fun initEventObserver() {

@@ -13,10 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ExistUserFragment : BaseFragment<FragmentExistUserBinding>(R.layout.fragment_exist_user) {
     private val viewModel: ExistUserViewModel by viewModels()
-    override fun initView() {
-        bind {
-            vm = viewModel
-        }
+    override fun initView() = with(binding) {
+        vm = viewModel
     }
 
     override fun initEventObserver() {

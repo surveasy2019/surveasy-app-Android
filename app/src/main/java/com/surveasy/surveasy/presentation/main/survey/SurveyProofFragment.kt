@@ -32,13 +32,11 @@ class SurveyProofFragment :
 
     }
 
-    override fun initView() {
+    override fun initView() = with(binding) {
         openOrSetting()
-        bind {
-            vm = viewModel
-            btnPick.setOnClickListener { openOrSetting() }
-            btnSubmit.setOnClickListener { uploadToFb() }
-        }
+        vm = viewModel
+        btnPick.setOnClickListener { openOrSetting() }
+        btnSubmit.setOnClickListener { uploadToFb() }
 
     }
 
@@ -75,24 +73,25 @@ class SurveyProofFragment :
     }
 
     private fun showDialogToGetPermission() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("권한이 필요합니다").setMessage("설문 완료 인증 캡쳐본을 전송하기 위해서 접근 권한이 필요합니다.")
-        builder.setPositiveButton("설정으로 이동") { dialogInterface, i ->
-            val intent = Intent(
-                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                Uri.fromParts("package", requireContext().packageName, null)
-            )
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            dialogInterface.cancel()
-        }
-        builder.setNegativeButton("나중에 하기") { dialogInterface, i ->
-            Toast.makeText(
-                requireContext(),
-                "권한을 허용하지 않을 경우, 설문 완료 캡쳐본 전송이 불가합니다.",
-                Toast.LENGTH_LONG
-            ).show()
-            dialogInterface.cancel()
+        val builder = AlertDialog.Builder(requireContext()).apply {
+            setTitle("권한이 필요합니다").setMessage("설문 완료 인증 캡쳐본을 전송하기 위해서 접근 권한이 필요합니다.")
+            setPositiveButton("설정으로 이동") { dialogInterface, i ->
+                val intent = Intent(
+                    Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.fromParts("package", requireContext().packageName, null)
+                )
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                dialogInterface.cancel()
+            }
+            setNegativeButton("나중에 하기") { dialogInterface, i ->
+                Toast.makeText(
+                    requireContext(),
+                    "권한을 허용하지 않을 경우, 설문 완료 캡쳐본 전송이 불가합니다.",
+                    Toast.LENGTH_LONG
+                ).show()
+                dialogInterface.cancel()
+            }
         }
         val dialog = builder.create()
         dialog.show()
