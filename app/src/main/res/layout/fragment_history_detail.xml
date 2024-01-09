@@ -14,7 +14,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingVertical="30dp">
 
 
         <androidx.core.widget.NestedScrollView
@@ -106,9 +107,12 @@
 
                 <ImageView
                     android:id="@+id/iv_last_image"
-                    android:layout_width="210dp"
-                    android:layout_height="380dp"
+                    android:layout_width="240dp"
+                    android:layout_height="350dp"
                     android:layout_marginTop="20dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    app:imgUrl="@{vm.detailUiState.imgUrl}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_fin_title" />
@@ -119,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:text="※사진 변경 시, 기존에 제출했던 사진은 삭제됩니다."
+                    android:text="※사진 변경 시, 기존 제출 화면은 삭제됩니다."
                     android:textColor="@color/red"
                     android:visibility="@{vm.mainUiState.isBefore? View.VISIBLE : View.INVISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -132,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:text="※마감된 설문의 설문 완료 화면은 변경이 불가합니다."
+                    android:text="※마감된 설문의 제출 화면은 변경이 불가합니다."
                     android:textColor="@color/red"
                     android:visibility="@{vm.mainUiState.isBefore? View.INVISIBLE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
