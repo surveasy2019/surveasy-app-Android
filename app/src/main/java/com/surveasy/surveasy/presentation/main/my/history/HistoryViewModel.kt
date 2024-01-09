@@ -4,10 +4,13 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
+import com.surveasy.surveasy.domain.usecase.EditResponseUseCase
 import com.surveasy.surveasy.domain.usecase.ListHistoryUseCase
+import com.surveasy.surveasy.domain.usecase.LoadImageUseCase
 import com.surveasy.surveasy.presentation.main.my.history.mapper.toUiHistorySurveyData
 import com.surveasy.surveasy.presentation.main.my.history.model.UiHistorySurveyData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,6 +19,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -24,6 +28,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HistoryViewModel @Inject constructor(
     private val listHistoryUseCase: ListHistoryUseCase,
+    private val editResponseUseCase: EditResponseUseCase,
+    private val loadImageUseCase: LoadImageUseCase,
 ) : ViewModel() {
     private val sid = MutableStateFlow(-1)
 
@@ -77,9 +83,27 @@ class HistoryViewModel @Inject constructor(
                 )
             }
         }
-
-
     }
+
+    suspend fun editResponse(uri: String, id: Int, name: String) {
+        _events.emit(HistoryEvents.ShowLoading)
+        val imgUrl = viewModelScope.async {
+            loadImageUseCase(uri, sid.value, name)
+        }.await()
+
+        editResponseUseCase(sid.value, imgUrl).onEach { state ->
+            when (state) {
+                is BaseState.Success -> {
+                    sid.emit(state.data.id)
+                }
+
+                is BaseState.Error -> _events.emit(HistoryEvents.ShowErrorMsg(state.message))
+            }
+        }.onCompletion {
+            _events.emit(HistoryEvents.DismissLoading)
+        }.launchIn(viewModelScope)
+    }
+
 
     fun navigateToDetail(id: Int) {
         viewModelScope.launch {
@@ -102,6 +126,9 @@ class HistoryViewModel @Inject constructor(
 sealed class HistoryEvents {
     data object NavigateToDetail : HistoryEvents()
     data object NavigateToEdit : HistoryEvents()
+    data object ShowLoading : HistoryEvents()
+    data object DismissLoading : HistoryEvents()
+    data class ShowErrorMsg(val msg: String) : HistoryEvents()
 }
 
 data class HistoryUiState(
