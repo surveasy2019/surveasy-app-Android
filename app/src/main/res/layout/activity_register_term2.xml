@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".register.agree.RegisterTerm2"
+    tools:context=".presentation.intro.agree.RegisterTerm2"
     android:orientation="vertical"
     android:background="@color/white">
     <androidx.appcompat.widget.Toolbar

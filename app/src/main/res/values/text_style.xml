@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="HelperTextStyle">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/main_font_l</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="TextMediumLight">
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/main_font_l</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextMediumRegular">
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/main_font_m</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextMediumBold">
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/main_font_b</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextTitleRegular">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/main_font_m</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextTitleBold">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/main_font_b</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+    <style name="TextHeaderRegular">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/main_font_m</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextHeaderBold">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/main_font_b</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextSmallLight">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/main_font_l</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextSmallRegular">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/main_font_m</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextSmallBold">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/main_font_b</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/main_font_m</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>

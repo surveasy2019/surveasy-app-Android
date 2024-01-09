@@ -1,136 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/MyViewHistory_ItemContainer"
+    <data>
+
+        <variable
+            name="item"
+            type="com.surveasy.surveasy.presentation.main.my.history.model.UiHistorySurveyData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="5sp"
-        android:paddingVertical="13sp"
-        android:orientation="vertical" >
-        <LinearLayout
-            android:layout_width="match_parent"
+        android:paddingVertical="12dp">
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/TextSmallRegular"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="@{item.createdAt}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/HistoryItem_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2021-01-01"
-                android:textSize="13sp"
-                android:layout_weight="15"
-                android:textColor="#000000"
-                android:fontFamily="@font/main_font_r"/>
-            <ImageView
-                android:visibility="visible"
-                android:layout_weight="1"
-                android:layout_width="29dp"
-                android:layout_height="29dp"
-                android:id="@+id/historyItem_picBtn"
-                android:src="@drawable/history1"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/TextSmallBold"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7sp"
-            android:orientation="horizontal" >
+            android:layout_marginTop="12dp"
+            android:text="@{item.title}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_date" />
 
-            <TextView
-                android:id="@+id/HistoryItem_Title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:text="설문제목설문제목설문제목설문제목.."
-                android:textSize="15sp"
-                android:textColor="#000000"
-                android:fontFamily="@font/main_font_m"/>
-<!--            <Button-->
-<!--                android:id="@+id/MyView_history_photo"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="0.5"-->
-<!--                android:text="RE"/>-->
-            <TextView
-                android:id="@+id/HistoryItem_Reward"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:layout_gravity="center"
-                android:gravity="right"
-                android:text="500원"
-                android:textSize="15sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/main_font_m"/>
+        <ImageView
+            android:id="@+id/iv_detail"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/history1"
+            app:layout_constraintBottom_toTopOf="@id/tv_reward"
+            app:layout_constraintEnd_toEndOf="@id/tv_reward"
+            app:layout_constraintStart_toStartOf="@id/tv_reward"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_reward"
+            style="@style/TextSmallBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rewardTitle="@{item.reward}" />
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
 
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="4sp"
-        android:layout_gravity="bottom"
-        android:background="#e2e2e2" />
-
-</LinearLayout>
-
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto">-->
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/MyViewHistory_ItemContainer"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="70dp"-->
-<!--        android:layout_margin="8dp"-->
-<!--        android:background="#DDDBDB"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        android:orientation="vertical"-->
-<!--        >-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/HistoryItem_Title"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="제목"-->
-<!--            android:textSize="15sp"-->
-<!--            android:textColor="@color/black"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/HistoryItem_date"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_gravity="center_vertical"/>-->
-<!--        <TextView-->
-<!--            android:id="@+id/HistoryItem_date"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="마감 날짜"-->
-<!--            android:textSize="15sp"-->
-<!--            android:textColor="@color/black"-->
-<!--            app:layout_constraintStart_toStartOf="@id/HistoryItem_Title"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            />-->
-
-
-<!--    </LinearLayout>-->
-
-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

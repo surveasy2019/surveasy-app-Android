@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.surveasy.surveasy.presentation.intro.RegisterEventType" />
+
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.intro.RegisterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".register.agree.RegisterAgree1Fragment">
+
+        <TextView
+            android:id="@+id/tv_agree_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/main_font_m"
+            android:lineSpacingExtra="3.3sp"
+            android:text="@string/toolbar_agree"
+            android:textColor="#0aab00"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/cb_agree1"
+            android:layout_width="26sp"
+            android:layout_height="26sp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_checkbox"
+            android:button="@color/transparent"
+            android:checked="@={vm.agreeAll}"
+            app:layout_constraintEnd_toStartOf="@id/tv_agree1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_agree_title"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_agree1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:checked="false"
+            android:fontFamily="@font/main_font_m"
+            android:lineSpacingExtra="4.7sp"
+            android:text="@string/agree_all"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree1"
+            app:layout_constraintStart_toEndOf="@id/cb_agree1"
+            app:layout_constraintTop_toTopOf="@id/cb_agree1" />
+
+        <View
+            android:id="@+id/v_line"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/path_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cb_agree1"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <CheckBox
+            android:id="@+id/cb_agree2"
+            android:layout_width="26sp"
+            android:layout_height="26sp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_checkbox"
+            android:button="@color/transparent"
+            android:checked="@={vm.agreeMust1}"
+            app:layout_constraintEnd_toStartOf="@id/tv_agree2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_line"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_agree2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/main_font_m"
+            android:lineSpacingExtra="4.7sp"
+            android:text="@string/agree_1"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree2"
+            app:layout_constraintStart_toEndOf="@id/cb_agree2"
+            app:layout_constraintTop_toTopOf="@id/cb_agree2" />
+
+        <TextView
+            android:id="@+id/tv_detail2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/main_font_m"
+            android:lineSpacingExtra="4.7sp"
+            android:text="@string/agree_detail"
+            android:textColor="#818181"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree2"
+            app:layout_constraintStart_toEndOf="@id/tv_agree2"
+            app:layout_constraintTop_toTopOf="@id/cb_agree2" />
+
+        <CheckBox
+            android:id="@+id/cb_agree3"
+            android:layout_width="26sp"
+            android:layout_height="26sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/custom_checkbox"
+            android:button="@color/transparent"
+            android:checked="@={vm.agreeMust2}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cb_agree2"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_agree3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/main_font_m"
+            android:lineSpacingExtra="4.7sp"
+            android:text="@string/agree_2"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree3"
+            app:layout_constraintEnd_toStartOf="@id/tv_detail3"
+            app:layout_constraintStart_toEndOf="@id/cb_agree3"
+            app:layout_constraintTop_toTopOf="@id/cb_agree3" />
+
+        <TextView
+            android:id="@+id/tv_detail3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/main_font_m"
+            android:lineSpacingExtra="4.7sp"
+            android:text="@string/agree_detail"
+            android:textColor="#818181"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree3"
+            app:layout_constraintStart_toEndOf="@id/tv_agree3"
+            app:layout_constraintTop_toTopOf="@id/cb_agree3" />
+
+        <CheckBox
+            android:id="@+id/cb_agree4"
+            android:layout_width="26sp"
+            android:layout_height="26sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/custom_checkbox"
+            android:button="@color/transparent"
+            android:checked="@={vm.agreeMarketing}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cb_agree3"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_agree4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/main_font_m"
+            android:lineSpacingExtra="4.7sp"
+            android:text="@string/agree_3"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/cb_agree4"
+            app:layout_constraintStart_toEndOf="@id/cb_agree4"
+            app:layout_constraintTop_toTopOf="@id/cb_agree4" />
+
+        <TextView
+            android:id="@+id/tv_sns_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30sp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/main_font_r"
+            android:paddingHorizontal="15dp"
+            android:text="@string/agree_marketing"
+            android:textSize="11.5sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/tv_agree4"
+            app:layout_constraintTop_toBottomOf="@id/tv_agree4" />
+
+        <ProgressBar
+            android:id="@+id/pb_agree"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="5"
+            android:minHeight="50dp"
+            android:progress="1"
+            android:theme="@style/progressBar"
+            app:layout_constraintBottom_toTopOf="@id/btn_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="5sp"
+            android:background="@drawable/register_button"
+            android:enabled="@{vm.agreeMust1 &amp;&amp; vm.agreeMust2}"
+            android:fontFamily="@font/main_font_b"
+            android:onClick="@{() -> vm.navigateRegisterPages(RegisterEventType.TO_WARN)}"
+            android:text="@string/btn_next"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

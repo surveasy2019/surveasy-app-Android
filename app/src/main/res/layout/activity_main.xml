@@ -1,114 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
-        android:id="@+id/fl_main"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.main.MainActivity">
 
 
-    <LinearLayout
-        android:id="@+id/ll_nav_home"
-        android:layout_width="0dp"
-        android:layout_height="60sp"
-        android:background="#FFFFFF"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@id/fl_main"
-        app:layout_constraintEnd_toStartOf="@id/ll_nav_list"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:id="@+id/iv_nav_home"
-            android:layout_width="17sp"
-            android:layout_height="17sp"
-            android:layout_marginBottom="7dp"
-            android:background="@drawable/nav_home_green"
-            android:paddingVertical="20dp" />
-
-
-        <TextView
-            android:id="@+id/tv_nav_home"
-            android:layout_width="wrap_content"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bnv_nav_bar"
+            style="@style/TextMediumRegular"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/main_font_m"
-            android:text="HOME"
-            android:textColor="#0aab00"
-            android:textSize="9sp" />
+            app:itemBackground="@color/white"
+            app:itemActiveIndicatorStyle="@color/transparent"
+            app:itemIconTint="@drawable/menu_selector_style"
+            app:itemTextColor="@drawable/menu_selector_style"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nav_host_fragment"
+            app:menu="@menu/bottom_menu" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_nav_list"
-        android:layout_width="0dp"
-        android:layout_height="60sp"
-        android:background="#FFFFFF"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@id/fl_main"
-        app:layout_constraintEnd_toStartOf="@id/ll_nav_my"
-        app:layout_constraintStart_toEndOf="@id/ll_nav_home">
-
-        <ImageView
-            android:id="@+id/iv_nav_list"
-            android:layout_width="17sp"
-            android:layout_height="17sp"
-            android:layout_marginBottom="7dp"
-            android:background="@drawable/nav_list_gray"
-            android:paddingVertical="20dp" />
-
-        <TextView
-            android:id="@+id/tv_nav_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/main_font_m"
-            android:text="LIST"
-            android:textColor="#c9c9c9"
-            android:textSize="9sp" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/ll_nav_my"
-        android:layout_width="0dp"
-        android:layout_height="60sp"
-        android:background="#FFFFFF"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@id/fl_main"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ll_nav_list">
-
-        <ImageView
-            android:id="@+id/iv_nav_my"
-            android:layout_width="17sp"
-            android:layout_height="17sp"
-            android:layout_marginBottom="7dp"
-            android:background="@drawable/nav_my_gray"
-            android:paddingVertical="20dp" />
-
-        <TextView
-            android:id="@+id/tv_nav_my"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/main_font_m"
-            android:text="MY PAGE"
-            android:textColor="#c9c9c9"
-            android:textSize="9sp" />
-
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@id/bnv_nav_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/main_nav_graph" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

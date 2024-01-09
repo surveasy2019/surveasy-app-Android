@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="134dp"
+    android:layout_height="100dp"
+    android:background="@drawable/home_bottom_list_item"
+    android:elevation="2sp"
+    android:layout_marginEnd="15dp"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tv_list_title"
+        style="@style/TextSmallBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minLines="2"
+        android:text="1인 외식에 대한 인식과 메뉴 선택"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_list_target"
+        style="@style/Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="외식 경험자"
+        android:textColor="@color/gray"
+        app:layout_constraintTop_toTopOf="@id/tv_list_reward"
+        app:layout_constraintBottom_toBottomOf="@id/tv_list_reward"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_list_reward"
+        style="@style/TextSmallBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="200원"
+        android:textColor="@color/main_green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

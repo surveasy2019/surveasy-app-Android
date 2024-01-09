@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.surveasy.surveasy.presentation.intro.RegisterEventType" />
+
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.intro.RegisterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/pb_progress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_input2_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/main_font_sb"
+                    android:lineSpacingExtra="3.3sp"
+                    android:text="@string/register2_title"
+                    android:textColor="#0aab00"
+                    android:textSize="18sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_input2_warn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15sp"
+                    android:fontFamily="@font/main_font_r"
+                    android:lineSpacingExtra="2.7sp"
+                    android:text="@string/register2_warn"
+                    android:textColor="#707070"
+                    android:textSize="13sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_input2_title" />
+
+                <TextView
+                    android:id="@+id/tv_bank_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/main_font_sb"
+                    android:text="@string/register2_bank"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_input2_warn" />
+
+                <Spinner
+                    android:id="@+id/s_bank"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/custom_spinner"
+                    android:paddingStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_bank_label"
+                    app:layout_goneMarginTop="4dp" />
+
+                <TextView
+                    android:id="@+id/tv_account_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/main_font_sb"
+                    android:text="@string/register2_account_num"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/s_bank" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_account"
+                    set_helper_text="@{vm.uiState.accountState}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:boxStrokeColor="@color/main_green"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:helperTextTextAppearance="@font/main_font_l"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_account_label"
+                    app:placeholderTextColor="#c9c9c9">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.account}"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_owner_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/main_font_sb"
+                    android:text="@string/register2_owner"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_account" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_owner"
+                    set_helper_text="@{vm.uiState.accountOwnerState}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:boxStrokeColor="@color/main_green"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:helperTextTextAppearance="@font/main_font_l"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_owner_label"
+                    app:placeholderTextColor="#c9c9c9">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_owner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.accountOwner}"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/pb_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="5"
+            android:minHeight="50dp"
+            android:progress="4"
+            android:theme="@style/progressBar"
+            app:layout_constraintBottom_toTopOf="@id/btn_register_done"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_register_done"
+            set_done_enable="@{vm.uiState}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="5sp"
+            android:background="@drawable/register_button"
+            android:fontFamily="@font/main_font_b"
+            android:onClick="@{() -> vm.createNewPanel()}"
+            android:text="@string/register2_done"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
