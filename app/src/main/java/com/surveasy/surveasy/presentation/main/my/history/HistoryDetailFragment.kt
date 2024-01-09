@@ -1,6 +1,7 @@
 package com.surveasy.surveasy.presentation.main.my.history
 
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentHistoryDetailBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
@@ -20,6 +21,16 @@ class HistoryDetailFragment :
     }
 
     override fun initEventObserver() {
+        repeatOnStarted {
+            viewModel.events.collect {
+                when (it) {
+                    is HistoryEvents.NavigateToEdit -> findNavController().navigate(
+                        HistoryDetailFragmentDirections.actionHistoryDetailFragmentToHistoryEditFragment()
+                    )
 
+                    else -> Unit
+                }
+            }
+        }
     }
 }

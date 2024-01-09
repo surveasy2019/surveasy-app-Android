@@ -1,6 +1,7 @@
 package com.surveasy.surveasy.data.repository
 
 import com.surveasy.surveasy.data.model.request.ResponseImgRequest
+import com.surveasy.surveasy.data.model.response.CommonIdResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.HistoryResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.HomeSurveyResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.SurveyDetailInfoResponse.Companion.toDomainModel
@@ -8,6 +9,7 @@ import com.surveasy.surveasy.data.model.response.SurveyResponse.Companion.toDoma
 import com.surveasy.surveasy.data.remote.SurveasyApi
 import com.surveasy.surveasy.data.remote.handleResponse
 import com.surveasy.surveasy.domain.base.BaseState
+import com.surveasy.surveasy.domain.model.CommonId
 import com.surveasy.surveasy.domain.model.History
 import com.surveasy.surveasy.domain.model.HomeSurvey
 import com.surveasy.surveasy.domain.model.Survey
@@ -51,6 +53,13 @@ class SurveyRepositoryImpl @Inject constructor(
     override fun createResponse(sid: Int, url: String): Flow<BaseState<Unit>> = flow {
         when (val result = handleResponse { api.createResponse(sid, ResponseImgRequest(url)) }) {
             is BaseState.Success -> emit(BaseState.Success(Unit))
+            is BaseState.Error -> emit(result)
+        }
+    }
+
+    override fun editResponse(sid: Int, url: String): Flow<BaseState<CommonId>> = flow {
+        when (val result = handleResponse { api.editResponse(sid, ResponseImgRequest(url)) }) {
+            is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
             is BaseState.Error -> emit(result)
         }
     }

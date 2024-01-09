@@ -69,8 +69,9 @@
         <ImageView
             android:id="@+id/iv_pick_img"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginBottom="18dp"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toTopOf="@id/btn_pick"
             app:layout_constraintEnd_toEndOf="@id/guide_end"
             app:layout_constraintStart_toStartOf="@id/guide_begin"

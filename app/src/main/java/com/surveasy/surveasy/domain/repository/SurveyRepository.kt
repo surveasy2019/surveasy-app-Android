@@ -1,6 +1,7 @@
 package com.surveasy.surveasy.domain.repository
 
 import com.surveasy.surveasy.domain.base.BaseState
+import com.surveasy.surveasy.domain.model.CommonId
 import com.surveasy.surveasy.domain.model.History
 import com.surveasy.surveasy.domain.model.HomeSurvey
 import com.surveasy.surveasy.domain.model.Survey
@@ -17,4 +18,6 @@ interface SurveyRepository {
     fun listHistory(type: String): Flow<BaseState<History>>
 
     fun createResponse(sid: Int, url: String): Flow<BaseState<Unit>>
+
+    fun editResponse(sid: Int, url: String): Flow<BaseState<CommonId>>
 }
