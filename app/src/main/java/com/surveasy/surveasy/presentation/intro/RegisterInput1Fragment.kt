@@ -16,48 +16,40 @@ class RegisterInput1Fragment :
     BaseFragment<FragmentRegisterInput1Binding>(R.layout.fragment_register_input1) {
     private val viewModel: RegisterViewModel by viewModels()
 
+    override fun initData() = Unit
+
     override fun initEventObserver() {
+        repeatOnStarted {
+            viewModel.events.collect { event ->
+                when (event) {
+                    is RegisterEvents.NavigateToRegisterInput2 -> findNavController().navigate(
+                        RegisterInput1FragmentDirections.actionRegisterInput1FragmentToRegisterInput2Fragment()
+                    )
 
-    }
-
-    override fun initData() {
-
-    }
-
-    override fun initView() {
-        initDatePicker()
-        initInflowPathSpinner()
-        bind {
-            vm = viewModel
-            lifecycleOwner = viewLifecycleOwner
-
-            repeatOnStarted {
-                viewModel.events.collect { event ->
-                    when (event) {
-                        is RegisterEvents.NavigateToRegisterInput2 -> findNavController().navigate(
-                            RegisterInput1FragmentDirections.actionRegisterInput1FragmentToRegisterInput2Fragment()
-                        )
-
-                        is RegisterEvents.NavigateToBack -> findNavController().navigateUp()
-                        else -> Unit
-                    }
+                    is RegisterEvents.NavigateToBack -> findNavController().navigateUp()
+                    else -> Unit
                 }
             }
-
         }
+    }
+
+    override fun initView() = with(binding) {
+        initDatePicker()
+        initInflowPathSpinner()
+        vm = viewModel
+        lifecycleOwner = viewLifecycleOwner
+
     }
 
     private fun initDatePicker() {
-        bind {
-            ivCalendar.setOnClickListener {
-                showCalendarDatePicker(parentFragmentManager) {
-                    viewModel.setBirth(it)
-                }
+        binding.ivCalendar.setOnClickListener {
+            showCalendarDatePicker(parentFragmentManager) {
+                viewModel.setBirth(it)
             }
         }
     }
 
-    private fun initInflowPathSpinner() {
+    private fun initInflowPathSpinner() = with(binding) {
         val inflowPathList = resources.getStringArray(R.array.inflowPath)
         val inflowPathAdapter = ArrayAdapter(
             requireContext(),
@@ -65,21 +57,19 @@ class RegisterInput1Fragment :
             inflowPathList
         )
 
-        bind {
-            sInflow.apply {
-                adapter = inflowPathAdapter
-                onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(
-                        parent: AdapterView<*>?,
-                        view: View?,
-                        position: Int,
-                        id: Long
-                    ) {
-                        viewModel.setInflow(inflowPathList[position])
-                    }
+        sInflow.apply {
+            adapter = inflowPathAdapter
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    viewModel.setInflow(inflowPathList[position])
+                }
 
-                    override fun onNothingSelected(p0: AdapterView<*>?) {
-                    }
+                override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
             }
         }

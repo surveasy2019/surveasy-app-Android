@@ -19,11 +19,9 @@ class SurveyFragment : BaseFragment<FragmentSurveyBinding>(R.layout.fragment_sur
 
     }
 
-    override fun initView() {
+    override fun initView() = with(binding) {
         initWebView()
-        bind {
-            vm = viewModel
-        }
+        vm = viewModel
     }
 
     override fun initEventObserver() {

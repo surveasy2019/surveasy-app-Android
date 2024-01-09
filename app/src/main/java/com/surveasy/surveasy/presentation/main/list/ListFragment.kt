@@ -16,11 +16,9 @@ class ListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
         viewModel.navigateToSurveyDetail(it)
     }
 
-    override fun initView() {
-        bind {
-            vm = viewModel
-            rvList.adapter = adapter
-        }
+    override fun initView() = with(binding) {
+        vm = viewModel
+        rvList.adapter = adapter
     }
 
     override fun initEventObserver() {
@@ -38,7 +36,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
         viewModel.listSurvey()
     }
 
-    private fun navigateToSurveyDetail(id : Int){
+    private fun navigateToSurveyDetail(id: Int) {
         val intent = Intent(context, SurveyActivity::class.java)
         intent.putExtra(SURVEY_ID, id)
         startActivity(intent)

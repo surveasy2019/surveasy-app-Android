@@ -6,7 +6,6 @@ import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterAgreeBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.lifecycle.HiltViewModel
 
 @AndroidEntryPoint
 class RegisterAgreeFragment :
@@ -14,12 +13,8 @@ class RegisterAgreeFragment :
     private val viewModel: RegisterViewModel by viewModels()
 
 
-
-    override fun initView() {
-        bind {
-            vm = viewModel
-            lifecycleOwner = viewLifecycleOwner
-        }
+    override fun initView() = with(binding) {
+        vm = viewModel
     }
 
     override fun initEventObserver() {
@@ -28,6 +23,7 @@ class RegisterAgreeFragment :
                 when (event) {
                     is RegisterEvents.NavigateToRegisterWarn ->
                         findNavController().navigate(RegisterAgreeFragmentDirections.actionRegisterAgreeFragmentToRegisterWarnFragment())
+
                     else -> Unit
                 }
             }

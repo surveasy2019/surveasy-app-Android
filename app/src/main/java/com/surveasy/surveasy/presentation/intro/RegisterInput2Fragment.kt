@@ -17,36 +17,29 @@ class RegisterInput2Fragment :
     BaseFragment<FragmentRegisterInput2Binding>(R.layout.fragment_register_input2) {
     private val viewModel: RegisterViewModel by viewModels()
 
+    override fun initData() = Unit
+
     override fun initEventObserver() {
+        repeatOnStarted {
+            viewModel.events.collect { event ->
+                when (event) {
+                    is RegisterEvents.NavigateToBack ->
+                        findNavController().navigateUp()
 
-    }
-
-    override fun initData() {
-
-    }
-
-    override fun initView() {
-        initBankSpinner()
-        bind {
-            vm = viewModel
-            lifecycleOwner = viewLifecycleOwner
-
-            repeatOnStarted {
-                viewModel.events.collect { event ->
-                    when (event) {
-                        is RegisterEvents.NavigateToBack ->
-                            findNavController().navigateUp()
-
-                        is RegisterEvents.NavigateToMain -> navigateToMain()
-                        else -> Unit
-                    }
+                    is RegisterEvents.NavigateToMain -> navigateToMain()
+                    else -> Unit
                 }
             }
-
         }
     }
 
-    private fun initBankSpinner() {
+    override fun initView() = with(binding) {
+        initBankSpinner()
+        vm = viewModel
+        lifecycleOwner = viewLifecycleOwner
+    }
+
+    private fun initBankSpinner() = with(binding) {
         val bankList = resources.getStringArray(R.array.accountType)
         val bankAdapter =
             ArrayAdapter(
@@ -54,22 +47,19 @@ class RegisterInput2Fragment :
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
                 bankList
             )
+        sBank.apply {
+            adapter = bankAdapter
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    viewModel.setBank(bankList[position])
+                }
 
-        bind {
-            sBank.apply {
-                adapter = bankAdapter
-                onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(
-                        parent: AdapterView<*>?,
-                        view: View?,
-                        position: Int,
-                        id: Long
-                    ) {
-                        viewModel.setBank(bankList[position])
-                    }
-
-                    override fun onNothingSelected(p0: AdapterView<*>?) {
-                    }
+                override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
             }
         }
