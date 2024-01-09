@@ -4,6 +4,7 @@ import com.surveasy.surveasy.data.model.request.EditInfoRequest
 import com.surveasy.surveasy.data.model.request.ExistRegisterRequest
 import com.surveasy.surveasy.data.model.request.NewRegisterRequest
 import com.surveasy.surveasy.data.model.request.ResponseImgRequest
+import com.surveasy.surveasy.data.model.response.CommonIdResponse
 import com.surveasy.surveasy.data.model.response.HistoryResponse
 import com.surveasy.surveasy.data.model.response.HomeSurveyResponse
 import com.surveasy.surveasy.data.model.response.PanelDetailInfoResponse
@@ -60,6 +61,12 @@ interface SurveasyApi {
         @Path("surveyId") sid: Int,
         @Body body: ResponseImgRequest
     ): Response<Unit>
+
+    @PATCH("response/{surveyId}")
+    suspend fun editResponse(
+        @Path("surveyId") sid: Int,
+        @Body body: ResponseImgRequest
+    ): Response<CommonIdResponse>
 
     //history
     @GET("response/{type}")
