@@ -15,6 +15,19 @@ class DataStoreManager @Inject constructor(private val dataStore: DataStore<Pref
         private val ACCESS_TOKEN_KEY = stringPreferencesKey("ACCESS_TOKEN")
         private val REFRESH_TOKEN_KEY = stringPreferencesKey("REFRESH_TOKEN")
         private val AUTO_LOGIN_KEY = booleanPreferencesKey("AUTO_LOGIN")
+        private val TUTORIAL_KEY = booleanPreferencesKey("TUTORIAL_KEY")
+    }
+
+    fun getTutorial(): Flow<Boolean?> {
+        return dataStore.data.map { prefs ->
+            prefs[TUTORIAL_KEY] ?: false
+        }
+    }
+
+    suspend fun putTutorial() {
+        dataStore.edit { prefs ->
+            prefs[TUTORIAL_KEY] = true
+        }
     }
 
     fun getAccessToken(): Flow<String?> {
@@ -23,49 +36,49 @@ class DataStoreManager @Inject constructor(private val dataStore: DataStore<Pref
         }
     }
 
-    fun getRefreshToken() : Flow<String?> {
+    fun getRefreshToken(): Flow<String?> {
         return dataStore.data.map { prefs ->
             prefs[REFRESH_TOKEN_KEY] ?: ""
         }
     }
 
-    fun getAutoLogin() : Flow<Boolean?> {
+    fun getAutoLogin(): Flow<Boolean?> {
         return dataStore.data.map { prefs ->
             prefs[AUTO_LOGIN_KEY] ?: false
         }
     }
 
-    suspend fun putAccessToken(token : String){
+    suspend fun putAccessToken(token: String) {
         dataStore.edit { prefs ->
             prefs[ACCESS_TOKEN_KEY] = token
         }
     }
 
-    suspend fun putRefreshToken(token : String){
+    suspend fun putRefreshToken(token: String) {
         dataStore.edit { prefs ->
             prefs[REFRESH_TOKEN_KEY] = token
         }
     }
 
-    suspend fun putAutoLogin(isAuto : Boolean){
+    suspend fun putAutoLogin(isAuto: Boolean) {
         dataStore.edit { prefs ->
             prefs[AUTO_LOGIN_KEY] = isAuto
         }
     }
 
-    suspend fun deleteAccessToken(){
+    suspend fun deleteAccessToken() {
         dataStore.edit { prefs ->
             prefs.remove(ACCESS_TOKEN_KEY)
         }
     }
 
-    suspend fun deleteRefreshToken(){
+    suspend fun deleteRefreshToken() {
         dataStore.edit { prefs ->
             prefs.remove(REFRESH_TOKEN_KEY)
         }
     }
 
-    suspend fun deleteAutoLogin(){
+    suspend fun deleteAutoLogin() {
         dataStore.edit { prefs ->
             prefs.remove(AUTO_LOGIN_KEY)
         }

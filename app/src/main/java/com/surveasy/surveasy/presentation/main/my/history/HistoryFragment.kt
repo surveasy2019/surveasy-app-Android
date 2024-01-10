@@ -15,12 +15,10 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(R.layout.fragment_h
         viewModel.navigateToDetail(it)
     }
 
-    override fun initView() {
+    override fun initView() = with(binding) {
         initTabListener()
-        bind {
-            vm = viewModel
-            rvHistory.adapter = adapter
-        }
+        vm = viewModel
+        rvHistory.adapter = adapter
     }
 
     override fun initData() {

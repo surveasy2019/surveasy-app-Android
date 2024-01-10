@@ -1,6 +1,5 @@
 package com.surveasy.surveasy.presentation.main.my.edit
 
-import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -15,19 +14,20 @@ import kotlinx.coroutines.flow.collectLatest
 class EditActivity : BaseActivity<ActivityEditBinding>(ActivityEditBinding::inflate) {
     private val viewModel: MyEditViewModel by viewModels()
     private var initBank = ""
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    override fun initData() {
+        viewModel.queryPanelDetailInfo()
+    }
+
+    override fun initView() {
         initData()
         initEventObserver()
         initBankSpinner()
         binding.vm = viewModel
     }
 
-    private fun initData() {
-        viewModel.queryPanelDetailInfo()
-    }
 
-    private fun initEventObserver() {
+    override fun initEventObserver() {
         repeatOnStarted {
             viewModel.events.collect {
                 when (it) {
@@ -46,34 +46,32 @@ class EditActivity : BaseActivity<ActivityEditBinding>(ActivityEditBinding::infl
         }
     }
 
-    private fun initBankSpinner() {
+    private fun initBankSpinner() = with(binding) {
         val bankList = resources.getStringArray(R.array.accountType)
         val bankAdapter =
             ArrayAdapter(
-                this,
+                this@EditActivity,
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
                 bankList
             )
 
-        bind {
-            sBank.apply {
-                adapter = bankAdapter
-                setSelection(
-                    if (initBank.isEmpty()) 0
-                    else bankList.indexOf(initBank)
-                )
-                onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(
-                        parent: AdapterView<*>?,
-                        view: View?,
-                        position: Int,
-                        id: Long
-                    ) {
-                        viewModel.setBank(bankList[position])
-                    }
+        sBank.apply {
+            adapter = bankAdapter
+            setSelection(
+                if (initBank.isEmpty()) 0
+                else bankList.indexOf(initBank)
+            )
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    viewModel.setBank(bankList[position])
+                }
 
-                    override fun onNothingSelected(p0: AdapterView<*>?) {
-                    }
+                override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
             }
         }
