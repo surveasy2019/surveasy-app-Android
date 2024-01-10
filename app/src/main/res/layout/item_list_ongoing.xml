@@ -91,7 +91,7 @@
             app:layout_constraintStart_toEndOf="@id/tv_list_chip"
             app:layout_constraintTop_toTopOf="@id/tv_list_chip"
             app:respondedCnt="@{item.responseCount}"
-            app:totalCnt="@{item.responseCount}" />
+            app:totalCnt="@{item.headCount}" />
 
         <TextView
             android:id="@+id/tv_participate_text"
