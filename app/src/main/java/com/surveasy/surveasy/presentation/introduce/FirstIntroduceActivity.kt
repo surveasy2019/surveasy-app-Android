@@ -1,13 +1,19 @@
 package com.surveasy.surveasy.presentation.introduce
 
+import android.content.Intent
+import androidx.activity.viewModels
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivityFirstIntroduceBinding
 import com.surveasy.surveasy.presentation.base.BaseActivity
+import com.surveasy.surveasy.presentation.intro.IntroActivity
 import com.surveasy.surveasy.presentation.introduce.model.UiFirstIntroduceData
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FirstIntroduceActivity :
     BaseActivity<ActivityFirstIntroduceBinding>(ActivityFirstIntroduceBinding::inflate) {
 
+    private val viewModel: FirstIntroduceViewModel by viewModels()
 
     override fun initView() {
         val imgList = arrayOf(
@@ -17,7 +23,7 @@ class FirstIntroduceActivity :
         val titleList = resources.getStringArray(R.array.tutorial_title).toList()
         val contentList = resources.getStringArray(R.array.tutorial_content).toList()
         val adapter = FirstIntroduceAdapter(UiFirstIntroduceData(imgList, titleList, contentList)) {
-            navigateToLogin()
+            viewModel.navigateToLogin()
         }
         binding.vpIntroduce.adapter = adapter
 
@@ -26,14 +32,21 @@ class FirstIntroduceActivity :
     }
 
     override fun initEventObserver() {
-
+        repeatOnStarted {
+            viewModel.events.collect {
+                when (it) {
+                    is FirstIntroduceEvents.NavigateToLogin -> navigateToIntro()
+                }
+            }
+        }
     }
 
-    override fun initData() {
-
+    private fun navigateToIntro() {
+        val intent = Intent(this, IntroActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
-    private fun navigateToLogin() {
-        showToastMessage("start")
-    }
+    override fun initData() = Unit
+
 }

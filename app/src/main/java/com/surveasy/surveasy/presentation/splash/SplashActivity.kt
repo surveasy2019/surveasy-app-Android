@@ -26,14 +26,14 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     override fun initEventObserver() {
         repeatOnStarted {
             delay(2000)
-            viewModel.getAutoLogin()
+            viewModel.chooseNextPage()
         }
         repeatOnStarted {
             viewModel.events.collect {
                 when (it) {
                     is SplashUiEvent.NavigateToTutorial -> navigateToTutorial()
-                    is SplashUiEvent.NavigateToIntro -> navigateToMain()
-                    is SplashUiEvent.NavigateToMain -> navigateToIntro()
+                    is SplashUiEvent.NavigateToIntro -> navigateToIntro()
+                    is SplashUiEvent.NavigateToMain -> navigateToMain()
                 }
             }
         }

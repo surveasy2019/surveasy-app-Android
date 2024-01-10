@@ -17,7 +17,7 @@ class SplashViewModel @Inject constructor(
     private val _events = MutableSharedFlow<SplashUiEvent>()
     val events: SharedFlow<SplashUiEvent> = _events.asSharedFlow()
 
-    fun getAutoLogin() {
+    fun chooseNextPage() {
         viewModelScope.launch {
             dataStoreManager.getTutorial().collect { tutorial ->
                 if (tutorial == true) {

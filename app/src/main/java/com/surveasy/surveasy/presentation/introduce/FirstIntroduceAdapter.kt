@@ -41,7 +41,7 @@ class IntroduceViewHolder(
             tvTitle.text = title
             tvContent.text = content
             btnStart.run {
-                setOnClickListener { listener }
+                setOnClickListener { listener() }
             }
 
             if (isLast) {
