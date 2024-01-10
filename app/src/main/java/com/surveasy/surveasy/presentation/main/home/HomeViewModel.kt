@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
-import com.surveasy.surveasy.domain.usecase.GetTempTokenUseCase
 import com.surveasy.surveasy.domain.usecase.ListHomeSurveyUseCase
 import com.surveasy.surveasy.domain.usecase.QueryPanelInfoUseCase
 import com.surveasy.surveasy.presentation.main.home.mapper.toUiHomeListData
@@ -27,7 +26,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val queryPanelInfoUseCase: QueryPanelInfoUseCase,
-    private val getTempTokenUseCase: GetTempTokenUseCase,
     private val listHomeSurveyUseCase: ListHomeSurveyUseCase,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(HomeUiState())
@@ -55,15 +53,6 @@ class HomeViewModel @Inject constructor(
                 }
 
                 else -> Log.d("TEST", "failed")
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    private fun tempToken() {
-        getTempTokenUseCase().onEach {
-            when (it) {
-                is BaseState.Success -> Log.d("TEST", "${it.data}")
-                else -> Unit
             }
         }.launchIn(viewModelScope)
     }
