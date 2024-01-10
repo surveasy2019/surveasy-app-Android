@@ -7,7 +7,7 @@ import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.CreateResponseUseCase
 import com.surveasy.surveasy.domain.usecase.LoadImageUseCase
 import com.surveasy.surveasy.domain.usecase.QuerySurveyDetailUseCase
-import com.surveasy.surveasy.presentation.main.list.mapper.toSurveyDetailData
+import com.surveasy.surveasy.presentation.main.survey.mapper.toSurveyDetailData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.BufferOverflow
@@ -71,11 +71,13 @@ class SurveyViewModel @Inject constructor(
                             survey.copy(
                                 title = title,
                                 reward = reward,
+                                headCount = headCount,
                                 spendTime = spendTime,
                                 responseCount = responseCount,
                                 targetInput = targetInput,
                                 noticeToPanel = noticeToPanel,
-                                surveyDescription = ""
+                                surveyDescription = "",
+                                link = link
                             )
                         }
                     }
@@ -125,9 +127,11 @@ sealed class SurveyEvents {
 data class SurveyUiState(
     val title: String = "",
     val reward: Int = 0,
+    val headCount: Int = 0,
     val spendTime: String = "",
     val responseCount: Int = 0,
     val targetInput: String = "",
     val noticeToPanel: String = "",
     val surveyDescription: String = "",
+    val link: String = "",
 )
