@@ -12,5 +12,4 @@ data class HomeSurveyInfo(
     val reward: Int,
     val targetInput: String?,
     val responseCount: Int,
-    val noticeToPanel: String?,
 ) : BaseDomainModel

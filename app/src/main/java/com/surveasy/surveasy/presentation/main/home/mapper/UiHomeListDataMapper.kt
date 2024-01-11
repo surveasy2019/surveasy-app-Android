@@ -9,5 +9,4 @@ fun HomeSurveyInfo.toUiHomeListData(): UiHomeListData = UiHomeListData(
     reward = reward,
     targetInput = targetInput,
     responseCount = responseCount,
-    noticeToPanel = noticeToPanel
 )

@@ -4,6 +4,7 @@ data class UiSurveyListData(
     val id: Int,
     val title: String,
     val reward: Int,
+    val headCount: Int,
     val spendTime: String,
     val targetInput: String?,
     val status: String,

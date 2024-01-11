@@ -34,6 +34,7 @@ class MyEditViewModel @Inject constructor(
     val editEnglish = MutableStateFlow(false)
 
     val phoneValid = MutableStateFlow(true)
+    val bankValid = MutableStateFlow(true)
     val accountValid = MutableStateFlow(true)
     val ownerValid = MutableStateFlow(true)
 
@@ -51,6 +52,7 @@ class MyEditViewModel @Inject constructor(
         observePhone()
         observeAccount()
         observeOwner()
+        observeBank()
     }
 
     fun queryPanelDetailInfo() {
@@ -58,6 +60,7 @@ class MyEditViewModel @Inject constructor(
             when (state) {
                 is BaseState.Success -> {
                     editBank.emit(state.data.accountType)
+                    Log.d("TEST", "$state")
                     state.data.toUiPanelDetailData().apply {
                         _uiState.update { info ->
                             info.copy(
@@ -94,7 +97,7 @@ class MyEditViewModel @Inject constructor(
         }
         with(uiState.value) {
             editPhone.value = phoneNumber
-            //editBank.value = accountType
+            editBank.value = accountType
             editAccount.value = accountNumber
             editOwner.value = accountOwner
             editEnglish.value = english
@@ -109,14 +112,14 @@ class MyEditViewModel @Inject constructor(
 
         editPanelInfoUseCase(
             phoneNumber = editPhone.value,
-            accountType = "WOORI",
+            accountType = editBank.value,
             accountNumber = editAccount.value,
             accountOwner = editOwner.value,
             english = editEnglish.value
         ).onEach { state ->
             when (state) {
                 is BaseState.Success -> {
-                    _uiState.update { state -> state.copy(editMode = false) }
+                    _uiState.update { it.copy(editMode = false) }
                     _events.emit(MyEditUiEvents.DoneEdit)
                 }
 
@@ -150,6 +153,12 @@ class MyEditViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
+    private fun observeBank() {
+        editBank.onEach {
+            bankValid.emit(it != INVALID_BANK)
+        }.launchIn(viewModelScope)
+    }
+
     fun setBank(select: String) {
         viewModelScope.launch { editBank.emit(select) }
     }
@@ -158,6 +167,7 @@ class MyEditViewModel @Inject constructor(
         val PHONE_REGEX = Regex("""^[0-9]{11}${'$'}""")
         val ACCOUNT_REGEX = Regex("\\d+")
         const val NAME_LENGTH = 1
+        const val INVALID_BANK = "은행을 선택하세요"
     }
 }
 

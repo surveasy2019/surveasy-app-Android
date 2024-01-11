@@ -8,20 +8,24 @@ data class SurveyDetailInfoResponse(
     val id: Int,
     val title: String,
     val reward: Int,
+    val headCount: Int,
     val spendTime: String,
     val responseCount: Int,
     val targetInput: String?,
     val noticeToPanel: String?,
+    val link: String,
 ) : BaseDataModel {
     companion object : DomainMapper<SurveyDetailInfoResponse, SurveyDetailInfo> {
         override fun SurveyDetailInfoResponse.toDomainModel(): SurveyDetailInfo = SurveyDetailInfo(
             id = id,
             title = title,
             reward = reward,
+            headCount = headCount,
             spendTime = spendTime,
             responseCount = responseCount,
             targetInput = targetInput,
-            noticeToPanel = noticeToPanel
+            noticeToPanel = noticeToPanel,
+            link = link,
         )
     }
 }
