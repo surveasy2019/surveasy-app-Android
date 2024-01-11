@@ -26,7 +26,8 @@ class ListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
             viewModel.events.collect {
                 when (it) {
                     is ListEvents.ClickSurveyItem -> navigateToSurveyDetail(it.id)
-
+                    is ListEvents.ShowSnackBar -> showSnackBar(it.msg)
+                    else -> Unit
                 }
             }
         }

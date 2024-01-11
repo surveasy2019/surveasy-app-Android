@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.QueryPanelInfoUseCase
 import com.surveasy.surveasy.presentation.main.home.mapper.toUiPanelData
+import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -49,7 +50,7 @@ class MyViewModel @Inject constructor(
                     }
                 }
 
-                else -> Unit
+                else -> _events.emit(MyUiEvents.ShowSnackBar(DATA_ERROR))
             }
         }.launchIn(viewModelScope)
     }
@@ -84,4 +85,6 @@ sealed class MyUiEvents {
     data object NavigateToEdit : MyUiEvents()
     data object NavigateToSetting : MyUiEvents()
     data object NavigateToContact : MyUiEvents()
+    data class ShowToastMsg(val msg: String) : MyUiEvents()
+    data class ShowSnackBar(val msg: String) : MyUiEvents()
 }

@@ -1,6 +1,5 @@
 package com.surveasy.surveasy.presentation.main.survey
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
@@ -8,6 +7,8 @@ import com.surveasy.surveasy.domain.usecase.CreateResponseUseCase
 import com.surveasy.surveasy.domain.usecase.LoadImageUseCase
 import com.surveasy.surveasy.domain.usecase.QuerySurveyDetailUseCase
 import com.surveasy.surveasy.presentation.main.survey.mapper.toSurveyDetailData
+import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.SURVEY_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.BufferOverflow
@@ -37,7 +38,7 @@ class SurveyViewModel @Inject constructor(
 
     private val _events = MutableSharedFlow<SurveyEvents>(
         replay = 0,
-        extraBufferCapacity = 1,
+        extraBufferCapacity = 2,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
     val events: SharedFlow<SurveyEvents> = _events.asSharedFlow()
@@ -49,17 +50,21 @@ class SurveyViewModel @Inject constructor(
             loadImageUseCase(uri, id, name)
         }.await()
 
-        createResponseUseCase(sId.value, imgUrl).onEach { state ->
-            when (state) {
-                is BaseState.Success -> {
-                    _events.emit(SurveyEvents.NavigateToDone)
-                }
-
-                else -> Log.d("TEST", "failed")
-            }
-        }.onCompletion {
+        if (imgUrl.isEmpty()) {
             _events.emit(SurveyEvents.DismissLoading)
-        }.launchIn(viewModelScope)
+            _events.emit(SurveyEvents.ShowSnackBar(SURVEY_ERROR))
+        } else {
+            createResponseUseCase(sId.value, imgUrl).onEach { state ->
+                when (state) {
+                    is BaseState.Success -> _events.emit(SurveyEvents.NavigateToDone)
+                    else -> _events.emit(SurveyEvents.ShowSnackBar(SURVEY_ERROR))
+                }
+            }.onCompletion {
+                _events.emit(SurveyEvents.DismissLoading)
+            }.launchIn(viewModelScope)
+
+        }
+
     }
 
     fun querySurveyDetail() {
@@ -83,7 +88,7 @@ class SurveyViewModel @Inject constructor(
                     }
                 }
 
-                else -> Log.d("TEST", "failed")
+                else -> _events.emit(SurveyEvents.ShowSnackBar(DATA_ERROR))
             }
         }.launchIn(viewModelScope)
     }
@@ -122,6 +127,8 @@ sealed class SurveyEvents {
     data object NavigateToList : SurveyEvents()
     data object ShowLoading : SurveyEvents()
     data object DismissLoading : SurveyEvents()
+    data class ShowToastMsg(val msg: String) : SurveyEvents()
+    data class ShowSnackBar(val msg: String) : SurveyEvents()
 }
 
 data class SurveyUiState(

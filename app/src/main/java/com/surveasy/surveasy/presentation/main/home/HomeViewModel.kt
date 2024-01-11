@@ -9,6 +9,7 @@ import com.surveasy.surveasy.domain.usecase.QueryPanelInfoUseCase
 import com.surveasy.surveasy.presentation.main.home.mapper.toUiHomeListData
 import com.surveasy.surveasy.presentation.main.home.mapper.toUiPanelData
 import com.surveasy.surveasy.presentation.main.home.model.UiHomeListData
+import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -52,7 +53,7 @@ class HomeViewModel @Inject constructor(
                     }
                 }
 
-                else -> Log.d("TEST", "failed")
+                else -> _events.emit(HomeEvents.ShowSnackBar(DATA_ERROR))
             }
         }.launchIn(viewModelScope)
     }
@@ -73,7 +74,7 @@ class HomeViewModel @Inject constructor(
                     }
                 }
 
-                else -> Unit
+                else -> _events.emit(HomeEvents.ShowSnackBar(DATA_ERROR))
             }
         }.launchIn(viewModelScope)
     }
@@ -86,6 +87,8 @@ class HomeViewModel @Inject constructor(
 
 sealed class HomeEvents {
     data class ClickSurveyItem(val id: Int) : HomeEvents()
+    data class ShowToastMsg(val msg: String) : HomeEvents()
+    data class ShowSnackBar(val msg: String) : HomeEvents()
 }
 
 data class HomeUiState(

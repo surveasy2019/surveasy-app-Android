@@ -53,6 +53,7 @@ class SurveyProofFragment :
                         })
                     }
 
+                    is SurveyEvents.ShowSnackBar -> showSnackBar(event.msg)
                     is SurveyEvents.DismissLoading -> dismissLoading()
                     else -> Unit
                 }
