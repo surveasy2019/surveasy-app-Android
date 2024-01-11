@@ -1,10 +1,10 @@
 package com.surveasy.surveasy.presentation.intro
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.CreateNewPanelUseCase
+import com.surveasy.surveasy.presentation.util.ErrorMsg.SIGNUP_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -213,7 +213,6 @@ class RegisterViewModel @Inject constructor(
     private fun observeAccountOwner() {
         accountOwner.onEach { accountOwner ->
             val isValid = accountOwner.length > NAME_LENGTH
-            Log.d("TEST", "$isValid, $accountOwner")
             _uiState.update { state ->
                 state.copy(
                     accountOwnerState = InputState(
@@ -225,7 +224,7 @@ class RegisterViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun createNewPanel(){
+    fun createNewPanel() {
         newPanelUseCase(
             name = name.value,
             email = email.value,
@@ -242,11 +241,9 @@ class RegisterViewModel @Inject constructor(
             pushOn = false,
             marketing = agreeMarketing.value
         ).onEach { register ->
-            when(register){
-                is BaseState.Success -> {
-                    _events.emit(RegisterEvents.NavigateToMain)
-                }
-                is BaseState.Error -> Log.d("TEST", "failed")
+            when (register) {
+                is BaseState.Success -> _events.emit(RegisterEvents.NavigateToMain)
+                is BaseState.Error -> _events.emit(RegisterEvents.ShowSnackBar(SIGNUP_ERROR))
             }
         }.launchIn(viewModelScope)
     }
@@ -332,4 +329,6 @@ sealed class RegisterEvents {
     data object NavigateToRegisterInput2 : RegisterEvents()
     data object NavigateToBack : RegisterEvents()
     data object NavigateToMain : RegisterEvents()
+    data class ShowToastMsg(val msg: String) : RegisterEvents()
+    data class ShowSnackBar(val msg: String) : RegisterEvents()
 }

@@ -23,10 +23,9 @@ class RegisterInput2Fragment :
         repeatOnStarted {
             viewModel.events.collect { event ->
                 when (event) {
-                    is RegisterEvents.NavigateToBack ->
-                        findNavController().navigateUp()
-
+                    is RegisterEvents.NavigateToBack -> findNavController().navigateUp()
                     is RegisterEvents.NavigateToMain -> navigateToMain()
+                    is RegisterEvents.ShowSnackBar -> showSnackBar(event.msg)
                     else -> Unit
                 }
             }

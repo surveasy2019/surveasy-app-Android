@@ -31,6 +31,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             viewModel.events.collect {
                 when (it) {
                     is HomeEvents.ClickSurveyItem -> navigateToSurveyDetail(it.id)
+                    is HomeEvents.ShowSnackBar -> showSnackBar(it.msg)
+                    else -> Unit
                 }
             }
         }

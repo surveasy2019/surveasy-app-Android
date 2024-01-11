@@ -22,6 +22,8 @@ class ExistUserFragment : BaseFragment<FragmentExistUserBinding>(R.layout.fragme
             viewModel.events.collect { event ->
                 when (event) {
                     is ExistUserEvents.NavigateToMain -> findNavController().toMain()
+                    is ExistUserEvents.ShowSnackBar -> showSnackBar(event.msg)
+                    else -> Unit
                 }
             }
         }

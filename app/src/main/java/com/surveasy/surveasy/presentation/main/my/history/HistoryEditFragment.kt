@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.provider.Settings
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -31,12 +30,10 @@ class HistoryEditFragment :
             viewModel.events.collect {
                 when (it) {
                     is HistoryEvents.ShowLoading -> showLoading(requireContext())
-                    is HistoryEvents.DismissLoading -> {
-                        dismissLoading()
-                        navigateToHistoryMain()
-                    }
-
-                    is HistoryEvents.ShowErrorMsg -> Log.d("TEST", "${it.msg}")
+                    is HistoryEvents.DismissLoading -> dismissLoading()
+                    is HistoryEvents.ShowToastMsg -> showToastMessage(it.msg)
+                    is HistoryEvents.NavigateToHistoryMain -> navigateToHistoryMain()
+                    is HistoryEvents.ShowSnackBar -> showSnackBar(it.msg)
                     else -> Unit
                 }
             }
@@ -123,11 +120,13 @@ class HistoryEditFragment :
     private fun uploadToFb() {
         repeatOnStarted {
             imgUrl ?: return@repeatOnStarted
-            viewModel.editResponse(imgUrl.toString(), 0, "edit3")
+            viewModel.editResponse(imgUrl.toString(), "edit3")
         }
     }
 
     private fun navigateToHistoryMain() {
+
+        // TODO navigate component 로 수정 필요
         val intent = Intent(context, HistoryActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)

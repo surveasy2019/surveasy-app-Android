@@ -1,6 +1,5 @@
 package com.surveasy.surveasy.presentation.main.my.history
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
@@ -9,6 +8,8 @@ import com.surveasy.surveasy.domain.usecase.ListHistoryUseCase
 import com.surveasy.surveasy.domain.usecase.LoadImageUseCase
 import com.surveasy.surveasy.presentation.main.my.history.mapper.toUiHistorySurveyData
 import com.surveasy.surveasy.presentation.main.my.history.model.UiHistorySurveyData
+import com.surveasy.surveasy.presentation.util.ErrorMsg
+import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.BufferOverflow
@@ -41,7 +42,7 @@ class HistoryViewModel @Inject constructor(
 
     private val _events = MutableSharedFlow<HistoryEvents>(
         replay = 0,
-        extraBufferCapacity = 1,
+        extraBufferCapacity = 2,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
     val events: SharedFlow<HistoryEvents> = _events.asSharedFlow()
@@ -63,7 +64,7 @@ class HistoryViewModel @Inject constructor(
                     }
                 }
 
-                else -> Log.d("TEST", "failed")
+                else -> _events.emit(HistoryEvents.ShowSnackBar(DATA_ERROR))
             }
         }.launchIn(viewModelScope)
 
@@ -71,7 +72,6 @@ class HistoryViewModel @Inject constructor(
 
     fun getHistoryDetail() {
         mainUiState.value.list.find { it.id == sid.value }.apply {
-            Log.d("TEST", "$this")
             this ?: return@apply
             _detailUiState.update { state ->
                 state.copy(
@@ -85,23 +85,31 @@ class HistoryViewModel @Inject constructor(
         }
     }
 
-    suspend fun editResponse(uri: String, id: Int, name: String) {
+    suspend fun editResponse(uri: String, name: String) {
         _events.emit(HistoryEvents.ShowLoading)
         val imgUrl = viewModelScope.async {
             loadImageUseCase(uri, sid.value, name)
         }.await()
 
-        editResponseUseCase(sid.value, imgUrl).onEach { state ->
-            when (state) {
-                is BaseState.Success -> {
-                    sid.emit(state.data.id)
-                }
-
-                is BaseState.Error -> _events.emit(HistoryEvents.ShowErrorMsg(state.message))
-            }
-        }.onCompletion {
+        if (imgUrl.isNotEmpty()) {
             _events.emit(HistoryEvents.DismissLoading)
-        }.launchIn(viewModelScope)
+            _events.emit(HistoryEvents.ShowSnackBar(ErrorMsg.SURVEY_ERROR))
+        } else {
+            editResponseUseCase(sid.value, imgUrl).onEach { state ->
+                when (state) {
+                    is BaseState.Success -> {
+                        sid.emit(state.data.id)
+                        _events.emit(HistoryEvents.ShowToastMsg("제출화면이 변경되었습니다."))
+                        _events.emit(HistoryEvents.NavigateToHistoryMain)
+                    }
+
+                    is BaseState.Error -> _events.emit(HistoryEvents.ShowSnackBar(state.message))
+                }
+            }.onCompletion {
+                _events.emit(HistoryEvents.DismissLoading)
+            }.launchIn(viewModelScope)
+        }
+
     }
 
 
@@ -126,9 +134,11 @@ class HistoryViewModel @Inject constructor(
 sealed class HistoryEvents {
     data object NavigateToDetail : HistoryEvents()
     data object NavigateToEdit : HistoryEvents()
+    data object NavigateToHistoryMain : HistoryEvents()
     data object ShowLoading : HistoryEvents()
     data object DismissLoading : HistoryEvents()
-    data class ShowErrorMsg(val msg: String) : HistoryEvents()
+    data class ShowToastMsg(val msg: String) : HistoryEvents()
+    data class ShowSnackBar(val msg: String) : HistoryEvents()
 }
 
 data class HistoryUiState(

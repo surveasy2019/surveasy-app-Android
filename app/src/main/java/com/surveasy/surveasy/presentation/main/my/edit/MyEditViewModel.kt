@@ -1,12 +1,13 @@
 package com.surveasy.surveasy.presentation.main.my.edit
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.EditPanelInfoUseCase
 import com.surveasy.surveasy.domain.usecase.QueryPanelDetailInfoUseCase
 import com.surveasy.surveasy.presentation.main.my.mapper.toUiPanelDetailData
+import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.EDIT_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -43,7 +44,7 @@ class MyEditViewModel @Inject constructor(
 
     private val _events = MutableSharedFlow<MyEditUiEvents>(
         replay = 0,
-        extraBufferCapacity = 1,
+        extraBufferCapacity = 2,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
     val events: SharedFlow<MyEditUiEvents> = _events.asSharedFlow()
@@ -60,7 +61,6 @@ class MyEditViewModel @Inject constructor(
             when (state) {
                 is BaseState.Success -> {
                     editBank.emit(state.data.accountType)
-                    Log.d("TEST", "$state")
                     state.data.toUiPanelDetailData().apply {
                         _uiState.update { info ->
                             info.copy(
@@ -78,7 +78,7 @@ class MyEditViewModel @Inject constructor(
                     }
                 }
 
-                is BaseState.Error -> Unit
+                else -> _events.emit(MyEditUiEvents.ShowSnackBar(DATA_ERROR))
             }
         }.launchIn(viewModelScope)
     }
@@ -120,10 +120,11 @@ class MyEditViewModel @Inject constructor(
             when (state) {
                 is BaseState.Success -> {
                     _uiState.update { it.copy(editMode = false) }
+                    _events.emit(MyEditUiEvents.ShowToastMsg("수정이 완료되었습니다."))
                     _events.emit(MyEditUiEvents.DoneEdit)
                 }
 
-                else -> Log.d("TEST", "failed $state")
+                else -> _events.emit(MyEditUiEvents.ShowSnackBar(EDIT_ERROR))
             }
         }.launchIn(viewModelScope)
 
@@ -186,4 +187,6 @@ data class MyEditUiState(
 
 sealed class MyEditUiEvents {
     data object DoneEdit : MyEditUiEvents()
+    data class ShowToastMsg(val msg: String) : MyEditUiEvents()
+    data class ShowSnackBar(val msg: String) : MyEditUiEvents()
 }

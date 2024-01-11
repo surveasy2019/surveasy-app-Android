@@ -30,10 +30,9 @@ class EditActivity : BaseActivity<ActivityEditBinding>(ActivityEditBinding::infl
         repeatOnStarted {
             viewModel.events.collect {
                 when (it) {
-                    is MyEditUiEvents.DoneEdit -> {
-                        showToastMessage("수정이 완료되었습니다.")
-                        initData()
-                    }
+                    is MyEditUiEvents.DoneEdit -> initData()
+                    is MyEditUiEvents.ShowSnackBar -> showSnackBar(it.msg)
+                    is MyEditUiEvents.ShowToastMsg -> showToastMessage(it.msg)
                 }
             }
         }
