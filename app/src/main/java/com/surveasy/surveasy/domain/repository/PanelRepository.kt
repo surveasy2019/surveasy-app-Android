@@ -8,8 +8,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface PanelRepository {
 
-    fun getTempToken(): Flow<BaseState<String>>
-
     fun createExistPanel(
         uid: String,
         email: String,

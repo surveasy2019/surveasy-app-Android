@@ -1,10 +1,15 @@
 package com.surveasy.surveasy.data.config
 
+import android.content.Intent
 import android.util.Log
 import com.surveasy.surveasy.app.DataStoreManager
+import com.surveasy.surveasy.app.GlobalApplication
+import com.surveasy.surveasy.data.model.request.RefreshTokenRequest
+import com.surveasy.surveasy.data.model.response.TokenResponse
 import com.surveasy.surveasy.data.remote.SurveasyApi
 import com.surveasy.surveasy.data.remote.handleResponse
 import com.surveasy.surveasy.domain.base.BaseState
+import com.surveasy.surveasy.presentation.intro.IntroActivity
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
@@ -28,14 +33,14 @@ class BearerInterceptor @Inject constructor(
 
         var newAccessToken: String? = null
 
-        if (response.code == 500) {
+        if (response.code == 0) {
             runBlocking {
                 val refreshToken = dataStoreManager.getRefreshToken().first()
                 refreshToken?.let { token ->
                     when (val result = getNewAccessToken(token)) {
                         is BaseState.Success -> {
                             response.close()
-                            newAccessToken = result.data
+                            newAccessToken = result.data.accessToken
                             newAccessToken?.let {
                                 dataStoreManager.putAccessToken(newAccessToken!!)
                             }
@@ -43,12 +48,14 @@ class BearerInterceptor @Inject constructor(
 
                         else -> {
                             Log.d("TEST", "발급 실패")
-//                            dataStoreManager.deleteAccessToken()
-//                            dataStoreManager.deleteRefreshToken()
-//
-//                            val intent = Intent(App.getContext(), IntroActivity::class.java)
-//                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                            App.getContext().startActivity(intent)
+                            dataStoreManager.deleteAccessToken()
+                            dataStoreManager.deleteRefreshToken()
+
+                            val intent =
+                                Intent(GlobalApplication.getContext(), IntroActivity::class.java)
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            GlobalApplication.getContext().startActivity(intent)
                         }
                     }
                 }
@@ -65,7 +72,7 @@ class BearerInterceptor @Inject constructor(
     }
 
 
-    private suspend fun getNewAccessToken(refreshToken: String?): BaseState<String> {
+    private suspend fun getNewAccessToken(refreshToken: String): BaseState<TokenResponse> {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         val okHttpClient = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
@@ -76,7 +83,7 @@ class BearerInterceptor @Inject constructor(
             .client(okHttpClient)
             .build()
         val api = retrofit.create(SurveasyApi::class.java)
-        return handleResponse { api.getTempToken() }
+        return handleResponse { api.createNewAccessToken(RefreshTokenRequest(refreshToken)) }
     }
 
     companion object {

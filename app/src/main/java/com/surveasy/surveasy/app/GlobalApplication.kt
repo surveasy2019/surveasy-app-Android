@@ -9,7 +9,13 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class GlobalApplication : Application() {
+    init {
+        instance = this
+    }
+
     companion object {
         val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "Surveasy")
+        lateinit var instance: GlobalApplication
+        fun getContext(): Context = instance.applicationContext
     }
 }
