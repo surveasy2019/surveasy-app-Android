@@ -49,6 +49,9 @@ class MyFragment : BaseFragment<FragmentMyBinding>(R.layout.fragment_my) {
                             ContactActivity::class.java
                         )
                     )
+
+                    is MyUiEvents.ShowSnackBar -> showSnackBar(event.msg)
+                    else -> Unit
                 }
             }
         }

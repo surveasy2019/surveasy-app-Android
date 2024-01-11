@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.collectLatest
 @AndroidEntryPoint
 class EditActivity : BaseActivity<ActivityEditBinding>(ActivityEditBinding::inflate) {
     private val viewModel: MyEditViewModel by viewModels()
-    private var initBank = ""
 
     override fun initData() {
         viewModel.queryPanelDetailInfo()
@@ -31,17 +30,10 @@ class EditActivity : BaseActivity<ActivityEditBinding>(ActivityEditBinding::infl
         repeatOnStarted {
             viewModel.events.collect {
                 when (it) {
-                    is MyEditUiEvents.DoneEdit -> {
-                        showToastMessage("수정이 완료되었습니다.")
-                        initData()
-                    }
+                    is MyEditUiEvents.DoneEdit -> initData()
+                    is MyEditUiEvents.ShowSnackBar -> showSnackBar(it.msg)
+                    is MyEditUiEvents.ShowToastMsg -> showToastMessage(it.msg)
                 }
-            }
-        }
-
-        repeatOnStarted {
-            viewModel.editBank.collectLatest {
-                initBank = it
             }
         }
     }
@@ -57,10 +49,15 @@ class EditActivity : BaseActivity<ActivityEditBinding>(ActivityEditBinding::infl
 
         sBank.apply {
             adapter = bankAdapter
-            setSelection(
-                if (initBank.isEmpty()) 0
-                else bankList.indexOf(initBank)
-            )
+            repeatOnStarted {
+                viewModel.editBank.collectLatest {
+                    setSelection(
+                        if (it.isEmpty()) 0
+                        else bankList.indexOf(it)
+                    )
+                }
+            }
+
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>?,

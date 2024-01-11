@@ -7,6 +7,7 @@ fun SurveyInfo.toUiSurveyListData(): UiSurveyListData = UiSurveyListData(
     id = id,
     title = title,
     reward = reward,
+    headCount = headCount,
     spendTime = spendTime,
     targetInput = targetInput,
     status = status,

@@ -1,12 +1,13 @@
 package com.surveasy.surveasy.presentation.main.my.edit
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.EditPanelInfoUseCase
 import com.surveasy.surveasy.domain.usecase.QueryPanelDetailInfoUseCase
 import com.surveasy.surveasy.presentation.main.my.mapper.toUiPanelDetailData
+import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.EDIT_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -34,6 +35,7 @@ class MyEditViewModel @Inject constructor(
     val editEnglish = MutableStateFlow(false)
 
     val phoneValid = MutableStateFlow(true)
+    val bankValid = MutableStateFlow(true)
     val accountValid = MutableStateFlow(true)
     val ownerValid = MutableStateFlow(true)
 
@@ -42,7 +44,7 @@ class MyEditViewModel @Inject constructor(
 
     private val _events = MutableSharedFlow<MyEditUiEvents>(
         replay = 0,
-        extraBufferCapacity = 1,
+        extraBufferCapacity = 2,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
     val events: SharedFlow<MyEditUiEvents> = _events.asSharedFlow()
@@ -51,6 +53,7 @@ class MyEditViewModel @Inject constructor(
         observePhone()
         observeAccount()
         observeOwner()
+        observeBank()
     }
 
     fun queryPanelDetailInfo() {
@@ -75,7 +78,7 @@ class MyEditViewModel @Inject constructor(
                     }
                 }
 
-                is BaseState.Error -> Unit
+                else -> _events.emit(MyEditUiEvents.ShowSnackBar(DATA_ERROR))
             }
         }.launchIn(viewModelScope)
     }
@@ -94,7 +97,7 @@ class MyEditViewModel @Inject constructor(
         }
         with(uiState.value) {
             editPhone.value = phoneNumber
-            //editBank.value = accountType
+            editBank.value = accountType
             editAccount.value = accountNumber
             editOwner.value = accountOwner
             editEnglish.value = english
@@ -109,18 +112,19 @@ class MyEditViewModel @Inject constructor(
 
         editPanelInfoUseCase(
             phoneNumber = editPhone.value,
-            accountType = "WOORI",
+            accountType = editBank.value,
             accountNumber = editAccount.value,
             accountOwner = editOwner.value,
             english = editEnglish.value
         ).onEach { state ->
             when (state) {
                 is BaseState.Success -> {
-                    _uiState.update { state -> state.copy(editMode = false) }
+                    _uiState.update { it.copy(editMode = false) }
+                    _events.emit(MyEditUiEvents.ShowToastMsg("수정이 완료되었습니다."))
                     _events.emit(MyEditUiEvents.DoneEdit)
                 }
 
-                else -> Log.d("TEST", "failed $state")
+                else -> _events.emit(MyEditUiEvents.ShowSnackBar(EDIT_ERROR))
             }
         }.launchIn(viewModelScope)
 
@@ -150,6 +154,12 @@ class MyEditViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
+    private fun observeBank() {
+        editBank.onEach {
+            bankValid.emit(it != INVALID_BANK)
+        }.launchIn(viewModelScope)
+    }
+
     fun setBank(select: String) {
         viewModelScope.launch { editBank.emit(select) }
     }
@@ -158,6 +168,7 @@ class MyEditViewModel @Inject constructor(
         val PHONE_REGEX = Regex("""^[0-9]{11}${'$'}""")
         val ACCOUNT_REGEX = Regex("\\d+")
         const val NAME_LENGTH = 1
+        const val INVALID_BANK = "은행을 선택하세요"
     }
 }
 
@@ -176,4 +187,6 @@ data class MyEditUiState(
 
 sealed class MyEditUiEvents {
     data object DoneEdit : MyEditUiEvents()
+    data class ShowToastMsg(val msg: String) : MyEditUiEvents()
+    data class ShowSnackBar(val msg: String) : MyEditUiEvents()
 }

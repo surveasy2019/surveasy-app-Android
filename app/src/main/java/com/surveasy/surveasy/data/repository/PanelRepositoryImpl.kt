@@ -18,12 +18,6 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class PanelRepositoryImpl @Inject constructor(private val api: SurveasyApi) : PanelRepository {
-    override fun getTempToken(): Flow<BaseState<String>> = flow {
-        when (val result = handleResponse { api.getTempToken() }) {
-            is BaseState.Success -> emit(BaseState.Success(result.data))
-            is BaseState.Error -> emit(result)
-        }
-    }
 
     override fun createExistPanel(
         uid: String,

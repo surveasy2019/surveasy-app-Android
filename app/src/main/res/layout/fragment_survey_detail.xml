@@ -152,7 +152,7 @@
                         app:layout_constraintStart_toStartOf="@id/tv_participate_label"
                         app:layout_constraintTop_toBottomOf="@id/md_divider1"
                         app:respondedCnt="@{vm.uiState.responseCount}"
-                        app:totalCnt="@{vm.uiState.responseCount}" />
+                        app:totalCnt="@{vm.uiState.headCount}" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

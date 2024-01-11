@@ -23,7 +23,6 @@ data class HomeSurveyInfoResponse(
     val reward: Int,
     val targetInput: String?,
     val responseCount: Int,
-    val noticeToPanel: String?,
 ) : BaseDataModel {
     companion object : DomainMapper<HomeSurveyInfoResponse, HomeSurveyInfo> {
         override fun HomeSurveyInfoResponse.toDomainModel(): HomeSurveyInfo = HomeSurveyInfo(
@@ -32,7 +31,6 @@ data class HomeSurveyInfoResponse(
             reward = reward,
             targetInput = targetInput,
             responseCount = responseCount,
-            noticeToPanel = noticeToPanel
         )
 
     }

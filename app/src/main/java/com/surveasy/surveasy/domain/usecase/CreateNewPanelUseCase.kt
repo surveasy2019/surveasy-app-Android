@@ -31,7 +31,7 @@ class CreateNewPanelUseCase @Inject constructor(
         gender,
         birth,
         accountOwner,
-        accountType,
+        setBank(accountType),
         accountNumber,
         inflowPath,
         inflowPathEtc,
@@ -40,4 +40,20 @@ class CreateNewPanelUseCase @Inject constructor(
         pushOn,
         marketing
     )
+
+    private fun setBank(bank: String) : String {
+        return when(bank){
+            "국민" -> "KB"
+            "하나" -> "HANA"
+            "우리" -> "WOORI"
+            "신한" -> "SHINHAN"
+            "농협" -> "NH"
+            "수협" -> "SH"
+            "IBK 기업" -> "IBK"
+            "새마을금고" -> "MG"
+            "카카오뱅크" -> "KAKAO"
+            "토스뱅크" -> "TOSS"
+            else -> ""
+        }
+    }
 }

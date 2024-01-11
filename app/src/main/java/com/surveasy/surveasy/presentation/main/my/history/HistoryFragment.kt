@@ -30,6 +30,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(R.layout.fragment_h
             viewModel.events.collect {
                 when (it) {
                     is HistoryEvents.NavigateToDetail -> navigateToDetail()
+                    is HistoryEvents.ShowSnackBar -> showSnackBar(it.msg)
                     else -> Unit
                 }
             }

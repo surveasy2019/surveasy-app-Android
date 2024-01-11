@@ -29,6 +29,7 @@ class SurveyFragment : BaseFragment<FragmentSurveyBinding>(R.layout.fragment_sur
             viewModel.events.collect { event ->
                 when (event) {
                     is SurveyEvents.NavigateToProof -> findNavController().toSurveyProof()
+                    is SurveyEvents.ShowSnackBar -> showSnackBar(event.msg)
                     else -> Unit
                 }
             }

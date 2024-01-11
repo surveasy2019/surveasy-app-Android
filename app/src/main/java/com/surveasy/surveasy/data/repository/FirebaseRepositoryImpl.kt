@@ -24,10 +24,10 @@ class FirebaseRepositoryImpl @Inject constructor(
                 val downloadUrl = storageRef.downloadUrl.await()
                 downloadUrl.toString()
             } else {
-                throw Exception("Upload failed: $result")
+                ""
             }
         } catch (e: Exception) {
-            throw e
+            ""
         }
     }
 

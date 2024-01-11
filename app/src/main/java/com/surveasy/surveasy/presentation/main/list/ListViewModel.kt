@@ -1,12 +1,12 @@
 package com.surveasy.surveasy.presentation.main.list
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.ListSurveyUseCase
 import com.surveasy.surveasy.presentation.main.list.mapper.toUiSurveyListData
 import com.surveasy.surveasy.presentation.main.list.model.UiSurveyListData
+import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -49,7 +49,7 @@ class ListViewModel @Inject constructor(
                     }
                 }
 
-                else -> Log.d("TEST", "failed")
+                else -> _events.emit(ListEvents.ShowSnackBar(DATA_ERROR))
             }
         }.launchIn(viewModelScope)
     }
@@ -61,6 +61,8 @@ class ListViewModel @Inject constructor(
 
 sealed class ListEvents {
     data class ClickSurveyItem(val id: Int) : ListEvents()
+    data class ShowToastMsg(val msg: String) : ListEvents()
+    data class ShowSnackBar(val msg: String) : ListEvents()
 }
 
 data class SurveyListUiState(

@@ -4,12 +4,12 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
-import com.surveasy.surveasy.domain.usecase.GetTempTokenUseCase
 import com.surveasy.surveasy.domain.usecase.ListHomeSurveyUseCase
 import com.surveasy.surveasy.domain.usecase.QueryPanelInfoUseCase
 import com.surveasy.surveasy.presentation.main.home.mapper.toUiHomeListData
 import com.surveasy.surveasy.presentation.main.home.mapper.toUiPanelData
 import com.surveasy.surveasy.presentation.main.home.model.UiHomeListData
+import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -27,7 +27,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val queryPanelInfoUseCase: QueryPanelInfoUseCase,
-    private val getTempTokenUseCase: GetTempTokenUseCase,
     private val listHomeSurveyUseCase: ListHomeSurveyUseCase,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(HomeUiState())
@@ -54,16 +53,7 @@ class HomeViewModel @Inject constructor(
                     }
                 }
 
-                else -> Log.d("TEST", "failed")
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    private fun tempToken() {
-        getTempTokenUseCase().onEach {
-            when (it) {
-                is BaseState.Success -> Log.d("TEST", "${it.data}")
-                else -> Unit
+                else -> _events.emit(HomeEvents.ShowSnackBar(DATA_ERROR))
             }
         }.launchIn(viewModelScope)
     }
@@ -84,7 +74,7 @@ class HomeViewModel @Inject constructor(
                     }
                 }
 
-                else -> Unit
+                else -> _events.emit(HomeEvents.ShowSnackBar(DATA_ERROR))
             }
         }.launchIn(viewModelScope)
     }
@@ -97,6 +87,8 @@ class HomeViewModel @Inject constructor(
 
 sealed class HomeEvents {
     data class ClickSurveyItem(val id: Int) : HomeEvents()
+    data class ShowToastMsg(val msg: String) : HomeEvents()
+    data class ShowSnackBar(val msg: String) : HomeEvents()
 }
 
 data class HomeUiState(
