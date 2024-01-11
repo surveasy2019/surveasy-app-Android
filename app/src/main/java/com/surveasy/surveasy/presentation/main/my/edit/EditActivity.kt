@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.collectLatest
 @AndroidEntryPoint
 class EditActivity : BaseActivity<ActivityEditBinding>(ActivityEditBinding::inflate) {
     private val viewModel: MyEditViewModel by viewModels()
-    private var initBank = ""
 
     override fun initData() {
         viewModel.queryPanelDetailInfo()
@@ -38,12 +37,6 @@ class EditActivity : BaseActivity<ActivityEditBinding>(ActivityEditBinding::infl
                 }
             }
         }
-
-        repeatOnStarted {
-            viewModel.editBank.collectLatest {
-                initBank = it
-            }
-        }
     }
 
     private fun initBankSpinner() = with(binding) {
@@ -57,10 +50,15 @@ class EditActivity : BaseActivity<ActivityEditBinding>(ActivityEditBinding::infl
 
         sBank.apply {
             adapter = bankAdapter
-            setSelection(
-                if (initBank.isEmpty()) 0
-                else bankList.indexOf(initBank)
-            )
+            repeatOnStarted {
+                viewModel.editBank.collectLatest {
+                    setSelection(
+                        if (it.isEmpty()) 0
+                        else bankList.indexOf(it)
+                    )
+                }
+            }
+
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
