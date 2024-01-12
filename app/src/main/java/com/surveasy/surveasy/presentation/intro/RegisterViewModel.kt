@@ -32,6 +32,7 @@ class RegisterViewModel @Inject constructor(
     val pw = MutableStateFlow("")
     val pwCheck = MutableStateFlow("")
     val phone = MutableStateFlow("")
+    val gender = MutableStateFlow(true)
     val birth = MutableStateFlow("생년월일을 선택해주세요.")
     val inflow = MutableStateFlow("")
     val bank = MutableStateFlow("")
@@ -224,12 +225,16 @@ class RegisterViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
+    fun setGender(isMale: Boolean) {
+        viewModelScope.launch { gender.emit(isMale) }
+    }
+
     fun createNewPanel() {
         newPanelUseCase(
             name = name.value,
             email = email.value,
             fcmToken = "temp",
-            gender = "여",
+            gender = gender.value,
             birth = birth.value,
             accountOwner = accountOwner.value,
             accountType = bank.value,

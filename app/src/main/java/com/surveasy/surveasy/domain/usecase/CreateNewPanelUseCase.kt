@@ -13,7 +13,7 @@ class CreateNewPanelUseCase @Inject constructor(
         name: String,
         email: String,
         fcmToken: String,
-        gender: String,
+        gender: Boolean,
         birth: String,
         accountOwner: String,
         accountType: String,
@@ -28,7 +28,7 @@ class CreateNewPanelUseCase @Inject constructor(
         name,
         email,
         fcmToken,
-        gender,
+        setGender(gender),
         birth,
         accountOwner,
         setBank(accountType),
@@ -41,8 +41,8 @@ class CreateNewPanelUseCase @Inject constructor(
         marketing
     )
 
-    private fun setBank(bank: String) : String {
-        return when(bank){
+    private fun setBank(bank: String): String {
+        return when (bank) {
             "국민" -> "KB"
             "하나" -> "HANA"
             "우리" -> "WOORI"
@@ -55,5 +55,9 @@ class CreateNewPanelUseCase @Inject constructor(
             "토스뱅크" -> "TOSS"
             else -> ""
         }
+    }
+
+    private fun setGender(isMale: Boolean): String {
+        return if (isMale) "MALE" else "FEMALE"
     }
 }

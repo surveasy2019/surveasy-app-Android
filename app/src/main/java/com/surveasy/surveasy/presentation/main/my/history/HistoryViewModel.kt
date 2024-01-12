@@ -91,7 +91,7 @@ class HistoryViewModel @Inject constructor(
             loadImageUseCase(uri, sid.value, name)
         }.await()
 
-        if (imgUrl.isNotEmpty()) {
+        if (imgUrl.isEmpty()) {
             _events.emit(HistoryEvents.DismissLoading)
             _events.emit(HistoryEvents.ShowSnackBar(ErrorMsg.SURVEY_ERROR))
         } else {

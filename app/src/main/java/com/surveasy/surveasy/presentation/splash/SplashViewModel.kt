@@ -21,7 +21,7 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch {
             dataStoreManager.getTutorial().collect { tutorial ->
                 if (tutorial == true) {
-                    _events.emit(SplashUiEvent.NavigateToMain)
+                    _events.emit(SplashUiEvent.NavigateToIntro)
                 } else {
                     _events.emit(SplashUiEvent.NavigateToTutorial)
                 }
