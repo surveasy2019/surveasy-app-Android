@@ -33,7 +33,7 @@ class CreateNewPanelUseCase @Inject constructor(
         accountOwner,
         setBank(accountType),
         accountNumber,
-        inflowPath,
+        setInflow(inflowPath),
         inflowPathEtc,
         phoneNumber,
         platform,
@@ -59,5 +59,16 @@ class CreateNewPanelUseCase @Inject constructor(
 
     private fun setGender(isMale: Boolean): String {
         return if (isMale) "MALE" else "FEMALE"
+    }
+
+    private fun setInflow(inflow: String): String {
+        return when (inflow) {
+            "카카오톡" -> "KAKAO"
+            "에브리타임" -> "EVERYTIME"
+            "인스타그램" -> "INSTAGRAM"
+            "지인추천" -> "ACQUAINTANCE"
+            "기타" -> "ETC"
+            else -> ""
+        }
     }
 }
