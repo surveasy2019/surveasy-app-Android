@@ -70,8 +70,6 @@ class RegisterViewModel @Inject constructor(
         viewModelScope.launch {
             _events.emit(
                 when (type) {
-                    RegisterEventType.TO_EXIST_LOGIN -> RegisterEvents.NavigateToExistLogin
-                    RegisterEventType.TO_AGREE -> RegisterEvents.NavigateToRegisterAgree
                     RegisterEventType.TO_WARN -> RegisterEvents.NavigateToRegisterWarn
                     RegisterEventType.TO_TERM1 -> RegisterEvents.NavigateToTerm1
                     RegisterEventType.TO_TERM2 -> RegisterEvents.NavigateToTerm2
@@ -329,8 +327,6 @@ data class InputState(
 )
 
 sealed class RegisterEvents {
-    data object NavigateToExistLogin : RegisterEvents()
-    data object NavigateToRegisterAgree : RegisterEvents()
     data object NavigateToRegisterWarn : RegisterEvents()
     data object NavigateToTerm1 : RegisterEvents()
     data object NavigateToTerm2 : RegisterEvents()

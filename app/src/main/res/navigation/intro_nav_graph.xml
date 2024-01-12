@@ -10,16 +10,10 @@
         android:name="com.surveasy.surveasy.presentation.intro.login.LoginFragment"
         android:label="LoginFragment">
         <action
-            android:id="@+id/action_loginFragment_to_existUserFragment"
-            app:destination="@id/existUserFragment" />
-        <action
             android:id="@+id/action_loginFragment_to_registerAgreeFragment"
             app:destination="@id/registerAgreeFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/existUserFragment"
-        android:name="com.surveasy.surveasy.presentation.intro.login.ExistUserFragment"
-        android:label="ExistUserFragment" />
+
     <fragment
         android:id="@+id/registerAgreeFragment"
         android:name="com.surveasy.surveasy.presentation.intro.RegisterAgreeFragment"

@@ -649,7 +649,7 @@
     <string name="login_id">아이디 (이메일)</string>
     <string name="login_pw">비밀번호</string>
     <string name="login_auto">자동 로그인</string>
-    <string name="login_login_exist">기존 패널 로그인</string>
+    <string name="login_login_exist">로그인</string>
     <string name="login_register_btn">패널 가입</string>
     <string name="login_find_pw"><![CDATA[비밀번호 찾기 >]]></string>
     <string name="toolbar_agree">약관 동의</string>
