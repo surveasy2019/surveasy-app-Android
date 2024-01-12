@@ -14,28 +14,33 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ExistUserViewModel @Inject constructor(
+class LoginViewModel @Inject constructor(
     private val createExistPanelUseCase: CreateExistPanelUseCase
 ) : ViewModel() {
     val email = MutableStateFlow("")
     val pw = MutableStateFlow("")
 
-    private val _uiState = MutableStateFlow(ExistUserUiState())
-    val uiState: StateFlow<ExistUserUiState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(LoginUiState())
+    val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
 
-    private val _events = MutableSharedFlow<ExistUserEvents>(
+    private val _events = MutableSharedFlow<LoginEvents>(
         replay = 0,
         onBufferOverflow = BufferOverflow.DROP_OLDEST,
         extraBufferCapacity = 1
     )
-    val events: SharedFlow<ExistUserEvents> = _events.asSharedFlow()
+    val events: SharedFlow<LoginEvents> = _events.asSharedFlow()
 
     init {
         observeEmail()
         observePw()
+    }
+
+    fun navigateToRegister() {
+        viewModelScope.launch { _events.emit(LoginEvents.NavigateToRegister) }
     }
 
     private fun observeEmail() {
@@ -98,14 +103,15 @@ class ExistUserViewModel @Inject constructor(
 
 }
 
-data class ExistUserUiState(
+data class LoginUiState(
     val email: String = "",
     val pw: String = "",
     val valid: Boolean = false,
 )
 
-sealed class ExistUserEvents {
-    data object NavigateToMain : ExistUserEvents()
-    data class ShowToastMsg(val msg: String) : ExistUserEvents()
-    data class ShowSnackBar(val msg: String) : ExistUserEvents()
+sealed class LoginEvents {
+    data object NavigateToRegister : LoginEvents()
+    data object NavigateToMain : LoginEvents()
+    data class ShowToastMsg(val msg: String) : LoginEvents()
+    data class ShowSnackBar(val msg: String) : LoginEvents()
 }

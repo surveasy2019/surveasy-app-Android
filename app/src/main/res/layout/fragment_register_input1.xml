@@ -303,6 +303,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
+                        android:onClick="@{()->vm.setGender(true)}"
                         android:text="@string/register1_man" />
 
                     <RadioButton
@@ -310,6 +311,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp"
+                        android:onClick="@{()->vm.setGender(false)}"
                         android:text="@string/register1_woman" />
 
                 </RadioGroup>

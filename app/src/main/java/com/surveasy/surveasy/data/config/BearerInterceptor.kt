@@ -33,7 +33,7 @@ class BearerInterceptor @Inject constructor(
 
         var newAccessToken: String? = null
 
-        if (response.code == 0) {
+        if (response.code == TOKEN_ERROR) {
             runBlocking {
                 val refreshToken = dataStoreManager.getRefreshToken().first()
                 refreshToken?.let { token ->

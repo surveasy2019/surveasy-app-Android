@@ -8,18 +8,12 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.surveasy.surveasy.presentation.intro.login.LoginFragment"
-        android:label="LoginFragment" >
-        <action
-            android:id="@+id/action_loginFragment_to_existUserFragment"
-            app:destination="@id/existUserFragment" />
+        android:label="LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_registerAgreeFragment"
             app:destination="@id/registerAgreeFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/existUserFragment"
-        android:name="com.surveasy.surveasy.presentation.intro.login.ExistUserFragment"
-        android:label="ExistUserFragment" />
+
     <fragment
         android:id="@+id/registerAgreeFragment"
         android:name="com.surveasy.surveasy.presentation.intro.RegisterAgreeFragment"
@@ -28,6 +22,12 @@
         <action
             android:id="@+id/action_registerAgreeFragment_to_registerWarnFragment"
             app:destination="@id/registerWarnFragment" />
+        <action
+            android:id="@+id/action_registerAgreeFragment_to_registerTerm1Fragment"
+            app:destination="@id/registerTerm1Fragment" />
+        <action
+            android:id="@+id/action_registerAgreeFragment_to_registerTerm2Fragment"
+            app:destination="@id/registerTerm2Fragment" />
     </fragment>
     <fragment
         android:id="@+id/registerWarnFragment"
@@ -42,7 +42,7 @@
         android:id="@+id/registerInput1Fragment"
         android:name="com.surveasy.surveasy.presentation.intro.RegisterInput1Fragment"
         android:label="fragment_register_input1"
-        tools:layout="@layout/fragment_register_input1" >
+        tools:layout="@layout/fragment_register_input1">
         <action
             android:id="@+id/action_registerInput1Fragment_to_registerInput2Fragment"
             app:destination="@id/registerInput2Fragment" />
@@ -52,4 +52,12 @@
         android:name="com.surveasy.surveasy.presentation.intro.RegisterInput2Fragment"
         android:label="fragment_register_input2"
         tools:layout="@layout/fragment_register_input2" />
+    <fragment
+        android:id="@+id/registerTerm1Fragment"
+        android:name="com.surveasy.surveasy.presentation.intro.agree.RegisterTerm1Fragment"
+        android:label="RegisterTerm1Fragment" />
+    <fragment
+        android:id="@+id/registerTerm2Fragment"
+        android:name="com.surveasy.surveasy.presentation.intro.agree.RegisterTerm2Fragment"
+        android:label="RegisterTerm2Fragment" />
 </navigation>
