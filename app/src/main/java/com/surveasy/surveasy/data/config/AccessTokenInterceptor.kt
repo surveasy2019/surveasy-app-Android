@@ -1,8 +1,6 @@
 package com.surveasy.surveasy.data.config
 
-import android.util.Log
 import com.surveasy.surveasy.app.DataStoreManager
-import com.surveasy.surveasy.presentation.util.Temp.temp
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
@@ -19,15 +17,14 @@ class AccessTokenInterceptor @Inject constructor(
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
 
-//        val accessToken =  runBlocking {
-//            dataStoreManager.getAccessToken().first()
-//        }
-//
-//        Log.d("token",accessToken.toString())
+        val accessToken = runBlocking {
+            dataStoreManager.getAccessToken().first()
+        }
+
         val builder: Request.Builder = chain.request().newBuilder()
-//        accessToken?.takeIf { it.isNotEmpty() }?.let {
-//        }
-        builder.addHeader(AUTHORIZATION, "$BEARER $temp")
+        accessToken?.takeIf { it.isNotEmpty() }?.let {
+            builder.addHeader(AUTHORIZATION, "$BEARER $it")
+        }
         return chain.proceed(builder.build())
     }
 

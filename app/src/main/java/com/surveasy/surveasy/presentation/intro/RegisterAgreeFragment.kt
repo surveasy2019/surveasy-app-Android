@@ -24,6 +24,14 @@ class RegisterAgreeFragment :
                     is RegisterEvents.NavigateToRegisterWarn ->
                         findNavController().navigate(RegisterAgreeFragmentDirections.actionRegisterAgreeFragmentToRegisterWarnFragment())
 
+                    is RegisterEvents.NavigateToTerm1 -> findNavController().navigate(
+                        RegisterAgreeFragmentDirections.actionRegisterAgreeFragmentToRegisterTerm1Fragment()
+                    )
+
+                    is RegisterEvents.NavigateToTerm2 -> findNavController().navigate(
+                        RegisterAgreeFragmentDirections.actionRegisterAgreeFragmentToRegisterTerm2Fragment()
+                    )
+
                     else -> Unit
                 }
             }

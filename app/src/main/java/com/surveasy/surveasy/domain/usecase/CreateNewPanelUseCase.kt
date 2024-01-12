@@ -13,7 +13,7 @@ class CreateNewPanelUseCase @Inject constructor(
         name: String,
         email: String,
         fcmToken: String,
-        gender: String,
+        gender: Boolean,
         birth: String,
         accountOwner: String,
         accountType: String,
@@ -28,12 +28,12 @@ class CreateNewPanelUseCase @Inject constructor(
         name,
         email,
         fcmToken,
-        gender,
+        setGender(gender),
         birth,
         accountOwner,
         setBank(accountType),
         accountNumber,
-        inflowPath,
+        setInflow(inflowPath),
         inflowPathEtc,
         phoneNumber,
         platform,
@@ -41,8 +41,8 @@ class CreateNewPanelUseCase @Inject constructor(
         marketing
     )
 
-    private fun setBank(bank: String) : String {
-        return when(bank){
+    private fun setBank(bank: String): String {
+        return when (bank) {
             "국민" -> "KB"
             "하나" -> "HANA"
             "우리" -> "WOORI"
@@ -53,6 +53,21 @@ class CreateNewPanelUseCase @Inject constructor(
             "새마을금고" -> "MG"
             "카카오뱅크" -> "KAKAO"
             "토스뱅크" -> "TOSS"
+            else -> ""
+        }
+    }
+
+    private fun setGender(isMale: Boolean): String {
+        return if (isMale) "MALE" else "FEMALE"
+    }
+
+    private fun setInflow(inflow: String): String {
+        return when (inflow) {
+            "카카오톡" -> "KAKAO"
+            "에브리타임" -> "EVERYTIME"
+            "인스타그램" -> "INSTAGRAM"
+            "지인추천" -> "ACQUAINTANCE"
+            "기타" -> "ETC"
             else -> ""
         }
     }
