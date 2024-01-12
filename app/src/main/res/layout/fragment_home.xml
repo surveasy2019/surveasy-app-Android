@@ -17,6 +17,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:paddingBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -180,7 +181,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="40dp"
                     android:gravity="center"
-                    android:text="참여해주세요!"
+                    android:text="참여해주세요"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toEndOf="@id/iv_check_label1"
                     app:layout_constraintTop_toTopOf="@id/v_home_bottom" />
@@ -207,8 +208,125 @@
                     app:layout_constraintEnd_toEndOf="@id/guide_end"
                     app:layout_constraintStart_toStartOf="@id/guide_begin"
                     app:layout_constraintTop_toBottomOf="@id/tv_label1"
-                    app:list="@{vm.uiState.list}"
-                    tools:listitem="@layout/item_list_home" />
+                    app:list="@{vm.uiState.list}" />
+
+                <ImageView
+                    android:id="@+id/iv_check_label2"
+                    android:layout_width="18sp"
+                    android:layout_height="17sp"
+                    android:layout_marginTop="28dp"
+                    android:background="@drawable/checkimg"
+                    app:layout_constraintStart_toStartOf="@id/guide_begin"
+                    app:layout_constraintTop_toBottomOf="@id/rv_home_list" />
+
+                <TextView
+                    android:id="@+id/tv_label2"
+                    style="@style/TextSmallBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="28dp"
+                    android:text="꼭 확인해주세요"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toEndOf="@id/iv_check_label2"
+                    app:layout_constraintTop_toBottomOf="@id/rv_home_list" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_left"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/home_notice_round"
+                    android:paddingVertical="24dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@id/iv_divider"
+                    app:layout_constraintStart_toStartOf="@id/guide_begin"
+                    app:layout_constraintTop_toBottomOf="@id/tv_label2">
+
+                    <TextView
+                        android:id="@+id/tv_left_title"
+                        style="@style/TextSmallBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🖊️ 설문 인증 방법"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_left_content"
+                        style="@style/Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:lineBreakWordStyle="phrase"
+                        android:lineSpacingExtra="0.3dp"
+                        android:text="올바른 참여 방법을 숙지해야 리워드를 받아갈 수 있어요!"
+                        android:textColor="@color/light_gray"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_left_title" />
+
+
+                    <TextView
+                        style="@style/Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="자세히 보기 >"
+                        android:textColor="@color/gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_left_content" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_right"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/home_notice_round"
+                    android:paddingVertical="24dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="@id/guide_end"
+                    app:layout_constraintStart_toEndOf="@id/iv_divider"
+                    app:layout_constraintTop_toBottomOf="@id/tv_label2">
+
+                    <TextView
+                        android:id="@+id/tv_right_title"
+                        style="@style/TextSmallBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🚨 부정 참여 경고"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_right_content"
+                        style="@style/Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:lineBreakWordStyle="phrase"
+                        android:lineSpacingExtra="0.3dp"
+                        android:text="부정 참여 및 불성실 응답 시 리워드가 제공되지 않아요!"
+                        android:textColor="@color/light_gray"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_right_title" />
+
+                    <TextView
+                        style="@style/Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="자세히 보기 >"
+                        android:textColor="@color/gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_right_content" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
