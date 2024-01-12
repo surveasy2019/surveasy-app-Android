@@ -73,6 +73,8 @@ class RegisterViewModel @Inject constructor(
                     RegisterEventType.TO_EXIST_LOGIN -> RegisterEvents.NavigateToExistLogin
                     RegisterEventType.TO_AGREE -> RegisterEvents.NavigateToRegisterAgree
                     RegisterEventType.TO_WARN -> RegisterEvents.NavigateToRegisterWarn
+                    RegisterEventType.TO_TERM1 -> RegisterEvents.NavigateToTerm1
+                    RegisterEventType.TO_TERM2 -> RegisterEvents.NavigateToTerm2
                     RegisterEventType.TO_INPUT1 -> RegisterEvents.NavigateToRegisterInput1
                     RegisterEventType.TO_INPUT2 -> RegisterEvents.NavigateToRegisterInput2
                     RegisterEventType.TO_BACK -> RegisterEvents.NavigateToBack
@@ -330,6 +332,8 @@ sealed class RegisterEvents {
     data object NavigateToExistLogin : RegisterEvents()
     data object NavigateToRegisterAgree : RegisterEvents()
     data object NavigateToRegisterWarn : RegisterEvents()
+    data object NavigateToTerm1 : RegisterEvents()
+    data object NavigateToTerm2 : RegisterEvents()
     data object NavigateToRegisterInput1 : RegisterEvents()
     data object NavigateToRegisterInput2 : RegisterEvents()
     data object NavigateToBack : RegisterEvents()
