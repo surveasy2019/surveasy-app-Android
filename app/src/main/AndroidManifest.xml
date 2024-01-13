@@ -20,8 +20,14 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.main.home.notice.HomeNoticeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.main.home.notice.HomeHowContentActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.introduce.FirstIntroduceActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".presentation.main.my.setting.SettingActivity"
             android:exported="false" />
@@ -51,11 +57,13 @@
         <activity
             android:name=".presentation.splash.SplashActivity"
             android:exported="true">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
 
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".presentation.splash.FCM_SplashActivity"
@@ -72,11 +80,13 @@
         <activity
             android:name=".presentation.intro.IntroActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 

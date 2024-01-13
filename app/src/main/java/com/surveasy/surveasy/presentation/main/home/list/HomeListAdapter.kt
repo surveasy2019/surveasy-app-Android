@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.presentation.main.home
+package com.surveasy.surveasy.presentation.main.home.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
