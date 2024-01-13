@@ -54,12 +54,6 @@ class RegisterViewModel @Inject constructor(
         checkMust1()
         checkMust2()
         checkMarketing()
-        observeName()
-        observeEmail()
-        observePw()
-        observePwCheck()
-        observePhone()
-        observeBirth()
         observeInflow()
         observeBank()
         observeAccount()
@@ -73,98 +67,12 @@ class RegisterViewModel @Inject constructor(
                     RegisterEventType.TO_WARN -> RegisterEvents.NavigateToRegisterWarn
                     RegisterEventType.TO_TERM1 -> RegisterEvents.NavigateToTerm1
                     RegisterEventType.TO_TERM2 -> RegisterEvents.NavigateToTerm2
-                    RegisterEventType.TO_INPUT1 -> RegisterEvents.NavigateToRegisterInput1
-                    RegisterEventType.TO_INPUT2 -> RegisterEvents.NavigateToRegisterInput2
+                    RegisterEventType.TO_INPUT -> RegisterEvents.NavigateToRegisterInput
                     RegisterEventType.TO_BACK -> RegisterEvents.NavigateToBack
                     RegisterEventType.TO_MAIN -> RegisterEvents.NavigateToMain
                 }
             )
         }
-    }
-
-    private fun observeName() {
-        name.onEach { name ->
-            val isValid = name.length > NAME_LENGTH
-            _uiState.update { state ->
-                state.copy(
-                    nameState = InputState(
-                        helperText = if (name.isEmpty()) HelperText.NONE else if (isValid) HelperText.VALID else HelperText.NAME_INVALID,
-                        isValid = isValid
-                    )
-                )
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    private fun observeEmail() {
-        email.onEach { email ->
-            val isValid = email.matches(EMAIL_REGEX)
-            _uiState.update { state ->
-                state.copy(
-                    emailState = InputState(
-                        helperText = if (email.isEmpty()) HelperText.NONE else if (isValid) HelperText.VALID else HelperText.EMAIL_INVALID,
-                        isValid = isValid
-                    )
-                )
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    private fun observePw() {
-        pw.onEach { pw ->
-            val isValid = pw.length > PW_LENGTH
-            _uiState.update { state ->
-                state.copy(
-                    pwState = InputState(
-                        helperText = if (pw.isEmpty()) HelperText.NONE else if (isValid) HelperText.VALID else HelperText.PW_INVALID,
-                        isValid = isValid
-                    )
-                )
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    private fun observePwCheck() {
-        pwCheck.onEach { pwCheck ->
-            val isValid = pwCheck == pw.value
-            _uiState.update { state ->
-                state.copy(
-                    pwCheckState = InputState(
-                        helperText = if (pwCheck.isEmpty()) HelperText.NONE else if (isValid) HelperText.VALID else HelperText.PW_CHECK_INVALID,
-                        isValid = isValid
-                    )
-                )
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    private fun observePhone() {
-        phone.onEach { phone ->
-            val isValid = phone.matches(PHONE_REGEX)
-            _uiState.update { state ->
-                state.copy(
-                    phoneState = InputState(
-                        helperText = if (phone.isEmpty()) HelperText.NONE else if (isValid) HelperText.VALID else HelperText.PHONE_INVALID,
-                        isValid = isValid
-                    )
-                )
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    fun setBirth(date: String) {
-        viewModelScope.launch { birth.emit(date) }
-    }
-
-    private fun observeBirth() {
-        birth.onEach { birth ->
-            val isValid = birth.matches(BIRTH_REGEX)
-            _uiState.update { state ->
-                state.copy(
-                    birthState = InputState(isValid = isValid)
-                )
-            }
-        }.launchIn(viewModelScope)
     }
 
     fun setInflow(select: String) {
@@ -297,11 +205,6 @@ class RegisterViewModel @Inject constructor(
 
     companion object {
         const val NAME_LENGTH = 1
-        const val PW_LENGTH = 7
-        val EMAIL_REGEX =
-            Regex("""^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})${'$'}""")
-        val PHONE_REGEX = Regex("""^[0-9]{11}${'$'}""")
-        val BIRTH_REGEX = Regex("""^\d{4}/\d{2}/\d{2}${'$'}""")
         val ACCOUNT_REGEX = Regex("\\d+")
         const val INFLOW_DEFAULT = "유입경로를 선택하세요"
         const val BANK_DEFAULT = "은행을 선택하세요"
@@ -330,8 +233,7 @@ sealed class RegisterEvents {
     data object NavigateToRegisterWarn : RegisterEvents()
     data object NavigateToTerm1 : RegisterEvents()
     data object NavigateToTerm2 : RegisterEvents()
-    data object NavigateToRegisterInput1 : RegisterEvents()
-    data object NavigateToRegisterInput2 : RegisterEvents()
+    data object NavigateToRegisterInput : RegisterEvents()
     data object NavigateToBack : RegisterEvents()
     data object NavigateToMain : RegisterEvents()
     data class ShowToastMsg(val msg: String) : RegisterEvents()

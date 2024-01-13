@@ -21,8 +21,8 @@ class RegisterWarnFragment :
         repeatOnStarted {
             viewModel.events.collect { event ->
                 when (event) {
-                    is RegisterEvents.NavigateToRegisterInput1 -> findNavController().navigate(
-                        RegisterWarnFragmentDirections.actionRegisterWarnFragmentToRegisterInput1Fragment()
+                    is RegisterEvents.NavigateToRegisterInput -> findNavController().navigate(
+                        RegisterWarnFragmentDirections.actionRegisterWarnFragmentToRegisterInputFragment()
                     )
 
                     is RegisterEvents.NavigateToBack -> findNavController().navigateUp()

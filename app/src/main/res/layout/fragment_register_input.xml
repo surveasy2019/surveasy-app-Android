@@ -153,6 +153,93 @@
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <TextView
+                    android:id="@+id/tv_inflow_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/main_font_sb"
+                    android:text="@string/register1_inflow"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_owner" />
+
+                <Spinner
+                    android:id="@+id/s_inflow"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/custom_spinner"
+                    android:paddingStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_inflow_label"
+                    app:layout_goneMarginTop="4dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_inflow_etc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:visibility="gone"
+                    app:boxStrokeColor="@color/main_green"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:helperTextTextAppearance="@font/main_font_l"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/s_inflow"
+                    app:placeholderText="자세한 유입경로를 적어주세요."
+                    app:placeholderTextAppearance="@font/main_font_m"
+                    app:placeholderTextColor="#c9c9c9">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_inflow_etc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_gender_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/main_font_sb"
+                    android:text="푸시알림"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/s_inflow" />
+
+                <RadioGroup
+                    android:id="@+id/rg_push"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_gender_label">
+
+                    <RadioButton
+                        android:id="@+id/rb_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:onClick="@{()->vm.setGender(true)}"
+                        android:text="동의합니다." />
+
+                    <RadioButton
+                        android:id="@+id/rb_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:onClick="@{()->vm.setGender(false)}"
+                        android:text="동의하지 않습니다." />
+
+                </RadioGroup>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -165,9 +252,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:indeterminate="false"
-            android:max="5"
+            android:max="4"
             android:minHeight="50dp"
-            android:progress="4"
+            android:progress="3"
             android:theme="@style/progressBar"
             app:layout_constraintBottom_toTopOf="@id/btn_register_done"
             app:layout_constraintEnd_toEndOf="parent"
