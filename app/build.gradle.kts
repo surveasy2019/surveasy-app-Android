@@ -29,7 +29,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "KAKAO_NATIVE_KEY", getProperty("kakaoNativeKey"))
-        manifestPlaceholders["KAKAO_KEY"] = getProperty("kakaoKey")
+        manifestPlaceholders["NATIVE_KEY"] = getProperty("kakaoKey")
     }
 
     buildTypes {
@@ -114,5 +114,5 @@ dependencies {
     implementation("com.tbuonomo:dotsindicator:4.2")
 
     // kakao
-    implementation("com.kakao.sdk:v2-user:2.10.0")
+    implementation("com.kakao.sdk:v2-user:2.11.2")
 }
