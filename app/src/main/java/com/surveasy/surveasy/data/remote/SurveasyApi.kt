@@ -46,6 +46,12 @@ interface SurveasyApi {
         @Body body: EditInfoRequest
     ): Response<Unit>
 
+    @GET("panel/signout")
+    suspend fun signout(): Response<Unit>
+
+    @GET("panel/withdraw")
+    suspend fun withdraw(): Response<Unit>
+
     //home
     @GET("panel/home")
     suspend fun queryPanelInfo(): Response<PanelInfoResponse>

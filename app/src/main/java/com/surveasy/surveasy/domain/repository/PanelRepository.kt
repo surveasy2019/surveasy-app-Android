@@ -42,4 +42,8 @@ interface PanelRepository {
         accountNumber: String,
         english: Boolean,
     ): Flow<BaseState<Unit>>
+
+    fun signout(): Flow<BaseState<Unit>>
+
+    fun withdraw(): Flow<BaseState<Unit>>
 }

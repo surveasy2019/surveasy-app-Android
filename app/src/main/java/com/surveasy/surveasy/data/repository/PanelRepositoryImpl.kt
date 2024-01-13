@@ -114,4 +114,18 @@ class PanelRepositoryImpl @Inject constructor(private val api: SurveasyApi) : Pa
 
     }
 
+    override fun signout(): Flow<BaseState<Unit>> = flow {
+        when (val result = handleResponse { api.signout() }) {
+            is BaseState.Success -> emit(BaseState.Success(Unit))
+            is BaseState.Error -> emit(result)
+        }
+    }
+
+    override fun withdraw(): Flow<BaseState<Unit>> = flow {
+        when (val result = handleResponse { api.withdraw() }) {
+            is BaseState.Success -> emit(BaseState.Success(Unit))
+            is BaseState.Error -> emit(result)
+        }
+    }
+
 }
