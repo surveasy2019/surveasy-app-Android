@@ -1,6 +1,5 @@
 package com.surveasy.surveasy.presentation.main.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
@@ -83,10 +82,20 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch { _events.emit(HomeEvents.ClickSurveyItem(id)) }
     }
 
+    fun navigateToHowContent() {
+        viewModelScope.launch { _events.emit(HomeEvents.ClickHowContent) }
+    }
+
+    fun navigateToNotice() {
+        viewModelScope.launch { _events.emit(HomeEvents.ClickNotice) }
+    }
+
 }
 
 sealed class HomeEvents {
     data class ClickSurveyItem(val id: Int) : HomeEvents()
+    data object ClickHowContent : HomeEvents()
+    data object ClickNotice : HomeEvents()
     data class ShowToastMsg(val msg: String) : HomeEvents()
     data class ShowSnackBar(val msg: String) : HomeEvents()
 }
