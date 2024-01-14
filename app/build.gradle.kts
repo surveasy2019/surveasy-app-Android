@@ -97,4 +97,8 @@ dependencies {
 
     // indicator
     implementation("com.tbuonomo:dotsindicator:4.2")
+
+    // searchable spinner
+    implementation("com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1")
+
 }
