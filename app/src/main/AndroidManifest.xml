@@ -20,6 +20,9 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.main.survey.fs.FirstSurveyActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.main.home.notice.HomeNoticeActivity"
             android:exported="false" />
         <activity
