@@ -37,7 +37,7 @@ interface SurveasyApi {
 
     @POST("panel/oauth2")
     suspend fun kakaoSignup(
-        @Body body: KakaoInfoRequest
+        @Body oAuth2UserInfo: KakaoInfoRequest,
     ): Response<KakaoInfoResponse>
 
     @POST("panel/signup")

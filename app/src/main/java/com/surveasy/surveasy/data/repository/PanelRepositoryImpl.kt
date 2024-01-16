@@ -32,9 +32,7 @@ class PanelRepositoryImpl @Inject constructor(private val api: SurveasyApi) : Pa
         when (val result =
             handleResponse {
                 api.kakaoSignup(
-                    KakaoInfoRequest(
-                        name, email, phoneNumber, gender, birth, authProvider
-                    )
+                    KakaoInfoRequest(name, email, phoneNumber, gender, birth, authProvider)
                 )
             }) {
             is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))

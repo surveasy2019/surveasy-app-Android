@@ -6,14 +6,14 @@ import com.surveasy.surveasy.data.model.response.TokenResponse.Companion.toDomai
 import com.surveasy.surveasy.domain.model.KakaoInfo
 
 data class KakaoInfoResponse(
-    val additionalInfo: Boolean,
-    val tokens: TokenResponse,
-    val signedUp: Boolean,
+    val additionalInfo: Boolean?,
+    val tokens: TokenResponse?,
+    val signedUp: Boolean?,
 ) : BaseDataModel {
     companion object : DomainMapper<KakaoInfoResponse, KakaoInfo> {
         override fun KakaoInfoResponse.toDomainModel(): KakaoInfo = KakaoInfo(
             additionalInfo = additionalInfo,
-            tokens = tokens.toDomainModel(),
+            tokens = tokens?.toDomainModel(),
             signedUp = signedUp
         )
     }

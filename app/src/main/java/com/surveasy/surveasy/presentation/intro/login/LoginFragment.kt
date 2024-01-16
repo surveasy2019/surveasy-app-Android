@@ -14,6 +14,8 @@ import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentLoginBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
 import com.surveasy.surveasy.presentation.main.MainActivity
+import com.surveasy.surveasy.presentation.util.ErrorMsg.GET_INFO_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.SIGNUP_ERROR
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -28,14 +30,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
         repeatOnStarted {
             viewModel.events.collect { event ->
                 when (event) {
-
-                    is LoginEvents.NavigateToRegister -> {
-                        loginKakao()
-                        findNavController().navigate(
-                            LoginFragmentDirections.actionLoginFragmentToRegisterAgreeFragment()
-                        )
-                    }
-
+                    is LoginEvents.ClickKakaoSignup -> loginKakao()
+                    is LoginEvents.NavigateToRegister -> findNavController().toRegister()
                     is LoginEvents.NavigateToMain -> findNavController().toMain()
                     is LoginEvents.ShowSnackBar -> showSnackBar(event.msg)
 
@@ -55,24 +51,36 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
         startActivity(intent)
     }
 
+    private fun NavController.toRegister() {
+        navigate(LoginFragmentDirections.actionLoginFragmentToRegisterAgreeFragment())
+    }
+
     private val kakaoLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
-        Log.d("TEST", "$token, $error")
         if (error != null) {
+            showSnackBar(SIGNUP_ERROR)
             Log.d("TEST", "fail, $error")
         } else if (token != null) {
-            UserApiClient.instance.me { user, error ->
-                if (error != null) {
-                    Log.d("TEST", "사용자 정보 요청 실패", error)
-                }
-                else if (user != null) {
-                    Log.d("TEST", "사용자 정보 요청 성공" +
-                            "\n회원번호: ${user.id}" +
-                            "\n이메일: ${user.kakaoAccount?.email}" +
-                            "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
-                            "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
+            kakaoInfoCallback()
+        }
+    }
+
+    private val kakaoInfoCallback: () -> Unit = {
+        UserApiClient.instance.me { user, error ->
+            if (error != null) {
+                showSnackBar(GET_INFO_ERROR)
+                Log.d("TEST", "사용자 정보 요청 실패", error)
+            } else if (user != null) {
+                with(user) {
+                    viewModel.kakaoSignup(
+                        kakaoAccount?.name,
+                        kakaoAccount?.email,
+                        kakaoAccount?.phoneNumber,
+                        kakaoAccount?.gender,
+                        kakaoAccount?.birthyear,
+                        kakaoAccount?.birthday
+                    )
                 }
             }
-            Log.d("TEST", "success, $token")
         }
     }
 
@@ -80,7 +88,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
         lifecycleScope.launch {
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(requireContext())) {
                 UserApiClient.instance.loginWithKakaoTalk(requireContext()) { token, error ->
-                    Log.d("TEST", "first")
                     if (error != null) {
                         Log.d("TEST", "fail, $error")
                         if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
@@ -95,7 +102,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
                     }
                 }
             } else {
-                Log.d("TEST", "second")
                 UserApiClient.instance.loginWithKakaoAccount(
                     requireContext(),
                     callback = kakaoLoginCallback
