@@ -2,12 +2,14 @@ package com.surveasy.surveasy.data.remote
 
 import com.surveasy.surveasy.data.model.request.EditInfoRequest
 import com.surveasy.surveasy.data.model.request.ExistRegisterRequest
+import com.surveasy.surveasy.data.model.request.KakaoInfoRequest
 import com.surveasy.surveasy.data.model.request.NewRegisterRequest
 import com.surveasy.surveasy.data.model.request.RefreshTokenRequest
 import com.surveasy.surveasy.data.model.request.ResponseImgRequest
 import com.surveasy.surveasy.data.model.response.CommonIdResponse
 import com.surveasy.surveasy.data.model.response.HistoryResponse
 import com.surveasy.surveasy.data.model.response.HomeSurveyResponse
+import com.surveasy.surveasy.data.model.response.KakaoInfoResponse
 import com.surveasy.surveasy.data.model.response.PanelDetailInfoResponse
 import com.surveasy.surveasy.data.model.response.PanelInfoResponse
 import com.surveasy.surveasy.data.model.response.RegisterResponse
@@ -32,6 +34,11 @@ interface SurveasyApi {
     suspend fun createExistPanel(
         @Body body: ExistRegisterRequest
     ): Response<RegisterResponse>
+
+    @POST("panel/oauth2")
+    suspend fun kakaoSignup(
+        @Body body: KakaoInfoRequest
+    ): Response<KakaoInfoResponse>
 
     @POST("panel/signup")
     suspend fun createNewPanel(

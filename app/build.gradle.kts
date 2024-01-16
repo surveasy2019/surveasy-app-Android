@@ -117,6 +117,5 @@ dependencies {
     implementation("com.kakao.sdk:v2-user:2.11.2")
 
     // searchable spinner
-    implementation("com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1")
 
 }
