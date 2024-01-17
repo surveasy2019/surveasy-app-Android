@@ -1,3 +1,7 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -11,6 +15,10 @@ android {
     namespace = "com.surveasy.surveasy"
     compileSdk = 34
 
+    Properties().apply {
+        load(FileInputStream("$rootDir/local.properties"))
+    }
+
     defaultConfig {
         applicationId = "com.surveasy.surveasy"
         minSdk = 24
@@ -19,6 +27,9 @@ android {
         versionName = "1.0.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "KAKAO_NATIVE_KEY", getProperty("kakaoNativeKey"))
+        manifestPlaceholders["NATIVE_KEY"] = getProperty("kakaoKey")
     }
 
     buildTypes {
@@ -43,6 +54,10 @@ android {
         buildConfig = true
         viewBinding = true
     }
+}
+
+fun getProperty(propertyKey: String): String {
+    return gradleLocalProperties(rootDir).getProperty(propertyKey)
 }
 
 dependencies {
@@ -98,7 +113,9 @@ dependencies {
     // indicator
     implementation("com.tbuonomo:dotsindicator:4.2")
 
+    // kakao
+    implementation("com.kakao.sdk:v2-user:2.11.2")
+
     // searchable spinner
-    implementation("com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1")
 
 }

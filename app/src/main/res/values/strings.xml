@@ -18,6 +18,8 @@
     <string name="my_edit">수정하기</string>
     <string name="my_edit_done">수정 완료하기</string>
 
+    <string name="push_yes">푸시 알림을 받습니다.</string>
+    <string name="push_no">푸시 알림을 받지 않습니다.</string>
 
     // Tutorial
     <string-array name="tutorial_title">
@@ -643,7 +645,6 @@
     <string name="MyViewSettingWithdraw_NoticeTitle">탈퇴를 원하시면/n비밀번호를 입력해주세요.</string>
     <string name="MyViewSettingWithdraw_PwInput">비밀번호를 입력하세요</string>
     <string name="MyViewSettingWithdraw_WithdrawBtn">탈퇴하기</string>
-    <string name="kakao_nativeAppKey">c3dd0da30ec3cf75837fef9022ca48a4</string>
     <string name="login_main1">에</string>
     <string name="login_main2">오신 것을 환영합니다.</string>
     <string name="login_id">아이디 (이메일)</string>
@@ -689,7 +690,7 @@
     <string name="register1_woman">여자</string>
     <string name="register1_birth">생년월일</string>
     <string name="register1_inflow">유입경로</string>
-    <string name="register2_title">계좌정보 입력</string>
+    <string name="register2_title">추가정보 입력</string>
     <string name="register2_warn">추후 설문 응답비가 지급되는 계좌입니다.\n잘못된 계좌정보를 입력한 경우, 응답비가 지급되지 않을 수 있습니다.</string>
     <string name="register2_bank">은행</string>
     <string name="register2_account_num">계좌번호</string>

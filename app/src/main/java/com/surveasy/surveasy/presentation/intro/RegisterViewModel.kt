@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -27,17 +28,14 @@ class RegisterViewModel @Inject constructor(
     val agreeMust1 = MutableStateFlow(false)
     val agreeMust2 = MutableStateFlow(false)
     val agreeMarketing = MutableStateFlow(false)
-    val name = MutableStateFlow("")
-    val email = MutableStateFlow("")
-    val pw = MutableStateFlow("")
-    val pwCheck = MutableStateFlow("")
-    val phone = MutableStateFlow("")
-    val gender = MutableStateFlow(true)
-    val birth = MutableStateFlow("생년월일을 선택해주세요.")
-    val inflow = MutableStateFlow("")
-    val bank = MutableStateFlow("")
+
+    val showEtc = MutableStateFlow(false)
+    private val inflow = MutableStateFlow("")
+    val inflowEtc = MutableStateFlow("")
+    private val bank = MutableStateFlow("")
     val account = MutableStateFlow("")
     val accountOwner = MutableStateFlow("")
+    val push = MutableStateFlow(true)
 
     private val _uiState = MutableStateFlow(RegisterUiState())
     val uiState: StateFlow<RegisterUiState> = _uiState.asStateFlow()
@@ -54,13 +52,8 @@ class RegisterViewModel @Inject constructor(
         checkMust1()
         checkMust2()
         checkMarketing()
-        observeName()
-        observeEmail()
-        observePw()
-        observePwCheck()
-        observePhone()
-        observeBirth()
         observeInflow()
+        observeInflowEtc()
         observeBank()
         observeAccount()
         observeAccountOwner()
@@ -73,98 +66,12 @@ class RegisterViewModel @Inject constructor(
                     RegisterEventType.TO_WARN -> RegisterEvents.NavigateToRegisterWarn
                     RegisterEventType.TO_TERM1 -> RegisterEvents.NavigateToTerm1
                     RegisterEventType.TO_TERM2 -> RegisterEvents.NavigateToTerm2
-                    RegisterEventType.TO_INPUT1 -> RegisterEvents.NavigateToRegisterInput1
-                    RegisterEventType.TO_INPUT2 -> RegisterEvents.NavigateToRegisterInput2
+                    RegisterEventType.TO_INPUT -> RegisterEvents.NavigateToRegisterInput
                     RegisterEventType.TO_BACK -> RegisterEvents.NavigateToBack
                     RegisterEventType.TO_MAIN -> RegisterEvents.NavigateToMain
                 }
             )
         }
-    }
-
-    private fun observeName() {
-        name.onEach { name ->
-            val isValid = name.length > NAME_LENGTH
-            _uiState.update { state ->
-                state.copy(
-                    nameState = InputState(
-                        helperText = if (name.isEmpty()) HelperText.NONE else if (isValid) HelperText.VALID else HelperText.NAME_INVALID,
-                        isValid = isValid
-                    )
-                )
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    private fun observeEmail() {
-        email.onEach { email ->
-            val isValid = email.matches(EMAIL_REGEX)
-            _uiState.update { state ->
-                state.copy(
-                    emailState = InputState(
-                        helperText = if (email.isEmpty()) HelperText.NONE else if (isValid) HelperText.VALID else HelperText.EMAIL_INVALID,
-                        isValid = isValid
-                    )
-                )
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    private fun observePw() {
-        pw.onEach { pw ->
-            val isValid = pw.length > PW_LENGTH
-            _uiState.update { state ->
-                state.copy(
-                    pwState = InputState(
-                        helperText = if (pw.isEmpty()) HelperText.NONE else if (isValid) HelperText.VALID else HelperText.PW_INVALID,
-                        isValid = isValid
-                    )
-                )
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    private fun observePwCheck() {
-        pwCheck.onEach { pwCheck ->
-            val isValid = pwCheck == pw.value
-            _uiState.update { state ->
-                state.copy(
-                    pwCheckState = InputState(
-                        helperText = if (pwCheck.isEmpty()) HelperText.NONE else if (isValid) HelperText.VALID else HelperText.PW_CHECK_INVALID,
-                        isValid = isValid
-                    )
-                )
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    private fun observePhone() {
-        phone.onEach { phone ->
-            val isValid = phone.matches(PHONE_REGEX)
-            _uiState.update { state ->
-                state.copy(
-                    phoneState = InputState(
-                        helperText = if (phone.isEmpty()) HelperText.NONE else if (isValid) HelperText.VALID else HelperText.PHONE_INVALID,
-                        isValid = isValid
-                    )
-                )
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    fun setBirth(date: String) {
-        viewModelScope.launch { birth.emit(date) }
-    }
-
-    private fun observeBirth() {
-        birth.onEach { birth ->
-            val isValid = birth.matches(BIRTH_REGEX)
-            _uiState.update { state ->
-                state.copy(
-                    birthState = InputState(isValid = isValid)
-                )
-            }
-        }.launchIn(viewModelScope)
     }
 
     fun setInflow(select: String) {
@@ -174,6 +81,7 @@ class RegisterViewModel @Inject constructor(
     private fun observeInflow() {
         inflow.onEach { inflow ->
             val isValid = inflow != INFLOW_DEFAULT
+            showEtc.emit(inflow == INFLOW_ETC)
             _uiState.update { state ->
                 state.copy(
                     inflowState = InputState(isValid = isValid)
@@ -182,8 +90,26 @@ class RegisterViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
+    private fun observeInflowEtc() {
+        inflowEtc.onEach { etc ->
+            val isValid = etc.length > NAME_LENGTH
+            _uiState.update { state ->
+                state.copy(
+                    inflowEtcState = InputState(
+                        helperText = if (etc.isEmpty()) HelperText.NONE else if (isValid) HelperText.VALID else HelperText.INFLOW_ETC_INVALID,
+                        isValid = isValid
+                    )
+                )
+            }
+        }.launchIn(viewModelScope)
+    }
+
     fun setBank(select: String) {
         viewModelScope.launch { bank.emit(select) }
+    }
+
+    fun observePush(isChecked: Boolean) {
+        push.value = isChecked
     }
 
     private fun observeBank() {
@@ -225,31 +151,28 @@ class RegisterViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun setGender(isMale: Boolean) {
-        viewModelScope.launch { gender.emit(isMale) }
-    }
-
     fun createNewPanel() {
         newPanelUseCase(
-            name = name.value,
-            email = email.value,
-            fcmToken = "temp",
-            gender = gender.value,
-            birth = birth.value,
+            platform = ANDROID,
             accountOwner = accountOwner.value,
             accountType = bank.value,
             accountNumber = account.value,
             inflowPath = inflow.value,
-            inflowPathEtc = "",
-            phoneNumber = phone.value,
-            platform = "ANDROID",
-            pushOn = false,
-            marketing = agreeMarketing.value
+            inflowPathEtc = inflowEtc.value.ifBlank { null },
+            marketingAgree = agreeMarketing.value,
+            pushOn = push.value
         ).onEach { register ->
+            _events.emit(RegisterEvents.ShowLoading)
             when (register) {
-                is BaseState.Success -> _events.emit(RegisterEvents.NavigateToMain)
+                is BaseState.Success -> {
+                    // token save, auto save
+                    _events.emit(RegisterEvents.NavigateToMain)
+                }
+
                 is BaseState.Error -> _events.emit(RegisterEvents.ShowSnackBar(SIGNUP_ERROR))
             }
+        }.onCompletion {
+            _events.emit(RegisterEvents.DismissLoading)
         }.launchIn(viewModelScope)
     }
 
@@ -297,43 +220,37 @@ class RegisterViewModel @Inject constructor(
 
     companion object {
         const val NAME_LENGTH = 1
-        const val PW_LENGTH = 7
-        val EMAIL_REGEX =
-            Regex("""^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})${'$'}""")
-        val PHONE_REGEX = Regex("""^[0-9]{11}${'$'}""")
-        val BIRTH_REGEX = Regex("""^\d{4}/\d{2}/\d{2}${'$'}""")
         val ACCOUNT_REGEX = Regex("\\d+")
         const val INFLOW_DEFAULT = "유입경로를 선택하세요"
+        const val INFLOW_ETC = "기타"
         const val BANK_DEFAULT = "은행을 선택하세요"
+        const val ANDROID = "ANDROID"
     }
 }
 
 
 data class RegisterUiState(
-    val nameState: InputState = InputState(),
-    val emailState: InputState = InputState(),
-    val pwState: InputState = InputState(),
-    val pwCheckState: InputState = InputState(),
-    val phoneState: InputState = InputState(),
-    val birthState: InputState = InputState(),
     val inflowState: InputState = InputState(),
     val bankState: InputState = InputState(),
     val accountState: InputState = InputState(),
     val accountOwnerState: InputState = InputState(),
+    val inflowEtcState: InputState = InputState(),
 )
 
 data class InputState(
-    val helperText: HelperText = HelperText.NONE, val isValid: Boolean = false
+    val helperText: HelperText = HelperText.NONE,
+    val isValid: Boolean = false
 )
 
 sealed class RegisterEvents {
     data object NavigateToRegisterWarn : RegisterEvents()
     data object NavigateToTerm1 : RegisterEvents()
     data object NavigateToTerm2 : RegisterEvents()
-    data object NavigateToRegisterInput1 : RegisterEvents()
-    data object NavigateToRegisterInput2 : RegisterEvents()
+    data object NavigateToRegisterInput : RegisterEvents()
     data object NavigateToBack : RegisterEvents()
     data object NavigateToMain : RegisterEvents()
+    data object ShowLoading : RegisterEvents()
+    data object DismissLoading : RegisterEvents()
     data class ShowToastMsg(val msg: String) : RegisterEvents()
     data class ShowSnackBar(val msg: String) : RegisterEvents()
 }

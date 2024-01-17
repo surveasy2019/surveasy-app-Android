@@ -2,7 +2,13 @@ package com.surveasy.surveasy.presentation.intro.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kakao.sdk.user.model.Gender
+import com.surveasy.surveasy.app.DataStoreManager
+import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.CreateExistPanelUseCase
+import com.surveasy.surveasy.domain.usecase.KakaoSignupUseCase
+import com.surveasy.surveasy.presentation.util.ErrorMsg.GET_INFO_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.SIGNUP_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -12,6 +18,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -19,7 +26,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val createExistPanelUseCase: CreateExistPanelUseCase
+    private val createExistPanelUseCase: CreateExistPanelUseCase,
+    private val kakaoSignupUseCase: KakaoSignupUseCase,
+    private val dataStoreManager: DataStoreManager,
 ) : ViewModel() {
     val email = MutableStateFlow("")
     val pw = MutableStateFlow("")
@@ -28,9 +37,7 @@ class LoginViewModel @Inject constructor(
     val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
 
     private val _events = MutableSharedFlow<LoginEvents>(
-        replay = 0,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST,
-        extraBufferCapacity = 1
+        replay = 0, onBufferOverflow = BufferOverflow.DROP_OLDEST, extraBufferCapacity = 1
     )
     val events: SharedFlow<LoginEvents> = _events.asSharedFlow()
 
@@ -39,8 +46,8 @@ class LoginViewModel @Inject constructor(
         observePw()
     }
 
-    fun navigateToRegister() {
-        viewModelScope.launch { _events.emit(LoginEvents.NavigateToRegister) }
+    fun startKakaoSignup() {
+        viewModelScope.launch { _events.emit(LoginEvents.ClickKakaoSignup) }
     }
 
     private fun observeEmail() {
@@ -63,43 +70,60 @@ class LoginViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-//    private suspend fun getUid(): String? {
-//        return viewModelScope.async {
-//            var result: String? = null
-//            getUidUseCase(email.value, pw.value).onEach { login ->
-//                result = when (login) {
-//                    is BaseState.Success -> {
-//                        Log.d("TEST", "login success")
-//                        login.data
-//                    }
-//
-//                    is BaseState.Error -> {
-//                        Log.d("TEST", "login fail")
-//                        null
-//                    }
-//                }
-//            }.launchIn(viewModelScope)
-//            result
-//        }.await()
-//    }
+    fun kakaoSignup(
+        name: String?,
+        email: String?,
+        phone: String?,
+        gender: Gender?,
+        birthYear: String?,
+        birth: String?,
+        provider: String = "KAKAO"
+    ) {
+        viewModelScope.launch { _events.emit(LoginEvents.ShowLoading) }
+        if (name == null || email == null || phone == null || gender == null || birthYear == null || birth == null) {
+            viewModelScope.launch { _events.emit(LoginEvents.ShowSnackBar(GET_INFO_ERROR)) }
+        } else {
+            kakaoSignupUseCase(
+                name,
+                email,
+                setPhoneFormat(phone),
+                gender.toString(),
+                setBirthFormat(birthYear, birth),
+                provider
+            ).onEach {
+                when (it) {
+                    is BaseState.Success -> {
+                        if (it.data.additionalInfo) {
+                            dataStoreManager.putAccessToken(it.data.tokens.accessToken)
+                            dataStoreManager.putRefreshToken(it.data.tokens.refreshToken)
+                            dataStoreManager.putAutoLogin(true)
+                            _events.emit(LoginEvents.NavigateToMain)
+                        } else {
+                            dataStoreManager.putAccessToken(it.data.tokens.accessToken)
+                            _events.emit(LoginEvents.NavigateToRegister)
+                        }
+                    }
 
-//    fun existLogin() {
-//        viewModelScope.launch {
-//            val uid = getUid()
-//            uid ?: return@launch
-//            Log.d("TEST", "register start")
-//            createExistPanelUseCase(uid, email.value).onEach { register ->
-//                when (register) {
-//                    is BaseState.Success -> {
-//                        _events.emit(ExistUserEvents.NavigateToMain)
-//                    }
-//
-//                    is BaseState.Error -> Log.d("TEST", "register fail")
-//                }
-//            }.launchIn(viewModelScope)
-//        }
-//
-//    }
+                    else -> _events.emit(LoginEvents.ShowSnackBar(SIGNUP_ERROR))
+
+                }
+            }.onCompletion {
+                _events.emit(LoginEvents.DismissLoading)
+            }.launchIn(viewModelScope)
+        }
+    }
+
+    private fun setBirthFormat(year: String, day: String): String {
+        val formatDay =
+            if (day.length == 4) "${day.substring(0, 2)}-${day.substring(2)}" else "01-01"
+        return "${year}-$formatDay"
+    }
+
+    private fun setPhoneFormat(phone: String): String {
+        val list = phone.split(" ")
+        val format = list[list.size - 1]
+        return "0${format.replace("-", "")}"
+    }
 
 }
 
@@ -110,8 +134,11 @@ data class LoginUiState(
 )
 
 sealed class LoginEvents {
+    data object ClickKakaoSignup : LoginEvents()
     data object NavigateToRegister : LoginEvents()
     data object NavigateToMain : LoginEvents()
+    data object ShowLoading : LoginEvents()
+    data object DismissLoading : LoginEvents()
     data class ShowToastMsg(val msg: String) : LoginEvents()
     data class ShowSnackBar(val msg: String) : LoginEvents()
 }

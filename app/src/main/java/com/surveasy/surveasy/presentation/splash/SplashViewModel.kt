@@ -7,6 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,9 +20,17 @@ class SplashViewModel @Inject constructor(
 
     fun chooseNextPage() {
         viewModelScope.launch {
+            val combineFlow = dataStoreManager.getAccessToken()
+                .combine(dataStoreManager.getRefreshToken()) { access, refresh ->
+                    access != null && refresh != null
+                }.combine(dataStoreManager.getAutoLogin()) { token, auto ->
+                    token && auto == true
+                }
             dataStoreManager.getTutorial().collect { tutorial ->
                 if (tutorial == true) {
-                    _events.emit(SplashUiEvent.NavigateToMain)
+                    combineFlow.collect {
+                        _events.emit(if (it) SplashUiEvent.NavigateToMain else SplashUiEvent.NavigateToIntro)
+                    }
                 } else {
                     _events.emit(SplashUiEvent.NavigateToTutorial)
                 }
