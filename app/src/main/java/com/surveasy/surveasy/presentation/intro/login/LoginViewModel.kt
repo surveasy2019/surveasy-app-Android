@@ -3,6 +3,7 @@ package com.surveasy.surveasy.presentation.intro.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kakao.sdk.user.model.Gender
+import com.surveasy.surveasy.app.DataStoreManager
 import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.CreateExistPanelUseCase
 import com.surveasy.surveasy.domain.usecase.KakaoSignupUseCase
@@ -26,6 +27,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val createExistPanelUseCase: CreateExistPanelUseCase,
     private val kakaoSignupUseCase: KakaoSignupUseCase,
+    private val dataStoreManager: DataStoreManager,
 ) : ViewModel() {
     val email = MutableStateFlow("")
     val pw = MutableStateFlow("")
@@ -89,8 +91,14 @@ class LoginViewModel @Inject constructor(
             ).onEach {
                 when (it) {
                     is BaseState.Success -> {
-                        val addInfo = it.data.additionalInfo
-                        _events.emit(if (addInfo == true) LoginEvents.NavigateToMain else LoginEvents.NavigateToRegister)
+                        if (it.data.additionalInfo) {
+                            dataStoreManager.putAccessToken(it.data.tokens.accessToken)
+                            dataStoreManager.putRefreshToken(it.data.tokens.refreshToken)
+                            _events.emit(LoginEvents.NavigateToMain)
+                        } else {
+                            dataStoreManager.putAccessToken(it.data.tokens.accessToken)
+                            _events.emit(LoginEvents.NavigateToRegister)
+                        }
                     }
 
                     else -> _events.emit(LoginEvents.ShowSnackBar(SIGNUP_ERROR))
