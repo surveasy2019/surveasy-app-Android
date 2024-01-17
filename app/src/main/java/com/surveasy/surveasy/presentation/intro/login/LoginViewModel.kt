@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -78,6 +79,7 @@ class LoginViewModel @Inject constructor(
         birth: String?,
         provider: String = "KAKAO"
     ) {
+        viewModelScope.launch { _events.emit(LoginEvents.ShowLoading) }
         if (name == null || email == null || phone == null || gender == null || birthYear == null || birth == null) {
             viewModelScope.launch { _events.emit(LoginEvents.ShowSnackBar(GET_INFO_ERROR)) }
         } else {
@@ -104,6 +106,8 @@ class LoginViewModel @Inject constructor(
                     else -> _events.emit(LoginEvents.ShowSnackBar(SIGNUP_ERROR))
 
                 }
+            }.onCompletion {
+                _events.emit(LoginEvents.DismissLoading)
             }.launchIn(viewModelScope)
         }
     }
@@ -132,6 +136,8 @@ sealed class LoginEvents {
     data object ClickKakaoSignup : LoginEvents()
     data object NavigateToRegister : LoginEvents()
     data object NavigateToMain : LoginEvents()
+    data object ShowLoading : LoginEvents()
+    data object DismissLoading : LoginEvents()
     data class ShowToastMsg(val msg: String) : LoginEvents()
     data class ShowSnackBar(val msg: String) : LoginEvents()
 }

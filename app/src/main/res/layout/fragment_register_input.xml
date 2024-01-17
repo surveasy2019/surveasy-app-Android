@@ -6,6 +6,8 @@
 
         <import type="com.surveasy.surveasy.presentation.intro.RegisterEventType" />
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="com.surveasy.surveasy.presentation.intro.RegisterViewModel" />
@@ -32,6 +34,7 @@
                     android:id="@+id/tv_input2_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:fontFamily="@font/main_font_sb"
                     android:lineSpacingExtra="3.3sp"
                     android:text="@string/register2_title"
@@ -61,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="40dp"
                     android:fontFamily="@font/main_font_sb"
                     android:text="@string/register2_bank"
                     android:textColor="#000000"
@@ -73,7 +76,7 @@
                     android:id="@+id/s_bank"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="12dp"
                     android:background="@drawable/custom_spinner"
                     android:paddingStart="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="30dp"
                     android:fontFamily="@font/main_font_sb"
                     android:text="@string/register2_account_num"
                     android:textColor="#000000"
@@ -97,17 +100,17 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_account"
-                    set_helper_text="@{vm.uiState.accountState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="10dp"
                     app:boxStrokeColor="@color/main_green"
                     app:boxStrokeWidthFocused="1dp"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_account_label"
-                    app:placeholderTextColor="#c9c9c9">
+                    app:placeholderTextColor="#c9c9c9"
+                    app:setHelperText="@{vm.uiState.accountState}">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_account"
@@ -122,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="30dp"
                     android:fontFamily="@font/main_font_sb"
                     android:text="@string/register2_owner"
                     android:textColor="#000000"
@@ -133,17 +136,17 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_owner"
-                    set_helper_text="@{vm.uiState.accountOwnerState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="10dp"
                     app:boxStrokeColor="@color/main_green"
                     app:boxStrokeWidthFocused="1dp"
                     app:helperTextTextAppearance="@font/main_font_l"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_owner_label"
-                    app:placeholderTextColor="#c9c9c9">
+                    app:placeholderTextColor="#c9c9c9"
+                    app:setHelperText="@{vm.uiState.accountOwnerState}">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_owner"
@@ -158,7 +161,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30dp"
                     android:fontFamily="@font/main_font_sb"
                     android:text="@string/register1_inflow"
                     android:textColor="#000000"
@@ -170,7 +173,7 @@
                     android:id="@+id/s_inflow"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="12dp"
                     android:background="@drawable/custom_spinner"
                     android:paddingStart="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -182,8 +185,8 @@
                     android:id="@+id/til_inflow_etc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:visibility="gone"
+                    android:layout_marginTop="8dp"
+                    android:visibility="@{vm.showEtc? View.VISIBLE : View.GONE}"
                     app:boxStrokeColor="@color/main_green"
                     app:boxStrokeWidthFocused="1dp"
                     app:helperTextTextAppearance="@font/main_font_l"
@@ -192,53 +195,51 @@
                     app:layout_constraintTop_toBottomOf="@id/s_inflow"
                     app:placeholderText="자세한 유입경로를 적어주세요."
                     app:placeholderTextAppearance="@font/main_font_m"
-                    app:placeholderTextColor="#c9c9c9">
+                    app:placeholderTextColor="#c9c9c9"
+                    app:setHelperText="@{vm.uiState.inflowEtcState}">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_inflow_etc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@={vm.inflowEtc}"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/tv_gender_label"
+                    android:id="@+id/tv_push_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="30dp"
                     android:fontFamily="@font/main_font_sb"
                     android:text="푸시알림"
                     android:textColor="#000000"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/s_inflow" />
+                    app:layout_constraintTop_toBottomOf="@id/til_inflow_etc" />
 
-                <RadioGroup
-                    android:id="@+id/rg_push"
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/tv_push_state"
+                    style="@style/TextSmallRegular"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@{vm.push? @string/push_yes : @string/push_no}"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_gender_label">
+                    app:layout_constraintTop_toBottomOf="@id/tv_push_label" />
 
-                    <RadioButton
-                        android:id="@+id/rb_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:onClick="@{()->vm.setGender(true)}"
-                        android:text="동의합니다." />
-
-                    <RadioButton
-                        android:id="@+id/rb_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="40dp"
-                        android:onClick="@{()->vm.setGender(false)}"
-                        android:text="동의하지 않습니다." />
-
-                </RadioGroup>
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/sm_english"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:onCheckedChanged="@{(a,b) -> vm.observePush(b)}"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_push_state"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_push_state" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -262,7 +263,6 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_register_done"
-            set_done_enable="@{vm.uiState}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -275,6 +275,8 @@
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:needEtc="@{vm.showEtc}"
+            app:setDoneEnable="@{vm.uiState}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

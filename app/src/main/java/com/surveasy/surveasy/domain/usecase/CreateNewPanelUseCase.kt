@@ -10,35 +10,23 @@ class CreateNewPanelUseCase @Inject constructor(
     private val repository: PanelRepository
 ) {
     operator fun invoke(
-        name: String,
-        email: String,
-        fcmToken: String,
-        gender: Boolean,
-        birth: String,
+        platform: String,
         accountOwner: String,
         accountType: String,
         accountNumber: String,
         inflowPath: String,
-        inflowPathEtc: String,
-        phoneNumber: String,
-        platform: String,
+        inflowPathEtc: String?,
         pushOn: Boolean,
-        marketing: Boolean
+        marketingAgree: Boolean,
     ): Flow<BaseState<Register>> = repository.createNewPanel(
-        name,
-        email,
-        fcmToken,
-        setGender(gender),
-        birth,
+        platform,
         accountOwner,
         setBank(accountType),
         accountNumber,
         setInflow(inflowPath),
         inflowPathEtc,
-        phoneNumber,
-        platform,
         pushOn,
-        marketing
+        marketingAgree
     )
 
     private fun setBank(bank: String): String {
@@ -55,10 +43,6 @@ class CreateNewPanelUseCase @Inject constructor(
             "토스뱅크" -> "TOSS"
             else -> ""
         }
-    }
-
-    private fun setGender(isMale: Boolean): String {
-        return if (isMale) "MALE" else "FEMALE"
     }
 
     private fun setInflow(inflow: String): String {

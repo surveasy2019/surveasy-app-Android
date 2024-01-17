@@ -1,6 +1,6 @@
 package com.surveasy.surveasy.presentation.intro
 
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterWarnBinding
@@ -10,7 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RegisterWarnFragment :
     BaseFragment<FragmentRegisterWarnBinding>(R.layout.fragment_register_warn) {
-    private val viewModel: RegisterViewModel by viewModels()
+    private val viewModel: RegisterViewModel by activityViewModels()
 
     override fun initView() = with(binding) {
         vm = viewModel

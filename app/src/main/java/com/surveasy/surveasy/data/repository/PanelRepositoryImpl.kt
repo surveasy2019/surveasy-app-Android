@@ -53,39 +53,27 @@ class PanelRepositoryImpl @Inject constructor(private val api: SurveasyApi) : Pa
     }
 
     override fun createNewPanel(
-        name: String,
-        email: String,
-        fcmToken: String,
-        gender: String,
-        birth: String,
+        platform: String,
         accountOwner: String,
         accountType: String,
         accountNumber: String,
         inflowPath: String,
-        inflowPathEtc: String,
-        phoneNumber: String,
-        platform: String,
+        inflowPathEtc: String?,
         pushOn: Boolean,
-        marketing: Boolean
+        marketingAgree: Boolean,
     ): Flow<BaseState<Register>> = flow {
         when (val result =
             handleResponse {
                 api.createNewPanel(
                     NewRegisterRequest(
-                        name,
-                        email,
-                        fcmToken,
-                        gender,
-                        birth,
+                        platform,
                         accountOwner,
                         accountType,
                         accountNumber,
                         inflowPath,
                         inflowPathEtc,
-                        phoneNumber,
-                        platform,
                         pushOn,
-                        marketing
+                        marketingAgree
                     )
                 )
             }) {

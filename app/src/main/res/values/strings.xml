@@ -18,6 +18,8 @@
     <string name="my_edit">수정하기</string>
     <string name="my_edit_done">수정 완료하기</string>
 
+    <string name="push_yes">푸시 알림을 받습니다.</string>
+    <string name="push_no">푸시 알림을 받지 않습니다.</string>
 
     // Tutorial
     <string-array name="tutorial_title">

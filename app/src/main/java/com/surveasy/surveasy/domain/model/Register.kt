@@ -4,6 +4,6 @@ import com.surveasy.surveasy.domain.base.BaseDomainModel
 
 data class Register(
     val panelId: Int,
-    val accessToken: String,
-    val refreshToken: String,
+    val accessToken: String?,
+    val refreshToken: String?,
 ) : BaseDomainModel

@@ -34,7 +34,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
                     is LoginEvents.NavigateToRegister -> findNavController().toRegister()
                     is LoginEvents.NavigateToMain -> findNavController().toMain()
                     is LoginEvents.ShowSnackBar -> showSnackBar(event.msg)
-
+                    is LoginEvents.ShowLoading -> showLoading(requireContext())
+                    is LoginEvents.DismissLoading -> dismissLoading()
                     else -> Unit
                 }
             }

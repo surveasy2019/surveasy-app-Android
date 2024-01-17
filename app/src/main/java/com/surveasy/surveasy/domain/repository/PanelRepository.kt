@@ -25,20 +25,14 @@ interface PanelRepository {
     ): Flow<BaseState<Register>>
 
     fun createNewPanel(
-        name: String,
-        email: String,
-        fcmToken: String,
-        gender: String,
-        birth: String,
+        platform: String,
         accountOwner: String,
         accountType: String,
         accountNumber: String,
         inflowPath: String,
-        inflowPathEtc: String,
-        phoneNumber: String,
-        platform: String = "ANDROID",
+        inflowPathEtc: String?,
         pushOn: Boolean,
-        marketing: Boolean,
+        marketingAgree: Boolean,
     ): Flow<BaseState<Register>>
 
     fun queryPanelInfo(): Flow<BaseState<PanelInfo>>

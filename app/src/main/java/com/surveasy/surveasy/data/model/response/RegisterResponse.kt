@@ -6,8 +6,8 @@ import com.surveasy.surveasy.domain.model.Register
 
 data class RegisterResponse(
     val panelId: Int,
-    val accessToken: String,
-    val refreshToken: String,
+    val accessToken: String?,
+    val refreshToken: String?,
 ) : BaseDataModel {
     companion object : DomainMapper<RegisterResponse, Register> {
         override fun RegisterResponse.toDomainModel(): Register = Register(

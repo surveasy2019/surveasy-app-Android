@@ -4,7 +4,7 @@ import android.content.Intent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterInputBinding
@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RegisterInputFragment :
     BaseFragment<FragmentRegisterInputBinding>(R.layout.fragment_register_input) {
-    private val viewModel: RegisterViewModel by viewModels()
+    private val viewModel: RegisterViewModel by activityViewModels()
 
     override fun initData() = Unit
 
@@ -25,6 +25,8 @@ class RegisterInputFragment :
                 when (event) {
                     is RegisterEvents.NavigateToBack -> findNavController().navigateUp()
                     is RegisterEvents.NavigateToMain -> navigateToMain()
+                    is RegisterEvents.ShowLoading -> showLoading(requireContext())
+                    is RegisterEvents.DismissLoading -> dismissLoading()
                     is RegisterEvents.ShowSnackBar -> showSnackBar(event.msg)
                     else -> Unit
                 }
