@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -41,6 +42,10 @@ class SettingViewModel @Inject constructor(
                 else -> _events.emit(SettingUiEvents.ShowSnackBar("로그아웃에 실패했습니다. 다시 시도해주세요."))
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun navigateToWithdraw() {
+        viewModelScope.launch { _events.emit(SettingUiEvents.Withdraw) }
     }
 
     fun withdraw() {
