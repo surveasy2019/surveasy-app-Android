@@ -96,6 +96,7 @@ class LoginViewModel @Inject constructor(
                         if (it.data.additionalInfo) {
                             dataStoreManager.putAccessToken(it.data.tokens.accessToken)
                             dataStoreManager.putRefreshToken(it.data.tokens.refreshToken)
+                            dataStoreManager.putAutoLogin(true)
                             _events.emit(LoginEvents.NavigateToMain)
                         } else {
                             dataStoreManager.putAccessToken(it.data.tokens.accessToken)
