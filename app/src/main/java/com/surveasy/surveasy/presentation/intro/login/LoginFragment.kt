@@ -23,7 +23,9 @@ import kotlinx.coroutines.launch
 class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login) {
     private val viewModel: LoginViewModel by viewModels()
     override fun initView() = with(binding) {
+        checkAutoLogin()
         vm = viewModel
+        btnExist.setOnClickListener { repeatOnStarted { viewModel.createExistPanel() } }
     }
 
     override fun initEventObserver() {
@@ -44,6 +46,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
 
     override fun initData() {
 
+    }
+
+    private fun checkAutoLogin() {
+        binding.cbAutoLogin.setOnCheckedChangeListener { buttonView, _ ->
+            viewModel.setAutoLogin(buttonView.isChecked)
+        }
     }
 
     private fun NavController.toMain() {
