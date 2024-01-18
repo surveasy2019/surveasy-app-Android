@@ -5,6 +5,7 @@ import com.surveasy.surveasy.domain.model.KakaoInfo
 import com.surveasy.surveasy.domain.model.PanelDetailInfo
 import com.surveasy.surveasy.domain.model.PanelInfo
 import com.surveasy.surveasy.domain.model.Register
+import com.surveasy.surveasy.domain.model.Token
 import kotlinx.coroutines.flow.Flow
 
 interface PanelRepository {
@@ -21,8 +22,9 @@ interface PanelRepository {
     fun createExistPanel(
         uid: String,
         email: String,
+        pw: String,
         platform: String = "ANDROID"
-    ): Flow<BaseState<Register>>
+    ): Flow<BaseState<Token>>
 
     fun createNewPanel(
         platform: String,

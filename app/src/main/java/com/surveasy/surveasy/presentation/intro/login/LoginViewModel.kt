@@ -12,6 +12,7 @@ import com.surveasy.surveasy.presentation.util.ErrorMsg.EXIST_LOGIN_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.EXIST_LOGIN_ERROR_TWICE
 import com.surveasy.surveasy.presentation.util.ErrorMsg.GET_INFO_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.SIGNUP_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.UNKNOWN_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.BufferOverflow
@@ -62,17 +63,22 @@ class LoginViewModel @Inject constructor(
             _events.emit(LoginEvents.DismissLoading)
             _events.emit(LoginEvents.ShowSnackBar(if (errorCount > 2) EXIST_LOGIN_ERROR_TWICE else EXIST_LOGIN_ERROR))
         } else {
-            createExistPanelUseCase(fbUid, email.value).onEach { state ->
+            createExistPanelUseCase(fbUid, email.value, pw.value).onEach { state ->
                 when (state) {
                     is BaseState.Success -> {
                         dataStoreManager.putAutoLogin(autoLogin.value)
+                        dataStoreManager.putAccessToken(state.data.accessToken)
+                        dataStoreManager.putRefreshToken(state.data.refreshToken)
                         _events.emit(LoginEvents.NavigateToMain)
                     }
 
                     is BaseState.Error -> {
-                        // error 처리 물어보기
-                        errorCount++
-                        _events.emit(LoginEvents.ShowSnackBar(if (errorCount > 2) EXIST_LOGIN_ERROR_TWICE else EXIST_LOGIN_ERROR))
+                        if (state.code == UNKNOWN_PANEL) {
+                            _events.emit(LoginEvents.ShowSnackBar(UNKNOWN_ERROR))
+                        } else {
+                            errorCount++
+                            _events.emit(LoginEvents.ShowSnackBar(if (errorCount > 2) EXIST_LOGIN_ERROR_TWICE else EXIST_LOGIN_ERROR))
+                        }
                     }
                 }
             }.onCompletion {
@@ -139,6 +145,10 @@ class LoginViewModel @Inject constructor(
         val list = phone.split(" ")
         val format = list[list.size - 1]
         return "0${format.replace("-", "")}"
+    }
+
+    companion object {
+        const val UNKNOWN_PANEL = 404
     }
 
 }

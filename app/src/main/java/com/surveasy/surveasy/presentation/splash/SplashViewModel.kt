@@ -22,7 +22,7 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch {
             val combineFlow = dataStoreManager.getAccessToken()
                 .combine(dataStoreManager.getRefreshToken()) { access, refresh ->
-                    access != null && refresh != null
+                    access?.isNotBlank() == true && refresh?.isNotBlank() == true
                 }.combine(dataStoreManager.getAutoLogin()) { token, auto ->
                     token && auto == true
                 }

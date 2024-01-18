@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.main.my.setting.WithdrawViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
