@@ -18,6 +18,7 @@ import com.surveasy.surveasy.data.model.response.SurveyResponse
 import com.surveasy.surveasy.data.model.response.TokenResponse
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
@@ -30,10 +31,10 @@ interface SurveasyApi {
         @Body body: RefreshTokenRequest
     ): Response<TokenResponse>
 
-    @POST("panel/signup/existing")
+    @POST("panel/signin")
     suspend fun createExistPanel(
         @Body body: ExistRegisterRequest
-    ): Response<RegisterResponse>
+    ): Response<TokenResponse>
 
     @POST("panel/oauth2")
     suspend fun kakaoSignup(
@@ -56,7 +57,7 @@ interface SurveasyApi {
     @GET("panel/signout")
     suspend fun signout(): Response<Unit>
 
-    @GET("panel/withdraw")
+    @DELETE("panel/withdraw")
     suspend fun withdraw(): Response<Unit>
 
     //home
