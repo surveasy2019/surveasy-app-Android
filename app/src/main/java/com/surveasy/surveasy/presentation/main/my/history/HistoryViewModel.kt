@@ -103,7 +103,7 @@ class HistoryViewModel @Inject constructor(
                         _events.emit(HistoryEvents.NavigateToHistoryMain)
                     }
 
-                    is BaseState.Error -> _events.emit(HistoryEvents.ShowSnackBar(state.message))
+                    is BaseState.Error -> _events.emit(HistoryEvents.ShowSnackBar("제출화면 변경에 실패하였습니다."))
                 }
             }.onCompletion {
                 _events.emit(HistoryEvents.DismissLoading)

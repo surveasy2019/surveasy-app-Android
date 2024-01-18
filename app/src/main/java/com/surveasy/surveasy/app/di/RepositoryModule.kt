@@ -1,6 +1,7 @@
 package com.surveasy.surveasy.app.di
 
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.surveasy.surveasy.data.remote.SurveasyApi
 import com.surveasy.surveasy.data.repository.FirebaseRepositoryImpl
 import com.surveasy.surveasy.data.repository.PanelRepositoryImpl
@@ -24,7 +25,8 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideFirebaseRepository(fb: Firebase): FirebaseRepository = FirebaseRepositoryImpl(fb)
+    fun provideFirebaseRepository(fbAuth: FirebaseAuth, fb: Firebase): FirebaseRepository =
+        FirebaseRepositoryImpl(fbAuth, fb)
 
     @Singleton
     @Provides

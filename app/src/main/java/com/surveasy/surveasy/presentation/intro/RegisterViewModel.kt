@@ -68,6 +68,7 @@ class RegisterViewModel @Inject constructor(
                     RegisterEventType.TO_TERM2 -> RegisterEvents.NavigateToTerm2
                     RegisterEventType.TO_INPUT -> RegisterEvents.NavigateToRegisterInput
                     RegisterEventType.TO_BACK -> RegisterEvents.NavigateToBack
+                    RegisterEventType.TO_DONE -> RegisterEvents.NavigateToDone
                     RegisterEventType.TO_MAIN -> RegisterEvents.NavigateToMain
                 }
             )
@@ -166,7 +167,7 @@ class RegisterViewModel @Inject constructor(
             when (register) {
                 is BaseState.Success -> {
                     // token save, auto save
-                    _events.emit(RegisterEvents.NavigateToMain)
+                    _events.emit(RegisterEvents.NavigateToDone)
                 }
 
                 is BaseState.Error -> _events.emit(RegisterEvents.ShowSnackBar(SIGNUP_ERROR))
@@ -248,6 +249,7 @@ sealed class RegisterEvents {
     data object NavigateToTerm2 : RegisterEvents()
     data object NavigateToRegisterInput : RegisterEvents()
     data object NavigateToBack : RegisterEvents()
+    data object NavigateToDone : RegisterEvents()
     data object NavigateToMain : RegisterEvents()
     data object ShowLoading : RegisterEvents()
     data object DismissLoading : RegisterEvents()

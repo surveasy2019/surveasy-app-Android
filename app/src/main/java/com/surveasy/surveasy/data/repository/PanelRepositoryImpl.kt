@@ -8,6 +8,7 @@ import com.surveasy.surveasy.data.model.response.KakaoInfoResponse.Companion.toD
 import com.surveasy.surveasy.data.model.response.PanelDetailInfoResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.PanelInfoResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.RegisterResponse.Companion.toDomainModel
+import com.surveasy.surveasy.data.model.response.TokenResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.remote.SurveasyApi
 import com.surveasy.surveasy.data.remote.handleResponse
 import com.surveasy.surveasy.domain.base.BaseState
@@ -15,6 +16,7 @@ import com.surveasy.surveasy.domain.model.KakaoInfo
 import com.surveasy.surveasy.domain.model.PanelDetailInfo
 import com.surveasy.surveasy.domain.model.PanelInfo
 import com.surveasy.surveasy.domain.model.Register
+import com.surveasy.surveasy.domain.model.Token
 import com.surveasy.surveasy.domain.repository.PanelRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -43,10 +45,20 @@ class PanelRepositoryImpl @Inject constructor(private val api: SurveasyApi) : Pa
     override fun createExistPanel(
         uid: String,
         email: String,
+        pw: String,
         platform: String
-    ): Flow<BaseState<Register>> = flow {
+    ): Flow<BaseState<Token>> = flow {
         when (val result =
-            handleResponse { api.createExistPanel(ExistRegisterRequest(uid, email, platform)) }) {
+            handleResponse {
+                api.createExistPanel(
+                    ExistRegisterRequest(
+                        uid,
+                        email,
+                        pw,
+                        platform
+                    )
+                )
+            }) {
             is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
             is BaseState.Error -> emit(result)
         }

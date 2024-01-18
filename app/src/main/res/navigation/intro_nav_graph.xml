@@ -42,7 +42,11 @@
         android:id="@+id/registerInputFragment"
         android:name="com.surveasy.surveasy.presentation.intro.RegisterInputFragment"
         android:label="fragment_register_input"
-        tools:layout="@layout/fragment_register_input" />
+        tools:layout="@layout/fragment_register_input" >
+        <action
+            android:id="@+id/action_registerInputFragment_to_registerDoneFragment"
+            app:destination="@id/registerDoneFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerTerm1Fragment"
         android:name="com.surveasy.surveasy.presentation.intro.agree.RegisterTerm1Fragment"
@@ -51,4 +55,8 @@
         android:id="@+id/registerTerm2Fragment"
         android:name="com.surveasy.surveasy.presentation.intro.agree.RegisterTerm2Fragment"
         android:label="RegisterTerm2Fragment" />
+    <fragment
+        android:id="@+id/registerDoneFragment"
+        android:name="com.surveasy.surveasy.presentation.intro.RegisterDoneFragment"
+        android:label="RegisterDoneFragment" />
 </navigation>

@@ -20,6 +20,9 @@
         android:theme="@style/Theme.Surveasy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.main.my.setting.WithdrawActivity"
+            android:exported="false" />
+        <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
@@ -31,7 +34,6 @@
                 <data
                     android:host="oauth"
                     android:scheme="${NATIVE_KEY}" />
-
             </intent-filter>
         </activity>
         <activity
@@ -66,22 +68,22 @@
             android:exported="true"
             android:theme="@style/Theme.Surveasy"
             android:windowSoftInputMode="adjustResize">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".presentation.splash.SplashActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-
-
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".presentation.splash.FCM_SplashActivity"
@@ -99,12 +101,12 @@
             android:name=".presentation.intro.IntroActivity"
             android:exported="true">
 
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 

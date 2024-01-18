@@ -6,21 +6,23 @@ import com.kakao.sdk.user.model.Gender
 import com.surveasy.surveasy.app.DataStoreManager
 import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.CreateExistPanelUseCase
+import com.surveasy.surveasy.domain.usecase.GetFbUidUseCase
 import com.surveasy.surveasy.domain.usecase.KakaoSignupUseCase
+import com.surveasy.surveasy.presentation.util.ErrorMsg.EXIST_LOGIN_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.EXIST_LOGIN_ERROR_TWICE
 import com.surveasy.surveasy.presentation.util.ErrorMsg.GET_INFO_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.SIGNUP_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.UNKNOWN_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,45 +31,65 @@ class LoginViewModel @Inject constructor(
     private val createExistPanelUseCase: CreateExistPanelUseCase,
     private val kakaoSignupUseCase: KakaoSignupUseCase,
     private val dataStoreManager: DataStoreManager,
+    private val getFbUidUseCase: GetFbUidUseCase,
 ) : ViewModel() {
     val email = MutableStateFlow("")
     val pw = MutableStateFlow("")
+    private val autoLogin = MutableStateFlow(true)
 
-    private val _uiState = MutableStateFlow(LoginUiState())
-    val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
+    private var errorCount = 0
 
     private val _events = MutableSharedFlow<LoginEvents>(
         replay = 0, onBufferOverflow = BufferOverflow.DROP_OLDEST, extraBufferCapacity = 1
     )
     val events: SharedFlow<LoginEvents> = _events.asSharedFlow()
 
-    init {
-        observeEmail()
-        observePw()
+    fun setAutoLogin(state: Boolean) {
+        autoLogin.value = state
     }
+
+    suspend fun createExistPanel() {
+        if (email.value.isBlank() || pw.value.isBlank()) {
+            _events.emit(LoginEvents.ShowSnackBar("아이디와 비밀번호를 정확하게 입력해주세요."))
+            return
+        }
+        _events.emit(LoginEvents.ShowLoading)
+        val fbUid = viewModelScope.async {
+            getFbUidUseCase(email.value, pw.value)
+        }.await()
+
+        if (fbUid.isBlank()) {
+            errorCount++
+            _events.emit(LoginEvents.DismissLoading)
+            _events.emit(LoginEvents.ShowSnackBar(if (errorCount > 2) EXIST_LOGIN_ERROR_TWICE else EXIST_LOGIN_ERROR))
+        } else {
+            createExistPanelUseCase(fbUid, email.value, pw.value).onEach { state ->
+                when (state) {
+                    is BaseState.Success -> {
+                        dataStoreManager.putAutoLogin(autoLogin.value)
+                        dataStoreManager.putAccessToken(state.data.accessToken)
+                        dataStoreManager.putRefreshToken(state.data.refreshToken)
+                        _events.emit(LoginEvents.NavigateToMain)
+                    }
+
+                    is BaseState.Error -> {
+                        if (state.code == UNKNOWN_PANEL) {
+                            _events.emit(LoginEvents.ShowSnackBar(UNKNOWN_ERROR))
+                        } else {
+                            errorCount++
+                            _events.emit(LoginEvents.ShowSnackBar(if (errorCount > 2) EXIST_LOGIN_ERROR_TWICE else EXIST_LOGIN_ERROR))
+                        }
+                    }
+                }
+            }.onCompletion {
+                _events.emit(LoginEvents.DismissLoading)
+            }.launchIn(viewModelScope)
+        }
+    }
+
 
     fun startKakaoSignup() {
         viewModelScope.launch { _events.emit(LoginEvents.ClickKakaoSignup) }
-    }
-
-    private fun observeEmail() {
-        email.onEach {
-            _uiState.update { state ->
-                state.copy(
-                    email = it
-                )
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    private fun observePw() {
-        pw.onEach {
-            _uiState.update { state ->
-                state.copy(
-                    pw = it
-                )
-            }
-        }.launchIn(viewModelScope)
     }
 
     fun kakaoSignup(
@@ -125,13 +147,11 @@ class LoginViewModel @Inject constructor(
         return "0${format.replace("-", "")}"
     }
 
-}
+    companion object {
+        const val UNKNOWN_PANEL = 404
+    }
 
-data class LoginUiState(
-    val email: String = "",
-    val pw: String = "",
-    val valid: Boolean = false,
-)
+}
 
 sealed class LoginEvents {
     data object ClickKakaoSignup : LoginEvents()

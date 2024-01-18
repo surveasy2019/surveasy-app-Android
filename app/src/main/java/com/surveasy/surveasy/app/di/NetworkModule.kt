@@ -27,8 +27,8 @@ object NetworkModule {
     ): OkHttpClient {
 
         return OkHttpClient.Builder()
-            .readTimeout(3000, TimeUnit.MILLISECONDS)
-            .connectTimeout(3000, TimeUnit.MILLISECONDS)
+            .readTimeout(10000, TimeUnit.MILLISECONDS)
+            .connectTimeout(10000, TimeUnit.MILLISECONDS)
             .addNetworkInterceptor(accessTokenInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor(bearerInterceptor)
@@ -44,7 +44,8 @@ object NetworkModule {
     }
 
     @Provides
-    fun provideAccessTokenInterceptor(dataStoreManager: DataStoreManager): AccessTokenInterceptor = AccessTokenInterceptor(dataStoreManager)
+    fun provideAccessTokenInterceptor(dataStoreManager: DataStoreManager): AccessTokenInterceptor =
+        AccessTokenInterceptor(dataStoreManager)
 
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
