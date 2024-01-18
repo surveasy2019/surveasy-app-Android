@@ -6,5 +6,6 @@ enum class RegisterEventType {
     TO_TERM2,
     TO_INPUT,
     TO_BACK,
+    TO_DONE,
     TO_MAIN
 }

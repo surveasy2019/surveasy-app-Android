@@ -1,15 +1,14 @@
 package com.surveasy.surveasy.presentation.intro
 
-import android.content.Intent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentRegisterInputBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
-import com.surveasy.surveasy.presentation.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +23,7 @@ class RegisterInputFragment :
             viewModel.events.collect { event ->
                 when (event) {
                     is RegisterEvents.NavigateToBack -> findNavController().navigateUp()
-                    is RegisterEvents.NavigateToMain -> navigateToMain()
+                    is RegisterEvents.NavigateToDone -> findNavController().toDone()
                     is RegisterEvents.ShowLoading -> showLoading(requireContext())
                     is RegisterEvents.DismissLoading -> dismissLoading()
                     is RegisterEvents.ShowSnackBar -> showSnackBar(event.msg)
@@ -92,9 +91,7 @@ class RegisterInputFragment :
         }
     }
 
-    private fun navigateToMain() {
-        val intent = Intent(context, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
+    private fun NavController.toDone() {
+        navigate(RegisterInputFragmentDirections.actionRegisterInputFragmentToRegisterDoneFragment())
     }
 }
