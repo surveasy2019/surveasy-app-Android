@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="com.surveasy.surveasy.presentation.main.survey.fs.FsNavType" />
+
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.main.survey.fs.FirstSurveyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +33,6 @@
             app:layout_constraintBottom_toBottomOf="@id/v_bar"
             app:layout_constraintStart_toStartOf="@id/v_bar"
             app:layout_constraintTop_toTopOf="@id/v_bar" />
-
 
 
         <TextView
@@ -106,7 +110,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/s_job" />
-
 
 
                 <!--                <EditText-->
@@ -215,6 +218,7 @@
             android:background="@drawable/register_button"
             android:fontFamily="@font/main_font_m"
             android:text="다음"
+
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"

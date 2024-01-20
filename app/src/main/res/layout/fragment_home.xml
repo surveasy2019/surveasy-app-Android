@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="com.surveasy.surveasy.presentation.main.home.HomeViewModel" />
@@ -197,6 +199,54 @@
                     app:layout_constraintEnd_toEndOf="@id/guide_end"
                     app:layout_constraintTop_toTopOf="@id/tv_label1" />
 
+                <TextView
+                    android:id="@+id/tv_empty"
+                    style="@style/Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="참여 가능한 설문이 없습니다."
+                    android:textColor="@color/gray"
+                    android:visibility="@{(vm.uiState.didFirstSurvey &amp;&amp; !vm.uiState.showList)? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@id/guide_end"
+                    app:layout_constraintStart_toStartOf="@id/guide_begin"
+                    app:layout_constraintTop_toBottomOf="@id/tv_label1" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_fs"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/home_bottom_list_item"
+                    android:onClick="@{() -> vm.navigateToFs()}"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="18dp"
+                    android:visibility="@{(!vm.uiState.showList &amp;&amp; !vm.uiState.didFirstSurvey)? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@id/guide_end"
+                    app:layout_constraintStart_toStartOf="@id/guide_begin"
+                    app:layout_constraintTop_toBottomOf="@id/tv_empty">
+
+                    <TextView
+                        android:id="@+id/tv_fs_title"
+                        style="@style/TextSmallRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="패널 기본 정보 조사"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        style="@style/TextSmallRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100원"
+                        android:textColor="@color/main_green"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_home_list"
@@ -204,17 +254,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:orientation="vertical"
+                    android:visibility="@{vm.uiState.showList? View.VISIBLE : View.GONE}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="@id/guide_end"
                     app:layout_constraintStart_toStartOf="@id/guide_begin"
-                    app:layout_constraintTop_toBottomOf="@id/tv_label1"
+                    app:layout_constraintTop_toBottomOf="@id/cl_fs"
                     app:list="@{vm.uiState.list}" />
 
                 <ImageView
                     android:id="@+id/iv_check_label2"
                     android:layout_width="18sp"
                     android:layout_height="17sp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="36dp"
                     android:background="@drawable/checkimg"
                     app:layout_constraintStart_toStartOf="@id/guide_begin"
                     app:layout_constraintTop_toBottomOf="@id/rv_home_list" />
@@ -225,7 +276,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="36dp"
                     android:text="꼭 확인해주세요"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toEndOf="@id/iv_check_label2"

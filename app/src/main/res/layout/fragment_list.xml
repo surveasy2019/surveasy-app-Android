@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="com.surveasy.surveasy.presentation.main.list.ListViewModel" />
@@ -46,12 +48,54 @@
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintTop_toTopOf="@id/guide_top" />
 
+        <ImageView
+            android:id="@+id/iv_blur"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/ic_list_blur"
+            android:scaleType="fitCenter"
+            android:visibility="@{vm.uiState.didFirstSurvey? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_info"
+            style="@style/TextTitleBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingExtra="1.9dp"
+            android:text="패널 기본 정보 설문 완료 후\n서베이지의 설문에 참여하세요!"
+            android:visibility="@{vm.uiState.didFirstSurvey? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_start"
+            style="@style/TextTitleBold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/white_button"
+            android:onClick="@{() -> vm.navigateToFs()}"
+            android:text="참여하러 가기"
+            android:textColor="@color/main_green"
+            app:layout_constraintEnd_toEndOf="@id/tv_info"
+            app:layout_constraintStart_toStartOf="@id/tv_info"
+            app:layout_constraintTop_toBottomOf="@id/tv_info" />
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="40dp"
             android:orientation="vertical"
+            android:visibility="@{vm.uiState.didFirstSurvey? View.VISIBLE : View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guide_end"

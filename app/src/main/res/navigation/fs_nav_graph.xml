@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fs_nav_graph"
+    app:startDestination="@id/firstSurvey1Fragment">
+
+    <fragment
+        android:id="@+id/firstSurvey1Fragment"
+        android:name="com.surveasy.surveasy.presentation.main.survey.fs.FirstSurvey1Fragment"
+        android:label="FirstSurvey1Fragment" >
+        <action
+            android:id="@+id/action_firstSurvey1Fragment_to_firstSurvey2Fragment"
+            app:destination="@id/firstSurvey2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstSurvey2Fragment"
+        android:name="com.surveasy.surveasy.presentation.main.survey.fs.FirstSurvey2Fragment"
+        android:label="FirstSurvey2Fragment" >
+        <action
+            android:id="@+id/action_firstSurvey2Fragment_to_firstSurveyDoneFragment"
+            app:destination="@id/firstSurveyDoneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstSurveyDoneFragment"
+        android:name="com.surveasy.surveasy.presentation.main.survey.fs.FirstSurveyDoneFragment"
+        android:label="FirstSurveyDoneFragment" />
+</navigation>

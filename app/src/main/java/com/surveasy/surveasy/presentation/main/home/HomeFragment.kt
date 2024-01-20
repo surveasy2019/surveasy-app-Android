@@ -9,6 +9,7 @@ import com.surveasy.surveasy.presentation.main.home.list.HomeListAdapter
 import com.surveasy.surveasy.presentation.main.home.notice.HomeHowContentActivity
 import com.surveasy.surveasy.presentation.main.home.notice.HomeNoticeActivity
 import com.surveasy.surveasy.presentation.main.survey.SurveyActivity
+import com.surveasy.surveasy.presentation.main.survey.fs.FirstSurveyActivity
 import com.surveasy.surveasy.presentation.util.IntentId
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,6 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                     is HomeEvents.ShowSnackBar -> showSnackBar(it.msg)
                     is HomeEvents.ClickHowContent -> toHowContent()
                     is HomeEvents.ClickNotice -> toNotice()
+                    is HomeEvents.NavigateToFs -> toFs()
                     else -> Unit
                 }
             }
@@ -55,5 +57,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private fun toNotice() {
         startActivity(Intent(context, HomeNoticeActivity::class.java))
+    }
+
+    private fun toFs() {
+        val intent = Intent(context, FirstSurveyActivity::class.java)
+        startActivity(intent)
     }
 }

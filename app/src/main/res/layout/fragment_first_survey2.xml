@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="com.surveasy.surveasy.presentation.main.survey.fs.FsNavType"/>
+        <variable
+            name="vm"
+            type="com.surveasy.surveasy.presentation.main.survey.fs.FirstSurveyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -298,6 +301,7 @@
             android:background="@drawable/register_button"
             android:fontFamily="@font/main_font_m"
             android:text="제출하기"
+            android:onClick="@{() -> vm.navigateToNext(FsNavType.TO_DONE)}"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"

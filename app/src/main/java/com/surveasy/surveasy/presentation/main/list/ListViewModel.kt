@@ -40,9 +40,11 @@ class ListViewModel @Inject constructor(
                 is BaseState.Success -> {
                     state.data.let { survey ->
                         _uiState.update {
+                            val didFs = survey.didFirstSurvey
                             val data =
                                 survey.surveyAppList.map { list -> list.toUiSurveyListData() }
                             it.copy(
+                                didFirstSurvey = didFs,
                                 list = data
                             )
                         }
@@ -54,17 +56,21 @@ class ListViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun navigateToSurveyDetail(id: Int) {
+    fun navigateToFs() = viewModelScope.launch { _events.emit(ListEvents.NavigateToFs) }
+
+    fun navigateToSurveyDetail(id: Int) =
         viewModelScope.launch { _events.emit(ListEvents.ClickSurveyItem(id)) }
-    }
+
 }
 
 sealed class ListEvents {
     data class ClickSurveyItem(val id: Int) : ListEvents()
+    data object NavigateToFs : ListEvents()
     data class ShowToastMsg(val msg: String) : ListEvents()
     data class ShowSnackBar(val msg: String) : ListEvents()
 }
 
 data class SurveyListUiState(
+    val didFirstSurvey: Boolean = true,
     val list: List<UiSurveyListData> = emptyList()
 )
