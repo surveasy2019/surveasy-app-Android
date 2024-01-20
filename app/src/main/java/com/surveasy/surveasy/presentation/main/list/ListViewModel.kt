@@ -56,13 +56,16 @@ class ListViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun navigateToSurveyDetail(id: Int) {
+    fun navigateToFs() = viewModelScope.launch { _events.emit(ListEvents.NavigateToFs) }
+
+    fun navigateToSurveyDetail(id: Int) =
         viewModelScope.launch { _events.emit(ListEvents.ClickSurveyItem(id)) }
-    }
+
 }
 
 sealed class ListEvents {
     data class ClickSurveyItem(val id: Int) : ListEvents()
+    data object NavigateToFs : ListEvents()
     data class ShowToastMsg(val msg: String) : ListEvents()
     data class ShowSnackBar(val msg: String) : ListEvents()
 }

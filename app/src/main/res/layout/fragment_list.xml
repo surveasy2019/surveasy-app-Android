@@ -81,6 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:background="@drawable/white_button"
+            android:onClick="@{() -> vm.navigateToFs()}"
             android:text="참여하러 가기"
             android:textColor="@color/main_green"
             app:layout_constraintEnd_toEndOf="@id/tv_info"

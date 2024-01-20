@@ -218,6 +218,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/home_bottom_list_item"
+                    android:onClick="@{() -> vm.navigateToFs()}"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="18dp"
                     android:visibility="@{(!vm.uiState.showList &amp;&amp; !vm.uiState.didFirstSurvey)? View.VISIBLE : View.GONE}"
