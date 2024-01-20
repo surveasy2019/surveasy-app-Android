@@ -7,11 +7,13 @@ import com.surveasy.surveasy.domain.model.Survey
 import com.surveasy.surveasy.domain.model.SurveyInfo
 
 data class SurveyResponse(
-    val surveyAppList: List<SurveyInfoResponse>
+    val surveyAppList: List<SurveyInfoResponse>,
+    val didFirstSurvey: Boolean,
 ) : BaseDataModel {
     companion object : DomainMapper<SurveyResponse, Survey> {
         override fun SurveyResponse.toDomainModel(): Survey = Survey(
-            surveyAppList = surveyAppList.map { it.toDomainModel() }
+            surveyAppList = surveyAppList.map { it.toDomainModel() },
+            didFirstSurvey = didFirstSurvey
         )
     }
 }

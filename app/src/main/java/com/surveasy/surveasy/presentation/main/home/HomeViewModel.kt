@@ -45,9 +45,14 @@ class HomeViewModel @Inject constructor(
                 is BaseState.Success -> {
                     state.data.let { survey ->
                         _uiState.update {
+                            val didFs = survey.didFirstSurvey
                             val data =
                                 survey.surveyAppHomeList.map { list -> list.toUiHomeListData() }
-                            it.copy(list = data)
+                            it.copy(
+                                list = data,
+                                showList = data.isEmpty() || didFs,
+                                didFirstSurvey = didFs
+                            )
                         }
                     }
                 }
@@ -105,5 +110,7 @@ data class HomeUiState(
     val count: Int = 0,
     val rewardCurrent: Int = 0,
     val rewardTotal: Int = 0,
+    val didFirstSurvey: Boolean = true,
+    val showList: Boolean = true,
     val list: List<UiHomeListData> = emptyList(),
 )

@@ -3,7 +3,8 @@ package com.surveasy.surveasy.domain.model
 import com.surveasy.surveasy.domain.base.BaseDomainModel
 
 data class Survey(
-    val surveyAppList: List<SurveyInfo>
+    val surveyAppList: List<SurveyInfo>,
+    val didFirstSurvey: Boolean,
 ) : BaseDomainModel
 
 data class SurveyInfo(

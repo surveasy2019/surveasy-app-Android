@@ -40,9 +40,11 @@ class ListViewModel @Inject constructor(
                 is BaseState.Success -> {
                     state.data.let { survey ->
                         _uiState.update {
+                            val didFs = survey.didFirstSurvey
                             val data =
                                 survey.surveyAppList.map { list -> list.toUiSurveyListData() }
                             it.copy(
+                                didFirstSurvey = didFs,
                                 list = data
                             )
                         }
@@ -66,5 +68,6 @@ sealed class ListEvents {
 }
 
 data class SurveyListUiState(
+    val didFirstSurvey: Boolean = true,
     val list: List<UiSurveyListData> = emptyList()
 )
