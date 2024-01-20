@@ -30,6 +30,7 @@
             app:layout_constraintTop_toTopOf="@id/v_bar" />
 
 
+
         <TextView
             android:id="@+id/tv_title"
             style="@style/TextMediumBold"
@@ -107,15 +108,6 @@
                     app:layout_constraintTop_toBottomOf="@id/s_job" />
 
 
-                <!--                            <com.toptoche.searchablespinnerlibrary.SearchableSpinner-->
-                <!--                                android:id="@+id/ss_school"-->
-                <!--                                android:layout_width="0dp"-->
-                <!--                                android:layout_height="48sp"-->
-                <!--                                android:background="@drawable/custom_spinner"-->
-                <!--                                style="@style/TextSmallRegular"-->
-                <!--                                android:paddingStart="10dp"-->
-                <!--                                android:textColorHint="#c9c9c9"-->
-                <!--                                android:layout_marginTop="12dp"/>-->
 
                 <!--                <EditText-->
                 <!--                    android:id="@+id/SurveyListFirstSurvey1_EtcUniv"-->
