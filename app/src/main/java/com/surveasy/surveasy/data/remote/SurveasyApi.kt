@@ -93,5 +93,10 @@ interface SurveasyApi {
 
     //history
     @GET("response/{type}")
-    suspend fun listHistory(@Path("type") type: String): Response<HistoryResponse>
+    suspend fun listHistory(
+        @Path("type") type: String,
+        @Query("page") page: Int?,
+        @Query("size") size: Int?,
+        @Query("sort") sort: List<String>?
+    ): Response<HistoryResponse>
 }

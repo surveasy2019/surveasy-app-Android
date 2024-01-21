@@ -49,16 +49,25 @@ class HistoryViewModel @Inject constructor(
 
     fun listHistory(isBefore: Boolean) {
         val type = if (isBefore) BEFORE else AFTER
-        listHistoryUseCase(type).onEach { state ->
+        _mainUiState.update { it.copy(isBefore = isBefore) }
+        listHistoryUseCase(
+            type = type,
+            page = FIRST_PAGE,
+            size = DEFAULT_SIZE,
+            sort = null
+        ).onEach { state ->
             when (state) {
                 is BaseState.Success -> {
                     state.data.let { history ->
                         _mainUiState.update {
+                            val totalPage = history.pageInfo.totalPages
                             val data =
                                 history.responseList.map { list -> list.toUiHistorySurveyData() }
                             it.copy(
                                 isBefore = isBefore,
-                                list = data
+                                list = data,
+                                lastPage = totalPage == 1,
+                                nowPage = 1,
                             )
                         }
                     }
@@ -67,7 +76,38 @@ class HistoryViewModel @Inject constructor(
                 else -> _events.emit(HistoryEvents.ShowSnackBar(DATA_ERROR))
             }
         }.launchIn(viewModelScope)
+    }
 
+    fun loadNextPage() {
+        val type = if (mainUiState.value.isBefore) BEFORE else AFTER
+        _mainUiState.update { it.copy(isLoading = true) }
+        listHistoryUseCase(
+            type = type,
+            page = mainUiState.value.nowPage,
+            size = DEFAULT_SIZE,
+            sort = null
+        ).onEach { state ->
+            when (state) {
+                is BaseState.Success -> {
+                    state.data.let { list ->
+                        _mainUiState.update {
+                            val totalPage = list.pageInfo.totalPages
+                            val data = mainUiState.value.list.toMutableList().apply {
+                                addAll(list.responseList.map { list -> list.toUiHistorySurveyData() })
+                            }
+                            it.copy(
+                                list = data,
+                                nowPage = mainUiState.value.nowPage + 1,
+                                lastPage = totalPage - 1 == mainUiState.value.nowPage,
+                                isLoading = false
+                            )
+                        }
+                    }
+                }
+
+                else -> _events.emit(HistoryEvents.ShowSnackBar(DATA_ERROR))
+            }
+        }.launchIn(viewModelScope)
     }
 
     fun getHistoryDetail() {
@@ -127,6 +167,8 @@ class HistoryViewModel @Inject constructor(
     companion object {
         const val BEFORE = "before"
         const val AFTER = "after"
+        const val FIRST_PAGE = 0
+        const val DEFAULT_SIZE = 10
     }
 
 }
@@ -145,10 +187,9 @@ data class HistoryUiState(
     val reward: Int = 0,
     val account: String = "",
     val owner: String = "",
-    val pageNum: Int = 0,
-    val pageSize: Int = 0,
-    val totalElements: Int = 0,
-    val totalPages: Int = 0,
+    val nowPage: Int = 0,
+    val lastPage: Boolean = false,
+    val isLoading: Boolean = false,
     val isBefore: Boolean = true,
     val list: List<UiHistorySurveyData> = emptyList()
 )

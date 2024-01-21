@@ -1,6 +1,5 @@
 package com.surveasy.surveasy.presentation.main.list
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.domain.base.BaseState
@@ -36,7 +35,7 @@ class ListViewModel @Inject constructor(
     val events: SharedFlow<ListEvents> = _events.asSharedFlow()
 
     fun listSurvey() {
-        listSurveyUseCase(page = 0, size = 7, sort = null).onEach { state ->
+        listSurveyUseCase(page = FIRST_PAGE, size = DEFAULT_SIZE, sort = null).onEach { state ->
             when (state) {
                 is BaseState.Success -> {
                     state.data.let { survey ->
@@ -62,7 +61,11 @@ class ListViewModel @Inject constructor(
 
     fun loadNextPage() {
         _uiState.update { it.copy(isLoading = true) }
-        listSurveyUseCase(page = uiState.value.nowPage, size = 7, sort = null).onEach { state ->
+        listSurveyUseCase(
+            page = uiState.value.nowPage,
+            size = DEFAULT_SIZE,
+            sort = null
+        ).onEach { state ->
             when (state) {
                 is BaseState.Success -> {
                     state.data.let { list ->
@@ -92,6 +95,11 @@ class ListViewModel @Inject constructor(
 
     fun navigateToSurveyDetail(id: Int) =
         viewModelScope.launch { _events.emit(ListEvents.ClickSurveyItem(id)) }
+
+    companion object {
+        const val FIRST_PAGE = 0
+        const val DEFAULT_SIZE = 10
+    }
 
 }
 

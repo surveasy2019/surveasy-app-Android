@@ -47,8 +47,13 @@ class SurveyRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun listHistory(type: String): Flow<BaseState<History>> = flow {
-        when (val result = handleResponse { api.listHistory(type) }) {
+    override fun listHistory(
+        type: String,
+        page: Int?,
+        size: Int?,
+        sort: List<String>?
+    ): Flow<BaseState<History>> = flow {
+        when (val result = handleResponse { api.listHistory(type, page, size, sort) }) {
             is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
             is BaseState.Error -> emit(result)
         }

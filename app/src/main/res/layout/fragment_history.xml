@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="com.surveasy.surveasy.presentation.main.my.history.HistoryViewModel" />
@@ -186,13 +188,25 @@
 
         </com.google.android.material.tabs.TabLayout>
 
+        <ImageView
+            android:id="@+id/iv_loading"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_loading"
+            android:visibility="@{vm.mainUiState.loading? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tb_history" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_history"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="20dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/cl_box"
             app:layout_constraintStart_toStartOf="@id/cl_box"
             app:layout_constraintTop_toBottomOf="@id/tb_history"
