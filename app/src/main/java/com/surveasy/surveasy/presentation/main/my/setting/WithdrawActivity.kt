@@ -36,10 +36,9 @@ class WithdrawActivity : BaseActivity<ActivityWithdrawBinding>(ActivityWithdrawB
                 "탈퇴 하시겠습니까?",
                 "회원 탈퇴 시 패널 정보가 모두 사라집니다.",
                 "탈퇴하기",
-                "닫기"
-            ) {
-                viewModel.withdraw()
-            }
+                "닫기",
+                { viewModel.withdraw() }
+            ) { }
         }
     }
 

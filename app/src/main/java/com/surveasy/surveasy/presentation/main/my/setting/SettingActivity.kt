@@ -36,8 +36,9 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(ActivitySettingBind
                 "로그아웃 하시겠습니까?",
                 "",
                 "로그아웃",
-                "닫기"
-            ) { viewModel.logout() }
+                "닫기",
+                { viewModel.logout() }
+            ) {}
         }
 
         vWithdraw.setOnClickListener { viewModel.navigateToWithdraw() }
