@@ -6,6 +6,7 @@ import com.surveasy.surveasy.data.model.request.KakaoInfoRequest
 import com.surveasy.surveasy.data.model.request.NewRegisterRequest
 import com.surveasy.surveasy.data.model.request.RefreshTokenRequest
 import com.surveasy.surveasy.data.model.request.ResponseImgRequest
+import com.surveasy.surveasy.data.model.response.AuthProviderResponse
 import com.surveasy.surveasy.data.model.response.CommonIdResponse
 import com.surveasy.surveasy.data.model.response.HistoryResponse
 import com.surveasy.surveasy.data.model.response.HomeSurveyResponse
@@ -59,7 +60,7 @@ interface SurveasyApi {
     suspend fun signout(): Response<Unit>
 
     @DELETE("panel/withdraw")
-    suspend fun withdraw(): Response<Unit>
+    suspend fun withdraw(): Response<AuthProviderResponse>
 
     //home
     @GET("panel/home")

@@ -4,6 +4,7 @@ import com.surveasy.surveasy.data.model.request.EditInfoRequest
 import com.surveasy.surveasy.data.model.request.ExistRegisterRequest
 import com.surveasy.surveasy.data.model.request.KakaoInfoRequest
 import com.surveasy.surveasy.data.model.request.NewRegisterRequest
+import com.surveasy.surveasy.data.model.response.AuthProviderResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.KakaoInfoResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.PanelDetailInfoResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.PanelInfoResponse.Companion.toDomainModel
@@ -12,6 +13,7 @@ import com.surveasy.surveasy.data.model.response.TokenResponse.Companion.toDomai
 import com.surveasy.surveasy.data.remote.SurveasyApi
 import com.surveasy.surveasy.data.remote.handleResponse
 import com.surveasy.surveasy.domain.base.BaseState
+import com.surveasy.surveasy.domain.model.AuthProvider
 import com.surveasy.surveasy.domain.model.KakaoInfo
 import com.surveasy.surveasy.domain.model.PanelDetailInfo
 import com.surveasy.surveasy.domain.model.PanelInfo
@@ -142,9 +144,9 @@ class PanelRepositoryImpl @Inject constructor(private val api: SurveasyApi) : Pa
         }
     }
 
-    override fun withdraw(): Flow<BaseState<Unit>> = flow {
+    override fun withdraw(): Flow<BaseState<AuthProvider>> = flow {
         when (val result = handleResponse { api.withdraw() }) {
-            is BaseState.Success -> emit(BaseState.Success(Unit))
+            is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
             is BaseState.Error -> emit(result)
         }
     }

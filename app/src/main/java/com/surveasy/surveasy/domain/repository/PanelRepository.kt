@@ -1,6 +1,7 @@
 package com.surveasy.surveasy.domain.repository
 
 import com.surveasy.surveasy.domain.base.BaseState
+import com.surveasy.surveasy.domain.model.AuthProvider
 import com.surveasy.surveasy.domain.model.KakaoInfo
 import com.surveasy.surveasy.domain.model.PanelDetailInfo
 import com.surveasy.surveasy.domain.model.PanelInfo
@@ -51,5 +52,5 @@ interface PanelRepository {
 
     fun signout(): Flow<BaseState<Unit>>
 
-    fun withdraw(): Flow<BaseState<Unit>>
+    fun withdraw(): Flow<BaseState<AuthProvider>>
 }
