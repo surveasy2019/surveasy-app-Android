@@ -44,10 +44,10 @@ class SurveyViewModel @Inject constructor(
     val events: SharedFlow<SurveyEvents> = _events.asSharedFlow()
 
 
-    suspend fun createResponse(uri: String, id: Int, name: String) {
+    suspend fun createResponse(uri: String, name: String) {
         _events.emit(SurveyEvents.ShowLoading)
         val imgUrl = viewModelScope.async {
-            loadImageUseCase(uri, id, name)
+            loadImageUseCase(uri, sId.value, name)
         }.await()
 
         if (imgUrl.isEmpty()) {
