@@ -23,22 +23,6 @@ data class HistoryResponse(
     }
 }
 
-data class PageInfoResponse(
-    val pageNum: Int,
-    val pageSize: Int,
-    val totalElements: Int,
-    val totalPages: Int,
-) : BaseDataModel {
-    companion object : DomainMapper<PageInfoResponse, PageInfo> {
-        override fun PageInfoResponse.toDomainModel(): PageInfo = PageInfo(
-            pageNum = pageNum,
-            pageSize = pageSize,
-            totalElements = totalElements,
-            totalPages = totalPages
-        )
-    }
-}
-
 data class HistorySurveyResponse(
     val id: Int,
     @SerializedName("surveyTitle") val title: String,

@@ -9,7 +9,11 @@ import com.surveasy.surveasy.domain.model.SurveyDetailInfo
 import kotlinx.coroutines.flow.Flow
 
 interface SurveyRepository {
-    fun listSurvey(): Flow<BaseState<Survey>>
+    fun listSurvey(
+        page: Int?,
+        size: Int?,
+        sort: List<String>?
+    ): Flow<BaseState<Survey>>
 
     fun listHomeSurvey(): Flow<BaseState<HomeSurvey>>
 

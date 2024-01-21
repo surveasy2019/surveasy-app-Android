@@ -23,6 +23,7 @@ import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface SurveasyApi {
 
@@ -66,7 +67,11 @@ interface SurveasyApi {
 
     //survey
     @GET("survey/app")
-    suspend fun listSurvey(): Response<SurveyResponse>
+    suspend fun listSurvey(
+        @Query("page") page: Int?,
+        @Query("size") size: Int?,
+        @Query("sort") sort: List<String>?
+    ): Response<SurveyResponse>
 
     @GET("survey/app/home")
     suspend fun listHomeSurvey(): Response<HomeSurveyResponse>
