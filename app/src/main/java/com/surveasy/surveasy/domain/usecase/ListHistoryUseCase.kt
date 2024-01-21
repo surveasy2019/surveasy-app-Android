@@ -7,5 +7,10 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ListHistoryUseCase @Inject constructor(private val repository: SurveyRepository) {
-    operator fun invoke(type: String): Flow<BaseState<History>> = repository.listHistory(type)
+    operator fun invoke(
+        type: String,
+        page: Int?,
+        size: Int?,
+        sort: List<String>?
+    ): Flow<BaseState<History>> = repository.listHistory(type, page, size, sort)
 }

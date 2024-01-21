@@ -7,6 +7,6 @@ fun HomeSurveyInfo.toUiHomeListData(): UiHomeListData = UiHomeListData(
     id = id,
     title = title,
     reward = reward,
-    targetInput = targetInput,
+    targetInput = targetInput ?: "모두",
     responseCount = responseCount,
 )

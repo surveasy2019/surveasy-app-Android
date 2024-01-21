@@ -2,6 +2,7 @@ package com.surveasy.surveasy.presentation.main.my.history
 
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentHistoryBinding
@@ -19,6 +20,21 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(R.layout.fragment_h
         initTabListener()
         vm = viewModel
         rvHistory.adapter = adapter
+        rvHistory.animation = null
+        rvHistory.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val scrollBottom = !rvHistory.canScrollVertically(1)
+                val isLastPage = viewModel.mainUiState.value.lastPage
+                val isNotLoading = !viewModel.mainUiState.value.isLoading
+
+
+                if (scrollBottom && !isLastPage && isNotLoading) {
+                    viewModel.loadNextPage()
+                }
+            }
+        })
     }
 
     override fun initData() {

@@ -5,6 +5,7 @@ import com.surveasy.surveasy.domain.base.BaseDomainModel
 data class Survey(
     val surveyAppList: List<SurveyInfo>,
     val didFirstSurvey: Boolean,
+    val pageInfo: PageInfo,
 ) : BaseDomainModel
 
 data class SurveyInfo(

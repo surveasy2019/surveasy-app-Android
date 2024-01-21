@@ -2,6 +2,7 @@ package com.surveasy.surveasy.presentation.main.list
 
 import android.content.Intent
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentListBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
@@ -20,6 +21,21 @@ class ListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
     override fun initView() = with(binding) {
         vm = viewModel
         rvList.adapter = adapter
+        rvList.animation = null
+        rvList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val scrollBottom = !rvList.canScrollVertically(1)
+                val isLastPage = viewModel.uiState.value.lastPage
+                val isNotLoading = !viewModel.uiState.value.isLoading
+
+
+                if (scrollBottom && !isLastPage && isNotLoading) {
+                    viewModel.loadNextPage()
+                }
+            }
+        })
     }
 
     override fun initEventObserver() {

@@ -22,8 +22,12 @@ import javax.inject.Inject
 class SurveyRepositoryImpl @Inject constructor(
     private val api: SurveasyApi
 ) : SurveyRepository {
-    override fun listSurvey(): Flow<BaseState<Survey>> = flow {
-        when (val result = handleResponse { api.listSurvey() }) {
+    override fun listSurvey(
+        page: Int?,
+        size: Int?,
+        sort: List<String>?
+    ): Flow<BaseState<Survey>> = flow {
+        when (val result = handleResponse { api.listSurvey(page, size, sort) }) {
             is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
             is BaseState.Error -> emit(result)
         }
@@ -43,8 +47,13 @@ class SurveyRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun listHistory(type: String): Flow<BaseState<History>> = flow {
-        when (val result = handleResponse { api.listHistory(type) }) {
+    override fun listHistory(
+        type: String,
+        page: Int?,
+        size: Int?,
+        sort: List<String>?
+    ): Flow<BaseState<History>> = flow {
+        when (val result = handleResponse { api.listHistory(type, page, size, sort) }) {
             is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
             is BaseState.Error -> emit(result)
         }

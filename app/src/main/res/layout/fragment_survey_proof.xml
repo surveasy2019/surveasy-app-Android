@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:paddingEnd="20dp"
-            android:text="대학생에 대한 설문"
+            android:text="@{vm.uiState.title}"
             app:layout_constraintBottom_toBottomOf="@id/v_survey_bar"
             app:layout_constraintStart_toEndOf="@id/iv_back"
             app:layout_constraintTop_toTopOf="@id/v_survey_bar" />

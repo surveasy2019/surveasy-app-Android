@@ -35,17 +35,52 @@ class ListViewModel @Inject constructor(
     val events: SharedFlow<ListEvents> = _events.asSharedFlow()
 
     fun listSurvey() {
-        listSurveyUseCase().onEach { state ->
+        listSurveyUseCase(page = FIRST_PAGE, size = DEFAULT_SIZE, sort = null).onEach { state ->
             when (state) {
                 is BaseState.Success -> {
                     state.data.let { survey ->
                         _uiState.update {
                             val didFs = survey.didFirstSurvey
+                            val totalPage = survey.pageInfo.totalPages
                             val data =
                                 survey.surveyAppList.map { list -> list.toUiSurveyListData() }
                             it.copy(
                                 didFirstSurvey = didFs,
-                                list = data
+                                list = data,
+                                lastPage = totalPage == 1,
+                                nowPage = 1
+                            )
+                        }
+                    }
+                }
+
+                else -> _events.emit(ListEvents.ShowSnackBar(DATA_ERROR))
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun loadNextPage() {
+        _uiState.update { it.copy(isLoading = true) }
+        listSurveyUseCase(
+            page = uiState.value.nowPage,
+            size = DEFAULT_SIZE,
+            sort = null
+        ).onEach { state ->
+            when (state) {
+                is BaseState.Success -> {
+                    state.data.let { list ->
+                        _uiState.update {
+                            val totalPage = list.pageInfo.totalPages
+                            val data = uiState.value.list.toMutableList().apply {
+                                addAll(
+                                    list.surveyAppList.map { list -> list.toUiSurveyListData() }
+                                )
+                            }
+                            it.copy(
+                                list = data,
+                                nowPage = uiState.value.nowPage + 1,
+                                lastPage = totalPage - 1 == uiState.value.nowPage,
+                                isLoading = false
                             )
                         }
                     }
@@ -61,6 +96,11 @@ class ListViewModel @Inject constructor(
     fun navigateToSurveyDetail(id: Int) =
         viewModelScope.launch { _events.emit(ListEvents.ClickSurveyItem(id)) }
 
+    companion object {
+        const val FIRST_PAGE = 0
+        const val DEFAULT_SIZE = 10
+    }
+
 }
 
 sealed class ListEvents {
@@ -72,5 +112,8 @@ sealed class ListEvents {
 
 data class SurveyListUiState(
     val didFirstSurvey: Boolean = true,
-    val list: List<UiSurveyListData> = emptyList()
+    val list: List<UiSurveyListData> = emptyList(),
+    val nowPage: Int = 0,
+    val lastPage: Boolean = false,
+    val isLoading: Boolean = false,
 )

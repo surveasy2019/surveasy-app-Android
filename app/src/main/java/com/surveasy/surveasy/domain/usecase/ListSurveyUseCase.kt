@@ -7,5 +7,9 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ListSurveyUseCase @Inject constructor(val repository: SurveyRepository) {
-    operator fun invoke(): Flow<BaseState<Survey>> = repository.listSurvey()
+    operator fun invoke(
+        page: Int?,
+        size: Int?,
+        sort: List<String>?
+    ): Flow<BaseState<Survey>> = repository.listSurvey(page, size, sort)
 }

@@ -9,7 +9,8 @@ fun showTwoButtonDialog(
     content: String,
     positiveTitle: String,
     negativeTitle: String,
-    positiveListener: () -> Unit
+    positiveListener: () -> Unit,
+    negativeListener: () -> Unit,
 ) {
     val builder = AlertDialog.Builder(context).apply {
         setTitle(title).setMessage(content)
@@ -18,6 +19,7 @@ fun showTwoButtonDialog(
             dialogInterface.cancel()
         }
         setNegativeButton(negativeTitle) { dialogInterface, _ ->
+            negativeListener()
             dialogInterface.cancel()
         }
     }

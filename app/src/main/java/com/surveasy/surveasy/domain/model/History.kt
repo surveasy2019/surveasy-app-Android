@@ -8,13 +8,6 @@ data class History(
     val responseList: List<HistorySurvey>,
 ) : BaseDomainModel
 
-data class PageInfo(
-    val pageNum: Int,
-    val pageSize: Int,
-    val totalElements: Int,
-    val totalPages: Int,
-) : BaseDomainModel
-
 data class HistorySurvey(
     val id: Int,
     val title: String,
