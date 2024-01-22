@@ -1,5 +1,6 @@
 package com.surveasy.surveasy.presentation.main
 
+import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -12,10 +13,19 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
+    private val viewModel: MainViewModel by viewModels()
 
     override fun initData() = Unit
 
-    override fun initEventObserver() = Unit
+    override fun initEventObserver() {
+        repeatOnStarted {
+            viewModel.events.collect {
+                when (it) {
+                    is MainEvents.FinishApp -> finish()
+                }
+            }
+        }
+    }
 
     override fun initView() {
         navHostFragment =

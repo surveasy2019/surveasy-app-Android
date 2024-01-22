@@ -25,6 +25,10 @@ abstract class BaseActivity<T : ViewDataBinding>(private val inflater: (LayoutIn
         setContentView(binding.root)
         initView()
         initEventObserver()
+    }
+
+    override fun onStart() {
+        super.onStart()
         initData()
     }
 

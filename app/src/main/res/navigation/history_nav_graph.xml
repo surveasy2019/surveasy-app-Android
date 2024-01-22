@@ -27,5 +27,11 @@
         android:id="@+id/historyEditFragment"
         android:name="com.surveasy.surveasy.presentation.main.my.history.HistoryEditFragment"
         android:label="fragment_history_edit"
-        tools:layout="@layout/fragment_history_edit" />
+        tools:layout="@layout/fragment_history_edit" >
+        <action
+            android:id="@+id/action_historyEditFragment_to_historyFragment"
+            app:destination="@id/historyFragment"
+            app:popUpTo="@id/historyFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>

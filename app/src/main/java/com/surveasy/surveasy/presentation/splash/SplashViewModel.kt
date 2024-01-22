@@ -36,17 +36,6 @@ class SplashViewModel @Inject constructor(
                 }
             }
         }
-//        viewModelScope.launch {
-//            dataStoreManager.getAutoLogin().collect { autoLogin ->
-//                dataStoreManager.getAccessToken().collect { accessToken ->
-//                    if (autoLogin == true && accessToken != "") {
-//                        _events.emit(SplashUiEvent.NavigateToMain)
-//                    } else {
-//                        _events.emit(SplashUiEvent.NavigateToIntro)
-//                    }
-//                }
-//            }
-//        }
     }
 }
 

@@ -1,6 +1,5 @@
 package com.surveasy.surveasy.presentation.main.my.setting
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kakao.sdk.user.UserApiClient
@@ -66,7 +65,11 @@ class WithdrawViewModel @Inject constructor(
         withdrawUseCase().onEach {
             when (it) {
                 is BaseState.Success -> {
-                    kakaoUnlink()
+                    if (it.data.authProvider == EMAIL) {
+                        // fb withdraw
+                    } else {
+                        kakaoUnlink()
+                    }
                     dataStoreManager.deleteAccessToken()
                     dataStoreManager.deleteRefreshToken()
                     dataStoreManager.deleteAutoLogin()
@@ -74,7 +77,6 @@ class WithdrawViewModel @Inject constructor(
                 }
 
                 else -> {
-                    Log.d("TEST", "fail")
                     _events.emit(WithdrawEvents.ShowSnackBar(WITHDRAW_ERROR))
                 }
             }
@@ -83,6 +85,11 @@ class WithdrawViewModel @Inject constructor(
 
     private fun kakaoUnlink() {
         UserApiClient.instance.unlink { }
+    }
+
+    companion object {
+        const val EMAIL = "EMAIL"
+        const val KAKAO = "KAKAO"
     }
 }
 

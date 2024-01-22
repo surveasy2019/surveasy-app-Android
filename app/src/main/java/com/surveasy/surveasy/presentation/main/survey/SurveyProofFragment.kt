@@ -44,14 +44,7 @@ class SurveyProofFragment :
             viewModel.events.collect { event ->
                 when (event) {
                     is SurveyEvents.NavigateToDone -> findNavController().toSurveyDone()
-                    is SurveyEvents.ShowLoading -> {
-                        showLoading(requireContext())
-                        requireActivity().onBackPressedDispatcher.addCallback(object :
-                            OnBackPressedCallback(true) {
-                            override fun handleOnBackPressed() = Unit
-                        })
-                    }
-
+                    is SurveyEvents.ShowLoading -> showLoading(requireContext())
                     is SurveyEvents.ShowSnackBar -> showSnackBar(event.msg)
                     is SurveyEvents.DismissLoading -> dismissLoading()
                     else -> Unit

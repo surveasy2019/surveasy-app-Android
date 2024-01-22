@@ -1,5 +1,6 @@
 package com.surveasy.surveasy.presentation.main.my.history
 
+import android.content.Intent
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -7,6 +8,7 @@ import com.google.android.material.tabs.TabLayout
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentHistoryBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
+import com.surveasy.surveasy.presentation.main.my.edit.EditActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,7 +47,8 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(R.layout.fragment_h
         repeatOnStarted {
             viewModel.events.collect {
                 when (it) {
-                    is HistoryEvents.NavigateToDetail -> navigateToDetail()
+                    is HistoryEvents.NavigateToDetail -> toDetail()
+                    is HistoryEvents.NavigateToInfoEdit -> toInfoEdit()
                     is HistoryEvents.ShowSnackBar -> showSnackBar(it.msg)
                     else -> Unit
                 }
@@ -67,7 +70,12 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(R.layout.fragment_h
         })
     }
 
-    private fun navigateToDetail() = findNavController().navigate(
+    private fun toDetail() = findNavController().navigate(
         HistoryFragmentDirections.actionHistoryFragmentToHistoryDetailFragment()
     )
+
+    private fun toInfoEdit() {
+        val intent = Intent(requireContext(), EditActivity::class.java)
+        startActivity(intent)
+    }
 }
