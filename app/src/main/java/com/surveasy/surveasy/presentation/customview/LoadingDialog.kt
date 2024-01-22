@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.Window
 import com.surveasy.surveasy.databinding.DialogLoadingBinding
 
-class LoadingDialog(context : Context) : Dialog(context) {
+class LoadingDialog(context: Context) : Dialog(context) {
 
     private lateinit var binding: DialogLoadingBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,8 @@ class LoadingDialog(context : Context) : Dialog(context) {
     }
 
     override fun show() {
-        if(!this.isShowing) super.show()
+        if (!this.isShowing) super.show()
     }
+
 
 }
