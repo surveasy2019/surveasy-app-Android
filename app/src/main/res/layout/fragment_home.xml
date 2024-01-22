@@ -66,7 +66,7 @@
                     style="@style/TextMediumBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="안녕하세요, "
+                    android:text="@string/hi_label"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="@id/guide_begin"
                     app:layout_constraintTop_toTopOf="@id/guide_top" />
@@ -76,6 +76,7 @@
                     style="@style/TextMediumBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toEndOf="@id/tv_greeting_title"
                     app:layout_constraintTop_toTopOf="@id/guide_top"
@@ -110,7 +111,7 @@
                     style="@style/TextSmallBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="참여 설문"
+                    android:text="@string/participate_label"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="@id/v_home_middle_container"
                     app:layout_constraintEnd_toEndOf="@id/iv_divider"
@@ -147,7 +148,7 @@
                     style="@style/TextSmallBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="정산 금액"
+                    android:text="@string/reward_label"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="@id/v_home_middle_container"
                     app:layout_constraintEnd_toEndOf="@id/v_home_middle_container"
@@ -184,7 +185,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="40dp"
                     android:gravity="center"
-                    android:text="참여해주세요"
+                    android:text="@string/home_title1_label"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toEndOf="@id/iv_check_label1"
                     app:layout_constraintTop_toTopOf="@id/v_home_bottom" />
@@ -196,7 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:text="참여 가능한 설문이 없습니다."
+                    android:text="@string/no_survey_label"
                     android:textColor="@color/gray"
                     android:visibility="@{(vm.uiState.didFirstSurvey &amp;&amp; !vm.uiState.showList)? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="@id/guide_end"
@@ -222,7 +223,7 @@
                         style="@style/TextSmallRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="패널 기본 정보 조사"
+                        android:text="@string/fs_label"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -268,7 +269,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="36dp"
-                    android:text="꼭 확인해주세요"
+                    android:text="@string/home_title2_label"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toEndOf="@id/iv_check_label2"
                     app:layout_constraintTop_toBottomOf="@id/rv_home_list" />
@@ -294,7 +295,7 @@
                         style="@style/TextSmallBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🖊️ 설문 인증 방법"
+                        android:text="@string/home_1_label"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -306,7 +307,7 @@
                         android:layout_marginTop="12dp"
                         android:lineBreakWordStyle="phrase"
                         android:lineSpacingExtra="0.3dp"
-                        android:text="올바른 참여 방법을 숙지해야 리워드를 받아갈 수 있어요!"
+                        android:text="@string/home_1_content"
                         android:textColor="@color/light_gray"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_left_title" />
@@ -317,7 +318,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="자세히 보기 >"
+                        android:text="@string/detail_label"
                         android:textColor="@color/gray"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_left_content" />
@@ -344,7 +345,7 @@
                         style="@style/TextSmallBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🚨 부정 참여 경고"
+                        android:text="@string/home_2_label"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -356,7 +357,7 @@
                         android:layout_marginTop="12dp"
                         android:lineBreakWordStyle="phrase"
                         android:lineSpacingExtra="0.3dp"
-                        android:text="부정 참여 및 불성실 응답 시 리워드가 제공되지 않아요!"
+                        android:text="@string/home_2_content"
                         android:textColor="@color/light_gray"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_right_title" />
@@ -366,7 +367,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="자세히 보기 >"
+                        android:text="@string/detail_label"
                         android:textColor="@color/gray"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_right_content" />

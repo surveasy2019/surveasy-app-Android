@@ -7,9 +7,6 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -685,7 +682,7 @@
     <string name="register1_star">*</string>
     <string name="register1_name">이름</string>
     <string name="register1_name_ph">실명을 입력하세요.</string>
-    <string name="register1_id">아이디 (이메일)</string>
+    <string name="register1_id">이메일</string>
     <string name="register1_id_ph">이메일 주소를 입력하세요.</string>
     <string name="register1_pw">비밀번호</string>
     <string name="register1_pw_ph">8자리 이상 입력해주세요.</string>
@@ -1154,5 +1151,87 @@
     <string name="title_activity_main">MainActivity</string>
 
     <string name="my_email">official@gosurveasy.com</string>
+    <string name="register_push_label">푸시알림</string>
+    <string name="withdraw_label">회원탈퇴</string>
+    <string name="logout_label">로그아웃</string>
+    <string name="version_label">버전 정보</string>
+    <string name="alert_label">알림</string>
+    <string name="setting_label">설정</string>
+    <string name="contact_label">문의하기</string>
+    <string name="email_label">이메일 문의</string>
+    <string name="copy_label">복사하기</string>
+    <string name="info_label">패널 정보</string>
+    <string name="eng_label">영어 설문</string>
+    <string name="home_content1_label">설문 참여 인증 방법 안내</string>
+    <string name="home_content2_label">부정 참여 경고</string>
+    <string name="content2_label">불성실 응답에 대한 패널티 안내</string>
+    <string name="withdraw_content">정말 떠나시는 건가요?</string>
+    <string name="withdraw_warn">탈퇴 시 정산 예정 금액은 지급되지 않습니다.</string>
+    <string name="withdraw_reason">서베이지를 떠나는 이유를 알려주세요.\n남겨주신 소중한 의견을 참고해 더 발전하겠습니다!</string>
+    <string name="loading_label">Loading ...</string>
+    <string name="fs_label">패널 기본 정보 조사</string>
+    <string name="fs_warn">*보다 많은 설문조사를 전달해 드리기 위해 기초 정보 조사를 실시합니다.해당 응답 내용을 바탕으로 설문 대상이 분류되므로, 정확한 응답 부탁드립니다.</string>
+    <string name="job_label">직업</string>
+    <string name="english_label">영어 설문 참여 의사</string>
+    <string name="participate_yes">참여합니다.</string>
+    <string name="participate_no">참여하지 않습니다.</string>
+    <string name="military_label">병역필여부</string>
+    <string name="military_yes">군필</string>
+    <string name="military_yet">미필</string>
+    <string name="military_no">해당 없음</string>
+    <string name="location_label">거주지역</string>
+    <string name="pet_label">반려동물</string>
+    <string name="marry_label">혼인 여부</string>
+    <string name="marry_yet">미혼</string>
+    <string name="marry_yes">기혼</string>
+    <string name="marry_no">이혼</string>
+    <string name="housing_label">가구형태</string>
+    <string name="house_type_label">거주 주택 형태</string>
+    <string name="btn_submit">제출하기</string>
+    <string name="survey_done_label">설문 참여가 완료되었습니다.</string>
+    <string name="btn_check">확인</string>
+    <string name="history_label">정산내역</string>
+    <string name="history_pre_label">이번달 10일 정산 예정이에요!</string>
+    <string name="history_yet_label">정산 예정 금액</string>
+    <string name="history_account_label">정산 예정 계좌</string>
+    <string name="btn_edit">수정</string>
+    <string name="cal_no_label">정산 예정</string>
+    <string name="cal_done_label">정산 완료</string>
+    <string name="done_page_label">설문 완료 화면</string>
+    <string name="history_warn1_label">※사진 변경 시, 기존 제출 화면은 삭제됩니다.</string>
+    <string name="history_warn2_label">※마감된 설문의 제출 화면은 변경이 불가합니다.</string>
+    <string name="history_change_label">설문 완료 화면 변경하기</string>
+    <string name="re_select_label">사진 다시 선택하기</string>
+    <string name="submit_change_label">제출화면 변경하기</string>
+    <string name="hi_label">안녕하세요,</string>
+    <string name="participate_label">참여 설문</string>
+    <string name="reward_label">정산 금액</string>
+    <string name="home_title1_label">참여해주세요</string>
+    <string name="no_survey_label">참여 가능한 설문이 없습니다.</string>
+    <string name="home_title2_label">꼭 확인해주세요</string>
+    <string name="home_1_label">🖊️ 설문 인증 방법</string>
+    <string name="home_1_content">올바른 참여 방법을 숙지해야 리워드를 받아갈 수 있어요!</string>
+    <string name="detail_label"><![CDATA[자세히 보기 >]]></string>
+    <string name="home_2_label">🚨 부정 참여 경고</string>
+    <string name="home_2_content">부정 참여 및 불성실 응답 시 리워드가 제공되지 않아요!</string>
+    <string name="list_label">설문 리스트</string>
+    <string name="fs_info_label">패널 기본 정보 설문 완료 후\n서베이지의 설문에 참여하세요!</string>
+    <string name="btn_go">참여하러 가기</string>
+    <string name="done_reward_label">정산 완료 금액</string>
+    <string name="not_yet_reward_label">정산 예정 금액</string>
+    <string name="sent_info">정산일은 매월 10일, 20일, 30일입니다.</string>
+    <string name="go_history">정산 내역 보기</string>
+    <string name="go_edit">회원정보 수정</string>
+    <string name="go_setting">설정</string>
+    <string name="go_contact">문의하기</string>
+    <string name="term1_label">이용약관</string>
+    <string name="capture_label">설문 화면 캡쳐 후</string>
+    <string name="panel_reward_label">패널비</string>
+    <string name="spend_label">소요시간</string>
+    <string name="panel_label">참여현황</string>
+    <string name="target_label">✅ 설문 대상</string>
+    <string name="panel_warn_label">❗️ 패널 유의사항</string>
+    <string name="explain_label">✍🏻 설문 설명</string>
+    <string name="check_warn">유의 사항을 확인했습니다.</string>
 
 </resources>

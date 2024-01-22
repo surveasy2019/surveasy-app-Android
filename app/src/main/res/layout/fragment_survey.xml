@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            android:text="설문 화면 캡쳐 후"
+            android:text="@string/capture_label"
             android:textColor="@color/gray"
             app:layout_constraintBottom_toBottomOf="@id/btn_reward"
             app:layout_constraintEnd_toStartOf="@id/btn_reward"

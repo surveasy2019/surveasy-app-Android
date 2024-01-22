@@ -56,7 +56,7 @@
             style="@style/TextMediumBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="설문 참여 인증 방법 안내"
+            android:text="@string/home_content1_label"
             app:layout_constraintBottom_toBottomOf="@id/v_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="설문 참여가 완료되었습니다."
+            android:text="@string/survey_done_label"
             android:textColor="@color/main_green"
             app:layout_constraintBottom_toTopOf="@id/btn_list"
             app:layout_constraintEnd_toEndOf="parent"

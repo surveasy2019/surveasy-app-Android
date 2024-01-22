@@ -53,7 +53,7 @@
             style="@style/TextMediumBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="회원탈퇴"
+            android:text="@string/withdraw_label"
             app:layout_constraintBottom_toBottomOf="@id/v_tool_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="정말 떠나시는 건가요?"
+            android:text="@string/withdraw_content"
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintTop_toBottomOf="@id/v_tool_bar" />
 
@@ -75,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="탈퇴 시 정산 예정 금액은 지급되지 않습니다."
+            android:text="@string/withdraw_warn"
             android:textColor="@color/main_green"
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintTop_toBottomOf="@id/tv_content1" />
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:lineSpacingExtra="1.8dp"
-            android:text="서베이지를 떠나는 이유를 알려주세요.\n남겨주신 소중한 의견을 참고해 더 발전하겠습니다!"
+            android:text="@string/withdraw_reason"
             android:textColor="@color/gray"
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintTop_toBottomOf="@id/tv_warn" />
