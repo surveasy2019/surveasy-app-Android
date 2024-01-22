@@ -155,16 +155,15 @@ class HistoryViewModel @Inject constructor(
     }
 
 
-    fun navigateToDetail(id: Int) {
-        viewModelScope.launch {
-            _events.emit(HistoryEvents.NavigateToDetail)
-            sid.emit(id)
-        }
+    fun navigateToDetail(id: Int) = viewModelScope.launch {
+        _events.emit(HistoryEvents.NavigateToDetail)
+        sid.emit(id)
     }
 
-    fun navigateToEdit() {
-        viewModelScope.launch { _events.emit(HistoryEvents.NavigateToEdit) }
-    }
+    fun navigateToEdit() = viewModelScope.launch { _events.emit(HistoryEvents.NavigateToEdit) }
+
+    fun navigateToInfoEdit() =
+        viewModelScope.launch { _events.emit(HistoryEvents.NavigateToInfoEdit) }
 
     companion object {
         const val BEFORE = "before"
@@ -179,6 +178,7 @@ sealed class HistoryEvents {
     data object NavigateToDetail : HistoryEvents()
     data object NavigateToEdit : HistoryEvents()
     data object NavigateToHistoryMain : HistoryEvents()
+    data object NavigateToInfoEdit : HistoryEvents()
     data object ShowLoading : HistoryEvents()
     data object DismissLoading : HistoryEvents()
     data class ShowToastMsg(val msg: String) : HistoryEvents()

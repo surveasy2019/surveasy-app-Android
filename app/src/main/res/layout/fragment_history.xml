@@ -106,6 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:background="@drawable/custom_box_ongoing"
+                android:onClick="@{() -> vm.navigateToInfoEdit()}"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="2dp"
                 android:text="수정"
