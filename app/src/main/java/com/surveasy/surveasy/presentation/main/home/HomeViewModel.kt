@@ -96,7 +96,6 @@ class HomeViewModel @Inject constructor(
     }
 
     fun navigateToFs() = viewModelScope.launch { _events.emit(HomeEvents.NavigateToFs) }
-
 }
 
 sealed class HomeEvents {
