@@ -1,5 +1,6 @@
 package com.surveasy.surveasy.presentation.main.survey
 
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
@@ -18,19 +19,13 @@ class SurveyDoneFragment : BaseFragment<FragmentSurveyDoneBinding>(R.layout.frag
 
     override fun initView() = with(binding) {
         vm = viewModel
+        requireActivity().onBackPressedDispatcher.addCallback(object :
+            OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() = viewModel.navigateToList()
+        })
     }
 
-    override fun initEventObserver() {
-        repeatOnStarted {
-            viewModel.events.collect { event ->
-                when (event) {
-                    is SurveyEvents.NavigateToMy -> findNavController().toMy()
-                    is SurveyEvents.NavigateToList -> findNavController().toList()
-                    else -> Unit
-                }
-            }
-        }
-    }
+    override fun initEventObserver() = Unit
 
 
 }

@@ -1,6 +1,7 @@
 package com.surveasy.surveasy.presentation.main.home
 
 import android.content.Intent
+import android.util.Log
 import androidx.fragment.app.viewModels
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentHomeBinding
@@ -28,6 +29,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun initView() = with(binding) {
         vm = viewModel
         rvHomeList.adapter = adapter
+        rvHomeList.animation = null
     }
 
     override fun initEventObserver() {

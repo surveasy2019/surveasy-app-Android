@@ -27,3 +27,8 @@ fun TextView.englishTitle(english: Boolean) {
 fun TextView.participatedTitle(responded: Int, total: Int) {
     text = "${responded}/${total}명"
 }
+
+@BindingAdapter("getReward")
+fun TextView.getReward(reward: Int){
+    text = "${reward}원 받기"
+}
