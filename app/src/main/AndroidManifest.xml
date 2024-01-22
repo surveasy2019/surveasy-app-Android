@@ -65,17 +65,10 @@
             android:exported="false" />
         <activity
             android:name=".presentation.main.MainActivity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.Surveasy"
-            android:windowSoftInputMode="adjustResize">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+            android:windowSoftInputMode="adjustResize"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".presentation.splash.SplashActivity"
             android:exported="true">
@@ -99,15 +92,7 @@
 
         <activity
             android:name=".presentation.intro.IntroActivity"
-            android:exported="true">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+            android:exported="true"/>
     </application>
 
 </manifest>
