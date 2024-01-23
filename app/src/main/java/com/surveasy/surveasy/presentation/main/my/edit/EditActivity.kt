@@ -31,6 +31,7 @@ class EditActivity : BaseActivity<ActivityEditBinding>(ActivityEditBinding::infl
             viewModel.events.collect {
                 when (it) {
                     is MyEditUiEvents.DoneEdit -> initData()
+                    is MyEditUiEvents.NavigateToBack -> finish()
                     is MyEditUiEvents.ShowSnackBar -> showSnackBar(it.msg)
                     is MyEditUiEvents.ShowToastMsg -> showToastMessage(it.msg)
                 }

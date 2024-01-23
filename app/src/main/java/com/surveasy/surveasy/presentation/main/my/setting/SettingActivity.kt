@@ -42,6 +42,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(ActivitySettingBind
         }
 
         vWithdraw.setOnClickListener { viewModel.navigateToWithdraw() }
+        ivBack.setOnClickListener { finish() }
 
     }
 

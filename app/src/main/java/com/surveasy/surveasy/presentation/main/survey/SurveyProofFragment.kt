@@ -36,6 +36,7 @@ class SurveyProofFragment :
         vm = viewModel
         btnPick.setOnClickListener { openOrSetting() }
         btnSubmit.setOnClickListener { uploadToFb() }
+        ivBack.setOnClickListener { findNavController().navigateUp() }
 
     }
 

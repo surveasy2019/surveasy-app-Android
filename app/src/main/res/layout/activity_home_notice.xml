@@ -56,11 +56,43 @@
             style="@style/TextMediumBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="부정 참여 경고"
+            android:text="@string/home_content2_label"
             app:layout_constraintBottom_toBottomOf="@id/v_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/v_bar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/content2_label"
+            app:layout_constraintTop_toBottomOf="@id/v_bar"
+            app:layout_constraintStart_toStartOf="@id/guide_begin"
+            android:layout_marginTop="36dp"
+            style="@style/TextTitleBold"
+            android:id="@+id/tv_med_title"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/guide_begin"
+            app:layout_constraintEnd_toEndOf="@id/guide_end"
+            app:layout_constraintTop_toBottomOf="@id/tv_med_title"
+            android:layout_marginTop="18dp"
+            android:id="@+id/md_divider"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/notice_panel"
+            android:layout_marginTop="36dp"
+            android:lineBreakStyle="normal"
+            android:lineBreakWordStyle="phrase"
+            app:layout_constraintStart_toStartOf="@id/guide_begin"
+            app:layout_constraintEnd_toEndOf="@id/guide_end"
+            android:id="@+id/tv_content"
+            app:layout_constraintTop_toBottomOf="@id/md_divider"
+            style="@style/TextSmallRegular"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -15,13 +15,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class SurveyFragment : BaseFragment<FragmentSurveyBinding>(R.layout.fragment_survey) {
     private val viewModel: SurveyViewModel by activityViewModels()
 
-    override fun initData() {
-
-    }
+    override fun initData() = Unit
 
     override fun initView() = with(binding) {
         initWebView()
         vm = viewModel
+        ivBack.setOnClickListener { findNavController().navigateUp() }
     }
 
     override fun initEventObserver() {

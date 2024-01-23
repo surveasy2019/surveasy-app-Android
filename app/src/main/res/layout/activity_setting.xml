@@ -47,7 +47,7 @@
             style="@style/TextMediumBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="설정"
+            android:text="@string/setting_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_back" />
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="50dp"
-            android:text="알림"
+            android:text="@string/alert_label"
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_title" />
 
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
-            android:text="버전 정보"
+            android:text="@string/version_label"
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintTop_toBottomOf="@id/md_divider1" />
 
@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
-            android:text="로그아웃"
+            android:text="@string/logout_label"
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintTop_toBottomOf="@id/md_divider2" />
 
@@ -160,7 +160,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
-            android:text="회원탈퇴"
+            android:text="@string/withdraw_label"
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintTop_toBottomOf="@id/md_divider3" />
 

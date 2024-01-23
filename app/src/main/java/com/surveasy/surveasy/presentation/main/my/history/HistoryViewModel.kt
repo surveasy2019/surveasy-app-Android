@@ -165,6 +165,8 @@ class HistoryViewModel @Inject constructor(
     fun navigateToInfoEdit() =
         viewModelScope.launch { _events.emit(HistoryEvents.NavigateToInfoEdit) }
 
+    fun navigateToBack() = viewModelScope.launch { _events.emit(HistoryEvents.NavigateToBack) }
+
     companion object {
         const val BEFORE = "before"
         const val AFTER = "after"
@@ -179,6 +181,7 @@ sealed class HistoryEvents {
     data object NavigateToEdit : HistoryEvents()
     data object NavigateToHistoryMain : HistoryEvents()
     data object NavigateToInfoEdit : HistoryEvents()
+    data object NavigateToBack : HistoryEvents()
     data object ShowLoading : HistoryEvents()
     data object DismissLoading : HistoryEvents()
     data class ShowToastMsg(val msg: String) : HistoryEvents()

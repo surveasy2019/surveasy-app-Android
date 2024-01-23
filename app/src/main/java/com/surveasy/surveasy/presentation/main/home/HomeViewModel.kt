@@ -83,8 +83,9 @@ class HomeViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun navigateToSurveyDetail(id: Int) =
+    fun navigateToSurveyDetail(id: Int) {
         viewModelScope.launch { _events.emit(HomeEvents.ClickSurveyItem(id)) }
+    }
 
 
     fun navigateToHowContent() =

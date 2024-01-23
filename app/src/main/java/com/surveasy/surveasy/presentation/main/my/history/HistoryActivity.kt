@@ -7,6 +7,7 @@ import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivityHistoryBinding
 import com.surveasy.surveasy.presentation.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class HistoryActivity : BaseActivity<ActivityHistoryBinding>(ActivityHistoryBinding::inflate) {
@@ -16,7 +17,14 @@ class HistoryActivity : BaseActivity<ActivityHistoryBinding>(ActivityHistoryBind
 
     override fun initData() = Unit
 
-    override fun initEventObserver() = Unit
+    override fun initEventObserver() = repeatOnStarted {
+        viewModel.events.collect {
+            when(it){
+                is HistoryEvents.NavigateToBack -> finish()
+                else -> Unit
+            }
+        }
+    }
 
     override fun initView() {
         navHostFragment =

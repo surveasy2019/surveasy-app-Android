@@ -40,7 +40,7 @@
             style="@style/TextMediumBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기초 설문"
+            android:text="@string/fs_label"
             app:layout_constraintBottom_toBottomOf="@id/v_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +66,7 @@
                     android:layout_marginTop="24dp"
                     android:lineBreakWordStyle="phrase"
                     android:lineSpacingExtra="2.7dp"
-                    android:text="*보다 많은 설문조사를 전달해 드리기 위해 기초 정보 조사를 실시합니다.해당 응답 내용을 바탕으로 설문 대상이 분류되므로, 정확한 응답 부탁드립니다."
+                    android:text="@string/fs_warn"
                     android:textColor="#707070"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="36dp"
-                    android:text="직업"
+                    android:text="@string/job_label"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_info" />
 
@@ -137,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="36dp"
-                    android:text="영어 설문 참여 의사"
+                    android:text="@string/english_label"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/s_major" />
 
@@ -154,14 +154,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="참여합니다." />
+                        android:text="@string/participate_yes" />
 
                     <RadioButton
                         android:id="@+id/rb_english_no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp"
-                        android:text="참여하지 않습니다." />
+                        android:text="@string/participate_no" />
 
                 </RadioGroup>
 
@@ -171,7 +171,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="36dp"
-                    android:text="병역필여부"
+                    android:text="@string/military_label"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rg_english" />
 
@@ -188,21 +188,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="군필" />
+                        android:text="@string/military_yes" />
 
                     <RadioButton
                         android:id="@+id/rb_military_yet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
-                        android:text="미필" />
+                        android:text="@string/military_yet" />
 
                     <RadioButton
                         android:id="@+id/rb_military_no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
-                        android:text="해당 없음" />
+                        android:text="@string/military_no" />
 
                 </RadioGroup>
 
@@ -217,7 +217,7 @@
             android:layout_marginVertical="10sp"
             android:background="@drawable/register_button"
             android:fontFamily="@font/main_font_m"
-            android:text="다음"
+            android:text="@string/btn_next"
 
             android:textColor="@color/white"
             android:textSize="15sp"

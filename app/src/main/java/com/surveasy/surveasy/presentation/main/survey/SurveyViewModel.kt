@@ -93,29 +93,18 @@ class SurveyViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun navigateToSurvey() {
-        viewModelScope.launch { _events.emit(SurveyEvents.NavigateToSurvey) }
-    }
+    fun navigateToSurvey() = viewModelScope.launch { _events.emit(SurveyEvents.NavigateToSurvey) }
 
-    fun navigateToProof() {
-        viewModelScope.launch { _events.emit(SurveyEvents.NavigateToProof) }
-    }
+    fun navigateToProof() = viewModelScope.launch { _events.emit(SurveyEvents.NavigateToProof) }
 
-    fun navigateToDone() {
-        viewModelScope.launch { _events.emit(SurveyEvents.NavigateToDone) }
-    }
-
-    fun navigateToMy() {
-        viewModelScope.launch { _events.emit(SurveyEvents.NavigateToMy) }
-    }
+    fun navigateToBack() = viewModelScope.launch { _events.emit(SurveyEvents.NavigateToBack) }
 
     fun navigateToList() {
         viewModelScope.launch { _events.emit(SurveyEvents.NavigateToList) }
     }
 
-    fun setSurveyId(sid: Int) {
-        viewModelScope.launch { sId.emit(sid) }
-    }
+    fun setSurveyId(sid: Int) = viewModelScope.launch { sId.emit(sid) }
+
 
 }
 
@@ -123,8 +112,8 @@ sealed class SurveyEvents {
     data object NavigateToSurvey : SurveyEvents()
     data object NavigateToProof : SurveyEvents()
     data object NavigateToDone : SurveyEvents()
-    data object NavigateToMy : SurveyEvents()
     data object NavigateToList : SurveyEvents()
+    data object NavigateToBack : SurveyEvents()
     data object ShowLoading : SurveyEvents()
     data object DismissLoading : SurveyEvents()
     data class ShowToastMsg(val msg: String) : SurveyEvents()

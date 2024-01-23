@@ -2,6 +2,7 @@ package com.surveasy.surveasy.presentation.main.survey
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -23,6 +24,7 @@ class SurveyActivity : BaseActivity<ActivitySurveyBinding>(ActivitySurveyBinding
             viewModel.events.collect {
                 when(it){
                     is SurveyEvents.NavigateToList -> toList()
+                    is SurveyEvents.NavigateToBack -> finish()
                     else -> Unit
                 }
             }
@@ -33,12 +35,11 @@ class SurveyActivity : BaseActivity<ActivitySurveyBinding>(ActivitySurveyBinding
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-    }
-
-    override fun initData() {
         val sId = intent.getIntExtra(SURVEY_ID, -1)
         viewModel.setSurveyId(sId)
     }
+
+    override fun initData() = Unit
 
     private fun toList() = finish()
 
