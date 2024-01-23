@@ -164,6 +164,8 @@ class MyEditViewModel @Inject constructor(
         viewModelScope.launch { editBank.emit(select) }
     }
 
+    fun navigateToBack() = viewModelScope.launch { _events.emit(MyEditUiEvents.NavigateToBack) }
+
     companion object {
         val PHONE_REGEX = Regex("""^[0-9]{11}${'$'}""")
         val ACCOUNT_REGEX = Regex("\\d+")
@@ -187,6 +189,7 @@ data class MyEditUiState(
 
 sealed class MyEditUiEvents {
     data object DoneEdit : MyEditUiEvents()
+    data object NavigateToBack : MyEditUiEvents()
     data class ShowToastMsg(val msg: String) : MyEditUiEvents()
     data class ShowSnackBar(val msg: String) : MyEditUiEvents()
 }

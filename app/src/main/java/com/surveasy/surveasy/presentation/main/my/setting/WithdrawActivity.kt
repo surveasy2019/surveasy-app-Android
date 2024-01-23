@@ -21,18 +21,16 @@ class WithdrawActivity : BaseActivity<ActivityWithdrawBinding>(ActivityWithdrawB
                 when (it) {
                     is WithdrawEvents.Withdraw -> toIntro()
                     is WithdrawEvents.ShowSnackBar -> showSnackBar(it.msg)
-                    is WithdrawEvents.NavigateToBack -> finish()
-                    else -> Unit
                 }
             }
         }
     }
 
-    override fun initView() {
+    override fun initView() = with(binding) {
         initCheckbox()
-        binding.btnWithdraw.setOnClickListener {
+        btnWithdraw.setOnClickListener {
             showTwoButtonDialog(
-                this,
+                this@WithdrawActivity,
                 "탈퇴 하시겠습니까?",
                 "회원 탈퇴 시 패널 정보가 모두 사라집니다.",
                 "탈퇴하기",
@@ -40,6 +38,8 @@ class WithdrawActivity : BaseActivity<ActivityWithdrawBinding>(ActivityWithdrawB
                 { viewModel.withdraw() }
             ) { }
         }
+
+        ivBack.setOnClickListener { finish() }
     }
 
     private fun initCheckbox() = with(binding) {

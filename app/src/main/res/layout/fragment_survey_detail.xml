@@ -45,6 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_back"
+                    android:onClick="@{() -> vm.navigateToBack() }"
                     app:layout_constraintBottom_toBottomOf="@id/v_detail_bar"
                     app:layout_constraintStart_toStartOf="@id/v_detail_bar"
                     app:layout_constraintTop_toTopOf="@id/v_detail_bar" />

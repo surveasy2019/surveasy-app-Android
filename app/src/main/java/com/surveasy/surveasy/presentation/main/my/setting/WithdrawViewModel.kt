@@ -95,6 +95,5 @@ class WithdrawViewModel @Inject constructor(
 
 sealed class WithdrawEvents {
     data object Withdraw : WithdrawEvents()
-    data object NavigateToBack : WithdrawEvents()
     data class ShowSnackBar(val msg: String) : WithdrawEvents()
 }

@@ -8,10 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.provider.Settings
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -33,12 +30,8 @@ class HistoryEditFragment :
         repeatOnStarted {
             viewModel.events.collect {
                 when (it) {
-                    is HistoryEvents.ShowLoading -> {
-                        showLoading(requireContext())
-                    }
-                    is HistoryEvents.DismissLoading -> {
-                        dismissLoading()
-                    }
+                    is HistoryEvents.ShowLoading -> showLoading(requireContext())
+                    is HistoryEvents.DismissLoading -> dismissLoading()
                     is HistoryEvents.ShowToastMsg -> showToastMessage(it.msg)
                     is HistoryEvents.NavigateToHistoryMain -> findNavController().toHistoryMain()
                     is HistoryEvents.ShowSnackBar -> showSnackBar(it.msg)
@@ -53,6 +46,7 @@ class HistoryEditFragment :
         vm = viewModel
         btnPick.setOnClickListener { openOrSetting() }
         btnSubmit.setOnClickListener { uploadToFb() }
+        ivBack.setOnClickListener { findNavController().navigateUp() }
     }
 
     private fun openOrSetting() {

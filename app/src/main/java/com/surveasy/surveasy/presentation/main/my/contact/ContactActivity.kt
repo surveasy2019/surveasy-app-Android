@@ -23,5 +23,7 @@ class ContactActivity : BaseActivity<ActivityContactBinding>(ActivityContactBind
 
             showToastMessage("이메일 주소가 복사되었습니다.")
         }
+
+        ivBack.setOnClickListener { finish() }
     }
 }
