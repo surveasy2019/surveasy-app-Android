@@ -1,8 +1,10 @@
 package com.surveasy.surveasy.presentation.main.survey.fs
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.surveasy.surveasy.domain.base.BaseState
+import com.surveasy.surveasy.domain.usecase.CreateFsResponseUseCase
+import com.surveasy.surveasy.presentation.util.ErrorMsg.SURVEY_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,7 +20,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FsViewModel @Inject constructor() : ViewModel() {
+class FsViewModel @Inject constructor(
+    private val createFsResponseUseCase: CreateFsResponseUseCase
+) : ViewModel() {
     private val job = MutableStateFlow("")
     private val major = MutableStateFlow("")
     val english = MutableStateFlow(true)
@@ -50,11 +54,25 @@ class FsViewModel @Inject constructor() : ViewModel() {
         observePet()
     }
 
-    fun test() {
-        Log.d(
-            "TEST",
-            "${job.value}, ${major.value}, ${english.value}, ${military.value}, ${city.value}, ${housing.value}, ${family.value}, ${marry.value}, ${pet.value}"
-        )
+    fun createFsResponse() {
+        createFsResponseUseCase(
+            english.value,
+            "SEOUL",
+            "서대문구",
+            family.value,
+            housing.value,
+            "UNDERGRADUATE",
+            "대학",
+            "SOCIAL",
+            marry.value,
+            military.value,
+            pet.value
+        ).onEach { state ->
+            when (state) {
+                is BaseState.Success -> _events.emit(FsEvents.NavigateToDone)
+                else -> _events.emit(FsEvents.ShowSnackBar(SURVEY_ERROR))
+            }
+        }.launchIn(viewModelScope)
     }
 
     fun navigateToNext(type: FsNavType) {
@@ -184,6 +202,8 @@ sealed class FsEvents {
     data object NavigateToInput2 : FsEvents()
     data object NavigateToDone : FsEvents()
     data object NavigateToBack : FsEvents()
+    data class ShowToastMsg(val msg: String) : FsEvents()
+    data class ShowSnackBar(val msg: String) : FsEvents()
 }
 
 

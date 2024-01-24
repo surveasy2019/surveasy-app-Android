@@ -42,7 +42,7 @@ class Fs2Fragment : BaseFragment<FragmentFs2Binding>(R.layout.fragment_fs2) {
         initSpinner()
         marryRadioListener()
         petRadioListener()
-        binding.btnSubmit.setOnClickListener { viewModel.test() }
+        binding.btnSubmit.setOnClickListener { viewModel.createFsResponse() }
     }
 
     private fun NavController.toDone() {
@@ -53,7 +53,7 @@ class Fs2Fragment : BaseFragment<FragmentFs2Binding>(R.layout.fragment_fs2) {
         binding.rgMarry.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rb_marry_no -> viewModel.setMarry(0)
-                R.id.rb_marry_no -> viewModel.setMarry(1)
+                R.id.rb_marry_yes -> viewModel.setMarry(1)
                 R.id.rb_marry_etc -> viewModel.setMarry(2)
             }
         }
