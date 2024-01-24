@@ -1,5 +1,6 @@
 package com.surveasy.surveasy.presentation.main.survey.fs
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,6 +23,11 @@ class FsViewModel @Inject constructor() : ViewModel() {
     private val major = MutableStateFlow("")
     val english = MutableStateFlow(true)
     private val military = MutableStateFlow(-1)
+    private val city = MutableStateFlow("")
+    private val housing = MutableStateFlow("")
+    private val family = MutableStateFlow("")
+    private val marry = MutableStateFlow(-1)
+    private val pet = MutableStateFlow(-1)
 
     private val _uiState = MutableStateFlow(FsValidState())
     val uiState: StateFlow<FsValidState> = _uiState.asStateFlow()
@@ -37,6 +43,18 @@ class FsViewModel @Inject constructor() : ViewModel() {
         observeJob()
         observeMajor()
         observeMilitary()
+        observeHousing()
+        observeCity()
+        observeFamily()
+        observeMarry()
+        observePet()
+    }
+
+    fun test() {
+        Log.d(
+            "TEST",
+            "${job.value}, ${major.value}, ${english.value}, ${military.value}, ${city.value}, ${housing.value}, ${family.value}, ${marry.value}, ${pet.value}"
+        )
     }
 
     fun navigateToNext(type: FsNavType) {
@@ -85,7 +103,67 @@ class FsViewModel @Inject constructor() : ViewModel() {
     private fun observeMilitary() {
         military.onEach { military ->
             _uiState.update {
-                it.copy(militaryValid = military != -1)
+                it.copy(militaryValid = military != RADIO_DEFAULT)
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun setCity(select: String) {
+        city.value = select
+    }
+
+    private fun observeCity() {
+        city.onEach { city ->
+            _uiState.update {
+                it.copy(cityValid = city != CITY_DEFAULT)
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun setHousing(select: String) {
+        housing.value = select
+    }
+
+    private fun observeHousing() {
+        housing.onEach { housing ->
+            _uiState.update {
+                it.copy(housingValid = housing != HOUSING_DEFAULT)
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun setFamily(select: String) {
+        family.value = select
+    }
+
+    private fun observeFamily() {
+        family.onEach { family ->
+            _uiState.update {
+                it.copy(familyValid = family != FAMILY_DEFAULT)
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun setMarry(state: Int) {
+        marry.value = state
+    }
+
+    private fun observeMarry() {
+        marry.onEach { marry ->
+            _uiState.update {
+                it.copy(marryValid = marry != RADIO_DEFAULT)
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun setPet(state: Int) {
+        pet.value = state
+    }
+
+    private fun observePet() {
+        pet.onEach { pet ->
+            _uiState.update {
+                it.copy(petValid = pet != RADIO_DEFAULT)
             }
         }.launchIn(viewModelScope)
     }
@@ -96,6 +174,9 @@ class FsViewModel @Inject constructor() : ViewModel() {
         const val JOB_STUDENT = "대학생"
         const val CITY_DEFAULT = "시/도"
         const val REGION_DEFAULT = "시/군/구"
+        const val HOUSING_DEFAULT = "주거 형태를 선택해주세요"
+        const val FAMILY_DEFAULT = "가구 형태를 선택해주세요"
+        const val RADIO_DEFAULT = -1
     }
 }
 
@@ -112,6 +193,10 @@ data class FsValidState(
     val majorValid: Boolean = false,
     val militaryValid: Boolean = false,
     val cityValid: Boolean = false,
+    val marryValid: Boolean = false,
+    val petValid: Boolean = false,
+    val housingValid: Boolean = false,
+    val familyValid: Boolean = false,
 )
 
 

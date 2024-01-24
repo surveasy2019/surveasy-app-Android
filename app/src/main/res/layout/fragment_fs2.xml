@@ -302,7 +302,6 @@
             android:layout_marginVertical="10sp"
             android:background="@drawable/register_button"
             android:fontFamily="@font/main_font_m"
-            android:onClick="@{() -> vm.navigateToNext(FsNavType.TO_DONE)}"
             android:text="@string/btn_submit"
             android:textColor="@color/white"
             android:textSize="15sp"

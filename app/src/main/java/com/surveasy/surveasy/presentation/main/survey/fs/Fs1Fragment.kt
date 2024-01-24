@@ -1,6 +1,5 @@
 package com.surveasy.surveasy.presentation.main.survey.fs
 
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -31,13 +30,6 @@ class Fs1Fragment : BaseFragment<FragmentFs1Binding>(R.layout.fragment_fs1) {
                 }
             }
         }
-    }
-
-    override fun initView() {
-        initSpinner()
-        militaryRadioListener()
-        initEnglishSwitch()
-        binding.btnNext.setOnClickListener { viewModel.navigateToNext(FsNavType.TO_INPUT2) }
         repeatOnStarted {
             viewModel.uiState.collectLatest {
                 binding.btnNext.isEnabled =
@@ -54,6 +46,13 @@ class Fs1Fragment : BaseFragment<FragmentFs1Binding>(R.layout.fragment_fs1) {
                     resources.getText(if (it) R.string.my_english_yes else R.string.my_english_no)
             }
         }
+    }
+
+    override fun initView() {
+        initSpinner()
+        militaryRadioListener()
+        initEnglishSwitch()
+        binding.btnNext.setOnClickListener { viewModel.navigateToNext(FsNavType.TO_INPUT2) }
 
 
     }
@@ -74,7 +73,6 @@ class Fs1Fragment : BaseFragment<FragmentFs1Binding>(R.layout.fragment_fs1) {
 
     private fun initEnglishSwitch() {
         binding.smEnglish.setOnCheckedChangeListener { _, b ->
-            Log.d("TEST", "switch $b")
             viewModel.setEnglish(b)
         }
     }
