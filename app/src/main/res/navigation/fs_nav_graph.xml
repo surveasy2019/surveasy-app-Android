@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fs_nav_graph"
-    app:startDestination="@id/firstSurvey1Fragment">
+    app:startDestination="@id/fs1Fragment">
 
     <fragment
-        android:id="@+id/firstSurvey1Fragment"
-        android:name="com.surveasy.surveasy.presentation.main.survey.fs.FirstSurvey1Fragment"
-        android:label="FirstSurvey1Fragment" >
+        android:id="@+id/fs1Fragment"
+        android:name="com.surveasy.surveasy.presentation.main.survey.fs.Fs1Fragment"
+        android:label="Fs1Fragment">
         <action
-            android:id="@+id/action_firstSurvey1Fragment_to_firstSurvey2Fragment"
-            app:destination="@id/firstSurvey2Fragment" />
+            android:id="@+id/action_fs1Fragment_to_fs2Fragment"
+            app:destination="@id/fs2Fragment" />
     </fragment>
     <fragment
-        android:id="@+id/firstSurvey2Fragment"
-        android:name="com.surveasy.surveasy.presentation.main.survey.fs.FirstSurvey2Fragment"
-        android:label="FirstSurvey2Fragment" >
+        android:id="@+id/fs2Fragment"
+        android:name="com.surveasy.surveasy.presentation.main.survey.fs.Fs2Fragment"
+        android:label="fragment_fs2"
+        tools:layout="@layout/fragment_fs2">
         <action
-            android:id="@+id/action_firstSurvey2Fragment_to_firstSurveyDoneFragment"
-            app:destination="@id/firstSurveyDoneFragment" />
+            android:id="@+id/action_fs2Fragment_to_fsDoneFragment"
+            app:destination="@id/fsDoneFragment" />
     </fragment>
     <fragment
-        android:id="@+id/firstSurveyDoneFragment"
-        android:name="com.surveasy.surveasy.presentation.main.survey.fs.FirstSurveyDoneFragment"
-        android:label="FirstSurveyDoneFragment" />
+        android:id="@+id/fsDoneFragment"
+        android:name="com.surveasy.surveasy.presentation.main.survey.fs.FsDoneFragment"
+        android:label="fragment_fs_done"
+        tools:layout="@layout/fragment_fs_done" />
 </navigation>

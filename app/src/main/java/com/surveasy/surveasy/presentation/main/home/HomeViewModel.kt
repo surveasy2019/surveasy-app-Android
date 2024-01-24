@@ -1,7 +1,9 @@
 package com.surveasy.surveasy.presentation.main.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.surveasy.surveasy.app.DataStoreManager
 import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.ListHomeSurveyUseCase
 import com.surveasy.surveasy.domain.usecase.QueryPanelInfoUseCase
@@ -17,6 +19,7 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
@@ -27,6 +30,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val queryPanelInfoUseCase: QueryPanelInfoUseCase,
     private val listHomeSurveyUseCase: ListHomeSurveyUseCase,
+    private val dataStoreManager: DataStoreManager,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
@@ -57,7 +61,10 @@ class HomeViewModel @Inject constructor(
                     }
                 }
 
-                else -> _events.emit(HomeEvents.ShowSnackBar(DATA_ERROR))
+                else -> {
+                    Log.d("test", "here, ${dataStoreManager.getAccessToken().first()}")
+                    _events.emit(HomeEvents.ShowSnackBar(DATA_ERROR))
+                }
             }
         }.launchIn(viewModelScope)
     }

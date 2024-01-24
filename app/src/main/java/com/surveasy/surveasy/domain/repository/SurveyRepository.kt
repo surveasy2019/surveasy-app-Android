@@ -29,4 +29,18 @@ interface SurveyRepository {
     fun createResponse(sid: Int, url: String): Flow<BaseState<Unit>>
 
     fun editResponse(sid: Int, url: String): Flow<BaseState<CommonId>>
+
+    fun createFsResponse(
+        english: Boolean,
+        city: String,
+        district: String,
+        family: String,
+        houseType: String,
+        job: String,
+        university: String,
+        major: String,
+        marriage: String,
+        military: String,
+        pet: String,
+    ): Flow<BaseState<Unit>>
 }

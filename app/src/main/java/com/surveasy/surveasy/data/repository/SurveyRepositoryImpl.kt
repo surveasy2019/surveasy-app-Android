@@ -1,5 +1,6 @@
 package com.surveasy.surveasy.data.repository
 
+import com.surveasy.surveasy.data.model.request.FsRequest
 import com.surveasy.surveasy.data.model.request.ResponseImgRequest
 import com.surveasy.surveasy.data.model.response.CommonIdResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.HistoryResponse.Companion.toDomainModel
@@ -69,6 +70,41 @@ class SurveyRepositoryImpl @Inject constructor(
     override fun editResponse(sid: Int, url: String): Flow<BaseState<CommonId>> = flow {
         when (val result = handleResponse { api.editResponse(sid, ResponseImgRequest(url)) }) {
             is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
+            is BaseState.Error -> emit(result)
+        }
+    }
+
+    override fun createFsResponse(
+        english: Boolean,
+        city: String,
+        district: String,
+        family: String,
+        houseType: String,
+        job: String,
+        university: String,
+        major: String,
+        marriage: String,
+        military: String,
+        pet: String
+    ): Flow<BaseState<Unit>> = flow {
+        when (val result = handleResponse {
+            api.createFsResponse(
+                FsRequest(
+                    english,
+                    city,
+                    district,
+                    family,
+                    houseType,
+                    job,
+                    university,
+                    major,
+                    marriage,
+                    military,
+                    pet
+                )
+            )
+        }) {
+            is BaseState.Success -> emit(BaseState.Success(Unit))
             is BaseState.Error -> emit(result)
         }
     }

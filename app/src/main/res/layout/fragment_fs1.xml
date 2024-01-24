@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.main.survey.fs.Fs1Fragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".presentation.main.survey.fs.FirstSurvey1Fragment">
+
+            <View
+                android:id="@+id/v_bar"
+                android:layout_width="0dp"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="@id/v_bar"
+                app:layout_constraintStart_toStartOf="@id/v_bar"
+                app:layout_constraintTop_toTopOf="@id/v_bar" />
+
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/TextMediumBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fs_label"
+                app:layout_constraintBottom_toBottomOf="@id/v_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/v_bar" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/btn_next"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/v_bar">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_info"
+                        style="@style/Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:lineBreakWordStyle="phrase"
+                        android:lineSpacingExtra="2.7dp"
+                        android:text="@string/fs_warn"
+                        android:textColor="#707070"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_job_label"
+                        style="@style/TextSmallBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="36dp"
+                        android:text="@string/job_label"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_info" />
+
+                    <Spinner
+                        android:id="@+id/s_job"
+                        style="@style/TextSmallRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/custom_spinner"
+                        android:inputType="text"
+                        android:paddingHorizontal="6dp"
+                        android:textColorHint="#c9c9c9"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_job_label" />
+
+                    <Spinner
+                        android:id="@+id/s_major"
+                        style="@style/TextSmallRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="48sp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/custom_spinner"
+                        android:inputType="text"
+                        android:paddingHorizontal="6dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#c9c9c9"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/s_job" />
+
+
+                    <!--                <EditText-->
+                    <!--                    android:id="@+id/SurveyListFirstSurvey1_EtcUniv"-->
+                    <!--                    android:layout_gravity="center_horizontal"-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="45sp"-->
+                    <!--                    android:layout_marginTop="15dp"-->
+                    <!--                    android:layout_marginStart="5dp"-->
+                    <!--                    android:layout_marginEnd="5dp"-->
+                    <!--                    android:hint="대학명을 입력하세요"-->
+                    <!--                    android:fontFamily="@font/main_font_m"-->
+                    <!--                    android:paddingStart="13sp"-->
+                    <!--                    android:textSize="13sp"-->
+                    <!--                    android:textColorHint="#c9c9c9"-->
+                    <!--                    android:textColor="@color/black"-->
+                    <!--                    android:inputType="text"-->
+                    <!--                    android:background="@drawable/custom_input"-->
+                    <!--                    android:textCursorDrawable="@drawable/custom_input_cursor"-->
+                    <!--                    android:visibility="gone"/>-->
+
+                    <TextView
+                        android:id="@+id/tv_military_label"
+                        style="@style/TextSmallBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="36dp"
+                        android:text="@string/military_label"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/s_major" />
+
+                    <RadioGroup
+                        android:id="@+id/rg_military"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_military_label">
+
+                        <RadioButton
+                            android:id="@+id/rb_military_done"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:button="@null"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp"
+                            android:text="@string/military_yes"
+                            android:textColor="@drawable/selector_radio_text" />
+
+                        <RadioButton
+                            android:id="@+id/rb_military_yet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:button="@null"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp"
+                            android:text="@string/military_yet"
+                            android:textColor="@drawable/selector_radio_text" />
+
+                        <RadioButton
+                            android:id="@+id/rb_military_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:button="@null"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp"
+                            android:text="@string/military_no"
+                            android:textColor="@drawable/selector_radio_text" />
+
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/tv_english_label"
+                        style="@style/TextSmallBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="36dp"
+                        android:text="@string/english_label"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rg_military" />
+
+                    <TextView
+                        android:id="@+id/tv_english"
+                        style="@style/TextTitleRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:text="@string/my_english_yes"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_english_label" />
+
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/sm_english"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_english"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_english" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_next"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10sp"
+                android:background="@drawable/register_button"
+                android:fontFamily="@font/main_font_m"
+                android:text="@string/btn_next"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
