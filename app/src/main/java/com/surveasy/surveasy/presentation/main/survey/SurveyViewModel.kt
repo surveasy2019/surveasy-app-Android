@@ -7,9 +7,13 @@ import com.surveasy.surveasy.domain.usecase.CreateResponseUseCase
 import com.surveasy.surveasy.domain.usecase.LoadImageUseCase
 import com.surveasy.surveasy.domain.usecase.QuerySurveyDetailUseCase
 import com.surveasy.surveasy.presentation.main.survey.mapper.toSurveyDetailData
+import com.surveasy.surveasy.presentation.util.ErrorCode.CODE_400
 import com.surveasy.surveasy.presentation.util.ErrorCode.CODE_404
+import com.surveasy.surveasy.presentation.util.ErrorCode.CODE_409
 import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.DID_SURVEY_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.INVALID_SURVEY_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.NOT_ALLOW_SURVEY_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.RETRY
 import com.surveasy.surveasy.presentation.util.ErrorMsg.SURVEY_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -62,13 +66,12 @@ class SurveyViewModel @Inject constructor(
                     is BaseState.Success -> _events.emit(SurveyEvents.NavigateToDone)
                     is BaseState.Error -> {
                         _events.emit(
-                            SurveyEvents.ShowSnackBar(SURVEY_ERROR, RETRY)
-//                            when(state.code){
-//                                CODE_400 -> SurveyEvents.ShowSnackBar(NOT_ALLOW_SURVEY_ERROR)
-//                                CODE_404 -> SurveyEvents.ShowSnackBar(INVALID_SURVEY_ERROR)
-//                                CODE_409 -> SurveyEvents.ShowSnackBar(DID_SURVEY_ERROR)
-//                                else -> SurveyEvents.ShowSnackBar(SURVEY_ERROR, RETRY)
-//                            }
+                            when (state.code) {
+                                CODE_400 -> SurveyEvents.ShowSnackBar(NOT_ALLOW_SURVEY_ERROR)
+                                CODE_404 -> SurveyEvents.ShowSnackBar(INVALID_SURVEY_ERROR)
+                                CODE_409 -> SurveyEvents.ShowSnackBar(DID_SURVEY_ERROR)
+                                else -> SurveyEvents.ShowSnackBar(SURVEY_ERROR, RETRY)
+                            }
                         )
                     }
                 }
@@ -81,7 +84,7 @@ class SurveyViewModel @Inject constructor(
     }
 
     fun querySurveyDetail() {
-        querySurveyDetailUseCase(sid = 0).onEach { state ->
+        querySurveyDetailUseCase(sid = sId.value).onEach { state ->
             when (state) {
                 is BaseState.Success -> {
                     state.data.toSurveyDetailData().apply {
