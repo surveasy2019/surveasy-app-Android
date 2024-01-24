@@ -8,8 +8,10 @@ import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.CreateExistPanelUseCase
 import com.surveasy.surveasy.domain.usecase.GetFbUidUseCase
 import com.surveasy.surveasy.domain.usecase.KakaoSignupUseCase
+import com.surveasy.surveasy.presentation.util.ErrorCode.CODE_404
 import com.surveasy.surveasy.presentation.util.ErrorMsg.EXIST_LOGIN_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.EXIST_LOGIN_ERROR_TWICE
+import com.surveasy.surveasy.presentation.util.ErrorMsg.EXIST_LOGIN_NULL_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.GET_INFO_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.SIGNUP_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.UNKNOWN_ERROR
@@ -50,7 +52,7 @@ class LoginViewModel @Inject constructor(
 
     suspend fun createExistPanel() {
         if (email.value.isBlank() || pw.value.isBlank()) {
-            _events.emit(LoginEvents.ShowSnackBar("아이디와 비밀번호를 정확하게 입력해주세요."))
+            _events.emit(LoginEvents.ShowSnackBar(EXIST_LOGIN_NULL_ERROR))
             return
         }
         _events.emit(LoginEvents.ShowLoading)
@@ -73,7 +75,7 @@ class LoginViewModel @Inject constructor(
                     }
 
                     is BaseState.Error -> {
-                        if (state.code == UNKNOWN_PANEL) {
+                        if (state.code == CODE_404) {
                             _events.emit(LoginEvents.ShowSnackBar(UNKNOWN_ERROR))
                         } else {
                             errorCount++
@@ -145,10 +147,6 @@ class LoginViewModel @Inject constructor(
         val list = phone.split(" ")
         val format = list[list.size - 1]
         return "0${format.replace("-", "")}"
-    }
-
-    companion object {
-        const val UNKNOWN_PANEL = 404
     }
 
 }

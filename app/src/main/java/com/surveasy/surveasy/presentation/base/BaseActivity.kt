@@ -50,6 +50,7 @@ abstract class BaseActivity<T : ViewDataBinding>(private val inflater: (LayoutIn
         ).apply {
             action?.let {
                 setAction(it) {
+                    initData()
                     dismiss()
                 }
             }

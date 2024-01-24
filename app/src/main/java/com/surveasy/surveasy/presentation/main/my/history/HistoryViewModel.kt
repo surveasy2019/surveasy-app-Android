@@ -8,8 +8,11 @@ import com.surveasy.surveasy.domain.usecase.ListHistoryUseCase
 import com.surveasy.surveasy.domain.usecase.LoadImageUseCase
 import com.surveasy.surveasy.presentation.main.my.history.mapper.toUiHistorySurveyData
 import com.surveasy.surveasy.presentation.main.my.history.model.UiHistorySurveyData
+import com.surveasy.surveasy.presentation.util.ErrorCode
 import com.surveasy.surveasy.presentation.util.ErrorMsg
 import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.SURVEY_EDIT_DONE_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.SURVEY_EDIT_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.BufferOverflow
@@ -144,7 +147,15 @@ class HistoryViewModel @Inject constructor(
                     }
 
                     is BaseState.Error -> {
-                        _events.emit(HistoryEvents.ShowSnackBar("제출화면 변경에 실패하였습니다."))
+                        _events.emit(
+                            when (state.code) {
+                                ErrorCode.CODE_400 -> HistoryEvents.ShowSnackBar(
+                                    SURVEY_EDIT_DONE_ERROR
+                                )
+
+                                else -> HistoryEvents.ShowSnackBar(SURVEY_EDIT_ERROR)
+                            }
+                        )
                     }
                 }
             }.onCompletion {

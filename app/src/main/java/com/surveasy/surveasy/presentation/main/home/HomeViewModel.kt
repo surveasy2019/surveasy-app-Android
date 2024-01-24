@@ -11,6 +11,7 @@ import com.surveasy.surveasy.presentation.main.home.mapper.toUiHomeListData
 import com.surveasy.surveasy.presentation.main.home.mapper.toUiPanelData
 import com.surveasy.surveasy.presentation.main.home.model.UiHomeListData
 import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.RETRY
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -63,7 +64,7 @@ class HomeViewModel @Inject constructor(
 
                 else -> {
                     Log.d("test", "here, ${dataStoreManager.getAccessToken().first()}")
-                    _events.emit(HomeEvents.ShowSnackBar(DATA_ERROR))
+                    _events.emit(HomeEvents.ShowSnackBar(DATA_ERROR, RETRY))
                 }
             }
         }.launchIn(viewModelScope)
@@ -85,7 +86,7 @@ class HomeViewModel @Inject constructor(
                     }
                 }
 
-                else -> _events.emit(HomeEvents.ShowSnackBar(DATA_ERROR))
+                else -> _events.emit(HomeEvents.ShowSnackBar(DATA_ERROR, RETRY))
             }
         }.launchIn(viewModelScope)
     }
@@ -112,7 +113,7 @@ sealed class HomeEvents {
     data object ClickNotice : HomeEvents()
     data object NavigateToFs : HomeEvents()
     data class ShowToastMsg(val msg: String) : HomeEvents()
-    data class ShowSnackBar(val msg: String) : HomeEvents()
+    data class ShowSnackBar(val msg: String, val btn: String? = null) : HomeEvents()
 }
 
 data class HomeUiState(

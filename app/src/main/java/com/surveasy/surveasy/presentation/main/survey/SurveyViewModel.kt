@@ -7,7 +7,10 @@ import com.surveasy.surveasy.domain.usecase.CreateResponseUseCase
 import com.surveasy.surveasy.domain.usecase.LoadImageUseCase
 import com.surveasy.surveasy.domain.usecase.QuerySurveyDetailUseCase
 import com.surveasy.surveasy.presentation.main.survey.mapper.toSurveyDetailData
+import com.surveasy.surveasy.presentation.util.ErrorCode.CODE_404
 import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.INVALID_SURVEY_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.RETRY
 import com.surveasy.surveasy.presentation.util.ErrorMsg.SURVEY_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
@@ -57,7 +60,17 @@ class SurveyViewModel @Inject constructor(
             createResponseUseCase(sId.value, imgUrl).onEach { state ->
                 when (state) {
                     is BaseState.Success -> _events.emit(SurveyEvents.NavigateToDone)
-                    else -> _events.emit(SurveyEvents.ShowSnackBar(SURVEY_ERROR))
+                    is BaseState.Error -> {
+                        _events.emit(
+                            SurveyEvents.ShowSnackBar(SURVEY_ERROR, RETRY)
+//                            when(state.code){
+//                                CODE_400 -> SurveyEvents.ShowSnackBar(NOT_ALLOW_SURVEY_ERROR)
+//                                CODE_404 -> SurveyEvents.ShowSnackBar(INVALID_SURVEY_ERROR)
+//                                CODE_409 -> SurveyEvents.ShowSnackBar(DID_SURVEY_ERROR)
+//                                else -> SurveyEvents.ShowSnackBar(SURVEY_ERROR, RETRY)
+//                            }
+                        )
+                    }
                 }
             }.onCompletion {
                 _events.emit(SurveyEvents.DismissLoading)
@@ -68,7 +81,7 @@ class SurveyViewModel @Inject constructor(
     }
 
     fun querySurveyDetail() {
-        querySurveyDetailUseCase(sid = sId.value).onEach { state ->
+        querySurveyDetailUseCase(sid = 0).onEach { state ->
             when (state) {
                 is BaseState.Success -> {
                     state.data.toSurveyDetailData().apply {
@@ -88,7 +101,13 @@ class SurveyViewModel @Inject constructor(
                     }
                 }
 
-                else -> _events.emit(SurveyEvents.ShowSnackBar(DATA_ERROR))
+                is BaseState.Error -> {
+                    _events.emit(
+                        if (state.code == CODE_404) SurveyEvents.ShowSnackBar(
+                            INVALID_SURVEY_ERROR
+                        ) else SurveyEvents.ShowSnackBar(DATA_ERROR)
+                    )
+                }
             }
         }.launchIn(viewModelScope)
     }
@@ -117,7 +136,7 @@ sealed class SurveyEvents {
     data object ShowLoading : SurveyEvents()
     data object DismissLoading : SurveyEvents()
     data class ShowToastMsg(val msg: String) : SurveyEvents()
-    data class ShowSnackBar(val msg: String) : SurveyEvents()
+    data class ShowSnackBar(val msg: String, val btn: String? = null) : SurveyEvents()
 }
 
 data class SurveyUiState(
