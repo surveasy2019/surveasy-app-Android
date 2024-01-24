@@ -2,6 +2,7 @@ package com.surveasy.surveasy.data.remote
 
 import com.surveasy.surveasy.data.model.request.EditInfoRequest
 import com.surveasy.surveasy.data.model.request.ExistRegisterRequest
+import com.surveasy.surveasy.data.model.request.FsRequest
 import com.surveasy.surveasy.data.model.request.KakaoInfoRequest
 import com.surveasy.surveasy.data.model.request.NewRegisterRequest
 import com.surveasy.surveasy.data.model.request.RefreshTokenRequest
@@ -91,6 +92,11 @@ interface SurveasyApi {
         @Path("surveyId") sid: Int,
         @Body body: ResponseImgRequest
     ): Response<CommonIdResponse>
+
+    @POST("panel/first-survey")
+    suspend fun createFsResponse(
+        @Body body: FsRequest
+    ): Response<Unit>
 
     //history
     @GET("response/{type}")
