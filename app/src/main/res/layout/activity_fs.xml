@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.main.survey.fs.FirstSurveyActivity">
+        tools:context=".presentation.main.survey.fs.FsActivity">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guide_top"

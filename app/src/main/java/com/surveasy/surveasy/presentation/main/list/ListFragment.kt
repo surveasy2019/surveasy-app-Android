@@ -10,7 +10,7 @@ import com.surveasy.surveasy.databinding.FragmentListBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
 import com.surveasy.surveasy.presentation.main.MainViewModel
 import com.surveasy.surveasy.presentation.main.survey.SurveyActivity
-import com.surveasy.surveasy.presentation.main.survey.fs.FirstSurveyActivity
+import com.surveasy.surveasy.presentation.main.survey.fs.FsActivity
 import com.surveasy.surveasy.presentation.util.IntentId.SURVEY_ID
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -67,7 +67,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
     }
 
     private fun toFs() {
-        val intent = Intent(context, FirstSurveyActivity::class.java)
+        val intent = Intent(context, FsActivity::class.java)
         startActivity(intent)
     }
 

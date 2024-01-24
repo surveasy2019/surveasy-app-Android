@@ -4,14 +4,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
-import com.surveasy.surveasy.databinding.FragmentFirstSurvey2Binding
+import com.surveasy.surveasy.databinding.FragmentFs2Binding
 import com.surveasy.surveasy.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FirstSurvey2Fragment :
-    BaseFragment<FragmentFirstSurvey2Binding>(R.layout.fragment_first_survey2) {
-    private val viewModel: FirstSurveyViewModel by activityViewModels()
+class Fs2Fragment : BaseFragment<FragmentFs2Binding>(R.layout.fragment_fs2) {
+    private val viewModel: FsViewModel by activityViewModels()
     override fun initData() {
 
     }
@@ -33,6 +32,6 @@ class FirstSurvey2Fragment :
     }
 
     private fun NavController.toDone() {
-        navigate(FirstSurvey2FragmentDirections.actionFirstSurvey2FragmentToFirstSurveyDoneFragment())
+        navigate(Fs2FragmentDirections.actionFs2FragmentToFsDoneFragment())
     }
 }

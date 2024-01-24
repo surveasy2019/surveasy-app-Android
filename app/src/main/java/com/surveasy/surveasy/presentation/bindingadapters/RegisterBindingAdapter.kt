@@ -22,7 +22,10 @@ fun TextInputLayout.nameHelperText(state: InputState) {
 
 
 @BindingAdapter("setDoneEnable", "needEtc")
-fun AppCompatButton.setDoneEnable(uiState: RegisterUiState, needEtc: Boolean) = with(uiState) {
-    isEnabled =
-        inflowState.isValid && bankState.isValid && accountState.isValid && accountOwnerState.isValid && (!needEtc || inflowEtcState.isValid)
+fun AppCompatButton.setDoneEnable(uiState: RegisterUiState?, needEtc: Boolean) {
+    uiState ?: return
+    with(uiState) {
+        isEnabled =
+            inflowState.isValid && bankState.isValid && accountState.isValid && accountOwnerState.isValid && (!needEtc || inflowEtcState.isValid)
+    }
 }

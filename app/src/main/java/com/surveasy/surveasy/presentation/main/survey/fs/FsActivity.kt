@@ -1,17 +1,14 @@
 package com.surveasy.surveasy.presentation.main.survey.fs
 
-import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.surveasy.surveasy.R
-import com.surveasy.surveasy.databinding.ActivityFirstSurveyBinding
+import com.surveasy.surveasy.databinding.ActivityFsBinding
 import com.surveasy.surveasy.presentation.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FirstSurveyActivity :
-    BaseActivity<ActivityFirstSurveyBinding>(ActivityFirstSurveyBinding::inflate) {
-    private val vm: FirstSurveyViewModel by viewModels()
+class FsActivity : BaseActivity<ActivityFsBinding>(ActivityFsBinding::inflate) {
     private var navController: NavController? = null
 
     override fun initData() = Unit
