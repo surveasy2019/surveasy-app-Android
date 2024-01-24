@@ -25,7 +25,7 @@ class SurveyDetailFragment :
             viewModel.events.collect { event ->
                 when (event) {
                     is SurveyEvents.NavigateToSurvey -> findNavController().toSurvey()
-                    is SurveyEvents.ShowSnackBar -> showSnackBar(event.msg)
+                    is SurveyEvents.ShowSnackBar -> showSnackBar(event.msg, event.btn)
                     else -> Unit
                 }
             }

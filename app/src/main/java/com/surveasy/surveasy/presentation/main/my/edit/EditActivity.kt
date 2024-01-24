@@ -32,7 +32,7 @@ class EditActivity : BaseActivity<ActivityEditBinding>(ActivityEditBinding::infl
                 when (it) {
                     is MyEditUiEvents.DoneEdit -> initData()
                     is MyEditUiEvents.NavigateToBack -> finish()
-                    is MyEditUiEvents.ShowSnackBar -> showSnackBar(it.msg)
+                    is MyEditUiEvents.ShowSnackBar -> showSnackBar(it.msg, it.btn)
                     is MyEditUiEvents.ShowToastMsg -> showToastMessage(it.msg)
                 }
             }

@@ -8,6 +8,7 @@ import com.surveasy.surveasy.domain.usecase.QueryPanelDetailInfoUseCase
 import com.surveasy.surveasy.presentation.main.my.mapper.toUiPanelDetailData
 import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.EDIT_ERROR
+import com.surveasy.surveasy.presentation.util.ErrorMsg.RETRY
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -78,7 +79,7 @@ class MyEditViewModel @Inject constructor(
                     }
                 }
 
-                else -> _events.emit(MyEditUiEvents.ShowSnackBar(DATA_ERROR))
+                else -> _events.emit(MyEditUiEvents.ShowSnackBar(DATA_ERROR, RETRY))
             }
         }.launchIn(viewModelScope)
     }
@@ -191,5 +192,5 @@ sealed class MyEditUiEvents {
     data object DoneEdit : MyEditUiEvents()
     data object NavigateToBack : MyEditUiEvents()
     data class ShowToastMsg(val msg: String) : MyEditUiEvents()
-    data class ShowSnackBar(val msg: String) : MyEditUiEvents()
+    data class ShowSnackBar(val msg: String, val btn: String? = null) : MyEditUiEvents()
 }

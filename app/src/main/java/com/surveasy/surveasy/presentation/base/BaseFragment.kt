@@ -82,6 +82,7 @@ abstract class BaseFragment<B : ViewDataBinding>(
         ).apply {
             action?.let {
                 setAction(it) {
+                    initData()
                     dismiss()
                 }
             }

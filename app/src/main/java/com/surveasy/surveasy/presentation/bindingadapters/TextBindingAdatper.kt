@@ -2,6 +2,10 @@ package com.surveasy.surveasy.presentation.bindingadapters
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.google.android.material.textfield.TextInputLayout
+import com.surveasy.surveasy.R
+import com.surveasy.surveasy.presentation.intro.HelperText
+import com.surveasy.surveasy.presentation.intro.InputState
 
 @BindingAdapter("nameTitle")
 fun TextView.nameTitle(name: String) {
@@ -29,6 +33,23 @@ fun TextView.participatedTitle(responded: Int, total: Int) {
 }
 
 @BindingAdapter("getReward")
-fun TextView.getReward(reward: Int){
+fun TextView.getReward(reward: Int) {
     text = "${reward}원 받기"
+}
+
+@BindingAdapter("sentDay")
+fun TextView.sentDay(date: Int) {
+    text = "이번달 ${date}일 정산 예정이에요!"
+}
+
+@BindingAdapter("setHelperText")
+fun TextInputLayout.nameHelperText(state: InputState) {
+    helperText = when (state.helperText) {
+        HelperText.ACCOUNT_INVALID -> "숫자만 입력해주세요."
+        HelperText.OWNER_INVALID -> "최소 2자 이상 입력해주세요."
+        HelperText.INFLOW_ETC_INVALID -> "최소 2자 이상 입력해주세요."
+        else -> ""
+    }
+
+    setHelperTextTextAppearance(R.style.HelperTextStyle)
 }

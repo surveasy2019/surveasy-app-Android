@@ -57,13 +57,13 @@ class FsViewModel @Inject constructor(
     fun createFsResponse() {
         createFsResponseUseCase(
             english.value,
-            "SEOUL",
+            city.value,
             "서대문구",
             family.value,
             housing.value,
-            "UNDERGRADUATE",
+            job.value,
             "대학",
-            "SOCIAL",
+            major.value,
             marry.value,
             military.value,
             pet.value
@@ -186,6 +186,10 @@ class FsViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
+    fun navigateToList() {
+        viewModelScope.launch { _events.emit(FsEvents.NavigateToList) }
+    }
+
     companion object {
         const val JOB_DEFAULT = "직업을 선택해주세요"
         const val MAJOR_DEFAULT = "소속 계열을 선택해주세요"
@@ -202,6 +206,7 @@ sealed class FsEvents {
     data object NavigateToInput2 : FsEvents()
     data object NavigateToDone : FsEvents()
     data object NavigateToBack : FsEvents()
+    data object NavigateToList : FsEvents()
     data class ShowToastMsg(val msg: String) : FsEvents()
     data class ShowSnackBar(val msg: String) : FsEvents()
 }

@@ -166,7 +166,7 @@ class RegisterViewModel @Inject constructor(
             _events.emit(RegisterEvents.ShowLoading)
             when (register) {
                 is BaseState.Success -> {
-                    // token save, auto save
+                    // TODO token save, auto save
                     _events.emit(RegisterEvents.NavigateToDone)
                 }
 

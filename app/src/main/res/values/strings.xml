@@ -260,6 +260,7 @@
     // SurveyListFirstSurveyFragment1
     <string-array name="job">
         <item>직업을 선택해주세요</item>
+        <item>중/고등학생</item>
         <item>대학생</item>
         <item>대학원생</item>
         <item>사무직</item>
