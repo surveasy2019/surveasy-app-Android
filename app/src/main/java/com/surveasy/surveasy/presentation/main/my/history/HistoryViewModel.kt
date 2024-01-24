@@ -27,6 +27,8 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.Calendar
+import java.util.TimeZone
 import javax.inject.Inject
 
 @HiltViewModel
@@ -36,6 +38,7 @@ class HistoryViewModel @Inject constructor(
     private val loadImageUseCase: LoadImageUseCase,
 ) : ViewModel() {
     private val sid = MutableStateFlow(-1)
+    val date = MutableStateFlow(0)
 
     private val _mainUiState = MutableStateFlow(HistoryUiState())
     val mainUiState: StateFlow<HistoryUiState> = _mainUiState.asStateFlow()
@@ -49,6 +52,10 @@ class HistoryViewModel @Inject constructor(
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
     val events: SharedFlow<HistoryEvents> = _events.asSharedFlow()
+
+    init {
+        setDate()
+    }
 
     fun listHistory(isBefore: Boolean) {
         val type = if (isBefore) BEFORE else AFTER
@@ -163,6 +170,24 @@ class HistoryViewModel @Inject constructor(
             }.launchIn(viewModelScope)
         }
 
+    }
+
+    private fun setDate() {
+        val seoulTimeZone: TimeZone = TimeZone.getTimeZone("Asia/Seoul")
+        val calendar: Calendar = Calendar.getInstance(seoulTimeZone)
+        val day: Int = calendar.get(Calendar.DAY_OF_MONTH)
+
+        viewModelScope.launch {
+            date.emit(
+                if (day > 30 || day <= 10) {
+                    10
+                } else if (day <= 20) {
+                    20
+                } else {
+                    30
+                }
+            )
+        }
     }
 
 
