@@ -78,7 +78,7 @@ class Fs2Fragment : BaseFragment<FragmentFs2Binding>(R.layout.fragment_fs2) {
 
     private fun initSpinnerAdapter(list: Array<String>): ArrayAdapter<String> = ArrayAdapter(
         requireContext(),
-        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+        R.layout.custom_spinner_item,
         list
     )
 

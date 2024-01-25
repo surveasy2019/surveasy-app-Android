@@ -202,6 +202,8 @@
                         android:id="@+id/et_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/TextTitleRegular"
+                        android:textSize="16sp"
                         android:text="@={vm.editPhone}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -238,6 +240,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_bank_label"
+                    style="@style/TextTitleRegular"
+                    android:textSize="16sp"
                     app:layout_goneMarginTop="4dp" />
 
                 <TextView
@@ -277,6 +281,8 @@
                         android:id="@+id/et_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/TextTitleRegular"
+                        android:textSize="16sp"
                         android:text="@={vm.editAccount}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -317,6 +323,8 @@
                         android:id="@+id/et_owner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        style="@style/TextTitleRegular"
+                        android:textSize="16sp"
                         android:text="@={vm.editOwner}" />
                 </com.google.android.material.textfield.TextInputLayout>
 

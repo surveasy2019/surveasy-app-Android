@@ -44,7 +44,7 @@ class EditActivity : BaseActivity<ActivityEditBinding>(ActivityEditBinding::infl
         val bankAdapter =
             ArrayAdapter(
                 this@EditActivity,
-                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                R.layout.custom_spinner_item,
                 bankList
             )
 
