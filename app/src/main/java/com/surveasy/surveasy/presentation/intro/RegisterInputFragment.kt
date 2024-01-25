@@ -44,7 +44,7 @@ class RegisterInputFragment :
         val bankAdapter =
             ArrayAdapter(
                 requireContext(),
-                R.layout.custom_spinner_item,
+                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
                 bankList
             )
         sBank.apply {
@@ -69,7 +69,7 @@ class RegisterInputFragment :
         val inflowPathList = resources.getStringArray(R.array.inflowPath)
         val inflowPathAdapter = ArrayAdapter(
             requireContext(),
-            R.layout.custom_spinner_item,
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
             inflowPathList
         )
 

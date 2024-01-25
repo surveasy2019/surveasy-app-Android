@@ -48,12 +48,12 @@ class Fs1Fragment : BaseFragment<FragmentFs1Binding>(R.layout.fragment_fs1) {
         }
     }
 
-    override fun initView() {
+    override fun initView() = with(binding) {
         initSpinner()
         militaryRadioListener()
         initEnglishSwitch()
-        binding.btnNext.setOnClickListener { viewModel.navigateToNext(FsNavType.TO_INPUT2) }
-
+        btnNext.setOnClickListener { viewModel.navigateToNext(FsNavType.TO_INPUT2) }
+        ivBack.setOnClickListener { viewModel.navigateToList() }
 
     }
 
@@ -84,7 +84,7 @@ class Fs1Fragment : BaseFragment<FragmentFs1Binding>(R.layout.fragment_fs1) {
 
     private fun initSpinnerAdapter(list: Array<String>): ArrayAdapter<String> = ArrayAdapter(
         requireContext(),
-        R.layout.custom_spinner_item,
+        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
         list
     )
 

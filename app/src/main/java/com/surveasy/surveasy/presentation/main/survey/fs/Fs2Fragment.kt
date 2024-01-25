@@ -38,11 +38,12 @@ class Fs2Fragment : BaseFragment<FragmentFs2Binding>(R.layout.fragment_fs2) {
         }
     }
 
-    override fun initView() {
+    override fun initView() = with(binding) {
         initSpinner()
         marryRadioListener()
         petRadioListener()
-        binding.btnSubmit.setOnClickListener { viewModel.createFsResponse() }
+        btnSubmit.setOnClickListener { viewModel.createFsResponse() }
+        ivBack.setOnClickListener { findNavController().navigateUp() }
     }
 
     private fun NavController.toDone() {
@@ -78,7 +79,7 @@ class Fs2Fragment : BaseFragment<FragmentFs2Binding>(R.layout.fragment_fs2) {
 
     private fun initSpinnerAdapter(list: Array<String>): ArrayAdapter<String> = ArrayAdapter(
         requireContext(),
-        R.layout.custom_spinner_item,
+        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
         list
     )
 
