@@ -40,6 +40,7 @@ class HistoryFragment : BaseFragment<FragmentHistoryBinding>(R.layout.fragment_h
     }
 
     override fun initData() {
+        viewModel.queryAccountInfo()
         viewModel.listHistory(true)
     }
 

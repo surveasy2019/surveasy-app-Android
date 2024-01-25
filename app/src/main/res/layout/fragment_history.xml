@@ -85,9 +85,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="165000원"
                 app:layout_constraintStart_toStartOf="@id/cl_box"
-                app:layout_constraintTop_toBottomOf="@id/tv_reward_label" />
+                app:layout_constraintTop_toBottomOf="@id/tv_reward_label"
+                app:rewardTitle="@{vm.mainUiState.reward}" />
 
             <TextView
                 android:id="@+id/tv_account_label"
@@ -122,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="우리"
+                android:text="@{vm.mainUiState.bank}"
                 app:layout_constraintStart_toStartOf="@id/cl_box"
                 app:layout_constraintTop_toBottomOf="@id/tv_account_label" />
 
@@ -133,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="1234-1234"
+                android:text="@{vm.mainUiState.account}"
                 app:layout_constraintStart_toEndOf="@id/tv_bank"
                 app:layout_constraintTop_toBottomOf="@id/tv_account_label" />
 
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
-                android:text="이름"
+                android:text="@{vm.mainUiState.owner}"
                 app:layout_constraintStart_toEndOf="@id/tv_divider"
                 app:layout_constraintTop_toBottomOf="@id/tv_account_label" />
 

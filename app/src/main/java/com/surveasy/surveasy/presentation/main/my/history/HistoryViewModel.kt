@@ -6,6 +6,8 @@ import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.EditResponseUseCase
 import com.surveasy.surveasy.domain.usecase.ListHistoryUseCase
 import com.surveasy.surveasy.domain.usecase.LoadImageUseCase
+import com.surveasy.surveasy.domain.usecase.QueryAccountInfoUseCase
+import com.surveasy.surveasy.presentation.main.my.history.mapper.toUiAccountData
 import com.surveasy.surveasy.presentation.main.my.history.mapper.toUiHistorySurveyData
 import com.surveasy.surveasy.presentation.main.my.history.model.UiHistorySurveyData
 import com.surveasy.surveasy.presentation.util.ErrorCode
@@ -36,6 +38,7 @@ class HistoryViewModel @Inject constructor(
     private val listHistoryUseCase: ListHistoryUseCase,
     private val editResponseUseCase: EditResponseUseCase,
     private val loadImageUseCase: LoadImageUseCase,
+    private val queryAccountInfoUseCase: QueryAccountInfoUseCase,
 ) : ViewModel() {
     private val sid = MutableStateFlow(-1)
     val date = MutableStateFlow(0)
@@ -55,6 +58,26 @@ class HistoryViewModel @Inject constructor(
 
     init {
         setDate()
+    }
+
+    fun queryAccountInfo() {
+        queryAccountInfoUseCase().onEach { state ->
+            when (state) {
+                is BaseState.Success -> {
+                    _mainUiState.update {
+                        val data = state.data.toUiAccountData()
+                        it.copy(
+                            reward = data.reward,
+                            account = data.account,
+                            owner = data.owner,
+                            bank = data.bank
+                        )
+                    }
+                }
+
+                else -> _events.emit(HistoryEvents.ShowSnackBar(DATA_ERROR))
+            }
+        }.launchIn(viewModelScope)
     }
 
     fun listHistory(isBefore: Boolean) {
@@ -228,6 +251,7 @@ data class HistoryUiState(
     val reward: Int = 0,
     val account: String = "",
     val owner: String = "",
+    val bank: String = "",
     val nowPage: Int = 0,
     val lastPage: Boolean = false,
     val isLoading: Boolean = false,
