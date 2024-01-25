@@ -101,6 +101,7 @@ class HistoryViewModel @Inject constructor(
                                 list = data,
                                 lastPage = totalPage == 1,
                                 nowPage = 1,
+                                isListEmpty = data.isEmpty()
                             )
                         }
                     }
@@ -256,7 +257,8 @@ data class HistoryUiState(
     val lastPage: Boolean = false,
     val isLoading: Boolean = false,
     val isBefore: Boolean = true,
-    val list: List<UiHistorySurveyData> = emptyList()
+    val list: List<UiHistorySurveyData> = emptyList(),
+    val isListEmpty: Boolean = false
 )
 
 data class HistoryDetailUiState(
