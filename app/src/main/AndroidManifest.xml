@@ -40,9 +40,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.main.survey.fs.FirstSurveyActivity"
-            android:exported="false" />
-        <activity
             android:name=".presentation.main.home.notice.HomeNoticeActivity"
             android:exported="false" />
         <activity
@@ -56,7 +53,8 @@
             android:exported="false" />
         <activity
             android:name=".presentation.main.my.edit.EditActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentation.main.my.contact.ContactActivity"
             android:exported="false" />
@@ -70,8 +68,7 @@
             android:name=".presentation.main.MainActivity"
             android:exported="false"
             android:launchMode="singleTop"
-            android:theme="@style/Theme.Surveasy"
-            android:windowSoftInputMode="adjustResize" />
+            android:theme="@style/Theme.Surveasy" />
         <activity
             android:name=".presentation.splash.SplashActivity"
             android:exported="true">
@@ -95,7 +92,8 @@
 
         <activity
             android:name=".presentation.intro.IntroActivity"
-            android:exported="true" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>
