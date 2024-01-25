@@ -15,6 +15,7 @@ class RegisterAgreeFragment :
 
     override fun initView() = with(binding) {
         vm = viewModel
+        initAgree()
     }
 
     override fun initEventObserver() {
@@ -41,5 +42,34 @@ class RegisterAgreeFragment :
     override fun initData() {
 
     }
+
+    private fun initAgree() = with(binding) {
+        cbAgree1.setOnClickListener {
+            cbAgree2.isChecked = cbAgree1.isChecked
+            cbAgree3.isChecked = cbAgree1.isChecked
+            cbAgree4.isChecked = cbAgree1.isChecked
+            viewModel.checkMust(cbAgree2.isChecked && cbAgree3.isChecked)
+
+        }
+
+        cbAgree2.setOnClickListener {
+            cbAgree1.isChecked = checkAll()
+            viewModel.checkMust(cbAgree2.isChecked && cbAgree3.isChecked)
+        }
+
+        cbAgree3.setOnClickListener {
+            cbAgree1.isChecked = checkAll()
+            viewModel.checkMust(cbAgree2.isChecked && cbAgree3.isChecked)
+        }
+
+        cbAgree4.setOnClickListener {
+            cbAgree1.isChecked = checkAll()
+            viewModel.checkMarketing(cbAgree4.isChecked)
+        }
+    }
+
+    private fun checkAll(): Boolean =
+        binding.cbAgree2.isChecked && binding.cbAgree3.isChecked && binding.cbAgree4.isChecked
+
 
 }

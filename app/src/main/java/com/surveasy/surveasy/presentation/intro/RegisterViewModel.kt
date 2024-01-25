@@ -26,9 +26,7 @@ class RegisterViewModel @Inject constructor(
     private val newPanelUseCase: CreateNewPanelUseCase,
     private val dataStoreManager: DataStoreManager,
 ) : ViewModel() {
-    val agreeAll = MutableStateFlow(false)
-    val agreeMust1 = MutableStateFlow(false)
-    val agreeMust2 = MutableStateFlow(false)
+    val agreeMust = MutableStateFlow(false)
     val agreeMarketing = MutableStateFlow(false)
 
     val showEtc = MutableStateFlow(false)
@@ -50,10 +48,6 @@ class RegisterViewModel @Inject constructor(
     val events: SharedFlow<RegisterEvents> = _events.asSharedFlow()
 
     init {
-        checkAgreeAll()
-        checkMust1()
-        checkMust2()
-        checkMarketing()
         observeInflow()
         observeInflowEtc()
         observeBank()
@@ -182,46 +176,14 @@ class RegisterViewModel @Inject constructor(
     }
 
 
-    // all click logic 추가
-    private fun checkAgreeAll() {
-        agreeAll.onEach { all ->
-            if (all) {
-                agreeMust1.emit(true)
-                agreeMust2.emit(true)
-                agreeMarketing.emit(true)
-            }
-
-        }.launchIn(viewModelScope)
+    fun checkMust(state: Boolean) {
+        agreeMust.value = state
     }
 
-    private fun checkMust1() {
-        agreeMust1.onEach { check ->
-            agreeMust1.emit(check)
-            agreeAll.emit(
-                isAllChecked()
-            )
-        }.launchIn(viewModelScope)
+    fun checkMarketing(state: Boolean) {
+        agreeMarketing.value = state
     }
 
-    private fun checkMust2() {
-        agreeMust2.onEach { check ->
-            agreeMust2.emit(check)
-            agreeAll.emit(
-                isAllChecked()
-            )
-        }.launchIn(viewModelScope)
-    }
-
-    private fun checkMarketing() {
-        agreeMarketing.onEach { check ->
-            agreeMarketing.emit(check)
-            agreeAll.emit(
-                isAllChecked()
-            )
-        }.launchIn(viewModelScope)
-    }
-
-    private fun isAllChecked() = agreeMust1.value && agreeMust2.value && agreeMarketing.value
 
     companion object {
         const val NAME_LENGTH = 1
