@@ -15,6 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".presentation.main.my.history.HistoryFragment">
 
         <View
@@ -85,9 +86,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="165000원"
                 app:layout_constraintStart_toStartOf="@id/cl_box"
-                app:layout_constraintTop_toBottomOf="@id/tv_reward_label" />
+                app:layout_constraintTop_toBottomOf="@id/tv_reward_label"
+                app:rewardTitle="@{vm.mainUiState.reward}" />
 
             <TextView
                 android:id="@+id/tv_account_label"
@@ -122,7 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="우리"
+                android:text="@{vm.mainUiState.bank}"
                 app:layout_constraintStart_toStartOf="@id/cl_box"
                 app:layout_constraintTop_toBottomOf="@id/tv_account_label" />
 
@@ -133,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="1234-1234"
+                android:text="@{vm.mainUiState.account}"
                 app:layout_constraintStart_toEndOf="@id/tv_bank"
                 app:layout_constraintTop_toBottomOf="@id/tv_account_label" />
 
@@ -155,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
-                android:text="이름"
+                android:text="@{vm.mainUiState.owner}"
                 app:layout_constraintStart_toEndOf="@id/tv_divider"
                 app:layout_constraintTop_toBottomOf="@id/tv_account_label" />
 
@@ -168,6 +169,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_box"
@@ -190,6 +192,20 @@
 
         </com.google.android.material.tabs.TabLayout>
 
+        <TextView
+            android:id="@+id/tv_empty"
+            style="@style/TextSmallLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vm.mainUiState.isBefore? @string/history_yet_empty : @string/history_done_empty}"
+            android:textColor="@color/gray"
+            android:visibility="@{vm.mainUiState.listEmpty? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_history" />
+
+
         <ImageView
             android:id="@+id/iv_loading"
             android:layout_width="40dp"
@@ -208,6 +224,7 @@
             android:layout_marginTop="20dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:visibility="@{vm.mainUiState.listEmpty? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/cl_box"
             app:layout_constraintStart_toStartOf="@id/cl_box"

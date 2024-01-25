@@ -1,15 +1,11 @@
 package com.surveasy.surveasy.presentation.main.survey
 
-import android.content.Intent
-import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivitySurveyBinding
 import com.surveasy.surveasy.presentation.base.BaseActivity
-import com.surveasy.surveasy.presentation.main.MainActivity
 import com.surveasy.surveasy.presentation.util.IntentId.SURVEY_ID
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +18,7 @@ class SurveyActivity : BaseActivity<ActivitySurveyBinding>(ActivitySurveyBinding
     override fun initEventObserver() {
         repeatOnStarted {
             viewModel.events.collect {
-                when(it){
+                when (it) {
                     is SurveyEvents.NavigateToList -> toList()
                     is SurveyEvents.NavigateToBack -> finish()
                     else -> Unit
@@ -37,6 +33,7 @@ class SurveyActivity : BaseActivity<ActivitySurveyBinding>(ActivitySurveyBinding
         navController = navHostFragment.navController
         val sId = intent.getIntExtra(SURVEY_ID, -1)
         viewModel.setSurveyId(sId)
+
     }
 
     override fun initData() = Unit

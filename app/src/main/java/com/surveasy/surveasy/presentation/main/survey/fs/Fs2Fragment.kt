@@ -38,11 +38,12 @@ class Fs2Fragment : BaseFragment<FragmentFs2Binding>(R.layout.fragment_fs2) {
         }
     }
 
-    override fun initView() {
+    override fun initView() = with(binding) {
         initSpinner()
         marryRadioListener()
         petRadioListener()
-        binding.btnSubmit.setOnClickListener { viewModel.createFsResponse() }
+        btnSubmit.setOnClickListener { viewModel.createFsResponse() }
+        ivBack.setOnClickListener { findNavController().navigateUp() }
     }
 
     private fun NavController.toDone() {

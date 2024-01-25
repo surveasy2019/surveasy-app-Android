@@ -210,6 +210,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/home_bottom_list_item"
+                    android:elevation="2dp"
                     android:onClick="@{() -> vm.navigateToFs()}"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="18dp"

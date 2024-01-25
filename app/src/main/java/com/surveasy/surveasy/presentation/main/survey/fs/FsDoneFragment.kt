@@ -23,5 +23,7 @@ class FsDoneFragment : BaseFragment<FragmentFsDoneBinding>(R.layout.fragment_fs_
             OnBackPressedCallback(true) {
             override fun handleOnBackPressed() = viewModel.navigateToList()
         })
+
+        binding.btnList.setOnClickListener { viewModel.navigateToList() }
     }
 }

@@ -7,6 +7,7 @@ import com.surveasy.surveasy.data.model.request.KakaoInfoRequest
 import com.surveasy.surveasy.data.model.request.NewRegisterRequest
 import com.surveasy.surveasy.data.model.request.RefreshTokenRequest
 import com.surveasy.surveasy.data.model.request.ResponseImgRequest
+import com.surveasy.surveasy.data.model.response.AccountInfoResponse
 import com.surveasy.surveasy.data.model.response.AuthProviderResponse
 import com.surveasy.surveasy.data.model.response.CommonIdResponse
 import com.surveasy.surveasy.data.model.response.HistoryResponse
@@ -99,6 +100,9 @@ interface SurveasyApi {
     ): Response<Unit>
 
     //history
+    @GET("panel/response")
+    suspend fun queryAccountInfo(): Response<AccountInfoResponse>
+
     @GET("response/{type}")
     suspend fun listHistory(
         @Path("type") type: String,

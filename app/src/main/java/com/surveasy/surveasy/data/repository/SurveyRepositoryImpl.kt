@@ -2,6 +2,7 @@ package com.surveasy.surveasy.data.repository
 
 import com.surveasy.surveasy.data.model.request.FsRequest
 import com.surveasy.surveasy.data.model.request.ResponseImgRequest
+import com.surveasy.surveasy.data.model.response.AccountInfoResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.CommonIdResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.HistoryResponse.Companion.toDomainModel
 import com.surveasy.surveasy.data.model.response.HomeSurveyResponse.Companion.toDomainModel
@@ -10,6 +11,7 @@ import com.surveasy.surveasy.data.model.response.SurveyResponse.Companion.toDoma
 import com.surveasy.surveasy.data.remote.SurveasyApi
 import com.surveasy.surveasy.data.remote.handleResponse
 import com.surveasy.surveasy.domain.base.BaseState
+import com.surveasy.surveasy.domain.model.AccountInfo
 import com.surveasy.surveasy.domain.model.CommonId
 import com.surveasy.surveasy.domain.model.History
 import com.surveasy.surveasy.domain.model.HomeSurvey
@@ -43,6 +45,13 @@ class SurveyRepositoryImpl @Inject constructor(
 
     override fun querySurveyDetail(sid: Int): Flow<BaseState<SurveyDetailInfo>> = flow {
         when (val result = handleResponse { api.querySurveyDetail(sid) }) {
+            is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
+            is BaseState.Error -> emit(result)
+        }
+    }
+
+    override fun queryAccountInfo(): Flow<BaseState<AccountInfo>> = flow {
+        when (val result = handleResponse { api.queryAccountInfo() }) {
             is BaseState.Success -> emit(BaseState.Success(result.data.toDomainModel()))
             is BaseState.Error -> emit(result)
         }

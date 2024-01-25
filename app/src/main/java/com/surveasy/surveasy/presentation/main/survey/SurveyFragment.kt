@@ -3,7 +3,6 @@ package com.surveasy.surveasy.presentation.main.survey
 import android.annotation.SuppressLint
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -49,17 +48,6 @@ class SurveyFragment : BaseFragment<FragmentSurveyBinding>(R.layout.fragment_sur
                 wvForm.loadUrl(it.link)
             }
         }
-
-        requireActivity().onBackPressedDispatcher.addCallback(object :
-            OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (wvForm.canGoBack()) {
-                    wvForm.goBack()
-                } else {
-                    findNavController().navigateUp()
-                }
-            }
-        })
     }
 
 

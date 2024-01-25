@@ -48,12 +48,12 @@ class Fs1Fragment : BaseFragment<FragmentFs1Binding>(R.layout.fragment_fs1) {
         }
     }
 
-    override fun initView() {
+    override fun initView() = with(binding) {
         initSpinner()
         militaryRadioListener()
         initEnglishSwitch()
-        binding.btnNext.setOnClickListener { viewModel.navigateToNext(FsNavType.TO_INPUT2) }
-
+        btnNext.setOnClickListener { viewModel.navigateToNext(FsNavType.TO_INPUT2) }
+        ivBack.setOnClickListener { viewModel.navigateToList() }
 
     }
 

@@ -1234,5 +1234,7 @@
     <string name="panel_warn_label">❗️ 패널 유의사항</string>
     <string name="explain_label">✍🏻 설문 설명</string>
     <string name="check_warn">유의 사항을 확인했습니다.</string>
+    <string name="history_yet_empty">정산 예정 설문이 없습니다.</string>
+    <string name="history_done_empty">정산 완료 설문이 없습니다.</string>
 
 </resources>
