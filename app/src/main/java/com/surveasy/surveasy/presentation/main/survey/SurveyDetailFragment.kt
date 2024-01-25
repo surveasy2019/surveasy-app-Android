@@ -1,5 +1,6 @@
 package com.surveasy.surveasy.presentation.main.survey
 
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -18,6 +19,10 @@ class SurveyDetailFragment :
 
     override fun initView() = with(binding) {
         vm = viewModel
+        requireActivity().onBackPressedDispatcher.addCallback(object :
+            OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() = viewModel.navigateToList()
+        })
     }
 
     override fun initEventObserver() {
