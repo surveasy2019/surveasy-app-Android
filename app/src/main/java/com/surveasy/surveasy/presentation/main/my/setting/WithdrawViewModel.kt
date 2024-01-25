@@ -65,11 +65,12 @@ class WithdrawViewModel @Inject constructor(
         withdrawUseCase().onEach {
             when (it) {
                 is BaseState.Success -> {
-                    if (it.data.authProvider == EMAIL) {
-                        // fb withdraw
-                    } else {
-                        kakaoUnlink()
+                    when(it.data.authProvider){
+                        EMAIL -> Unit
+                        KAKAO -> kakaoUnlink()
+                        else -> Unit
                     }
+
                     dataStoreManager.deleteAccessToken()
                     dataStoreManager.deleteRefreshToken()
                     dataStoreManager.deleteAutoLogin()
