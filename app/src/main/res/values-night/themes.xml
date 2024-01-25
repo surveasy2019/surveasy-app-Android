@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Surveasy" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">#7E947D</item>
         <item name="colorPrimaryVariant">#FFFFFF</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -12,7 +12,8 @@
         <!-- Status bar color. -->
         <!--        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>-->
         <!-- Customize your theme here. -->
-        <!--        <item name="windowNoTitle">true</item>-->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">true</item>
     </style>
 
     <style name="Theme.Surveasy.NoActionBar">
