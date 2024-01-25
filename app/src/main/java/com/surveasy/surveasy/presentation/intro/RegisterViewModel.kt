@@ -2,6 +2,7 @@ package com.surveasy.surveasy.presentation.intro
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.surveasy.surveasy.app.DataStoreManager
 import com.surveasy.surveasy.domain.base.BaseState
 import com.surveasy.surveasy.domain.usecase.CreateNewPanelUseCase
 import com.surveasy.surveasy.presentation.util.ErrorMsg.SIGNUP_ERROR
@@ -22,7 +23,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val newPanelUseCase: CreateNewPanelUseCase
+    private val newPanelUseCase: CreateNewPanelUseCase,
+    private val dataStoreManager: DataStoreManager,
 ) : ViewModel() {
     val agreeAll = MutableStateFlow(false)
     val agreeMust1 = MutableStateFlow(false)
@@ -166,7 +168,9 @@ class RegisterViewModel @Inject constructor(
             _events.emit(RegisterEvents.ShowLoading)
             when (register) {
                 is BaseState.Success -> {
-                    // TODO token save, auto save
+                    dataStoreManager.putAccessToken(register.data.accessToken)
+                    dataStoreManager.putRefreshToken(register.data.refreshToken)
+                    dataStoreManager.putAutoLogin(true)
                     _events.emit(RegisterEvents.NavigateToDone)
                 }
 
