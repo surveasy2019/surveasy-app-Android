@@ -3,6 +3,7 @@ package com.surveasy.surveasy.presentation.intro
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -34,60 +35,37 @@ class RegisterInputFragment :
     }
 
     override fun initView() = with(binding) {
-        initBankSpinner()
-        initInflowPathSpinner()
+        initSpinner()
         vm = viewModel
     }
 
-    private fun initBankSpinner() = with(binding) {
-        val bankList = resources.getStringArray(R.array.accountType)
-        val bankAdapter =
-            ArrayAdapter(
-                requireContext(),
-                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                bankList
-            )
-        sBank.apply {
-            adapter = bankAdapter
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    viewModel.setBank(bankList[position])
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                }
-            }
-        }
+    private fun initSpinner() = with(binding) {
+        sBank.setAdapter(resources.getStringArray(R.array.accountType)) { viewModel.setBank(it) }
+        sInflow.setAdapter(resources.getStringArray(R.array.inflowPath)) { viewModel.setInflow(it) }
     }
 
-    private fun initInflowPathSpinner() = with(binding) {
-        val inflowPathList = resources.getStringArray(R.array.inflowPath)
-        val inflowPathAdapter = ArrayAdapter(
-            requireContext(),
-            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-            inflowPathList
-        )
+    private fun initSpinnerAdapter(list: Array<String>): ArrayAdapter<String> = ArrayAdapter(
+        requireContext(),
+        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+        list
+    )
 
-        sInflow.apply {
-            adapter = inflowPathAdapter
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    viewModel.setInflow(inflowPathList[position])
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                }
+    private fun Spinner.setAdapter(
+        list: Array<String>,
+        itemSelectListener: (item: String) -> Unit
+    ) = apply {
+        adapter = initSpinnerAdapter(list)
+        onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                itemSelectListener(list[position])
             }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) = Unit
         }
     }
 
