@@ -50,6 +50,7 @@
             <androidx.core.widget.NestedScrollView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toTopOf="@id/btn_next"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +58,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:paddingBottom="10dp">
 
                     <TextView
                         android:id="@+id/tv_info"
@@ -113,46 +115,75 @@
                         app:layout_constraintTop_toBottomOf="@id/s_job" />
 
 
-                    <!--                <EditText-->
-                    <!--                    android:id="@+id/SurveyListFirstSurvey1_EtcUniv"-->
-                    <!--                    android:layout_gravity="center_horizontal"-->
-                    <!--                    android:layout_width="match_parent"-->
-                    <!--                    android:layout_height="45sp"-->
-                    <!--                    android:layout_marginTop="15dp"-->
-                    <!--                    android:layout_marginStart="5dp"-->
-                    <!--                    android:layout_marginEnd="5dp"-->
-                    <!--                    android:hint="대학명을 입력하세요"-->
-                    <!--                    android:fontFamily="@font/main_font_m"-->
-                    <!--                    android:paddingStart="13sp"-->
-                    <!--                    android:textSize="13sp"-->
-                    <!--                    android:textColorHint="#c9c9c9"-->
-                    <!--                    android:textColor="@color/black"-->
-                    <!--                    android:inputType="text"-->
-                    <!--                    android:background="@drawable/custom_input"-->
-                    <!--                    android:textCursorDrawable="@drawable/custom_input_cursor"-->
-                    <!--                    android:visibility="gone"/>-->
-
                     <TextView
-                        android:id="@+id/tv_military_label"
+                        android:id="@+id/tv_location_label"
                         style="@style/TextSmallBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="36dp"
-                        android:text="@string/military_label"
+                        android:text="@string/location_label"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/s_major" />
 
+                    <Spinner
+                        android:id="@+id/s_location"
+                        style="@style/TextSmallRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="48sp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/custom_spinner"
+                        android:inputType="text"
+                        android:paddingHorizontal="6dp"
+                        android:textColorHint="#c9c9c9"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_location_label" />
+
+                    <TextView
+                        android:id="@+id/tv_family_label"
+                        style="@style/TextSmallBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="36dp"
+                        android:text="@string/housing_label"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/s_location" />
+
+                    <Spinner
+                        android:id="@+id/s_family"
+                        style="@style/TextSmallRegular"
+                        android:layout_width="0dp"
+                        android:layout_height="48sp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/custom_spinner"
+                        android:inputType="text"
+                        android:paddingHorizontal="6dp"
+                        android:textColorHint="#c9c9c9"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_family_label" />
+
+                    <TextView
+                        android:id="@+id/tv_pet_label"
+                        style="@style/TextSmallBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="36dp"
+                        android:text="@string/pet_label"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/s_family" />
+
                     <RadioGroup
-                        android:id="@+id/rg_military"
+                        android:id="@+id/rg_pet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:orientation="horizontal"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_military_label">
+                        app:layout_constraintTop_toBottomOf="@id/tv_pet_label">
 
                         <RadioButton
-                            android:id="@+id/rb_military_done"
+                            android:id="@+id/rb_pet_dog"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
@@ -161,11 +192,11 @@
                             android:button="@null"
                             android:paddingHorizontal="15dp"
                             android:paddingVertical="5dp"
-                            android:text="@string/military_yes"
+                            android:text="반려견"
                             android:textColor="@drawable/selector_radio_text" />
 
                         <RadioButton
-                            android:id="@+id/rb_military_yet"
+                            android:id="@+id/rb_pet_cat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
@@ -174,11 +205,11 @@
                             android:button="@null"
                             android:paddingHorizontal="15dp"
                             android:paddingVertical="5dp"
-                            android:text="@string/military_yet"
+                            android:text="반려묘"
                             android:textColor="@drawable/selector_radio_text" />
 
                         <RadioButton
-                            android:id="@+id/rb_military_no"
+                            android:id="@+id/rb_pet_etc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
@@ -187,10 +218,24 @@
                             android:button="@null"
                             android:paddingHorizontal="15dp"
                             android:paddingVertical="5dp"
-                            android:text="@string/military_no"
+                            android:text="기타"
+                            android:textColor="@drawable/selector_radio_text" />
+
+                        <RadioButton
+                            android:id="@+id/rb_pet_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/selector_radio_button"
+                            android:button="@null"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp"
+                            android:text="없음"
                             android:textColor="@drawable/selector_radio_text" />
 
                     </RadioGroup>
+
 
                     <TextView
                         android:id="@+id/tv_english_label"
@@ -200,7 +245,7 @@
                         android:layout_marginTop="36dp"
                         android:text="@string/english_label"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/rg_military" />
+                        app:layout_constraintTop_toBottomOf="@id/rg_pet" />
 
                     <TextView
                         android:id="@+id/tv_english"
@@ -230,7 +275,6 @@
                 android:id="@+id/btn_next"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10sp"
                 android:background="@drawable/register_button"
                 android:fontFamily="@font/main_font_m"
                 android:text="@string/btn_next"

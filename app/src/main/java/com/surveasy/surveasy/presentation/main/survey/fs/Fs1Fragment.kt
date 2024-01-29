@@ -50,21 +50,11 @@ class Fs1Fragment : BaseFragment<FragmentFs1Binding>(R.layout.fragment_fs1) {
 
     override fun initView() = with(binding) {
         initSpinner()
-        militaryRadioListener()
         initEnglishSwitch()
+        petRadioListener()
         btnNext.setOnClickListener { viewModel.navigateToNext(FsNavType.TO_INPUT2) }
         ivBack.setOnClickListener { viewModel.navigateToList() }
 
-    }
-
-    private fun militaryRadioListener() {
-        binding.rgMilitary.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.rb_military_done -> viewModel.setMilitary(0)
-                R.id.rb_military_yet -> viewModel.setMilitary(1)
-                R.id.rb_military_no -> viewModel.setMilitary(2)
-            }
-        }
     }
 
     private fun NavController.toInput2() {
@@ -77,8 +67,21 @@ class Fs1Fragment : BaseFragment<FragmentFs1Binding>(R.layout.fragment_fs1) {
         }
     }
 
+    private fun petRadioListener() {
+        binding.rgPet.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.rb_pet_no -> viewModel.setPet(0)
+                R.id.rb_pet_cat -> viewModel.setPet(1)
+                R.id.rb_pet_dog -> viewModel.setPet(2)
+                R.id.rb_pet_etc -> viewModel.setPet(3)
+            }
+        }
+    }
+
     private fun initSpinner() = with(binding) {
         sJob.setAdapter(resources.getStringArray(R.array.job)) { viewModel.setJob(it) }
+        sLocation.setAdapter(resources.getStringArray(R.array.city)) { viewModel.setCity(it) }
+        sFamily.setAdapter(resources.getStringArray(R.array.familyType)) { viewModel.setFamily(it) }
         sMajor.setAdapter(resources.getStringArray(R.array.major)) { viewModel.setMajor(it) }
     }
 
