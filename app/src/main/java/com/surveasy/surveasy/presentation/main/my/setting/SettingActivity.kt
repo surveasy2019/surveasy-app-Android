@@ -20,7 +20,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(ActivitySettingBind
             viewModel.events.collect {
                 when (it) {
                     is SettingUiEvents.Logout -> toIntro()
-                    is SettingUiEvents.Withdraw -> toWithdraw()
+                    is SettingUiEvents.Withdraw -> toIntro()
                     is SettingUiEvents.ShowSnackBar -> showSnackBar(it.msg)
                     else -> Unit
                 }
@@ -41,7 +41,16 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(ActivitySettingBind
             ) {}
         }
 
-        vWithdraw.setOnClickListener { viewModel.navigateToWithdraw() }
+        vWithdraw.setOnClickListener {
+            showTwoButtonDialog(
+                this@SettingActivity,
+                "정말 탈퇴 하시겠습니까?",
+                "회원 탈퇴 시 패널 정보가 모두 사라집니다.",
+                "탈퇴하기",
+                "닫기",
+                { viewModel.withdraw() }
+            ) { }
+        }
         ivBack.setOnClickListener { finish() }
 
     }
@@ -49,11 +58,6 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(ActivitySettingBind
     private fun toIntro() {
         val intent = Intent(this, IntroActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-    }
-
-    private fun toWithdraw() {
-        val intent = Intent(this, WithdrawActivity::class.java)
         startActivity(intent)
     }
 }
