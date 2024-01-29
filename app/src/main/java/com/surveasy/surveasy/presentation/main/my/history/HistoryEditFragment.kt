@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentHistoryEditBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
+import com.surveasy.surveasy.presentation.util.ErrorMsg
 import com.surveasy.surveasy.presentation.util.showTwoButtonDialog
 
 class HistoryEditFragment :
@@ -116,7 +117,10 @@ class HistoryEditFragment :
 
     private fun uploadToFb() {
         repeatOnStarted {
-            imgUrl ?: return@repeatOnStarted
+            if (imgUrl == null) {
+                showSnackBar(ErrorMsg.IMAGE_NULL_ERROR)
+                return@repeatOnStarted
+            }
             val time = System.currentTimeMillis()
             viewModel.editResponse(imgUrl.toString(), time.toString())
         }
@@ -125,9 +129,5 @@ class HistoryEditFragment :
     private fun NavController.toHistoryMain() {
         viewModel.listHistory(true)
         navigate(HistoryEditFragmentDirections.actionHistoryEditFragmentToHistoryFragment())
-//        // TODO navigate component 로 수정 필요
-//        val intent = Intent(context, HistoryActivity::class.java)
-//        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//        startActivity(intent)
     }
 }

@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.FragmentSurveyProofBinding
 import com.surveasy.surveasy.presentation.base.BaseFragment
+import com.surveasy.surveasy.presentation.util.ErrorMsg.IMAGE_NULL_ERROR
 import com.surveasy.surveasy.presentation.util.showTwoButtonDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -125,7 +126,10 @@ class SurveyProofFragment :
 
     private fun uploadToFb() {
         repeatOnStarted {
-            imgUrl ?: return@repeatOnStarted
+            if (imgUrl == null) {
+                showSnackBar(IMAGE_NULL_ERROR)
+                return@repeatOnStarted
+            }
             val time = System.currentTimeMillis()
             viewModel.createResponse(imgUrl.toString(), time.toString())
         }
