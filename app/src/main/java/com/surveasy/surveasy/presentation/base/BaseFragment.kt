@@ -78,7 +78,7 @@ abstract class BaseFragment<B : ViewDataBinding>(
         snackBar = Snackbar.make(
             binding.root,
             text,
-            Snackbar.LENGTH_LONG
+            Snackbar.LENGTH_SHORT
         ).apply {
             action?.let {
                 setAction(it) {

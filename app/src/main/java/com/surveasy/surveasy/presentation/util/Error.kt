@@ -2,8 +2,10 @@ package com.surveasy.surveasy.presentation.util
 
 object ErrorMsg {
     const val SIGNUP_ERROR = "회원가입에 실패했습니다. 다시 시도해주세요."
+    const val KAKAO_ERROR = "카카오 로그인에 실패했습니다. 다시 시도해주세요."
     const val GET_INFO_ERROR = "필수 정보 제공에 실패했습니다. 다시 시도해주세요."
     const val SURVEY_ERROR = "설문 참여에 실패했습니다. 다시 시도해주세요."
+    const val IMAGE_NULL_ERROR = "선택된 이미지가 없습니다."
     const val INVALID_SURVEY_ERROR = "존재하지 않는 설문입니다."
     const val NOT_ALLOW_SURVEY_ERROR = "참여할 수 없는 설문입니다."
     const val DID_SURVEY_ERROR = "이미 참여한 설문입니다."

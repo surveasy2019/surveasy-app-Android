@@ -39,14 +39,14 @@ abstract class BaseActivity<T : ViewDataBinding>(private val inflater: (LayoutIn
     }
 
     fun showToastMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     fun showSnackBar(text: String, action: String? = null) {
         snackBar = Snackbar.make(
             binding.root,
             text,
-            Snackbar.LENGTH_LONG
+            Snackbar.LENGTH_SHORT
         ).apply {
             action?.let {
                 setAction(it) {
