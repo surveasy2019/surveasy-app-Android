@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="com.surveasy.surveasy.presentation.main.survey.SurveyViewModel" />
@@ -253,7 +255,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
             android:text="@string/check_warn"
-            android:textColor="@color/red"
+            android:textColor="@color/main_green"
+            android:visibility="@{vm.uiState.isBtnEnable? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toTopOf="@id/btn_participate"
             app:layout_constraintEnd_toEndOf="@id/btn_participate"
             app:layout_constraintStart_toStartOf="@id/btn_participate" />
@@ -263,11 +266,12 @@
             style="@style/TextTitleBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_box_ongoing"
+            android:background="@drawable/survey_participate_btn"
+            android:enabled="@{vm.uiState.isBtnEnable}"
             android:onClick="@{() -> vm.navigateToSurvey()}"
             android:paddingHorizontal="24dp"
-            android:text="@string/btn_go"
-            android:textColor="@color/main_green"
+            android:text="@{vm.uiState.isBtnEnable? @string/btn_go : @string/check_warn_btn}"
+            android:textColor="@{vm.uiState.isBtnEnable? @color/main_green : @color/light_gray}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
