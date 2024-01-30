@@ -19,6 +19,7 @@ import com.surveasy.surveasy.presentation.util.ErrorMsg.SURVEY_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -102,6 +103,8 @@ class SurveyViewModel @Inject constructor(
                             )
                         }
                     }
+                    delay(2000)
+                    _uiState.update { it.copy(isBtnEnable = true) }
                 }
 
                 is BaseState.Error -> {
@@ -151,5 +154,6 @@ data class SurveyUiState(
     val targetInput: String = "",
     val noticeToPanel: String = "",
     val surveyDescription: String = "",
+    val isBtnEnable: Boolean = false,
     val link: String = "",
 )
