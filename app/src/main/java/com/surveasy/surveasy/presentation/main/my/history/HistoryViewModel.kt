@@ -203,12 +203,12 @@ class HistoryViewModel @Inject constructor(
 
         viewModelScope.launch {
             date.emit(
-                if (day > 30 || day <= 10) {
-                    10
-                } else if (day <= 20) {
-                    20
+                if (day > 21 || day <= 1) {
+                    1
+                } else if (day <= 11) {
+                    11
                 } else {
-                    30
+                    21
                 }
             )
         }
