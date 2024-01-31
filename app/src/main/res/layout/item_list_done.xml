@@ -62,8 +62,8 @@
             android:background="@drawable/custom_list_chip_inactive"
             android:paddingHorizontal="8dp"
             android:paddingVertical="4dp"
-            android:text="참여 완료"
             android:textColor="@color/gray"
+            app:doneLabel="@{item}"
             app:layout_constraintBottom_toBottomOf="@id/guide_bottom"
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />

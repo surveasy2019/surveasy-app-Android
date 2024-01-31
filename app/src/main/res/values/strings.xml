@@ -22,17 +22,15 @@
     <string-array name="tutorial_title">
         <item>설문 참여는 쉽게,\n보상은 확실하게</item>
         <item>푸쉬 알림으로\n빠르고 편한 설문 참여</item>
-        <item>참여할수록 빠르게\n쌓이는 현금</item>
         <item>쌓인 금액은\n10일마다 정산</item>
         <item>Survey를 Easy하게,</item>
     </string-array>
 
     <string-array name="tutorial_content">
-        <item>설문에 응답하면 현금이 쌓여요.\n최소 100원부터, 한번에 커피 한잔 값까지!</item>
-        <item>1시간 또는 하루 내에 빠르게 마감되는 설문을\n알림 서비스로 알려드리니, 놓치지 마세요!</item>
-        <item>설문에 자주, 많이 참여할수록\n패널 등급이 올라가요.</item>
-        <item>번거로운 포인트 제도 NO!\n별도의 기준 없이, 현금으로 바로 정산해드려요.</item>
-        <item>저희는 설문 의뢰자와 응답자 모두 편리하게\n설문을 진행할 수 있는 플랫폼을 꿈꿔요.\n연구에 가치를 더하는 과정을 함께 해주세요!</item>
+        <item>설문에 응답하면 현금이 쌓여요.\n최소 50원부터, 한번에 커피 한 잔 값까지!</item>
+        <item>빠르게 마감되는 설문은\n알림 서비스로 알려드리기도 하니,\n놓치지 마세요!</item>
+        <item>번거로운 포인트 제도 NO!\n성실하게 답변해주셨다면, 현금으로 바로 정산해드려요.</item>
+        <item>저희는 설문 의뢰자와 응답자 모두\n편리하게 설문을 진행할 수 있는 플랫폼을 꿈꿔요.\n연구에 가치를 더하는 과정을 함께 해주세요!</item>
     </string-array>
 
     <string name="registerTerm2">
@@ -1237,5 +1235,7 @@
     <string name="check_warn_btn">유의 사항을 확인해주세요.</string>
     <string name="history_yet_empty">정산 예정 설문이 없습니다.</string>
     <string name="history_done_empty">정산 완료 설문이 없습니다.</string>
+    <string name="list_done">마감</string>
+    <string name="list_participate">참여 완료</string>
 
 </resources>

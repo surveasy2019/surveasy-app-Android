@@ -17,8 +17,10 @@ class FirstIntroduceActivity :
 
     override fun initView() {
         val imgList = arrayOf(
-            R.drawable.tutorial_img_1, R.drawable.tutorial_img_2, R.drawable.tutorial_img_3,
-            R.drawable.tutorial_img_4, R.drawable.tutorial_img_5
+            R.drawable.tutorial_img_1,
+            R.drawable.tutorial_img_2,
+            R.drawable.tutorial_img_4,
+            R.drawable.tutorial_img_5
         ).toList()
         val titleList = resources.getStringArray(R.array.tutorial_title).toList()
         val contentList = resources.getStringArray(R.array.tutorial_content).toList()

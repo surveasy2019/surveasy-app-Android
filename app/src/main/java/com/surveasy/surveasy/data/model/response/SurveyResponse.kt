@@ -31,6 +31,7 @@ data class SurveyInfoResponse(
     val status: String,
     val responseCount: Int,
     val participated: Boolean,
+    val overdue: Boolean,
 ) : BaseDataModel {
     companion object : DomainMapper<SurveyInfoResponse, SurveyInfo> {
         override fun SurveyInfoResponse.toDomainModel(): SurveyInfo = SurveyInfo(
@@ -42,7 +43,8 @@ data class SurveyInfoResponse(
             targetInput = targetInput,
             status = status,
             responseCount = responseCount,
-            participated = participated
+            participated = participated,
+            overdue = overdue
         )
 
     }
