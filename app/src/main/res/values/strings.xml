@@ -1235,5 +1235,7 @@
     <string name="check_warn_btn">유의 사항을 확인해주세요.</string>
     <string name="history_yet_empty">정산 예정 설문이 없습니다.</string>
     <string name="history_done_empty">정산 완료 설문이 없습니다.</string>
+    <string name="list_done">마감</string>
+    <string name="list_participate">참여 완료</string>
 
 </resources>

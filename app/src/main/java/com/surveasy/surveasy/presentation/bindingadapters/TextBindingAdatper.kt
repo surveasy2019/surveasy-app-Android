@@ -6,6 +6,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.presentation.intro.HelperText
 import com.surveasy.surveasy.presentation.intro.InputState
+import com.surveasy.surveasy.presentation.main.list.model.UiSurveyListData
 
 @BindingAdapter("nameTitle")
 fun TextView.nameTitle(name: String) {
@@ -52,4 +53,10 @@ fun TextInputLayout.nameHelperText(state: InputState) {
     }
 
     setHelperTextTextAppearance(R.style.HelperTextStyle)
+}
+
+@BindingAdapter("doneLabel")
+fun TextView.setDoneLabel(item: UiSurveyListData) {
+    text =
+        resources.getText(if (item.participated) R.string.list_participate else R.string.list_done)
 }

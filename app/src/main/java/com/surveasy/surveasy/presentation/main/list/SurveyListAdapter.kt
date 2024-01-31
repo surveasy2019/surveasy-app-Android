@@ -57,7 +57,7 @@ class SurveyListAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (getItem(position).participated) {
+        return if (getItem(position).participated || getItem(position).overdue) {
             DONE
         } else {
             ONGOING

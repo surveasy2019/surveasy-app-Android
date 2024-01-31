@@ -10,4 +10,5 @@ data class UiSurveyListData(
     val status: String,
     val responseCount: Int,
     val participated: Boolean,
+    val overdue: Boolean,
 )

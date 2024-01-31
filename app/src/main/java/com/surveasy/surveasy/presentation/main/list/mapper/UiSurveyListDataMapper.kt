@@ -12,5 +12,6 @@ fun SurveyInfo.toUiSurveyListData(): UiSurveyListData = UiSurveyListData(
     targetInput = targetInput ?: "모두",
     status = status,
     responseCount = responseCount,
-    participated = participated
+    participated = participated,
+    overdue = overdue
 )
