@@ -86,14 +86,9 @@ class SurveyRepositoryImpl @Inject constructor(
     override fun createFsResponse(
         english: Boolean,
         city: String,
-        district: String,
         family: String,
-        houseType: String,
         job: String,
-        university: String,
-        major: String,
-        marriage: String,
-        military: String,
+        major: String?,
         pet: String
     ): Flow<BaseState<Unit>> = flow {
         when (val result = handleResponse {
@@ -101,14 +96,9 @@ class SurveyRepositoryImpl @Inject constructor(
                 FsRequest(
                     english,
                     city,
-                    district,
                     family,
-                    houseType,
                     job,
-                    university,
                     major,
-                    marriage,
-                    military,
                     pet
                 )
             )

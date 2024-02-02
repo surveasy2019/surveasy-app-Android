@@ -11,26 +11,16 @@ class CreateFsResponseUseCase @Inject constructor(
     operator fun invoke(
         english: Boolean,
         city: String,
-        district: String,
         family: String,
-        houseType: String,
         job: String,
-        university: String,
-        major: String,
-        marriage: Int,
-        military: Int,
+        major: String?,
         pet: Int,
     ): Flow<BaseState<Unit>> = repository.createFsResponse(
         english,
         setCity(city),
-        district,
         setFamily(family),
-        setHouseType(houseType),
         setJob(job),
-        university,
         setMajor(major),
-        setMarriage(marriage),
-        setMilitary(military),
         setPet(pet)
     )
 
@@ -76,7 +66,7 @@ class CreateFsResponseUseCase @Inject constructor(
         }
     }
 
-    private fun setMajor(major: String): String {
+    private fun setMajor(major: String?): String? {
         return when (major) {
             "사회계열" -> "SOCIAL"
             "공학계열" -> "ENGINEERING"
@@ -86,7 +76,7 @@ class CreateFsResponseUseCase @Inject constructor(
             "의약계열" -> "MEDICAL"
             "교육계열" -> "EDUCATION"
             "기타" -> "ETC"
-            else -> ""
+            else -> null
         }
     }
 
@@ -96,36 +86,6 @@ class CreateFsResponseUseCase @Inject constructor(
             "2인 가구" -> "PERSON_2"
             "3인 가구" -> "PERSON_3"
             "4인 가구 이상" -> "PERSON_4"
-            else -> ""
-        }
-    }
-
-    private fun setHouseType(house: String): String {
-        return when (house) {
-            "아파트/주상복합" -> "APT"
-            "단독주택" -> "DETACHED"
-            "오피스텔/원룸" -> "OFFICETEL"
-            "다세대/빌라/연립" -> "MULTIPLEX"
-            "기숙사" -> "DORMITORY"
-            "기타" -> "ETC"
-            else -> ""
-        }
-    }
-
-    private fun setMarriage(marry: Int): String {
-        return when (marry) {
-            0 -> "SINGLE"
-            1 -> "MARRIED"
-            2 -> "DIVORCE"
-            else -> ""
-        }
-    }
-
-    private fun setMilitary(military: Int): String {
-        return when (military) {
-            0 -> "DONE"
-            1 -> "YET"
-            2 -> "NONE"
             else -> ""
         }
     }

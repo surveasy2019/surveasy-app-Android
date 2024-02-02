@@ -9,17 +9,9 @@
         android:id="@+id/fs1Fragment"
         android:name="com.surveasy.surveasy.presentation.main.survey.fs.Fs1Fragment"
         android:label="Fs1Fragment">
+
         <action
-            android:id="@+id/action_fs1Fragment_to_fs2Fragment"
-            app:destination="@id/fs2Fragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/fs2Fragment"
-        android:name="com.surveasy.surveasy.presentation.main.survey.fs.Fs2Fragment"
-        android:label="fragment_fs2"
-        tools:layout="@layout/fragment_fs2">
-        <action
-            android:id="@+id/action_fs2Fragment_to_fsDoneFragment"
+            android:id="@+id/action_fs1Fragment_to_fsDoneFragment"
             app:destination="@id/fsDoneFragment" />
     </fragment>
     <fragment

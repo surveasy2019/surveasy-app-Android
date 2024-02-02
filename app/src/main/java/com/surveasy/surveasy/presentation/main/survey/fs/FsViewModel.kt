@@ -26,11 +26,8 @@ class FsViewModel @Inject constructor(
     private val job = MutableStateFlow("")
     private val major = MutableStateFlow("")
     val english = MutableStateFlow(true)
-    private val military = MutableStateFlow(-1)
     private val city = MutableStateFlow("")
-    private val housing = MutableStateFlow("")
     private val family = MutableStateFlow("")
-    private val marry = MutableStateFlow(-1)
     private val pet = MutableStateFlow(-1)
 
     private val _uiState = MutableStateFlow(FsValidState())
@@ -46,11 +43,8 @@ class FsViewModel @Inject constructor(
     init {
         observeJob()
         observeMajor()
-        observeMilitary()
-        observeHousing()
         observeCity()
         observeFamily()
-        observeMarry()
         observePet()
     }
 
@@ -58,14 +52,9 @@ class FsViewModel @Inject constructor(
         createFsResponseUseCase(
             english.value,
             city.value,
-            "서대문구",
             family.value,
-            housing.value,
             job.value,
-            "대학",
-            major.value,
-            marry.value,
-            military.value,
+            major.value.ifEmpty { null },
             pet.value
         ).onEach { state ->
             when (state) {
@@ -78,7 +67,6 @@ class FsViewModel @Inject constructor(
     fun navigateToNext(type: FsNavType) {
         viewModelScope.launch {
             when (type) {
-                FsNavType.TO_INPUT2 -> _events.emit(FsEvents.NavigateToInput2)
                 FsNavType.TO_DONE -> _events.emit(FsEvents.NavigateToDone)
                 FsNavType.TO_BACK -> _events.emit(FsEvents.NavigateToBack)
             }
@@ -114,18 +102,6 @@ class FsViewModel @Inject constructor(
         viewModelScope.launch { english.emit(participate) }
     }
 
-    fun setMilitary(state: Int) {
-        military.value = state
-    }
-
-    private fun observeMilitary() {
-        military.onEach { military ->
-            _uiState.update {
-                it.copy(militaryValid = military != RADIO_DEFAULT)
-            }
-        }.launchIn(viewModelScope)
-    }
-
     fun setCity(select: String) {
         city.value = select
     }
@@ -138,18 +114,6 @@ class FsViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun setHousing(select: String) {
-        housing.value = select
-    }
-
-    private fun observeHousing() {
-        housing.onEach { housing ->
-            _uiState.update {
-                it.copy(housingValid = housing != HOUSING_DEFAULT)
-            }
-        }.launchIn(viewModelScope)
-    }
-
     fun setFamily(select: String) {
         family.value = select
     }
@@ -158,18 +122,6 @@ class FsViewModel @Inject constructor(
         family.onEach { family ->
             _uiState.update {
                 it.copy(familyValid = family != FAMILY_DEFAULT)
-            }
-        }.launchIn(viewModelScope)
-    }
-
-    fun setMarry(state: Int) {
-        marry.value = state
-    }
-
-    private fun observeMarry() {
-        marry.onEach { marry ->
-            _uiState.update {
-                it.copy(marryValid = marry != RADIO_DEFAULT)
             }
         }.launchIn(viewModelScope)
     }
@@ -195,15 +147,12 @@ class FsViewModel @Inject constructor(
         const val MAJOR_DEFAULT = "소속 계열을 선택해주세요"
         const val JOB_STUDENT = "대학생"
         const val CITY_DEFAULT = "시/도"
-        const val REGION_DEFAULT = "시/군/구"
-        const val HOUSING_DEFAULT = "주거 형태를 선택해주세요"
         const val FAMILY_DEFAULT = "가구 형태를 선택해주세요"
         const val RADIO_DEFAULT = -1
     }
 }
 
 sealed class FsEvents {
-    data object NavigateToInput2 : FsEvents()
     data object NavigateToDone : FsEvents()
     data object NavigateToBack : FsEvents()
     data object NavigateToList : FsEvents()
@@ -216,17 +165,13 @@ data class FsValidState(
     val jobValid: Boolean = false,
     val isStudent: Boolean = false,
     val majorValid: Boolean = false,
-    val militaryValid: Boolean = false,
     val cityValid: Boolean = false,
-    val marryValid: Boolean = false,
     val petValid: Boolean = false,
-    val housingValid: Boolean = false,
     val familyValid: Boolean = false,
 )
 
 
 enum class FsNavType {
-    TO_INPUT2,
     TO_DONE,
     TO_BACK,
 }
