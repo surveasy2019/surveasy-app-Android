@@ -254,12 +254,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
-            android:text="@string/check_warn"
-            android:textColor="@color/main_green"
-            android:visibility="@{vm.uiState.isBtnEnable? View.VISIBLE : View.INVISIBLE}"
+            android:text="@{vm.uiState.isBtnEnable? @string/check_warn : @string/check_warn_btn}"
+            android:textColor="@{vm.uiState.isBtnEnable? @color/main_green : @color/red}"
             app:layout_constraintBottom_toTopOf="@id/btn_participate"
             app:layout_constraintEnd_toEndOf="@id/btn_participate"
             app:layout_constraintStart_toStartOf="@id/btn_participate" />
+
+        <TextView
+            android:id="@+id/tv_timer"
+            style="@style/TextSmallBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="@{String.valueOf(vm.timer)}"
+            android:textColor="@color/red"
+            android:visibility="@{vm.uiState.isBtnEnable? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_confirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_participate"
@@ -270,7 +282,7 @@
             android:enabled="@{vm.uiState.isBtnEnable}"
             android:onClick="@{() -> vm.navigateToSurvey()}"
             android:paddingHorizontal="24dp"
-            android:text="@{vm.uiState.isBtnEnable? @string/btn_go : @string/check_warn_btn}"
+            android:text="@string/btn_go"
             android:textColor="@{vm.uiState.isBtnEnable? @color/main_green : @color/light_gray}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

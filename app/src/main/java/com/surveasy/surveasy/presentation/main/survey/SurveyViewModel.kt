@@ -40,6 +40,7 @@ class SurveyViewModel @Inject constructor(
     private val createResponseUseCase: CreateResponseUseCase,
 ) : ViewModel() {
     private val sId = MutableStateFlow(0)
+    val timer = MutableStateFlow(3)
 
     private val _uiState = MutableStateFlow(SurveyUiState())
     val uiState: StateFlow<SurveyUiState> = _uiState.asStateFlow()
@@ -103,7 +104,11 @@ class SurveyViewModel @Inject constructor(
                             )
                         }
                     }
-                    delay(2000)
+                    delay(800)
+                    timer.emit(2)
+                    delay(800)
+                    timer.emit(1)
+                    delay(800)
                     _uiState.update { it.copy(isBtnEnable = true) }
                 }
 
