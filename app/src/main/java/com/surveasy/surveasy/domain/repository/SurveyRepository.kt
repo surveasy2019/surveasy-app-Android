@@ -36,14 +36,9 @@ interface SurveyRepository {
     fun createFsResponse(
         english: Boolean,
         city: String,
-        district: String,
         family: String,
-        houseType: String,
         job: String,
-        university: String,
-        major: String,
-        marriage: String,
-        military: String,
+        major: String?,
         pet: String,
     ): Flow<BaseState<Unit>>
 }

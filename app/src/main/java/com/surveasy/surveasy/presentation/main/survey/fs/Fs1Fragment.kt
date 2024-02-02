@@ -25,15 +25,15 @@ class Fs1Fragment : BaseFragment<FragmentFs1Binding>(R.layout.fragment_fs1) {
             viewModel.events.collect {
                 when (it) {
                     is FsEvents.NavigateToBack -> findNavController().navigateUp()
-                    is FsEvents.NavigateToInput2 -> findNavController().toInput2()
+                    is FsEvents.NavigateToDone -> findNavController().toInput2()
                     else -> Unit
                 }
             }
         }
         repeatOnStarted {
             viewModel.uiState.collectLatest {
-                binding.btnNext.isEnabled =
-                    it.jobValid && it.militaryValid && (!it.isStudent || it.majorValid)
+                binding.btnSubmit.isEnabled =
+                    it.jobValid && (!it.isStudent || it.majorValid) && it.cityValid && it.familyValid && it.petValid
 
                 binding.sMajor.visibility = if (it.isStudent) View.VISIBLE else View.GONE
             }
@@ -52,13 +52,13 @@ class Fs1Fragment : BaseFragment<FragmentFs1Binding>(R.layout.fragment_fs1) {
         initSpinner()
         initEnglishSwitch()
         petRadioListener()
-        btnNext.setOnClickListener { viewModel.navigateToNext(FsNavType.TO_INPUT2) }
+        btnSubmit.setOnClickListener { viewModel.createFsResponse() }
         ivBack.setOnClickListener { viewModel.navigateToList() }
 
     }
 
     private fun NavController.toInput2() {
-        navigate(Fs1FragmentDirections.actionFs1FragmentToFs2Fragment())
+        navigate(Fs1FragmentDirections.actionFs1FragmentToFsDoneFragment())
     }
 
     private fun initEnglishSwitch() {
