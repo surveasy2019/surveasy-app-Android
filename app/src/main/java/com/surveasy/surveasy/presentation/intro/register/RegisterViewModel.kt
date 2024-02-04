@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.presentation.intro
+package com.surveasy.surveasy.presentation.intro.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -27,7 +27,7 @@ class RegisterViewModel @Inject constructor(
     private val dataStoreManager: DataStoreManager,
 ) : ViewModel() {
     val agreeMust = MutableStateFlow(false)
-    val agreeMarketing = MutableStateFlow(false)
+    private val agreeMarketing = MutableStateFlow(false)
 
     val showEtc = MutableStateFlow(false)
     private val inflow = MutableStateFlow("")
@@ -221,4 +221,23 @@ sealed class RegisterEvents {
     data object DismissLoading : RegisterEvents()
     data class ShowToastMsg(val msg: String) : RegisterEvents()
     data class ShowSnackBar(val msg: String) : RegisterEvents()
+}
+
+
+enum class HelperText {
+    NONE,
+    VALID,
+    ACCOUNT_INVALID,
+    OWNER_INVALID,
+    INFLOW_ETC_INVALID,
+}
+
+enum class RegisterEventType {
+    TO_WARN,
+    TO_TERM1,
+    TO_TERM2,
+    TO_INPUT,
+    TO_BACK,
+    TO_DONE,
+    TO_MAIN
 }

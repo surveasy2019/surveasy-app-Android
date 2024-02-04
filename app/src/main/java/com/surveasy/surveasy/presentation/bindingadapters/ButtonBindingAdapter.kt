@@ -2,7 +2,7 @@ package com.surveasy.surveasy.presentation.bindingadapters
 
 import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.BindingAdapter
-import com.surveasy.surveasy.presentation.intro.RegisterUiState
+import com.surveasy.surveasy.presentation.intro.register.RegisterUiState
 
 @BindingAdapter("rewardBtn")
 fun AppCompatButton.rewardBtn(reward: Int) {

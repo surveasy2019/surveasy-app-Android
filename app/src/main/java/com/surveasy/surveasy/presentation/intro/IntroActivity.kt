@@ -6,6 +6,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivityIntroBinding
 import com.surveasy.surveasy.presentation.base.BaseActivity
+import com.surveasy.surveasy.presentation.intro.register.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

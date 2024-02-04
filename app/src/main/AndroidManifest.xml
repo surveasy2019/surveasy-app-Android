@@ -23,9 +23,6 @@
             android:name=".presentation.main.survey.fs.FsActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.main.my.setting.WithdrawActivity"
-            android:exported="false" />
-        <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
@@ -78,10 +75,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".presentation.splash.FCM_SplashActivity"
-            android:exported="true"
-            android:theme="@style/Splash" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

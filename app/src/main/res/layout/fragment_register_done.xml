@@ -5,18 +5,18 @@
 
     <data>
 
-        <import type="com.surveasy.surveasy.presentation.intro.RegisterEventType" />
+        <import type="com.surveasy.surveasy.presentation.intro.register.RegisterEventType" />
 
         <variable
             name="vm"
-            type="com.surveasy.surveasy.presentation.intro.RegisterViewModel" />
+            type="com.surveasy.surveasy.presentation.intro.register.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".presentation.intro.RegisterDoneFragment">
+        tools:context=".presentation.intro.register.RegisterDoneFragment">
 
         <ImageView
             android:id="@+id/iv_logo"
