@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.presentation.intro
+package com.surveasy.surveasy.presentation.intro.register
 
 import android.view.View
 import android.widget.AdapterView

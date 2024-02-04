@@ -4,13 +4,13 @@
 
     <data>
 
-        <import type="com.surveasy.surveasy.presentation.intro.RegisterEventType" />
+        <import type="com.surveasy.surveasy.presentation.intro.register.RegisterEventType" />
 
         <import type="android.view.View" />
 
         <variable
             name="vm"
-            type="com.surveasy.surveasy.presentation.intro.RegisterViewModel" />
+            type="com.surveasy.surveasy.presentation.intro.register.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

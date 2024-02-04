@@ -4,8 +4,8 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
 import com.surveasy.surveasy.R
-import com.surveasy.surveasy.presentation.intro.HelperText
-import com.surveasy.surveasy.presentation.intro.InputState
+import com.surveasy.surveasy.presentation.intro.register.HelperText
+import com.surveasy.surveasy.presentation.intro.register.InputState
 import com.surveasy.surveasy.presentation.main.list.model.UiSurveyListData
 
 @BindingAdapter("nameTitle")

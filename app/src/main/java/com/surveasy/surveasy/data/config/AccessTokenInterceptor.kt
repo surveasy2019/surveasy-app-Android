@@ -29,7 +29,7 @@ class AccessTokenInterceptor @Inject constructor(
     }
 
     companion object {
-        const val AUTHORIZATION = "authorization"
+        const val AUTHORIZATION = "Authorization"
         const val BEARER = "Bearer"
     }
 }

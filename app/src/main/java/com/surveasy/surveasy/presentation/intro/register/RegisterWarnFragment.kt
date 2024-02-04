@@ -1,4 +1,4 @@
-package com.surveasy.surveasy.presentation.intro
+package com.surveasy.surveasy.presentation.intro.register
 
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
