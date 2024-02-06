@@ -42,7 +42,7 @@ class LoginViewModel @Inject constructor(
     private var errorCount = 0
 
     private val _events = MutableSharedFlow<LoginEvents>(
-        replay = 0, onBufferOverflow = BufferOverflow.DROP_OLDEST, extraBufferCapacity = 1
+        replay = 0, onBufferOverflow = BufferOverflow.DROP_OLDEST, extraBufferCapacity = 2
     )
     val events: SharedFlow<LoginEvents> = _events.asSharedFlow()
 
