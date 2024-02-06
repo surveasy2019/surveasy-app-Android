@@ -31,6 +31,7 @@ class SurveyListAdapter(
 
         const val ONGOING = 0
         const val DONE = 1
+        const val STATUS_DONE = "DONE"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -57,7 +58,7 @@ class SurveyListAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (getItem(position).participated || getItem(position).overdue) {
+        return if (getItem(position).participated || getItem(position).overdue || getItem(position).status == STATUS_DONE) {
             DONE
         } else {
             ONGOING

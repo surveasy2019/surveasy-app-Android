@@ -94,6 +94,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
     }
 
     private fun loginKakao() {
+        Log.d("TEST", "카카오 로그인 클릭")
         lifecycleScope.launch {
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(requireContext())) {
                 UserApiClient.instance.loginWithKakaoTalk(requireContext()) { token, error ->

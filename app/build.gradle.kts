@@ -23,8 +23,8 @@ android {
         applicationId = "com.surveasy.surveasy"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.4"
+        versionCode = 41
+        versionName = "2.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

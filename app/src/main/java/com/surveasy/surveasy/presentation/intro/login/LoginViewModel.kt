@@ -14,7 +14,6 @@ import com.surveasy.surveasy.presentation.util.ErrorMsg.EXIST_LOGIN_ERROR_TWICE
 import com.surveasy.surveasy.presentation.util.ErrorMsg.EXIST_LOGIN_NULL_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.GET_INFO_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.KAKAO_ERROR
-import com.surveasy.surveasy.presentation.util.ErrorMsg.SIGNUP_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.UNKNOWN_ERROR
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
