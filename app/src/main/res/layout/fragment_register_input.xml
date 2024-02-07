@@ -239,6 +239,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
+                    app:trackTint="#D5EABC"
                     android:onCheckedChanged="@{(a,b) -> vm.observePush(b)}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_push_state"
                     app:layout_constraintEnd_toEndOf="parent"

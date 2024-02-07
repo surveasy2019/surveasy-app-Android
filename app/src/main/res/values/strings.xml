@@ -1237,5 +1237,6 @@
     <string name="history_done_empty">정산 완료 설문이 없습니다.</string>
     <string name="list_done">마감</string>
     <string name="list_participate">참여 완료</string>
+    <string name="fs_done">패널 기본 정보 입력이\n완료되었습니다.</string>
 
 </resources>
