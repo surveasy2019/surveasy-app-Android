@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -117,8 +118,8 @@
                         android:id="@+id/et_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={vm.account}"
                         android:inputType="number"
+                        android:text="@={vm.account}"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -154,8 +155,8 @@
                         android:id="@+id/et_owner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={vm.accountOwner}"
                         android:inputType="text"
+                        android:text="@={vm.accountOwner}"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -234,16 +235,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_push_label" />
 
-                <com.google.android.material.switchmaterial.SwitchMaterial
+                <Switch
                     android:id="@+id/sm_english"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    app:trackTint="#D5EABC"
                     android:onCheckedChanged="@{(a,b) -> vm.observePush(b)}"
+                    android:thumb="@drawable/switch_thumb"
+                    android:trackTint="#84A283"
                     app:layout_constraintBottom_toBottomOf="@id/tv_push_state"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_push_state" />
+                    app:layout_constraintTop_toTopOf="@id/tv_push_state"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,10 +49,10 @@
 
         <ImageView
             android:id="@+id/iv_back"
-            android:onClick="@{() -> vm.navigateToBack()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_back"
+            android:onClick="@{() -> vm.navigateToBack()}"
             app:layout_constraintBottom_toBottomOf="@id/v_info_bar"
             app:layout_constraintStart_toStartOf="@id/guide_begin"
             app:layout_constraintTop_toTopOf="@id/v_info_bar" />
@@ -200,11 +200,11 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_phone"
+                        style="@style/TextTitleRegular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/TextTitleRegular"
-                        android:textSize="16sp"
-                        android:text="@={vm.editPhone}" />
+                        android:text="@={vm.editPhone}"
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -231,17 +231,17 @@
 
                 <Spinner
                     android:id="@+id/s_bank"
+                    style="@style/TextTitleRegular"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/custom_spinner"
                     android:paddingHorizontal="8dp"
+                    android:textSize="16sp"
                     android:visibility="@{vm.uiState.editMode? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_bank_label"
-                    style="@style/TextTitleRegular"
-                    android:textSize="16sp"
                     app:layout_goneMarginTop="4dp" />
 
                 <TextView
@@ -279,11 +279,11 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_account"
+                        style="@style/TextTitleRegular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/TextTitleRegular"
-                        android:textSize="16sp"
-                        android:text="@={vm.editAccount}" />
+                        android:text="@={vm.editAccount}"
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -321,11 +321,11 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_owner"
+                        style="@style/TextTitleRegular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/TextTitleRegular"
-                        android:textSize="16sp"
-                        android:text="@={vm.editOwner}" />
+                        android:text="@={vm.editOwner}"
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -361,16 +361,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_english_label" />
 
-                <com.google.android.material.switchmaterial.SwitchMaterial
+                <Switch
                     android:id="@+id/sm_english"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="@{vm.uiState.english}"
                     android:onCheckedChanged="@{(a,b) -> vm.observeEnglish(b)}"
+                    android:thumb="@drawable/switch_thumb"
+                    android:trackTint="#84A283"
                     android:visibility="@{vm.uiState.editMode? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_english_state"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_english_state" />
+                    app:layout_constraintTop_toTopOf="@id/tv_english_state"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
