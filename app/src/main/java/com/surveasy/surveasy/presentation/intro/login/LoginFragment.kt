@@ -1,7 +1,6 @@
 package com.surveasy.surveasy.presentation.intro.login
 
 import android.content.Intent
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -67,7 +66,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
     private val kakaoLoginCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         if (error != null) {
             showSnackBar(SIGNUP_ERROR)
-            Log.d("TEST", "fail, $error")
         } else if (token != null) {
             kakaoInfoCallback()
         }
@@ -77,7 +75,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
         UserApiClient.instance.me { user, error ->
             if (error != null) {
                 showSnackBar(GET_INFO_ERROR)
-                Log.d("TEST", "사용자 정보 요청 실패", error)
             } else if (user != null) {
                 with(user) {
                     viewModel.kakaoSignup(
@@ -94,12 +91,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
     }
 
     private fun loginKakao() {
-        Log.d("TEST", "카카오 로그인 클릭")
         lifecycleScope.launch {
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(requireContext())) {
                 UserApiClient.instance.loginWithKakaoTalk(requireContext()) { token, error ->
                     if (error != null) {
-                        Log.d("TEST", "fail, $error")
                         if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
                             return@loginWithKakaoTalk
                         }
@@ -108,7 +103,22 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
                             callback = kakaoLoginCallback
                         )
                     } else if (token != null) {
-                        Log.d("TEST", "success, $token")
+                        UserApiClient.instance.me { user, error ->
+                            if (error != null) {
+                                showSnackBar(GET_INFO_ERROR)
+                            } else if (user != null) {
+                                with(user) {
+                                    viewModel.kakaoSignup(
+                                        kakaoAccount?.name,
+                                        kakaoAccount?.email,
+                                        kakaoAccount?.phoneNumber,
+                                        kakaoAccount?.gender,
+                                        kakaoAccount?.birthyear,
+                                        kakaoAccount?.birthday
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
             } else {
