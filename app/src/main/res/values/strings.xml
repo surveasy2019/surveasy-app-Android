@@ -1218,7 +1218,7 @@
     <string name="btn_go">참여하러 가기</string>
     <string name="done_reward_label">정산 완료 금액</string>
     <string name="not_yet_reward_label">정산 예정 금액</string>
-    <string name="sent_info">정산일은 매월 10일, 20일, 30일입니다.</string>
+    <string name="sent_info">정산일은 매월 1일, 11일, 21일입니다.</string>
     <string name="go_history">정산 내역 보기</string>
     <string name="go_edit">회원정보 수정</string>
     <string name="go_setting">설정</string>
