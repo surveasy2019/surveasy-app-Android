@@ -53,7 +53,7 @@ class HomeViewModel @Inject constructor(
                                 survey.surveyAppHomeList.map { list -> list.toUiHomeListData() }
                             it.copy(
                                 list = data,
-                                showList = data.isEmpty() || didFs,
+                                showList = data.isNotEmpty(),
                                 didFirstSurvey = didFs
                             )
                         }
