@@ -14,6 +14,7 @@ data class SurveyDetailInfoResponse(
     val targetInput: String?,
     val noticeToPanel: String?,
     val link: String,
+    val description: String,
 ) : BaseDataModel {
     companion object : DomainMapper<SurveyDetailInfoResponse, SurveyDetailInfo> {
         override fun SurveyDetailInfoResponse.toDomainModel(): SurveyDetailInfo = SurveyDetailInfo(
@@ -26,6 +27,7 @@ data class SurveyDetailInfoResponse(
             targetInput = targetInput,
             noticeToPanel = noticeToPanel,
             link = link,
+            description = description,
         )
     }
 }

@@ -11,6 +11,6 @@ fun SurveyDetailInfo.toSurveyDetailData(): UiSurveyDetailData = UiSurveyDetailDa
     responseCount = responseCount,
     targetInput = targetInput ?: "모두",
     noticeToPanel = noticeToPanel ?: "성실한 참여 부탁드립니다.",
-    surveyDescription = "",
+    surveyDescription = description,
     link = link,
 )

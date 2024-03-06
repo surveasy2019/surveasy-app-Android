@@ -99,7 +99,7 @@ class SurveyViewModel @Inject constructor(
                                 responseCount = responseCount,
                                 targetInput = targetInput,
                                 noticeToPanel = noticeToPanel,
-                                surveyDescription = "",
+                                surveyDescription = surveyDescription,
                                 link = link
                             )
                         }
