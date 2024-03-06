@@ -10,330 +10,337 @@
             type="com.surveasy.surveasy.presentation.main.my.MyViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="50dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:paddingBottom="32dp">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide_end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="20dp" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="50dp" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide_begin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="20dp" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="20dp" />
 
-        <TextView
-            android:id="@+id/tv_user_name"
-            style="@style/TextMediumBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintTop_toTopOf="@id/guide_top"
-            app:nameTitle="@{vm.uiState.name}" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_begin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp" />
 
-
-        <View
-            android:id="@+id/v_my_center"
-            android:layout_width="0dp"
-            android:layout_height="300dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/my_center_gradient"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_user_name" />
-
-        <TextView
-            android:id="@+id/tv_done_label"
-            style="@style/TextTitleBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="30dp"
-            android:text="@string/done_reward_label"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintTop_toTopOf="@id/v_my_center" />
-
-        <TextView
-            android:id="@+id/tv_done_reward"
-            style="@style/TextTitleBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintTop_toTopOf="@id/tv_done_label"
-            app:rewardTitle="@{vm.uiState.rewardTotal}" />
-
-        <View
-            android:id="@+id/v_left"
-            android:layout_width="0dp"
-            android:layout_height="105dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="3dp"
-            android:background="@drawable/home_top_container"
-            app:layout_constraintEnd_toStartOf="@id/v_right"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintTop_toBottomOf="@id/tv_done_label" />
-
-        <View
-            android:id="@+id/v_right"
-            android:layout_width="0dp"
-            android:layout_height="105dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/home_top_container"
-            app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintStart_toEndOf="@id/v_left"
-            app:layout_constraintTop_toBottomOf="@id/tv_done_label" />
-
-        <TextView
-            android:id="@+id/tv_left_cnt"
-            style="@style/TextSmallBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:textColor="@color/white"
-            app:countTitle="@{vm.uiState.count}"
-            app:layout_constraintBottom_toTopOf="@id/tv_left_label"
-            app:layout_constraintEnd_toEndOf="@id/v_left"
-            app:layout_constraintStart_toStartOf="@id/v_left"
-            app:layout_constraintTop_toTopOf="@id/v_left"
-            app:layout_constraintVertical_chainStyle="packed" />
-
-        <TextView
-            android:id="@+id/tv_left_label"
-            style="@style/TextSmallBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="@string/participate_label"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@id/v_left"
-            app:layout_constraintEnd_toEndOf="@id/v_left"
-            app:layout_constraintStart_toStartOf="@id/v_left"
-            app:layout_constraintTop_toBottomOf="@id/tv_left_cnt"
-            app:layout_constraintVertical_chainStyle="packed" />
-
-        <TextView
-            android:id="@+id/tv_right_cnt"
-            style="@style/TextSmallBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@id/tv_right_label"
-            app:layout_constraintEnd_toEndOf="@id/v_right"
-            app:layout_constraintStart_toStartOf="@id/v_right"
-            app:layout_constraintTop_toTopOf="@id/v_right"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:rewardTitle="@{vm.uiState.rewardCurrent}" />
-
-        <TextView
-            android:id="@+id/tv_right_label"
-            style="@style/TextSmallBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="@string/not_yet_reward_label"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@id/v_right"
-            app:layout_constraintEnd_toEndOf="@id/v_right"
-            app:layout_constraintStart_toStartOf="@id/v_right"
-            app:layout_constraintTop_toBottomOf="@id/tv_right_cnt"
-            app:layout_constraintVertical_chainStyle="packed" />
-
-        <TextView
-            android:id="@+id/tv_my_warn"
-            style="@style/TextSmallBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/sent_info"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/v_left" />
+            <TextView
+                android:id="@+id/tv_user_name"
+                style="@style/TextMediumBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toTopOf="@id/guide_top"
+                app:nameTitle="@{vm.uiState.name}" />
 
 
-        <View
-            android:id="@+id/v_my_bottom"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/my_bottom"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_my_warn" />
+            <View
+                android:id="@+id/v_my_center"
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/my_center_gradient"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_user_name" />
 
-        <View
-            android:id="@+id/v_history"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:onClick="@{()->vm.navigateToHistory()}"
-            app:layout_constraintBottom_toBottomOf="@id/md_divider1"
-            app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintStart_toStartOf="@id/md_divider1"
-            app:layout_constraintTop_toTopOf="@id/iv_history" />
+            <TextView
+                android:id="@+id/tv_done_label"
+                style="@style/TextTitleBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/done_reward_label"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toTopOf="@id/v_my_center" />
 
-        <ImageView
-            android:id="@+id/iv_history"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/my_history"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintTop_toTopOf="@id/v_my_bottom" />
+            <TextView
+                android:id="@+id/tv_done_reward"
+                style="@style/TextTitleBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintTop_toTopOf="@id/tv_done_label"
+                app:rewardTitle="@{vm.uiState.rewardTotal}" />
 
-        <TextView
-            android:id="@+id/tv_history"
-            style="@style/TextSmallBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/go_history"
-            app:layout_constraintBottom_toBottomOf="@id/iv_history"
-            app:layout_constraintStart_toEndOf="@id/iv_history"
-            app:layout_constraintTop_toTopOf="@id/iv_history" />
+            <View
+                android:id="@+id/v_left"
+                android:layout_width="0dp"
+                android:layout_height="105dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/home_top_container"
+                app:layout_constraintEnd_toStartOf="@id/v_right"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/tv_done_label" />
 
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/md_divider1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="20dp"
-            app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintTop_toBottomOf="@id/iv_history" />
+            <View
+                android:id="@+id/v_right"
+                android:layout_width="0dp"
+                android:layout_height="105dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/home_top_container"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toEndOf="@id/v_left"
+                app:layout_constraintTop_toBottomOf="@id/tv_done_label" />
 
-        <View
-            android:id="@+id/v_edit"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:onClick="@{()->vm.navigateToEdit()}"
-            app:layout_constraintBottom_toBottomOf="@id/md_divider2"
-            app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintStart_toStartOf="@id/md_divider1"
-            app:layout_constraintTop_toTopOf="@id/md_divider1" />
+            <TextView
+                android:id="@+id/tv_left_cnt"
+                style="@style/TextSmallBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:textColor="@color/white"
+                app:countTitle="@{vm.uiState.count}"
+                app:layout_constraintBottom_toTopOf="@id/tv_left_label"
+                app:layout_constraintEnd_toEndOf="@id/v_left"
+                app:layout_constraintStart_toStartOf="@id/v_left"
+                app:layout_constraintTop_toTopOf="@id/v_left"
+                app:layout_constraintVertical_chainStyle="packed" />
 
-        <ImageView
-            android:id="@+id/iv_info"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/my_info"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintTop_toBottomOf="@id/md_divider1" />
+            <TextView
+                android:id="@+id/tv_left_label"
+                style="@style/TextSmallBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/participate_label"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/v_left"
+                app:layout_constraintEnd_toEndOf="@id/v_left"
+                app:layout_constraintStart_toStartOf="@id/v_left"
+                app:layout_constraintTop_toBottomOf="@id/tv_left_cnt"
+                app:layout_constraintVertical_chainStyle="packed" />
 
-        <TextView
-            android:id="@+id/tv_info"
-            style="@style/TextSmallBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/go_edit"
-            app:layout_constraintBottom_toBottomOf="@id/iv_info"
-            app:layout_constraintStart_toEndOf="@id/iv_info"
-            app:layout_constraintTop_toTopOf="@id/iv_info" />
+            <TextView
+                android:id="@+id/tv_right_cnt"
+                style="@style/TextSmallBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/tv_right_label"
+                app:layout_constraintEnd_toEndOf="@id/v_right"
+                app:layout_constraintStart_toStartOf="@id/v_right"
+                app:layout_constraintTop_toTopOf="@id/v_right"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:rewardTitle="@{vm.uiState.rewardCurrent}" />
 
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/md_divider2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="20dp"
-            app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintTop_toBottomOf="@id/iv_info" />
+            <TextView
+                android:id="@+id/tv_right_label"
+                style="@style/TextSmallBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/not_yet_reward_label"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/v_right"
+                app:layout_constraintEnd_toEndOf="@id/v_right"
+                app:layout_constraintStart_toStartOf="@id/v_right"
+                app:layout_constraintTop_toBottomOf="@id/tv_right_cnt"
+                app:layout_constraintVertical_chainStyle="packed" />
 
-        <View
-            android:id="@+id/v_setting"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:onClick="@{()->vm.navigateToSetting()}"
-            app:layout_constraintBottom_toBottomOf="@id/md_divider3"
-            app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintStart_toStartOf="@id/md_divider2"
-            app:layout_constraintTop_toTopOf="@id/md_divider2" />
-
-        <ImageView
-            android:id="@+id/iv_setting"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/my_setting"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintTop_toBottomOf="@id/md_divider2" />
-
-        <TextView
-            android:id="@+id/tv_setting"
-            style="@style/TextSmallBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/go_setting"
-            app:layout_constraintBottom_toBottomOf="@id/iv_setting"
-            app:layout_constraintStart_toEndOf="@id/iv_setting"
-            app:layout_constraintTop_toTopOf="@id/iv_setting" />
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/md_divider3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="20dp"
-            app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintTop_toBottomOf="@id/iv_setting" />
-
-        <View
-            android:id="@+id/v_contact"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:onClick="@{()->vm.navigateToContact()}"
-            app:layout_constraintBottom_toBottomOf="@id/iv_contact"
-            app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintStart_toStartOf="@id/md_divider3"
-            app:layout_constraintTop_toTopOf="@id/md_divider3" />
-
-        <ImageView
-            android:id="@+id/iv_contact"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/my_contact"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintTop_toBottomOf="@id/md_divider3" />
-
-        <TextView
-            android:id="@+id/tv_contact"
-            style="@style/TextSmallBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/go_contact"
-            app:layout_constraintBottom_toBottomOf="@id/iv_contact"
-            app:layout_constraintStart_toEndOf="@id/iv_contact"
-            app:layout_constraintTop_toTopOf="@id/iv_contact" />
+            <TextView
+                android:id="@+id/tv_my_warn"
+                style="@style/TextSmallBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/sent_info"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/v_left" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:id="@+id/v_my_bottom"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/my_bottom"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_my_warn" />
+
+            <View
+                android:id="@+id/v_history"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:onClick="@{()->vm.navigateToHistory()}"
+                app:layout_constraintBottom_toBottomOf="@id/md_divider1"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/md_divider1"
+                app:layout_constraintTop_toTopOf="@id/iv_history" />
+
+            <ImageView
+                android:id="@+id/iv_history"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/my_history"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toTopOf="@id/v_my_bottom" />
+
+            <TextView
+                android:id="@+id/tv_history"
+                style="@style/TextSmallBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/go_history"
+                app:layout_constraintBottom_toBottomOf="@id/iv_history"
+                app:layout_constraintStart_toEndOf="@id/iv_history"
+                app:layout_constraintTop_toTopOf="@id/iv_history" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/md_divider1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/iv_history" />
+
+            <View
+                android:id="@+id/v_edit"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:onClick="@{()->vm.navigateToEdit()}"
+                app:layout_constraintBottom_toBottomOf="@id/md_divider2"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/md_divider1"
+                app:layout_constraintTop_toTopOf="@id/md_divider1" />
+
+            <ImageView
+                android:id="@+id/iv_info"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/my_info"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/md_divider1" />
+
+            <TextView
+                android:id="@+id/tv_info"
+                style="@style/TextSmallBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/go_edit"
+                app:layout_constraintBottom_toBottomOf="@id/iv_info"
+                app:layout_constraintStart_toEndOf="@id/iv_info"
+                app:layout_constraintTop_toTopOf="@id/iv_info" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/md_divider2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/iv_info" />
+
+            <View
+                android:id="@+id/v_setting"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:onClick="@{()->vm.navigateToSetting()}"
+                app:layout_constraintBottom_toBottomOf="@id/md_divider3"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/md_divider2"
+                app:layout_constraintTop_toTopOf="@id/md_divider2" />
+
+            <ImageView
+                android:id="@+id/iv_setting"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/my_setting"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/md_divider2" />
+
+            <TextView
+                android:id="@+id/tv_setting"
+                style="@style/TextSmallBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/go_setting"
+                app:layout_constraintBottom_toBottomOf="@id/iv_setting"
+                app:layout_constraintStart_toEndOf="@id/iv_setting"
+                app:layout_constraintTop_toTopOf="@id/iv_setting" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/md_divider3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/iv_setting" />
+
+            <View
+                android:id="@+id/v_contact"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:onClick="@{()->vm.navigateToContact()}"
+                app:layout_constraintBottom_toBottomOf="@id/iv_contact"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/md_divider3"
+                app:layout_constraintTop_toTopOf="@id/md_divider3" />
+
+            <ImageView
+                android:id="@+id/iv_contact"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/my_contact"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/md_divider3" />
+
+            <TextView
+                android:id="@+id/tv_contact"
+                style="@style/TextSmallBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/go_contact"
+                app:layout_constraintBottom_toBottomOf="@id/iv_contact"
+                app:layout_constraintStart_toEndOf="@id/iv_contact"
+                app:layout_constraintTop_toTopOf="@id/iv_contact" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </layout>
