@@ -12,4 +12,5 @@ data class SurveyDetailInfo(
     val targetInput: String?,
     val noticeToPanel: String?,
     val link: String,
+    val description: String,
 ) : BaseDomainModel
