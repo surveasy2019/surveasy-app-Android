@@ -28,7 +28,7 @@
 ### 로그인 / 회원가입
 기존 회원 로그인 및 신규 회원 카카오 로그인|
 |------|
-<img src="https://github.com/seoyamin/Surveasy-app/assets/82799840/4029d153-6ffa-44bf-a961-715032d9c9a3" width="400" heigth="1000">
+|<img src="https://github.com/seoyamin/Surveasy-app/assets/82799840/4029d153-6ffa-44bf-a961-715032d9c9a3" width="400" heigth="1000">|
 
 <br>
 
