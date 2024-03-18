@@ -1,9 +1,9 @@
 package com.surveasy.surveasy.app.di
 
 import com.surveasy.surveasy.BuildConfig
-import com.surveasy.surveasy.app.DataStoreManager
 import com.surveasy.surveasy.data.config.AccessTokenInterceptor
 import com.surveasy.surveasy.data.config.BearerInterceptor
+import com.surveasy.surveasy.data.config.RetryInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,12 +23,14 @@ object NetworkModule {
     fun provideOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
         accessTokenInterceptor: AccessTokenInterceptor,
-        bearerInterceptor: BearerInterceptor
+        bearerInterceptor: BearerInterceptor,
+        retryInterceptor: RetryInterceptor,
     ): OkHttpClient {
 
         return OkHttpClient.Builder()
             .readTimeout(10000, TimeUnit.MILLISECONDS)
             .connectTimeout(10000, TimeUnit.MILLISECONDS)
+            .addInterceptor(retryInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .addNetworkInterceptor(accessTokenInterceptor)
             .addInterceptor(bearerInterceptor)
@@ -42,10 +44,6 @@ object NetworkModule {
                 if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         }
     }
-
-    @Provides
-    fun provideAccessTokenInterceptor(dataStoreManager: DataStoreManager): AccessTokenInterceptor =
-        AccessTokenInterceptor(dataStoreManager)
 
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
