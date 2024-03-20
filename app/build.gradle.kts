@@ -23,8 +23,8 @@ android {
         applicationId = "com.surveasy.surveasy"
         minSdk = 24
         targetSdk = 34
-        versionCode = 46
-        versionName = "2.0.6"
+        versionCode = 48
+        versionName = "2.0.8"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -105,6 +105,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-storage-ktx")
+    implementation("com.google.firebase:firebase-config-ktx")
 
     // indicator
     implementation("com.tbuonomo:dotsindicator:4.2")

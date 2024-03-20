@@ -5,4 +5,6 @@ interface FirebaseRepository {
     suspend fun getFbUid(email: String, pw: String): String
 
     suspend fun loadImage(uri: String, id: Int, imgName: String): String
+
+    suspend fun checkVersion(version: String): Boolean
 }
