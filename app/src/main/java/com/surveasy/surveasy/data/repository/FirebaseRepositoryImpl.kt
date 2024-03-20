@@ -68,7 +68,7 @@ class FirebaseRepositoryImpl @Inject constructor(
             task.await()
             if (task.isSuccessful) {
                 val targetVersion = remoteConfig.getString(REMOTE_KEY)
-                targetVersion == version
+                targetVersion <= version
             } else {
                 true
             }

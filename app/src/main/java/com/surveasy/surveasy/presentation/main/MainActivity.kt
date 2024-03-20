@@ -2,7 +2,6 @@ package com.surveasy.surveasy.presentation.main
 
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -49,7 +48,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         navController = navHostFragment.navController
         binding.bnvNavBar.setupWithNavController(navController)
         val appVersion = packageManager.getPackageInfo(packageName, 0).versionName
-        Log.d("TAG", "initView: $appVersion")
         lifecycleScope.launch { viewModel.checkVersion(appVersion) }
 
     }
