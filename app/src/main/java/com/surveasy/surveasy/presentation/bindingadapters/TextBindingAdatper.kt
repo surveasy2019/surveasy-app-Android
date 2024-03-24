@@ -38,9 +38,9 @@ fun TextView.getReward(reward: Int) {
     text = "${reward}원 받기"
 }
 
-@BindingAdapter("sentDay")
-fun TextView.sentDay(date: Int) {
-    text = "이번달 ${date}일 정산 예정이에요!"
+@BindingAdapter("sentMonth", "sentDay")
+fun TextView.sentDay(month: String, date: Int) {
+    text = "$month ${date}일 정산 예정이에요!"
 }
 
 @BindingAdapter("setHelperText")

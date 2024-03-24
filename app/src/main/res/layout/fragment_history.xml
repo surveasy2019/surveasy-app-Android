@@ -55,7 +55,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_history_title"
-            app:sentDay="@{vm.date}" />
+            app:sentDay="@{vm.date}"
+            app:sentMonth="@{vm.monthInfo}" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_box"
@@ -223,8 +224,8 @@
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
             android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:visibility="@{vm.mainUiState.listEmpty? View.GONE : View.VISIBLE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/cl_box"
             app:layout_constraintStart_toStartOf="@id/cl_box"

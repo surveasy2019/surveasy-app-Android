@@ -41,6 +41,7 @@ class HistoryViewModel @Inject constructor(
     private val queryAccountInfoUseCase: QueryAccountInfoUseCase,
 ) : ViewModel() {
     private val sid = MutableStateFlow(-1)
+    val monthInfo = MutableStateFlow("")
     val date = MutableStateFlow(0)
 
     private val _mainUiState = MutableStateFlow(HistoryUiState())
@@ -210,6 +211,9 @@ class HistoryViewModel @Inject constructor(
                 } else {
                     21
                 }
+            )
+            monthInfo.emit(
+                if (day > 21 || day <= 1) "다음 달" else "이번 달"
             )
         }
     }
