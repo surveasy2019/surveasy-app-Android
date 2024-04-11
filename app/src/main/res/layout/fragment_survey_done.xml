@@ -36,6 +36,7 @@
             android:layout_marginTop="50dp"
             android:text="@string/survey_done_label"
             android:textColor="@color/main_green"
+            android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@id/btn_list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,16 +48,16 @@
             style="@style/TextMediumBold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
             android:background="@drawable/register_button"
             android:onClick="@{() -> vm.navigateToList()}"
             android:paddingHorizontal="29dp"
-            app:getReward="@{vm.uiState.reward}"
             android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/tv_done"
+            app:getReward="@{vm.uiState.reward}"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="60dp"
-            app:layout_constraintStart_toStartOf="@id/tv_done"
             app:layout_constraintEnd_toEndOf="@id/tv_done"
+            app:layout_constraintStart_toStartOf="@id/tv_done"
+            app:layout_constraintTop_toBottomOf="@id/tv_done"
             app:layout_constraintVertical_chainStyle="packed" />
 
 
