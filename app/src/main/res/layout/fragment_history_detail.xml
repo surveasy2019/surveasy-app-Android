@@ -142,7 +142,7 @@
                     android:layout_marginTop="40dp"
                     android:text="@string/history_warn2_label"
                     android:textColor="@color/red"
-                    android:visibility="@{vm.mainUiState.isBefore? View.INVISIBLE : View.VISIBLE}"
+                    android:visibility="@{(vm.mainUiState.isBefore || vm.detailUiState.surveyDone)? View.INVISIBLE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_last_image" />
@@ -155,7 +155,7 @@
                     android:layout_marginHorizontal="25sp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/register_button"
-                    android:enabled="@{vm.mainUiState.isBefore}"
+                    android:enabled="@{vm.mainUiState.isBefore || vm.detailUiState.surveyDone}"
                     android:onClick="@{() -> vm.navigateToEdit()}"
                     android:text="@string/history_change_label"
                     android:textColor="@color/white"

@@ -17,7 +17,8 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    private const val BASE_URL = "https://gosurveasy.co.kr/"
+    //private const val BASE_URL = "https://gosurveasy.co.kr/"
+    private const val BASE_URL = "https://surveasy.store/"
 
     @Provides
     fun provideOkHttpClient(

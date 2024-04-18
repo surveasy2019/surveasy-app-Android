@@ -90,6 +90,6 @@ class BearerInterceptor @Inject constructor(
         const val TOKEN_ERROR = 401
         const val AUTHORIZATION = "Authorization"
         const val BEARER = "Bearer"
-        const val BASE_URL = "https://gosurveasy.co.kr/"
+        const val BASE_URL = "https://surveasy.store/"
     }
 }

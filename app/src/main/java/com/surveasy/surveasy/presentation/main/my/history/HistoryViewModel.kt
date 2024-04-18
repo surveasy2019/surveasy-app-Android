@@ -154,7 +154,8 @@ class HistoryViewModel @Inject constructor(
                     reward = reward,
                     imgUrl = imgUrl,
                     createdAt = createdAt,
-                    sentAt = sentAt
+                    sentAt = sentAt,
+                    surveyDone = surveyDone
                 )
             }
         }
@@ -236,6 +237,7 @@ class HistoryViewModel @Inject constructor(
         const val AFTER = "after"
         const val FIRST_PAGE = 0
         const val DEFAULT_SIZE = 10
+        const val DONE = "DONE"
     }
 
 }
@@ -271,4 +273,5 @@ data class HistoryDetailUiState(
     val imgUrl: String = "",
     val createdAt: String = "",
     val sentAt: String? = null,
+    val surveyDone: Boolean? = false
 )
