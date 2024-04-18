@@ -455,8 +455,8 @@
     <string name="cal_no_label">정산 예정</string>
     <string name="cal_done_label">정산 완료</string>
     <string name="done_page_label">설문 완료 화면</string>
-    <string name="history_warn1_label">※사진 변경 시, 기존 제출 화면은 삭제됩니다.</string>
-    <string name="history_warn2_label">※마감된 설문의 제출 화면은 변경이 불가합니다.</string>
+    <string name="history_warn1_label">※사진 변경 시,\n기존 제출 화면은 삭제됩니다.</string>
+    <string name="history_warn2_label">※마감된 설문의 제출 화면은\n변경이 불가합니다.</string>
     <string name="history_change_label">설문 완료 화면 변경하기</string>
     <string name="re_select_label">사진 다시 선택하기</string>
     <string name="submit_change_label">제출화면 변경하기</string>
