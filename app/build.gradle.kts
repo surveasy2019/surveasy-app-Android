@@ -23,8 +23,8 @@ android {
         applicationId = "com.surveasy.surveasy"
         minSdk = 24
         targetSdk = 34
-        versionCode = 50
-        versionName = "2.1.0"
+        versionCode = 54
+        versionName = "2.1.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -112,4 +112,8 @@ dependencies {
 
     // kakao
     implementation("com.kakao.sdk:v2-user:2.11.2")
+
+    //inapp update
+    implementation("com.google.android.play:app-update-ktx:2.1.0")
+
 }
