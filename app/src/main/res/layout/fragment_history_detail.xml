@@ -124,9 +124,10 @@
                 <TextView
                     android:id="@+id/tv_alert"
                     style="@style/TextSmallBold"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
+                    android:gravity="center"
                     android:text="@string/history_warn1_label"
                     android:textColor="@color/red"
                     android:visibility="@{vm.mainUiState.isBefore? View.VISIBLE : View.INVISIBLE}"
@@ -137,9 +138,10 @@
                 <TextView
                     android:id="@+id/tv_done_alert"
                     style="@style/TextSmallBold"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
+                    android:gravity="center"
                     android:text="@string/history_warn2_label"
                     android:textColor="@color/red"
                     android:visibility="@{(vm.mainUiState.isBefore || vm.detailUiState.surveyDone)? View.INVISIBLE : View.VISIBLE}"

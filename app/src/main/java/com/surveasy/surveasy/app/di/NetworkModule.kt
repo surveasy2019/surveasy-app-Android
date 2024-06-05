@@ -17,8 +17,7 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    //private const val BASE_URL = "https://gosurveasy.co.kr/"
-    private const val BASE_URL = "https://surveasy.store/"
+    private const val BASE_URL = "https://gosurveasy.co.kr/"
 
     @Provides
     fun provideOkHttpClient(
@@ -31,6 +30,7 @@ object NetworkModule {
         return OkHttpClient.Builder()
             .readTimeout(10000, TimeUnit.MILLISECONDS)
             .connectTimeout(10000, TimeUnit.MILLISECONDS)
+            .writeTimeout(10000, TimeUnit.MILLISECONDS)
             .addInterceptor(retryInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .addNetworkInterceptor(accessTokenInterceptor)
