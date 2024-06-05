@@ -23,5 +23,6 @@ fun HistorySurvey.toUiHistorySurveyData(): UiHistorySurveyData = UiHistorySurvey
     reward = reward,
     imgUrl = imgUrl,
     createdAt = createdAt,
-    sentAt = sentAt
+    sentAt = sentAt,
+    surveyDone = surveyStatus == "DONE"
 )
