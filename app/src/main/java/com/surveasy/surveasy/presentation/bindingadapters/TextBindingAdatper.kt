@@ -25,7 +25,7 @@ fun TextView.rewardTitle(reward: Int) {
 
 @BindingAdapter("englishTitle")
 fun TextView.englishTitle(english: Boolean) {
-    text = if (english) "영어 설문에 참여합니다." else "영어 설문에 참여하지 않습니다."
+    text = resources.getText(if (english) R.string.my_english_yes else R.string.my_english_no)
 }
 
 @BindingAdapter("respondedCnt", "totalCnt")
@@ -59,4 +59,15 @@ fun TextInputLayout.nameHelperText(state: InputState) {
 fun TextView.setDoneLabel(item: UiSurveyListData) {
     text =
         resources.getText(if (item.participated) R.string.list_participate else R.string.list_done)
+}
+
+@BindingAdapter("historyBefore", "historyDone")
+fun TextView.setHistoryAlertText(isBefore: Boolean, isDone: Boolean?) {
+    text = if (!isBefore) {
+        resources.getText(R.string.history_warn2_label)
+    } else if (isDone == true) {
+        resources.getText(R.string.history_warn2_label)
+    } else {
+        resources.getText(R.string.history_warn1_label)
+    }
 }
