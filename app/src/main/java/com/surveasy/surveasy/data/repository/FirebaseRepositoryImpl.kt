@@ -3,6 +3,7 @@ package com.surveasy.surveasy.data.repository
 import android.net.Uri
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
 import com.google.firebase.storage.storage
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 class FirebaseRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
-    private val firebase: Firebase
+    private val firebase: Firebase,
+    private val firebaseMessaging: FirebaseMessaging
 ) : FirebaseRepository {
     override suspend fun getFbUid(email: String, pw: String): String {
         return try {
@@ -40,6 +42,21 @@ class FirebaseRepositoryImpl @Inject constructor(
             if (result.task.isSuccessful) {
                 val downloadUrl = storageRef.downloadUrl.await()
                 downloadUrl.toString()
+            } else {
+                ""
+            }
+        } catch (e: Exception) {
+            ""
+        }
+    }
+
+    override suspend fun getFcmToken(): String {
+        return try {
+            val task = firebaseMessaging.token
+            task.await()
+
+            if (task.isSuccessful) {
+                task.result.toString()
             } else {
                 ""
             }
