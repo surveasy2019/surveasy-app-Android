@@ -6,5 +6,7 @@ interface FirebaseRepository {
 
     suspend fun loadImage(uri: String, id: Int, imgName: String): String
 
+    suspend fun getFcmToken(): String
+
     suspend fun checkVersion(version: String): Boolean
 }
