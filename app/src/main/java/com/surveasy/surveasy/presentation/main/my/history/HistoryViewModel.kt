@@ -41,6 +41,7 @@ class HistoryViewModel @Inject constructor(
     private val queryAccountInfoUseCase: QueryAccountInfoUseCase,
 ) : ViewModel() {
     private val sid = MutableStateFlow(-1)
+    val monthInfo = MutableStateFlow("")
     val date = MutableStateFlow(0)
 
     private val _mainUiState = MutableStateFlow(HistoryUiState())
@@ -153,7 +154,8 @@ class HistoryViewModel @Inject constructor(
                     reward = reward,
                     imgUrl = imgUrl,
                     createdAt = createdAt,
-                    sentAt = sentAt
+                    sentAt = sentAt,
+                    surveyDone = surveyDone
                 )
             }
         }
@@ -211,6 +213,9 @@ class HistoryViewModel @Inject constructor(
                     21
                 }
             )
+            monthInfo.emit(
+                if (day > 21 || day <= 1) "다음 달" else "이번 달"
+            )
         }
     }
 
@@ -232,6 +237,7 @@ class HistoryViewModel @Inject constructor(
         const val AFTER = "after"
         const val FIRST_PAGE = 0
         const val DEFAULT_SIZE = 10
+        const val DONE = "DONE"
     }
 
 }
@@ -267,4 +273,5 @@ data class HistoryDetailUiState(
     val imgUrl: String = "",
     val createdAt: String = "",
     val sentAt: String? = null,
+    val surveyDone: Boolean? = false
 )

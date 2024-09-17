@@ -15,4 +15,6 @@ data class HistorySurvey(
     val imgUrl: String,
     val createdAt: String,
     val sentAt: String?,
+    val responseStatus: String?,
+    val surveyStatus: String?,
 ) : BaseDomainModel

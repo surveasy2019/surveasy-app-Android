@@ -67,10 +67,13 @@
                 <TextView
                     android:id="@+id/tv_title"
                     style="@style/TextSmallBold"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
                     android:text="@{vm.detailUiState.title}"
+                    app:layout_constraintEnd_toEndOf="@id/iv_divider1"
                     app:layout_constraintStart_toStartOf="@id/iv_divider1"
                     app:layout_constraintTop_toBottomOf="@id/iv_divider1" />
 
@@ -121,25 +124,13 @@
                 <TextView
                     android:id="@+id/tv_alert"
                     style="@style/TextSmallBold"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:text="@string/history_warn1_label"
+                    android:gravity="center"
                     android:textColor="@color/red"
-                    android:visibility="@{vm.mainUiState.isBefore? View.VISIBLE : View.INVISIBLE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_last_image" />
-
-                <TextView
-                    android:id="@+id/tv_done_alert"
-                    style="@style/TextSmallBold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:text="@string/history_warn2_label"
-                    android:textColor="@color/red"
-                    android:visibility="@{vm.mainUiState.isBefore? View.INVISIBLE : View.VISIBLE}"
+                    app:historyBefore="@{vm.mainUiState.isBefore}"
+                    app:historyDone="@{vm.detailUiState.surveyDone}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_last_image" />
@@ -152,7 +143,7 @@
                     android:layout_marginHorizontal="25sp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/register_button"
-                    android:enabled="@{vm.mainUiState.isBefore}"
+                    android:enabled="@{vm.mainUiState.isBefore &amp;&amp; !vm.detailUiState.surveyDone}"
                     android:onClick="@{() -> vm.navigateToEdit()}"
                     android:text="@string/history_change_label"
                     android:textColor="@color/white"

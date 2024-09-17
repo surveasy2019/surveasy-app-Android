@@ -1,9 +1,11 @@
 package com.surveasy.surveasy.presentation.main.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.app.DataStoreManager
 import com.surveasy.surveasy.domain.base.BaseState
+import com.surveasy.surveasy.domain.usecase.GetFcmTokenUseCase
 import com.surveasy.surveasy.domain.usecase.ListHomeSurveyUseCase
 import com.surveasy.surveasy.domain.usecase.QueryPanelInfoUseCase
 import com.surveasy.surveasy.presentation.main.home.mapper.toUiHomeListData
@@ -12,6 +14,7 @@ import com.surveasy.surveasy.presentation.main.home.model.UiHomeListData
 import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.RETRY
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,6 +33,7 @@ class HomeViewModel @Inject constructor(
     private val queryPanelInfoUseCase: QueryPanelInfoUseCase,
     private val listHomeSurveyUseCase: ListHomeSurveyUseCase,
     private val dataStoreManager: DataStoreManager,
+    private val getFcmTokenUseCase: GetFcmTokenUseCase,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
@@ -86,6 +90,14 @@ class HomeViewModel @Inject constructor(
                 else -> _events.emit(HomeEvents.ShowSnackBar(DATA_ERROR, RETRY))
             }
         }.launchIn(viewModelScope)
+    }
+
+    suspend fun getFcmToken() {
+        val fcmToken = viewModelScope.async {
+            getFcmTokenUseCase()
+        }.await()
+
+        Log.d("TAG", "getFcmToken: $fcmToken")
     }
 
     fun navigateToSurveyDetail(id: Int) {

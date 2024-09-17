@@ -144,7 +144,7 @@
             android:layout_marginBottom="24dp"
             android:fontFamily="@font/main_font_m"
             android:text="@string/login_find_pw"
-            android:textColor="@color/gray"
+            android:textColor="@color/white"
             android:textSize="13sp"
             app:layout_constraintBottom_toTopOf="@id/tv_or"
             app:layout_constraintEnd_toEndOf="@id/iv_kakao_login" />
