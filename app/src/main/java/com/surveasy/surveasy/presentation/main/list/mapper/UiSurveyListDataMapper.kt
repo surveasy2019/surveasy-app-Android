@@ -9,9 +9,9 @@ fun SurveyInfo.toUiSurveyListData(): UiSurveyListData = UiSurveyListData(
     reward = reward,
     headCount = headCount,
     spendTime = spendTime,
-    targetInput = targetInput ?: "모두",
+    targetInput = if(targetInput.isNullOrEmpty()) "모두" else targetInput,
     status = status,
-    responseCount = responseCount,
+    responseCount = if(responseCount > headCount) headCount - 1 else responseCount,
     participated = participated,
     overdue = overdue
 )

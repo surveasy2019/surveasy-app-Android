@@ -30,6 +30,8 @@ data class HistorySurveyResponse(
     val imgUrl: String,
     val createdAt: String,
     val sentAt: String?,
+    val responseStatus: String?,
+    val surveyStatus: String?,
 ) : BaseDataModel {
     companion object : DomainMapper<HistorySurveyResponse, HistorySurvey> {
         override fun HistorySurveyResponse.toDomainModel(): HistorySurvey = HistorySurvey(
@@ -38,7 +40,9 @@ data class HistorySurveyResponse(
             reward = reward,
             imgUrl = imgUrl,
             createdAt = createdAt,
-            sentAt = sentAt
+            sentAt = sentAt,
+            responseStatus = responseStatus,
+            surveyStatus = surveyStatus,
         )
     }
 }

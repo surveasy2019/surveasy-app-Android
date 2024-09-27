@@ -7,93 +7,101 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        tools:context=".presentation.main.home.notice.HomeNoticeActivity">
+        android:background="@color/white">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide_bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_end="30dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:paddingBottom="20dp"
+            tools:context=".presentation.main.home.notice.HomeNoticeActivity">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide_begin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="30dp" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="30dp" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide_end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="30dp" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_begin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="30dp" />
 
-        <View
-            android:id="@+id/v_bar"
-            android:layout_width="0dp"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="30dp" />
 
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_back"
-            app:layout_constraintBottom_toBottomOf="@id/v_bar"
-            app:layout_constraintStart_toStartOf="@id/v_bar"
-            app:layout_constraintTop_toTopOf="@id/v_bar" />
+            <View
+                android:id="@+id/v_bar"
+                android:layout_width="0dp"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="@id/v_bar"
+                app:layout_constraintStart_toStartOf="@id/v_bar"
+                app:layout_constraintTop_toTopOf="@id/v_bar" />
 
 
-        <TextView
-            android:id="@+id/tv_title"
-            style="@style/TextMediumBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home_content2_label"
-            app:layout_constraintBottom_toBottomOf="@id/v_bar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/v_bar" />
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/TextMediumBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_content2_label"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="@id/v_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/v_bar" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/content2_label"
-            app:layout_constraintTop_toBottomOf="@id/v_bar"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            android:layout_marginTop="36dp"
-            style="@style/TextTitleBold"
-            android:id="@+id/tv_med_title"/>
+            <TextView
+                android:id="@+id/tv_med_title"
+                style="@style/TextTitleBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="@string/content2_label"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/v_bar" />
 
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintEnd_toEndOf="@id/guide_end"
-            app:layout_constraintTop_toBottomOf="@id/tv_med_title"
-            android:layout_marginTop="18dp"
-            android:id="@+id/md_divider"/>
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/md_divider"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/tv_med_title" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/notice_panel"
-            android:layout_marginTop="36dp"
-            android:lineBreakStyle="normal"
-            android:lineBreakWordStyle="phrase"
-            app:layout_constraintStart_toStartOf="@id/guide_begin"
-            app:layout_constraintEnd_toEndOf="@id/guide_end"
-            android:id="@+id/tv_content"
-            app:layout_constraintTop_toBottomOf="@id/md_divider"
-            style="@style/TextSmallRegular"/>
+            <TextView
+                android:id="@+id/tv_content"
+                style="@style/TextSmallRegular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:lineBreakStyle="normal"
+                android:lineBreakWordStyle="phrase"
+                android:text="@string/notice_panel"
+                app:layout_constraintEnd_toEndOf="@id/guide_end"
+                app:layout_constraintStart_toStartOf="@id/guide_begin"
+                app:layout_constraintTop_toBottomOf="@id/md_divider" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

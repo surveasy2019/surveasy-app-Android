@@ -19,4 +19,5 @@ data class UiHistorySurveyData(
     val imgUrl: String,
     val createdAt: String,
     val sentAt: String?,
+    val surveyDone: Boolean?,
 )

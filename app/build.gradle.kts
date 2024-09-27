@@ -23,8 +23,8 @@ android {
         applicationId = "com.surveasy.surveasy"
         minSdk = 24
         targetSdk = 34
-        versionCode = 46
-        versionName = "2.0.6"
+        versionCode = 54
+        versionName = "2.1.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -105,10 +105,16 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-storage-ktx")
+    implementation("com.google.firebase:firebase-config-ktx")
+    implementation("com.google.firebase:firebase-messaging-ktx")
 
     // indicator
     implementation("com.tbuonomo:dotsindicator:4.2")
 
     // kakao
     implementation("com.kakao.sdk:v2-user:2.11.2")
+
+    //inapp update
+    implementation("com.google.android.play:app-update-ktx:2.1.0")
+
 }

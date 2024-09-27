@@ -3,6 +3,9 @@ package com.surveasy.surveasy.data.repository
 import android.net.Uri
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.remoteconfig.remoteConfig
+import com.google.firebase.remoteconfig.remoteConfigSettings
 import com.google.firebase.storage.storage
 import com.surveasy.surveasy.domain.repository.FirebaseRepository
 import kotlinx.coroutines.tasks.await
@@ -10,7 +13,8 @@ import javax.inject.Inject
 
 class FirebaseRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
-    private val firebase: Firebase
+    private val firebase: Firebase,
+    private val firebaseMessaging: FirebaseMessaging
 ) : FirebaseRepository {
     override suspend fun getFbUid(email: String, pw: String): String {
         return try {
@@ -44,6 +48,54 @@ class FirebaseRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             ""
         }
+    }
+
+    override suspend fun getFcmToken(): String {
+        return try {
+            val task = firebaseMessaging.token
+            task.await()
+
+            if (task.isSuccessful) {
+                task.result.toString()
+            } else {
+                ""
+            }
+        } catch (e: Exception) {
+            ""
+        }
+    }
+
+    override suspend fun checkVersion(version: String): Boolean {
+
+
+        return try {
+
+            val remoteConfig = Firebase.remoteConfig
+            val configSettings = remoteConfigSettings {
+                minimumFetchIntervalInSeconds = 3600
+            }
+            remoteConfig.setConfigSettingsAsync(configSettings)
+
+            val defaultConfigMap = mapOf(
+                REMOTE_KEY to "0.0.0"
+            )
+            remoteConfig.setDefaultsAsync(defaultConfigMap)
+
+            val task = remoteConfig.fetchAndActivate()
+            task.await()
+            if (task.isSuccessful) {
+                val targetVersion = remoteConfig.getString(REMOTE_KEY)
+                targetVersion <= version
+            } else {
+                true
+            }
+        } catch (e: Exception) {
+            true
+        }
+    }
+
+    companion object {
+        const val REMOTE_KEY = "version"
     }
 
 }

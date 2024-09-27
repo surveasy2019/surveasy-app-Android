@@ -52,6 +52,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(ActivitySettingBind
             ) { }
         }
         ivBack.setOnClickListener { finish() }
+        tvVersionInfo.text = packageManager.getPackageInfo(packageName, 0).versionName.toString()
 
     }
 

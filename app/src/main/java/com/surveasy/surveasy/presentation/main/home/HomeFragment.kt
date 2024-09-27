@@ -34,6 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         rvHomeList.adapter = adapter
         rvHomeList.animation = null
         finishApp()
+        repeatOnStarted { viewModel.getFcmToken() }
     }
 
     override fun initEventObserver() {
