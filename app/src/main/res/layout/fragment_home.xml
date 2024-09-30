@@ -255,25 +255,24 @@
                     app:list="@{vm.uiState.list}" />
 
                 <TextView
-                    android:id="@+id/tv_alert_title"
+                    android:id="@+id/tv_alert_icon"
                     style="@style/TextSmallBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="36dp"
-                    android:text="@string/home_temp_alert_title"
+                    android:text="@string/home_temp_alert_icon"
                     app:layout_constraintStart_toStartOf="@id/guide_begin"
                     app:layout_constraintTop_toBottomOf="@id/rv_home_list" />
 
                 <TextView
-                    android:id="@+id/tv_alert_go"
+                    android:id="@+id/tv_alert_title"
                     style="@style/TextSmallBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="36dp"
-                    android:text="@string/home_temp_alert_btn"
-                    android:textColor="@color/gray"
-                    app:layout_constraintStart_toEndOf="@id/tv_alert_title"
+                    android:text="@string/home_temp_alert_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_alert_icon"
                     app:layout_constraintTop_toBottomOf="@id/rv_home_list" />
 
 

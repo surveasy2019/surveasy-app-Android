@@ -21,7 +21,7 @@ class ContactActivity : BaseActivity<ActivityContactBinding>(ActivityContactBind
             val clipData = ClipData.newPlainText("text", resources.getText(R.string.my_email))
             clipboardManager.setPrimaryClip(clipData)
 
-            showToastMessage("이메일 주소가 복사되었습니다.")
+            showToastMessage(resources.getString(R.string.email_copy))
         }
 
         ivBack.setOnClickListener { finish() }

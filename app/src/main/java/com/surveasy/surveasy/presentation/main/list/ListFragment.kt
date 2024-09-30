@@ -79,7 +79,7 @@ class ListFragment : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
                     parentViewModel.finishApp()
                 } else {
                     backPressTime = System.currentTimeMillis()
-                    showToastMessage("뒤로가기 버튼을 한 번 더 누르면 종료됩니다.")
+                    showToastMessage(resources.getString(R.string.back_alert))
                 }
             }
         })

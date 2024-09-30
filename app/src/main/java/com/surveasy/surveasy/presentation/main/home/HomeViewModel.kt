@@ -1,6 +1,5 @@
 package com.surveasy.surveasy.presentation.main.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.surveasy.surveasy.app.DataStoreManager
@@ -14,7 +13,6 @@ import com.surveasy.surveasy.presentation.main.home.model.UiHomeListData
 import com.surveasy.surveasy.presentation.util.ErrorMsg.DATA_ERROR
 import com.surveasy.surveasy.presentation.util.ErrorMsg.RETRY
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -92,13 +90,13 @@ class HomeViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    suspend fun getFcmToken() {
-        val fcmToken = viewModelScope.async {
-            getFcmTokenUseCase()
-        }.await()
-
-        Log.d("TAG", "getFcmToken: $fcmToken")
-    }
+//    suspend fun getFcmToken() {
+//        val fcmToken = viewModelScope.async {
+//            getFcmTokenUseCase()
+//        }.await()
+//
+//        Log.d("TAG", "getFcmToken: $fcmToken")
+//    }
 
     fun navigateToSurveyDetail(id: Int) {
         viewModelScope.launch { _events.emit(HomeEvents.ClickSurveyItem(id)) }

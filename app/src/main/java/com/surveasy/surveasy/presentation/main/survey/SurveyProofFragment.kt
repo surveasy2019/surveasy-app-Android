@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.provider.Settings
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -70,12 +69,12 @@ class SurveyProofFragment :
     private fun showDialogToGetPermission() {
         showTwoButtonDialog(
             requireContext(),
-            "권한이 필요합니다",
-            "설문 완료 인증 캡쳐본을 전송하기 위해서 접근 권한이 필요합니다.",
-            "설정으로 이동",
-            "나중에 하기",
+            getString(R.string.permission_title),
+            getString(R.string.permission_content),
+            getString(R.string.permission_yes),
+            getString(R.string.permission_no),
             { settingDialog() },
-            { showToastMessage("권한을 허용하지 않을 경우, 설문 완료 캡쳐본 전송이 불가합니다.") }
+            { showToastMessage(getString(R.string.permission_alert)) }
         )
     }
 

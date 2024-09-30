@@ -422,7 +422,6 @@
     <string name="home_content1_label">설문 참여 인증 방법 안내</string>
     <string name="home_content2_label">부정 참여 경고</string>
     <string name="content2_label">불성실 응답에 대한 패널티 안내</string>
-    <string name="withdraw_content">정말 떠나시는 건가요?</string>
     <string name="withdraw_warn">탈퇴 시 정산 예정 금액은 지급되지 않습니다.</string>
     <string name="withdraw_reason">서베이지를 떠나는 이유를 알려주세요.\n남겨주신 소중한 의견을 참고해 더 발전하겠습니다!</string>
     <string name="loading_label">Loading ...</string>
@@ -497,7 +496,24 @@
     <string name="list_participate">참여 완료</string>
     <string name="fs_done">패널 기본 정보 입력이\n완료되었습니다.</string>
     <string name="update_warn">더 나은 서비스 제공을 위해 새로운 어플 버전이 출시되었습니다. 업데이트를 진행하지 않으면 서비스 이용이 제한될 수 있습니다.</string>
-    <string name="home_temp_alert_title">🔔 설문 알림을 받아보고 싶다면?</string>
-    <string name="home_temp_alert_btn">더 알아보기</string>
+    <string name="home_temp_alert_icon">🔔</string>
+    <string name="home_temp_alert_title">설문 알림을 받고 싶다면?</string>
+    <string name="alert_title">설문 알림 안내</string>
+    <string name="alert_content">더 나은 서비스를 제공하기 위해 현재 설문 알림 기능을 개선하고 있습니다.\n\n새로운 알림 기능이 완성될 때까지 오픈 채팅방을 통해 설문 알림을 제공받으실 수 있습니다.</string>
+    <string name="alert_yes">참여하기</string>
+    <string name="alert_no">닫기</string>
+    <string name="permission_title">권한이 필요합니다</string>
+    <string name="permission_content">설문 완료 인증 캡쳐본을 전송하기 위해서 접근 권한이 필요합니다.</string>
+    <string name="permission_yes">설정으로 이동</string>
+    <string name="permission_no">나중에 하기</string>
+    <string name="permission_alert">권한을 허용하지 않을 경우, 설문 완료 캡쳐본 전송이 불가합니다.</string>
+    <string name="logout_title">로그아웃 하시겠습니까?</string>
+    <string name="logout_yes">로그아웃</string>
+    <string name="logout_no">닫기</string>
+    <string name="withdraw_title">정말 탈퇴 하시겠습니까?</string>
+    <string name="withdraw_content">회원 탈퇴 시 패널 정보가 모두 사라집니다.</string>
+    <string name="withdraw_yes">탈퇴하기</string>
+    <string name="back_alert">뒤로가기 버튼을 한 번 더 누르면 종료됩니다.</string>
+    <string name="email_copy">이메일 주소가 복사되었습니다.</string>
 
 </resources>

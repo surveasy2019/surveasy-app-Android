@@ -2,6 +2,7 @@ package com.surveasy.surveasy.presentation.main.my.setting
 
 import android.content.Intent
 import androidx.activity.viewModels
+import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivitySettingBinding
 import com.surveasy.surveasy.presentation.base.BaseActivity
 import com.surveasy.surveasy.presentation.intro.IntroActivity
@@ -33,10 +34,10 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(ActivitySettingBind
         vLogout.setOnClickListener {
             showTwoButtonDialog(
                 this@SettingActivity,
-                "로그아웃 하시겠습니까?",
+                resources.getString(R.string.logout_title),
                 "",
-                "로그아웃",
-                "닫기",
+                resources.getString(R.string.logout_yes),
+                resources.getString(R.string.logout_no),
                 { viewModel.logout() }
             ) {}
         }
@@ -44,10 +45,10 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>(ActivitySettingBind
         vWithdraw.setOnClickListener {
             showTwoButtonDialog(
                 this@SettingActivity,
-                "정말 탈퇴 하시겠습니까?",
-                "회원 탈퇴 시 패널 정보가 모두 사라집니다.",
-                "탈퇴하기",
-                "닫기",
+                resources.getString(R.string.withdraw_title),
+                resources.getString(R.string.withdraw_content),
+                resources.getString(R.string.withdraw_yes),
+                resources.getString(R.string.logout_no),
                 { viewModel.withdraw() }
             ) { }
         }
