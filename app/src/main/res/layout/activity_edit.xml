@@ -83,7 +83,7 @@
 
                 <TextView
                     android:id="@+id/tv_name_label"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
@@ -94,7 +94,7 @@
 
                 <TextView
                     android:id="@+id/tv_name"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{vm.uiState.name}"
@@ -104,7 +104,7 @@
 
                 <TextView
                     android:id="@+id/tv_birth_label"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -115,7 +115,7 @@
 
                 <TextView
                     android:id="@+id/tv_birth"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{vm.uiState.birth}"
@@ -125,7 +125,7 @@
 
                 <TextView
                     android:id="@+id/tv_gender_label"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -136,7 +136,7 @@
 
                 <TextView
                     android:id="@+id/tv_gender"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{vm.uiState.gender}"
@@ -146,7 +146,7 @@
 
                 <TextView
                     android:id="@+id/tv_email_label"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -157,7 +157,7 @@
 
                 <TextView
                     android:id="@+id/tv_email"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{vm.uiState.email}"
@@ -167,7 +167,7 @@
 
                 <TextView
                     android:id="@+id/tv_phone_label"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -178,7 +178,7 @@
 
                 <TextView
                     android:id="@+id/tv_phone"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{vm.uiState.phoneNumber}"
@@ -209,7 +209,7 @@
 
                 <TextView
                     android:id="@+id/tv_bank_label"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -220,7 +220,7 @@
 
                 <TextView
                     android:id="@+id/tv_bank"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{vm.uiState.accountType}"
@@ -246,7 +246,7 @@
 
                 <TextView
                     android:id="@+id/tv_account_label"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -257,7 +257,7 @@
 
                 <TextView
                     android:id="@+id/tv_account"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{vm.uiState.accountNumber}"
@@ -288,7 +288,7 @@
 
                 <TextView
                     android:id="@+id/tv_owner_label"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -299,7 +299,7 @@
 
                 <TextView
                     android:id="@+id/tv_owner"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{vm.uiState.accountOwner}"
@@ -330,7 +330,7 @@
 
                 <TextView
                     android:id="@+id/tv_english_label"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -341,7 +341,7 @@
 
                 <TextView
                     android:id="@+id/tv_english"
-                    style="@style/TextTitleRegular"
+                    style="@style/TextTitleRegularFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="@{vm.uiState.editMode? View.GONE : View.VISIBLE}"

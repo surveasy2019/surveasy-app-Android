@@ -46,7 +46,7 @@
 
                 <TextView
                     android:id="@+id/tv_date"
-                    style="@style/TextSmallBold"
+                    style="@style/TextSmallBoldFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
@@ -66,7 +66,7 @@
 
                 <TextView
                     android:id="@+id/tv_title"
-                    style="@style/TextSmallBold"
+                    style="@style/TextSmallBoldFix"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -100,7 +100,7 @@
 
                 <TextView
                     android:id="@+id/tv_fin_title"
-                    style="@style/TextTitleBold"
+                    style="@style/TextMediumBoldFix"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"

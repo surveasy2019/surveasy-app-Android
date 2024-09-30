@@ -74,7 +74,7 @@
 
             <TextView
                 android:id="@+id/tv_reward_label"
-                style="@style/TextSmallBold"
+                style="@style/TextSmallBoldFix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/history_yet_label"
@@ -84,7 +84,7 @@
 
             <TextView
                 android:id="@+id/tv_reward"
-                style="@style/TextSmallBold"
+                style="@style/TextSmallBoldFix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -94,7 +94,7 @@
 
             <TextView
                 android:id="@+id/tv_account_label"
-                style="@style/TextSmallBold"
+                style="@style/TextSmallBoldFix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -105,7 +105,7 @@
 
             <TextView
                 android:id="@+id/tv_edit"
-                style="@style/TextSmallBold"
+                style="@style/TextSmallBoldFix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -121,7 +121,7 @@
 
             <TextView
                 android:id="@+id/tv_bank"
-                style="@style/TextSmallBold"
+                style="@style/TextSmallBoldFix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -131,7 +131,7 @@
 
             <TextView
                 android:id="@+id/tv_account"
-                style="@style/TextSmallBold"
+                style="@style/TextSmallBoldFix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -142,7 +142,7 @@
 
             <TextView
                 android:id="@+id/tv_divider"
-                style="@style/TextSmallBold"
+                style="@style/TextSmallBoldFix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -153,7 +153,7 @@
 
             <TextView
                 android:id="@+id/tv_name"
-                style="@style/TextSmallBold"
+                style="@style/TextSmallBoldFix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
