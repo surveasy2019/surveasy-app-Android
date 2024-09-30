@@ -497,5 +497,7 @@
     <string name="list_participate">참여 완료</string>
     <string name="fs_done">패널 기본 정보 입력이\n완료되었습니다.</string>
     <string name="update_warn">더 나은 서비스 제공을 위해 새로운 어플 버전이 출시되었습니다. 업데이트를 진행하지 않으면 서비스 이용이 제한될 수 있습니다.</string>
+    <string name="home_temp_alert_title">🔔 설문 알림을 받아보고 싶다면?</string>
+    <string name="home_temp_alert_btn">더 알아보기</string>
 
 </resources>

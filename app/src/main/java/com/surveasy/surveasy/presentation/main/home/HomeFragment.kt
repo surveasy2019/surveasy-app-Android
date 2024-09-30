@@ -1,6 +1,8 @@
 package com.surveasy.surveasy.presentation.main.home
 
 import android.content.Intent
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -33,6 +35,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         vm = viewModel
         rvHomeList.adapter = adapter
         rvHomeList.animation = null
+        drawUnderLine()
         finishApp()
         repeatOnStarted { viewModel.getFcmToken() }
     }
@@ -69,6 +72,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private fun toFs() {
         val intent = Intent(context, FsActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun drawUnderLine() {
+        val ss = SpannableString(binding.tvAlertGo.text.toString())
+        ss.setSpan(UnderlineSpan(), 0, ss.length, 0)
+        binding.tvAlertGo.text = ss
     }
 
     private fun finishApp() {
