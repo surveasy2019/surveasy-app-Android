@@ -24,6 +24,7 @@
             style="@style/TextSmallRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:maxLines="2"
             android:text="@{item.title}"
             app:layout_constraintStart_toStartOf="parent"

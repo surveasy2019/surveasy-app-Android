@@ -25,8 +25,20 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="TextMediumBoldFix">
+        <item name="android:textSize">20dp</item>
+        <item name="fontFamily">@font/main_font_b</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="TextTitleRegular">
         <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/main_font_m</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextTitleRegularFix">
+        <item name="android:textSize">18dp</item>
         <item name="fontFamily">@font/main_font_m</item>
         <item name="android:textColor">@color/black</item>
     </style>
@@ -64,6 +76,12 @@
 
     <style name="TextSmallBold">
         <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/main_font_b</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextSmallBoldFix">
+        <item name="android:textSize">14dp</item>
         <item name="fontFamily">@font/main_font_b</item>
         <item name="android:textColor">@color/black</item>
     </style>
