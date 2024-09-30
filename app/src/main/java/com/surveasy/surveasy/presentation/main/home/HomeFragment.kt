@@ -1,6 +1,9 @@
 package com.surveasy.surveasy.presentation.main.home
 
 import android.content.Intent
+import android.net.Uri
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -14,6 +17,7 @@ import com.surveasy.surveasy.presentation.main.home.notice.HomeNoticeActivity
 import com.surveasy.surveasy.presentation.main.survey.SurveyActivity
 import com.surveasy.surveasy.presentation.main.survey.fs.FsActivity
 import com.surveasy.surveasy.presentation.util.IntentId
+import com.surveasy.surveasy.presentation.util.showTwoButtonDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,8 +37,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         vm = viewModel
         rvHomeList.adapter = adapter
         rvHomeList.animation = null
+        drawUnderLine()
+        tvAlertTitle.setOnClickListener { showAlertDialog() }
         finishApp()
-        repeatOnStarted { viewModel.getFcmToken() }
+        // repeatOnStarted { viewModel.getFcmToken() }
     }
 
     override fun initEventObserver() {
@@ -71,6 +77,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         startActivity(intent)
     }
 
+    private fun drawUnderLine() {
+        val ss = SpannableString(binding.tvAlertTitle.text.toString())
+        ss.setSpan(UnderlineSpan(), 0, ss.length, 0)
+        binding.tvAlertTitle.text = ss
+    }
+
+    private fun showAlertDialog() = with(resources) {
+        showTwoButtonDialog(
+            requireContext(),
+            getString(R.string.alert_title),
+            getString(R.string.alert_content),
+            getString(R.string.alert_yes),
+            getString(R.string.alert_no),
+            { goChatLink() },
+            {}
+        )
+    }
+
+    private fun goChatLink() {
+        val uri = ""
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+        startActivity(intent)
+    }
+
     private fun finishApp() {
         var backPressTime = 0L
         requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
@@ -79,7 +109,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                     parentViewModel.finishApp()
                 } else {
                     backPressTime = System.currentTimeMillis()
-                    showToastMessage("뒤로가기 버튼을 한 번 더 누르면 종료됩니다.")
+                    showToastMessage(resources.getString(R.string.back_alert))
                 }
             }
         })

@@ -9,12 +9,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.install.model.AppUpdateType
-import com.google.android.play.core.install.model.UpdateAvailability
 import com.surveasy.surveasy.R
 import com.surveasy.surveasy.databinding.ActivityMainBinding
 import com.surveasy.surveasy.presentation.base.BaseActivity
-import com.surveasy.surveasy.presentation.util.showTwoButtonDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -22,7 +19,7 @@ import kotlinx.coroutines.launch
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
-    private lateinit var appUpdateManager : AppUpdateManager
+    private lateinit var appUpdateManager: AppUpdateManager
     private val viewModel: MainViewModel by viewModels()
 
     override fun initData() = Unit

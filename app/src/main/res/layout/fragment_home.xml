@@ -254,6 +254,28 @@
                     app:layout_constraintTop_toBottomOf="@id/cl_fs"
                     app:list="@{vm.uiState.list}" />
 
+                <TextView
+                    android:id="@+id/tv_alert_icon"
+                    style="@style/TextSmallBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:text="@string/home_temp_alert_icon"
+                    app:layout_constraintStart_toStartOf="@id/guide_begin"
+                    app:layout_constraintTop_toBottomOf="@id/rv_home_list" />
+
+                <TextView
+                    android:id="@+id/tv_alert_title"
+                    style="@style/TextSmallBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="36dp"
+                    android:text="@string/home_temp_alert_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_alert_icon"
+                    app:layout_constraintTop_toBottomOf="@id/rv_home_list" />
+
+
                 <ImageView
                     android:id="@+id/iv_check_label2"
                     android:layout_width="18sp"
@@ -261,7 +283,7 @@
                     android:layout_marginTop="36dp"
                     android:background="@drawable/checkimg"
                     app:layout_constraintStart_toStartOf="@id/guide_begin"
-                    app:layout_constraintTop_toBottomOf="@id/rv_home_list" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_alert_title" />
 
                 <TextView
                     android:id="@+id/tv_label2"
@@ -273,7 +295,7 @@
                     android:text="@string/home_title2_label"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toEndOf="@id/iv_check_label2"
-                    app:layout_constraintTop_toBottomOf="@id/rv_home_list" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_alert_title" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_left"
