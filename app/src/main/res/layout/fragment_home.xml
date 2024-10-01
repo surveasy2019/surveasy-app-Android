@@ -259,18 +259,19 @@
                     style="@style/TextSmallBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
                     android:text="@string/home_temp_alert_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_alert_title"
                     app:layout_constraintStart_toStartOf="@id/guide_begin"
-                    app:layout_constraintTop_toBottomOf="@id/rv_home_list" />
+                    app:layout_constraintTop_toTopOf="@id/tv_alert_title" />
 
                 <TextView
                     android:id="@+id/tv_alert_title"
                     style="@style/TextSmallBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginTop="12dp"
+                    android:padding="16dp"
+                    android:paddingStart="8dp"
                     android:text="@string/home_temp_alert_title"
                     app:layout_constraintStart_toEndOf="@id/tv_alert_icon"
                     app:layout_constraintTop_toBottomOf="@id/rv_home_list" />
