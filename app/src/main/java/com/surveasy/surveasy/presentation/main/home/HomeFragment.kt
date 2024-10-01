@@ -96,7 +96,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun goChatLink() {
-        val uri = ""
+        val uri = "https://open.kakao.com/o/g9K6Y3Qg"
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
         startActivity(intent)
     }
